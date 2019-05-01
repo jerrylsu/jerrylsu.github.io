@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Jerry Su" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Scala, blogs, " />
+
+<meta property="og:title" content="Scala "/>
+<meta property="og:url" content="https://www.jerrulsu.com/scala.html" />
+<meta property="og:description" content="前言¶ Functional Programming¶ Part-1: Elements of Functional Programming¶ 什么是函数式编程？(Functional Programming) 函数式编程是一种仅使用纯函数(pure functions)和不可变值(immutable values)编写软件应用程序的方法。 为什么需要函数式编程？ 1. Pure functions and Side effects 2. Referential Transparency 3. First Class Functions &amp; Higher Order Functions 4. Anonymous Functions 5. Immutability 6. Recursion &amp; Tail Recursion 7. Statements 8. Strict and Non-Strict …" />
+<meta property="og:site_name" content="Jerry Su&#39;s Blog" />
+<meta property="og:article:author" content="Jerry Su" />
+<meta property="og:article:published_time" content="2019-01-13T03:00:30+08:00" />
+<meta name="twitter:title" content="Scala ">
+<meta name="twitter:description" content="前言¶ Functional Programming¶ Part-1: Elements of Functional Programming¶ 什么是函数式编程？(Functional Programming) 函数式编程是一种仅使用纯函数(pure functions)和不可变值(immutable values)编写软件应用程序的方法。 为什么需要函数式编程？ 1. Pure functions and Side effects 2. Referential Transparency 3. First Class Functions &amp; Higher Order Functions 4. Anonymous Functions 5. Immutability 6. Recursion &amp; Tail Recursion 7. Statements 8. Strict and Non-Strict …">
+
+        <title>Scala  · Jerry Su&#39;s Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?8bdcf96a">
+
+
+
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://www.jerrulsu.com">Home</a></li>
+                            <li ><a href="https://www.jerrulsu.com/categories">Categories</a></li>
+                            <li ><a href="https://www.jerrulsu.com/tags">Tags</a></li>
+                            <li ><a href="https://www.jerrulsu.com/archives">Archives</a></li>
+                            <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://www.jerrulsu.com/scala.html"> Scala  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h2 id="_1">前言<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="functional-programming">Functional Programming<a class="headerlink" href="#functional-programming" title="Permanent link">&para;</a></h2>
+<h3 id="part-1-elements-of-functional-programming">Part-1: Elements of Functional Programming<a class="headerlink" href="#part-1-elements-of-functional-programming" title="Permanent link">&para;</a></h3>
+<p>什么是函数式编程？(Functional Programming)
+函数式编程是一种仅使用纯函数(pure functions)和不可变值(immutable values)编写软件应用程序的方法。
+为什么需要函数式编程？
+1. Pure functions and Side effects
+2. Referential Transparency
+3. First Class Functions &amp; Higher Order Functions
+4. Anonymous Functions
+5. Immutability
+6. Recursion &amp; Tail Recursion
+7. Statements
+8. Strict and Non-Strict (Lazy) evaluation
+9. Pattern Matching
+10. Closures</p>
+<h4 id="pure-functions-and-side-effects">Pure functions and Side effects<a class="headerlink" href="#pure-functions-and-side-effects" title="Permanent link">&para;</a></h4>
+<p><strong>什么是纯函数？</strong>
+首先，什么是函数？
+A function relates an input to an output. It is like a machine that has an input and output. And the output is related somehow to the input.
+There are three main part:
+- The input
+- The relationship
+- The output</p>
+<div class="highlight"><pre><span></span>Math.sqrt(4.0)
+sqrt就是relationship
+</pre></div>
+
+
+<ol>
+<li>The Input solely determines the output. 无论在哪里或者多少次调用这个函数，只要输入参数相同，就会得到相同的输出。</li>
+<li>The function doestn't change its input.</li>
+<li>The function doest't do anything else except computing the output.
+这个函数不会从文件或者终端读取任何数据，也不会在终端打印或向文件写任何数据。也不会读写任何全局变量或者函数以外的任何。实际上，它不会有IO操作。纯函数类似于专用机器，获取输入，计算输出并返回，没有其他工作。
+如果它做了任何影响外界或外界可见的事情，我们称之为<strong>函数的副作用(Side effect)</strong>。副作用就像做主要目的以外的事情.
+如果函数没有副作用，它就是纯函数。</li>
+</ol>
+<p><strong>如何验证函数是纯函数？</strong>
+检测函数的<strong>引用透明性 (Referential Transparency)</strong></p>
+<h4 id="referential-transparency">Referential Transparency<a class="headerlink" href="#referential-transparency" title="Permanent link">&para;</a></h4>
+<p><strong>什么是函数的引用透明性？</strong>
+如果我们可以用相同的值替换它而不改变程序的行为，则称函数是引用透明性。
+即，只要输入相同，总能得到相同的返回值。
+e.g. 1:</p>
+<div class="highlight"><pre><span></span>Replace Math.sqrt(4.0) with 2.0
+# Can you do this ?
+# Yes. Because Math.sqrt(4.0) will always return 2.0 as long as input is 4.0. So sqrt是纯函数。
+</pre></div>
+
+
+<p>e.g. 2:</p>
+<div class="highlight"><pre><span></span>// 全局变量
+var g = 10
+def rt(i:Int):Int = {
+    g = i + g
+    return g
+}
+
+val v1 = rt(5)    // v1 = 15
+val v2 = rt(5)    // v2 = 20
+</pre></div>
+
+
+<p>函数rt不是纯函数，因为：
+- 不满足第一条：依赖于全局变量g，输出不是仅仅依赖于输入参数。
+- 不满足第三条：修改了外部变量，所以是有副作用的。</p>
+<p>至此，理解了<strong>纯函数</strong>，<strong>副作用</strong>，<strong>引用透明性</strong>。</p>
+<p><strong>总结：</strong>
+纯函数遵循一下三条规则:
+1. 输出只依赖于输入参数值
+2. 函数不会修改输入参数值
+3. 函数没有副作用
+- 如果为相同的参数提供相同的值，则该函数是引用透明的.
+- 检测函数的引用透明性来判断函数是否为纯函数。</p>
+<p><strong>为什么需要纯函数？</strong>
+1. 安全的编程方式。纯函数对于代码重用是small, precise, simple, safe and easy.
+2. 可组合或者模块化。
+3. 容易测试 only asserting return value
+4. 可记忆的。caching确定函数，即函数是纯函数，可以缓存输出later use。
+5. <strong>惰性 lazy</strong>。</p>
+<h4 id="first-class-function-higher-order-functions">First Class Function &amp; Higher Order Functions<a class="headerlink" href="#first-class-function-higher-order-functions" title="Permanent link">&para;</a></h4>
+<p><strong>什么是一级函数？</strong>
+把函数当做值，即一级函数。
+1. 可以赋值给变量
+2. 可以作为参数，传递给其他函数
+3. 可以作为返回值，从其他函数返回</p>
+<p>在Scala中所有函数都是一级函数，一级公民。</p>
+<p><strong>什么是高阶函数？</strong>
+至少满足一点，即高阶函数：
+1. 将一个或多个函数作为参数
+2. 返回一个函数作为结果</p>
+<h4 id="anonymous-functions">Anonymous Functions<a class="headerlink" href="#anonymous-functions" title="Permanent link">&para;</a></h4>
+<p><strong>什么是匿名函数？</strong></p>
+<div class="highlight"><pre><span></span><span class="err">标准函数：</span><span class="nx">def</span> <span class="kr">double</span><span class="p">(</span><span class="nx">i</span>:<span class="kt">Int</span><span class="p">)</span><span class="o">:</span><span class="nx">Int</span> <span class="o">=</span> <span class="p">{</span><span class="k">return</span> <span class="nx">i</span> <span class="o">*</span> <span class="mi">2</span><span class="p">}</span>
+<span class="err">匿名函数：</span><span class="p">(</span><span class="nx">i</span>:<span class="kt">Int</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">i</span> <span class="o">*</span> <span class="mi">2</span><span class="p">}</span> <span class="o">:</span><span class="nx">Int</span>
+<span class="kd">function</span> <span class="nx">literal</span> <span class="nx">syntax</span> <span class="err">函数文本</span>
+</pre></div>
+
+
+<p><strong>匿名函数如何调用？</strong>
+赋值变量：
+<code>val d = (i:Int) =&gt; {i * 2} :Int</code>
+通过变量调用：
+<code>d(3)</code>
+<strong>匿名函数的目的是什么？</strong>
+内联函数，只使用一次的函数，提供名字是没有意义的。
+e.g. 创建函数返回另一个函数：a little tricky</p>
+<div class="highlight"><pre><span></span>// 返回值省略
+def getOps(c:Int) = (i:Int) =&gt; {
+    // your code here
+    val doubler = (x:Int) =&gt; {x * 2}
+    val tripler = (x:Int) =&gt; {x * 3}
+    if (c&gt;0) doubler(i)
+    else tripler(i)
+}
+</pre></div>
+
+
+<h4 id="immutability">Immutability<a class="headerlink" href="#immutability" title="Permanent link">&para;</a></h4>
+<p><strong>什么是不变性？</strong>
+Immutability = program using constants</p>
+<p>优点：
+1. 有助于采用数学方法和构建纯函数。
+2. 有助于避免各种问题，如不可变对象是线程安全的，易于并发编程。</p>
+<p>How can we program without a variable?
+方法一：</p>
+<div class="highlight"><pre><span></span>def iFactorial(n:Int):Int = {
+    var i = n
+    var f = 1
+    while (i &gt; 0){
+        f = f * i
+        i = i - 1
+    }
+    return f
+}
+
+iFactorial(5)    // =120
+</pre></div>
+
+
+<ul>
+<li>iFactorial函数是纯函数吗？</li>
+<li>可以不用变量实现iFactorial函数吗？
+递归。迭代转递归 convert loops to recursion and avoid mutation</li>
+</ul>
+<div class="highlight"><pre><span></span>def iFactorial(n:Int):Int = {
+    if (n &lt;= 0)
+        return 1
+    else
+        return n * iFactorial(n - 1)
+}
+</pre></div>
+
+
+<p Immutability.jpg="Immutability.jpg" _="%" asset_img="asset_img">方法二：</p>
+<p>可变性可能有其明显的优势.</p>
+<h4 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>;</code>是可选的。一行多条语句时，可以用<code>;</code>间隔</li>
+<li><code>return</code>关键字是可选的。函数总是返回最后一次执行表达式的值</li>
+<li>单行函数体的花括号<code>{</code> <code>}</code>是可选的</li>
+<li>返回值类型是可选的，只要编译器可以推断返回值类型</li>
+<li>不要忘记函数体前的<code>=</code></li>
+<li>无参函数<code>(</code> <code>)</code>是可选的</li>
+</ul>
+<p>A simple example:</p>
+<div class="highlight"><pre><span></span>def myMax(x:Int, y:Int) : Int = {
+    if (x &gt; y)
+        return x;
+    else
+        return y;
+}
+</pre></div>
+
+
+<ol>
+<li>省略<code>;</code>和<code>return</code>：</li>
+</ol>
+<div class="highlight"><pre><span></span>def myMax(x:Int, y:Int) : Int = {
+    if (x &gt; y)
+        x
+    else
+        y
+}
+</pre></div>
+
+
+<ol>
+<li>一行函数体：</li>
+</ol>
+<div class="highlight"><pre><span></span>def myMax(x:Int, y:Int) : Int = {
+    if (x &gt; y) x else y
+}
+</pre></div>
+
+
+<ol>
+<li>单行函数体的花括号<code>{</code> <code>}</code>是可选的：</li>
+</ol>
+<div class="highlight"><pre><span></span>def myMax(x:Int, y:Int) : Int = if (x &gt; y) x else y
+</pre></div>
+
+
+<ol>
+<li>返回值类型是可选的：</li>
+</ol>
+<div class="highlight"><pre><span></span>def myMax(x:Int, y:Int) = if (x &gt; y) x else y
+</pre></div>
+
+
+<p>这种单行<code>functions</code>和<code>methods</code>在Scala中常见。同样Scala中多行函数也很常见，但是函数体需要一对花括号<code>{</code> <code>}</code>：</p>
+<div class="highlight"><pre><span></span>def myMax(x:Int, y:Int) = { if (x &gt; y) x else y }
+</pre></div>
+
+
+<ol>
+<li>无参函数<code>(</code> <code>)</code>是可选的：</li>
+</ol>
+<p>保留<code>(</code> <code>)</code>：当函数有副作用时使用</p>
+<div class="highlight"><pre><span></span>def hWorld() = println(&quot;Hello World!&quot;)
+val h = hWorld()
+val h = hWorld
+</pre></div>
+
+
+<p>省略<code>(</code> <code>)</code>：当函数没有副作用时使用，即纯函数不使用<code>(</code> <code>)</code></p>
+<div class="highlight"><pre><span></span>def hWorld = println(&quot;Hello World!&quot;)
+val h = hWorld
+</pre></div>
+
+
+<p>惯例：无参函数没有<code>(</code> <code>)</code>表明副作用</p>
+<h4 id="functions-literals">Functions Literals<a class="headerlink" href="#functions-literals" title="Permanent link">&para;</a></h4>
+<h5 id="syntax">Syntax<a class="headerlink" href="#syntax" title="Permanent link">&para;</a></h5>
+<p>不同的名字，相同的意义：
+- Anonymous functions
+- Function literals
+- Lambda expression</p>
+<p>我比较倾向于Function literals，因为函数式编程的基本思想之一是函数被当作<code>first class citizens</code>, 可以象操作<code>values</code>一样操作它：
+1. 可以赋值给变量
+2. 可以作为参数，传递给其他函数
+3. 可以作为返回值，从高阶函数返回</p>
+<p>可以用<code>literal</code>创建<code>values</code>：</p>
+<div class="highlight"><pre><span></span>val s = &quot;Hello World!&quot;                                  // create a string value using a string literal
+val l = 5  |  val l:Long = 5   |   val l = 5:Long       // create a integer value using a integer literal
+</pre></div>
+
+
+<p><strong>Can we create a function value using a literal?</strong></p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nl">parameterName</span><span class="p">:</span> <span class="n">type</span><span class="p">,</span> <span class="p">...)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">function</span> <span class="n">body</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">expr</span><span class="p">]</span>
+<span class="p">}</span> <span class="o">:</span> <span class="p">[</span><span class="k">return</span> <span class="n">type</span><span class="p">]</span>
+</pre></div>
+
+
+<ol>
+<li>无函数名</li>
+<li><code>=</code>变成<code>=&gt;</code></li>
+<li>返回值类型移到末尾</li>
+</ol>
+<div class="highlight"><pre><span></span>val f = (x:Int) =&gt; { x + 5 }
+val f = (x:Int) =&gt; { x + 5 }:Int
+</pre></div>
+
+
+<p>如果把返回值类型移到前面，必须包含输入类型和返回类型。不推荐这种写法，Scala会自动推断：</p>
+<div class="highlight"><pre><span></span>// also like
+val l:Long = 5
+val f:Int=&gt; Int = (x:Int) =&gt; { x + 5 }
+</pre></div>
+
+
+<p>e.g.
+创建一个函数值接收一个整型和一个字符串，连接后返回一个字符串。<code>myFun(5, "-")</code>返回<code>-5-</code></p>
+<div class="highlight"><pre><span></span>val myFun:(Int, String)=&gt;String = (x:Int, s:Sring) =&gt; { s + x + s }:String
+
+val myFun = (x:Int, s:Sring) =&gt; { s + x + s }    // 推荐写法
+</pre></div>
+
+
+<h5 id="where-do-we-use-function-literals">Where do we use function literals?<a class="headerlink" href="#where-do-we-use-function-literals" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Pass it to a higher order functions</li>
+<li>Return it from higher order functions</li>
+</ul>
+<p>e.g.</p>
+<div class="highlight"><pre><span></span>val data= List(-250, 57, 54, -33, 43)
+data.map( (x:Int) =&gt; x + 10 )
+&gt;&gt;&gt; [[-240, 67, 64, -23, 53]]
+</pre></div>
+
+
+<p>当只有一个参数时，参数类型和<code>(</code> <code>)</code>可省略：</p>
+<div class="highlight"><pre><span></span>data.map( x =&gt; x + 10 )
+</pre></div>
+
+
+<h4 id="placeholder-syntax">Placeholder Syntax<a class="headerlink" href="#placeholder-syntax" title="Permanent link">&para;</a></h4>
+<h4 id="higher-order-functions">Higher Order Functions<a class="headerlink" href="#higher-order-functions" title="Permanent link">&para;</a></h4>
+<h4 id="varargs-named-arguments-default-value">VarArgs, Named Arguments, Default Value<a class="headerlink" href="#varargs-named-arguments-default-value" title="Permanent link">&para;</a></h4>
+<h4 id="partially-applied-functions">Partially Applied Functions<a class="headerlink" href="#partially-applied-functions" title="Permanent link">&para;</a></h4>
+<h3 id="part-2-elements-of-functional-programming">Part-2: Elements of Functional Programming<a class="headerlink" href="#part-2-elements-of-functional-programming" title="Permanent link">&para;</a></h3>
+<h3 id="strict-and-lazy-evaluations">Strict and Lazy Evaluations<a class="headerlink" href="#strict-and-lazy-evaluations" title="Permanent link">&para;</a></h3>
+<h3 id="pattern-matching">Pattern Matching<a class="headerlink" href="#pattern-matching" title="Permanent link">&para;</a></h3>
+<h3 id="scala-closures">Scala Closures<a class="headerlink" href="#scala-closures" title="Permanent link">&para;</a></h3>
+<h2 id="scala-basics">Scala Basics<a class="headerlink" href="#scala-basics" title="Permanent link">&para;</a></h2>
+            <div>
+</div>
+
+            <section>
+    <p id="post-share-links">
+    Share on:
+    <a href="https://twitter.com/intent/tweet?text=Scala&url=https%3A//www.jerrulsu.com/scala.html&hashtags=scala" target="_blank" title="Share on Twitter">Twitter</a>
+    ❄
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/scala.html" target="_blank" title="Share on Facebook">Facebook</a>
+    ❄
+    <a href="" target="_blank" title="Share on Google Plus">Google+</a>
+    ❄
+    <a href="mailto:?subject=Scala&amp;body=https%3A//www.jerrulsu.com/scala.html" target="_blank" title="Share via Email">Email</a>
+    </p>
+</section>
+
+            
+            <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="https://www.jerrulsu.com/scala-with-gradle-in-intellij.html" title="Scala with Gradle in Intellij">Scala with Gradle in Intellij</a></li>
+<li><a href="https://www.jerrulsu.com/singleton-companion-object.html" title="Singleton &amp; Companion Object">Singleton & Companion Object</a></li>
+<li><a href="https://www.jerrulsu.com/case-class-vs-class.html" title="Case Class vs Class">Case Class vs Class</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://www.jerrulsu.com/spark-rdd.html" title="Previous: Spark RDD">Spark RDD</a></li>
+                <li class="next-article"><a href="https://www.jerrulsu.com/linux.html" title="Next: Linux">Linux</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2019-01-13T03:00:30+08:00">Jan 13, 2019</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://www.jerrulsu.com/categories.html#blogs-ref">blogs</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://www.jerrulsu.com/tags#scala-ref">Scala
+                    <span>4</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
+    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-another social link sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-subtitle"><span class="site-name">Jerry Su's Blog</span> - Copyright © 2018</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Jerry" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Algorithm, Algorithm, " />
+
+<meta property="og:title" content="Data Structure and Algorithm in Python "/>
+<meta property="og:url" content="https://www.jerrulsu.com/Data Structure and Algorithm in Python.html" />
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="Jerry Su&#39;s Blog" />
+<meta property="og:article:author" content="Jerry" />
+<meta property="og:article:published_time" content="2018-11-17T11:42:33+08:00" />
+<meta name="twitter:title" content="Data Structure and Algorithm in Python ">
+<meta name="twitter:description" content="">
+
+        <title>Data Structure and Algorithm in Python  · Jerry Su&#39;s Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?8bdcf96a">
+
+
+
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://www.jerrulsu.com">Home</a></li>
+                            <li ><a href="https://www.jerrulsu.com/categories">Categories</a></li>
+                            <li ><a href="https://www.jerrulsu.com/tags">Tags</a></li>
+                            <li ><a href="https://www.jerrulsu.com/archives">Archives</a></li>
+                            <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://www.jerrulsu.com/Data Structure and Algorithm in Python.html"> Data Structure and Algorithm in Python  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h2 id="sort">Sort<a class="headerlink" href="#sort" title="Permanent link">&para;</a></h2>
+<h3 id="quick-sort">Quick Sort<a class="headerlink" href="#quick-sort" title="Permanent link">&para;</a></h3>
+<h4 id="_1">引例：荷兰国旗问题🇳🇱<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<h3 id="heap-sort">Heap Sort<a class="headerlink" href="#heap-sort" title="Permanent link">&para;</a></h3>
+<p><a href="">https://docs.python.org/3/library/heapq.html#heapq.heapify</a></p>
+<p>时间复杂度O(N*logN)，额外空间复杂度O(1)。</p>
+<p><strong>堆结构非常重要</strong></p>
+<ol>
+<li>堆结构的<strong><code>heapInsert</code></strong>和<strong><code>heapify</code></strong></li>
+<li>堆结构的增大和减少</li>
+<li>如果只是建堆的过程，时间复杂度为O(N)</li>
+<li>优先级队列结构，就是堆结构</li>
+</ol>
+<h4 id="heap">Heap<a class="headerlink" href="#heap" title="Permanent link">&para;</a></h4>
+<h5 id="_2">堆的定义<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h5>
+<p><strong><code>堆结构</code></strong>就是一个<strong><code>完全二叉树</code></strong>，数组的结构实现，通过约定下标规则。</p>
+<p>对于任意下标为<strong><code>i</code></strong>的结点，</p>
+<ul>
+<li>左孩子：<strong><code>2*i + 1</code></strong></li>
+<li>右孩子：<strong><code>2*i + 2</code></strong></li>
+<li>父节点：<strong><code>(i-1) // 2</code></strong></li>
+</ul>
+<p><strong><code>大根堆</code></strong>：在一棵完全二叉树中，任何一棵子树的最大值都是这棵子树的根，所形成的结构叫大根堆。小根堆类似。</p>
+<h5 id="_3">堆的特点与优势<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h5>
+<ol>
+<li>大/小根堆有一个很重要的属性：它的最大/小元素始终是根节点<strong><code>heap[0]</code></strong>。</li>
+<li>堆的调整代价只和<strong><code>层数</code></strong>有关，所以<code>入堆</code>和<code>出堆</code>的代价只有<strong><code>O(lgN)</code></strong>。</li>
+</ol>
+<h4 id="_4">大根堆的实现<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>This implementation uses <strong><code>arrays</code></strong> for which <strong><code>heap[i] &gt; heap[2*i+1]</code></strong> and <strong><code>heap[i] &gt; heap[2*i+2]</code></strong> for all <strong><code>i</code></strong>, counting elements from zero. </p>
+<p>给定数组，都可根据约定<strong>视其为堆</strong>，但其不是大根堆，<strong>如何将数组调整为大根堆</strong>？</p>
+<h5 id="_5">建立大根堆<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h5>
+<p><strong><code>heapInsert</code></strong>: 经历一个新结点加入一个已经调整好的堆中，同时往上调整的过程。调整停止条件：当加入结点值不大于其父节点时，
+调整停止。</p>
+<p><strong>堆在数组上可伸缩</strong></p>
+<div class="highlight"><pre><span></span>def insertHeap(arr, index):
+    par_i = (index - 1) // 2
+    while par_i &gt;= 0 and arr[index] &gt; arr[par_i]:        # 插入结点值比父结点大时，往上调整
+        arr[index], arr[par_i] = arr[par_i], arr[index]  # 与父结点交换
+        index = par_i                   # 插入结点来到父节点的位置
+        par_i = (index - 1) // 2
+
+def createHeap(arr):
+    if arr == None or len(arr) &lt; 2:
+        return arr
+    for i in range(len(arr)):          # 依次将结点加入堆中， 最终将数组（堆）调整为大根堆
+        insertHeap(arr, i)
+    return arr
+</pre></div>
+
+
+<p>时间复杂度分析：<strong><code>O(N)</code></strong></p>
+<p>当第<code>i</code>个结点加入堆中时，<code>0</code>~<code>i-1</code>已经调整为大根堆，其高度为<code>O(log(i-1))</code>，即调整代价为<code>O(log(i-1))</code>。(沿其父结点依次向上&gt;
+比较调整)</p>
+<p>所以, <code>N</code>个结点的调整代价为：<code>O(lg1) + O(lg2) + ... + O(lgN)</code>收敛于<code>O(N)</code></p>
+<h5 id="_6">堆化<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span>def heapify(arr, index, heapSize):
+    left = 2 * index + 1
+    # 左孩子未越界，在堆上，继续循环判断是否下沉
+    while left &lt; heapSize:    
+        # 1. 求左右孩子最大的下标
+        largest = left + 1 if (left+1) &lt; heapSize and arr[left+1] &gt; arr[left] else left   
+        # 2. 最大孩子和本结点最大的下标
+        largest = index if arr[index] &gt;= arr[largest] else largest   
+        # 3. 如果最大的结点就是自身，heapify完成跳出
+        if largest == index:       
+            break
+        # 4. 否则，交换下沉
+        arr[largest], arr[index] = arr[index], arr[largest]
+        index = largest
+        left = 2 * index + 1
+</pre></div>
+
+
+<h5 id="_7">堆排序<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h5>
+<p>堆大小：heapSize = len(arr)</p>
+<p>数组最后一个数下标：heapSize -= 1</p>
+<ol>
+<li>把数组<code>arr</code>创建为大根堆</li>
+<li>堆顶<strong><code>arr[0]</code></strong>与数组最后一个数<strong><code>arr[heapSize]</code></strong>交换</li>
+<li>将堆的大小缩小<strong><code>heapSize -= 1</code></strong></li>
+<li><strong><code>0~heapSize</code></strong>做<strong><code>heapify</code></strong></li>
+<li>至<code>2</code>循环，直到堆大小减到0，数组有序</li>
+</ol>
+<div class="highlight"><pre><span></span>def heapSort(arr):
+    createHeap(arr)
+    heapSize = len(arr)
+    while heapSize &gt; 1:
+        heapSize -= 1
+        arr[0], arr[heapSize] = arr[heapSize], arr[0]
+        heapify(arr, 0, heapSize)
+</pre></div>
+
+
+<h2 id="bfs-dfs">BFS &amp; DFS<a class="headerlink" href="#bfs-dfs" title="Permanent link">&para;</a></h2>
+<h3 id="bfs">BFS<a class="headerlink" href="#bfs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>def bfs(graph, start, end):
+    queue = []
+    queue.append([start])
+    visted.add(start)
+
+    while queue:
+        node = queue.pop()
+        # 标记已被访问
+        visted.add(node)
+
+        process(node)
+        # 1. 寻找后继结点 2. 检查后继结点是否被访问
+        nodes =  generate_related_nodes(node)
+        queue.push(nodes)
+
+    # other process work
+    ....
+</pre></div>
+
+
+<h3 id="dfs">DFS<a class="headerlink" href="#dfs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span># Recursion
+visted = set()
+def dfs(node, visted):
+    visted.add(node)
+    # process current node here
+    ...
+    for next_node in node.children():
+        if next_node not in visted:
+            dfs(next_node, visted)
+
+# Non-Recursion
+def dfs(tree):
+    if not tree.root:
+        return None
+    visted, stack = [], [tree.root]
+    while stack:
+        node = stack.pop()
+        visted.add(node)
+
+        process(node)
+        nodes = generate_related_node(node)
+        stack.push(nodes)
+    # other processing work
+    ...
+</pre></div>
+
+
+<h2 id="recursion">Recursion<a class="headerlink" href="#recursion" title="Permanent link">&para;</a></h2>
+<p><strong>用相同的方法解决规模不同的相同问题。</strong>
+相同的方法：函数
+问题的规模： 函数参数控制
+递归是一种特殊的循环，通过<strong>函数体</strong>循环。</p>
+<div class="highlight"><pre><span></span>factorial(6):
+6 * factorial(5)
+6 * (5 * factorial(4))
+6 * (5 * (4 * factorial(3)))
+6 * (5 * (4 * (3 * factorial(2))))
+6 * (5 * (4 * (3 * ( 2 * factorial(1)))))
+6 * (5 * (4 * (3 * ( 2 * 1))))
+6 * (5 * (4 * (3 * 2)))
+6 * (5 * (4 * 6))
+6 * (5 * 24)
+6 * 120
+720
+</pre></div>
+
+
+<ol>
+<li>把问题转化为规模缩小了的同类子问题</li>
+<li>有明确的不需要继续进行递归的条件（base case）</li>
+<li></li>
+</ol>
+<h3 id="template">Template<a class="headerlink" href="#template" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>def recursion(level, param1, param2, ...):
+
+    # recursion terminator
+    if level &gt; MAX_LEVEL:
+        print_result
+        return
+
+    # process logic in current level
+    process_data(level, data...)
+
+    # drill down
+    self.recursion(level + 1, p1, p2, ...)
+
+    # reverse the current level status if needed
+    reverse_state(level)
+</pre></div>
+
+
+<h3 id="example">Example:<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<h2 id="divide-and-conquer">Divide and Conquer<a class="headerlink" href="#divide-and-conquer" title="Permanent link">&para;</a></h2>
+<p _="%" asset_img="asset_img" divide-and-conquer1.jpg="divide-and-conquer1.jpg">递归的高阶算法应用：分治</p>
+<h3 id="template_1">Template<a class="headerlink" href="#template_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>def divide_conquer(problem, param1, param2, ...):
+
+    # recursion terminator
+    if problem is None:
+        print_result
+        return
+
+    # prepare data
+    data = prepare_data(problem)
+    subproblem = split_problem(problem, data)
+
+    # conquer subproblem
+    subresult1 = self.divide_conquer(problem[0], p1, p2, ...)
+    subresult2 = self.divide_conquer(problem[1], p1, p2, ...)
+    subresult3 = self.divide_conquer(problem[2], p1, p2, ...)
+    ...
+
+    # process and generate the final result
+    result = process_result(subresult1, subresult2, subresult3, ...)
+</pre></div>
+
+
+<h3 id="example_1">Example:<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/jerrylsu/Algorithms/blob/master/Divide%20Conquer/23.%20Merge%20k%20Sorted%20Lists.ipynb">23. Merge k Sorted Lists</a></p>
+<h2 id="dynamic-programming">Dynamic Programming<a class="headerlink" href="#dynamic-programming" title="Permanent link">&para;</a></h2>
+<p><strong>所有的动态规划都是由暴力递归优化而来</strong>
+动态规划是一种分阶段求解决策问题的数学思想。
+ 三个重要的概念： <strong>状态</strong>（最优子结构）、<strong>递推方程</strong>、<strong>边界</strong>。 
+动态规划利用<strong>自底向上的递推</strong>方式，实现时间和空间上的最优化。</p>
+<ol>
+<li>递归展开过程中存在重复状态，即重叠子问题</li>
+<li>重复状态无后效性：与到达这个状态的路径无关，即只要这个状态参数确定，则返回值确定。</li>
+</ol>
+<p>暴力递归到动态规划的解法：
+1. 找出需要求解的<strong>状态位置</strong>
+2. 回到Base case中设置不被依赖的<strong>边界状态</strong>
+3. 分析<strong>普遍状态</strong>如何依赖</p>
+<h3 id="example_2">Example:<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>One-dimensional DP
+<a href="https://github.com/jerrylsu/Algorithms/blob/master/Dynamic%20Programming/One-dimensional/70.%20Climbing%20Stairs.ipynb">70. Climbing Stairs</a></p>
+</li>
+<li>
+<p>Two-dimensional DP
+<a href="https://github.com/jerrylsu/Algorithms/blob/master/Dynamic%20Programming/Two-dimensional/64.%20Minimum%20Path%20Sum.ipynb">64. Minimum Path Sum</a>
+<a href="https://github.com/jerrylsu/Algorithms/blob/master/Dynamic%20Programming/Two-dimensional/120.%20Triangle.ipynb">120. Triangle</a></p>
+</li>
+</ol>
+<p>更新中...</p>
+            <div>
+</div>
+
+            <section>
+    <p id="post-share-links">
+    Share on:
+    <a href="https://twitter.com/intent/tweet?text=Data%20Structure%20and%20Algorithm%20in%20Python&url=https%3A//www.jerrulsu.com/Data%20Structure%20and%20Algorithm%20in%20Python.html&hashtags=algorithm" target="_blank" title="Share on Twitter">Twitter</a>
+    ❄
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Data%20Structure%20and%20Algorithm%20in%20Python.html" target="_blank" title="Share on Facebook">Facebook</a>
+    ❄
+    <a href="" target="_blank" title="Share on Google Plus">Google+</a>
+    ❄
+    <a href="mailto:?subject=Data%20Structure%20and%20Algorithm%20in%20Python&amp;body=https%3A//www.jerrulsu.com/Data%20Structure%20and%20Algorithm%20in%20Python.html" target="_blank" title="Share via Email">Email</a>
+    </p>
+</section>
+
+            
+            <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="https://www.jerrulsu.com/binary-search.html" title="Binary Search">Binary Search</a></li>
+<li><a href="https://www.jerrulsu.com/binary-tree-and-divide-conquer.html" title="Binary Tree and Divide Conquer">Binary Tree and Divide Conquer</a></li>
+<li><a href="https://www.jerrulsu.com/Linked-List.html" title="Linked List">Linked List</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://www.jerrulsu.com/english-grammar.html" title="Previous: English Grammar">English Grammar</a></li>
+                <li class="next-article"><a href="https://www.jerrulsu.com/ensemble.html" title="Next: Ensemble">Ensemble</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2018-11-17T11:42:33+08:00">Nov 17, 2018</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://www.jerrulsu.com/categories.html#algorithm-ref">Algorithm</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://www.jerrulsu.com/tags#algorithm-ref">Algorithm
+                    <span>4</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
+    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-another social link sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-subtitle"><span class="site-name">Jerry Su's Blog</span> - Copyright © 2018</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

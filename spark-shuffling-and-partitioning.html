@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Jerry Su" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Spark, blogs, " />
+
+<meta property="og:title" content="&#39;Spark: Shuffling and Partitioning&#39; "/>
+<meta property="og:url" content="https://www.jerrulsu.com/spark-shuffling-and-partitioning.html" />
+<meta property="og:description" content="Shuffling¶ org.apache.spark.rdd.RDD[(String, Int)]= ShuffledRDD[366]¶ Think again what happens when you have to do a groupBy or a groupByKey. Remember our data is distributed! Did you notice anything odd? val pairs = sc.parallelize(List((1, &#34;one&#34;), (2, &#34;two&#34;), (3, &#34;three&#34;))) pairs.groupByKey() // res2: org.apache …" />
+<meta property="og:site_name" content="Jerry Su&#39;s Blog" />
+<meta property="og:article:author" content="Jerry Su" />
+<meta property="og:article:published_time" content="2019-02-05T14:11:28+08:00" />
+<meta name="twitter:title" content="&#39;Spark: Shuffling and Partitioning&#39; ">
+<meta name="twitter:description" content="Shuffling¶ org.apache.spark.rdd.RDD[(String, Int)]= ShuffledRDD[366]¶ Think again what happens when you have to do a groupBy or a groupByKey. Remember our data is distributed! Did you notice anything odd? val pairs = sc.parallelize(List((1, &#34;one&#34;), (2, &#34;two&#34;), (3, &#34;three&#34;))) pairs.groupByKey() // res2: org.apache …">
+
+        <title>&#39;Spark: Shuffling and Partitioning&#39;  · Jerry Su&#39;s Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?8bdcf96a">
+
+
+
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://www.jerrulsu.com">Home</a></li>
+                            <li ><a href="https://www.jerrulsu.com/categories">Categories</a></li>
+                            <li ><a href="https://www.jerrulsu.com/tags">Tags</a></li>
+                            <li ><a href="https://www.jerrulsu.com/archives">Archives</a></li>
+                            <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://www.jerrulsu.com/spark-shuffling-and-partitioning.html"> 'Spark: Shuffling and Partitioning'  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1 id="shuffling">Shuffling<a class="headerlink" href="#shuffling" title="Permanent link">&para;</a></h1>
+<h2 id="orgapachesparkrddrddstring-int-shuffledrdd366">org.apache.spark.rdd.RDD[(String, Int)]= ShuffledRDD[366]<a class="headerlink" href="#orgapachesparkrddrddstring-int-shuffledrdd366" title="Permanent link">&para;</a></h2>
+<p>Think again what happens when you have to do a groupBy or a groupByKey.
+Remember our data is distributed! Did you notice anything odd?</p>
+<div class="highlight"><pre><span></span>val pairs = sc.parallelize(List((1, &quot;one&quot;), (2, &quot;two&quot;), (3, &quot;three&quot;)))
+pairs.groupByKey()
+
+// res2: org.apache.spark.rdd.RDD[(Int, Iterable[String])]
+// = ShuffledRDD[16] at groupByKey at &lt;console&gt;:37
+</pre></div>
+
+
+<p>We typically have to move data from one node to another to be "grouped with" its key. Doing this is called "shuffling".
+<strong>Shuffles Happen</strong>
+Shuffles can be an enormous hit to because it means that Spark must send data from one node to another. Why? Latency! </p>
+<h2 id="grouping-and-reducing-example">Grouping and Reducing, Example<a class="headerlink" href="#grouping-and-reducing-example" title="Permanent link">&para;</a></h2>
+<p>Let's start with an example. Given:
+<code>case class CFFPurchase(customerid: Int, destination: String, price: Double)</code>
+假设我们有瑞士火车公司（CFF）移动应用程序用户在过去一个月内购买的数据集RDD。
+<code>val purchasesRdd: RDD[CFFPurchaseJ = sc.textFile( ... )</code>
+目标：每个客户在这个月内的旅行次数和花费金额。</p>
+<div class="highlight"><pre><span></span>val purchasesRdd: RDD[CFFPurchaseJ = sc.textFile( ... )
+
+// Returns: Array[(Int, (Int, Double))]
+val purchasesPerMonth =
+    purchasesRdd.map(p =&gt; (p.customerld, p.price)) // Pair RDD
+                .groupByKey() // groupByKey returns RDD[(K, Iterable[VJ )J
+                .map(p =&gt; (p._1, (p._2.size, p._2.sum)))
+                .collect() 
+</pre></div>
+
+
+<p>An example dataset: </p>
+<div class="highlight"><pre><span></span>val purchases = List(CFFPurchase(100, &quot;Geneva&quot;, 22.25),
+                     CFFPurchase (300, &#39;&#39;Zurich&#39;&#39;, 42. 10),
+                     CFFPurchase(100, &quot;Fribourg&quot;, 12.40),
+                     CFFPurchase (200, &#39;&#39;St. Gallen&#39;&#39;, 8. 20),
+                     CFFPurchase(100, &#39;&#39;Lucerne&#39;&#39;, 31.60),
+                     CFFPurchase (300, &#39;&#39;Basel&#39;&#39;, 16. 20)) 
+</pre></div>
+
+
+<p>{% asset_img groupByKey.jpg %}</p>
+<p><strong>注意：<code>groupByKey</code>会为每个<code>Key</code>生成一个键值对。 且单个键值对不能跨越多个<code>worker</code>节点。</strong></p>
+<h2 id="reminder-latency">Reminder: Latency<a class="headerlink" href="#reminder-latency" title="Permanent link">&para;</a></h2>
+<p>{% asset_img Latency.jpg %}</p>
+<p>如果不是绝对必要，我们不希望通过网络发送所有数据。 太多的网络通信会导致性能下降。
+如何优化？或许我们没有必要通过网络发送所有的键值对。也许我们可以在shuffle之前减少。 这可以大大减少我们必须通过网络发送的数据量。</p>
+<h2 id="grouping-and-reducing-example-optimized">Grouping and Reducing, Example - Optimized<a class="headerlink" href="#grouping-and-reducing-example-optimized" title="Permanent link">&para;</a></h2>
+<p>优化：使用<code>reduceByKey</code>.
+从概念上讲，<code>reduceByKey</code>可以被认为是：
+1. 首先执行<code>groupByKey</code>
+2. 然后<code>reduce</code>每个键分组的所有值的组合</p>
+<p>然而，<code>reduceByKey</code>比单独使用<code>groupByKey</code>和<code>reduce</code>更有效。</p>
+<p><strong>Signature:</strong>
+<code>def reduceByKey(func: (V, V) =&gt; V): RDD[(K, V)]</code></p>
+<div class="highlight"><pre><span></span>val purchasesRdd: RDD[CFFPurchaseJ = sc.textFile( ... )
+
+val purchasesPerMonth =
+purchasesRdd.map(p =&gt; (p.customerld, (1, p.price))) // Pair ROD
+            .reduceByKey( ... ) //? 
+</pre></div>
+
+
+<p>注意：传递给<code>map</code>的函数变为<code>p =&gt; (p.customerld, (1, p.price))</code>
+传递给<code>reduceByKey</code>怎样的函数可以返回这样形式的结果<code>(customerid, (numTrips, totalSpent))</code>？</p>
+<div class="highlight"><pre><span></span>val purchasesPerMonth =
+purchasesRdd.map(p =&gt; (p.customerld, (1, p.price))) // Pair ROD
+            .reduceByKey((v1, v2) =&gt; (v1 ._1 + v2._1, v1 ._2 + v2._2))
+            .collect() 
+</pre></div>
+
+
+<p _="%" asset_img="asset_img" reduceByKey2.jpg="reduceByKey2.jpg"><strong>1. map</strong>
+<strong>2. <code>reduceByKey</code>reduce on mapper side first !</strong>  从而减少了用于<code>shuffle</code>的<code>key-value pairs</code>数据量，如下图所示：
+{% asset_img reduceByKey1.jpg %}
+<strong>3. reduce again after shuffle</strong></p>
+<p><code>reduceByKey</code>方法有什么好处？
+通过首先减少数据集，在<code>shuffle</code>期间通过网络发送的数据量大大减少。这可能会导致性能上的重大改进！</p>
+<h2 id="groupbykey-and-reducebykey-running-times">groupByKey and reduceByKey Running Times<a class="headerlink" href="#groupbykey-and-reducebykey-running-times" title="Permanent link">&para;</a></h2>
+<p>在真实集群上进行基准测试：</p>
+<p>{% asset_img runTime.jpg %}</p>
+<h2 id="shuffling_1">Shuffling<a class="headerlink" href="#shuffling_1" title="Permanent link">&para;</a></h2>
+<p>回想一下使用<code>groupByKey</code>的示例：</p>
+<div class="highlight"><pre><span></span>val purchasesPerCust =
+purchasesRdd.map(p =&gt; (p.customerld, p.price)) // Pair RDD
+            .groupByKey() 
+</pre></div>
+
+
+<p><font color=red ><strong>Grouping all values of key-value pairs with the same key requires collecting all key-value pairs with the same key on the same machine. </strong></font>
+<strong>Shuffling</strong>产生的原因是：将与<code>Key</code>相关的所有<code>Value</code>移到同一台机器上，从而导致数据在网络中<code>Shuffle</code>。
+<strong>但是Spark怎么知道哪个<code>Key</code>放在哪台机器上呢？</strong>
+- 默认情况下，Spark使用<code>hash partitioning</code>来确定哪个<code>Key</code>应该将对发送到哪台机器。</p>
+<h1 id="partitioning">Partitioning<a class="headerlink" href="#partitioning" title="Permanent link">&para;</a></h1>
+<h2 id="partitions">Partitions<a class="headerlink" href="#partitions" title="Permanent link">&para;</a></h2>
+<p>RDD中的数据被分成若干个分区。</p>
+<p><strong>分区属性：</strong>
+ - 分区永远不会跨越多台机器，即同一分区中的元组保证在同一台机器上。
+ - 群集中的每台计算机都包含一个或多个分区。
+ - 要使用的分区数是可配置的。 默认情况下，它等于所有<strong>executor</strong>节点上的内核总数。</p>
+<p><strong>Spark中提供两种分区：</strong>
+- 散列分区Hash
+- 范围分区Range</p>
+<p><strong>注意：只能在Pair RDD上自定义分区。</strong></p>
+<h2 id="hash-partitioning">Hash partitioning<a class="headerlink" href="#hash-partitioning" title="Permanent link">&para;</a></h2>
+<p>Given a Pair RDD that should be grouped: </p>
+<div class="highlight"><pre><span></span>val purchasesPerCust =
+purchasesRdd.map(p =&gt; (p.customerld, p.price)) // Pair RDD
+            .groupByKey() 
+</pre></div>
+
+
+<ol>
+<li><code>groupByKey</code>首先计算RDD对中每个元组的分区p:
+<code>p = k.hashCode() % numPartitions</code></li>
+<li>然后同一分区中的元组将被发送到托管该分区的计算机</li>
+</ol>
+<p><strong>直觉：散列分区尝试根据<code>Key</code>在分区之间均匀地分布数据。</strong></p>
+<h3 id="hash-partitioning-example">Hash Partitioning: Example<a class="headerlink" href="#hash-partitioning-example" title="Permanent link">&para;</a></h3>
+<p>考虑一<code>Pair RDD</code>，其中<strong>Keys</strong>为<code>[8,96,240,400,401,800]</code> 和 所需分区数为<code>4</code>。</p>
+<p>此外，假设<code>hashCode()</code>是标识（<code>n.hashCode() == n</code>）。
+在这种情况下，散列分区在分区之间按如下方式分配<code>Keys</code>：
+<code>p = key % 4</code>
+- partition 0: [8, 96, 240, 400, 800]
+- partition 1: [401]
+- partition 2: [ ]
+- partition 3: [ ]</p>
+<p>结果是非常不平衡的分布，这会损害性能。</p>
+<p>散列分区的目标是尝试均匀地分散<code>Keys</code>，在这种情况下，<code>Job</code>基本上只是在一个节点上展开，并非真正并行计算。</p>
+<p>在这种情况下，因为知道散列分区实际上是倾斜的，并且<code>Keys</code>是有序且非负的。 我们可以使用范围分区来改进分区，并使其显著均匀。</p>
+<h2 id="range-partitioning">Range partitioning<a class="headerlink" href="#range-partitioning" title="Permanent link">&para;</a></h2>
+<p>Pair RDDs may contain keys that have an ordering defined .
+- Examples: Int, Char, String, ...</p>
+<p>For such RDDs, range partitioning may be more efficient.
+Using a range partitioner, keys are partitioned according to:
+1. an ordering for keys
+2. a set of sorted ranges of keys</p>
+<p>属性：具有相同范围<code>Keys</code>的元组出现在同一台机器上。</p>
+<h3 id="range-partitioning-example">Range Partitioning: Example<a class="headerlink" href="#range-partitioning-example" title="Permanent link">&para;</a></h3>
+<p>使用范围分区可以显着改善分布：
+ - 假设：（a）<strong>Keys</strong>非负，（b）800是RDD中最大的<strong>Key</strong>
+ - 范围集：[1,200]，[201,400]，[401,600]，[601,800]</p>
+<p>在这种情况下，范围分区在分区之间按如下方式分配<strong>Keys</strong>：
+- partition 0: [8, 96]
+- partition 1: [240, 400]
+- partition 2: [ 401]
+- partition 3: [800] </p>
+<p>生成的分区更加平衡。</p>
+<h2 id="partitioning-data">Partitioning Data<a class="headerlink" href="#partitioning-data" title="Permanent link">&para;</a></h2>
+<p>如何为数据设置分区？
+有两种方法可以创建具有特定分区的<strong>RDDs</strong>：
+1. 在<strong>RDD</strong>上调用<strong>partitionBy</strong>，提供显式的分区程序。
+2. Using <strong>transformations</strong> that return <strong>RDDs</strong> with specific partitioners. </p>
+<h3 id="partitioning-data-partitionby">Partitioning Data: partitionBy<a class="headerlink" href="#partitioning-data-partitionby" title="Permanent link">&para;</a></h3>
+<p>调用<strong>partitionBy</strong>会使用指定的分区程序创建<strong>RDD</strong>。
+Example:</p>
+<div class="highlight"><pre><span></span>val pairs = purchasesRdd.map(p =&gt; (p.customerld, p.price))
+val tunedPartitioner = new RangePartitioner(8, pairs)
+val partitioned = pairs.partitionBy(tunedPartitioner).persist() 
+</pre></div>
+
+
+<p>创建RangePartitioner需要：
+1. 指定所需的分区数。
+2. 提供带有序<strong>Keys</strong>的<strong>Pair RDD</strong>。 对该<strong>RDD</strong>进行采样以创建一组合适的排序范围。</p>
+<p><font color=red ><strong>重要：partitionBy的结果应始终persist()。 否则，每次使用RDD是都会重复分区操作，而分区又会涉及Shuffle！</strong></font></p>
+            <div>
+</div>
+
+            <section>
+    <p id="post-share-links">
+    Share on:
+    <a href="https://twitter.com/intent/tweet?text=%27Spark%3A%20Shuffling%20and%20Partitioning%27&url=https%3A//www.jerrulsu.com/spark-shuffling-and-partitioning.html&hashtags=spark" target="_blank" title="Share on Twitter">Twitter</a>
+    ❄
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/spark-shuffling-and-partitioning.html" target="_blank" title="Share on Facebook">Facebook</a>
+    ❄
+    <a href="" target="_blank" title="Share on Google Plus">Google+</a>
+    ❄
+    <a href="mailto:?subject=%27Spark%3A%20Shuffling%20and%20Partitioning%27&amp;body=https%3A//www.jerrulsu.com/spark-shuffling-and-partitioning.html" target="_blank" title="Share via Email">Email</a>
+    </p>
+</section>
+
+            
+            <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="https://www.jerrulsu.com/spark-rdd.html" title="Spark RDD">Spark RDD</a></li>
+<li><a href="https://www.jerrulsu.com/debugging-spark-application.html" title="Debugging Spark Application">Debugging Spark Application</a></li>
+<li><a href="https://www.jerrulsu.com/spark-sql-join.html" title="Spark SQL Join">Spark SQL Join</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://www.jerrulsu.com/hadoop-architecture.html" title="Previous: Hadoop Architecture">Hadoop Architecture</a></li>
+                <li class="next-article"><a href="https://www.jerrulsu.com/debugging-spark-application.html" title="Next: Debugging Spark Application">Debugging Spark Application</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2019-02-05T14:11:28+08:00">Feb 5, 2019</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://www.jerrulsu.com/categories.html#blogs-ref">blogs</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://www.jerrulsu.com/tags#spark-ref">Spark
+                    <span>4</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
+    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-another social link sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-subtitle"><span class="site-name">Jerry Su's Blog</span> - Copyright © 2018</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>
