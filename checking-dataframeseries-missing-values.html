@@ -9,16 +9,16 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Python, posts, " />
+<meta name="keywords" content="Python, Python, " />
 
 <meta property="og:title" content="Checking DataFrame/Series missing values "/>
 <meta property="og:url" content="https://www.jerrulsu.com/checking-dataframeseries-missing-values.html" />
-<meta property="og:description" content="Checking DataFrame missing values¶ cols_missing = frame.columns[frame.isna().any()] Checking Series missing values¶ series.isna().any() has_missing method¶ from loguru import logger import pandas as pd from pandas.core.frame import DataFrame from pandas.core.series import Series import traceback def has_missing(self, values): &#34;&#34;&#34;Check whether values have missing …" />
+<meta property="og:description" content="Checking DataFrame missing values¶ cols_missing = frame.columns[frame.isna().any()] Checking Series missing values¶ series.isna().any() has_missing method¶ ```python from loguru import logger import pandas as pd from pandas.core.frame import DataFrame from pandas.core.series import Series import traceback def has_missing(self, values): &#34;&#34;&#34;Check whether values have …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-04-12T02:05:45+08:00" />
 <meta name="twitter:title" content="Checking DataFrame/Series missing values ">
-<meta name="twitter:description" content="Checking DataFrame missing values¶ cols_missing = frame.columns[frame.isna().any()] Checking Series missing values¶ series.isna().any() has_missing method¶ from loguru import logger import pandas as pd from pandas.core.frame import DataFrame from pandas.core.series import Series import traceback def has_missing(self, values): &#34;&#34;&#34;Check whether values have missing …">
+<meta name="twitter:description" content="Checking DataFrame missing values¶ cols_missing = frame.columns[frame.isna().any()] Checking Series missing values¶ series.isna().any() has_missing method¶ ```python from loguru import logger import pandas as pd from pandas.core.frame import DataFrame from pandas.core.series import Series import traceback def has_missing(self, values): &#34;&#34;&#34;Check whether values have …">
 
         <title>Checking DataFrame/Series missing values  · Jerry Su&#39;s Blog
 </title>
@@ -72,29 +72,28 @@
 <h2 id="checking-series-missing-values">Checking Series missing values<a class="headerlink" href="#checking-series-missing-values" title="Permanent link">&para;</a></h2>
 <p><code>series.isna().any()</code></p>
 <h2 id="has_missing-method">has_missing method<a class="headerlink" href="#has_missing-method" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">pandas.core.frame</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="kn">from</span> <span class="nn">pandas.core.series</span> <span class="kn">import</span> <span class="n">Series</span>
-<span class="kn">import</span> <span class="nn">traceback</span>
-
-
-<span class="k">def</span> <span class="nf">has_missing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check whether values have missing value.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">):</span>
-        <span class="n">cols_missing</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">values</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">cols_missing</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;The columns {&quot;, &quot;.join(cols_missing)} contain missing values!&#39;</span> <span class="o">+</span>
-                           <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_stack</span><span class="p">()))</span>
-        <span class="k">return</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">Series</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">values</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;The {Series.name} Series contain missing values! </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span>
-                           <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_stack</span><span class="p">()))</span>
-        <span class="k">return</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The argument values requires a DataFrame or a Series.&#39;</span><span class="p">)</span>
-</pre></div>
+<p>```python
+from loguru import logger
+import pandas as pd
+from pandas.core.frame import DataFrame
+from pandas.core.series import Series
+import traceback</p>
+<p>def has_missing(self, values):
+    """Check whether values have missing value.
+    """
+    if isinstance(values, DataFrame):
+        cols_missing = values.columns[values.isna().any()]
+        if not cols_missing.empty:
+            logger.warning(f'The columns {", ".join(cols_missing)} contain missing values!' +
+                           ''.join(traceback.format_stack()))
+        return
+    if isinstance(values, Series):
+        if values.isna().any():
+            logger.warning(f'The {Series.name} Series contain missing values! \n' +
+                           ''.join(traceback.format_stack()))
+        return
+    raise ValueError('The argument values requires a DataFrame or a Series.')
+`````</p>
             <div>
 </div>
 
@@ -117,7 +116,6 @@
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
 <li><a href="https://www.jerrulsu.com/building-python-package-with-pybuilder.html" title="Building Python Package with Pybuilder">Building Python Package with Pybuilder</a></li>
-<li><a href="https://www.jerrulsu.com/python-logging.html" title="Python logging">Python logging</a></li>
 <li><a href="https://www.jerrulsu.com/Python email.html" title="Python email">Python email</a></li>
 <li><a href="https://www.jerrulsu.com/using-loguru-and-notifiers-instead-of-logging.html" title="Using loguru and notifiers instead of logging">Using loguru and notifiers instead of logging</a></li>
 <li><a href="https://www.jerrulsu.com/python-object-and-reference.html" title="Python Object and Reference">Python Object and Reference</a></li>
@@ -138,11 +136,11 @@
             <h4>Published</h4>
             <time itemprop="dateCreated" datetime="2019-04-12T02:05:45+08:00">Apr 12, 2019</time>
             <h4>Category</h4>
-            <a class="category-link" href="https://www.jerrulsu.com/categories.html#posts-ref">posts</a>
+            <a class="category-link" href="https://www.jerrulsu.com/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://www.jerrulsu.com/tags#python-ref">Python
-                    <span>6</span>
+                    <span>5</span>
 </a></li>
             </ul>
 <h4>Contact</h4>

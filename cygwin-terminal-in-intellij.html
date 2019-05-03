@@ -9,7 +9,7 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Tools, posts, " />
+<meta name="keywords" content="Tools, Tools, " />
 
 <meta property="og:title" content="Cygwin terminal in IntelliJ "/>
 <meta property="og:url" content="https://www.jerrulsu.com/cygwin-terminal-in-intellij.html" />
@@ -77,7 +77,7 @@ This produces an error from IntelliJ that it cannot start the program correctly.
 Hey, I have a shell! Unfortunately, it starts in my home directory, not in my project root. Starting in the project root is one of the nice features of the terminal in IntelliJ. Finally, two changes. First the IntelliJ setting:</p>
 <p><code>`"C:\cygwin64\bin\bash" -c "exec /usr/bin/env INTELLIJ=true $SHELL --login -i"</code>
 And an addition to my <code>~/.bashrc</code>:</p>
-<p><code>${INTELLIJ-false} &amp;&amp; cd ${OLDPWD-.}</code></p>
+<p><code>${INTELLIJ-false} &amp;&amp; cd ${OLDPWD-.}</code>}`</p>
             <div>
 </div>
 
@@ -117,7 +117,7 @@ And an addition to my <code>~/.bashrc</code>:</p>
             <h4>Published</h4>
             <time itemprop="dateCreated" datetime="2019-04-24T07:05:27+08:00">Apr 24, 2019</time>
             <h4>Category</h4>
-            <a class="category-link" href="https://www.jerrulsu.com/categories.html#posts-ref">posts</a>
+            <a class="category-link" href="https://www.jerrulsu.com/categories.html#tools-ref">Tools</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://www.jerrulsu.com/tags#tools-ref">Tools
