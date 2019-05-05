@@ -271,22 +271,14 @@
 <p><a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/81.Search_in_Rotated_Sorted_Array_II.ipynb">81. Search in Rotated Sorted Array II</a></p>
 <h2 id="half">二分查找高阶：Half<a class="headerlink" href="#half" title="Permanent link">&para;</a></h2>
 <h3 id="find-peak-element">Find Peak Element<a class="headerlink" href="#find-peak-element" title="Permanent link">&para;</a></h3>
-<p>Conditions:</p>
-<ol>
-<li>
-<p>array length is 1  -&gt; return the only index </p>
-</li>
-<li>
-<p>array length is 2  -&gt; return the bigger number's index </p>
-</li>
-<li>
-<p>array length is bigger than 2 -&gt; </p>
-</li>
-</ol>
-<p>(1) find mid, compare it with its left and right neighbors  </p>
-<p>(2) return mid if nums[mid] greater than both neighbors</p>
-<p>(3) take the right half array if nums[mid] smaller than right neighbor</p>
-<p>(4) otherwise, take the left half</p>
+<p>Conditions:
+1. array length is 1  -&gt; return the only index 
+2. array length is 2  -&gt; return the bigger number's index 
+3. array length is bigger than 2 -&gt; 
+   (1) find mid, compare it with its left and right neighbors<br />
+   (2) return mid if nums[mid] greater than both neighbors 
+   (3) take the right half array if nums[mid] smaller than right neighbor
+   (4) otherwise, take the left half</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">findPeakElement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
