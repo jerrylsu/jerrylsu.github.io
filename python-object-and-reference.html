@@ -72,47 +72,37 @@
 <h2 id="_1">变量与对象<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>Python中的变量与C/C++中变量的概念是不同的。</p>
 <ul>
-<li>C/C++：</li>
+<li>
+<p>C/C++：
+<code>int a = 1</code>  # 在栈上开辟地址为<code>a</code>的内存空间，存入值<code>1</code>。
+<code>a = 2</code> # 修改变量<code>a</code>的值。
+<code>int b = a</code> # 将变量<code>a</code>赋值给另一个变量变量<code>b</code>,本质是：拷贝<code>a</code>的值给<code>b</code>。</p>
+</li>
+<li>
+<p>Python
+Python的变量本质是：<strong>内存对象的引用</strong>。
+<code>a = 1</code> # 变量<code>a</code>指向了内存中的一个int型的对象。
+<code>a = 2</code> # 并非像C/C++中给变量<code>a</code>重新赋值，而是<strong><code>a</code>将会移动并指向另一个对象<code>2</code></strong>。当一个对象没有任何标签或引用指向它时，它就会被自动释放。
+<code>b = a</code> # 把变量<code>a</code>赋给另一个变量<code>b</code>，只是给当前内存中对象增加一个引用而已。</p>
+</li>
 </ul>
-<p><code>int a = 1</code>  # 在栈上开辟地址为<code>a</code>的内存空间，存入值<code>1</code>。</p>
-<p><code>a = 2</code> # 修改变量<code>a</code>的值。</p>
-<p><code>int b = a</code> # 将变量<code>a</code>赋值给另一个变量变量<code>b</code>,本质是：拷贝<code>a</code>的值给<code>b</code>。</p>
-<ul>
-<li>Python</li>
-</ul>
-<p>Python的变量本质是：<strong>内存对象的引用</strong>。</p>
-<p><code>a = 1</code> # 变量<code>a</code>指向了内存中的一个int型的对象。</p>
-<p><code>a = 2</code> # 并非像C/C++中给变量<code>a</code>重新赋值，而是<strong><code>a</code>将会移动并指向另一个对象<code>2</code></strong>。当一个对象没有任何标签或引用指向它时，它就会被自动释放。</p>
-<p><code>b = a</code> # 把变量<code>a</code>赋给另一个变量<code>b</code>，只是给当前内存中对象增加一个引用而已。</p>
 <h2 id="python">Python一切皆对象<a class="headerlink" href="#python" title="Permanent link">&para;</a></h2>
-<p>Python使用对象模型来储存数据，任何类型的值都是一个对象。所有的python对象都有3个特征：<strong>身份、类型、值。</strong></p>
-<ul>
-<li>
-<p>身份：每一个对象都有自己的唯一的标识，可以使用内建函数<code>id()</code>来得到它。这个值可以被认为是该对象的内存地址。</p>
-</li>
-<li>
-<p>类型：对象的类型决定了该对象可以保存的什么类型的值，可以进行什么操作，以及遵循什么样的规则。<code>type()</code>函数来查看对象的类型。</p>
-</li>
-<li>
-<p>值：对象表示的数据项。</p>
-</li>
-</ul>
+<p>Python使用对象模型来储存数据，任何类型的值都是一个对象。所有的python对象都有3个特征：<strong>身份、类型、值。</strong>
+- 身份：每一个对象都有自己的唯一的标识，可以使用内建函数<code>id()</code>来得到它。这个值可以被认为是该对象的内存地址。
+- 类型：对象的类型决定了该对象可以保存的什么类型的值，可以进行什么操作，以及遵循什么样的规则。<code>type()</code>函数来查看对象的类型。
+- 值：对象表示的数据项。</p>
 <p><code>a is b</code>：通过<code>id()</code>判断是否为同一个对象的引用。
 <code>a ==  b</code>：判断<code>a</code>和<code>b</code>引用的对象的值是否相同。</p>
 <h2 id="_2">可变对象和不可变对象<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>Python的基本数据类型中。</p>
 <ul>
-<li>
-<p>可变对象： 列表， 字典</p>
-</li>
-<li>
-<p>不可变对象： 数字，字符串，元组</p>
-</li>
+<li>可变对象： 列表， 字</li>
+<li>不可变对象： 数字，字符串，元组
+<code>a = 1</code>     # <code>a</code>指向内存中一个int型对象
+<code>a = 2</code>     # 当将<code>a</code>重新赋值时，因为<code>1</code>是不可变对象，所以<code>a</code>会指向一个新的int型对象，其值为<code>2</code>。
+<code>lst = [1, 2]</code>   # <code>lst</code>指向内存中一个list类型的对象
+<code>lst[0] = 2</code>     # 重新赋值<code>lst</code>中第一个元素</li>
 </ul>
-<p><code>a = 1</code>     # <code>a</code>指向内存中一个int型对象</p>
-<p><code>a = 2</code>     # 当将<code>a</code>重新赋值时，因为<code>1</code>是不可变对象，所以<code>a</code>会指向一个新的int型对象，其值为<code>2</code>。</p>
-<p><code>lst = [1, 2]</code>   # <code>lst</code>指向内存中一个list类型的对象</p>
-<p><code>lst[0] = 2</code>     # 重新赋值<code>lst</code>中第一个元素</p>
 <p>因为list类型是可以改变的，所以第一个元素变更为2。更确切的说，lst的第一个元素是int型，重新赋值时一个新的int对象被指定给第一个元素，但是对于lst来说，它所指的列表型对象没有变，只是列表的内容（其中一个元素）改变了。</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
     <span class="n">arg</span> <span class="o">=</span> <span class="mi">5</span>
