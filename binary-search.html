@@ -68,14 +68,34 @@
     <div class="span2 table-of-content">
         <nav>
         <h4>Contents</h4>
-        true
+        <div class="toc">
+<ul>
+<li><a href="#_1">二分查找初级：二分模板</a><ul>
+<li><a href="#classical-binary-search">Classical Binary Search</a></li>
+<li><a href="#find-first-and-last-position-of-target-lower-upper-bound">Find First and Last Position of Target  ( lower &amp; upper Bound )</a></li>
+<li><a href="#_2">总结</a></li>
+</ul>
+</li>
+<li><a href="#_3">二分查找进阶：转化为二分问题</a><ul>
+<li><a href="#find-minimum-in-rotated-sorted-array">Find Minimum in Rotated Sorted Array</a></li>
+<li><a href="#find-minimum-in-rotated-sorted-array-ii">Find Minimum in Rotated Sorted Array II</a></li>
+<li><a href="#search-in-rotated-sorted-array-ii">Search in Rotated Sorted Array II</a></li>
+</ul>
+</li>
+<li><a href="#half">二分查找高阶：Half</a><ul>
+<li><a href="#find-peak-element">Find Peak Element</a></li>
+</ul>
+</li>
+</ul>
+</div>
         </nav>
     </div>
     <div class="span8 article-content">
 
             
-            <h2 id="_1">二分查找初级：二分模板<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h3 id="classical-binary-search">Classical Binary Search<a class="headerlink" href="#classical-binary-search" title="Permanent link">&para;</a></h3>
+            
+<h2 id="_1">二分查找初级：二分模板<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<h3 id="classical-binary-search">Classical Binary Search<a class="headerlink" href="#classical-binary-search" title="Permanent link">¶</a></h3>
 <ul>
 <li>数组元素无重复</li>
 </ul>
@@ -96,8 +116,6 @@
         <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span> <span class="k">return</span> <span class="n">right</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 </pre></div>
-
-
 <p>模板四要素：
 1. <code>left + 1 &lt; right 相邻时结束</code>
 2. <code>left + ((right - left) &gt;&gt; 1)</code>
@@ -105,7 +123,7 @@
 4. <code>nums[left] A[right] ? target</code></p>
 <p><a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/35.Search_Insert_Position.ipynb">35. Search Insert Position</a>
 <a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/704.Binary_Search.ipynb">704. Binary Search</a></p>
-<h3 id="find-first-and-last-position-of-target-lower-upper-bound">Find First and Last Position of Target  ( lower &amp; upper Bound )<a class="headerlink" href="#find-first-and-last-position-of-target-lower-upper-bound" title="Permanent link">&para;</a></h3>
+<h3 id="find-first-and-last-position-of-target-lower-upper-bound">Find First and Last Position of Target  ( lower &amp; upper Bound )<a class="headerlink" href="#find-first-and-last-position-of-target-lower-upper-bound" title="Permanent link">¶</a></h3>
 <ul>
 <li>Target有重复，其他元素无重复。</li>
 </ul>
@@ -142,10 +160,8 @@
 
         <span class="k">return</span> <span class="p">[</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">]</span>
 </pre></div>
-
-
 <p><a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/34.Find_First_and_Last_Position_of_Element_in_Sorted_Array.ipynb">34. Find First and Last Position of Element in Sorted Array</a></p>
-<h3 id="_2">总结<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h3 id="_2">总结<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
 <ol>
 <li>二分查找的本质是缩小搜索范围：<strong>区间缩小 ===&gt; 剩下两个下标 ===&gt; 判断两个下标</strong></li>
 <li>时间复杂度</li>
@@ -156,8 +172,6 @@
        = T(1) + logn * O(1)
        = O(logn)
 </pre></div>
-
-
 <ul>
 <li><code>O(1)</code> 极少</li>
 <li><code>O(logn)</code>几乎都是二分法</li>
@@ -170,9 +184,9 @@
 <li><code>O(n!)</code> 与排列有关的搜索 permutation</li>
 </ul>
 <p>比<code>O(n)</code>更优的时间复杂度，几乎只能是<code>O(logn)</code>的二分法。经验之谈：<strong>根据时间复杂度倒推算法是面试中的常用策略</strong></p>
-<h2 id="_3">二分查找进阶：转化为二分问题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_3">二分查找进阶：转化为二分问题<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
 <p>把具体的问题转变为：<strong>找到数组中的<code>第一个/最后一个</code>满足某个条件的位<code>置/值</code>。</strong></p>
-<h3 id="find-minimum-in-rotated-sorted-array">Find Minimum in Rotated Sorted Array<a class="headerlink" href="#find-minimum-in-rotated-sorted-array" title="Permanent link">&para;</a></h3>
+<h3 id="find-minimum-in-rotated-sorted-array">Find Minimum in Rotated Sorted Array<a class="headerlink" href="#find-minimum-in-rotated-sorted-array" title="Permanent link">¶</a></h3>
 <ul>
 <li>数组没有重复元素</li>
 </ul>
@@ -191,10 +205,8 @@
                 <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
         <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
 </pre></div>
-
-
 <p><a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/153.Find_Minimum_in_Rotated_Sorted_Array.ipynb">153. Find Minimum in Rotated Sorted Array</a></p>
-<h3 id="find-minimum-in-rotated-sorted-array-ii">Find Minimum in Rotated Sorted Array II<a class="headerlink" href="#find-minimum-in-rotated-sorted-array-ii" title="Permanent link">&para;</a></h3>
+<h3 id="find-minimum-in-rotated-sorted-array-ii">Find Minimum in Rotated Sorted Array II<a class="headerlink" href="#find-minimum-in-rotated-sorted-array-ii" title="Permanent link">¶</a></h3>
 <ul>
 <li>数组包含<code>重复元素</code></li>
 </ul>
@@ -213,8 +225,6 @@
                 <span class="n">right</span> <span class="o">-=</span> <span class="mi">1</span>                     <span class="c1"># 重复元素，保守缩小right界, 防止越过[3, 4]。 [5, 5, 5, 5, 3, 4, 5, 5, 5]</span>
         <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>        
 </pre></div>
-
-
 <p>### Search in Rotated Sorted Array
 - 数组没有重复元素</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
@@ -239,10 +249,8 @@
         <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span> <span class="k">return</span> <span class="n">right</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 </pre></div>
-
-
 <p><a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/33.Search_in_Rotated_Sorted_Array.ipynb">33. Search in Rotated Sorted Array</a></p>
-<h3 id="search-in-rotated-sorted-array-ii">Search in Rotated Sorted Array II<a class="headerlink" href="#search-in-rotated-sorted-array-ii" title="Permanent link">&para;</a></h3>
+<h3 id="search-in-rotated-sorted-array-ii">Search in Rotated Sorted Array II<a class="headerlink" href="#search-in-rotated-sorted-array-ii" title="Permanent link">¶</a></h3>
 <ul>
 <li>数组包含<code>重复元素</code></li>
 </ul>
@@ -270,17 +278,15 @@
         <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span> <span class="k">return</span> <span class="bp">True</span>
         <span class="k">return</span> <span class="bp">False</span>
 </pre></div>
-
-
 <p><a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/81.Search_in_Rotated_Sorted_Array_II.ipynb">81. Search in Rotated Sorted Array II</a></p>
-<h2 id="half">二分查找高阶：Half<a class="headerlink" href="#half" title="Permanent link">&para;</a></h2>
-<h3 id="find-peak-element">Find Peak Element<a class="headerlink" href="#find-peak-element" title="Permanent link">&para;</a></h3>
+<h2 id="half">二分查找高阶：Half<a class="headerlink" href="#half" title="Permanent link">¶</a></h2>
+<h3 id="find-peak-element">Find Peak Element<a class="headerlink" href="#find-peak-element" title="Permanent link">¶</a></h3>
 <p>Conditions:</p>
 <ol>
 <li>array length is 1  -&gt; return the only index </li>
 <li>array length is 2  -&gt; return the bigger number's index </li>
 <li>array length is bigger than 2 -&gt; 
-   (1) find mid, compare it with its left and right neighbors<br />
+   (1) find mid, compare it with its left and right neighbors<br/>
    (2) return mid if nums[mid] greater than both neighbors
    (3) take the right half array if nums[mid] smaller than right neighbor
    (4) otherwise, take the left half</li>
