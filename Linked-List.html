@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Jerry" />
+        <meta name="author" content="Jerry Su" />
 
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
@@ -13,13 +13,12 @@
 
 <meta property="og:title" content="Linked List "/>
 <meta property="og:url" content="https://www.jerrulsu.com/Linked-List.html" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="链表基本操作¶ 链表的基本操作与技巧，需要熟记于心，信手拈来！ 1. 插入、删除、翻转（基础） 2. 合并与中分（进阶） 删除重复节点¶ Remove Duplicates from Sorted List 由于重复节点要保留一个，则不需要考虑删除头节点的特殊情况。 class Solution: def deleteDuplicates(self, head: ListNode) -&gt; ListNode: if not head or not head.next: return head cur = head while cur.next: if cur.val == cur.next.val: cur.next …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
-<meta property="og:article:author" content="Jerry" />
+<meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-04-28T07:06:27+08:00" />
-<meta property="og:article:modified_time" content="2019-04-28T07:06:27+08:00" />
 <meta name="twitter:title" content="Linked List ">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="链表基本操作¶ 链表的基本操作与技巧，需要熟记于心，信手拈来！ 1. 插入、删除、翻转（基础） 2. 合并与中分（进阶） 删除重复节点¶ Remove Duplicates from Sorted List 由于重复节点要保留一个，则不需要考虑删除头节点的特殊情况。 class Solution: def deleteDuplicates(self, head: ListNode) -&gt; ListNode: if not head or not head.next: return head cur = head while cur.next: if cur.val == cur.next.val: cur.next …">
 
         <title>Linked List  · Jerry Su&#39;s Blog
 </title>
@@ -66,14 +65,40 @@
 </div>
 
 <div class="row-fluid">
-        <div class="span8 offset2 article-content">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#_1">链表基本操作</a><ul>
+<li><a href="#_2">删除重复节点</a></li>
+<li><a href="#_3">翻转链表</a></li>
+<li><a href="#_4">合并链表</a></li>
+</ul>
+</li>
+<li><a href="#dummy">擅用Dummy节点</a><ul>
+<li><a href="#remove-duplicates-from-sorted-list-ii">Remove Duplicates from Sorted List II</a></li>
+<li><a href="#partition-list">Partition List</a></li>
+</ul>
+</li>
+<li><a href="#_5">快慢指针</a></li>
+<li><a href="#_6">综合设计</a><ul>
+<li><a href="#lru-cache">LRU Cache</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
 
             
-            <h2 id="_1">链表基本操作<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+            
+<h2 id="_1">链表基本操作<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
 <p>链表的基本操作与技巧，需要熟记于心，信手拈来！
 1. 插入、删除、翻转（基础）
 2. 合并与中分（进阶）</p>
-<h3 id="_2">删除重复节点<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h3 id="_2">删除重复节点<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
 <p>Remove Duplicates from Sorted List
 由于重复节点要保留一个，则不需要考虑删除头节点的特殊情况。</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
@@ -87,9 +112,7 @@
                 <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">next</span>
         <span class="k">return</span> <span class="n">head</span>
 </pre></div>
-
-
-<h3 id="_3">翻转链表<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="_3">翻转链表<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
 <p>Reverse Linked List</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">head</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span><span class="p">:</span>
@@ -102,9 +125,7 @@
             <span class="n">cur</span> <span class="o">=</span> <span class="n">pos</span>
         <span class="k">return</span> <span class="n">pre</span>
 </pre></div>
-
-
-<h3 id="_4">合并链表<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_4">合并链表<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
 <p>Merge Two Sorted Lists</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">mergeTwoLists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">):</span>
@@ -120,14 +141,12 @@
         <span class="n">cur</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">l1</span> <span class="ow">or</span> <span class="n">l2</span>
         <span class="k">return</span> <span class="n">dummy</span><span class="o">.</span><span class="n">next</span>
 </pre></div>
-
-
-<h2 id="dummy">擅用Dummy节点<a class="headerlink" href="#dummy" title="Permanent link">&para;</a></h2>
+<h2 id="dummy">擅用Dummy节点<a class="headerlink" href="#dummy" title="Permanent link">¶</a></h2>
 <p>以下两种情况下需要使用<code>Dummy Node</code>：
 1. 当链表的结构发生变化时
 2. 当需要返回的链表头不确定时</p>
-<h3 id="remove-duplicates-from-sorted-list-ii">Remove Duplicates from Sorted List II<a class="headerlink" href="#remove-duplicates-from-sorted-list-ii" title="Permanent link">&para;</a></h3>
-<p><font color=red>重要!!!</font>
+<h3 id="remove-duplicates-from-sorted-list-ii">Remove Duplicates from Sorted List II<a class="headerlink" href="#remove-duplicates-from-sorted-list-ii" title="Permanent link">¶</a></h3>
+<p><font color="red">重要!!!</font>
 - 由于要删掉所有的重复项，头节点也可能被删除，而最终却还需要返回链表的头节点，所以定义一个新的节点dummy链上原链表来简化。
 1. <code>dummy = p = ListNode(-1)</code>
 2. <code>p = p.next</code>
@@ -147,9 +166,7 @@
                 <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">next</span>  <span class="c1"># p引用重新指向下一个节点，dummy不变</span>
         <span class="k">return</span> <span class="n">dummy</span><span class="o">.</span><span class="n">next</span>  <span class="c1"># 所以dummy.next能够保持总是指向第一个节点</span>
 </pre></div>
-
-
-<h3 id="partition-list">Partition List<a class="headerlink" href="#partition-list" title="Permanent link">&para;</a></h3>
+<h3 id="partition-list">Partition List<a class="headerlink" href="#partition-list" title="Permanent link">¶</a></h3>
 <p><code>more.next = None</code>：后半段的链表，尾节点的<code>next</code>指针要设置为<code>None</code>！</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
@@ -169,24 +186,18 @@
         <span class="n">less</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">dummy2</span><span class="o">.</span><span class="n">next</span>
         <span class="k">return</span> <span class="n">dummy1</span><span class="o">.</span><span class="n">next</span>
 </pre></div>
-
-
 <p><strong>Error</strong>:</p>
 <div class="highlight"><pre><span></span>        <span class="n">dummy1</span> <span class="o">=</span> <span class="n">dummy2</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 引用同一个对象！</span>
         <span class="n">less</span> <span class="o">=</span> <span class="n">dummy1</span>
         <span class="n">more</span> <span class="o">=</span> <span class="n">dummy2</span>
 </pre></div>
-
-
 <p><strong>Right</strong>:</p>
 <div class="highlight"><pre><span></span>        <span class="n">dummy1</span> <span class="o">=</span> <span class="n">less</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">dummy2</span> <span class="o">=</span> <span class="n">more</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
-
-
-<h2 id="_5">快慢指针<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<h2 id="_6">综合设计<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<h3 id="lru-cache">LRU Cache<a class="headerlink" href="#lru-cache" title="Permanent link">&para;</a></h3>
+<h2 id="_5">快慢指针<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<h2 id="_6">综合设计<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<h3 id="lru-cache">LRU Cache<a class="headerlink" href="#lru-cache" title="Permanent link">¶</a></h3>
 <p>分析：为了保持cache的性能，使查找，插入，删除都有较高的性能，我们使用<strong>双向链表</strong>和<strong>哈希表</strong>作为cache的数据结构，因为：</p>
 <ul>
 <li>双向链表<strong>插入</strong>和<strong>删除</strong>效率高</li>
@@ -198,7 +209,7 @@
 - 插入节点时，如果cache的size达到了上限，则删除尾部节点，同时要在hash表中删除对应的项。新节点都插入链表头部。</p>
 <p>注意：
 - 这题更多的是考察用数据结构进行设计的能力，在写代码时尽量将子函数拆分出来，先写个整体的框架。
-- 移出链表最后一个节点时，要记得在链表和哈希表中都移出该元素，所以节点中也要记录Key的信息，方便在哈希表中移除 <br />
+- 移出链表最后一个节点时，要记得在链表和哈希表中都移出该元素，所以节点中也要记录Key的信息，方便在哈希表中移除 <br/>
 - 头尾节点采用dummy的技巧，极大简化程序。</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ListNode</span><span class="p">():</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
@@ -215,22 +226,22 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">tail</span><span class="o">.</span><span class="n">pre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
 
     <span class="k">def</span> <span class="nf">insertHead</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;头插法</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="sd">'''头插法</span>
+<span class="sd">        '''</span>
         <span class="n">node</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">next</span>
         <span class="n">node</span><span class="o">.</span><span class="n">pre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">pre</span> <span class="o">=</span> <span class="n">node</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">node</span>
 
     <span class="k">def</span> <span class="nf">removeNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span> 
-        <span class="sd">&#39;&#39;&#39;删除任意一个指定节点</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="sd">'''删除任意一个指定节点</span>
+<span class="sd">        '''</span>
         <span class="n">node</span><span class="o">.</span><span class="n">pre</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">next</span>
         <span class="n">node</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">pre</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">pre</span>
 
     <span class="k">def</span> <span class="nf">removeTailNode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;删除尾节点，尾节点是最久未使用的</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="sd">'''删除尾节点，尾节点是最久未使用的</span>
+<span class="sd">        '''</span>
         <span class="n">removeNode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tail</span><span class="o">.</span><span class="n">pre</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">removeNode</span><span class="p">(</span><span class="n">removeNode</span><span class="p">)</span>
 
@@ -242,8 +253,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">cap</span> <span class="o">=</span> <span class="n">capacity</span>                       <span class="c1"># LRU Cache的容量大小　</span>
 
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> 
-        <span class="sd">&#39;&#39;&#39;查询操作</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="sd">'''查询操作</span>
+<span class="sd">        '''</span>
         <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">:</span> 
             <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
         <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>                      <span class="c1"># key在字典中</span>
@@ -252,8 +263,8 @@
         <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">val</span>                           <span class="c1"># 并返回节点的value</span>
 
     <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>  
-        <span class="sd">&#39;&#39;&#39; 1. 设置value。 2. 如果key不存在则插入value，需注意cache容量。</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="sd">''' 1. 设置value。 2. 如果key不存在则插入value，需注意cache容量。</span>
+<span class="sd">        '''</span>
         <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">:</span>                       <span class="c1"># 如果key在字典中</span>
             <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">removeNode</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>           <span class="c1">#先在链表cache中删掉key对应的节点</span>
@@ -288,16 +299,16 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="https://www.jerrulsu.com/Data Structure and Algorithm in Python.html" title="Data Structure and Algorithm in Python">Data Structure and Algorithm in Python</a></li>
-<li><a href="https://www.jerrulsu.com/binary-search.html" title="Binary Search">Binary Search</a></li>
-<li><a href="https://www.jerrulsu.com/binary-tree-and-divide-conquer.html" title="Binary Tree and Divide Conquer">Binary Tree and Divide Conquer</a></li>
+<li><a href="https://www.jerrulsu.com/Data-Structure-and-Algorithm-in-Python.html" title="Data Structure and Algorithm in Python">Data Structure and Algorithm in Python</a></li>
+<li><a href="https://www.jerrulsu.com/Binary-Search.html" title="Binary Search">Binary Search</a></li>
+<li><a href="https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html" title="Binary Tree and Divide Conquer">Binary Tree and Divide Conquer</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://www.jerrulsu.com/python-object-and-reference.html" title="Previous: Python Object and Reference">Python Object and Reference</a></li>
+                <li class="previous-article">« <a href="https://www.jerrulsu.com/Python Object and Reference.html" title="Previous: Python Object and Reference">Python Object and Reference</a></li>
             </ul>
             </nav>
             </aside>
@@ -306,10 +317,6 @@
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
             <time itemprop="dateCreated" datetime="2019-04-28T07:06:27+08:00">Apr 28, 2019</time>
-
-<h4>Last Updated</h4>
-<time datetime="2019-04-28T07:06:27+08:00">Apr 28, 2019</time>
-
             <h4>Category</h4>
             <a class="category-link" href="https://www.jerrulsu.com/categories.html#algorithm-ref">Algorithm</a>
             <h4>Tags</h4>

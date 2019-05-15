@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/</loc>
-<lastmod>2019-05-15T02:52:59-00:00</lastmod>
+<lastmod>2019-05-15T03:01:45-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/archives.html</loc>
-<lastmod>2019-05-15T02:52:59-00:00</lastmod>
+<lastmod>2019-05-15T03:01:45-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/tags.html</loc>
-<lastmod>2019-05-15T02:52:59-00:00</lastmod>
+<lastmod>2019-05-15T03:01:45-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/categories.html</loc>
-<lastmod>2019-05-15T02:52:59-00:00</lastmod>
+<lastmod>2019-05-15T03:01:45-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -39,14 +39,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/linked-list.html</loc>
+<loc>https://www.jerrulsu.com/Linked-List.html</loc>
 <lastmod>2019-04-28T07:06:27+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/python-object-and-reference.html</loc>
+<loc>https://www.jerrulsu.com/Python Object and Reference.html</loc>
 <lastmod>2019-04-26T06:32:12+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -67,7 +67,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/singleton-companion-object.html</loc>
+<loc>https://www.jerrulsu.com/Singleton-&-Companion-Object.html</loc>
 <lastmod>2019-04-17T02:14:50+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -88,7 +88,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/using-loguru-and-notifiers-instead-of-logging.html</loc>
+<loc>https://www.jerrulsu.com/Using-loguru-and-notifiers-instead-of-logging.html</loc>
 <lastmod>2019-04-12T02:31:27+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -109,28 +109,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/python-email.html</loc>
+<loc>https://www.jerrulsu.com/Python-email.html</loc>
 <lastmod>2019-03-28T02:56:02+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/python-logging.html</loc>
+<loc>https://www.jerrulsu.com/Python-logging.html</loc>
 <lastmod>2019-03-28T01:56:02+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/spark-sql-join.html</loc>
+<loc>https://www.jerrulsu.com/Spark SQL Join.html</loc>
 <lastmod>2019-03-21T01:56:02+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/scala-with-gradle-in-intellij.html</loc>
+<loc>https://www.jerrulsu.com/Scala with Gradle in Intellij.html</loc>
 <lastmod>2019-02-28T06:20:32+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -139,13 +139,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.jerrulsu.com/Debugging-Spark-Application.html</loc>
 <lastmod>2019-02-26T09:24:27+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://www.jerrulsu.com/spark-shuffling-and-partitioning.html</loc>
-<lastmod>2019-02-05T14:11:28+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -165,21 +158,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/linux.html</loc>
+<loc>https://www.jerrulsu.com/Linux.html</loc>
 <lastmod>2019-01-23T08:24:33+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/scala.html</loc>
+<loc>https://www.jerrulsu.com/Scala.html</loc>
 <lastmod>2019-01-13T03:00:30+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/spark-rdd.html</loc>
+<loc>https://www.jerrulsu.com/Spark-RDD.html</loc>
 <lastmod>2019-01-03T13:48:12+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -214,14 +207,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/leetcode-index.html</loc>
+<loc>https://www.jerrulsu.com/Leetcode-Index.html</loc>
 <lastmod>2018-10-08T22:34:28+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/vim.html</loc>
+<loc>https://www.jerrulsu.com/Vim.html</loc>
 <lastmod>2018-10-04T11:23:36+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -257,7 +250,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/category/algorithm.html</loc>
-<lastmod>2019-04-15T09:18:10+08:06</lastmod>
+<lastmod>2019-04-28T07:06:27+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -291,6 +284,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://www.jerrulsu.com/category/leetcode.html</loc>
+<lastmod>2018-10-08T22:34:28+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://www.jerrulsu.com/category/linux.html</loc>
+<lastmod>2019-01-23T08:24:33+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://www.jerrulsu.com/category/machine-learning.html</loc>
 <lastmod>2018-12-03T12:32:47+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -299,14 +306,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/category/posts.html</loc>
-<lastmod>2019-04-28T07:06:27+08:06</lastmod>
+<lastmod>2018-03-06T11:50:03+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/category/python.html</loc>
-<lastmod>2019-04-12T02:05:45+08:06</lastmod>
+<lastmod>2019-04-26T06:32:12+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -320,7 +327,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/category/spark.html</loc>
-<lastmod>2019-02-26T09:24:27+08:06</lastmod>
+<lastmod>2019-03-21T01:56:02+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -328,6 +335,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.jerrulsu.com/category/tools.html</loc>
 <lastmod>2019-04-24T07:05:27+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://www.jerrulsu.com/category/vim.html</loc>
+<lastmod>2018-10-04T11:23:36+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -398,6 +412,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.jerrulsu.com/tag/hexo.html</loc>
 <lastmod>2018-10-13T20:05:48+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://www.jerrulsu.com/tag/leetcode.html</loc>
+<lastmod>2018-10-08T22:34:28+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://www.jerrulsu.com/tag/vim.html</loc>
+<lastmod>2018-10-04T11:23:36+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

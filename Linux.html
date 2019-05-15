@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Jerry Su" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Linux, Linux, " />
+
+<meta property="og:title" content="Linux "/>
+<meta property="og:url" content="https://www.jerrulsu.com/Linux.html" />
+<meta property="og:description" content="Linux Shell Scripting Tutorial (LSST) v2.0 http://www.gnu.org/software/bash/manual/bashref.html explainshell-command Redirection of standard output &gt;¶ The default standard output is the screen. &gt; is output redirection symbol and syntax is: $ command &gt; output.file.name https://bash.cyberciti.biz/guide/Standard_output Appending redirected output &gt;&gt;¶ Appending the …" />
+<meta property="og:site_name" content="Jerry Su&#39;s Blog" />
+<meta property="og:article:author" content="Jerry Su" />
+<meta property="og:article:published_time" content="2019-01-23T08:24:33+08:00" />
+<meta name="twitter:title" content="Linux ">
+<meta name="twitter:description" content="Linux Shell Scripting Tutorial (LSST) v2.0 http://www.gnu.org/software/bash/manual/bashref.html explainshell-command Redirection of standard output &gt;¶ The default standard output is the screen. &gt; is output redirection symbol and syntax is: $ command &gt; output.file.name https://bash.cyberciti.biz/guide/Standard_output Appending redirected output &gt;&gt;¶ Appending the …">
+
+        <title>Linux  · Jerry Su&#39;s Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?8bdcf96a">
+
+
+
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://www.jerrulsu.com">Home</a></li>
+                            <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
+                            <li ><a href="https://www.jerrulsu.com/categories">Categories</a></li>
+                            <li ><a href="https://www.jerrulsu.com/tags">Tags</a></li>
+                            <li ><a href="https://www.jerrulsu.com/archives">Archives</a></li>
+                            <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://www.jerrulsu.com/Linux.html"> Linux  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#redirection-of-standard-output-gt">Redirection of standard output &gt;</a></li>
+<li><a href="#appending-redirected-output-gtgt">Appending redirected output &gt;&gt;</a></li>
+<li><a href="#pipes">Pipes |</a></li>
+<li><a href="#cat">cat</a></li>
+<li><a href="#chmod">chmod</a></li>
+<li><a href="#ps-process-status">ps (process status)</a></li>
+<li><a href="#unzip">unzip</a></li>
+<li><a href="#tar">tar</a></li>
+<li><a href="#windows-rn-to-linux-n">windows '\r\n' to linux '\n'</a></li>
+<li><a href="#rsync">rsync</a></li>
+<li><a href="#ssh">SSH</a><ul>
+<li><a href="#ssh-passwordless-login-server">SSH Passwordless Login Server</a></li>
+</ul>
+</li>
+<li><a href="#setting-shell-and-environmental-variables">Setting Shell and Environmental Variables</a><ul>
+<li><a href="#setting-permanent-var-in-bashrc-file">Setting permanent var: in ~/.bashrc file</a></li>
+<li><a href="#setting-temporary-var-in-shell">Setting temporary var: in Shell</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<p><a href="https://bash.cyberciti.biz/guide/Main_Page">Linux Shell Scripting Tutorial (LSST) v2.0</a>
+http://www.gnu.org/software/bash/manual/bashref.html
+<a href="https://www.explainshell.com/">explainshell-command</a></p>
+<h3 id="redirection-of-standard-output-gt">Redirection of standard output <code>&gt;</code><a class="headerlink" href="#redirection-of-standard-output-gt" title="Permanent link">¶</a></h3>
+<p>The default standard output is the screen.
+<code>&gt;</code> is output redirection symbol and syntax is:
+<code>$ command &gt; output.file.name</code>
+https://bash.cyberciti.biz/guide/Standard_output</p>
+<h3 id="appending-redirected-output-gtgt">Appending redirected output <code>&gt;&gt;</code><a class="headerlink" href="#appending-redirected-output-gtgt" title="Permanent link">¶</a></h3>
+<p>Appending the output to the same file using <code>&gt;&gt;</code> operator.</p>
+<h3 id="pipes">Pipes <code>|</code><a class="headerlink" href="#pipes" title="Permanent link">¶</a></h3>
+<p>https://bash.cyberciti.biz/guide/Chapter_7:_Pipes_and_Filters</p>
+<h3 id="cat">cat<a class="headerlink" href="#cat" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Displaying The Contents of Files</strong>
+<code>$ cat filename</code>
+<code>$ cat file &gt; newfile</code>
+<a href="https://bash.cyberciti.biz/guide/Pipes">Use a pipe to filter data</a>:
+<code>$ cat file | less</code></li>
+<li><strong>Concatenate files</strong>
+<code>$ cat file1 file2</code>
+<code>$ cat file1 file2 &gt;  newcombinedfile</code></li>
+<li><strong>Create new text files</strong>
+ note that if a file already exists, it will be overwritten. 
+<code>$ cat &gt; filename</code>
+<a href="https://bash.cyberciti.biz/guide/Appending_redirected_output">append the output to the same file</a> using <code>&gt;&gt;</code> operator:
+<code>$ cat &gt;&gt; filename</code></li>
+<li><strong>Copy file</strong>
+<code>$ cat oldfile &gt; newfile</code></li>
+</ul>
+<p>https://www.cyberciti.biz/faq/howto-use-cat-command-in-unix-linux-shell-script/</p>
+<h3 id="chmod">chmod<a class="headerlink" href="#chmod" title="Permanent link">¶</a></h3>
+<p><code>$ chmod +x tarbackup.sh</code>
+<code>$ ./tarbackup.sh</code></p>
+<h3 id="ps-process-status">ps (process status)<a class="headerlink" href="#ps-process-status" title="Permanent link">¶</a></h3>
+<p><code>ps -aux</code> 显示所有包含其他使用者的行程
+<code>ps -aux | grep ssh</code> 与<code>grep</code>结合，查找特定进程</p>
+<h3 id="unzip">unzip<a class="headerlink" href="#unzip" title="Permanent link">¶</a></h3>
+<p><code>sudo apt-get install unzip</code>
+<code>unzip file.zip -d destination_folde</code>
+<a href="https://askubuntu.com/questions/86849/how-to-unzip-a-zip-file-from-the-terminal">unzip</a></p>
+<h3 id="tar">tar<a class="headerlink" href="#tar" title="Permanent link">¶</a></h3>
+<p><code>tar -czvf ***.tar.gz directory</code>
+<code>tar -xzvf ***.tar.gz</code>
+<a href="https://www.cnblogs.com/52linux/archive/2012/03/04/2379738.html">tar</a></p>
+<h3 id="windows-rn-to-linux-n">windows '\r\n' to linux '\n'<a class="headerlink" href="#windows-rn-to-linux-n" title="Permanent link">¶</a></h3>
+<p><code>cat -A filename</code>
+<code>vim filename</code> &amp;&amp; <code>set ff=unix</code></p>
+<h3 id="rsync">rsync<a class="headerlink" href="#rsync" title="Permanent link">¶</a></h3>
+<p>upload: <code>rsync -avh --progress --delete --exclude=analysis/ src_dir/ host:dest_dir</code>
+download: <code>rsync -avh --progress host:dest_dir ./</code></p>
+<div class="highlight"><pre><span></span>-a, ––archive     # 归档模式，表示以递归方式传输文件，并保持所有文件属性，等价于 -rlptgoD
+-r, ––recursive   # 对子目录以递归模式处理
+-l, ––links       # 保持符号链接文件
+-H, ––hard-links  # 保持硬链接文件
+-p, ––perms       # 保持文件权限
+-t, ––times       # 保持文件时间信息
+-g, ––group       # 保持文件属组信息
+-o, ––owner       # 保持文件属主信息 (super-user only)
+-D                # 保持设备文件和特殊文件 (super-user only)
+––exclude=PATTERN # 指定排除一个不需要传输的文件匹配模式
+––delete          # 删除那些接收端还有而发送端已经不存在的文件
+––progress        # 在传输时显示传输过程
+-v, ––verbose     # 详细输出模式
+-h, ––human-readable # 输出文件大小使用易读的单位（如，K，M等）
+</pre></div>
+<p><a href="https://download.samba.org/pub/rsync/rsync.html">rsync man page</a>
+<a href="https://rsync.samba.org/how-rsync-works.html">How rsync works</a></p>
+<h2 id="ssh">SSH<a class="headerlink" href="#ssh" title="Permanent link">¶</a></h2>
+<h3 id="ssh-passwordless-login-server">SSH Passwordless Login Server<a class="headerlink" href="#ssh-passwordless-login-server" title="Permanent link">¶</a></h3>
+<p>SSH Client : 192.168.0.12
+SSH Remote Host : 192.168.0.11
+1. Create Authentication SSH-Kegen Keys on – 192.168.0.12
+<code>ssh-keygen -t rsa</code>
+2. Create .ssh Directory on – 192.168.0.11
+<code>ssh 192.168.0.11 mkdir -p .ssh</code>
+3. Upload Generated Public Keys to – 192.168.0.11
+<code>cat .ssh/id_rsa.pub | ssh 192.168.0.11 'cat &gt;&gt; .ssh/authorized_keys'</code></p>
+<ul>
+<li>Set Permissions on – 192.168.0.11
+<code>ssh 192.168.0.11 "chmod 700 .ssh; chmod 640 .ssh/authorized_keys"</code></li>
+<li>Set StrictModes
+<code>sudo vim /etc/ssh/sshd_config</code> ===&gt; <code>StrictModes no</code>
+<code>sudo service ssh restart</code></li>
+</ul>
+<p><a href="https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/">SSH Passwordless Login</a></p>
+<h2 id="setting-shell-and-environmental-variables">Setting Shell and Environmental Variables<a class="headerlink" href="#setting-shell-and-environmental-variables" title="Permanent link">¶</a></h2>
+<h3 id="setting-permanent-var-in-bashrc-file">Setting permanent var: in <code>~/.bashrc</code> file<a class="headerlink" href="#setting-permanent-var-in-bashrc-file" title="Permanent link">¶</a></h3>
+<p><code>vim ~/.bashrc</code></p>
+<div class="highlight"><pre><span></span># open ~/.bashrc file &amp;
+# set environmental varuable
+TEST="Hi Jerry"
+alias ll='ls -alF'
+</pre></div>
+<p><code>source ~/.bashrc</code></p>
+<div class="highlight"><pre><span></span><span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">vim</span> <span class="o">~/</span><span class="p">.</span><span class="n">bashrc</span>
+<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">echo</span> <span class="err">$</span><span class="n">TEST</span>
+
+<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">source</span> <span class="o">~/</span><span class="p">.</span><span class="n">bashrc</span>
+<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">echo</span> <span class="err">$</span><span class="n">TEST</span>
+<span class="n">Hi</span> <span class="n">Jerry</span>
+</pre></div>
+<h3 id="setting-temporary-var-in-shell">Setting temporary var: in Shell<a class="headerlink" href="#setting-temporary-var-in-shell" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">TEST</span><span class="o">=</span><span class="s">"Hi Jerry"</span>
+<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">echo</span> <span class="err">$</span><span class="n">TEST</span>
+<span class="n">Hi</span> <span class="n">Jerry</span>
+<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">set</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">TEST</span>
+<span class="n">TEST</span><span class="o">=</span><span class="err">'</span><span class="n">Hi</span> <span class="n">Jerry</span><span class="err">'</span>
+<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">env</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">TEST</span>
+<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">export</span> <span class="n">TEST</span>
+<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">env</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">TEST</span>
+<span class="n">TEST</span><span class="o">=</span><span class="n">Hi</span> <span class="n">Jerry</span>
+<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">unset</span> <span class="n">TEST</span>
+<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">echo</span> <span class="err">$</span><span class="n">TEST</span>
+
+<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span>
+</pre></div>
+<p><strong>Note: var is temporary, and shutting down Shell, then the var is gone!</strong></p>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps">How To Read and Set Environmental and Shell Variables on a Linux VPS</a></p>
+            <div>
+</div>
+
+            <section>
+    <p id="post-share-links">
+    Share on:
+    <a href="https://twitter.com/intent/tweet?text=Linux&url=https%3A//www.jerrulsu.com/Linux.html&hashtags=linux" target="_blank" title="Share on Twitter">Twitter</a>
+    ❄
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Linux.html" target="_blank" title="Share on Facebook">Facebook</a>
+    ❄
+    <a href="" target="_blank" title="Share on Google Plus">Google+</a>
+    ❄
+    <a href="mailto:?subject=Linux&amp;body=https%3A//www.jerrulsu.com/Linux.html" target="_blank" title="Share via Email">Email</a>
+    </p>
+</section>
+
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://www.jerrulsu.com/Scala.html" title="Previous: Scala">Scala</a></li>
+                <li class="next-article"><a href="https://www.jerrulsu.com/Get/put-data-between-local-and-client/hadoop.html" title="Next: Get/put data between local and client/hadoop">Get/put data between local and client/hadoop</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2019-01-23T08:24:33+08:00">Jan 23, 2019</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://www.jerrulsu.com/categories.html#linux-ref">Linux</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://www.jerrulsu.com/tags#linux-ref">Linux
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
+    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-another social link sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-subtitle"><span class="site-name">Jerry Su's Blog</span> - Copyright © 2018</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Jerry Su" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Spark, Spark, " />
+
+<meta property="og:title" content="Spark RDD "/>
+<meta property="og:url" content="https://www.jerrulsu.com/Spark-RDD.html" />
+<meta property="og:description" content="Spark RDD要点总结： Spark RDD弹性分布式数据集 1. RDD简介 - RDD的概述 - RDD的属性 2. RDD的创建方式 - 从文件系统中加载数据创建RDD - 通过并行集合创建RDD 3. RDD的处理过程 - RDD的整体处理流程 - Transformation算子 - Action算子 - 编写WordCount词频统计案例 4. RDD的依赖关系 5. RDD机制 - 持久化机制 - 容错机制 6. Spark的任务调度 - DAG的概念 - 任务调度流程 核心概念和抽象¶ RDD¶ RDD 这是一个核心抽象，既能实现计算的高效执行，又能灵活方便的形式化定义计算 为什么需要一个新的抽象？ MapReduce中的迭代计算： 1. 后续jobs之间的关系仅为用户代码所知，而不是框架。所以，框架无法优化整个计算。 2. 框架必须可靠地持久保存中间数据，从而产生过多的IO Spark将数据保存在内存中，有效地消除了中间磁盘持久性，从而改善了完成时间 RDD Operations¶ RDDs支持两种类型操作 …" />
+<meta property="og:site_name" content="Jerry Su&#39;s Blog" />
+<meta property="og:article:author" content="Jerry Su" />
+<meta property="og:article:published_time" content="2019-01-03T13:48:12+08:00" />
+<meta name="twitter:title" content="Spark RDD ">
+<meta name="twitter:description" content="Spark RDD要点总结： Spark RDD弹性分布式数据集 1. RDD简介 - RDD的概述 - RDD的属性 2. RDD的创建方式 - 从文件系统中加载数据创建RDD - 通过并行集合创建RDD 3. RDD的处理过程 - RDD的整体处理流程 - Transformation算子 - Action算子 - 编写WordCount词频统计案例 4. RDD的依赖关系 5. RDD机制 - 持久化机制 - 容错机制 6. Spark的任务调度 - DAG的概念 - 任务调度流程 核心概念和抽象¶ RDD¶ RDD 这是一个核心抽象，既能实现计算的高效执行，又能灵活方便的形式化定义计算 为什么需要一个新的抽象？ MapReduce中的迭代计算： 1. 后续jobs之间的关系仅为用户代码所知，而不是框架。所以，框架无法优化整个计算。 2. 框架必须可靠地持久保存中间数据，从而产生过多的IO Spark将数据保存在内存中，有效地消除了中间磁盘持久性，从而改善了完成时间 RDD Operations¶ RDDs支持两种类型操作 …">
+
+        <title>Spark RDD  · Jerry Su&#39;s Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?8bdcf96a">
+
+
+
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://www.jerrulsu.com">Home</a></li>
+                            <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
+                            <li ><a href="https://www.jerrulsu.com/categories">Categories</a></li>
+                            <li ><a href="https://www.jerrulsu.com/tags">Tags</a></li>
+                            <li ><a href="https://www.jerrulsu.com/archives">Archives</a></li>
+                            <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://www.jerrulsu.com/Spark-RDD.html"> Spark RDD  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#_1">核心概念和抽象</a><ul>
+<li><a href="#rdd">RDD</a></li>
+<li><a href="#rdd-operations">RDD Operations</a><ul>
+<li><a href="#basics">Basics</a></li>
+<li><a href="#understanding-closures">Understanding closures</a></li>
+<li><a href="#action">Action</a></li>
+</ul>
+</li>
+<li><a href="#rdd-persistence">RDD Persistence</a><ul>
+<li><a href="#resiliency">Resiliency</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_2">高级主题</a><ul>
+<li><a href="#execution-scheduling">Execution &amp; Scheduling</a></li>
+<li><a href="#caching-persistence">Caching &amp; Persistence</a></li>
+<li><a href="#shared-variables">Shared Variables</a><ul>
+<li><a href="#broadcast-variables">Broadcast Variables</a></li>
+<li><a href="#accumulators">Accumulators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<div class="highlight"><pre><span></span>Spark RDD要点总结：
+Spark RDD弹性分布式数据集
+1. RDD简介
+  - RDD的概述
+  - RDD的属性
+2. RDD的创建方式
+  - 从文件系统中加载数据创建RDD
+  - 通过并行集合创建RDD
+3. RDD的处理过程
+  - RDD的整体处理流程
+  - Transformation算子
+  - Action算子
+  - 编写WordCount词频统计案例
+4. RDD的依赖关系
+5. RDD机制
+  - 持久化机制
+  - 容错机制
+6. Spark的任务调度
+  - DAG的概念
+  - 任务调度流程
+</pre></div>
+<h1 id="_1">核心概念和抽象<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
+<h2 id="rdd">RDD<a class="headerlink" href="#rdd" title="Permanent link">¶</a></h2>
+<p><a href="https://www.cnblogs.com/frankdeng/p/9301653.html">RDD</a>
+这是一个核心抽象，既能实现计算的高效执行，又能灵活方便的形式化定义计算</p>
+<p><strong>为什么需要一个新的抽象？</strong></p>
+<p>MapReduce中的迭代计算：
+　1. 后续jobs之间的关系仅为用户代码所知，而不是框架。所以，框架无法优化整个计算。
+　2. 框架必须可靠地持久保存中间数据，从而产生过多的IO</p>
+<p>Spark将数据保存在内存中，有效地消除了中间磁盘持久性，从而改善了完成时间</p>
+<h2 id="rdd-operations">RDD Operations<a class="headerlink" href="#rdd-operations" title="Permanent link">¶</a></h2>
+<ol>
+<li>
+<p>RDDs支持两种类型操作：</p>
+<ul>
+<li><strong><code>Transformations</code></strong>：从已的数据集中创建一个新的数据集。</li>
+<li><strong><code>Actions</code></strong>：在数据集上执行完一个计算后，向<strong>driver program</strong>返回一个值。</li>
+</ul>
+<p>例如：
+<strong>map</strong>：是一个<strong>transformation</strong>，通过一个函数传递每个数据集元素，并返回一个表示结果的新RDD。 
+<strong>reduce</strong>：是一个<strong>action</strong>,使用某个函数聚合RDD的所有元素，并将最终结果返回给<strong>driver program</strong>。</p>
+</li>
+<li>
+<p>Spark中所有的<strong>transformations</strong>都是<strong>惰性的</strong>，因为他们不会立即计算他们的结果。相反，他们只记得应用于某些基础数据集的转换。<strong>transformations</strong>仅在<strong>actions</strong>需要将结果返回到<strong>driver program</strong>时计算。这种设计使Spark能够更有效地运行。</p>
+</li>
+<li>
+<p>默认情况下，当每一次在转换后的RDD上执行一个<strong>action</strong>时，它都会重新计算。但是，也可以使用持久化（或缓存）的方法在内存中保留RDD，在这种情况下，Spark会在群集上保留元素，以便在下次查询时更快地访问。 当然也是支持在磁盘上保留RDD，或在多个节点之间复制的。</p>
+</li>
+</ol>
+<h3 id="basics">Basics<a class="headerlink" href="#basics" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span>1：  lines = sc.textFile("data.txt")
+2：  lineLengths = lines.map(lambda s: len(s))
+3：  totalLength = lineLengths.reduce(lambda a, b: a + b)
+</pre></div>
+<p>1: 从外部文件定义基础RDD。 此数据集未加载到内存中或以其他方式操作：<strong>lines</strong> 仅仅是指向文件的指针。
+2: 将 <strong>lineLengths</strong> 定义为 <strong>map</strong> 转换的结果。由于惰性 <strong>lineLengths</strong> 不会立即计算。
+3: 最终运行 <strong>reduce</strong>，是一个 <strong>action</strong>。此时Spark将计算分解为在不同机器上运行的 <strong>Tasks</strong>，并且每台机器都运行其 <strong>map</strong> 的部分和本地的 <strong>reduce</strong>，仅返回其对 <strong>driver program</strong> 的结果。</p>
+<p>如果稍后需要再次使用 <strong>lineLengths</strong>，可以用<strong><code>lineLengths.persist()</code></strong>在 <strong>reduce</strong> 之前，将 <strong>lineLengths</strong> 在第一次计算之后保存在内存中。</p>
+<h3 id="understanding-closures">Understanding closures<a class="headerlink" href="#understanding-closures" title="Permanent link">¶</a></h3>
+<p>Spark的一个难点是在跨集群执行代码时理解变量和方法的范围和生命周期。 修改其范围之外的变量的RDD操作可能经常引起混淆。
+<a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431835236741e42daf5af6514f1a8917b8aaadff31bf000">函数式编程：理解闭包和延迟计算</a></p>
+<p><strong>1. Example</strong>
+根据是否在运行在同一JVM中可能表现不同 
+Spark应用程序运行：本地模式 vs. 集群模式</p>
+<p>使用<code>foreach()</code>增加<code>counter</code>：</p>
+<div class="highlight"><pre><span></span>counter = 0
+rdd = sc.parallelize(data)
+
+# Wrong: Don't do this!!
+def increment_counter(x):
+    global counter
+    counter += x
+rdd.foreach(increment_counter)
+
+print("Counter value: ", counter)
+</pre></div>
+<p><strong>2. Local vs. cluster modes</strong>
+- 上述代码的行为是未定义的，并且不同模式下运行情况不同。为了执行<strong>Job</strong>，Spark将RDD操作的处理分解为<strong>Tasks</strong>，每个<strong>Task</strong>由<strong>Executor</strong>执行。在执行之前，Spark会计算<strong>Task</strong>的闭包。闭包是<strong>Executor</strong>在RDD上进行计算的时候必须可见的那些变量和方法（在这种情况下是<strong>foreach()</strong>）。闭包会被序列化并发送给每个<strong>Executor</strong>。</p>
+<ul>
+<li>
+<p>发送给每个<strong>Executor</strong>的闭包中的变量是副本，因此，当<strong>foreach()</strong>函数内引用<strong>counter</strong>时，它不再是<strong>driver</strong>节点上的<strong>counter</strong>。<strong>driver</strong>节点的内存中仍有一个<strong>counter</strong>，但该变量是对<strong>Executor</strong>不可见的！<strong>Executor</strong>只能看到序列化闭包的副本。因此，<strong>counter</strong>的最终值仍然为0，因为<strong>counter</strong>上的所有操作都引用了序列化闭包内的值。</p>
+</li>
+<li>
+<p>在本地模式，在某些情况下，该<strong>foreach()</strong>函数实际上将在与<strong>driver</strong>相同的JVM内执行，并且会引用相同的原始<strong>counter</strong>，这样是可能实际更新它。</p>
+</li>
+</ul>
+<p>Spark中的<strong>Accumulator</strong>专门用于提供一种机制，用于在集群中的工作节点之间执行拆分时安全地更新变量。</p>
+<h3 id="action">Action<a class="headerlink" href="#action" title="Permanent link">¶</a></h3>
+<h2 id="rdd-persistence">RDD Persistence<a class="headerlink" href="#rdd-persistence" title="Permanent link">¶</a></h2>
+<h3 id="resiliency">Resiliency<a class="headerlink" href="#resiliency" title="Permanent link">¶</a></h3>
+<p><strong>Spark如何实现弹性计算？（尽管集群出现机器故障，但仍可以继续计算操作）</strong>
+1. tracking lineage
+2. assuming deterministic &amp; side-effect free execution of transformations(including closures)
+3. assuming idempotency for actions
+4. increasing durability of a data set　提高数据集的持久性</p>
+<p><strong>It is important to keep in mind that all the closures pass to Spark, must be deterministic and side effect free. Actions require a stronger property, idempotency.</strong>
+所有的闭包都传递给Spark，必须是确定性的，并且没有副作用。</p>
+<ul>
+<li><strong>What is the lineage?</strong>
+<strong>分区依赖关系图</strong>，包含计算中涉及数据源的所有分区。</li>
+<li><strong>What happens if the dependencies of a failed partition fails as well ?</strong>
+重新启动计算。首先重新计算这个分区的依赖，然后再计算这个分区。</li>
+</ul>
+<p>Key Questions:
+<strong>1. 数据集必须具备哪些功能才能实现为RDD？</strong>
+partitions, iterator and dependencies</p>
+<h1 id="_2">高级主题<a class="headerlink" href="#_2" title="Permanent link">¶</a></h1>
+<h2 id="execution-scheduling">Execution &amp; Scheduling<a class="headerlink" href="#execution-scheduling" title="Permanent link">¶</a></h2>
+<p><strong>当在Spark上运行我们的应用程序 ( 调用一个Action ) 时会发生什么？</strong>
+{% asset_img Spark.jpg %}
+1. <strong>SparkContext</strong>：是应用的核心
+    - 告诉应用如何访问集群
+    - 协调集群上的进程集来运行我们的应用
+    - 在同一应用程序内，调度多个并发作业
+    - 在不同应用程序间，控制动态资源分配</p>
+<p><strong>Cluster Manager</strong>: 用于获取群集资源的一个外部服务。例如：YARN, Mesos or a standalone Spark cluster.(资源经纪人)</p>
+<ol>
+<li><strong>Jobs, stages, tasks</strong>
+<strong>Job</strong>：在响应<strong>Spark action</strong>时而产生的活动
+<strong>stages</strong>：将<strong>Job</strong>分解成更小的<strong>tasks</strong>集合，叫做<strong>stages</strong>
+<strong>Tasks</strong>：<strong>job scheduler</strong>为所有的<strong>job stage</strong>创建<strong>Tasks</strong>
+<strong>Task</strong>：由<strong>Executor</strong>执行的一个单位工作</li>
+</ol>
+<p><strong>Action -&gt; Job -&gt; Job stages -&gt; Tasks</strong>
+最终，<strong>Tasks</strong>被分发给<strong>Executors</strong>，执行实际的工作。</p>
+<div class="highlight"><pre><span></span><span class="n">Example</span><span class="o">:</span><span class="err">图</span>
+<span class="mi">1</span><span class="o">.</span> <span class="n">Invoking</span> <span class="n">an</span> <span class="n">action</span>
+</pre></div>
+<p><strong>Job stages 和 Tasks的区别？</strong>
+- <strong>Job stage</strong>： 是跨越物化边界的流水线计算。定义在RDD level，不是可立即可执行的。a  pipelined computation spanning between materialization boundaries. not immediately executable.</p>
+<ul>
+<li><strong>Task</strong>： 是绑定到特定分区的job stage，是可立即可执行的。a job stage bound to particular partitions. immediately executable.</li>
+</ul>
+<p>The idea behind the job stages is to pipeline computation as much as possible, avoiding the unnecessary data materializations. </p>
+<ol>
+<li><strong>Transformations with narrow dependencies allow pipelining</strong><blockquote>
+<p>For example, if you applied two filter transformations in a row, it is not necessary to serialize and deserialize data in between. You can simply pass the data through the next predicate. Data materialization occurs in a few places. when reading, shuffling, or passing data to an action. This is where the distinction between narrow and wide dependencies comes up.</p>
+</blockquote>
+</li>
+<li>Materialization happens when reading, shuffling or passing data to an action.
+Narrow dependencies allow pipelining.
+Wide dependencies forbid it.</li>
+</ol>
+<h2 id="caching-persistence">Caching &amp; Persistence<a class="headerlink" href="#caching-persistence" title="Permanent link">¶</a></h2>
+<p><strong>1. Spark如何管理中间数据？</strong>
+<strong>2. 如何向Spark提示我们的访问模式以获得更好的弹性和性能？</strong></p>
+<h2 id="shared-variables">Shared Variables<a class="headerlink" href="#shared-variables" title="Permanent link">¶</a></h2>
+<ul>
+<li>Spark中的第二个抽象是可以在并行操作中使用的<strong>共享变量</strong>。</li>
+<li>默认情况下，当Spark并行运行一个函数作为不同节点上的一组<strong>Tasks</strong>时，它会将函数中使用的每个<strong>变量的副本</strong>发送给每个<strong>Task</strong>。即Spark实际上操作的是这个函数所用变量的一个独立副本。这些变量会被复制到每台机器上，并且这些变量在远程机器上的所有更新都不会传递回<strong>driver program</strong>。</li>
+<li>有时，变量需要跨任务共享，或者在任务和驱动程序之间共享。通常跨任务的读写共享变量是低效的，但是，Spark还是为两种常见的使用模式提供了两种有限的共享变量：<strong>广播变量 ( Broadcast Variables ) 和累加器 ( Accumulator )</strong>。</li>
+</ul>
+<h3 id="broadcast-variables">Broadcast Variables<a class="headerlink" href="#broadcast-variables" title="Permanent link">¶</a></h3>
+<p>{% asset_img BroadcastVariable.jpg %}
+<strong>1. 为什么需要广播变量？</strong>
+如果我们要在分布式计算里面分发大的对象，例如：字典，模型等，这个都会由<strong>Driver</strong>端进行分发。一般来讲，如果这个变量不是广播变量，那么每个<strong>Task</strong>就会分发一份，这在<strong>Task</strong>数目十分多的情况下<strong>Driver</strong>的带宽会成为系统的瓶颈，而且会大量消耗<strong>Task</strong>服务器上的资源，如果将这个变量声明为<strong>广播变量</strong>，那么只是每个<strong>Executor</strong>拥有一份，由这个<strong>Executor</strong>启动的<strong>Task</strong>会共享这个变量，节省了通信的成本和服务器的资源。</p>
+<p><strong>注：</strong>
+- <strong>广播变量是只读的共享变量</strong>
+- 用于共享字典和模型
+- 能不能将一个RDD使用广播变量广播出去？
+不能，因为RDD是不存储数据的。可以将RDD的结果广播出去
+- 广播变量只能在<strong>Driver</strong>端定义和修改，不能在<strong>Executor</strong>端定义和修改
+- 如果<strong>Executor</strong>端用到了<strong>Driver</strong>的变量，如果不使用<strong>广播变量</strong>在<strong>Executor</strong>有多少<strong>Task</strong>就有多少<strong>Driver</strong>端的变量副本
+- 如果<strong>Executor</strong>端用到了<strong>Driver</strong>的变量，如果使用<strong>广播变量</strong>在每个<strong>Executor</strong>中只有一份<strong>Driver</strong>端的变量副本</p>
+<p><strong>2. 使用广播变量</strong>
+通过调用<strong><code>SparkContext.broadcast(v)</code></strong>从变量<strong>v</strong>创建广播变量。 广播变量是<strong>v</strong>的包装器，可以通过调用<strong><code>value</code></strong>方法访问其值：</p>
+<div class="highlight"><pre><span></span>&gt;&gt; broadcastVar = sc.broadcast([1, 2, 3])
+&lt;pyspark.broadcast.Broadcast object at 0x102789f10&gt;
+
+&gt;&gt; broadcastVar.value
+[1, 2, 3]
+</pre></div>
+<p>创建广播变量后，应该在群集上运行的任何函数中使用它而不是值v，这样v不会多次传送到节点。 另外，在广播之后不应修改对象v，以确保所有节点获得广播变量的相同值（例如，如果稍后将变量发送到新节点）。</p>
+<h3 id="accumulators">Accumulators<a class="headerlink" href="#accumulators" title="Permanent link">¶</a></h3>
+<p>在spark应用程序中，我们经常会有这样的需求，如异常监控，调试，记录符合某特性的数据的数目，这种需求都需要用到计数器，如果一个变量不被声明为一个<strong>Accumulator</strong>，那么它将在被改变时不会再<strong>driver</strong>端进行全局汇总，即在分布式运行时每个<strong>Task</strong>运行的只是原始变量的一个副本，并不能改变原始变量的值，但是当这个变量被声明为<strong>Accumulator</strong>后，该变量就会有分布式计数的功能。</p>
+<p><strong>1. 使用累加器</strong>
+- <strong><code>Driver</code></strong>端创建：<strong><code>SparkContext.accumulator(v)</code></strong>
+- <strong><code>Executor</code></strong>端更新：集群上运行的<strong>Task</strong>更新：<strong><code>add</code></strong>和<strong><code>+=</code></strong>
+- <strong><code>Driver</code></strong>端读取：<strong><code>value</code></strong></p>
+<div class="highlight"><pre><span></span>&gt;&gt; accum = sc.accumulator(0)
+&gt;&gt; accum
+Accumulator&lt;id=0, value=0&gt;
+
+&gt;&gt; sc.parallelize([1, 2, 3, 4]).foreach(lambda x: accum.add(x))
+...
+10/09/29 18:41:08 INFO SparkContext: Tasks finished in 0.317106 s
+
+&gt;&gt; accum.value
+10
+</pre></div>
+<p><strong>注：</strong>
+累加器不会改变Spark的惰性模型。 如果在RDD上的操作中更新它们，则只有在RDD作为<strong>action</strong>部分计算时才更新它的值。 因此，在像<strong>map()</strong>这样的惰性<strong>transformation</strong>中进行累积器更新时，不能保证执行累加器更新。</p>
+<div class="highlight"><pre><span></span>accum = sc.accumulator(0)
+def g(x):
+    accum.add(x)
+    return f(x)
+data.map(g)
+# Here, accum is still 0 because no actions have caused the `map` to be computed.
+</pre></div>
+<h1 id="references">References<a class="headerlink" href="#references" title="Permanent link">¶</a></h1>
+<p>[1] <a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2011/EECS-2011-82.pdf">Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</a>
+[2] <a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html">RDD Programming Guide</a>
+[3] <a href="https://www.coursera.org/learn/big-data-essentials/home/week/4">Coursera: Spark RDD</a>
+[4] <a href="https://stackoverflow.com/questions/30691385/internal-work-of-spark/30691654#30691654">StackOverflow: Internal Work of Spark</a>
+[5] <a href="https://www.youtube.com/watch?v=7ooZ4S7Ay6Y">Advanced Apache Spark- Sameer Farooqui (Databricks)</a>
+[6] <a href="https://www.youtube.com/watch?v=dmL0N3qfSc8">A Deeper Understanding of Spark Internals - Aaron Davidson (Databricks)</a>
+[7] <a href="https://www.youtube.com/watch?v=49Hr5xZyTEA">Introduction to AmpLab Spark Internals</a></p>
+            <div>
+</div>
+
+            <section>
+    <p id="post-share-links">
+    Share on:
+    <a href="https://twitter.com/intent/tweet?text=Spark%20RDD&url=https%3A//www.jerrulsu.com/Spark-RDD.html&hashtags=spark" target="_blank" title="Share on Twitter">Twitter</a>
+    ❄
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Spark-RDD.html" target="_blank" title="Share on Facebook">Facebook</a>
+    ❄
+    <a href="" target="_blank" title="Share on Google Plus">Google+</a>
+    ❄
+    <a href="mailto:?subject=Spark%20RDD&amp;body=https%3A//www.jerrulsu.com/Spark-RDD.html" target="_blank" title="Share via Email">Email</a>
+    </p>
+</section>
+
+            
+            <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="https://www.jerrulsu.com/Debugging-Spark-Application.html" title="Debugging Spark Application">Debugging Spark Application</a></li>
+<li><a href="https://www.jerrulsu.com/Spark SQL Join.html" title="Spark SQL Join">Spark SQL Join</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://www.jerrulsu.com/Ensemble.html" title="Previous: Ensemble">Ensemble</a></li>
+                <li class="next-article"><a href="https://www.jerrulsu.com/Scala.html" title="Next: Scala">Scala</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2019-01-03T13:48:12+08:00">Jan 3, 2019</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://www.jerrulsu.com/categories.html#spark-ref">Spark</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://www.jerrulsu.com/tags#spark-ref">Spark
+                    <span>3</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
+    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-another social link sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-subtitle"><span class="site-name">Jerry Su's Blog</span> - Copyright © 2018</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>
