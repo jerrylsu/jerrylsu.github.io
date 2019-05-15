@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/</loc>
-<lastmod>2019-05-15T02:38:43-00:00</lastmod>
+<lastmod>2019-05-15T02:47:07-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/archives.html</loc>
-<lastmod>2019-05-15T02:38:43-00:00</lastmod>
+<lastmod>2019-05-15T02:47:07-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/tags.html</loc>
-<lastmod>2019-05-15T02:38:43-00:00</lastmod>
+<lastmod>2019-05-15T02:47:07-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/categories.html</loc>
-<lastmod>2019-05-15T02:38:43-00:00</lastmod>
+<lastmod>2019-05-15T02:47:07-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -53,14 +53,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/cygwin-terminal-in-intellij.html</loc>
+<loc>https://www.jerrulsu.com/Cygwin-terminal-in-IntelliJ.html</loc>
 <lastmod>2019-04-24T07:05:27+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/case-class-vs-class.html</loc>
+<loc>https://www.jerrulsu.com/Case-Class-vs-Class.html</loc>
 <lastmod>2019-04-17T05:43:19+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -74,14 +74,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/binary-tree-and-divide-conquer.html</loc>
+<loc>https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html</loc>
 <lastmod>2019-04-15T09:18:10+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/auto-generated-subtitles-for-any-video.html</loc>
+<loc>https://www.jerrulsu.com/Auto-generated-subtitles-for-any-video.html</loc>
 <lastmod>2019-04-13T06:35:27+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -95,14 +95,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/checking-dataframeseries-missing-values.html</loc>
+<loc>https://www.jerrulsu.com/Checking-DataFrame/Series-missing-values.html</loc>
 <lastmod>2019-04-12T02:05:45+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/binary-search.html</loc>
+<loc>https://www.jerrulsu.com/Binary-Search.html</loc>
 <lastmod>2019-04-08T13:10:38+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -137,7 +137,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/debugging-spark-application.html</loc>
+<loc>https://www.jerrulsu.com/Debugging-Spark-Application.html</loc>
 <lastmod>2019-02-26T09:24:27+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -228,7 +228,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/building-python-package-with-pybuilder.html</loc>
+<loc>https://www.jerrulsu.com/Building-Python-Package-with-Pybuilder.html</loc>
 <lastmod>2018-10-03T11:23:36+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -257,7 +257,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/category/algorithm.html</loc>
-<lastmod>2019-04-08T13:10:38+08:06</lastmod>
+<lastmod>2019-04-15T09:18:10+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -265,6 +265,34 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.jerrulsu.com/category/posts.html</loc>
 <lastmod>2019-04-28T07:06:27+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://www.jerrulsu.com/category/python.html</loc>
+<lastmod>2019-04-12T02:05:45+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://www.jerrulsu.com/category/scala.html</loc>
+<lastmod>2019-04-17T05:43:19+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://www.jerrulsu.com/category/spark.html</loc>
+<lastmod>2019-02-26T09:24:27+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://www.jerrulsu.com/category/tools.html</loc>
+<lastmod>2019-04-24T07:05:27+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
