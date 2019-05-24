@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Jerry Su" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Scala, Scala, " />
+
+<meta property="og:title" content="Closure "/>
+<meta property="og:url" content="https://www.jerrulsu.com/Closure.html" />
+<meta property="og:description" content="什么是闭包？¶ 引用至少一个自由变量的函数称为闭包。 闭包是一个函数，可纯函数或非纯函数，可有名字或匿名，但重要的是它是一个函数。 为何称其为闭包，它与函数最重要的区别是：引用自由变量。 // p相对于getHike，是其自由变量。getHike函数没有局部变量和列表参数p。 var p =10 def getHike(salary:Double) = salary * p/100 getHike(5000) 如果自由变量值发生变化会怎样？¶ 执行闭包时，它采用最新的自由变量的值。 var p =10 def getHike(salary:Double) = salary * p/100 getHike(5000) //res1: Double = 500.0 p=20 getHike(5000) //res2: Double = 1000 …" />
+<meta property="og:site_name" content="Jerry Su&#39;s Blog" />
+<meta property="og:article:author" content="Jerry Su" />
+<meta property="og:article:published_time" content="2019-05-24T03:16:07+08:00" />
+<meta name="twitter:title" content="Closure ">
+<meta name="twitter:description" content="什么是闭包？¶ 引用至少一个自由变量的函数称为闭包。 闭包是一个函数，可纯函数或非纯函数，可有名字或匿名，但重要的是它是一个函数。 为何称其为闭包，它与函数最重要的区别是：引用自由变量。 // p相对于getHike，是其自由变量。getHike函数没有局部变量和列表参数p。 var p =10 def getHike(salary:Double) = salary * p/100 getHike(5000) 如果自由变量值发生变化会怎样？¶ 执行闭包时，它采用最新的自由变量的值。 var p =10 def getHike(salary:Double) = salary * p/100 getHike(5000) //res1: Double = 500.0 p=20 getHike(5000) //res2: Double = 1000 …">
+
+        <title>Closure  · Jerry Su&#39;s Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?8bdcf96a">
+
+
+
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://www.jerrulsu.com">Home</a></li>
+                            <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
+                            <li ><a href="https://www.jerrulsu.com/categories">Categories</a></li>
+                            <li ><a href="https://www.jerrulsu.com/tags">Tags</a></li>
+                            <li ><a href="https://www.jerrulsu.com/archives">Archives</a></li>
+                            <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://www.jerrulsu.com/Closure.html"> Closure  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#_1">什么是闭包？</a></li>
+<li><a href="#_2">如果自由变量值发生变化会怎样？</a></li>
+<li><a href="#_3">如果闭包修改了自由变量的值会怎样？</a></li>
+<li><a href="#_4">为什么需要闭包，有什么优势？</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<h1 id="_1">什么是闭包？<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
+<p>引用至少一个自由变量的函数称为闭包。</p>
+<p>闭包是一个函数，可纯函数或非纯函数，可有名字或匿名，但重要的是它是一个函数。 为何称其为闭包，它与函数最重要的区别是：<strong>引用自由变量</strong>。</p>
+<div class="highlight"><pre><span></span><span class="c1">// p相对于getHike，是其自由变量。getHike函数没有局部变量和列表参数p。</span>
+<span class="k">var</span> <span class="n">p</span> <span class="k">=</span><span class="mi">10</span>
+<span class="k">def</span> <span class="n">getHike</span><span class="o">(</span><span class="n">salary</span><span class="k">:</span><span class="kt">Double</span><span class="o">)</span> <span class="k">=</span> <span class="n">salary</span> <span class="o">*</span> <span class="n">p</span><span class="o">/</span><span class="mi">100</span>
+<span class="n">getHike</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span>
+</pre></div>
+<h1 id="_2">如果自由变量值发生变化会怎样？<a class="headerlink" href="#_2" title="Permanent link">¶</a></h1>
+<p>执行闭包时，它采用最新的自由变量的值。</p>
+<div class="highlight"><pre><span></span>    <span class="k">var</span> <span class="n">p</span> <span class="k">=</span><span class="mi">10</span>
+    <span class="k">def</span> <span class="n">getHike</span><span class="o">(</span><span class="n">salary</span><span class="k">:</span><span class="kt">Double</span><span class="o">)</span> <span class="k">=</span> <span class="n">salary</span> <span class="o">*</span> <span class="n">p</span><span class="o">/</span><span class="mi">100</span>
+    <span class="n">getHike</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span>
+    <span class="c1">//res1: Double = 500.0</span>
+    <span class="n">p</span><span class="k">=</span><span class="mi">20</span>
+    <span class="n">getHike</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span>
+    <span class="c1">//res2: Double = 1000.0    </span>
+</pre></div>
+<p>Is this closure pure? 
+ A Closure may be pure or impure depending on the type of the free variable.</p>
+<h1 id="_3">如果闭包修改了自由变量的值会怎样？<a class="headerlink" href="#_3" title="Permanent link">¶</a></h1>
+<p>如果闭包修改了自由变量，则更改在闭包外部可见。</p>
+<div class="highlight"><pre><span></span>    <span class="k">var</span> <span class="n">p</span> <span class="k">=</span><span class="mi">10</span>
+    <span class="k">def</span> <span class="n">getHike</span><span class="o">(</span><span class="n">salary</span><span class="k">:</span><span class="kt">Double</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span> 
+            <span class="n">p</span><span class="k">=</span><span class="n">p</span><span class="o">*</span><span class="mi">2</span>
+            <span class="n">salary</span> <span class="o">*</span> <span class="n">p</span><span class="o">/</span><span class="mi">100</span>
+        <span class="o">}</span>
+    <span class="n">println</span><span class="o">(</span><span class="n">p</span><span class="o">)</span>
+    <span class="c1">//10</span>
+    <span class="n">getHike</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span>
+    <span class="c1">//res8: Double = 1000.0</span>
+    <span class="n">println</span><span class="o">(</span><span class="n">p</span><span class="o">)</span>
+    <span class="c1">//20    </span>
+</pre></div>
+<h1 id="_4">为什么需要闭包，有什么优势？<a class="headerlink" href="#_4" title="Permanent link">¶</a></h1>
+<p>函数式编程，函数可以传递和返回函数，与面向对象类似。
+对于某些例子，对象更灵活，因为对象携带方法和数据元素（状态）。然而，函数是唯一的，因为它没有任何数据元素（状态）。
+所以，如果有一个需求，我们需要传递一堆状态和一个函数：<strong>闭包</strong>和<strong>自由变量</strong>。</p>
+<div class="highlight"><pre><span></span>    <span class="k">val</span> <span class="n">l</span> <span class="k">=</span> <span class="o">(</span><span class="mi">1001</span> <span class="n">to</span> <span class="mi">1005</span><span class="o">).</span><span class="n">toList</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">getHike</span><span class="o">)</span>     
+
+    <span class="k">def</span> <span class="n">getHike</span> <span class="k">=</span>  <span class="o">{</span>
+        <span class="c1">//Load employee and their current salary</span>
+        <span class="k">val</span> <span class="n">e</span><span class="k">:</span><span class="kt">Map</span><span class="o">[</span><span class="kt">Int</span>,<span class="kt">Double</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Map</span><span class="o">(</span><span class="mi">1001</span><span class="o">-&gt;</span><span class="mf">35000.00</span><span class="o">,</span> 
+                                <span class="mi">1002</span><span class="o">-&gt;</span><span class="mf">43000.00</span><span class="o">,</span> 
+                                <span class="mi">1003</span><span class="o">-&gt;</span><span class="mf">28000.00</span><span class="o">,</span> 
+                                <span class="mi">1004</span><span class="o">-&gt;</span><span class="mf">54000.00</span><span class="o">,</span> 
+                                <span class="mi">1005</span><span class="o">-&gt;</span><span class="mf">17000.00</span><span class="o">)</span>
+        <span class="c1">// Some logic to derive percentage for each employee</span>
+        <span class="k">val</span> <span class="n">p</span><span class="k">:</span><span class="kt">Map</span><span class="o">[</span><span class="kt">Int</span>,<span class="kt">Double</span><span class="o">]</span>  <span class="k">=</span> <span class="nc">Map</span><span class="o">(</span><span class="mi">1001</span> <span class="o">-&gt;</span> <span class="mf">10.00</span><span class="o">,</span> 
+                                <span class="mi">1002</span><span class="o">-&gt;</span><span class="mf">12.00</span><span class="o">,</span> 
+                                <span class="mi">1003</span><span class="o">-&gt;</span><span class="mf">7.50</span><span class="o">,</span> 
+                                <span class="mi">1004</span><span class="o">-&gt;</span><span class="mf">6.80</span><span class="o">,</span> 
+                                <span class="mi">1005</span><span class="o">-&gt;</span><span class="mf">20.00</span><span class="o">)</span>
+        <span class="o">(</span><span class="n">empID</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">empID</span><span class="o">,</span> <span class="n">e</span><span class="o">(</span><span class="n">empID</span><span class="o">)</span> <span class="o">*</span> <span class="n">p</span><span class="o">(</span><span class="n">empID</span><span class="o">)</span> <span class="o">/</span><span class="mf">100.00</span><span class="o">)</span> <span class="c1">// 返回一个匿名函数，即闭包</span>
+        <span class="o">}</span>        
+
+    <span class="k">val</span> <span class="n">f</span> <span class="k">=</span> <span class="n">getHike</span>
+    <span class="n">f</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="o">(</span><span class="nc">Int</span><span class="o">,</span> <span class="nc">Double</span><span class="o">)</span> <span class="k">=</span> <span class="o">&lt;</span><span class="n">function1</span><span class="o">&gt;</span>
+    <span class="c1">//Get Hike for an employee</span>
+    <span class="n">f</span><span class="o">(</span><span class="mi">1001</span><span class="o">)</span>
+    <span class="c1">//res10: (Int, Double) = (1001,3500.0)</span>
+    <span class="c1">//Get Hike for a non existant employee</span>
+    <span class="n">f</span><span class="o">(</span><span class="mi">1006</span><span class="o">)</span>
+    <span class="c1">//java.util.NoSuchElementException: key not found: 1006     </span>
+</pre></div>
+<p>从最后一行返回的匿名函数是一个闭包。它使用两个自由变量e和p。当我们从getHike返回它时，它带有e和p的状态。所以，f包含它的数据。<strong>闭包就像面向对象世界里传递的一个对象！</strong>它节省了大量复杂且不必要的代码，并简化了解决方案。</p>
+            <div>
+</div>
+
+            <section>
+    <p id="post-share-links">
+    Share on:
+    <a href="https://twitter.com/intent/tweet?text=Closure&url=https%3A//www.jerrulsu.com/Closure.html&hashtags=scala" target="_blank" title="Share on Twitter">Twitter</a>
+    ❄
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Closure.html" target="_blank" title="Share on Facebook">Facebook</a>
+    ❄
+    <a href="" target="_blank" title="Share on Google Plus">Google+</a>
+    ❄
+    <a href="mailto:?subject=Closure&amp;body=https%3A//www.jerrulsu.com/Closure.html" target="_blank" title="Share via Email">Email</a>
+    </p>
+</section>
+
+            
+            <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="https://www.jerrulsu.com/Scala.html" title="Scala">Scala</a></li>
+<li><a href="https://www.jerrulsu.com/Scala with Gradle in Intellij.html" title="Scala with Gradle in Intellij">Scala with Gradle in Intellij</a></li>
+<li><a href="https://www.jerrulsu.com/Singleton-&-Companion-Object.html" title="Singleton &amp; Companion Object">Singleton & Companion Object</a></li>
+<li><a href="https://www.jerrulsu.com/Case-Class-vs-Class.html" title="Case Class vs Class">Case Class vs Class</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://www.jerrulsu.com/Passing-a-function-as-an-argument:-Lambda-Function.html" title="Previous: Passing a function as an argument: Lambda Function">Passing a function as an argument: Lambda Function</a></li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2019-05-24T03:16:07+08:00">May 24, 2019</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://www.jerrulsu.com/categories.html#scala-ref">Scala</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://www.jerrulsu.com/tags#scala-ref">Scala
+                    <span>5</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
+    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-another social link sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-subtitle"><span class="site-name">Jerry Su's Blog</span> - Copyright © 2018</li>
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>
