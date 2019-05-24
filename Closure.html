@@ -100,8 +100,7 @@
     <span class="n">getHike</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span>
     <span class="c1">//res2: Double = 1000.0    </span>
 </pre></div>
-<p>Is this closure pure? 
- A Closure may be pure or impure depending on the type of the free variable.</p>
+<p>闭包是否为纯函数：取决于自由变量的类型var和val</p>
 <h1 id="_3">如果闭包修改了自由变量的值会怎样？<a class="headerlink" href="#_3" title="Permanent link">¶</a></h1>
 <p>如果闭包修改了自由变量，则更改在闭包外部可见。</p>
 <div class="highlight"><pre><span></span>    <span class="k">var</span> <span class="n">p</span> <span class="k">=</span><span class="mi">10</span>
@@ -117,9 +116,9 @@
     <span class="c1">//20    </span>
 </pre></div>
 <h1 id="_4">为什么需要闭包，有什么优势？<a class="headerlink" href="#_4" title="Permanent link">¶</a></h1>
-<p>函数式编程，函数可以传递和返回函数，与面向对象类似。
-对于某些例子，对象更灵活，因为对象携带方法和数据元素（状态）。然而，函数是唯一的，因为它没有任何数据元素（状态）。
-所以，如果有一个需求，我们需要传递一堆状态和一个函数：<strong>闭包</strong>和<strong>自由变量</strong>。</p>
+<p>函数式编程，函数可以最为参数传递和返回，与面向对象类似。</p>
+<p>对于某些例子，对象更灵活，因为对象携带方法和数据元素（状态）。然而，函数是唯一的，因为它没有任何数据元素（状态）。</p>
+<p>所以，如果我们需要传递一堆状态和一个函数，那么使用：<strong>闭包</strong>和<strong>自由变量</strong>。</p>
 <div class="highlight"><pre><span></span>    <span class="k">val</span> <span class="n">l</span> <span class="k">=</span> <span class="o">(</span><span class="mi">1001</span> <span class="n">to</span> <span class="mi">1005</span><span class="o">).</span><span class="n">toList</span>
     <span class="n">l</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">getHike</span><span class="o">)</span>     
 
@@ -148,7 +147,10 @@
     <span class="n">f</span><span class="o">(</span><span class="mi">1006</span><span class="o">)</span>
     <span class="c1">//java.util.NoSuchElementException: key not found: 1006     </span>
 </pre></div>
-<p>从最后一行返回的匿名函数是一个闭包。它使用两个自由变量e和p。当我们从getHike返回它时，它带有e和p的状态。所以，f包含它的数据。<strong>闭包就像面向对象世界里传递的一个对象！</strong>它节省了大量复杂且不必要的代码，并简化了解决方案。</p>
+<p>从最后一行返回的匿名函数是一个闭包。它使用两个自由变量e和p。</p>
+<p>当我们从getHike返回它时，它带有e和p的状态。</p>
+<p>所以，f包含它的数据。<font color="red"><strong>闭包就像面向对象世界里传递的一个对象！</strong></font></p>
+<p>它节省了大量复杂且不必要的代码，并简化了解决方案。</p>
             <div>
 </div>
 
