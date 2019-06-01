@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Dynamic Programming "/>
 <meta property="og:url" content="https://www.jerrulsu.com/Dynamic-Programming.html" />
-<meta property="og:description" content="动态规划四要素¶ 状态的定义¶ 状态的定义是动态规划最难的地方，根据定义状态可以将其分类。 状态的转移方程¶ 状态之间的联系，如何通过小状态推出大状态。 状态的初始化 最小状态是什么，即递归中的base case。起点。 返回结果 最终要求解的问题，即最大的状态。终点 与递归三要素对比¶ 定义 ---&gt; 状态 接收什么参数 处理过程 返回的结果 拆解 ---&gt; 方程 如何将参数变小，问题规模变小。大状态变小状态。 出口 ---&gt; 初始化 base case最小，可以直接解决的状态 动态规划的分类¶ 根据如何定义状态，将动态规划分类： 坐标型动态规划 接龙型动态规划 划分行动态规划 双序列动态规划 背包型动态规划 区间型动态规划 判断动态规划依据¶ 不适用动态规划情况 求出所有具体方案，而非方案个数 输入数据是一个集合 …" />
+<meta property="og:description" content="动态规划四要素¶ 状态的定义¶ 状态的定义是动态规划最难的地方，根据定义状态可以将其分类。 状态的转移方程¶ 状态之间的联系，如何通过小状态推出大状态。 状态的初始化¶ 最小状态是什么，即递归中的base case。起点。 返回结果¶ 最终要求解的问题，即最大的状态。终点 与递归三要素对比¶ 定义 ---&gt; 状态¶ 接收什么参数 处理过程 返回的结果 拆解 ---&gt; 方程¶ 如何将参数变小，问题规模变小。大状态变小状态。 出口 ---&gt; 初始化¶ base case最小，可以直接解决的状态 动态规划的分类¶ 根据如何定义状态，将动态规划分类： 坐标型动态规划 接龙型动态规划 划分行动态规划 双序列动态规划 背包型动态规划 区间型动态规划 判断动态规划依据¶ 不适用动态规划情况¶ 求出所有具体方案，而非方案个数 输入数据是一个集合 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-06-01T01:40:10+08:00" />
 <meta name="twitter:title" content="Dynamic Programming ">
-<meta name="twitter:description" content="动态规划四要素¶ 状态的定义¶ 状态的定义是动态规划最难的地方，根据定义状态可以将其分类。 状态的转移方程¶ 状态之间的联系，如何通过小状态推出大状态。 状态的初始化 最小状态是什么，即递归中的base case。起点。 返回结果 最终要求解的问题，即最大的状态。终点 与递归三要素对比¶ 定义 ---&gt; 状态 接收什么参数 处理过程 返回的结果 拆解 ---&gt; 方程 如何将参数变小，问题规模变小。大状态变小状态。 出口 ---&gt; 初始化 base case最小，可以直接解决的状态 动态规划的分类¶ 根据如何定义状态，将动态规划分类： 坐标型动态规划 接龙型动态规划 划分行动态规划 双序列动态规划 背包型动态规划 区间型动态规划 判断动态规划依据¶ 不适用动态规划情况 求出所有具体方案，而非方案个数 输入数据是一个集合 …">
+<meta name="twitter:description" content="动态规划四要素¶ 状态的定义¶ 状态的定义是动态规划最难的地方，根据定义状态可以将其分类。 状态的转移方程¶ 状态之间的联系，如何通过小状态推出大状态。 状态的初始化¶ 最小状态是什么，即递归中的base case。起点。 返回结果¶ 最终要求解的问题，即最大的状态。终点 与递归三要素对比¶ 定义 ---&gt; 状态¶ 接收什么参数 处理过程 返回的结果 拆解 ---&gt; 方程¶ 如何将参数变小，问题规模变小。大状态变小状态。 出口 ---&gt; 初始化¶ base case最小，可以直接解决的状态 动态规划的分类¶ 根据如何定义状态，将动态规划分类： 坐标型动态规划 接龙型动态规划 划分行动态规划 双序列动态规划 背包型动态规划 区间型动态规划 判断动态规划依据¶ 不适用动态规划情况¶ 求出所有具体方案，而非方案个数 输入数据是一个集合 …">
 
         <title>Dynamic Programming  · Jerry Su&#39;s Blog
 </title>
@@ -73,11 +73,22 @@
 <li><a href="#_1">动态规划四要素</a><ul>
 <li><a href="#_2">状态的定义</a></li>
 <li><a href="#_3">状态的转移方程</a></li>
+<li><a href="#_4">状态的初始化</a></li>
+<li><a href="#_5">返回结果</a></li>
 </ul>
 </li>
-<li><a href="#_4">与递归三要素对比</a></li>
-<li><a href="#_5">动态规划的分类</a></li>
-<li><a href="#_6">判断动态规划依据</a></li>
+<li><a href="#_6">与递归三要素对比</a><ul>
+<li><a href="#-">定义 ---&gt; 状态</a></li>
+<li><a href="#-_1">拆解 ---&gt; 方程</a></li>
+<li><a href="#-_2">出口 ---&gt; 初始化</a></li>
+</ul>
+</li>
+<li><a href="#_7">动态规划的分类</a></li>
+<li><a href="#_8">判断动态规划依据</a><ul>
+<li><a href="#_9">不适用动态规划情况</a></li>
+<li><a href="#_10">适用动态规划情况</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </nav>
@@ -91,19 +102,13 @@
 <p>状态的定义是动态规划最难的地方，根据定义状态可以将其分类。</p>
 <h2 id="_3">状态的转移方程<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
 <p>状态之间的联系，如何通过小状态推出大状态。</p>
-<ol>
-<li>状态的初始化</li>
-</ol>
+<h2 id="_4">状态的初始化<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
 <p>最小状态是什么，即递归中的base case。起点。</p>
-<ol>
-<li>返回结果</li>
-</ol>
+<h2 id="_5">返回结果<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
 <p>最终要求解的问题，即最大的状态。终点</p>
-<h1 id="_4">与递归三要素对比<a class="headerlink" href="#_4" title="Permanent link">¶</a></h1>
-<ol>
-<li>
-<p>定义 ---&gt; 状态</p>
-</li>
+<h1 id="_6">与递归三要素对比<a class="headerlink" href="#_6" title="Permanent link">¶</a></h1>
+<h2 id="-">定义 ---&gt; 状态<a class="headerlink" href="#-" title="Permanent link">¶</a></h2>
+<ul>
 <li>
 <p>接收什么参数</p>
 </li>
@@ -113,20 +118,16 @@
 <li>
 <p>返回的结果</p>
 </li>
-<li>
-<p>拆解 ---&gt; 方程</p>
-</li>
-<li>
-<p>如何将参数变小，问题规模变小。大状态变小状态。</p>
-</li>
-<li>
-<p>出口 ---&gt; 初始化</p>
-</li>
-<li>
-<p>base case最小，可以直接解决的状态</p>
-</li>
-</ol>
-<h1 id="_5">动态规划的分类<a class="headerlink" href="#_5" title="Permanent link">¶</a></h1>
+</ul>
+<h2 id="-_1">拆解 ---&gt; 方程<a class="headerlink" href="#-_1" title="Permanent link">¶</a></h2>
+<ul>
+<li>如何将参数变小，问题规模变小。大状态变小状态。</li>
+</ul>
+<h2 id="-_2">出口 ---&gt; 初始化<a class="headerlink" href="#-_2" title="Permanent link">¶</a></h2>
+<ul>
+<li>base case最小，可以直接解决的状态</li>
+</ul>
+<h1 id="_7">动态规划的分类<a class="headerlink" href="#_7" title="Permanent link">¶</a></h1>
 <p>根据如何定义状态，将动态规划分类：</p>
 <ul>
 <li>
@@ -148,11 +149,9 @@
 <p>区间型动态规划</p>
 </li>
 </ul>
-<h1 id="_6">判断动态规划依据<a class="headerlink" href="#_6" title="Permanent link">¶</a></h1>
-<ol>
-<li>
-<p>不适用动态规划情况</p>
-</li>
+<h1 id="_8">判断动态规划依据<a class="headerlink" href="#_8" title="Permanent link">¶</a></h1>
+<h2 id="_9">不适用动态规划情况<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<ul>
 <li>
 <p>求出所有<strong>具体</strong>方案，而非方案<strong>个数</strong></p>
 </li>
@@ -162,12 +161,10 @@
 <li>
 <p>暴力算法的时间复杂度已经是<strong>多项式</strong>级别</p>
 </li>
-</ol>
+</ul>
 <p>动态规划擅长优化NP问题到P问题，即指数级时间复杂度(2^n, n!)到多项式时间复杂度(n^2, n^3)。不擅长优化n^3到n^2。</p>
-<ol>
-<li>
-<p>适用动态规划情况</p>
-</li>
+<h2 id="_10">适用动态规划情况<a class="headerlink" href="#_10" title="Permanent link">¶</a></h2>
+<ul>
 <li>
 <p>求最大值，最小值</p>
 </li>
@@ -177,7 +174,7 @@
 <li>
 <p>统计方案个数</p>
 </li>
-</ol>
+</ul>
             <div>
 </div>
 
