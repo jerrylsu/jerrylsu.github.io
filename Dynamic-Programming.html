@@ -93,7 +93,10 @@
 <li><a href="#longest-increasing-subsequence-lis">Longest Increasing Subsequence (LIS)</a></li>
 </ul>
 </li>
-<li><a href="#_12">接龙型动态规划</a></li>
+<li><a href="#_12">接龙型动态规划</a><ul>
+<li><a href="#coin-change">Coin Change</a></li>
+</ul>
+</li>
 <li><a href="#_13">划分行动态规划</a></li>
 <li><a href="#_14">双序列动态规划</a></li>
 <li><a href="#_15">背包型动态规划</a></li>
@@ -170,6 +173,7 @@
 <h3 id="longest-increasing-subsequence-lis">Longest Increasing Subsequence (LIS)<a class="headerlink" href="#longest-increasing-subsequence-lis" title="Permanent link">¶</a></h3>
 <p>状态的定义：dp[i]</p>
 <p>本题特殊在于：当前状态dp[i]并非由前一个状态dp[i-1]直接推来，而是在0 ~ i-1的状态dp[0] ~ dp[i-1]中搜寻。如下：</p>
+<p>dp[j]是前一个状态， j属于0 ~ i-1遍历</p>
 <div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>        
     <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
         <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -183,11 +187,24 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>      <span class="c1"># 分别计算每一个状态</span>
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>          <span class="c1"># 遍历寻上前一个满足条件的状态</span>
                 <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># dp[i]迭代放置最大状态</span>
 
         <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
 </pre></div>
 <h2 id="_12">接龙型动态规划<a class="headerlink" href="#_12" title="Permanent link">¶</a></h2>
+<h3 id="coin-change">Coin Change<a class="headerlink" href="#coin-change" title="Permanent link">¶</a></h3>
+<p>状态的定义： dp[i]到第i个面值（类似于台阶）所需要的最少硬币数。</p>
+<p>有多少种面值的硬币，前一个状态dp[i - coin]就有多少种。 i表示当前的amount，i - coin表示去掉加上这个面值coin的前一个amount。</p>
+<p>所以需要遍历减去各种面值而得到的前一个状态，找到最小值，即最小硬币数。</p>
+<p>dp[i - coin]是前一个状态， coins个币种遍历。</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">coinChange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coins</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">)]</span> <span class="o">*</span> <span class="n">amount</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">amount</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">coin</span> <span class="ow">in</span> <span class="n">coins</span><span class="p">:</span>                            <span class="c1"># 遍历前一个状态</span>
+            <span class="k">if</span> <span class="n">coin</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">:</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">coin</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># dp[i]迭代放置最小状态， 1表示加上一个面值硬币后的最少硬币数</span>
+    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
 <h2 id="_13">划分行动态规划<a class="headerlink" href="#_13" title="Permanent link">¶</a></h2>
 <h2 id="_14">双序列动态规划<a class="headerlink" href="#_14" title="Permanent link">¶</a></h2>
 <h2 id="_15">背包型动态规划<a class="headerlink" href="#_15" title="Permanent link">¶</a></h2>
