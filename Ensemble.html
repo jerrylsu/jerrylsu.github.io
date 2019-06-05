@@ -257,21 +257,37 @@ def cond_entropy(dataset, feature_idx):
 <div class="math">$$G(x)=sign(f(x))$$</div>
 </li>
 </ul>
-<p>AdaBoost怎样实现更加关注误分类的数据？ <strong>Weighted data</strong>
- After a weak learner is added, the data weights are readjusted, known as <strong>"re-weighting"</strong>. <strong>Misclassified input data gain a higher weight and examples that are classified correctly lose weight.</strong> </p>
-<p>Why can the future weak learners focus more on the examples that previous weak learners misclassified？
-为什么通过调高误分类数据的权重可以使下一轮的弱分类器更加关注？(数据权重的思想)
-1. 选择决策点
-2. 带权分类误差 
-弱分类器的分类误差由误分类权重累加，当寻找最佳划分点时，总是寻找误差最小的，则权重高的数据会尽可能分对，才能使误差尽可能的小，由此实现更加关注误分类的点。</p>
+<p>AdaBoost怎样实现更加关注误分类的数据？ <strong>Weighted data</strong></p>
+<p>After a weak learner is added, the data weights are readjusted, known as <strong>"re-weighting"</strong>. <strong>Misclassified input data gain a higher weight and examples that are classified correctly lose weight.</strong> </p>
+<p>Why can the future weak learners focus more on the examples that previous weak learners misclassified？</p>
+<p>为什么通过调高误分类数据的权重可以使下一轮的弱分类器更加关注？(数据权重的思想)</p>
+<ol>
+<li>
+<p>选择决策点</p>
+</li>
+<li>
+<p>带权分类误差 </p>
+</li>
+</ol>
+<p>弱分类器的分类误差由误分类权重累加，当寻找最佳划分点时，总是寻找误差最小的，则权重高的数据会尽可能分对，才能使误差尽可能的小，由此实现更加关注误分类的点。</p>
 <p>数据权重主要用于弱分类器寻找其分类误差最小的决策点</p>
 <p><a href="https://www.jianshu.com/p/a94ca700115d">AdaBoost</a></p>
 <h3 id="stacking">Stacking<a class="headerlink" href="#stacking" title="Permanent link">¶</a></h3>
-<p>参考链接：
-1. 李航，统计学习方法
-2. Petter Harrington, Machine Learning in Action
-3. <a href="https://github.com/wzyonggege/statistical-learning-method/blob/master/DecisonTree/DT.ipynb">https://github.com/wzyonggege/statistical-learning-method</a>
-4. <a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference/5044">MathJax basic tutorial and quick reference</a></p>
+<p>参考链接：</p>
+<ol>
+<li>
+<p>李航，统计学习方法</p>
+</li>
+<li>
+<p>Petter Harrington, Machine Learning in Action</p>
+</li>
+<li>
+<p><a href="https://github.com/wzyonggege/statistical-learning-method/blob/master/DecisonTree/DT.ipynb">https://github.com/wzyonggege/statistical-learning-method</a></p>
+</li>
+<li>
+<p><a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference/5044">MathJax basic tutorial and quick reference</a></p>
+</li>
+</ol>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
