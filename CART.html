@@ -117,23 +117,23 @@
 <p>所以在CART模型中，我们需要遍历输入特征<span class="math">\(x^(j)\)</span>，找到最佳划分点<strong>s</strong>，即损失函数值最小。</p>
 <h3 id="cart_1">CART算法<a class="headerlink" href="#cart_1" title="Permanent link">¶</a></h3>
 <p>对于回归问题，常选用<strong>L2</strong>距离作为损失函数<span class="math">\(L(y^{(i)}, c)\)</span>：</p>
-<ol>
+<ul>
 <li>选择<strong>(j, s)</strong></li>
-</ol>
-<p><span class="math">\(Loss = \min_{j, s}[\min_{c_1} \sum_{x_i \in R_1(j, s))}(y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in R_2(j, s))}(y_i - c_2)^2]\)</span></p>
-<ol>
+</ul>
+<div class="math">$$Loss = \min_{j, s}[\min_{c_1} \sum_{x_i \in R_1(j, s))}(y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in R_2(j, s))}(y_i - c_2)^2]$$</div>
+<ul>
 <li>用选定的<strong>(j, s)</strong>划分区域并输出相应区域的均值</li>
-</ol>
+</ul>
 <div class="math">$$R_1(j, s) = {x | x^{(j) \leq s}}, \ \ R_2(j, s) = {x | x^{(j) &gt; s}}$$</div>
 <div class="math">$$c_m = \frac{1}{N_m}\sum_{x_i \in R_m(j, s))}y_i, \ \ \ x \in R_m, \ \ m = 1, 2$$</div>
-<ol>
+<ul>
 <li>
-<p>递归1， 2步骤直到满足终止条件</p>
+<p>在子区域上递归1， 2步骤直到满足终止条件</p>
 </li>
 <li>
 <p>将输入空间划分为<strong>M</strong>个区域<strong><span class="math">\(R_1, R_2 ,..., R_M\)</span></strong>，生成决策树</p>
 </li>
-</ol>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
