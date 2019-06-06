@@ -9,16 +9,16 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content=", posts, " />
+<meta name="keywords" content="Machine Learning, Machine Learning, " />
 
 <meta property="og:title" content="CART "/>
 <meta property="og:url" content="https://www.jerrulsu.com/CART.html" />
-<meta property="og:description" content="Decision Tree¶ 决策树算法包括3部分：特征选择、树的生成、树的剪枝 ID3¶ 概述：ID3决策树可以有多个分支，但是不能处理特征值为连续的情况。决策树是一种贪心算法，每次选取的分割数据的特征都是当前的最佳选择，并不关心是否达到最优。在ID3中，每次根据“最大信息熵增益”选取当前最佳的特征来分割数据，并按照该特征的所有取值来切分，一旦按某特征切分后，该特征在之后的算法执行中，将不再起作用。ID3算法核心是根据“最大信息熵增益“原则选择划分当前数据集的最好特征。在建立决策树的过程中，根据特征属性划分数据，使得原本“混乱”的数据的熵(混乱度)减少，按照不同特征划分数据熵减少的程度会不一样。在ID3中选择熵减少程度最大的特征来划分数据（贪心），也就是“最大信息熵增益”原则。 ID3算法缺点¶ ID3不能直接处理连续型特征。 数据集切分过于迅速。 信息增益作为特征选择标准的缺陷：信息增益在特征值多的特征上计算结果大于特征值少的特征，这会导致 ID3 偏向选择有较多分枝的特征，而该特征不一定是最优的选择。 CART¶ 引子：一些机器学习算法（如线性回归 …" />
+<meta property="og:description" content="ID3¶ 概述：ID3决策树可以有多个分支，但是不能处理特征值为连续的情况。决策树是一种贪心算法，每次选取的分割数据的特征都是当前的最佳选择，并不关心是否达到最优。在ID3中，每次根据“最大信息熵增益”选取当前最佳的特征来分割数据，并按照该特征的所有取值来切分，一旦按某特征切分后，该特征在之后的算法执行中，将不再起作用。ID3算法核心是根据“最大信息熵增益“原则选择划分当前数据集的最好特征。在建立决策树的过程中，根据特征属性划分数据，使得原本“混乱”的数据的熵(混乱度)减少，按照不同特征划分数据熵减少的程度会不一样。在ID3中选择熵减少程度最大的特征来划分数据（贪心），也就是“最大信息熵增益”原则。 ID3算法缺点¶ ID3不能直接处理连续型特征。 数据集切分过于迅速。 信息增益作为特征选择标准的缺陷：信息增益在特征值多的特征上计算结果大于特征值少的特征，这会导致 ID3 偏向选择有较多分枝的特征，而该特征不一定是最优的选择。 CART¶ 引子：一些机器学习算法（如线性回归）创建的模型需要拟合所有的样本数据。 问题： 1：数据特征众多且其间关系繁杂而密切，构建全局模型比较困难。 2 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-06-06T06:28:25+08:00" />
 <meta name="twitter:title" content="CART ">
-<meta name="twitter:description" content="Decision Tree¶ 决策树算法包括3部分：特征选择、树的生成、树的剪枝 ID3¶ 概述：ID3决策树可以有多个分支，但是不能处理特征值为连续的情况。决策树是一种贪心算法，每次选取的分割数据的特征都是当前的最佳选择，并不关心是否达到最优。在ID3中，每次根据“最大信息熵增益”选取当前最佳的特征来分割数据，并按照该特征的所有取值来切分，一旦按某特征切分后，该特征在之后的算法执行中，将不再起作用。ID3算法核心是根据“最大信息熵增益“原则选择划分当前数据集的最好特征。在建立决策树的过程中，根据特征属性划分数据，使得原本“混乱”的数据的熵(混乱度)减少，按照不同特征划分数据熵减少的程度会不一样。在ID3中选择熵减少程度最大的特征来划分数据（贪心），也就是“最大信息熵增益”原则。 ID3算法缺点¶ ID3不能直接处理连续型特征。 数据集切分过于迅速。 信息增益作为特征选择标准的缺陷：信息增益在特征值多的特征上计算结果大于特征值少的特征，这会导致 ID3 偏向选择有较多分枝的特征，而该特征不一定是最优的选择。 CART¶ 引子：一些机器学习算法（如线性回归 …">
+<meta name="twitter:description" content="ID3¶ 概述：ID3决策树可以有多个分支，但是不能处理特征值为连续的情况。决策树是一种贪心算法，每次选取的分割数据的特征都是当前的最佳选择，并不关心是否达到最优。在ID3中，每次根据“最大信息熵增益”选取当前最佳的特征来分割数据，并按照该特征的所有取值来切分，一旦按某特征切分后，该特征在之后的算法执行中，将不再起作用。ID3算法核心是根据“最大信息熵增益“原则选择划分当前数据集的最好特征。在建立决策树的过程中，根据特征属性划分数据，使得原本“混乱”的数据的熵(混乱度)减少，按照不同特征划分数据熵减少的程度会不一样。在ID3中选择熵减少程度最大的特征来划分数据（贪心），也就是“最大信息熵增益”原则。 ID3算法缺点¶ ID3不能直接处理连续型特征。 数据集切分过于迅速。 信息增益作为特征选择标准的缺陷：信息增益在特征值多的特征上计算结果大于特征值少的特征，这会导致 ID3 偏向选择有较多分枝的特征，而该特征不一定是最优的选择。 CART¶ 引子：一些机器学习算法（如线性回归）创建的模型需要拟合所有的样本数据。 问题： 1：数据特征众多且其间关系繁杂而密切，构建全局模型比较困难。 2 …">
 
         <title>CART  · Jerry Su&#39;s Blog
 </title>
@@ -70,14 +70,11 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#decision-tree">Decision Tree</a><ul>
 <li><a href="#id3">ID3</a><ul>
 <li><a href="#id3_1">ID3算法缺点</a></li>
 </ul>
 </li>
 <li><a href="#cart">CART</a></li>
-</ul>
-</li>
 </ul>
 </div>
         </nav>
@@ -86,8 +83,6 @@
 
             
             
-<h2 id="decision-tree">Decision Tree<a class="headerlink" href="#decision-tree" title="Permanent link">¶</a></h2>
-<p>决策树算法包括3部分：<strong>特征选择、树的生成、树的剪枝</strong></p>
 <h3 id="id3">ID3<a class="headerlink" href="#id3" title="Permanent link">¶</a></h3>
 <p><strong>概述：</strong>ID3决策树可以有多个分支，但是不能处理特征值为连续的情况。决策树是一种贪心算法，每次选取的分割数据的特征都是当前的最佳选择，并不关心是否达到最优。在ID3中，每次根据“最大信息熵增益”选取当前最佳的特征来分割数据，并按照该特征的所有取值来切分，一旦按某特征切分后，该特征在之后的算法执行中，将不再起作用。ID3算法核心是根据“最大信息熵增益“原则选择划分当前数据集的最好特征。在建立决策树的过程中，根据特征属性划分数据，使得原本“混乱”的数据的熵(混乱度)减少，按照不同特征划分数据熵减少的程度会不一样。在ID3中选择熵减少程度最大的特征来划分数据（贪心），也就是“最大信息熵增益”原则。</p>
 <h4 id="id3_1">ID3算法缺点<a class="headerlink" href="#id3_1" title="Permanent link">¶</a></h4>
@@ -106,30 +101,13 @@
 将数据集划分为多个易于建模的子数据集，子数据集可以用各种技术建模。依然难以建模的子数据集可以继续划分。在这种划分方式下，<strong>树结构</strong>和<strong>回归法</strong>相当有用。</p>
 </blockquote>
 <p><strong>CART : Classification And Regression Trees</strong></p>
-<p><a href="https://www.cnblogs.com/wxquare/p/5379970.html">ID3、CART</a></p>
-<p><strong>更新中...</strong></p>
-<p>参考链接：</p>
-<ol>
-<li>
-<p>李航，统计学习方法</p>
-</li>
-<li>
-<p>Petter Harrington, Machine Learning in Action</p>
-</li>
-<li>
-<p><a href="https://github.com/wzyonggege/statistical-learning-method/blob/master/DecisonTree/DT.ipynb">https://github.com/wzyonggege/statistical-learning-method</a></p>
-</li>
-<li>
-<p><a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference/5044">MathJax basic tutorial and quick reference</a></p>
-</li>
-</ol>
             <div>
 </div>
 
             <section>
     <p id="post-share-links">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=CART&url=https%3A//www.jerrulsu.com/CART.html" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=CART&url=https%3A//www.jerrulsu.com/CART.html&hashtags=machine-learning" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/CART.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
@@ -141,6 +119,14 @@
 
             
             <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="https://www.jerrulsu.com/Information-Theory.html" title="Information Theory">Information Theory</a></li>
+<li><a href="https://www.jerrulsu.com/Adaboost.html" title="Adaboost">Adaboost</a></li>
+</ul>
+<hr />
+</section>
             <aside>
             <nav>
             <ul class="articles-timeline">
@@ -154,7 +140,13 @@
             <h4>Published</h4>
             <time itemprop="dateCreated" datetime="2019-06-06T06:28:25+08:00">Jun 6, 2019</time>
             <h4>Category</h4>
-            <a class="category-link" href="https://www.jerrulsu.com/categories.html#posts-ref">posts</a>
+            <a class="category-link" href="https://www.jerrulsu.com/categories.html#machine-learning-ref">Machine Learning</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://www.jerrulsu.com/tags#machine-learning-ref">Machine Learning
+                    <span>3</span>
+</a></li>
+            </ul>
 <h4>Contact</h4>
     <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
     <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
