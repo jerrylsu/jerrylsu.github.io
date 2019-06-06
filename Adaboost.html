@@ -99,20 +99,29 @@
 </ul>
 <h3 id="_1">算法原理<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
 <ol>
-<li><strong>初始权重，均匀分布：</strong>
+<li>
+<p><strong>初始权重，均匀分布：</strong>
 <div class="math">$$D_i=(w_{11}, ... ,w_{1i}, ... ,w_{1N}), w_{1i}=\frac{1}{N}$$</div>
+</p>
 </li>
-<li><strong>m=1,2,...,M迭代：</strong>
-2.1 <strong>由带权数据集学习弱分类器：</strong>
+<li>
+<p><strong>m=1,2,...,M迭代：</strong></p>
+</li>
+</ol>
+<p>2.1 <strong>由带权数据集学习弱分类器：</strong>
+</p>
 <div class="math">$$G_m(x)$$</div>
-2.2 <strong>弱分类器<span class="math">\(G_m(x)\)</span>在加权数据集上的分类误差：是被<span class="math">\(G_m(x)\)</span>误分类样本的权重之和。</strong>
+<p>2.2 <strong>弱分类器<span class="math">\(G_m(x)\)</span>在加权数据集上的分类误差：是被<span class="math">\(G_m(x)\)</span>误分类样本的权重之和。</strong>
+</p>
 <div class="math">$$e_m=\sum_{i=1}^N w_{mi}I(G_m(x_i) \neq y_i)=\sum_{G_m \neq y_i}w_{mi}$$</div>
-2.3 <strong>The weight of weak learners:</strong>
+<p>2.3 <strong>The weight of weak learners:</strong>
+</p>
 <div class="math">$$\alpha_m=\frac{1}{2}\log\frac{1-e_m}{e_m}$$</div>
-2.4 <strong>Re-Weighting:</strong>
+<p>2.4 <strong>Re-Weighting:</strong>
+</p>
 <div class="math">$$w_{m+1,i}=\frac{w_{mi}}{Z_m}exp(-\alpha_my_iG_m(x_i)),$$</div>
 <div class="math">$$Z_m=\sum_{i=1}^Nw_{mi}exp(-\alpha_my_iG_m(x_i))$$</div>
-</li>
+<ol>
 <li><strong>弱分类器的线性组合：</strong>
 <div class="math">$$f(x)=\sum_{m=1}^M\alpha_mG_m(x)$$</div>
 <strong>Strong learner:</strong>
