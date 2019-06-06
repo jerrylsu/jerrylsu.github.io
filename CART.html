@@ -116,7 +116,8 @@
 <p><strong><span class="math">\(R_m\)</span></strong>：划分出的子区域</p>
 <p>所以在CART模型中，我们需要遍历输入特征<span class="math">\(x^{(j)}\)</span>，找到最佳划分点<strong>s</strong>，即损失函数值最小。</p>
 <h3 id="cart_1">CART算法<a class="headerlink" href="#cart_1" title="Permanent link">¶</a></h3>
-<p>对于回归问题，常选用<strong>L2</strong>距离作为损失函数<span class="math">\(L(y^{(i)}, c)\)</span>：</p>
+<p>对于分类问题，采用基尼系数选择最优特征，同时决定该特征的最优划分点。</p>
+<p>对于回归问题，常选用<strong>L2</strong>距离作为损失函数<span class="math">\(L(y^{(i)}, c)\)</span>，这种回归树称为<strong>最小二乘回归树</strong>。</p>
 <ul>
 <li>选择<strong>(j, s)</strong></li>
 </ul>
