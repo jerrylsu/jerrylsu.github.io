@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/</loc>
-<lastmod>2019-06-06T06:32:22-00:00</lastmod>
+<lastmod>2019-06-06T06:37:05-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/archives.html</loc>
-<lastmod>2019-06-06T06:32:22-00:00</lastmod>
+<lastmod>2019-06-06T06:37:05-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/tags.html</loc>
-<lastmod>2019-06-06T06:32:22-00:00</lastmod>
+<lastmod>2019-06-06T06:37:05-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/categories.html</loc>
-<lastmod>2019-06-06T06:32:22-00:00</lastmod>
+<lastmod>2019-06-06T06:37:05-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -34,13 +34,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.jerrulsu.com/pages/about.html</loc>
 <lastmod>2019-05-04T15:04:40+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://www.jerrulsu.com/CART.html</loc>
-<lastmod>2019-06-06T06:28:25+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -228,6 +221,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://www.jerrulsu.com/CART.html</loc>
+<lastmod>2018-12-04T01:59:58+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://www.jerrulsu.com/Information-Theory.html</loc>
 <lastmod>2018-12-03T12:32:47+08:00</lastmod>
 <changefreq>monthly</changefreq>
@@ -348,7 +348,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/category/machine-learning.html</loc>
-<lastmod>2019-06-06T06:28:25+08:06</lastmod>
+<lastmod>2018-12-04T01:59:58+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -391,13 +391,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.jerrulsu.com/category/vim.html</loc>
 <lastmod>2018-10-04T11:23:36+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://www.jerrulsu.com/tag/machine-learning.html</loc>
-<lastmod>2019-06-06T06:28:25+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -452,6 +445,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://www.jerrulsu.com/tag/machine-learning.html</loc>
+<lastmod>2018-12-04T01:59:58+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://www.jerrulsu.com/tag/english.html</loc>
 <lastmod>2018-11-07T09:22:57+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -488,7 +488,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/author/jerry-su.html</loc>
-<lastmod>2019-06-06T06:28:25+08:06</lastmod>
+<lastmod>2019-06-01T01:40:10+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
