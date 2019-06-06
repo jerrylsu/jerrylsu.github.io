@@ -75,6 +75,7 @@
 </ul>
 </li>
 <li><a href="#cart">CART</a></li>
+<li><a href="#cart_1">CART算法</a></li>
 </ul>
 </div>
         </nav>
@@ -109,11 +110,14 @@
 <p>CART树的损失函数： <span class="math">\(Loss = \min_{j, s}[\min_{c_1}L(y^{(i)}, c_1) + \min_{c_2}L(y^{(i)}, c_2)]\)</span></p>
 </li>
 </ol>
-<p><span class="math">\(S**c_m**\)</span>是子区域上的均值： <span class="math">\(c_m = \frac{1}{N_m}\sum_{x_i \in R_m(j, s))}y_i, \ \ \ x \in R_m, \ \ m = 1, 2\)</span></p>
+<p><strong><span class="math">\(c_m\)</span></strong>是子区域上的均值： <span class="math">\(c_m = \frac{1}{N_m}\sum_{x_i \in R_m(j, s))}y_i, \ \ \ x \in R_m, \ \ m = 1, 2\)</span></p>
 <p><strong>x^(j)</strong>: 选择第j个特征作为切分变量</p>
 <p><strong>s</strong>：选择该特征的特征值s作为切分点</p>
-<p><span class="math">\(**R_m**\)</span>：划分出的子区域</p>
+<p><strong><span class="math">\(R_m\)</span></strong>：划分出的子区域</p>
 <p>所以在CART模型中，我们需要遍历输入特征<span class="math">\(x^(j)\)</span>，找到最佳划分点<strong>s</strong>，即损失函数值最小。</p>
+<h3 id="cart_1">CART算法<a class="headerlink" href="#cart_1" title="Permanent link">¶</a></h3>
+<p>对于回归问题，常选用<strong>L2</strong>距离作为损失函数<span class="math">\(L(y^{(i)}, c)\)</span>：
+<span class="math">\(Loss = \min_{j, s}[\min_{c_1} \sum_{x_i \in R_1(j, s))}(y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in R_2(j, s))}(y_i - c_2)^2]\)</span></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
