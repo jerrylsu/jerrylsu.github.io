@@ -70,10 +70,7 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#id3">ID3</a><ul>
-<li><a href="#id3_1">ID3算法缺点</a></li>
-</ul>
-</li>
+<li><a href="#id3">ID3</a></li>
 <li><a href="#cart">CART</a></li>
 <li><a href="#cart_1">CART算法</a></li>
 </ul>
@@ -94,7 +91,7 @@
 </blockquote>
 <h3 id="id3">ID3<a class="headerlink" href="#id3" title="Permanent link">¶</a></h3>
 <p><strong>概述：</strong>ID3决策树可以有多个分支，但是不能处理特征值为连续的情况。决策树是一种贪心算法，每次选取的分割数据的特征都是当前的最佳选择，并不关心是否达到最优。在ID3中，每次根据“最大信息熵增益”选取当前最佳的特征来分割数据，并按照该特征的所有取值来切分，一旦按某特征切分后，该特征在之后的算法执行中，将不再起作用。ID3算法核心是根据“最大信息熵增益“原则选择划分当前数据集的最好特征。在建立决策树的过程中，根据特征属性划分数据，使得原本“混乱”的数据的熵(混乱度)减少，按照不同特征划分数据熵减少的程度会不一样。在ID3中选择熵减少程度最大的特征来划分数据（贪心），也就是“最大信息熵增益”原则。</p>
-<h4 id="id3_1">ID3算法缺点<a class="headerlink" href="#id3_1" title="Permanent link">¶</a></h4>
+<p>ID3算法缺点：</p>
 <ol>
 <li>ID3不能直接处理连续型特征。</li>
 <li>数据集切分过于迅速。</li>
