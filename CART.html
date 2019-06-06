@@ -106,10 +106,14 @@
 <p>决策树模型是将输入空间划分成若干个区域。CART是二叉树，每一次将区域二分，子区域递归。</p>
 </li>
 <li>
-<p>CART树的损失函数： <span class="math">\(Loss = \min_{j, s}[\min_{c_1}L(y^{(i)}, c_1) + \min_{c_2}L(y^{(i)}, c_2)]\)</span>
-<span class="math">\(c_m\)</span>是子区域上的均值： <span class="math">\(c_m = \frac{1}{N_m}\sum_{x_i \in R_m(j, s))}y_i, \ \ \ x \in R_m, \ \ m = 1, 2\)</span></p>
+<p>CART树的损失函数： <span class="math">\(Loss = \min_{j, s}[\min_{c_1}L(y^{(i)}, c_1) + \min_{c_2}L(y^{(i)}, c_2)]\)</span></p>
 </li>
 </ol>
+<p><span class="math">\(S**c_m**\)</span>是子区域上的均值： <span class="math">\(c_m = \frac{1}{N_m}\sum_{x_i \in R_m(j, s))}y_i, \ \ \ x \in R_m, \ \ m = 1, 2\)</span></p>
+<p><strong>x^(j)</strong>: 选择第j个特征作为切分变量</p>
+<p><strong>s</strong>：选择该特征的特征值s作为切分点</p>
+<p><span class="math">\(**R_m**\)</span>：划分出的子区域</p>
+<p>所以在CART模型中，我们需要遍历输入特征<span class="math">\(x^(j)\)</span>，找到最佳划分点<strong>s</strong>，即损失函数值最小。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
