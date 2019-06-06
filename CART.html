@@ -9,16 +9,16 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Machine Learning, Machine Learning, " />
+<meta name="keywords" content=", posts, " />
 
 <meta property="og:title" content="CART "/>
 <meta property="og:url" content="https://www.jerrulsu.com/CART.html" />
-<meta property="og:description" content="Information Theory¶ 信息\(X\)¶ 信息\(X\)即信源\(X\)：表示一段信息，如文本、语音等等。 信源的不确定性：信源发出的消息不确定性越大，收信者获取的信息量就越大。如果信源发送的消息是确切的，则对收信者来说没有任何价值（没有信息量）。衡量不确定性的方法就是考察信源\(X\)的概率空间。X包含的状态越多，状态\(X_i\)的概率\(P_i\)越小，则不确定性越大，所含有的信息量越大。 信息量\(H(X)\)¶ 如何衡量信息\(X\)的大小，如何衡量信息\(X\)所包含的信息量？ \(H(X_1) &gt; H(X_2); H(X_1) = H(X_2);H(X_1) &lt; H(X_2)\) 自信息量H …" />
+<meta property="og:description" content="Decision Tree¶ 决策树算法包括3部分：特征选择、树的生成、树的剪枝 ID3¶ 概述：ID3决策树可以有多个分支，但是不能处理特征值为连续的情况。决策树是一种贪心算法，每次选取的分割数据的特征都是当前的最佳选择，并不关心是否达到最优。在ID3中，每次根据“最大信息熵增益”选取当前最佳的特征来分割数据，并按照该特征的所有取值来切分，一旦按某特征切分后，该特征在之后的算法执行中，将不再起作用。ID3算法核心是根据“最大信息熵增益“原则选择划分当前数据集的最好特征。在建立决策树的过程中，根据特征属性划分数据，使得原本“混乱”的数据的熵(混乱度)减少，按照不同特征划分数据熵减少的程度会不一样。在ID3中选择熵减少程度最大的特征来划分数据（贪心），也就是“最大信息熵增益”原则。 ID3算法缺点¶ ID3不能直接处理连续型特征。 数据集切分过于迅速。 信息增益作为特征选择标准的缺陷：信息增益在特征值多的特征上计算结果大于特征值少的特征，这会导致 ID3 偏向选择有较多分枝的特征，而该特征不一定是最优的选择。 CART¶ 引子：一些机器学习算法（如线性回归 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2018-12-03T12:32:47+08:00" />
+<meta property="og:article:published_time" content="2019-06-06T06:28:25+08:00" />
 <meta name="twitter:title" content="CART ">
-<meta name="twitter:description" content="Information Theory¶ 信息\(X\)¶ 信息\(X\)即信源\(X\)：表示一段信息，如文本、语音等等。 信源的不确定性：信源发出的消息不确定性越大，收信者获取的信息量就越大。如果信源发送的消息是确切的，则对收信者来说没有任何价值（没有信息量）。衡量不确定性的方法就是考察信源\(X\)的概率空间。X包含的状态越多，状态\(X_i\)的概率\(P_i\)越小，则不确定性越大，所含有的信息量越大。 信息量\(H(X)\)¶ 如何衡量信息\(X\)的大小，如何衡量信息\(X\)所包含的信息量？ \(H(X_1) &gt; H(X_2); H(X_1) = H(X_2);H(X_1) &lt; H(X_2)\) 自信息量H …">
+<meta name="twitter:description" content="Decision Tree¶ 决策树算法包括3部分：特征选择、树的生成、树的剪枝 ID3¶ 概述：ID3决策树可以有多个分支，但是不能处理特征值为连续的情况。决策树是一种贪心算法，每次选取的分割数据的特征都是当前的最佳选择，并不关心是否达到最优。在ID3中，每次根据“最大信息熵增益”选取当前最佳的特征来分割数据，并按照该特征的所有取值来切分，一旦按某特征切分后，该特征在之后的算法执行中，将不再起作用。ID3算法核心是根据“最大信息熵增益“原则选择划分当前数据集的最好特征。在建立决策树的过程中，根据特征属性划分数据，使得原本“混乱”的数据的熵(混乱度)减少，按照不同特征划分数据熵减少的程度会不一样。在ID3中选择熵减少程度最大的特征来划分数据（贪心），也就是“最大信息熵增益”原则。 ID3算法缺点¶ ID3不能直接处理连续型特征。 数据集切分过于迅速。 信息增益作为特征选择标准的缺陷：信息增益在特征值多的特征上计算结果大于特征值少的特征，这会导致 ID3 偏向选择有较多分枝的特征，而该特征不一定是最优的选择。 CART¶ 引子：一些机器学习算法（如线性回归 …">
 
         <title>CART  · Jerry Su&#39;s Blog
 </title>
@@ -70,14 +70,6 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#information-theory">Information Theory</a><ul>
-<li><a href="#x">信息\(X\)</a></li>
-<li><a href="#hx">信息量\(H(X)\)</a></li>
-<li><a href="#information-entropy">Information Entropy</a></li>
-<li><a href="#_1">信息熵的计算</a></li>
-<li><a href="#information-gain">Information Gain</a></li>
-</ul>
-</li>
 <li><a href="#decision-tree">Decision Tree</a><ul>
 <li><a href="#id3">ID3</a><ul>
 <li><a href="#id3_1">ID3算法缺点</a></li>
@@ -94,103 +86,6 @@
 
             
             
-<h2 id="information-theory">Information Theory<a class="headerlink" href="#information-theory" title="Permanent link">¶</a></h2>
-<h3 id="x">信息<span class="math">\(X\)</span><a class="headerlink" href="#x" title="Permanent link">¶</a></h3>
-<ul>
-<li><strong>信息<span class="math">\(X\)</span>即信源</strong><span class="math">\(X\)</span>：表示一段信息，如文本、语音等等。</li>
-<li><strong>信源的不确定性</strong>：信源发出的消息不确定性越大，收信者获取的信息量就越大。如果信源发送的消息是确切的，则对收信者来说没有任何价值（没有信息量）。衡量不确定性的方法就是考察信源<span class="math">\(X\)</span>的概率空间。X包含的状态越多，状态<span class="math">\(X_i\)</span>的概率<span class="math">\(P_i\)</span>越小，则不确定性越大，所含有的信息量越大。</li>
-</ul>
-<h3 id="hx">信息量<span class="math">\(H(X)\)</span><a class="headerlink" href="#hx" title="Permanent link">¶</a></h3>
-<ul>
-<li>
-<p>如何衡量信息<span class="math">\(X\)</span>的大小，如何衡量信息<span class="math">\(X\)</span>所包含的信息量？ 
-<span class="math">\(H(X_1) &gt; H(X_2); H(X_1) = H(X_2);H(X_1) &lt; H(X_2)\)</span>
-<strong>自信息量H(X)</strong>：一个事件(消息)本身所包含的信息量，由事件的不确定性决定的。</p>
-</li>
-<li>
-<p>如何用数学模型表示<span class="math">\(X\)</span>的信息量？</p>
-</li>
-<li><span class="math">\(H(X) &lt;=&gt;  \frac{1}{P(X)}\)</span><strong>单调性</strong>：
-信息量<span class="math">\(H(X)\)</span>与信息<span class="math">\(X\)</span>出现的概率<span class="math">\(P(X)\)</span>成反比，即信息<span class="math">\(X\)</span>出现的概率越大，则<span class="math">\(X\)</span>的信息量越小。</li>
-<li><span class="math">\(H(X_1, X_2) &lt;=&gt; H(X_1) + H(X_2)\)</span><strong>可加性</strong>：信息<span class="math">\(X_1\)</span>与<span class="math">\(X_2\)</span>是独立随机变量可加(暂且简单认为独立，不独立有条件熵)</li>
-<li><span class="math">\(H(X)\geq0\)</span><strong>非负性</strong></li>
-</ul>
-<p>寻找一个函数<span class="math">\(H\)</span>同时满足以上三点，即：
-随机事件<span class="math">\(X_i\)</span>发生概率为<span class="math">\(P(X_i)\)</span>，则<strong>信息量函数</strong>定义为：
-</p>
-<div class="math">$$H(X)=\log\frac{1}{P(X)}=-\log{P(X)}$$</div>
-<p>可加性证明：<span class="math">\(H(X_1,X_2)=\log\frac{1}{P(X_1,X_2)}=\log\frac{1}{P(X_1)P(X_2)}= \log\frac{1}{P(X_1)}+\log\frac{1}{P(X_2)}\)</span>，<span class="math">\(X_1\)</span>,<span class="math">\(X_2\)</span>相互独立</p>
-<h3 id="information-entropy">Information Entropy<a class="headerlink" href="#information-entropy" title="Permanent link">¶</a></h3>
-<p>定义：信息量<span class="math">\(H(X)\)</span>在<span class="math">\(P(X)\)</span>分布下的数学期望：
-</p>
-<div class="math">$$Entropy(X)=E_x[H(X)]=-\sum_xp(x)\log{p(x)}$$</div>
-<blockquote>
-<p>热力学第二定律</p>
-<p>薛定谔.《生命是什么》 （第六章 有序，无序和熵）
-基本思想：一个正常的人若要维持高序的状态，则必须要吸收负熵来维持高序稳定的状态，否则我们的熵会趋于增大而变的无序。所以人需要吃食物，食物是高序稳定的，经过吸收变得无序产生负熵来维持我们高序稳定状态。</p>
-</blockquote>
-<p>信息熵可以描述数据的混合程度。
-熵越大，混合度越高，数据纯度越低。</p>
-<h3 id="_1">信息熵的计算<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
-<p>数据集<span class="math">\(D\)</span>：
-X X X | O O O X X X O O
-- <span class="math">\(ori\_entropy(X)\)</span>：最初整个系统（数据集<span class="math">\(D\)</span>）的固定熵，即<strong>经验熵</strong>（李航，统计学习方法）
-</p>
-<div class="math">$$ori\_entropy(D)=-\frac{1}{2}\log\frac{1}{2}-\frac{1}{2}\log\frac{1}{2}=1$$</div>
-<p>
-- 根据某个特征将数据集<span class="math">\(D\)</span>划分为<span class="math">\(D_-\)</span>(X X X)和<span class="math">\(D_+\)</span>(O O O X X X O O)：
-</p>
-<div class="math">$$entropy(D_-)=0$$</div>
-<div class="math">$$entropy(D_+)=-\frac{2}{7}\log\frac{2}{7}-\frac{5}{7}\log\frac{5}{7}$$</div>
-<p>即数据集划分后两个子数据集的信息熵。<strong>由这样划分数据集之后，整个系统（数据集<span class="math">\(D\)</span>）的信息熵有何变化呢？</strong>由此引入了<strong>信息增益(Information Gain)</strong>。</p>
-<div class="highlight"><pre><span></span>def cal_entropy(dataset):
-    '''Calculate the datasets' entropy.
-
-    :param dataset: The dataset needs to calculated.
-    '''
-    dataset_size = len(dataset)
-    label_count = {}
-    for data in dataset:
-        label = data[-1]
-        if label not in label_count:
-            label_count[label] = 0
-        label_count[label] += 1
-    entropy = -sum([(count / dataset_size) * log((count / dataset_size), 2)
-                    for count in label_count.values()])
-    return entropy
-
-def cond_entropy(dataset, feature_idx):
-    '''Calculate the weighted entropy of several sub datasets.
-
-    :param dataset: The raw dataset
-    :param feature_idx: The index of feature splited the dataset.
-    '''
-    dataset_size = len(dataset)
-    sub_datasets = {}
-    for data in dataset:
-        feature_value = data[feature_idx]
-        if feature_value not in sub_datasets:
-            sub_datasets[feature_value] = []
-        sub_datasets[feature_value].append(data)
-    # Sub dataset's weighted entropy
-    cond_entropy = sum([(len(sub_dataset) / dataset_size) * cal_entropy(sub_dataset) 
-                        for sub_dataset in sub_datasets.values()])
-    return cond_entropy
-</pre></div>
-<h3 id="information-gain">Information Gain<a class="headerlink" href="#information-gain" title="Permanent link">¶</a></h3>
-<p><strong>信息增益：原始数据集<span class="math">\(D\)</span>的熵 减去 按特征<span class="math">\(A\)</span>划分若干个子数据集<span class="math">\(D_i\)</span>的加权熵</strong>
-信息增益：由于熵的减小，而增加信息的获得是多少。
-一个特征的信息增益就是由于使用这个特征分割数据集而导致的期望熵降低。在信息增益中，衡量标准是看特征能够为分类系统带来多少信息，带来的信息越多，该特征越重要。对一个特征而言，系统有它和没它时信息量将发生变化，而前后信息量的差值就是这个特征给系统带来的信息量（系统熵降低，则信息量减小，则获取更多的信息量，即信息增益）。
-</p>
-<div class="math">$$IG=ori\_entropy-\sum_i w_i \cdot entropy(D_i)=ori\_entropy-\sum_i \frac{|D_i|}{|D|} \cdot entropy(D_i)$$</div>
-<p>
-<strong>信息增益越大越好，还是越小越好？</strong>
-信息增益是：原始数据集<span class="math">\(D\)</span>的熵减去按特征<span class="math">\(A\)</span>划分若干个子数据集<span class="math">\(D_i\)</span>的加权熵。我们的目的是使每一个子集的熵最小（最小代表每个子集都是一类数据，高度有序的状态，高纯度），即加权熵尽量小，则IG越大。
-<strong>根据IG准则的特征选择方法是什么？</strong>
-对训练数据集（或子集）<span class="math">\(D\)</span>，计算其每一个特征的信息增益，选择信息增益最大的特征。</p>
-<div class="highlight"><pre><span></span>def info_gain(entropy, cond_entropy):
-    return entropy - cond_entropy
-</pre></div>
 <h2 id="decision-tree">Decision Tree<a class="headerlink" href="#decision-tree" title="Permanent link">¶</a></h2>
 <p>决策树算法包括3部分：<strong>特征选择、树的生成、树的剪枝</strong></p>
 <h3 id="id3">ID3<a class="headerlink" href="#id3" title="Permanent link">¶</a></h3>
@@ -228,74 +123,13 @@ def cond_entropy(dataset, feature_idx):
 <p><a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference/5044">MathJax basic tutorial and quick reference</a></p>
 </li>
 </ol>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        fonts: [['STIX', 'TeX']]," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
             <div>
 </div>
 
             <section>
     <p id="post-share-links">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=CART&url=https%3A//www.jerrulsu.com/CART.html&hashtags=machine-learning" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=CART&url=https%3A//www.jerrulsu.com/CART.html" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/CART.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
@@ -307,18 +141,10 @@ def cond_entropy(dataset, feature_idx):
 
             
             <hr/>
-<section>
-    <h2>Related Posts</h2>
-<ul class="related-posts-list">
-<li><a href="https://www.jerrulsu.com/Adaboost.html" title="Adaboost">Adaboost</a></li>
-</ul>
-<hr />
-</section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://www.jerrulsu.com/Data-Structure-and-Algorithm-in-Python.html" title="Previous: Data Structure and Algorithm in Python">Data Structure and Algorithm in Python</a></li>
-                <li class="next-article"><a href="https://www.jerrulsu.com/Adaboost.html" title="Next: Adaboost">Adaboost</a> »</li>
+                <li class="previous-article">« <a href="https://www.jerrulsu.com/Dynamic-Programming.html" title="Previous: Dynamic Programming">Dynamic Programming</a></li>
             </ul>
             </nav>
             </aside>
@@ -326,15 +152,9 @@ def cond_entropy(dataset, feature_idx):
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2018-12-03T12:32:47+08:00">Dec 3, 2018</time>
+            <time itemprop="dateCreated" datetime="2019-06-06T06:28:25+08:00">Jun 6, 2019</time>
             <h4>Category</h4>
-            <a class="category-link" href="https://www.jerrulsu.com/categories.html#machine-learning-ref">Machine Learning</a>
-            <h4>Tags</h4>
-            <ul class="list-of-tags tags-in-article">
-                <li><a href="https://www.jerrulsu.com/tags#machine-learning-ref">Machine Learning
-                    <span>2</span>
-</a></li>
-            </ul>
+            <a class="category-link" href="https://www.jerrulsu.com/categories.html#posts-ref">posts</a>
 <h4>Contact</h4>
     <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
     <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
