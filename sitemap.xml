@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/</loc>
-<lastmod>2019-06-06T06:37:05-00:00</lastmod>
+<lastmod>2019-06-06T06:39:58-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/archives.html</loc>
-<lastmod>2019-06-06T06:37:05-00:00</lastmod>
+<lastmod>2019-06-06T06:39:58-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/tags.html</loc>
-<lastmod>2019-06-06T06:37:05-00:00</lastmod>
+<lastmod>2019-06-06T06:39:58-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/categories.html</loc>
-<lastmod>2019-06-06T06:37:05-00:00</lastmod>
+<lastmod>2019-06-06T06:39:58-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -215,7 +215,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/Adaboost.html</loc>
-<lastmod>2018-12-04T01:59:58+08:00</lastmod>
+<lastmod>2018-12-05T01:59:58+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -348,7 +348,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/category/machine-learning.html</loc>
-<lastmod>2018-12-04T01:59:58+08:06</lastmod>
+<lastmod>2018-12-05T01:59:58+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -446,7 +446,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/tag/machine-learning.html</loc>
-<lastmod>2018-12-04T01:59:58+08:06</lastmod>
+<lastmod>2018-12-05T01:59:58+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
