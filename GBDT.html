@@ -104,11 +104,12 @@
 \end{align}</div>
 <p>所以对于具有平方损失的回归：</p>
 <div class="math">\begin{align}
-**残差**：y_i-F(x_i) &amp;&lt;===&gt;**负梯度**：-\frac{\partial J}{\partial F(x_i)} \\
+残差y_i-F(x_i) &amp;&lt;===&gt;负梯度-\frac{\partial J}{\partial F(x_i)} \\
 对残差拟合h &amp;&lt;===&gt; 对负梯度拟合h \\
 基于残差更新模型F &amp;&lt;===&gt; 基于负梯度更新F \\
-所以使用梯度下降来更新模型F
 \end{align}</div>
+<p>
+所以使用梯度下降来更新模型F，梯度下降的概念比残差更通用且有用。</p>
 <p><strong>残差与负梯度的关系：是由平方损失函数建立的，平方损失函数的一阶导数即梯度正是负残差，而平方损失函数又常用于回归问题</strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
