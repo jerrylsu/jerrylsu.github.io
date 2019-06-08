@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="GBDT "/>
 <meta property="og:url" content="https://www.jerrulsu.com/GBDT.html" />
-<meta property="og:description" content="问题引入¶ 给定数据集\((x_1, y_1), (x_2, y_2),...,(x_n, y_n)\), 拟合一个模型\(F(x)\)。 \(F(x_1) = 1.4\)而\(y_1=1.3\) \(F(x_2) = 0.9\)而\(y_2=0.8\) ... 在不改变\(F(x)\)模型前提下，如何提升模型\(F(x)\)？ 在原有模型\(F(x)\)基础上增加模型\(h(x)\),即\(F(x) + h(x)\) $$F(x_n) + h(x_n) = y_n …" />
+<meta property="og:description" content="问题引入¶ 给定数据集\((x_1, y_1), (x_2, y_2),...,(x_n, y_n)\), 拟合一个模型\(F(x)\)。 \(F(x_1) = 1.4\)而\(y_1=1.3\) \(F(x_2) = 0.9\)而\(y_2=0.8\) ... 在不改变\(F(x)\)模型前提下，如何提升模型\(F(x)\)？ 在原有模型\(F(x)\)基础上增加模型\(h(x)\),即\(F(x) + h(x)\)。 $$F(x_n) + h(x_n) = y_n …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-06-08T02:18:10+08:00" />
 <meta name="twitter:title" content="GBDT ">
-<meta name="twitter:description" content="问题引入¶ 给定数据集\((x_1, y_1), (x_2, y_2),...,(x_n, y_n)\), 拟合一个模型\(F(x)\)。 \(F(x_1) = 1.4\)而\(y_1=1.3\) \(F(x_2) = 0.9\)而\(y_2=0.8\) ... 在不改变\(F(x)\)模型前提下，如何提升模型\(F(x)\)？ 在原有模型\(F(x)\)基础上增加模型\(h(x)\),即\(F(x) + h(x)\) $$F(x_n) + h(x_n) = y_n …">
+<meta name="twitter:description" content="问题引入¶ 给定数据集\((x_1, y_1), (x_2, y_2),...,(x_n, y_n)\), 拟合一个模型\(F(x)\)。 \(F(x_1) = 1.4\)而\(y_1=1.3\) \(F(x_2) = 0.9\)而\(y_2=0.8\) ... 在不改变\(F(x)\)模型前提下，如何提升模型\(F(x)\)？ 在原有模型\(F(x)\)基础上增加模型\(h(x)\),即\(F(x) + h(x)\)。 $$F(x_n) + h(x_n) = y_n …">
 
         <title>GBDT  · Jerry Su&#39;s Blog
 </title>
@@ -71,7 +71,7 @@
         <div class="toc">
 <ul>
 <li><a href="#_1">问题引入</a></li>
-<li><a href="#_2">残差与梯度下降得关系</a></li>
+<li><a href="#_2">残差与梯度下降的关系</a></li>
 </ul>
 </div>
         </nav>
@@ -86,14 +86,14 @@
 <p><span class="math">\(F(x_2) = 0.9\)</span>而<span class="math">\(y_2=0.8\)</span></p>
 <p>...</p>
 <p>在不改变<span class="math">\(F(x)\)</span>模型前提下，如何提升模型<span class="math">\(F(x)\)</span>？</p>
-<p>在原有模型<span class="math">\(F(x)\)</span>基础上增加模型<span class="math">\(h(x)\)</span>,即<span class="math">\(F(x) + h(x)\)</span></p>
+<p>在原有模型<span class="math">\(F(x)\)</span>基础上增加模型<span class="math">\(h(x)\)</span>,即<span class="math">\(F(x) + h(x)\)</span>。</p>
 <div class="math">$$F(x_n) + h(x_n) = y_n$$</div>
-<p><span class="math">\(h(x_n) = y_n - F(x_n)\)</span></p>
-<p>所以对数据<span class="math">\((x_1, y_1-F(x_1)), (x_2, y_2-F(x_2)),...,(x_n, y_n-F(x_n))\)</span>拟合一个回归树<span class="math">\(h\)</span></p>
-<p><span class="math">\(y_i - F(x_i)\)</span>是<strong>残差</strong>，就是模型<span class="math">\(F(x)\)</span>为很好拟合得那一部分误差。<span class="math">\(h(x)\)</span>作用就是弥补现有模型得残差。如果<span class="math">\(F+h\)</span>依然没有很好得拟合原数据，则继续添加另一个回归树模型去拟合新的残差。</p>
-<h3 id="_2">残差与梯度下降得关系<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
+<div class="math">$$h(x_n) = y_n - F(x_n)$$</div>
+<p>所以对数据<span class="math">\((x_1, y_1-F(x_1)), (x_2, y_2-F(x_2)),...,(x_n, y_n-F(x_n))\)</span>拟合一个回归树<span class="math">\(h\)</span>。</p>
+<p><span class="math">\(y_i - F(x_i)\)</span>是<strong>残差</strong>，就是模型<span class="math">\(F(x)\)</span>未很好拟合的那一部分误差。<span class="math">\(h(x)\)</span>作用就是弥补现有模型的残差。如果<span class="math">\(F+h\)</span>依然没有很好的拟合原数据，则继续添加另一个回归树模型去拟合新的残差。</p>
+<h3 id="_2">残差与梯度下降的关系<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
 <p>梯度下降是指在函数当前点对应梯度的反方向迭代移动以达到函数的局部最小。</p>
-<p>损失函数：<span class="math">\(L(y, F(x)) = \frac{1}{1} (y - F(x))^2\)</span></p>
+<p>损失函数：<span class="math">\(L(y, F(x)) = \frac{1}{2} (y - F(x))^2\)</span></p>
 <p>我们通过迭代调整<span class="math">\(F(x_1), F(x_2),..,F(x_n)\)</span>以到达损失函数<span class="math">\(J = \sum_i L(y_i, F(x_i))\)</span>的最小化</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
