@@ -95,14 +95,21 @@
 <p>梯度下降是指在函数当前点对应梯度的反方向迭代移动以达到函数的局部最小。</p>
 <p>损失函数：<span class="math">\(L(y, F(x)) = \frac{1}{2} (y - F(x))^2\)</span></p>
 <p>我们通过迭代调整<span class="math">\(F(x_1), F(x_2),..,F(x_n)\)</span>以到达损失函数<span class="math">\(J = \sum_i L(y_i, F(x_i))\)</span>的最小化。</p>
-<p>注：<span class="math">\(F(x_1), F(x_2),...,F(x_n)\)</span>仅仅是一些数，所以可以将<span class="math">\(F(x_i)\)</span>当作是变量。那么：</p>
+<p>注：<span class="math">\(F(x_1), F(x_2),...,F(x_n)\)</span>仅仅是一些数，所以可以将<span class="math">\(F(x_i)\)</span>当作是变量。那么梯度推导：</p>
 <div class="math">\begin{align}
 \frac{\partial J}{\partial F(x_i)} &amp; = \frac{\partial \sum_i L(y_i, F(x_i))}{\partial F(x_i)} \\ 
 &amp; = \frac{\partial L(y_i, F(x_i))}{\partial F(x_i)} \\
 &amp; = \frac{\partial \frac{1}{2}(y_i-F(x_i))^2}{\partial x} \\
 &amp; = F(x_i)-y_i
 \end{align}</div>
-<p>所以<strong>残差</strong>：<span class="math">\(y_i-F(x_i)\)</span>等于<strong>负梯度</strong>：<span class="math">\(-\frac{\partial J}{\partial F(x_i)}\)</span></p>
+<p>所以对于具有平方损失的回归：</p>
+<div class="math">\begin{align}
+**残差**：y_i-F(x_i) &amp;&lt;===&gt;**负梯度**：-\frac{\partial J}{\partial F(x_i)} \\
+对残差拟合h &amp;&lt;===&gt; 对负梯度拟合h \\
+基于残差更新模型F &amp;&lt;===&gt; 基于负梯度更新F \\
+所以使用梯度下降来更新模型F
+\end{align}</div>
+<p><strong>残差与负梯度的关系：是由平方损失函数建立的，平方损失函数的一阶导数即梯度正是负残差，而平方损失函数又常用于回归问题</strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
