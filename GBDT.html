@@ -94,7 +94,14 @@
 <h3 id="_2">残差与梯度下降的关系<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
 <p>梯度下降是指在函数当前点对应梯度的反方向迭代移动以达到函数的局部最小。</p>
 <p>损失函数：<span class="math">\(L(y, F(x)) = \frac{1}{2} (y - F(x))^2\)</span></p>
-<p>我们通过迭代调整<span class="math">\(F(x_1), F(x_2),..,F(x_n)\)</span>以到达损失函数<span class="math">\(J = \sum_i L(y_i, F(x_i))\)</span>的最小化</p>
+<p>我们通过迭代调整<span class="math">\(F(x_1), F(x_2),..,F(x_n)\)</span>以到达损失函数<span class="math">\(J = \sum_i L(y_i, F(x_i))\)</span>的最小化。</p>
+<p>注：<span class="math">\(F(x_1), F(x_2),...,F(x_n)\)</span>仅仅是一些数，所以可以将<span class="math">\(F(x_i)\)</span>当作是变量。那么：</p>
+<div class="math">\begin{align}
+\frac{\partial J}{\partial F(x_i)} &amp; = \frac{\partial \sum_i L(y_i, F(x_i))}{\partial F(x_i)} \\ 
+&amp; = \frac{\partial L(y_i, F(x_i))}{\partial F(x_i)} \\
+&amp; = \frac{\partial \frac{1}{2}(y_i-F(x_i))^2}{\partial x} \\
+&amp; = F(x_i)-y_i
+\end{align}</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
