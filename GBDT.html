@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Machine Learning, Machine Learning, " />
 
-<meta property="og:title" content="Adaboost "/>
-<meta property="og:url" content="https://www.jerrulsu.com/Adaboost.html" />
-<meta property="og:description" content="引：理解CART分类回归树 Boosting¶ Boosting , short for Adaptive Boosting, is a machine learning ensemble meta-algorithm for primarily reducing bias, and also variance in supervised learning, and a family of machine learning algorithms that convert weak learners to strong ones. AdaBoost算法¶ 在算法初始化阶段，为每一个样本赋予一个相等的权重,同等概率分布（样本数的倒数），即每个样本在开始都是一样重要的。接下来，每一次训练后得到的模型，对数据点的估计会有所差异，所以在每一步结束后，我们需要对权重进行处理，而处理的方式就是通过增加错分类的样本点的权重 …" />
+<meta property="og:title" content="GBDT "/>
+<meta property="og:url" content="https://www.jerrulsu.com/GBDT.html" />
+<meta property="og:description" content="问题引入¶ 给定数据集\((x_1, y_1), (x_2, y_2),...,(x_n, y_n)\), 拟合一个模型\(F(x)\)。 \(F(x_1) = 1.4\)而\(y_1=1.3\) \(F(x_2) = 0.9\)而\(y_2=0.8\) ... 在不改变\(F(x)\)模型前提下，如何提升模型\(F(x)\)？ 在原有模型\(F(x)\)基础上增加模型\(h(x)\),即\(F(x) + h(x)\) $$F(x_n) + h(x_n) = y_n …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2018-12-05T01:59:58+08:00" />
-<meta name="twitter:title" content="Adaboost ">
-<meta name="twitter:description" content="引：理解CART分类回归树 Boosting¶ Boosting , short for Adaptive Boosting, is a machine learning ensemble meta-algorithm for primarily reducing bias, and also variance in supervised learning, and a family of machine learning algorithms that convert weak learners to strong ones. AdaBoost算法¶ 在算法初始化阶段，为每一个样本赋予一个相等的权重,同等概率分布（样本数的倒数），即每个样本在开始都是一样重要的。接下来，每一次训练后得到的模型，对数据点的估计会有所差异，所以在每一步结束后，我们需要对权重进行处理，而处理的方式就是通过增加错分类的样本点的权重 …">
+<meta property="og:article:published_time" content="2019-06-08T02:18:10+08:00" />
+<meta name="twitter:title" content="GBDT ">
+<meta name="twitter:description" content="问题引入¶ 给定数据集\((x_1, y_1), (x_2, y_2),...,(x_n, y_n)\), 拟合一个模型\(F(x)\)。 \(F(x_1) = 1.4\)而\(y_1=1.3\) \(F(x_2) = 0.9\)而\(y_2=0.8\) ... 在不改变\(F(x)\)模型前提下，如何提升模型\(F(x)\)？ 在原有模型\(F(x)\)基础上增加模型\(h(x)\),即\(F(x) + h(x)\) $$F(x_n) + h(x_n) = y_n …">
 
-        <title>Adaboost  · Jerry Su&#39;s Blog
+        <title>GBDT  · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -60,7 +60,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://www.jerrulsu.com/Adaboost.html"> Adaboost  </a></h1>
+    <h1><a href="https://www.jerrulsu.com/GBDT.html"> GBDT  </a></h1>
     </header>
 </div>
 
@@ -70,12 +70,8 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#boosting">Boosting</a></li>
-<li><a href="#adaboost">AdaBoost算法</a></li>
-<li><a href="#adaboost_1">AdaBoost缺点</a></li>
-<li><a href="#_1">算法原理</a></li>
-<li><a href="#adaboost_2">AdaBoost重点</a></li>
-<li><a href="#_2">引用</a></li>
+<li><a href="#_1">问题引入</a></li>
+<li><a href="#_2">残差与梯度下降得关系</a></li>
 </ul>
 </div>
         </nav>
@@ -84,73 +80,20 @@
 
             
             
-<p><a href="https://www.jerrulsu.com/CART.html">引：理解CART分类回归树</a></p>
-<h3 id="boosting">Boosting<a class="headerlink" href="#boosting" title="Permanent link">¶</a></h3>
-<p><strong>Boosting</strong> , short for Adaptive Boosting, is a <a href="https://en.wikipedia.org/wiki/Ensemble_learning" title="Ensemble learning">machine learning ensemble</a> <a href="https://en.wikipedia.org/wiki/Meta-algorithm" title="Meta-algorithm">meta-algorithm</a> for primarily reducing <a href="https://en.wikipedia.org/wiki/Supervised_learning#Bias-variance_tradeoff" title="Supervised learning">bias</a>, and also variance in supervised learning, and a family of machine learning algorithms that convert weak learners to strong ones.</p>
-<h3 id="adaboost">AdaBoost算法<a class="headerlink" href="#adaboost" title="Permanent link">¶</a></h3>
-<p>在算法初始化阶段，为每一个样本赋予一个相等的权重,同等概率分布（样本数的倒数），即每个样本在开始都是一样重要的。接下来，每一次训练后得到的模型，对数据点的估计会有所差异，所以在每一步结束后，我们需要对权重进行处理，而处理的方式就是通过增加错分类的样本点的权重，同时减少分类正确的样本点的权重。这样能够确保，如果某些点经常被分错，那么就会被“严重关注”，也就会被赋予一个很高的权重。然后等进行了N次迭代（迭代次数由用户指定），将会得到N个简单的弱学习器，最后将它们组合起来，可以对它们进行加权（错误率越大的弱学习器其权重值越小，错误率越小的弱分类器权重值越大）或者让它们进行投票等得到一个最终的模型，即带权加法模型。</p>
-<h3 id="adaboost_1">AdaBoost缺点<a class="headerlink" href="#adaboost_1" title="Permanent link">¶</a></h3>
-<ul>
-<li>
-<p>AdaBoost对噪声和离群点敏感</p>
-</li>
-<li>
-<p>可扩展性方面，由于提升的时序性，不能进行并行处理。</p>
-</li>
-</ul>
-<h3 id="_1">算法原理<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
-<ol>
-<li>
-<p><strong>初始权重，均匀分布：</strong>
-<div class="math">$$D_i=(w_{11}, ... ,w_{1i}, ... ,w_{1N}), w_{1i}=\frac{1}{N}$$</div>
-</p>
-</li>
-<li>
-<p><strong>m=1,2,...,M迭代：</strong>
-2.1 <strong>由带权数据集学习弱分类器：</strong>
-<div class="math">$$G_m(x)$$</div>
-2.2 <strong>弱分类器<span class="math">\(G_m(x)\)</span>在加权数据集上的分类误差：是被<span class="math">\(G_m(x)\)</span>误分类样本的权重之和。</strong>
-<div class="math">$$e_m=\sum_{i=1}^N w_{mi}I(G_m(x_i) \neq y_i)=\sum_{G_m \neq y_i}w_{mi}$$</div>
-2.3 <strong>The weight of weak learners:</strong>
-<div class="math">$$\alpha_m=\frac{1}{2}\log\frac{1-e_m}{e_m}$$</div>
-2.4 <strong>Re-Weighting:</strong>
-<div class="math">$$w_{m+1,i}=\frac{w_{mi}}{Z_m}exp(-\alpha_my_iG_m(x_i)),$$</div>
-<div class="math">$$Z_m=\sum_{i=1}^Nw_{mi}exp(-\alpha_my_iG_m(x_i))$$</div>
-</p>
-</li>
-<li>
-<p><strong>弱分类器的线性组合：</strong>
-<div class="math">$$f(x)=\sum_{m=1}^M\alpha_mG_m(x)$$</div>
-<strong>Strong learner:</strong>
-<div class="math">$$G(x)=sign(f(x))$$</div>
-</p>
-</li>
-</ol>
-<h3 id="adaboost_2">AdaBoost重点<a class="headerlink" href="#adaboost_2" title="Permanent link">¶</a></h3>
-<ol>
-<li>AdaBoost怎样实现更加关注误分类的数据？</li>
-</ol>
-<p>通过给数据样本增加权重<strong>Weighted data</strong>，分错的数据在下一轮学习中提高权重，反之减小权重。<strong>"re-weighting"</strong></p>
-<ol>
-<li>为什么通过调高误分类数据的权重可以使下一轮的弱分类器更加关注？(数据权重的思想)</li>
-</ol>
-<p>选择决策点与带权分类误差 </p>
-<p>弱分类器的分类误差由误分类权重累加，当寻找最佳划分点时，总是寻找误差最小的，则权重高的数据会尽可能分对，才能使误差尽可能的小，由此实现更加关注误分类的点。</p>
-<p>数据权重主要用于弱分类器寻找其分类误差最小的决策点</p>
-<ol>
-<li>
-<p>数据权重和弱分类器权重</p>
-</li>
-<li>
-<p>AdaBoost主要为减少偏差</p>
-</li>
-<li>
-<p>Adaboost使用的是自适应的方法，其中概率分布式变化的，关注的是难分类的样本。</p>
-</li>
-</ol>
-<h3 id="_2">引用<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
-<p><a href="http://www.ccs.neu.edu/home/vip/teach/MLcourse/4_boosting/slides/gradient_boosting.pdf">PPT - A Gentle Introduction to Gradient Boosting</a></p>
-<p><a href="https://scikit-learn.org/stable/modules/ensemble.html#gradient-boosting">Scikit-learn - GRADIENT BOOSTING</a></p>
+<h3 id="_1">问题引入<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
+<p>给定数据集<span class="math">\((x_1, y_1), (x_2, y_2),...,(x_n, y_n)\)</span>, 拟合一个模型<span class="math">\(F(x)\)</span>。</p>
+<p><span class="math">\(F(x_1) = 1.4\)</span>而<span class="math">\(y_1=1.3\)</span></p>
+<p><span class="math">\(F(x_2) = 0.9\)</span>而<span class="math">\(y_2=0.8\)</span></p>
+<p>...</p>
+<p>在不改变<span class="math">\(F(x)\)</span>模型前提下，如何提升模型<span class="math">\(F(x)\)</span>？</p>
+<p>在原有模型<span class="math">\(F(x)\)</span>基础上增加模型<span class="math">\(h(x)\)</span>,即<span class="math">\(F(x) + h(x)\)</span></p>
+<div class="math">$$F(x_n) + h(x_n) = y_n$$</div>
+<p><span class="math">\(h(x_n) = y_n - F(x_n)\)</span></p>
+<p>所以对数据<span class="math">\((x_1, y_1-F(x_1)), (x_2, y_2-F(x_2)),...,(x_n, y_n-F(x_n))\)</span>拟合一个回归树<span class="math">\(h\)</span></p>
+<p><span class="math">\(y_i - F(x_i)\)</span>是<strong>残差</strong>，就是模型<span class="math">\(F(x)\)</span>为很好拟合得那一部分误差。<span class="math">\(h(x)\)</span>作用就是弥补现有模型得残差。如果<span class="math">\(F+h\)</span>依然没有很好得拟合原数据，则继续添加另一个回归树模型去拟合新的残差。</p>
+<h3 id="_2">残差与梯度下降得关系<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
+<p>梯度下降是指在函数当前点对应梯度的反方向迭代移动以达到函数的局部最小。</p>
+<p>损失函数：<span class="math">\(L(y, F(x)) = \frac{1}{1} (y - F(x))^2\)</span></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -218,13 +161,13 @@
             <section>
     <p id="post-share-links">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=Adaboost&url=https%3A//www.jerrulsu.com/Adaboost.html&hashtags=machine-learning" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=GBDT&url=https%3A//www.jerrulsu.com/GBDT.html&hashtags=machine-learning" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Adaboost.html" target="_blank" title="Share on Facebook">Facebook</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/GBDT.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
     <a href="" target="_blank" title="Share on Google Plus">Google+</a>
     ❄
-    <a href="mailto:?subject=Adaboost&amp;body=https%3A//www.jerrulsu.com/Adaboost.html" target="_blank" title="Share via Email">Email</a>
+    <a href="mailto:?subject=GBDT&amp;body=https%3A//www.jerrulsu.com/GBDT.html" target="_blank" title="Share via Email">Email</a>
     </p>
 </section>
 
@@ -235,15 +178,14 @@
 <ul class="related-posts-list">
 <li><a href="https://www.jerrulsu.com/Information-Theory.html" title="Information Theory">Information Theory</a></li>
 <li><a href="https://www.jerrulsu.com/CART.html" title="CART">CART</a></li>
-<li><a href="https://www.jerrulsu.com/GBDT.html" title="GBDT">GBDT</a></li>
+<li><a href="https://www.jerrulsu.com/Adaboost.html" title="Adaboost">Adaboost</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://www.jerrulsu.com/CART.html" title="Previous: CART">CART</a></li>
-                <li class="next-article"><a href="https://www.jerrulsu.com/Spark-RDD.html" title="Next: Spark RDD">Spark RDD</a> »</li>
+                <li class="previous-article">« <a href="https://www.jerrulsu.com/Dynamic-Programming.html" title="Previous: Dynamic Programming">Dynamic Programming</a></li>
             </ul>
             </nav>
             </aside>
@@ -251,7 +193,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2018-12-05T01:59:58+08:00">Dec 5, 2018</time>
+            <time itemprop="dateCreated" datetime="2019-06-08T02:18:10+08:00">Jun 8, 2019</time>
             <h4>Category</h4>
             <a class="category-link" href="https://www.jerrulsu.com/categories.html#machine-learning-ref">Machine Learning</a>
             <h4>Tags</h4>
