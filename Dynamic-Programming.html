@@ -104,7 +104,10 @@
 <li><a href="#_13">划分行动态规划</a></li>
 <li><a href="#_14">双序列动态规划</a></li>
 <li><a href="#_15">背包型动态规划</a></li>
-<li><a href="#_16">区间型动态规划</a></li>
+<li><a href="#_16">区间型动态规划</a><ul>
+<li><a href="#longest-palindromic-substring">Longest Palindromic Substring</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -257,7 +260,17 @@
 </ul>
 <p>由于dp[i]仅与dp的前一个状态有关，即在计算dp[i]时，<span class="math">\(dp[i-2],dp[i-3]...,dp[0]\)</span>对于dp[i]没有影响，因此可以空间优化省去dp数组。</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">maxSubArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span> <span class="k">return</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span> 
+        <span class="k">return</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+    <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>      
+        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">maxSubArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>  <span class="c1"># 空间优化</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span> 
+        <span class="k">return</span>
     <span class="n">dp</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span>              <span class="c1"># 滚动数组，空间优化</span>
@@ -344,6 +357,7 @@ dp[i][1] = min(dp[i - 1][0] * nums[i], dp[i - 1][1] * nums[i], nums[i])
 <h3 id="_14">双序列动态规划<a class="headerlink" href="#_14" title="Permanent link">¶</a></h3>
 <h3 id="_15">背包型动态规划<a class="headerlink" href="#_15" title="Permanent link">¶</a></h3>
 <h3 id="_16">区间型动态规划<a class="headerlink" href="#_16" title="Permanent link">¶</a></h3>
+<h4 id="longest-palindromic-substring">Longest Palindromic Substring<a class="headerlink" href="#longest-palindromic-substring" title="Permanent link">¶</a></h4>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
