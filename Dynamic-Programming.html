@@ -270,7 +270,7 @@ dp[i][1] =&gt; min
 <p>则当前状态的最大值为上个状态的最大值乘以当前值<code>dp[i][0] = max(dp[i - 1][0] * nums[i], nums[i])</code></p>
 </li>
 <li>
-<p>则当前状态的最小值为上个状态的最小值乘以当前值<code>dp[i][0] = max(dp[i - 1][1] * nums[i], nums[i])</code></p>
+<p>则当前状态的最小值为上个状态的最小值乘以当前值<code>dp[i][1] = max(dp[i - 1][1] * nums[i], nums[i])</code></p>
 </li>
 </ul>
 <p>若为负<code>nums[i] &lt; 0</code>：</p>
@@ -279,7 +279,7 @@ dp[i][1] =&gt; min
 <p>则当前状态的最大值为上个状态的最小值乘以当前值<code>dp[i][0] = max(dp[i - 1][1] * nums[i], nums[i])</code></p>
 </li>
 <li>
-<p>则当前状态的最小值为上个状态的最大值乘以当前值<code>dp[i][0] = max(dp[i - 1][0] * nums[i], nums[i])</code></p>
+<p>则当前状态的最小值为上个状态的最大值乘以当前值<code>dp[i][1] = max(dp[i - 1][0] * nums[i], nums[i])</code></p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span>dp[i][0] = max(dp[i - 1][0] * nums[i], dp[i - 1][1] * nums[i], nums[i])
@@ -297,11 +297,22 @@ dp[i][1] = min(dp[i - 1][0] * nums[i], dp[i - 1][1] * nums[i], nums[i])
     <span class="k">return</span> <span class="n">res</span>
 </pre></div>
 <h4 id="coin-change">Coin Change<a class="headerlink" href="#coin-change" title="Permanent link">¶</a></h4>
-<p>状态的定义： dp[i]到第i个面值（类似于台阶）所需要的最少硬币数。</p>
-<p>转移方程：<span class="math">\(dp[i]  = min(dp[i-coin_1],\ dp[i-coin_2],...,\ dp[i-coin_n])\)</span></p>
-<p>有多少种面值的硬币，前一个状态dp[i - coin]就有多少种。 i表示当前的amount，i - coin表示去掉加上这个面值coin的前一个amount。</p>
+<blockquote>
+<p><strong>分析:</strong> 有多少种面值的硬币，前一个状态dp[i - coin]就有多少种。 i表示当前的要计算的总额，i - coin表示去掉添加上来的硬币面值剩下总额。</p>
 <p>所以需要遍历减去各种面值而得到的前一个状态，找到最小值，即最小硬币数。</p>
 <p>dp[i - coin]是前一个状态,有多少面值的硬币前一个状态就有多少种， 遍历所有的前一个状态取值最小的那个状态 + 1个硬币数（加上当前面值）。</p>
+</blockquote>
+<ul>
+<li>
+<p>状态的定义： dp[i]到第i个面值（类似于台阶）所需要的最少硬币数。</p>
+</li>
+<li>
+<p>转移方程：<span class="math">\(dp[i]  = min(dp[i-coin_1],\ dp[i-coin_2],...,\ dp[i-coin_n])\)</span></p>
+</li>
+<li>
+<p>初始状态：dp[0] = 0：面值为0需要0个硬币数</p>
+</li>
+</ul>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">coinChange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coins</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">)]</span> <span class="o">*</span> <span class="n">amount</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">amount</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
