@@ -270,7 +270,7 @@ dp[i][1] =&gt; min
 <p>则当前状态的最大值为上个状态的最大值乘以当前值<code>dp[i][0] = max(dp[i - 1][0] * nums[i], nums[i])</code></p>
 </li>
 <li>
-<p>则当前状态的最小值为上个状态的最小值乘以当前值<code>dp[i][1] = max(dp[i - 1][1] * nums[i], nums[i])</code></p>
+<p>则当前状态的最小值为上个状态的最小值乘以当前值<code>dp[i][1] = min(dp[i - 1][1] * nums[i], nums[i])</code></p>
 </li>
 </ul>
 <p>若为负<code>nums[i] &lt; 0</code>：</p>
@@ -279,7 +279,7 @@ dp[i][1] =&gt; min
 <p>则当前状态的最大值为上个状态的最小值乘以当前值<code>dp[i][0] = max(dp[i - 1][1] * nums[i], nums[i])</code></p>
 </li>
 <li>
-<p>则当前状态的最小值为上个状态的最大值乘以当前值<code>dp[i][1] = max(dp[i - 1][0] * nums[i], nums[i])</code></p>
+<p>则当前状态的最小值为上个状态的最大值乘以当前值<code>dp[i][1] = min(dp[i - 1][0] * nums[i], nums[i])</code></p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span>dp[i][0] = max(dp[i - 1][0] * nums[i], dp[i - 1][1] * nums[i], nums[i])
