@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Dynamic Programming "/>
 <meta property="og:url" content="https://www.jerrulsu.com/Dynamic-Programming.html" />
-<meta property="og:description" content="动态规划四要素¶ 状态的定义¶ 状态的定义是动态规划最难的地方，根据定义状态可以将其分类。 状态的转移方程¶ 状态之间的联系，如何通过小状态推出大状态。 状态的初始化¶ 最小状态是什么，即递归中的base case。起点。 返回结果¶ 最终要求解的问题，即最大的状态。终点 与递归三要素对比¶ 定义 ---&gt; 状态¶ 接收什么参数 处理过程 返回的结果 拆解 ---&gt; 方程¶ 如何将参数变小，问题规模变小。大状态变小状态。 出口 ---&gt; 初始化¶ base case最小，可以直接解决的状态 判断动态规划依据¶ 不适用动态规划情况¶ 求出所有具体方案，而非方案个数 输入数据是一个集合，而非序列 暴力算法的时间复杂度已经是多项式级别 动态规划擅长优化NP问题到P问题，即指数级时间复杂度(2^n …" />
+<meta property="og:description" content="动态规划四要素¶ 状态的定义¶ 状态的定义是动态规划最难的地方，根据定义状态可以将其分类。 状态的转移方程¶ 状态之间的联系，如何通过小状态推出大状态。 状态的初始化¶ 最小状态是什么，即递归中的base case起点。 以及转移方程推算不出的需要手工计算的状态。 返回结果¶ 最终要求解的问题，即最大的状态。终点 与递归三要素对比¶ 定义 ---&gt; 状态¶ 接收什么参数 处理过程 返回的结果 拆解 ---&gt; 方程¶ 如何将参数变小，问题规模变小。大状态变小状态。 出口 ---&gt; 初始化¶ base case最小，可以直接解决的状态 判断动态规划依据¶ 不适用动态规划情况¶ 求出所有具体方案，而非方案个数 输入数据是一个集合，而非序列 暴力算法的时间复杂度已经是多项式级别 动态规划擅长优化NP问题到P问题，即指数级时间复杂度(2^n …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-06-01T01:40:10+08:00" />
 <meta name="twitter:title" content="Dynamic Programming ">
-<meta name="twitter:description" content="动态规划四要素¶ 状态的定义¶ 状态的定义是动态规划最难的地方，根据定义状态可以将其分类。 状态的转移方程¶ 状态之间的联系，如何通过小状态推出大状态。 状态的初始化¶ 最小状态是什么，即递归中的base case。起点。 返回结果¶ 最终要求解的问题，即最大的状态。终点 与递归三要素对比¶ 定义 ---&gt; 状态¶ 接收什么参数 处理过程 返回的结果 拆解 ---&gt; 方程¶ 如何将参数变小，问题规模变小。大状态变小状态。 出口 ---&gt; 初始化¶ base case最小，可以直接解决的状态 判断动态规划依据¶ 不适用动态规划情况¶ 求出所有具体方案，而非方案个数 输入数据是一个集合，而非序列 暴力算法的时间复杂度已经是多项式级别 动态规划擅长优化NP问题到P问题，即指数级时间复杂度(2^n …">
+<meta name="twitter:description" content="动态规划四要素¶ 状态的定义¶ 状态的定义是动态规划最难的地方，根据定义状态可以将其分类。 状态的转移方程¶ 状态之间的联系，如何通过小状态推出大状态。 状态的初始化¶ 最小状态是什么，即递归中的base case起点。 以及转移方程推算不出的需要手工计算的状态。 返回结果¶ 最终要求解的问题，即最大的状态。终点 与递归三要素对比¶ 定义 ---&gt; 状态¶ 接收什么参数 处理过程 返回的结果 拆解 ---&gt; 方程¶ 如何将参数变小，问题规模变小。大状态变小状态。 出口 ---&gt; 初始化¶ base case最小，可以直接解决的状态 判断动态规划依据¶ 不适用动态规划情况¶ 求出所有具体方案，而非方案个数 输入数据是一个集合，而非序列 暴力算法的时间复杂度已经是多项式级别 动态规划擅长优化NP问题到P问题，即指数级时间复杂度(2^n …">
 
         <title>Dynamic Programming  · Jerry Su&#39;s Blog
 </title>
@@ -121,7 +121,10 @@
 <h3 id="_3">状态的转移方程<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
 <p>状态之间的联系，如何通过小状态推出大状态。</p>
 <h3 id="_4">状态的初始化<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
-<p>最小状态是什么，即递归中的base case。起点。</p>
+<ul>
+<li>最小状态是什么，即递归中的base case起点。</li>
+<li>以及转移方程推算不出的需要手工计算的状态。</li>
+</ul>
 <h3 id="_5">返回结果<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
 <p>最终要求解的问题，即最大的状态。终点</p>
 <h2 id="_6">与递归三要素对比<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
@@ -295,9 +298,10 @@ dp[i][1] = min(dp[i - 1][0] * nums[i], dp[i - 1][1] * nums[i], nums[i])
 </pre></div>
 <h4 id="coin-change">Coin Change<a class="headerlink" href="#coin-change" title="Permanent link">¶</a></h4>
 <p>状态的定义： dp[i]到第i个面值（类似于台阶）所需要的最少硬币数。</p>
+<p>转移方程：<span class="math">\(dp[i]  = min(dp[i-coin_1],\ dp[i-coin_2],...,\ dp[i-coin_n])\)</span></p>
 <p>有多少种面值的硬币，前一个状态dp[i - coin]就有多少种。 i表示当前的amount，i - coin表示去掉加上这个面值coin的前一个amount。</p>
 <p>所以需要遍历减去各种面值而得到的前一个状态，找到最小值，即最小硬币数。</p>
-<p>dp[i - coin]是前一个状态， coins个币种遍历。</p>
+<p>dp[i - coin]是前一个状态,有多少面值的硬币前一个状态就有多少种， 遍历所有的前一个状态取值最小的那个状态 + 1个硬币数（加上当前面值）。</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">coinChange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coins</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">)]</span> <span class="o">*</span> <span class="n">amount</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">amount</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
@@ -310,6 +314,67 @@ dp[i][1] = min(dp[i - 1][0] * nums[i], dp[i - 1][1] * nums[i], nums[i])
 <h3 id="_14">双序列动态规划<a class="headerlink" href="#_14" title="Permanent link">¶</a></h3>
 <h3 id="_15">背包型动态规划<a class="headerlink" href="#_15" title="Permanent link">¶</a></h3>
 <h3 id="_16">区间型动态规划<a class="headerlink" href="#_16" title="Permanent link">¶</a></h3>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             <div>
 </div>
 
