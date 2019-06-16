@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/</loc>
-<lastmod>2019-06-14T07:42:53-00:00</lastmod>
+<lastmod>2019-06-16T02:44:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/archives.html</loc>
-<lastmod>2019-06-14T07:42:53-00:00</lastmod>
+<lastmod>2019-06-16T02:44:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/tags.html</loc>
-<lastmod>2019-06-14T07:42:53-00:00</lastmod>
+<lastmod>2019-06-16T02:44:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/categories.html</loc>
-<lastmod>2019-06-14T07:42:53-00:00</lastmod>
+<lastmod>2019-06-16T02:44:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -34,6 +34,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.jerrulsu.com/pages/about.html</loc>
 <lastmod>2019-05-04T15:04:40+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://www.jerrulsu.com/Breadth-First-Search.html</loc>
+<lastmod>2019-06-16T02:21:38+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -306,7 +313,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/category/algorithm.html</loc>
-<lastmod>2019-06-01T01:40:10+08:06</lastmod>
+<lastmod>2019-06-16T02:21:38+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -403,6 +410,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://www.jerrulsu.com/tag/algorithm.html</loc>
+<lastmod>2019-06-16T02:21:38+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://www.jerrulsu.com/tag/breadth-first-search.html</loc>
+<lastmod>2019-06-16T02:21:38+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://www.jerrulsu.com/tag/machine-learning.html</loc>
 <lastmod>2019-06-08T02:18:10+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -412,13 +433,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.jerrulsu.com/tag/gbdt.html</loc>
 <lastmod>2019-06-08T02:18:10+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://www.jerrulsu.com/tag/algorithm.html</loc>
-<lastmod>2019-06-01T01:40:10+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -544,7 +558,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/author/jerry-su.html</loc>
-<lastmod>2019-06-08T02:18:10+08:06</lastmod>
+<lastmod>2019-06-16T02:21:38+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
