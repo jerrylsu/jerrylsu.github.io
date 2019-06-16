@@ -298,6 +298,23 @@
 <h4 id="non-recursion_2">非递归 Non-Recursion<a class="headerlink" href="#non-recursion_2" title="Permanent link">¶</a></h4>
 <h3 id="level-order-traversal">层序遍历 Level order Traversal<a class="headerlink" href="#level-order-traversal" title="Permanent link">¶</a></h3>
 <h4 id="binary-tree-level-order-traversal">Binary Tree Level Order Traversal<a class="headerlink" href="#binary-tree-level-order-traversal" title="Permanent link">¶</a></h4>
+<ul>
+<li>
+<p>使用队列数据结构：collections.deque</p>
+</li>
+<li>
+<p>队列初始化，根节点先入队列：queue = [root]</p>
+</li>
+<li>
+<p>查看队列是否为空：while queue</p>
+</li>
+<li>
+<p>如果分层打印，则先立即缓存该层大小：n = len(queue), for _ range(n)</p>
+</li>
+<li>
+<p>遍历该层节点依次出队，查看左右孩子，存在即入队尾。</p>
+</li>
+</ul>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
 <span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">levelOrder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
