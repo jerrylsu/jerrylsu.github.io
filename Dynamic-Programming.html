@@ -92,6 +92,7 @@
 <li><a href="#_11">坐标型动态规划</a><ul>
 <li><a href="#triangle">Triangle</a></li>
 <li><a href="#minimum-path-sum">Minimum Path Sum</a></li>
+<li><a href="#maximal-square">Maximal Square</a></li>
 <li><a href="#longest-increasing-subsequence-lis">Longest Increasing Subsequence (LIS)</a></li>
 </ul>
 </li>
@@ -222,6 +223,26 @@
     <span class="k">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
+<h4 id="maximal-square">Maximal Square<a class="headerlink" href="#maximal-square" title="Permanent link">¶</a></h4>
+<p>状态定义：dp[i][j]表示以坐标为 i, j 的这个点，作为正方形的右下角，可以扩展的最大边长</p>
+<p>转移方程：dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1</p>
+<p>取最小的是因为加上(i, j)这一点一定时正方形。画图理解</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">maximalSquare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">matrix</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">int</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">col</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)]</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dp</span><span class="p">)</span>    <span class="c1"># 初值，特列[['1']]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">row</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'1'</span><span class="p">:</span>     <span class="c1"># 注意勿丢</span>
+                    <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="n">res</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">res</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
 <h4 id="longest-increasing-subsequence-lis">Longest Increasing Subsequence (LIS)<a class="headerlink" href="#longest-increasing-subsequence-lis" title="Permanent link">¶</a></h4>
 <p>状态的定义：dp[i]</p>
 <p>本题特殊在于：当前状态dp[i]并非由前一个状态dp[i-1]直接推来，而是在0 ~ i-1的状态dp[0] ~ dp[i-1]中搜寻。如下：</p>
@@ -246,11 +267,12 @@
 <p>状态定义： dp[i]表示以nums[i]元素结尾（包含nums[i]）最大子数组的和</p>
 </li>
 <li>
-<p>转移方程： <span class="math">\(dp[i] = <div class="math">\begin{cases} nums[i], &amp;\ dp[i-1] \leq 0 \\\ dp[i-1] + nums[i], &amp;\ dp[i-1] &gt; 0 \end{cases}</div>\)</span></p>
+<p>转移方程： </p>
 </li>
-<li>
-<p>转移方程代码实现： dp[i] = max(dp[i-1] + nums[i], nums[i])</p>
-</li>
+</ul>
+<div class="math">$$dp[i] = \begin{cases} nums[i], &amp;\ dp[i-1] \leq 0 \\\ dp[i-1] + nums[i], &amp;\ dp[i-1] &gt; 0 \end{cases}$$</div>
+<ul>
+<li>转移方程代码实现： dp[i] = max(dp[i-1] + nums[i], nums[i])</li>
 </ul>
 <p><strong>分析：</strong></p>
 <p>当以第i-1元素结尾的子数组中所有数字的和小于0时，如果把这个负数与第i个元素累加，得到的结果比nums[i]本身还小，所以dp[i]就是nums[i]本身。</p>
