@@ -264,6 +264,9 @@
 <li>nums[i]加上正dp[i-1]一定比自身大，取<span class="math">\(dp[i-1] + nums[i]\)</span></li>
 </ul>
 <p>由于dp[i]仅与dp的前一个状态有关，即在计算dp[i]时，<span class="math">\(dp[i-2],dp[i-3]...,dp[0]\)</span>对于dp[i]没有影响，因此可以空间优化省去dp数组。</p>
+<p>测试用例：</p>
+<p>功能测试：数组全负数，数组全正数，数组有正有负</p>
+<p>特殊用例：数组不存在</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">maxSubArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span> 
         <span class="k">return</span>
