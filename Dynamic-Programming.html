@@ -246,15 +246,20 @@
 <p>状态定义： dp[i]表示以nums[i]元素结尾（包含nums[i]）最大子数组的和</p>
 </li>
 <li>
-<p>转移方程：dp[i] = max(dp[i-1] + nums[i], nums[i])</p>
+<p>转移方程： dp[i] = <div class="math">\begin{cases} nums[i], dp[i-1] \leq 0 \\\ dp[i-1] + nums[i], dp[i-1] &gt; 0 \end{cases}</div>
+</p>
+</li>
+<li>
+<p>转移方程代码实现： dp[i] = max(dp[i-1] + nums[i], nums[i])</p>
 </li>
 </ul>
 <p><strong>分析：</strong></p>
-<p>若dp[i-1] &lt; 0：</p>
+<p>当以第i-1元素结尾的子数组中所有数字的和小于0时，如果把这个负数与第i个元素累加，得到的结果比nums[i]本身还小，所以dp[i]就是nums[i]本身。</p>
+<p>若dp[i-1] &lt; 0：dp[i] = nums[i]</p>
 <ul>
 <li>nums[i]加上负dp[i-1]一定比自身小，取nums[i]</li>
 </ul>
-<p>若dp[i-1] &gt; 0：</p>
+<p>若dp[i-1] &gt; 0： dp[i] = dp[i-1] + nums[i]</p>
 <ul>
 <li>nums[i]加上正dp[i-1]一定比自身大，取<span class="math">\(dp[i-1] + nums[i]\)</span></li>
 </ul>
