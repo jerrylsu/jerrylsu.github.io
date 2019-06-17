@@ -249,8 +249,7 @@
 <p>转移方程： </p>
 </li>
 </ul>
-<p>dp[i] = </p>
-<div class="math">\begin{cases} nums[i], &amp;\ dp[i-1] \leq 0 \\\ dp[i-1] + nums[i], &amp;\ dp[i-1] &gt; 0 \end{cases}</div>
+<div class="math">$$dp[i] = \begin{cases} nums[i], &amp;\ dp[i-1] \leq 0 \\\ dp[i-1] + nums[i], &amp;\ dp[i-1] &gt; 0 \end{cases}$$</div>
 <ul>
 <li>转移方程代码实现： dp[i] = max(dp[i-1] + nums[i], nums[i])</li>
 </ul>
