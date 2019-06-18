@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Topological Sorting "/>
 <meta property="og:url" content="https://www.jerrulsu.com/Topological-Sorting.html" />
-<meta property="og:description" content="Topological Sorting¶ # Definition for a Directed graph node class DirectedGraphNode: def __init__(self, x): self.label = x self.neighbors = [] class Solution: &#34;&#34;&#34; @param graph: A list of Directed graph node @return: A list of integer &#34;&#34;&#34; def topSort(self, graph): node_to_indegree = self.get_indegree(graph) # bfs order = [] start_nodes = [n for n in graph …" />
+<meta property="og:description" content="Topological Sorting¶ # Definition for a Directed graph node class DirectedGraphNode: def __init__(self, x): self.label = x self.neighbors = [] class Solution: &#34;&#34;&#34; @param graph: A list of Directed graph node @return: A list of integer &#34;&#34;&#34; def topSort(self, graph): node_to_indegree = self.get_indegree(graph) # BFS order = [] start_nodes = [n for n in graph …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-06-18T03:01:02+08:00" />
 <meta name="twitter:title" content="Topological Sorting ">
-<meta name="twitter:description" content="Topological Sorting¶ # Definition for a Directed graph node class DirectedGraphNode: def __init__(self, x): self.label = x self.neighbors = [] class Solution: &#34;&#34;&#34; @param graph: A list of Directed graph node @return: A list of integer &#34;&#34;&#34; def topSort(self, graph): node_to_indegree = self.get_indegree(graph) # bfs order = [] start_nodes = [n for n in graph …">
+<meta name="twitter:description" content="Topological Sorting¶ # Definition for a Directed graph node class DirectedGraphNode: def __init__(self, x): self.label = x self.neighbors = [] class Solution: &#34;&#34;&#34; @param graph: A list of Directed graph node @return: A list of integer &#34;&#34;&#34; def topSort(self, graph): node_to_indegree = self.get_indegree(graph) # BFS order = [] start_nodes = [n for n in graph …">
 
         <title>Topological Sorting  · Jerry Su&#39;s Blog
 </title>
@@ -94,30 +94,26 @@
 <span class="sd">    """</span>
     <span class="k">def</span> <span class="nf">topSort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
         <span class="n">node_to_indegree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_indegree</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
-
-        <span class="c1"># bfs</span>
+        <span class="c1"># BFS</span>
         <span class="n">order</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">start_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">graph</span> <span class="k">if</span> <span class="n">node_to_indegree</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
-        <span class="n">queue</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">(</span><span class="n">start_nodes</span><span class="p">)</span>
+        <span class="n">start_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">graph</span> <span class="k">if</span> <span class="n">node_to_indegree</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># 入度为0的所有结点</span>
+        <span class="n">queue</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">(</span><span class="n">start_nodes</span><span class="p">)</span>       <span class="c1"># 队列中存储的是入度为0的点</span>
         <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
             <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
             <span class="n">order</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">neighbors</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">neighbors</span><span class="p">:</span>          <span class="c1"># 将队列中输出的点的所以临界点入度减1</span>
                 <span class="n">node_to_indegree</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
-                <span class="k">if</span> <span class="n">node_to_indegree</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
-
+                <span class="k">if</span> <span class="n">node_to_indegree</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># 将入度为0的结点放入队列</span>
+                    <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>         
         <span class="k">return</span> <span class="n">order</span>
 
     <span class="k">def</span> <span class="nf">get_indegree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
-        <span class="sd">"""Computing indegrees for every nodes.</span>
+        <span class="sd">""" 计算每一个结点的入度数</span>
 <span class="sd">        """</span>
-        <span class="n">node_to_indegree</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">}</span>
-
+        <span class="n">node_to_indegree</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">}</span>    <span class="c1"># 初始化每一个结点的入度数为0</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">neighbors</span><span class="p">:</span>
                 <span class="n">node_to_indegree</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-
         <span class="k">return</span> <span class="n">node_to_indegree</span>
 </pre></div>
             <div>
