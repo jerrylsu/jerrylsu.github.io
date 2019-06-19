@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Breadth First Search "/>
 <meta property="og:url" content="https://www.jerrulsu.com/Breadth-First-Search.html" />
-<meta property="og:description" content="概述¶ 典型BFS三层循环: 先明确队列中放的是什么，即满足怎样的条件才能入队。例如，拓扑排序入度为0的节点入队。 队列不空, while queue 分层遍历，for当前层的size。 循环何时可省？ 不需要分层 从当前点出发，向周围点去循环 例如:拓扑排序去for循环遍历当前点的邻居节点。 循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。 宽搜要点¶ 使用队列为主要数据结构Queue 是否需要分层实现：分层打印多一层for循环，len(queue)缓存队列每一层大小。 for _ range(len(queue)): 错，需缓存 二叉树上的宽搜¶ Binary Tree Level Order Traversal¶ Binary Tree Zigzag Level Order …" />
+<meta property="og:description" content="概述¶ 典型BFS三层循环: 先明确队列中放的是什么，即满足怎样的条件才能入队。例如，拓扑排序入度为0的节点入队。 队列不空, while queue 分层遍历，for当前层的size。 循环何时可省？ 不需要分层 从当前点出发，向周围点去循环 - 例如:拓扑排序去for循环遍历当前点的邻居节点。 - 循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。 宽搜要点¶ 使用队列为主要数据结构Queue 是否需要分层实现：分层打印多一层for循环，len(queue)缓存队列每一层大小。 for _ range(len(queue)): 错，需缓存 二叉树上的宽搜¶ Binary Tree Level Order Traversal¶ Binary Tree Zigzag Level Order …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-06-16T02:21:38+08:00" />
 <meta name="twitter:title" content="Breadth First Search ">
-<meta name="twitter:description" content="概述¶ 典型BFS三层循环: 先明确队列中放的是什么，即满足怎样的条件才能入队。例如，拓扑排序入度为0的节点入队。 队列不空, while queue 分层遍历，for当前层的size。 循环何时可省？ 不需要分层 从当前点出发，向周围点去循环 例如:拓扑排序去for循环遍历当前点的邻居节点。 循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。 宽搜要点¶ 使用队列为主要数据结构Queue 是否需要分层实现：分层打印多一层for循环，len(queue)缓存队列每一层大小。 for _ range(len(queue)): 错，需缓存 二叉树上的宽搜¶ Binary Tree Level Order Traversal¶ Binary Tree Zigzag Level Order …">
+<meta name="twitter:description" content="概述¶ 典型BFS三层循环: 先明确队列中放的是什么，即满足怎样的条件才能入队。例如，拓扑排序入度为0的节点入队。 队列不空, while queue 分层遍历，for当前层的size。 循环何时可省？ 不需要分层 从当前点出发，向周围点去循环 - 例如:拓扑排序去for循环遍历当前点的邻居节点。 - 循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。 宽搜要点¶ 使用队列为主要数据结构Queue 是否需要分层实现：分层打印多一层for循环，len(queue)缓存队列每一层大小。 for _ range(len(queue)): 错，需缓存 二叉树上的宽搜¶ Binary Tree Level Order Traversal¶ Binary Tree Zigzag Level Order …">
 
         <title>Breadth First Search  · Jerry Su&#39;s Blog
 </title>
@@ -101,19 +101,21 @@
 <p>先明确队列中放的是什么，即满足怎样的条件才能入队。例如，拓扑排序入度为0的节点入队。</p>
 <ol>
 <li>
-<p>队列不空, while queue</p>
+<p><strong>队列不空, while queue</strong></p>
 </li>
 <li>
-<p>分层遍历，for当前层的size。</p>
+<p><strong>分层遍历，for当前层的size。</strong></p>
+</li>
+<li>
+<p>循环何时可省？ 不需要分层</p>
+</li>
+<li>
+<p><strong>从当前点出发，向周围点去循环</strong></p>
 </li>
 </ol>
-<p>循环何时可省？ 不需要分层</p>
-<ol>
-<li>从当前点出发，向周围点去循环</li>
-</ol>
-<p>例如:拓扑排序去for循环遍历当前点的邻居节点。
+<p>- 例如:拓扑排序去for循环遍历当前点的邻居节点。
     
-   循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。</p>
+   - 循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。</p>
 <h4 id="_2">宽搜要点<a class="headerlink" href="#_2" title="Permanent link">¶</a></h4>
 <ul>
 <li>
@@ -130,10 +132,10 @@
 <h4 id="binary-tree-level-order-traversal"><a href="https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html#level-order-traversal">Binary Tree Level Order Traversal</a><a class="headerlink" href="#binary-tree-level-order-traversal" title="Permanent link">¶</a></h4>
 <h4 id="binary-tree-zigzag-level-order-traversal"><a href="https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html#binary-tree-zigzag-level-order-traversal">Binary Tree Zigzag Level Order Traversal</a><a class="headerlink" href="#binary-tree-zigzag-level-order-traversal" title="Permanent link">¶</a></h4>
 <h4 id="serialize-and-deserialize-binary-tree"><a href="https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html#serialize-and-deserialize-binary-tree">Serialize and Deserialize Binary Tree</a><a class="headerlink" href="#serialize-and-deserialize-binary-tree" title="Permanent link">¶</a></h4>
-<p>序列化是指将<strong><em>内存</em>*中的数据结构转为</strong>字符串**的过程。系列化：object -&gt; string；反序列化: string -&gt; object。</p>
+<p>序列化是指将<strong>内存</strong>中的数据结构转为<strong>字符串</strong>的过程。系列化：object -&gt; string；反序列化: string -&gt; object。</p>
 <h3 id="_4">图上的宽搜<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
-<p>图上的宽搜与树的区别：图有环，同一节点可能重复进入队列。需用集合存储访问过的结点。queue.append与visited.add成对存在。</p>
-<p>数据结构：队列 + 集合</p>
+<p><strong>图上的宽搜与树的区别：</strong>图有环，同一节点可能重复进入队列。需用集合存储访问过的结点。queue.append与visited.add成对存在。</p>
+<p><strong>数据结构：</strong>队列 + 集合</p>
 <ul>
 <li>图如何存储？ 临接点</li>
 </ul>
