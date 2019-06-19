@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Breadth First Search "/>
 <meta property="og:url" content="https://www.jerrulsu.com/Breadth-First-Search.html" />
-<meta property="og:description" content="概述¶ 典型BFS三层循环: 先明确队列中放的是什么，即满足怎样的条件才能入队。例如，拓扑排序入度为0的节点入队。 队列不空, while queue 分层遍历，for当前层的size。 循环何时可省？ 不需要分层 从当前点出发，向周围点去循环 - 例如:拓扑排序去for循环遍历当前点的邻居节点。 - 循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。 宽搜要点¶ 使用队列为主要数据结构Queue 是否需要分层实现：分层打印多一层for循环，len(queue)缓存队列每一层大小。 for _ range(len(queue)): 错，需缓存 二叉树上的宽搜¶ Binary Tree Level Order Traversal¶ Binary Tree Zigzag Level Order …" />
+<meta property="og:description" content="概述¶ 典型BFS三层循环: 先明确队列中放的是什么，即满足怎样的条件才能入队。例如，拓扑排序入度为0的节点入队。 队列不空, while queue 分层遍历，for当前层的size。 循环何时可省？ 不需要分层 从当前点出发，向周围点去循环 例如:拓扑排序去for循环遍历当前点的邻居节点。 循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。 宽搜要点¶ 使用队列为主要数据结构Queue 是否需要分层实现：分层打印多一层for循环，len(queue)缓存队列每一层大小。 for _ range(len(queue)): 错，需缓存 二叉树上的宽搜¶ Binary Tree Level Order Traversal¶ Binary Tree Zigzag Level Order …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-06-16T02:21:38+08:00" />
 <meta name="twitter:title" content="Breadth First Search ">
-<meta name="twitter:description" content="概述¶ 典型BFS三层循环: 先明确队列中放的是什么，即满足怎样的条件才能入队。例如，拓扑排序入度为0的节点入队。 队列不空, while queue 分层遍历，for当前层的size。 循环何时可省？ 不需要分层 从当前点出发，向周围点去循环 - 例如:拓扑排序去for循环遍历当前点的邻居节点。 - 循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。 宽搜要点¶ 使用队列为主要数据结构Queue 是否需要分层实现：分层打印多一层for循环，len(queue)缓存队列每一层大小。 for _ range(len(queue)): 错，需缓存 二叉树上的宽搜¶ Binary Tree Level Order Traversal¶ Binary Tree Zigzag Level Order …">
+<meta name="twitter:description" content="概述¶ 典型BFS三层循环: 先明确队列中放的是什么，即满足怎样的条件才能入队。例如，拓扑排序入度为0的节点入队。 队列不空, while queue 分层遍历，for当前层的size。 循环何时可省？ 不需要分层 从当前点出发，向周围点去循环 例如:拓扑排序去for循环遍历当前点的邻居节点。 循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。 宽搜要点¶ 使用队列为主要数据结构Queue 是否需要分层实现：分层打印多一层for循环，len(queue)缓存队列每一层大小。 for _ range(len(queue)): 错，需缓存 二叉树上的宽搜¶ Binary Tree Level Order Traversal¶ Binary Tree Zigzag Level Order …">
 
         <title>Breadth First Search  · Jerry Su&#39;s Blog
 </title>
@@ -104,18 +104,15 @@
 <p><strong>队列不空, while queue</strong></p>
 </li>
 <li>
-<p><strong>分层遍历，for当前层的size。</strong></p>
+<p><strong>分层遍历，for当前层的size。</strong>
+   循环何时可省？ 不需要分层</p>
 </li>
 <li>
-<p>循环何时可省？ 不需要分层</p>
-</li>
-<li>
-<p><strong>从当前点出发，向周围点去循环</strong></p>
+<p><strong>从当前点出发，向周围点去循环</strong>
+   例如:拓扑排序去for循环遍历当前点的邻居节点。
+   循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。</p>
 </li>
 </ol>
-<p>- 例如:拓扑排序去for循环遍历当前点的邻居节点。
-    
-   - 循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。</p>
 <h4 id="_2">宽搜要点<a class="headerlink" href="#_2" title="Permanent link">¶</a></h4>
 <ul>
 <li>
