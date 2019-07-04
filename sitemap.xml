@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/</loc>
-<lastmod>2019-07-02T08:36:10-00:00</lastmod>
+<lastmod>2019-07-04T03:40:39-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/archives.html</loc>
-<lastmod>2019-07-02T08:36:10-00:00</lastmod>
+<lastmod>2019-07-04T03:40:39-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/tags.html</loc>
-<lastmod>2019-07-02T08:36:10-00:00</lastmod>
+<lastmod>2019-07-04T03:40:39-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/categories.html</loc>
-<lastmod>2019-07-02T08:36:10-00:00</lastmod>
+<lastmod>2019-07-04T03:40:39-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -34,6 +34,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.jerrulsu.com/pages/about.html</loc>
 <lastmod>2019-05-04T15:04:40+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://www.jerrulsu.com/Python-re.html</loc>
+<lastmod>2019-07-04T02:28:27+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -425,7 +432,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/category/python.html</loc>
-<lastmod>2019-05-23T07:06:14+08:06</lastmod>
+<lastmod>2019-07-04T02:28:27+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -466,6 +473,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://www.jerrulsu.com/tag/python.html</loc>
+<lastmod>2019-07-04T02:28:27+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://www.jerrulsu.com/tag/machine-learning.html</loc>
 <lastmod>2019-07-02T02:24:25+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -488,13 +502,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/tag/sql.html</loc>
-<lastmod>2019-06-26T00:23:42+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://www.jerrulsu.com/tag/python.html</loc>
 <lastmod>2019-06-26T00:23:42+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -649,7 +656,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/author/jerry-su.html</loc>
-<lastmod>2019-07-02T02:24:25+08:06</lastmod>
+<lastmod>2019-07-04T02:28:27+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
