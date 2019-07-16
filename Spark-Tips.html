@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Spark, Spark, " />
 
-<meta property="og:title" content="Debugging Spark Application "/>
-<meta property="og:url" content="https://www.jerrulsu.com/Debugging-Spark-Application.html" />
-<meta property="og:description" content="select * from table1 as A join table as B on A.item_id = B.item_id where A.id in (1139426, 1139436) and A.date &gt;= &#39;2018-12-01&#39; yarn logs -applicationId &lt;app ID&gt; &gt; output_file 2019-02-21 19:23:41 ERROR ApplicationMaster:91 - User class threw exception: org.apache.spark.sql.AnalysisException: Found duplicate column(s …" />
+<meta property="og:title" content="Spark Tips "/>
+<meta property="og:url" content="https://www.jerrulsu.com/Spark-Tips.html" />
+<meta property="og:description" content="Apache Spark - Best Practices and Tuning¶ https://umbertogriffo.gitbooks.io/apache-spark-best-practices-and-tuning/content/ Big Data Analysis with Scala and Spark¶ https://www.coursera.org/learn/scala-spark-big-data/home/welcome" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2019-02-26T09:24:27+08:00" />
-<meta name="twitter:title" content="Debugging Spark Application ">
-<meta name="twitter:description" content="select * from table1 as A join table as B on A.item_id = B.item_id where A.id in (1139426, 1139436) and A.date &gt;= &#39;2018-12-01&#39; yarn logs -applicationId &lt;app ID&gt; &gt; output_file 2019-02-21 19:23:41 ERROR ApplicationMaster:91 - User class threw exception: org.apache.spark.sql.AnalysisException: Found duplicate column(s …">
+<meta property="og:article:published_time" content="2019-07-16T10:14:53+08:00" />
+<meta name="twitter:title" content="Spark Tips ">
+<meta name="twitter:description" content="Apache Spark - Best Practices and Tuning¶ https://umbertogriffo.gitbooks.io/apache-spark-best-practices-and-tuning/content/ Big Data Analysis with Scala and Spark¶ https://www.coursera.org/learn/scala-spark-big-data/home/welcome">
 
-        <title>Debugging Spark Application  · Jerry Su&#39;s Blog
+        <title>Spark Tips  · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -60,7 +60,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://www.jerrulsu.com/Debugging-Spark-Application.html"> Debugging Spark Application  </a></h1>
+    <h1><a href="https://www.jerrulsu.com/Spark-Tips.html"> Spark Tips  </a></h1>
     </header>
 </div>
 
@@ -69,7 +69,10 @@
         <nav>
         <h4>Contents</h4>
         <div class="toc">
-<ul></ul>
+<ul>
+<li><a href="#apache-spark-best-practices-and-tuning">Apache Spark - Best Practices and Tuning</a></li>
+<li><a href="#big-data-analysis-with-scala-and-spark">Big Data Analysis with Scala and Spark</a></li>
+</ul>
 </div>
         </nav>
     </div>
@@ -77,37 +80,23 @@
 
             
             
-<div class="highlight"><pre><span></span>select
-    *
-from
-    table1 as A
-join
-    table as B
-on
-    A.item_id = B.item_id
-where
-    A.id in (1139426, 1139436)
-    and A.date &gt;= '2018-12-01'
-</pre></div>
-<p><code>yarn logs -applicationId &lt;app ID&gt; &gt; output_file</code></p>
-<div class="highlight"><pre><span></span><span class="nt">2019-02-21</span> <span class="nt">19</span><span class="p">:</span><span class="nd">23</span><span class="p">:</span><span class="nd">41</span> <span class="nt">ERROR</span> <span class="nt">ApplicationMaster</span><span class="p">:</span><span class="nd">91</span> <span class="nt">-</span> <span class="nt">User</span> <span class="nt">class</span> <span class="nt">threw</span> <span class="nt">exception</span><span class="o">:</span> <span class="nt">org</span><span class="p">.</span><span class="nc">apache</span><span class="p">.</span><span class="nc">spark</span><span class="p">.</span><span class="nc">sql</span><span class="p">.</span><span class="nc">AnalysisException</span><span class="o">:</span> <span class="nt">Found</span> <span class="nt">duplicate</span> <span class="nt">column</span><span class="o">(</span><span class="nt">s</span><span class="o">)</span> <span class="nt">when</span> <span class="nt">inserting</span> <span class="nt">into</span> <span class="nt">hdfs</span><span class="o">://</span><span class="nt">apollo-phx-nn-ha</span><span class="o">/</span><span class="nt">user</span><span class="o">/</span><span class="nt">lsu1</span><span class="o">/</span><span class="nt">result</span><span class="p">.</span><span class="nc">parquet</span><span class="o">:</span> <span class="err">`</span><span class="nt">item_id</span><span class="err">`</span><span class="o">;</span>
-<span class="o">......</span>
-</pre></div>
-<div class="highlight"><pre><span></span>* ---&gt; A.*
-</pre></div>
+<h3 id="apache-spark-best-practices-and-tuning">Apache Spark - Best Practices and Tuning<a class="headerlink" href="#apache-spark-best-practices-and-tuning" title="Permanent link">¶</a></h3>
+<p><a href="https://umbertogriffo.gitbooks.io/apache-spark-best-practices-and-tuning/content/">https://umbertogriffo.gitbooks.io/apache-spark-best-practices-and-tuning/content/</a></p>
+<h3 id="big-data-analysis-with-scala-and-spark">Big Data Analysis with Scala and Spark<a class="headerlink" href="#big-data-analysis-with-scala-and-spark" title="Permanent link">¶</a></h3>
+<p><a href="https://www.coursera.org/learn/scala-spark-big-data/home/welcome">https://www.coursera.org/learn/scala-spark-big-data/home/welcome</a></p>
             <div>
 </div>
 
             <section>
     <p id="post-share-links">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=Debugging%20Spark%20Application&url=https%3A//www.jerrulsu.com/Debugging-Spark-Application.html&hashtags=spark" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=Spark%20Tips&url=https%3A//www.jerrulsu.com/Spark-Tips.html&hashtags=spark" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Debugging-Spark-Application.html" target="_blank" title="Share on Facebook">Facebook</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Spark-Tips.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
     <a href="" target="_blank" title="Share on Google Plus">Google+</a>
     ❄
-    <a href="mailto:?subject=Debugging%20Spark%20Application&amp;body=https%3A//www.jerrulsu.com/Debugging-Spark-Application.html" target="_blank" title="Share via Email">Email</a>
+    <a href="mailto:?subject=Spark%20Tips&amp;body=https%3A//www.jerrulsu.com/Spark-Tips.html" target="_blank" title="Share via Email">Email</a>
     </p>
 </section>
 
@@ -117,17 +106,16 @@ where
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
 <li><a href="https://www.jerrulsu.com/Spark-RDD.html" title="Spark RDD">Spark RDD</a></li>
+<li><a href="https://www.jerrulsu.com/Debugging-Spark-Application.html" title="Debugging Spark Application">Debugging Spark Application</a></li>
 <li><a href="https://www.jerrulsu.com/Spark:-Shuffling-and-Partitioning.html" title="Spark: Shuffling and Partitioning">Spark: Shuffling and Partitioning</a></li>
 <li><a href="https://www.jerrulsu.com/Spark SQL Join.html" title="Spark SQL Join">Spark SQL Join</a></li>
-<li><a href="https://www.jerrulsu.com/Spark-Tips.html" title="Spark Tips">Spark Tips</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://www.jerrulsu.com/Hadoop-Architecture.html" title="Previous: Hadoop Architecture">Hadoop Architecture</a></li>
-                <li class="next-article"><a href="https://www.jerrulsu.com/Scala with Gradle in Intellij.html" title="Next: Scala with Gradle in Intellij">Scala with Gradle in Intellij</a> »</li>
+                <li class="previous-article">« <a href="https://www.jerrulsu.com/Scala-Collection.html" title="Previous: Scala Collection">Scala Collection</a></li>
             </ul>
             </nav>
             </aside>
@@ -135,7 +123,7 @@ where
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2019-02-26T09:24:27+08:00">Feb 26, 2019</time>
+            <time itemprop="dateCreated" datetime="2019-07-16T10:14:53+08:00">Jul 16, 2019</time>
             <h4>Category</h4>
             <a class="category-link" href="https://www.jerrulsu.com/categories.html#spark-ref">Spark</a>
             <h4>Tags</h4>
