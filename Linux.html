@@ -97,9 +97,9 @@
 
             
             
-<p><a href="https://bash.cyberciti.biz/guide/Main_Page">Linux Shell Scripting Tutorial (LSST) v2.0</a>
-http://www.gnu.org/software/bash/manual/bashref.html
-<a href="https://www.explainshell.com/">explainshell-command</a></p>
+<p><a href="https://bash.cyberciti.biz/guide/Main_Page">Linux Shell Scripting Tutorial (LSST) v2.0</a></p>
+<p>http://www.gnu.org/software/bash/manual/bashref.html</p>
+<p><a href="https://www.explainshell.com/">explainshell-command</a></p>
 <h3 id="redirection-of-standard-output-gt">Redirection of standard output <code>&gt;</code><a class="headerlink" href="#redirection-of-standard-output-gt" title="Permanent link">¶</a></h3>
 <p>The default standard output is the screen.
 <code>&gt;</code> is output redirection symbol and syntax is:
@@ -111,43 +111,49 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 <p>https://bash.cyberciti.biz/guide/Chapter_7:_Pipes_and_Filters</p>
 <h3 id="cat">cat<a class="headerlink" href="#cat" title="Permanent link">¶</a></h3>
 <ul>
-<li><strong>Displaying The Contents of Files</strong>
-<code>$ cat filename</code>
-<code>$ cat file &gt; newfile</code>
-<a href="https://bash.cyberciti.biz/guide/Pipes">Use a pipe to filter data</a>:
-<code>$ cat file | less</code></li>
-<li><strong>Concatenate files</strong>
-<code>$ cat file1 file2</code>
-<code>$ cat file1 file2 &gt;  newcombinedfile</code></li>
-<li><strong>Create new text files</strong>
- note that if a file already exists, it will be overwritten. 
-<code>$ cat &gt; filename</code>
-<a href="https://bash.cyberciti.biz/guide/Appending_redirected_output">append the output to the same file</a> using <code>&gt;&gt;</code> operator:
-<code>$ cat &gt;&gt; filename</code></li>
-<li><strong>Copy file</strong>
-<code>$ cat oldfile &gt; newfile</code></li>
+<li><strong>Displaying The Contents of Files</strong></li>
 </ul>
+<p><code>$ cat filename</code></p>
+<p><code>$ cat file &gt; newfile</code></p>
+<p><a href="https://bash.cyberciti.biz/guide/Pipes">Use a pipe to filter data</a>:</p>
+<p><code>$ cat file | less</code></p>
+<ul>
+<li><strong>Concatenate files</strong></li>
+</ul>
+<p><code>$ cat file1 file2</code></p>
+<p><code>$ cat file1 file2 &gt;  newcombinedfile</code></p>
+<ul>
+<li><strong>Create new text files</strong></li>
+</ul>
+<p>note that if a file already exists, it will be overwritten. </p>
+<p><code>$ cat &gt; filename</code></p>
+<p><a href="https://bash.cyberciti.biz/guide/Appending_redirected_output">append the output to the same file</a> using <code>&gt;&gt;</code> operator:</p>
+<p><code>$ cat &gt;&gt; filename</code></p>
+<ul>
+<li><strong>Copy file</strong></li>
+</ul>
+<p><code>$ cat oldfile &gt; newfile</code></p>
 <p>https://www.cyberciti.biz/faq/howto-use-cat-command-in-unix-linux-shell-script/</p>
 <h3 id="chmod">chmod<a class="headerlink" href="#chmod" title="Permanent link">¶</a></h3>
-<p><code>$ chmod +x tarbackup.sh</code>
-<code>$ ./tarbackup.sh</code></p>
+<p><code>$ chmod +x tarbackup.sh</code></p>
+<p><code>$ ./tarbackup.sh</code></p>
 <h3 id="ps-process-status">ps (process status)<a class="headerlink" href="#ps-process-status" title="Permanent link">¶</a></h3>
-<p><code>ps -aux</code> 显示所有包含其他使用者的行程
-<code>ps -aux | grep ssh</code> 与<code>grep</code>结合，查找特定进程</p>
+<p><code>ps -aux</code> 显示所有包含其他使用者的行程</p>
+<p><code>ps -aux | grep ssh</code> 与<code>grep</code>结合，查找特定进程</p>
 <h3 id="unzip">unzip<a class="headerlink" href="#unzip" title="Permanent link">¶</a></h3>
-<p><code>sudo apt-get install unzip</code>
-<code>unzip file.zip -d destination_folde</code>
-<a href="https://askubuntu.com/questions/86849/how-to-unzip-a-zip-file-from-the-terminal">unzip</a></p>
+<p><code>sudo apt-get install unzip</code></p>
+<p><code>unzip file.zip -d destination_folde</code></p>
+<p><a href="https://askubuntu.com/questions/86849/how-to-unzip-a-zip-file-from-the-terminal">unzip</a></p>
 <h3 id="tar">tar<a class="headerlink" href="#tar" title="Permanent link">¶</a></h3>
-<p><code>tar -czvf ***.tar.gz directory</code>
-<code>tar -xzvf ***.tar.gz</code>
-<a href="https://www.cnblogs.com/52linux/archive/2012/03/04/2379738.html">tar</a></p>
+<p><code>tar -czvf ***.tar.gz directory</code></p>
+<p><code>tar -xzvf ***.tar.gz</code></p>
+<p><a href="https://www.cnblogs.com/52linux/archive/2012/03/04/2379738.html">tar</a></p>
 <h3 id="windows-rn-to-linux-n">windows '\r\n' to linux '\n'<a class="headerlink" href="#windows-rn-to-linux-n" title="Permanent link">¶</a></h3>
-<p><code>cat -A filename</code>
-<code>vim filename</code> &amp;&amp; <code>set ff=unix</code></p>
+<p><code>cat -A filename</code></p>
+<p><code>vim filename</code> &amp;&amp; <code>set ff=unix</code></p>
 <h3 id="rsync">rsync<a class="headerlink" href="#rsync" title="Permanent link">¶</a></h3>
-<p>upload: <code>rsync -avh --progress --delete --exclude=analysis/ src_dir/ host:dest_dir</code>
-download: <code>rsync -avh --progress host:dest_dir ./</code></p>
+<p>upload: <code>rsync -avh --progress --delete --exclude=analysis/ src_dir/ host:dest_dir</code></p>
+<p>download: <code>rsync -avh --progress host:dest_dir ./</code></p>
 <div class="highlight"><pre><span></span>-a, ––archive     # 归档模式，表示以递归方式传输文件，并保持所有文件属性，等价于 -rlptgoD
 -r, ––recursive   # 对子目录以递归模式处理
 -l, ––links       # 保持符号链接文件
@@ -163,25 +169,34 @@ download: <code>rsync -avh --progress host:dest_dir ./</code></p>
 -v, ––verbose     # 详细输出模式
 -h, ––human-readable # 输出文件大小使用易读的单位（如，K，M等）
 </pre></div>
-<p><a href="https://download.samba.org/pub/rsync/rsync.html">rsync man page</a>
-<a href="https://rsync.samba.org/how-rsync-works.html">How rsync works</a></p>
+<p><a href="https://download.samba.org/pub/rsync/rsync.html">rsync man page</a></p>
+<p><a href="https://rsync.samba.org/how-rsync-works.html">How rsync works</a></p>
 <h2 id="ssh">SSH<a class="headerlink" href="#ssh" title="Permanent link">¶</a></h2>
 <h3 id="ssh-passwordless-login-server">SSH Passwordless Login Server<a class="headerlink" href="#ssh-passwordless-login-server" title="Permanent link">¶</a></h3>
-<p>SSH Client : 192.168.0.12
-SSH Remote Host : 192.168.0.11
-1. Create Authentication SSH-Kegen Keys on – 192.168.0.12
-<code>ssh-keygen -t rsa</code>
-2. Create .ssh Directory on – 192.168.0.11
-<code>ssh 192.168.0.11 mkdir -p .ssh</code>
-3. Upload Generated Public Keys to – 192.168.0.11
-<code>cat .ssh/id_rsa.pub | ssh 192.168.0.11 'cat &gt;&gt; .ssh/authorized_keys'</code></p>
+<p>SSH Client : 192.168.0.12</p>
+<p>SSH Remote Host : 192.168.0.11</p>
+<ol>
+<li>Create Authentication SSH-Kegen Keys on – 192.168.0.12</li>
+</ol>
+<p><code>ssh-keygen -t rsa</code></p>
+<p><code>ssh-keygen -t rsa -b 4096 -m pem</code></p>
+<ol>
+<li>Create .ssh Directory on – 192.168.0.11</li>
+</ol>
+<p><code>ssh 192.168.0.11 mkdir -p .ssh</code></p>
+<ol>
+<li>Upload Generated Public Keys to – 192.168.0.11</li>
+</ol>
+<p><code>cat .ssh/id_rsa.pub | ssh 192.168.0.11 'cat &gt;&gt; .ssh/authorized_keys'</code></p>
 <ul>
-<li>Set Permissions on – 192.168.0.11
-<code>ssh 192.168.0.11 "chmod 700 .ssh; chmod 640 .ssh/authorized_keys"</code></li>
-<li>Set StrictModes
-<code>sudo vim /etc/ssh/sshd_config</code> ===&gt; <code>StrictModes no</code>
-<code>sudo service ssh restart</code></li>
+<li>Set Permissions on – 192.168.0.11</li>
 </ul>
+<p><code>ssh 192.168.0.11 "chmod 700 .ssh; chmod 640 .ssh/authorized_keys"</code></p>
+<ul>
+<li>Set StrictModes</li>
+</ul>
+<p><code>sudo vim /etc/ssh/sshd_config</code> ===&gt; <code>StrictModes no</code></p>
+<p><code>sudo service ssh restart</code></p>
 <p><a href="https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/">SSH Passwordless Login</a></p>
 <h2 id="setting-shell-and-environmental-variables">Setting Shell and Environmental Variables<a class="headerlink" href="#setting-shell-and-environmental-variables" title="Permanent link">¶</a></h2>
 <h3 id="setting-permanent-var-in-bashrc-file">Setting permanent var: in <code>~/.bashrc</code> file<a class="headerlink" href="#setting-permanent-var-in-bashrc-file" title="Permanent link">¶</a></h3>
