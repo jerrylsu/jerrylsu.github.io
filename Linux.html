@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Linux "/>
 <meta property="og:url" content="https://www.jerrulsu.com/Linux.html" />
-<meta property="og:description" content="Redirection of standard output &gt;¶ The default standard output is the screen. &gt; is output redirection symbol and syntax is: $ command &gt; output.file.name https://bash.cyberciti.biz/guide/Standard_output Appending redirected output &gt;&gt;¶ Appending the output to the same file using &gt;&gt; operator. Pipes |¶ https://bash.cyberciti.biz/guide/Chapter_7:_Pipes_and_Filters cat¶ Displaying …" />
+<meta property="og:description" content="Redirection of standard output &gt;¶ The default standard output is the screen. &gt; is output redirection symbol and syntax is: $ command &gt; output.file.name https://bash.cyberciti.biz/guide/Standard_output Redirected output &gt;&gt;¶ Appending the output to the same file using &gt;&gt; operator. Pipes |¶ https://bash.cyberciti.biz/guide/Chapter_7:_Pipes_and_Filters cat¶ Displaying The …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-01-23T08:24:33+08:00" />
 <meta name="twitter:title" content="Linux ">
-<meta name="twitter:description" content="Redirection of standard output &gt;¶ The default standard output is the screen. &gt; is output redirection symbol and syntax is: $ command &gt; output.file.name https://bash.cyberciti.biz/guide/Standard_output Appending redirected output &gt;&gt;¶ Appending the output to the same file using &gt;&gt; operator. Pipes |¶ https://bash.cyberciti.biz/guide/Chapter_7:_Pipes_and_Filters cat¶ Displaying …">
+<meta name="twitter:description" content="Redirection of standard output &gt;¶ The default standard output is the screen. &gt; is output redirection symbol and syntax is: $ command &gt; output.file.name https://bash.cyberciti.biz/guide/Standard_output Redirected output &gt;&gt;¶ Appending the output to the same file using &gt;&gt; operator. Pipes |¶ https://bash.cyberciti.biz/guide/Chapter_7:_Pipes_and_Filters cat¶ Displaying The …">
 
         <title>Linux  · Jerry Su&#39;s Blog
 </title>
@@ -70,10 +70,8 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#redirection-of-standard-output-gt">Redirection of standard output &gt;</a><ul>
-<li><a href="#appending-redirected-output-gtgt">Appending redirected output &gt;&gt;</a></li>
-</ul>
-</li>
+<li><a href="#redirection-of-standard-output-gt">Redirection of standard output &gt;</a></li>
+<li><a href="#redirected-output-gtgt">Redirected output &gt;&gt;</a></li>
 <li><a href="#pipes">Pipes |</a></li>
 <li><a href="#cat">cat</a></li>
 <li><a href="#chmod">chmod</a></li>
@@ -106,7 +104,7 @@
 <code>&gt;</code> is output redirection symbol and syntax is:
 <code>$ command &gt; output.file.name</code>
 https://bash.cyberciti.biz/guide/Standard_output</p>
-<h3 id="appending-redirected-output-gtgt">Appending redirected output <code>&gt;&gt;</code><a class="headerlink" href="#appending-redirected-output-gtgt" title="Permanent link">¶</a></h3>
+<h2 id="redirected-output-gtgt">Redirected output <code>&gt;&gt;</code><a class="headerlink" href="#redirected-output-gtgt" title="Permanent link">¶</a></h2>
 <p>Appending the output to the same file using <code>&gt;&gt;</code> operator.</p>
 <h2 id="pipes">Pipes <code>|</code><a class="headerlink" href="#pipes" title="Permanent link">¶</a></h2>
 <p>https://bash.cyberciti.biz/guide/Chapter_7:_Pipes_and_Filters</p>
@@ -148,7 +146,7 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 <h2 id="tar">tar<a class="headerlink" href="#tar" title="Permanent link">¶</a></h2>
 <p><code>tar -czvf ***.tar.gz directory</code></p>
 <p><code>tar -xzvf ***.tar.gz</code></p>
-<p><a href="https://www.cnblogs.com/52linux/archive/2012/03/04/2379738.html">tar</a></p>
+<p><a href="https://www.cnblogs.com/52linux/archive/2012/03/04/2379738.html">https://www.cnblogs.com/52linux/archive/2012/03/04/2379738.html</a></p>
 <h2 id="windows-rn-to-linux-n">windows '\r\n' to linux '\n'<a class="headerlink" href="#windows-rn-to-linux-n" title="Permanent link">¶</a></h2>
 <p><code>cat -A filename</code></p>
 <p><code>vim filename</code> &amp;&amp; <code>set ff=unix</code></p>
@@ -170,8 +168,8 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 -v, ––verbose     # 详细输出模式
 -h, ––human-readable # 输出文件大小使用易读的单位（如，K，M等）
 </pre></div>
-<p><a href="https://download.samba.org/pub/rsync/rsync.html">rsync man page</a></p>
-<p><a href="https://rsync.samba.org/how-rsync-works.html">How rsync works</a></p>
+<p><a href="https://download.samba.org/pub/rsync/rsync.html">https://download.samba.org/pub/rsync/rsync.html</a></p>
+<p><a href="https://rsync.samba.org/how-rsync-works.html">https://rsync.samba.org/how-rsync-works.html</a></p>
 <h2 id="ssh">SSH<a class="headerlink" href="#ssh" title="Permanent link">¶</a></h2>
 <h3 id="passwordless-login">Passwordless Login<a class="headerlink" href="#passwordless-login" title="Permanent link">¶</a></h3>
 <p>SSH Client : 192.168.0.12</p>
@@ -198,7 +196,7 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 </ul>
 <p><code>sudo vim /etc/ssh/sshd_config</code> ===&gt; <code>StrictModes no</code></p>
 <p><code>sudo service ssh restart</code></p>
-<p><a href="https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/">SSH Passwordless Login</a></p>
+<p><a href="https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps">https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps</a></p>
 <h3 id="auto-disconnect">Auto disconnect<a class="headerlink" href="#auto-disconnect" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span>/etc/ssh/sshd_config
 
@@ -244,8 +242,8 @@ alias ll='ls -alF'
 <p><a href="https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps">How To Read and Set Environmental and Shell Variables on a Linux VPS</a></p>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">¶</a></h2>
 <p><a href="https://bash.cyberciti.biz/guide/Main_Page">Linux Shell Scripting Tutorial (LSST) v2.0</a></p>
-<p>http://www.gnu.org/software/bash/manual/bashref.html</p>
-<p><a href="https://www.explainshell.com/">explainshell-command</a></p>
+<p><a href="http://www.gnu.org/software/bash/manual/bashref.html">http://www.gnu.org/software/bash/manual/bashref.html</a></p>
+<p><a href="https://www.explainshell.com">https://www.explainshell.com</a></p>
             <div>
 </div>
 
