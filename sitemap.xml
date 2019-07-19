@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/</loc>
-<lastmod>2019-07-19T03:49:57-00:00</lastmod>
+<lastmod>2019-07-19T07:41:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/archives.html</loc>
-<lastmod>2019-07-19T03:49:57-00:00</lastmod>
+<lastmod>2019-07-19T07:41:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/tags.html</loc>
-<lastmod>2019-07-19T03:49:57-00:00</lastmod>
+<lastmod>2019-07-19T07:41:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/categories.html</loc>
-<lastmod>2019-07-19T03:49:57-00:00</lastmod>
+<lastmod>2019-07-19T07:41:32-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -34,6 +34,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.jerrulsu.com/pages/about.html</loc>
 <lastmod>2019-05-04T15:04:40+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://www.jerrulsu.com/Spark-Partitions-with-Coalesce-and-Repartition.html</loc>
+<lastmod>2019-07-19T06:58:49+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -467,7 +474,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/category/spark.html</loc>
-<lastmod>2019-07-16T10:14:53+08:06</lastmod>
+<lastmod>2019-07-19T06:58:49+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -494,15 +501,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/tag/scala.html</loc>
-<lastmod>2019-07-17T07:19:13+08:06</lastmod>
+<loc>https://www.jerrulsu.com/tag/spark.html</loc>
+<lastmod>2019-07-19T06:58:49+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/tag/spark.html</loc>
-<lastmod>2019-07-16T10:14:53+08:06</lastmod>
+<loc>https://www.jerrulsu.com/tag/scala.html</loc>
+<lastmod>2019-07-17T07:19:13+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -677,7 +684,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/author/jerry-su.html</loc>
-<lastmod>2019-07-17T07:19:13+08:06</lastmod>
+<lastmod>2019-07-19T06:58:49+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
