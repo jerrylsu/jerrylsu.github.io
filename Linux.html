@@ -82,6 +82,7 @@
 <li><a href="#rsync">rsync</a></li>
 <li><a href="#ssh">SSH</a><ul>
 <li><a href="#ssh-passwordless-login-server">SSH Passwordless Login Server</a></li>
+<li><a href="#ssh_1">ssh链接断开问题</a></li>
 </ul>
 </li>
 <li><a href="#setting-shell-and-environmental-variables">Setting Shell and Environmental Variables</a><ul>
@@ -198,6 +199,16 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 <p><code>sudo vim /etc/ssh/sshd_config</code> ===&gt; <code>StrictModes no</code></p>
 <p><code>sudo service ssh restart</code></p>
 <p><a href="https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/">SSH Passwordless Login</a></p>
+<h3 id="ssh_1">ssh链接断开问题<a class="headerlink" href="#ssh_1" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span>/etc/ssh/sshd_config
+
+ClientAliveInterval 60
+ClientAliveCountMax 3
+</pre></div>
+<p>restart sshd：</p>
+<p>Linux: <code>service sshd restart</code></p>
+<p>MAC: service: command not found</p>
+<p>MAC: <code>brew services start sshd</code></p>
 <h2 id="setting-shell-and-environmental-variables">Setting Shell and Environmental Variables<a class="headerlink" href="#setting-shell-and-environmental-variables" title="Permanent link">¶</a></h2>
 <h3 id="setting-permanent-var-in-bashrc-file">Setting permanent var: in <code>~/.bashrc</code> file<a class="headerlink" href="#setting-permanent-var-in-bashrc-file" title="Permanent link">¶</a></h3>
 <p><code>vim ~/.bashrc</code></p>
