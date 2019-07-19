@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Linux "/>
 <meta property="og:url" content="https://www.jerrulsu.com/Linux.html" />
-<meta property="og:description" content="Linux Shell Scripting Tutorial (LSST) v2.0 http://www.gnu.org/software/bash/manual/bashref.html explainshell-command Redirection of standard output &gt;¶ The default standard output is the screen. &gt; is output redirection symbol and syntax is: $ command &gt; output.file.name https://bash.cyberciti.biz/guide/Standard_output Appending redirected output &gt;&gt;¶ Appending the …" />
+<meta property="og:description" content="Redirection of standard output &gt;¶ The default standard output is the screen. &gt; is output redirection symbol and syntax is: $ command &gt; output.file.name https://bash.cyberciti.biz/guide/Standard_output Appending redirected output &gt;&gt;¶ Appending the output to the same file using &gt;&gt; operator. Pipes |¶ https://bash.cyberciti.biz/guide/Chapter_7:_Pipes_and_Filters cat¶ Displaying …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-01-23T08:24:33+08:00" />
 <meta name="twitter:title" content="Linux ">
-<meta name="twitter:description" content="Linux Shell Scripting Tutorial (LSST) v2.0 http://www.gnu.org/software/bash/manual/bashref.html explainshell-command Redirection of standard output &gt;¶ The default standard output is the screen. &gt; is output redirection symbol and syntax is: $ command &gt; output.file.name https://bash.cyberciti.biz/guide/Standard_output Appending redirected output &gt;&gt;¶ Appending the …">
+<meta name="twitter:description" content="Redirection of standard output &gt;¶ The default standard output is the screen. &gt; is output redirection symbol and syntax is: $ command &gt; output.file.name https://bash.cyberciti.biz/guide/Standard_output Appending redirected output &gt;&gt;¶ Appending the output to the same file using &gt;&gt; operator. Pipes |¶ https://bash.cyberciti.biz/guide/Chapter_7:_Pipes_and_Filters cat¶ Displaying …">
 
         <title>Linux  · Jerry Su&#39;s Blog
 </title>
@@ -70,8 +70,10 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#redirection-of-standard-output-gt">Redirection of standard output &gt;</a></li>
+<li><a href="#redirection-of-standard-output-gt">Redirection of standard output &gt;</a><ul>
 <li><a href="#appending-redirected-output-gtgt">Appending redirected output &gt;&gt;</a></li>
+</ul>
+</li>
 <li><a href="#pipes">Pipes |</a></li>
 <li><a href="#cat">cat</a></li>
 <li><a href="#chmod">chmod</a></li>
@@ -81,15 +83,16 @@
 <li><a href="#windows-rn-to-linux-n">windows '\r\n' to linux '\n'</a></li>
 <li><a href="#rsync">rsync</a></li>
 <li><a href="#ssh">SSH</a><ul>
-<li><a href="#ssh-passwordless-login-server">SSH Passwordless Login Server</a></li>
-<li><a href="#ssh_1">ssh链接断开问题</a></li>
+<li><a href="#passwordless-login">Passwordless Login</a></li>
+<li><a href="#auto-disconnect">Auto disconnect</a></li>
 </ul>
 </li>
-<li><a href="#setting-shell-and-environmental-variables">Setting Shell and Environmental Variables</a><ul>
-<li><a href="#setting-permanent-var-in-bashrc-file">Setting permanent var: in ~/.bashrc file</a></li>
-<li><a href="#setting-temporary-var-in-shell">Setting temporary var: in Shell</a></li>
+<li><a href="#setting-environmental-var">Setting Environmental Var</a><ul>
+<li><a href="#permanent-var-in-bashrc">Permanent var in ~/.bashrc</a></li>
+<li><a href="#temporary-var-in-shell">Temporary var in Shell</a></li>
 </ul>
 </li>
+<li><a href="#reference">Reference</a></li>
 </ul>
 </div>
         </nav>
@@ -98,19 +101,16 @@
 
             
             
-<p><a href="https://bash.cyberciti.biz/guide/Main_Page">Linux Shell Scripting Tutorial (LSST) v2.0</a></p>
-<p>http://www.gnu.org/software/bash/manual/bashref.html</p>
-<p><a href="https://www.explainshell.com/">explainshell-command</a></p>
-<h3 id="redirection-of-standard-output-gt">Redirection of standard output <code>&gt;</code><a class="headerlink" href="#redirection-of-standard-output-gt" title="Permanent link">¶</a></h3>
+<h2 id="redirection-of-standard-output-gt">Redirection of standard output <code>&gt;</code><a class="headerlink" href="#redirection-of-standard-output-gt" title="Permanent link">¶</a></h2>
 <p>The default standard output is the screen.
 <code>&gt;</code> is output redirection symbol and syntax is:
 <code>$ command &gt; output.file.name</code>
 https://bash.cyberciti.biz/guide/Standard_output</p>
 <h3 id="appending-redirected-output-gtgt">Appending redirected output <code>&gt;&gt;</code><a class="headerlink" href="#appending-redirected-output-gtgt" title="Permanent link">¶</a></h3>
 <p>Appending the output to the same file using <code>&gt;&gt;</code> operator.</p>
-<h3 id="pipes">Pipes <code>|</code><a class="headerlink" href="#pipes" title="Permanent link">¶</a></h3>
+<h2 id="pipes">Pipes <code>|</code><a class="headerlink" href="#pipes" title="Permanent link">¶</a></h2>
 <p>https://bash.cyberciti.biz/guide/Chapter_7:_Pipes_and_Filters</p>
-<h3 id="cat">cat<a class="headerlink" href="#cat" title="Permanent link">¶</a></h3>
+<h2 id="cat">cat<a class="headerlink" href="#cat" title="Permanent link">¶</a></h2>
 <ul>
 <li><strong>Displaying The Contents of Files</strong></li>
 </ul>
@@ -135,24 +135,24 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 </ul>
 <p><code>$ cat oldfile &gt; newfile</code></p>
 <p>https://www.cyberciti.biz/faq/howto-use-cat-command-in-unix-linux-shell-script/</p>
-<h3 id="chmod">chmod<a class="headerlink" href="#chmod" title="Permanent link">¶</a></h3>
+<h2 id="chmod">chmod<a class="headerlink" href="#chmod" title="Permanent link">¶</a></h2>
 <p><code>$ chmod +x tarbackup.sh</code></p>
 <p><code>$ ./tarbackup.sh</code></p>
-<h3 id="ps-process-status">ps (process status)<a class="headerlink" href="#ps-process-status" title="Permanent link">¶</a></h3>
+<h2 id="ps-process-status">ps (process status)<a class="headerlink" href="#ps-process-status" title="Permanent link">¶</a></h2>
 <p><code>ps -aux</code> 显示所有包含其他使用者的行程</p>
 <p><code>ps -aux | grep ssh</code> 与<code>grep</code>结合，查找特定进程</p>
-<h3 id="unzip">unzip<a class="headerlink" href="#unzip" title="Permanent link">¶</a></h3>
+<h2 id="unzip">unzip<a class="headerlink" href="#unzip" title="Permanent link">¶</a></h2>
 <p><code>sudo apt-get install unzip</code></p>
 <p><code>unzip file.zip -d destination_folde</code></p>
 <p><a href="https://askubuntu.com/questions/86849/how-to-unzip-a-zip-file-from-the-terminal">unzip</a></p>
-<h3 id="tar">tar<a class="headerlink" href="#tar" title="Permanent link">¶</a></h3>
+<h2 id="tar">tar<a class="headerlink" href="#tar" title="Permanent link">¶</a></h2>
 <p><code>tar -czvf ***.tar.gz directory</code></p>
 <p><code>tar -xzvf ***.tar.gz</code></p>
 <p><a href="https://www.cnblogs.com/52linux/archive/2012/03/04/2379738.html">tar</a></p>
-<h3 id="windows-rn-to-linux-n">windows '\r\n' to linux '\n'<a class="headerlink" href="#windows-rn-to-linux-n" title="Permanent link">¶</a></h3>
+<h2 id="windows-rn-to-linux-n">windows '\r\n' to linux '\n'<a class="headerlink" href="#windows-rn-to-linux-n" title="Permanent link">¶</a></h2>
 <p><code>cat -A filename</code></p>
 <p><code>vim filename</code> &amp;&amp; <code>set ff=unix</code></p>
-<h3 id="rsync">rsync<a class="headerlink" href="#rsync" title="Permanent link">¶</a></h3>
+<h2 id="rsync">rsync<a class="headerlink" href="#rsync" title="Permanent link">¶</a></h2>
 <p>upload: <code>rsync -avh --progress --delete --exclude=analysis/ src_dir/ host:dest_dir</code></p>
 <p>download: <code>rsync -avh --progress host:dest_dir ./</code></p>
 <div class="highlight"><pre><span></span>-a, ––archive     # 归档模式，表示以递归方式传输文件，并保持所有文件属性，等价于 -rlptgoD
@@ -173,7 +173,7 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 <p><a href="https://download.samba.org/pub/rsync/rsync.html">rsync man page</a></p>
 <p><a href="https://rsync.samba.org/how-rsync-works.html">How rsync works</a></p>
 <h2 id="ssh">SSH<a class="headerlink" href="#ssh" title="Permanent link">¶</a></h2>
-<h3 id="ssh-passwordless-login-server">SSH Passwordless Login Server<a class="headerlink" href="#ssh-passwordless-login-server" title="Permanent link">¶</a></h3>
+<h3 id="passwordless-login">Passwordless Login<a class="headerlink" href="#passwordless-login" title="Permanent link">¶</a></h3>
 <p>SSH Client : 192.168.0.12</p>
 <p>SSH Remote Host : 192.168.0.11</p>
 <ol>
@@ -199,7 +199,7 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 <p><code>sudo vim /etc/ssh/sshd_config</code> ===&gt; <code>StrictModes no</code></p>
 <p><code>sudo service ssh restart</code></p>
 <p><a href="https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/">SSH Passwordless Login</a></p>
-<h3 id="ssh_1">ssh链接断开问题<a class="headerlink" href="#ssh_1" title="Permanent link">¶</a></h3>
+<h3 id="auto-disconnect">Auto disconnect<a class="headerlink" href="#auto-disconnect" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span>/etc/ssh/sshd_config
 
 ClientAliveInterval 60
@@ -209,8 +209,8 @@ ClientAliveCountMax 3
 <p>Linux: <code>service sshd restart</code></p>
 <p>MAC: service: command not found</p>
 <p>MAC: <code>brew services start sshd</code></p>
-<h2 id="setting-shell-and-environmental-variables">Setting Shell and Environmental Variables<a class="headerlink" href="#setting-shell-and-environmental-variables" title="Permanent link">¶</a></h2>
-<h3 id="setting-permanent-var-in-bashrc-file">Setting permanent var: in <code>~/.bashrc</code> file<a class="headerlink" href="#setting-permanent-var-in-bashrc-file" title="Permanent link">¶</a></h3>
+<h2 id="setting-environmental-var">Setting Environmental Var<a class="headerlink" href="#setting-environmental-var" title="Permanent link">¶</a></h2>
+<h3 id="permanent-var-in-bashrc">Permanent var in <code>~/.bashrc</code><a class="headerlink" href="#permanent-var-in-bashrc" title="Permanent link">¶</a></h3>
 <p><code>vim ~/.bashrc</code></p>
 <div class="highlight"><pre><span></span># open ~/.bashrc file &amp;
 # set environmental varuable
@@ -225,7 +225,7 @@ alias ll='ls -alF'
 <span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">echo</span> <span class="err">$</span><span class="n">TEST</span>
 <span class="n">Hi</span> <span class="n">Jerry</span>
 </pre></div>
-<h3 id="setting-temporary-var-in-shell">Setting temporary var: in Shell<a class="headerlink" href="#setting-temporary-var-in-shell" title="Permanent link">¶</a></h3>
+<h3 id="temporary-var-in-shell">Temporary var in Shell<a class="headerlink" href="#temporary-var-in-shell" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">TEST</span><span class="o">=</span><span class="s">"Hi Jerry"</span>
 <span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">echo</span> <span class="err">$</span><span class="n">TEST</span>
 <span class="n">Hi</span> <span class="n">Jerry</span>
@@ -242,6 +242,10 @@ alias ll='ls -alF'
 </pre></div>
 <p><strong>Note: var is temporary, and shutting down Shell, then the var is gone!</strong></p>
 <p><a href="https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps">How To Read and Set Environmental and Shell Variables on a Linux VPS</a></p>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">¶</a></h2>
+<p><a href="https://bash.cyberciti.biz/guide/Main_Page">Linux Shell Scripting Tutorial (LSST) v2.0</a></p>
+<p>http://www.gnu.org/software/bash/manual/bashref.html</p>
+<p><a href="https://www.explainshell.com/">explainshell-command</a></p>
             <div>
 </div>
 
