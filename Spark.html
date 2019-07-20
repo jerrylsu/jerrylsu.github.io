@@ -82,7 +82,16 @@
 <li><a href="#43yarn">4.3.yarn集群模式</a></li>
 </ul>
 </li>
-<li><a href="#5sparkda">5.spark集群da</a></li>
+<li><a href="#5spark">5.spark集群搭建</a><ul>
+<li><a href="#51">5.1.机器准备</a></li>
+<li><a href="#52">5.2.机器的环境配置</a><ul>
+<li><a href="#521">5.2.1.免密登陆</a></li>
+<li><a href="#522">5.2.2.关闭防火墙</a></li>
+<li><a href="#523iphost">5.2.3.ip与host的映射关系</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
         </nav>
@@ -140,13 +149,44 @@
 <p>a. spark + mysql redis kafka hdfs yarn zookeeper</p>
 <h2 id="4-spark">4. spark部署模式<a class="headerlink" href="#4-spark" title="Permanent link">¶</a></h2>
 <h3 id="41local">4.1.local本地模式<a class="headerlink" href="#41local" title="Permanent link">¶</a></h3>
-<p>开箱即用，一台机器即可</p>
+<p>开箱即用，一台机器即可。多线程模拟。</p>
 <h3 id="42standalone">4.2.standalone集群模式<a class="headerlink" href="#42standalone" title="Permanent link">¶</a></h3>
 <p>是spark安装包自带的集群模式</p>
 <h3 id="43yarn">4.3.yarn集群模式<a class="headerlink" href="#43yarn" title="Permanent link">¶</a></h3>
-<p>yarn：资源调度平台</p>
+<p>yarn：资源调度平台（公司常用模式）</p>
 <p>把spark任务提交到yarn集群运行</p>
-<h2 id="5sparkda">5.spark集群da<a class="headerlink" href="#5sparkda" title="Permanent link">¶</a></h2>
+<h2 id="5spark">5.spark集群搭建<a class="headerlink" href="#5spark" title="Permanent link">¶</a></h2>
+<p>集群搭建特指：standslone集群。角色：master 和 worker</p>
+<p>ssh远程服务器：ip port user password</p>
+<p>跳板机器：如果服务器rno是内网的，外网无法直接访问。外网需要一个跳板机（bastion）。</p>
+<h3 id="51">5.1.机器准备<a class="headerlink" href="#51" title="Permanent link">¶</a></h3>
+<p>a1 192.168.23.1 master
+a2 192.168.23.2 worker
+a3 192.168.23.3 worker</p>
+<p>至少两台</p>
+<h3 id="52">5.2.机器的环境配置<a class="headerlink" href="#52" title="Permanent link">¶</a></h3>
+<h4 id="521">5.2.1.免密登陆<a class="headerlink" href="#521" title="Permanent link">¶</a></h4>
+<p>配置主节点到从节点的免密登陆即可。</p>
+<div class="highlight"><pre><span></span># ssh-keygen
+# ssh-copy-id ip
+</pre></div>
+<h4 id="522">5.2.2.关闭防火墙<a class="headerlink" href="#522" title="Permanent link">¶</a></h4>
+<p>大数据集群，一般都是内网集群，不需要开启防火墙。</p>
+<p>有单独的机器，具备内网和外网环境，可以通过该机器进行对外通信。</p>
+<div class="highlight"><pre><span></span># service iptables status    // 查看防火墙
+# service iptables stop      // 关闭防火墙
+# ckconfig iptables off      // 永久关闭
+</pre></div>
+<h4 id="523iphost">5.2.3.ip与host的映射关系<a class="headerlink" href="#523iphost" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span># cat /etc/hosts
+127.0.0.1   localhost
+255.255.255.255 broadcasthost
+::1             localhost
+202.76.247.23 ion-ljz.corp.ebay.com
+192.168.23.1 a1
+192.168.23.2 a2
+192.168.23.3 a3
+</pre></div>
             <div>
 </div>
 
