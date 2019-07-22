@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Hadoop-small files problem "/>
 <meta property="og:url" content="https://www.jerrulsu.com/Hadoop-small-files-problem.html" />
-<meta property="og:description" content="If there are too many small files then the NameNode might get loaded since it stores the name space for HDFS. repartition sellerTransStatsFeatures.repartition(num) check hdfs dfs -du -s -h /apps/hdmi-technology/item_pla_event/* NameNode 存储文件的metadata，运行时所有数据都保存到内存，整个HDFS可存储的文件数受限于NameNode的内存大小 一个Block在NameNode中对应一条记录（一般一个block占用150字节），如果是大量的小文件，会消耗大量内存。同时map task的数量是由splits来决定的，所以用MapReduce处理大量的小文件时，就会产生过多的map task，线程管理开销将会增加作业时间。处理大量小文件的速度远远小于处理同等大小的大文件的速度。因此Hadoop建议存储大文件 …" />
+<meta property="og:description" content="If there are too many small files then the NameNode might get loaded since it stores the name space for HDFS. Check hdfs dfs -du -s -h /apps/hdmi-technology/item_pla_event/* 先按照不分区执行Job，查看整张表的大小。然后计算一个合适的分区数num，按照重新分区repartitioN(num)重新跑Job。 Repartition sellerTransStatsFeatures.repartition(num) NameNode 存储文件的metadata，运行时所有数据都保存到内存，整个HDFS可存储的文件数受限于NameNode的内存大小 一个Block在NameNode中对应一条记录（一般一个block占用150字节），如果是大量的小文件，会消耗大量内存。同时map task的数量是由splits来决定的 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-07-22T07:37:59+08:00" />
 <meta name="twitter:title" content="Hadoop-small files problem ">
-<meta name="twitter:description" content="If there are too many small files then the NameNode might get loaded since it stores the name space for HDFS. repartition sellerTransStatsFeatures.repartition(num) check hdfs dfs -du -s -h /apps/hdmi-technology/item_pla_event/* NameNode 存储文件的metadata，运行时所有数据都保存到内存，整个HDFS可存储的文件数受限于NameNode的内存大小 一个Block在NameNode中对应一条记录（一般一个block占用150字节），如果是大量的小文件，会消耗大量内存。同时map task的数量是由splits来决定的，所以用MapReduce处理大量的小文件时，就会产生过多的map task，线程管理开销将会增加作业时间。处理大量小文件的速度远远小于处理同等大小的大文件的速度。因此Hadoop建议存储大文件 …">
+<meta name="twitter:description" content="If there are too many small files then the NameNode might get loaded since it stores the name space for HDFS. Check hdfs dfs -du -s -h /apps/hdmi-technology/item_pla_event/* 先按照不分区执行Job，查看整张表的大小。然后计算一个合适的分区数num，按照重新分区repartitioN(num)重新跑Job。 Repartition sellerTransStatsFeatures.repartition(num) NameNode 存储文件的metadata，运行时所有数据都保存到内存，整个HDFS可存储的文件数受限于NameNode的内存大小 一个Block在NameNode中对应一条记录（一般一个block占用150字节），如果是大量的小文件，会消耗大量内存。同时map task的数量是由splits来决定的 …">
 
         <title>Hadoop-small files problem  · Jerry Su&#39;s Blog
 </title>
@@ -79,10 +79,11 @@
             
 <p>If there are too many small files then the NameNode might get loaded since it stores the name space for HDFS. </p>
 <p><img alt="partition" src="images/Hadoop/partition.png"/></p>
-<p>repartition</p>
-<p><code>sellerTransStatsFeatures.repartition(num)</code></p>
-<p>check</p>
+<p>Check</p>
 <p><code>hdfs dfs -du -s -h /apps/hdmi-technology/item_pla_event/*</code></p>
+<p>先按照不分区执行Job，查看整张表的大小。然后计算一个合适的分区数num，按照重新分区repartitioN(num)重新跑Job。</p>
+<p>Repartition</p>
+<p><code>sellerTransStatsFeatures.repartition(num)</code></p>
 <p>NameNode</p>
 <ul>
 <li>
