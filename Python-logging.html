@@ -23,60 +23,60 @@
         <title>Python logging  · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?8bdcf96a">
 
 
 
     </head>
     <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://www.jerrulsu.com">Home</a></li>
-                            <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
-                            <li ><a href="https://www.jerrulsu.com/categories">Categories</a></li>
-                            <li ><a href="https://www.jerrulsu.com/tags">Tags</a></li>
-                            <li ><a href="https://www.jerrulsu.com/archives">Archives</a></li>
-                            <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://www.jerrulsu.com
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
+                                <li ><a href="https://www.jerrulsu.com/categories.html">Categories</a></li>
+                                <li ><a href="https://www.jerrulsu.com/tags.html">Tags</a></li>
+                                <li ><a href="https://www.jerrulsu.com/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://www.jerrulsu.com/Python-logging.html"> Python logging  </a></h1>
+        <h1>
+            <a href="https://www.jerrulsu.com/Python-logging.html">
+                Python logging
+            </a>
+        </h1>
     </header>
 </div>
 
 <div class="row-fluid">
-    <div class="span2 table-of-content">
-        <nav>
-        <h4>Contents</h4>
-        <div class="toc">
+        <div class="span8 offset2 article-content">
+            
+            <div class="toc">
 <ul></ul>
 </div>
-        </nav>
-    </div>
-    <div class="span8 article-content">
-
-            
-            
 <p><a href="https://juejin.im/post/5bc2bd3a5188255c94465d31">logging总结</a></p>
 <p>Logger：记录器，暴露函数给应用程序，基于日志记录器和过滤器级别决定哪些日志有效。</p>
 <p>Handler ：处理器, 将(日志记录器产生的)日志记录发送至合适的目的地。</p>
@@ -86,7 +86,7 @@
 <span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">handlers</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
-<span class="k">if</span> <span class="bp">True</span><span class="p">:</span>
+<span class="k">if</span> <span class="kc">True</span><span class="p">:</span>
     <span class="c1"># 1. 创建记录器</span>
     <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span> <span class="c1"># log日志总开关，默认WARNING级</span>
@@ -97,28 +97,28 @@
     <span class="n">console</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span> <span class="c1"># 设置输出到控制台的最低日志级别</span>
 
     <span class="c1"># 2.2. 输出到文件</span>
-    <span class="n">file_logging</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="s2">"example.log"</span><span class="p">)</span> <span class="c1"># 配置日志输出到文件</span>
+    <span class="n">file_logging</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="s2">&quot;example.log&quot;</span><span class="p">)</span> <span class="c1"># 配置日志输出到文件</span>
     <span class="n">file_logging</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
 
     <span class="c1"># 2.3. 和上面的FIleHandler差不多，只是handler对象可以管理文件大小，当文件大于指定的大小后，会自动将当前文件改名，然后重新创建一个新的同名文件继续输出</span>
-    <span class="c1"># file_rotating_file = handlers.RotatingFileHandler("cat.log",maxBytes=1024,backupCount=3)</span>
+    <span class="c1"># file_rotating_file = handlers.RotatingFileHandler(&quot;cat.log&quot;,maxBytes=1024,backupCount=3)</span>
     <span class="c1"># file_rotating_file.setLevel(logging.INFO)</span>
 
     <span class="c1"># 2.4. 和上面的handler有点类似，不过，它是通过判断文件大小来决定何时重新创建日志文件，而是间隔一定的时候自动创建日志文件。代表每7天备份文件</span>
-    <span class="c1"># file_time_rotating = handlers.TimedRotatingFileHandler("app.log",when="s",interval=10,backupCount=5)</span>
+    <span class="c1"># file_time_rotating = handlers.TimedRotatingFileHandler(&quot;app.log&quot;,when=&quot;s&quot;,interval=10,backupCount=5)</span>
     <span class="c1"># file_time_rotating.setLevel(logging.INFO)</span>
 
     <span class="c1"># 2.5. 输出到邮件</span>
-    <span class="c1"># STMPHandler = logging.handlers.SMTPHandler(mailhost=('smtp.163.com', 25),</span>
-    <span class="c1">#                                    fromaddr='jerrylsu@163.com',</span>
-    <span class="c1">#                                    toaddrs=['sa517301@mail.ustc.edu.cn'],</span>
-    <span class="c1">#                                    subject='Data - Issues',</span>
-    <span class="c1">#                                    credentials=('jerrylsu','xinyu102'))</span>
+    <span class="c1"># STMPHandler = logging.handlers.SMTPHandler(mailhost=(&#39;smtp.163.com&#39;, 25),</span>
+    <span class="c1">#                                    fromaddr=&#39;jerrylsu@163.com&#39;,</span>
+    <span class="c1">#                                    toaddrs=[&#39;sa517301@mail.ustc.edu.cn&#39;],</span>
+    <span class="c1">#                                    subject=&#39;Data - Issues&#39;,</span>
+    <span class="c1">#                                    credentials=(&#39;jerrylsu&#39;,&#39;xinyu102&#39;))</span>
     <span class="c1"># STMPHandler.setLevel(logging.WARNING)</span>
 
 
     <span class="c1"># 3. 创建格式化器</span>
-    <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">fmt</span><span class="o">=</span><span class="s2">"</span><span class="si">%(asctime)s</span><span class="s2"> </span><span class="si">%(filename)s</span><span class="s2">[line:</span><span class="si">%(lineno)d</span><span class="s2">]</span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">"</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="s2">"%m/</span><span class="si">%d</span><span class="s2">/%Y %I:%M:%S %p"</span><span class="p">)</span>  <span class="c1"># 创建一个格式化对象</span>
+    <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> </span><span class="si">%(filename)s</span><span class="s2">[line:</span><span class="si">%(lineno)d</span><span class="s2">]</span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;%m/</span><span class="si">%d</span><span class="s2">/%Y %I:%M:%S %p&quot;</span><span class="p">)</span>  <span class="c1"># 创建一个格式化对象</span>
     <span class="n">console</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>  <span class="c1"># 设置格式</span>
     <span class="n">file_logging</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
     <span class="c1"># file_rotating_file.setFormatter(formatter)</span>
@@ -133,33 +133,39 @@
     <span class="c1"># logger.addHandler(STMPHandler)</span>
 
     <span class="c1"># 5. 用户使用</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"debug"</span><span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"info"</span><span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"warning"</span><span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"error"</span><span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">"critical message"</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;debug&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;info&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;warning&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;critical message&quot;</span><span class="p">)</span>
 </pre></div>
+
+
 <p>log输出到文件除了上面的方式，还有一种便捷的方式：基于<code>StreamHandler</code>和重定位符<code>&gt;</code>。</p>
 <div class="highlight"><pre><span></span>$ python3 script.py --argv &gt; log_path
 </pre></div>
-<p>输出到终端的log数据，重定位到log文件中。</p>
-            <div>
-</div>
 
-            <section>
-    <p id="post-share-links">
+
+<p>输出到终端的log数据，重定位到log文件中。</p>
+
+
+                <p id="post-share-links">
     Share on:
     <a href="https://twitter.com/intent/tweet?text=Python%20logging&url=https%3A//www.jerrulsu.com/Python-logging.html&hashtags=python" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Python-logging.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="" target="_blank" title="Share on Google Plus">Google+</a>
-    ❄
     <a href="mailto:?subject=Python%20logging&amp;body=https%3A//www.jerrulsu.com/Python-logging.html" target="_blank" title="Share via Email">Email</a>
     </p>
-</section>
 
             
+            
+
+
+
+
+
+
             <hr/>
 <section>
     <h2>Related Posts</h2>
@@ -189,32 +195,46 @@
             <a class="category-link" href="https://www.jerrulsu.com/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://www.jerrulsu.com/tags#python-ref">Python
+                <li><a href="https://www.jerrulsu.com/tags.html#python-ref">Python
                     <span>10</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
-    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
-    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-another social link sidebar-social-links"></i></a>
+<div id="sidebar-social-link">
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
         </div>
         </section>
 </div>
 </article>
+                    </div>
+                    <div class="span1"></div>
                 </div>
-                <div class="span1"></div>
             </div>
         </div>
-        <div id="push"></div>
-    </div>
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-subtitle"><span class="site-name">Jerry Su's Blog</span> - Copyright © 2017</li>
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
-    </ul>
-</div>
+
+    <div>
+        <span class="site-name">Jerry Su's Blog</span> - Copyright © 2017
+    </div>
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow">Elegant</a>
+    </div>
 </footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
@@ -224,8 +244,31 @@
             }
         </script>
 
-    
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : MIT -->
+        License : MIT -->
 </html>

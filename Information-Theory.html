@@ -23,44 +23,51 @@
         <title>Information Theory  · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?8bdcf96a">
 
 
 
     </head>
     <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://www.jerrulsu.com">Home</a></li>
-                            <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
-                            <li ><a href="https://www.jerrulsu.com/categories">Categories</a></li>
-                            <li ><a href="https://www.jerrulsu.com/tags">Tags</a></li>
-                            <li ><a href="https://www.jerrulsu.com/archives">Archives</a></li>
-                            <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://www.jerrulsu.com
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
+                                <li ><a href="https://www.jerrulsu.com/categories.html">Categories</a></li>
+                                <li ><a href="https://www.jerrulsu.com/tags.html">Tags</a></li>
+                                <li ><a href="https://www.jerrulsu.com/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://www.jerrulsu.com/Information-Theory.html"> Information Theory  </a></h1>
+        <h1>
+            <a href="https://www.jerrulsu.com/Information-Theory.html">
+                Information Theory
+            </a>
+        </h1>
     </header>
 </div>
 
@@ -83,7 +90,6 @@
         </nav>
     </div>
     <div class="span8 article-content">
-
             
             
 <h2 id="information-theory">Information Theory<a class="headerlink" href="#information-theory" title="Permanent link">¶</a></h2>
@@ -135,39 +141,39 @@ X X X | O O O X X X O O
 <div class="math">$$entropy(D_-)=0$$</div>
 <div class="math">$$entropy(D_+)=-\frac{2}{7}\log\frac{2}{7}-\frac{5}{7}\log\frac{5}{7}$$</div>
 <p>即数据集划分后两个子数据集的信息熵。<strong>由这样划分数据集之后，整个系统（数据集<span class="math">\(D\)</span>）的信息熵有何变化呢？</strong>由此引入了<strong>信息增益(Information Gain)</strong>。</p>
-<div class="highlight"><pre><span></span>def cal_entropy(dataset):
-    '''Calculate the datasets' entropy.
+<div class="highlight"><pre><span></span><span class="n">def</span><span class="w"> </span><span class="n">cal_entropy</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="s1">'''Calculate the datasets'</span><span class="w"> </span><span class="n">entropy</span><span class="p">.</span><span class="w"></span>
 
-    :param dataset: The dataset needs to calculated.
-    '''
-    dataset_size = len(dataset)
-    label_count = {}
-    for data in dataset:
-        label = data[-1]
-        if label not in label_count:
-            label_count[label] = 0
-        label_count[label] += 1
-    entropy = -sum([(count / dataset_size) * log((count / dataset_size), 2)
-                    for count in label_count.values()])
-    return entropy
+<span class="w">    </span><span class="err">:</span><span class="n">param</span><span class="w"> </span><span class="nl">dataset</span><span class="p">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">dataset</span><span class="w"> </span><span class="n">needs</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">calculated</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="s1">'''</span>
+<span class="s1">    dataset_size = len(dataset)</span>
+<span class="s1">    label_count = {}</span>
+<span class="s1">    for data in dataset:</span>
+<span class="s1">        label = data[-1]</span>
+<span class="s1">        if label not in label_count:</span>
+<span class="s1">            label_count[label] = 0</span>
+<span class="s1">        label_count[label] += 1</span>
+<span class="s1">    entropy = -sum([(count / dataset_size) * log((count / dataset_size), 2)</span>
+<span class="s1">                    for count in label_count.values()])</span>
+<span class="s1">    return entropy</span>
 
-def cond_entropy(dataset, feature_idx):
-    '''Calculate the weighted entropy of several sub datasets.
+<span class="s1">def cond_entropy(dataset, feature_idx):</span>
+<span class="s1">    '''</span><span class="n">Calculate</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">weighted</span><span class="w"> </span><span class="n">entropy</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">several</span><span class="w"> </span><span class="n">sub</span><span class="w"> </span><span class="n">datasets</span><span class="p">.</span><span class="w"></span>
 
-    :param dataset: The raw dataset
-    :param feature_idx: The index of feature splited the dataset.
-    '''
-    dataset_size = len(dataset)
-    sub_datasets = {}
-    for data in dataset:
-        feature_value = data[feature_idx]
-        if feature_value not in sub_datasets:
-            sub_datasets[feature_value] = []
-        sub_datasets[feature_value].append(data)
-    # Sub dataset's weighted entropy
-    cond_entropy = sum([(len(sub_dataset) / dataset_size) * cal_entropy(sub_dataset) 
-                        for sub_dataset in sub_datasets.values()])
-    return cond_entropy
+<span class="w">    </span><span class="err">:</span><span class="n">param</span><span class="w"> </span><span class="nl">dataset</span><span class="p">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">raw</span><span class="w"> </span><span class="n">dataset</span><span class="w"></span>
+<span class="w">    </span><span class="err">:</span><span class="n">param</span><span class="w"> </span><span class="nl">feature_idx</span><span class="p">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">feature</span><span class="w"> </span><span class="n">splited</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">dataset</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="s1">'''</span>
+<span class="s1">    dataset_size = len(dataset)</span>
+<span class="s1">    sub_datasets = {}</span>
+<span class="s1">    for data in dataset:</span>
+<span class="s1">        feature_value = data[feature_idx]</span>
+<span class="s1">        if feature_value not in sub_datasets:</span>
+<span class="s1">            sub_datasets[feature_value] = []</span>
+<span class="s1">        sub_datasets[feature_value].append(data)</span>
+<span class="s1">    # Sub dataset'</span><span class="n">s</span><span class="w"> </span><span class="n">weighted</span><span class="w"> </span><span class="n">entropy</span><span class="w"></span>
+<span class="w">    </span><span class="n">cond_entropy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="o">[</span><span class="n">(len(sub_dataset) / dataset_size) * cal_entropy(sub_dataset) </span>
+<span class="n">                        for sub_dataset in sub_datasets.values()</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">cond_entropy</span><span class="w"></span>
 </pre></div>
 <h3 id="information-gain">Information Gain<a class="headerlink" href="#information-gain" title="Permanent link">¶</a></h3>
 <p><strong>信息增益：原始数据集<span class="math">\(D\)</span>的熵 减去 按特征<span class="math">\(A\)</span>划分若干个子数据集<span class="math">\(D_i\)</span>的加权熵</strong>
@@ -179,8 +185,8 @@ def cond_entropy(dataset, feature_idx):
 信息增益是：原始数据集<span class="math">\(D\)</span>的熵减去按特征<span class="math">\(A\)</span>划分若干个子数据集<span class="math">\(D_i\)</span>的加权熵。我们的目的是使每一个子集的熵最小（最小代表每个子集都是一类数据，高度有序的状态，高纯度），即加权熵尽量小，则IG越大。</p>
 <p><strong>根据IG准则的特征选择方法是什么？</strong>
 对训练数据集（或子集）<span class="math">\(D\)</span>，计算其每一个特征的信息增益，选择信息增益最大的特征。</p>
-<div class="highlight"><pre><span></span>def info_gain(entropy, cond_entropy):
-    return entropy - cond_entropy
+<div class="highlight"><pre><span></span><span class="err">def info_gain(entropy, cond_entropy):</span>
+<span class="err">    return entropy - cond_entropy</span>
 </pre></div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -196,7 +202,7 @@ def cond_entropy(dataset, feature_idx):
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
 
     var configscript = document.createElement('script');
     configscript.type = 'text/x-mathjax-config';
@@ -217,7 +223,8 @@ def cond_entropy(dataset, feature_idx):
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
-        "        fonts: [['STIX', 'TeX']]," +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
         "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
         "    }, " +
@@ -243,23 +250,25 @@ def cond_entropy(dataset, feature_idx):
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
-            <div>
-</div>
 
-            <section>
-    <p id="post-share-links">
+
+                <p id="post-share-links">
     Share on:
     <a href="https://twitter.com/intent/tweet?text=Information%20Theory&url=https%3A//www.jerrulsu.com/Information-Theory.html&hashtags=machine-learning" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Information-Theory.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="" target="_blank" title="Share on Google Plus">Google+</a>
-    ❄
     <a href="mailto:?subject=Information%20Theory&amp;body=https%3A//www.jerrulsu.com/Information-Theory.html" target="_blank" title="Share via Email">Email</a>
     </p>
-</section>
 
             
+            
+
+
+
+
+
+
             <hr/>
 <section>
     <h2>Related Posts</h2>
@@ -289,32 +298,46 @@ def cond_entropy(dataset, feature_idx):
             <a class="category-link" href="https://www.jerrulsu.com/categories.html#machine-learning-ref">Machine Learning</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://www.jerrulsu.com/tags#machine-learning-ref">Machine Learning
+                <li><a href="https://www.jerrulsu.com/tags.html#machine-learning-ref">Machine Learning
                     <span>8</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
-    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
-    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-another social link sidebar-social-links"></i></a>
+<div id="sidebar-social-link">
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
         </div>
         </section>
 </div>
 </article>
+                    </div>
+                    <div class="span1"></div>
                 </div>
-                <div class="span1"></div>
             </div>
         </div>
-        <div id="push"></div>
-    </div>
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-subtitle"><span class="site-name">Jerry Su's Blog</span> - Copyright © 2017</li>
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
-    </ul>
-</div>
+
+    <div>
+        <span class="site-name">Jerry Su's Blog</span> - Copyright © 2017
+    </div>
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow">Elegant</a>
+    </div>
 </footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
@@ -324,8 +347,31 @@ def cond_entropy(dataset, feature_idx):
             }
         </script>
 
-    
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : MIT -->
+        License : MIT -->
 </html>

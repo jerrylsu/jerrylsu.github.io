@@ -23,44 +23,51 @@
         <title>Spark SQL Join  · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?8bdcf96a">
 
 
 
     </head>
     <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://www.jerrulsu.com">Home</a></li>
-                            <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
-                            <li ><a href="https://www.jerrulsu.com/categories">Categories</a></li>
-                            <li ><a href="https://www.jerrulsu.com/tags">Tags</a></li>
-                            <li ><a href="https://www.jerrulsu.com/archives">Archives</a></li>
-                            <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://www.jerrulsu.com
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
+                                <li ><a href="https://www.jerrulsu.com/categories.html">Categories</a></li>
+                                <li ><a href="https://www.jerrulsu.com/tags.html">Tags</a></li>
+                                <li ><a href="https://www.jerrulsu.com/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://www.jerrulsu.com/Spark SQL Join.html"> Spark SQL Join  </a></h1>
+        <h1>
+            <a href="https://www.jerrulsu.com/Spark SQL Join.html">
+                Spark SQL Join
+            </a>
+        </h1>
     </header>
 </div>
 
@@ -87,7 +94,6 @@
         </nav>
     </div>
     <div class="span8 article-content">
-
             
             
 <h1 id="join-in-hive">Join in Hive<a class="headerlink" href="#join-in-hive" title="Permanent link">¶</a></h1>
@@ -115,30 +121,30 @@ Map Join使用准则：如果join操作中，存在可以装入内存的小表�
 <p><a href="https://grisha.org/blog/2013/04/19/mapjoin-a-simple-way-to-speed-up-your-hive-queries/">There are two ways to enable MapJoin in Hive.</a>
 <code>/*+ MAPJOIN(aliasname), MAPJOIN(anothertable) */</code>类似于C语言注释，紧跟着放在<code>SELECT</code>之后，指示Hive将aliasname表加载如内存。
 使用提示使用Map Join指定查询。下面的示例显示较小的表<code>b</code>是放在提示中的表，并强制手动缓存表B。</p>
-<div class="highlight"><pre><span></span>Select /*+ MAPJOIN(b) */ a.key, a.value from a join b on a.key = b.key
+<div class="highlight"><pre><span></span><span class="err">Select /*+ MAPJOIN(b) */ a.key, a.value from a join b on a.key = b.key</span>
 </pre></div>
 <p>You can force BroadcastHashJoin using SQL's BROADCAST hint. Supported hints include BROADCAST, BROADCASTJOIN or MAPJOIN.</p>
-<div class="highlight"><pre><span></span>va q = """
-select /* + broadcast (I) */
-    C.*
-from 
-    dw_cmc_instnc_chdu I
-join
-    dw_cmc_cntct C
-where
-    C.dt &gt;= '20150101'
-"""
+<div class="highlight"><pre><span></span><span class="err">va q = """</span>
+<span class="err">select /* + broadcast (I) */</span>
+<span class="err">    C.*</span>
+<span class="err">from </span>
+<span class="err">    dw_cmc_instnc_chdu I</span>
+<span class="err">join</span>
+<span class="err">    dw_cmc_cntct C</span>
+<span class="err">where</span>
+<span class="err">    C.dt &gt;= '20150101'</span>
+<span class="err">"""</span>
 </pre></div>
-<div class="highlight"><pre><span></span>val qBroadcastRight = """
-SELECT /*+ MAPJOIN (rt) */ 
-    *
-FROM 
-    range(100) lf
-inner join
-    range(1000) rt
-WHERE 
-    lf.id = rt.id
-"""
+<div class="highlight"><pre><span></span><span class="err">val qBroadcastRight = """</span>
+<span class="err">SELECT /*+ MAPJOIN (rt) */ </span>
+<span class="err">    *</span>
+<span class="err">FROM </span>
+<span class="err">    range(100) lf</span>
+<span class="err">inner join</span>
+<span class="err">    range(1000) rt</span>
+<span class="err">WHERE </span>
+<span class="err">    lf.id = rt.id</span>
+<span class="err">"""</span>
 </pre></div>
 <p><a href="https://weidongzhou.wordpress.com/2017/06/07/join-type-in-hive-map-join/">Map Join</a></p>
 <h2 id="skewed-join">Skewed Join<a class="headerlink" href="#skewed-join" title="Permanent link">¶</a></h2>
@@ -169,23 +175,25 @@ WHERE
 </pre></div>
 <p><a href="https://www.slideshare.net/databricks/optimizing-apache-spark-sql-joins">optimizing-apache-spark-sql-joins</a>
 <a href="https://stackoverflow.com/questions/32435263/dataframe-join-optimization-broadcast-hash-join">Broadcast Hash Join</a></p>
-            <div>
-</div>
 
-            <section>
-    <p id="post-share-links">
+
+                <p id="post-share-links">
     Share on:
     <a href="https://twitter.com/intent/tweet?text=Spark%20SQL%20Join&url=https%3A//www.jerrulsu.com/Spark%20SQL%20Join.html&hashtags=spark" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Spark%20SQL%20Join.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="" target="_blank" title="Share on Google Plus">Google+</a>
-    ❄
     <a href="mailto:?subject=Spark%20SQL%20Join&amp;body=https%3A//www.jerrulsu.com/Spark%20SQL%20Join.html" target="_blank" title="Share via Email">Email</a>
     </p>
-</section>
 
             
+            
+
+
+
+
+
+
             <hr/>
 <section>
     <h2>Related Posts</h2>
@@ -215,32 +223,46 @@ WHERE
             <a class="category-link" href="https://www.jerrulsu.com/categories.html#spark-ref">Spark</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://www.jerrulsu.com/tags#spark-ref">Spark
+                <li><a href="https://www.jerrulsu.com/tags.html#spark-ref">Spark
                     <span>6</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
-    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
-    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-another social link sidebar-social-links"></i></a>
+<div id="sidebar-social-link">
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
         </div>
         </section>
 </div>
 </article>
+                    </div>
+                    <div class="span1"></div>
                 </div>
-                <div class="span1"></div>
             </div>
         </div>
-        <div id="push"></div>
-    </div>
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-subtitle"><span class="site-name">Jerry Su's Blog</span> - Copyright © 2017</li>
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
-    </ul>
-</div>
+
+    <div>
+        <span class="site-name">Jerry Su's Blog</span> - Copyright © 2017
+    </div>
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow">Elegant</a>
+    </div>
 </footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
@@ -250,8 +272,31 @@ WHERE
             }
         </script>
 
-    
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : MIT -->
+        License : MIT -->
 </html>

@@ -23,44 +23,51 @@
         <title>Get/put data between local and client/hadoop  · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?8bdcf96a">
 
 
 
     </head>
     <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://www.jerrulsu.com">Home</a></li>
-                            <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
-                            <li ><a href="https://www.jerrulsu.com/categories">Categories</a></li>
-                            <li ><a href="https://www.jerrulsu.com/tags">Tags</a></li>
-                            <li ><a href="https://www.jerrulsu.com/archives">Archives</a></li>
-                            <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://www.jerrulsu.com
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
+                                <li ><a href="https://www.jerrulsu.com/categories.html">Categories</a></li>
+                                <li ><a href="https://www.jerrulsu.com/tags.html">Tags</a></li>
+                                <li ><a href="https://www.jerrulsu.com/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://www.jerrulsu.com/Get/put-data-between-local-and-client/hadoop.html"> Get/put data between local and client/hadoop  </a></h1>
+        <h1>
+            <a href="https://www.jerrulsu.com/Get/put-data-between-local-and-client/hadoop.html">
+                Get/put data between local and client/hadoop
+            </a>
+        </h1>
     </header>
 </div>
 
@@ -78,7 +85,6 @@
         </nav>
     </div>
     <div class="span8 article-content">
-
             
             
 <h2 id="local-client-hadoop"><strong>local</strong> &gt;&gt;&gt; <strong>client</strong> &gt;&gt;&gt; <strong>hadoop</strong><a class="headerlink" href="#local-client-hadoop" title="Permanent link">¶</a></h2>
@@ -86,51 +92,53 @@
 <ol>
 <li>sync files <code>from local to client</code></li>
 </ol>
-<div class="highlight"><pre><span></span><span class="ss">rsync =</span> <span class="err">'</span>proxychains rsync <span class="err">-</span>avh <span class="err">--</span>progress <span class="p">{</span>src<span class="p">}</span> <span class="p">{</span>client<span class="p">}:</span><span class="l">/tmp</span><span class="err">/</span><span class="p">{</span>temp_dir<span class="p">}</span><span class="err">/'</span>
-os<span class="o">.</span>system<span class="p">(</span>rsync<span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="err">rsync = 'proxychains rsync -avh --progress {src} {client}:/tmp/{temp_dir}/'</span>
+<span class="err">os.system(rsync)</span>
 </pre></div>
 <ol>
 <li>sync files <code>from client to hadoop</code> using ssh from local</li>
 </ol>
-<div class="highlight"><pre><span></span>put = "proxychains ssh {client} -C '/apache/hadoop/bin/hdfs dfs -put -f /tmp/{temp_dir}/{src} {dst}'"
-os.system(put)
+<div class="highlight"><pre><span></span><span class="err">put = "proxychains ssh {client} -C '/apache/hadoop/bin/hdfs dfs -put -f /tmp/{temp_dir}/{src} {dst}'"</span>
+<span class="err">os.system(put)</span>
 </pre></div>
 <p><a href="https://stackoverflow.com/questions/36816526/hdfs-dfs-put-with-overwrite">hdfs-dfs-put-with-overwrite</a> : <code>-f</code></p>
 <h2 id="get-from-hadoop">get from hadoop<a class="headerlink" href="#get-from-hadoop" title="Permanent link">¶</a></h2>
 <p>use <code>hdfs dfs -getmerge</code> into a file and then <code>sync</code> the file to local instead of using <code>hdfs dfs -cat</code>.
 1. get the path to the files</p>
-<div class="highlight"><pre><span></span>lst = "proxychains ssh {client} -C '/apache/hadoop/bin/hdfs dfs -ls /user/lsu1/'"
-output = subprocess.check_output(lst, shell=True, encoding='utf-8')
+<div class="highlight"><pre><span></span><span class="err">lst = "proxychains ssh {client} -C '/apache/hadoop/bin/hdfs dfs -ls /user/lsu1/'"</span>
+<span class="err">output = subprocess.check_output(lst, shell=True, encoding='utf-8')</span>
 </pre></div>
 <ol>
 <li>fetch files<code>from hadoop to client</code></li>
 </ol>
-<div class="highlight"><pre><span></span>getmerge = "proxychains ssh {client} -C '/apache/hadoop/bin/hdfs dfs -getmerge {dir} /tmp/{temp_file}'"
-os.system(getmerge)
+<div class="highlight"><pre><span></span><span class="err">getmerge = "proxychains ssh {client} -C '/apache/hadoop/bin/hdfs dfs -getmerge {dir} /tmp/{temp_file}'"</span>
+<span class="err">os.system(getmerge)</span>
 </pre></div>
 <ol>
 <li>sync files <code>from client to local</code></li>
 </ol>
-<div class="highlight"><pre><span></span><span class="ss">rsync =</span> <span class="err">'</span>proxychains rsync <span class="err">-</span>avh <span class="err">--</span>progress <span class="p">{</span>client<span class="p">}:</span><span class="l">/tmp</span><span class="err">/</span><span class="p">{</span>temp_file<span class="p">}</span> <span class="p">{</span>output<span class="p">}</span><span class="err">'</span>
-os<span class="o">.</span>system<span class="p">(</span>rsync<span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="err">rsync = 'proxychains rsync -avh --progress {client}:/tmp/{temp_file} {output}'</span>
+<span class="err">os.system(rsync)</span>
 </pre></div>
-            <div>
-</div>
 
-            <section>
-    <p id="post-share-links">
+
+                <p id="post-share-links">
     Share on:
     <a href="https://twitter.com/intent/tweet?text=Get/put%20data%20between%20local%20and%20client/hadoop&url=https%3A//www.jerrulsu.com/Get/put-data-between-local-and-client/hadoop.html&hashtags=hadoop" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Get/put-data-between-local-and-client/hadoop.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="" target="_blank" title="Share on Google Plus">Google+</a>
-    ❄
     <a href="mailto:?subject=Get/put%20data%20between%20local%20and%20client/hadoop&amp;body=https%3A//www.jerrulsu.com/Get/put-data-between-local-and-client/hadoop.html" target="_blank" title="Share via Email">Email</a>
     </p>
-</section>
 
             
+            
+
+
+
+
+
+
             <hr/>
 <section>
     <h2>Related Posts</h2>
@@ -157,32 +165,46 @@ os<span class="o">.</span>system<span class="p">(</span>rsync<span class="p">)</
             <a class="category-link" href="https://www.jerrulsu.com/categories.html#hadoop-ref">Hadoop</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://www.jerrulsu.com/tags#hadoop-ref">Hadoop
+                <li><a href="https://www.jerrulsu.com/tags.html#hadoop-ref">Hadoop
                     <span>3</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
-    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
-    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-another social link sidebar-social-links"></i></a>
+<div id="sidebar-social-link">
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
         </div>
         </section>
 </div>
 </article>
+                    </div>
+                    <div class="span1"></div>
                 </div>
-                <div class="span1"></div>
             </div>
         </div>
-        <div id="push"></div>
-    </div>
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-subtitle"><span class="site-name">Jerry Su's Blog</span> - Copyright © 2017</li>
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
-    </ul>
-</div>
+
+    <div>
+        <span class="site-name">Jerry Su's Blog</span> - Copyright © 2017
+    </div>
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow">Elegant</a>
+    </div>
 </footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
@@ -192,8 +214,31 @@ os<span class="o">.</span>system<span class="p">(</span>rsync<span class="p">)</
             }
         </script>
 
-    
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : MIT -->
+        License : MIT -->
 </html>

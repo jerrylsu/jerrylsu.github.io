@@ -23,44 +23,51 @@
         <title>SQLite Full-text Search  · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?8bdcf96a">
 
 
 
     </head>
     <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://www.jerrulsu.com">Home</a></li>
-                            <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
-                            <li ><a href="https://www.jerrulsu.com/categories">Categories</a></li>
-                            <li ><a href="https://www.jerrulsu.com/tags">Tags</a></li>
-                            <li ><a href="https://www.jerrulsu.com/archives">Archives</a></li>
-                            <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://www.jerrulsu.com
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
+                                <li ><a href="https://www.jerrulsu.com/categories.html">Categories</a></li>
+                                <li ><a href="https://www.jerrulsu.com/tags.html">Tags</a></li>
+                                <li ><a href="https://www.jerrulsu.com/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://www.jerrulsu.com/SQLite-Full-text-Search.html"> SQLite Full-text Search  </a></h1>
+        <h1>
+            <a href="https://www.jerrulsu.com/SQLite-Full-text-Search.html">
+                SQLite Full-text Search
+            </a>
+        </h1>
     </header>
 </div>
 
@@ -77,7 +84,6 @@
         </nav>
     </div>
     <div class="span8 article-content">
-
             
             
 <h3 id="sqlite-full-text-search">Sqlite Full-text Search<a class="headerlink" href="#sqlite-full-text-search" title="Permanent link">¶</a></h3>
@@ -89,18 +95,18 @@
 <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_is_to_exec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sha1</span><span class="p">):</span>
         <span class="sd">"""Check whether the query has been run in the past.</span>
 <span class="sd">        """</span>
-        <span class="n">sql</span> <span class="o">=</span> <span class="n">f</span><span class="s1">'''</span>
+        <span class="n">sql</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'''</span>
 <span class="s1">                SELECT DISTINCT</span>
 <span class="s1">                    sha1</span>
 <span class="s1">                FROM</span>
 <span class="s1">                    queries</span>
-<span class="s1">                WHERE queries MATCH '{sha1}'</span>
+<span class="s1">                WHERE queries MATCH '</span><span class="si">{sha1}</span><span class="s1">'</span>
 <span class="s1">        '''</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
             <span class="n">answer</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">'The sql has been run.</span><span class="se">\n</span><span class="s1">Are you sure to run the sql again? (y/[n]): '</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">answer</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">'y'</span><span class="p">:</span>
-                <span class="k">return</span> <span class="bp">False</span>
-        <span class="k">return</span> <span class="bp">True</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
 </pre></div>
 <ul>
 <li>
@@ -116,23 +122,25 @@
 <p>As a related task, please make the command ./spark_sql.py run support option -i 2, --all. You can then add a -f/--force option to force rerun a query.</p>
 </li>
 </ul>
-            <div>
-</div>
 
-            <section>
-    <p id="post-share-links">
+
+                <p id="post-share-links">
     Share on:
     <a href="https://twitter.com/intent/tweet?text=SQLite%20Full-text%20Search&url=https%3A//www.jerrulsu.com/SQLite-Full-text-Search.html&hashtags=sql,python" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/SQLite-Full-text-Search.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="" target="_blank" title="Share on Google Plus">Google+</a>
-    ❄
     <a href="mailto:?subject=SQLite%20Full-text%20Search&amp;body=https%3A//www.jerrulsu.com/SQLite-Full-text-Search.html" target="_blank" title="Share via Email">Email</a>
     </p>
-</section>
 
             
+            
+
+
+
+
+
+
             <hr/>
 <section>
     <h2>Related Posts</h2>
@@ -162,35 +170,49 @@
             <a class="category-link" href="https://www.jerrulsu.com/categories.html#sql-ref">SQL</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://www.jerrulsu.com/tags#python-ref">Python
+                <li><a href="https://www.jerrulsu.com/tags.html#python-ref">Python
                     <span>10</span>
 </a></li>
-                <li><a href="https://www.jerrulsu.com/tags#sql-ref">SQL
+                <li><a href="https://www.jerrulsu.com/tags.html#sql-ref">SQL
                     <span>1</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
-    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
-    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-another social link sidebar-social-links"></i></a>
+<div id="sidebar-social-link">
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
         </div>
         </section>
 </div>
 </article>
+                    </div>
+                    <div class="span1"></div>
                 </div>
-                <div class="span1"></div>
             </div>
         </div>
-        <div id="push"></div>
-    </div>
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-subtitle"><span class="site-name">Jerry Su's Blog</span> - Copyright © 2017</li>
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
-    </ul>
-</div>
+
+    <div>
+        <span class="site-name">Jerry Su's Blog</span> - Copyright © 2017
+    </div>
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow">Elegant</a>
+    </div>
 </footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
@@ -200,8 +222,31 @@
             }
         </script>
 
-    
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : MIT -->
+        License : MIT -->
 </html>

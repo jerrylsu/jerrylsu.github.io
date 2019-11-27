@@ -23,44 +23,51 @@
         <title>Spark  · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?8bdcf96a">
 
 
 
     </head>
     <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://www.jerrulsu.com">Home</a></li>
-                            <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
-                            <li ><a href="https://www.jerrulsu.com/categories">Categories</a></li>
-                            <li ><a href="https://www.jerrulsu.com/tags">Tags</a></li>
-                            <li ><a href="https://www.jerrulsu.com/archives">Archives</a></li>
-                            <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://www.jerrulsu.com
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
+                                <li ><a href="https://www.jerrulsu.com/categories.html">Categories</a></li>
+                                <li ><a href="https://www.jerrulsu.com/tags.html">Tags</a></li>
+                                <li ><a href="https://www.jerrulsu.com/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://www.jerrulsu.com/Spark.html"> Spark  </a></h1>
+        <h1>
+            <a href="https://www.jerrulsu.com/Spark.html">
+                Spark
+            </a>
+        </h1>
     </header>
 </div>
 
@@ -97,7 +104,6 @@
         </nav>
     </div>
     <div class="span8 article-content">
-
             
             
 <h2 id="3spark">3.spark简介<a class="headerlink" href="#3spark" title="Permanent link">¶</a></h2>
@@ -167,44 +173,46 @@ a3 192.168.23.3 worker</p>
 <h3 id="52">5.2.机器的环境配置<a class="headerlink" href="#52" title="Permanent link">¶</a></h3>
 <h4 id="521">5.2.1.免密登陆<a class="headerlink" href="#521" title="Permanent link">¶</a></h4>
 <p>配置主节点到从节点的免密登陆即可。</p>
-<div class="highlight"><pre><span></span># ssh-keygen
-# ssh-copy-id ip
+<div class="highlight"><pre><span></span><span class="err"># ssh-keygen</span>
+<span class="err"># ssh-copy-id ip</span>
 </pre></div>
 <h4 id="522">5.2.2.关闭防火墙<a class="headerlink" href="#522" title="Permanent link">¶</a></h4>
 <p>大数据集群，一般都是内网集群，不需要开启防火墙。</p>
 <p>有单独的机器，具备内网和外网环境，可以通过该机器进行对外通信。</p>
-<div class="highlight"><pre><span></span># service iptables status    // 查看防火墙
-# service iptables stop      // 关闭防火墙
-# ckconfig iptables off      // 永久关闭
+<div class="highlight"><pre><span></span><span class="err"># service iptables status    // 查看防火墙</span>
+<span class="err"># service iptables stop      // 关闭防火墙</span>
+<span class="err"># ckconfig iptables off      // 永久关闭</span>
 </pre></div>
 <h4 id="523iphost">5.2.3.ip与host的映射关系<a class="headerlink" href="#523iphost" title="Permanent link">¶</a></h4>
 <p>使用hostname</p>
-<div class="highlight"><pre><span></span># cat /etc/hosts
-127.0.0.1   localhost
-255.255.255.255 broadcasthost
-::1             localhost
-202.76.247.23 ion-ljz.corp.ebay.com
-192.168.23.1 a1
-192.168.23.2 a2
-192.168.23.3 a3
+<div class="highlight"><pre><span></span><span class="err"># cat /etc/hosts</span>
+<span class="err">127.0.0.1   localhost</span>
+<span class="err">255.255.255.255 broadcasthost</span>
+<span class="err">::1             localhost</span>
+<span class="err">202.76.247.23 ion-ljz.corp.ebay.com</span>
+<span class="err">192.168.23.1 a1</span>
+<span class="err">192.168.23.2 a2</span>
+<span class="err">192.168.23.3 a3</span>
 </pre></div>
-            <div>
-</div>
 
-            <section>
-    <p id="post-share-links">
+
+                <p id="post-share-links">
     Share on:
     <a href="https://twitter.com/intent/tweet?text=Spark&url=https%3A//www.jerrulsu.com/Spark.html" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Spark.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="" target="_blank" title="Share on Google Plus">Google+</a>
-    ❄
     <a href="mailto:?subject=Spark&amp;body=https%3A//www.jerrulsu.com/Spark.html" target="_blank" title="Share via Email">Email</a>
     </p>
-</section>
 
             
+            
+
+
+
+
+
+
             <hr/>
             <aside>
             <nav>
@@ -222,27 +230,41 @@ a3 192.168.23.3 worker</p>
             <h4>Category</h4>
             <a class="category-link" href="https://www.jerrulsu.com/categories.html#posts-ref">posts</a>
 <h4>Contact</h4>
-    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
-    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-another social link sidebar-social-links"></i></a>
+<div id="sidebar-social-link">
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
         </div>
         </section>
 </div>
 </article>
+                    </div>
+                    <div class="span1"></div>
                 </div>
-                <div class="span1"></div>
             </div>
         </div>
-        <div id="push"></div>
-    </div>
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-subtitle"><span class="site-name">Jerry Su's Blog</span> - Copyright © 2017</li>
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
-    </ul>
-</div>
+
+    <div>
+        <span class="site-name">Jerry Su's Blog</span> - Copyright © 2017
+    </div>
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow">Elegant</a>
+    </div>
 </footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
@@ -252,8 +274,31 @@ a3 192.168.23.3 worker</p>
             }
         </script>
 
-    
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : MIT -->
+        License : MIT -->
 </html>

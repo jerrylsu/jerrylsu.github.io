@@ -23,44 +23,51 @@
         <title>Data Structure and Algorithm in Python  · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?8bdcf96a">
 
 
 
     </head>
     <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://www.jerrulsu.com">Home</a></li>
-                            <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
-                            <li ><a href="https://www.jerrulsu.com/categories">Categories</a></li>
-                            <li ><a href="https://www.jerrulsu.com/tags">Tags</a></li>
-                            <li ><a href="https://www.jerrulsu.com/archives">Archives</a></li>
-                            <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://www.jerrulsu.com
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
+                                <li ><a href="https://www.jerrulsu.com/categories.html">Categories</a></li>
+                                <li ><a href="https://www.jerrulsu.com/tags.html">Tags</a></li>
+                                <li ><a href="https://www.jerrulsu.com/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://www.jerrulsu.com/Data-Structure-and-Algorithm-in-Python.html"> Data Structure and Algorithm in Python  </a></h1>
+        <h1>
+            <a href="https://www.jerrulsu.com/Data-Structure-and-Algorithm-in-Python.html">
+                Data Structure and Algorithm in Python
+            </a>
+        </h1>
     </header>
 </div>
 
@@ -115,7 +122,6 @@
         </nav>
     </div>
     <div class="span8 article-content">
-
             
             
 <h2 id="sort">Sort<a class="headerlink" href="#sort" title="Permanent link">¶</a></h2>
@@ -153,40 +159,40 @@
 <p><strong><code>heapInsert</code></strong>: 经历一个新结点加入一个已经调整好的堆中，同时往上调整的过程。调整停止条件：当加入结点值不大于其父节点时，
 调整停止。</p>
 <p><strong>堆在数组上可伸缩</strong></p>
-<div class="highlight"><pre><span></span>def insertHeap(arr, index):
-    par_i = (index - 1) // 2
-    while par_i &gt;= 0 and arr[index] &gt; arr[par_i]:        # 插入结点值比父结点大时，往上调整
-        arr[index], arr[par_i] = arr[par_i], arr[index]  # 与父结点交换
-        index = par_i                   # 插入结点来到父节点的位置
-        par_i = (index - 1) // 2
+<div class="highlight"><pre><span></span><span class="n">def</span><span class="w"> </span><span class="n">insertHeap</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="k">index</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">par_i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">index</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="n">par_i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">par_i</span><span class="o">]</span><span class="err">:</span><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">插入结点值比父结点大时</span><span class="err">，</span><span class="n">往上调整</span><span class="w"></span>
+<span class="w">        </span><span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">par_i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">par_i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">与父结点交换</span><span class="w"></span>
+<span class="w">        </span><span class="k">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">par_i</span><span class="w">                   </span><span class="err">#</span><span class="w"> </span><span class="n">插入结点来到父节点的位置</span><span class="w"></span>
+<span class="w">        </span><span class="n">par_i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">index</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
 
-def createHeap(arr):
-    if arr == None or len(arr) &lt; 2:
-        return arr
-    for i in range(len(arr)):          # 依次将结点加入堆中， 最终将数组（堆）调整为大根堆
-        insertHeap(arr, i)
-    return arr
+<span class="n">def</span><span class="w"> </span><span class="n">createHeap</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">arr</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">None</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">arr</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span><span class="err">:</span><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="n">依次将结点加入堆中</span><span class="err">，</span><span class="w"> </span><span class="n">最终将数组</span><span class="err">（</span><span class="n">堆</span><span class="err">）</span><span class="n">调整为大根堆</span><span class="w"></span>
+<span class="w">        </span><span class="n">insertHeap</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">arr</span><span class="w"></span>
 </pre></div>
 <p>时间复杂度分析：<strong><code>O(N)</code></strong></p>
 <p>当第<code>i</code>个结点加入堆中时，<code>0</code>~<code>i-1</code>已经调整为大根堆，其高度为<code>O(log(i-1))</code>，即调整代价为<code>O(log(i-1))</code>。(沿其父结点依次向上&gt;
 比较调整)</p>
 <p>所以, <code>N</code>个结点的调整代价为：<code>O(lg1) + O(lg2) + ... + O(lgN)</code>收敛于<code>O(N)</code></p>
 <h5 id="_6">堆化<a class="headerlink" href="#_6" title="Permanent link">¶</a></h5>
-<div class="highlight"><pre><span></span>def heapify(arr, index, heapSize):
-    left = 2 * index + 1
-    # 左孩子未越界，在堆上，继续循环判断是否下沉
-    while left &lt; heapSize:    
-        # 1. 求左右孩子最大的下标
-        largest = left + 1 if (left+1) &lt; heapSize and arr[left+1] &gt; arr[left] else left   
-        # 2. 最大孩子和本结点最大的下标
-        largest = index if arr[index] &gt;= arr[largest] else largest   
-        # 3. 如果最大的结点就是自身，heapify完成跳出
-        if largest == index:       
-            break
-        # 4. 否则，交换下沉
-        arr[largest], arr[index] = arr[index], arr[largest]
-        index = largest
-        left = 2 * index + 1
+<div class="highlight"><pre><span></span><span class="n">def</span><span class="w"> </span><span class="n">heapify</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="k">index</span><span class="p">,</span><span class="w"> </span><span class="n">heapSize</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="nf">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">左孩子未越界</span><span class="err">，</span><span class="n">在堆上</span><span class="err">，</span><span class="n">继续循环判断是否下沉</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="nf">left</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nl">heapSize</span><span class="p">:</span><span class="w">    </span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="mf">1.</span><span class="w"> </span><span class="n">求左右孩子最大的下标</span><span class="w"></span>
+<span class="w">        </span><span class="n">largest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nf">left</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">heapSize</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">left+1</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">left</span><span class="o">]</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nf">left</span><span class="w">   </span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="mf">2.</span><span class="w"> </span><span class="n">最大孩子和本结点最大的下标</span><span class="w"></span>
+<span class="w">        </span><span class="n">largest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">largest</span><span class="o">]</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">largest</span><span class="w">   </span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="mf">3.</span><span class="w"> </span><span class="n">如果最大的结点就是自身</span><span class="err">，</span><span class="n">heapify完成跳出</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">largest</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">index</span><span class="err">:</span><span class="w">       </span>
+<span class="w">            </span><span class="k">break</span><span class="w"></span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="mf">4.</span><span class="w"> </span><span class="n">否则</span><span class="err">，</span><span class="n">交换下沉</span><span class="w"></span>
+<span class="w">        </span><span class="n">arr</span><span class="o">[</span><span class="n">largest</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">largest</span><span class="o">]</span><span class="w"></span>
+<span class="w">        </span><span class="k">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">largest</span><span class="w"></span>
+<span class="w">        </span><span class="nf">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
 </pre></div>
 <h5 id="_7">堆排序<a class="headerlink" href="#_7" title="Permanent link">¶</a></h5>
 <p>堆大小：heapSize = len(arr)</p>
@@ -198,77 +204,77 @@ def createHeap(arr):
 <li><strong><code>0~heapSize</code></strong>做<strong><code>heapify</code></strong></li>
 <li>至<code>2</code>循环，直到堆大小减到0，数组有序</li>
 </ol>
-<div class="highlight"><pre><span></span>def heapSort(arr):
-    createHeap(arr)
-    heapSize = len(arr)
-    while heapSize &gt; 1:
-        heapSize -= 1
-        arr[0], arr[heapSize] = arr[heapSize], arr[0]
-        heapify(arr, 0, heapSize)
+<div class="highlight"><pre><span></span><span class="n">def</span><span class="w"> </span><span class="n">heapSort</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">createHeap</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">heapSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="n">heapSize</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">heapSize</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">        </span><span class="n">arr</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">heapSize</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">heapSize</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"></span>
+<span class="w">        </span><span class="n">heapify</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">heapSize</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 <h2 id="bfs-dfs">BFS &amp; DFS<a class="headerlink" href="#bfs-dfs" title="Permanent link">¶</a></h2>
 <h3 id="bfs">BFS<a class="headerlink" href="#bfs" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span>def bfs(graph, start, end):
-    queue = []
-    queue.append([start])
-    visted.add(start)
+<div class="highlight"><pre><span></span><span class="n">def</span><span class="w"> </span><span class="n">bfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span><span class="w"> </span><span class="k">start</span><span class="p">,</span><span class="w"> </span><span class="k">end</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+<span class="w">    </span><span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="o">[</span><span class="n">start</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">visted</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="k">start</span><span class="p">)</span><span class="w"></span>
 
-    while queue:
-        node = queue.pop()
-        # 标记已被访问
-        visted.add(node)
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="nl">queue</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">queue</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">标记已被访问</span><span class="w"></span>
+<span class="w">        </span><span class="n">visted</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span><span class="w"></span>
 
-        process(node)
-        # 1. 寻找后继结点 2. 检查后继结点是否被访问
-        nodes =  generate_related_nodes(node)
-        queue.push(nodes)
+<span class="w">        </span><span class="n">process</span><span class="p">(</span><span class="n">node</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="mf">1.</span><span class="w"> </span><span class="n">寻找后继结点</span><span class="w"> </span><span class="mf">2.</span><span class="w"> </span><span class="n">检查后继结点是否被访问</span><span class="w"></span>
+<span class="w">        </span><span class="n">nodes</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">generate_related_nodes</span><span class="p">(</span><span class="n">node</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">queue</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span><span class="w"></span>
 
-    # other process work
-    ....
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">process</span><span class="w"> </span><span class="k">work</span><span class="w"></span>
+<span class="w">    </span><span class="p">....</span><span class="w"></span>
 </pre></div>
 <h3 id="dfs">DFS<a class="headerlink" href="#dfs" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span># Recursion
-visted = set()
-def dfs(node, visted):
-    visted.add(node)
-    # process current node here
-    ...
-    for next_node in node.children():
-        if next_node not in visted:
-            dfs(next_node, visted)
+<div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">Recursion</span>
+<span class="n">visted</span> <span class="o">=</span> <span class="k">set</span><span class="p">()</span>
+<span class="n">def</span> <span class="n">dfs</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">visted</span><span class="p">):</span>
+    <span class="n">visted</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="o">#</span> <span class="n">process</span> <span class="k">current</span> <span class="n">node</span> <span class="n">here</span>
+    <span class="p">...</span>
+    <span class="k">for</span> <span class="n">next_node</span> <span class="k">in</span> <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">next_node</span> <span class="k">not</span> <span class="k">in</span> <span class="n">visted</span><span class="p">:</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">next_node</span><span class="p">,</span> <span class="n">visted</span><span class="p">)</span>
 
-# Non-Recursion
-def dfs(tree):
-    if not tree.root:
-        return None
-    visted, stack = [], [tree.root]
-    while stack:
-        node = stack.pop()
-        visted.add(node)
+<span class="o">#</span> <span class="n">Non</span><span class="o">-</span><span class="n">Recursion</span>
+<span class="n">def</span> <span class="n">dfs</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+    <span class="k">if</span> <span class="k">not</span> <span class="n">tree</span><span class="p">.</span><span class="n">root</span><span class="p">:</span>
+        <span class="k">return</span> <span class="k">None</span>
+    <span class="n">visted</span><span class="p">,</span> <span class="n">stack</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[</span><span class="n">tree</span><span class="p">.</span><span class="n">root</span><span class="p">]</span>
+    <span class="n">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">visted</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
 
-        process(node)
-        nodes = generate_related_node(node)
-        stack.push(nodes)
-    # other processing work
-    ...
+        <span class="n">process</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="n">generate_related_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+    <span class="o">#</span> <span class="n">other</span> <span class="n">processing</span> <span class="k">work</span>
+    <span class="p">...</span>
 </pre></div>
 <h2 id="recursion">Recursion<a class="headerlink" href="#recursion" title="Permanent link">¶</a></h2>
 <p><strong>用相同的方法解决规模不同的相同问题。</strong>
 相同的方法：函数
 问题的规模： 函数参数控制
 递归是一种特殊的循环，通过<strong>函数体</strong>循环。</p>
-<div class="highlight"><pre><span></span>factorial(6):
-6 * factorial(5)
-6 * (5 * factorial(4))
-6 * (5 * (4 * factorial(3)))
-6 * (5 * (4 * (3 * factorial(2))))
-6 * (5 * (4 * (3 * ( 2 * factorial(1)))))
-6 * (5 * (4 * (3 * ( 2 * 1))))
-6 * (5 * (4 * (3 * 2)))
-6 * (5 * (4 * 6))
-6 * (5 * 24)
-6 * 120
-720
+<div class="highlight"><pre><span></span><span class="err">factorial(6):</span>
+<span class="err">6 * factorial(5)</span>
+<span class="err">6 * (5 * factorial(4))</span>
+<span class="err">6 * (5 * (4 * factorial(3)))</span>
+<span class="err">6 * (5 * (4 * (3 * factorial(2))))</span>
+<span class="err">6 * (5 * (4 * (3 * ( 2 * factorial(1)))))</span>
+<span class="err">6 * (5 * (4 * (3 * ( 2 * 1))))</span>
+<span class="err">6 * (5 * (4 * (3 * 2)))</span>
+<span class="err">6 * (5 * (4 * 6))</span>
+<span class="err">6 * (5 * 24)</span>
+<span class="err">6 * 120</span>
+<span class="err">720</span>
 </pre></div>
 <ol>
 <li>把问题转化为规模缩小了的同类子问题</li>
@@ -276,45 +282,45 @@ def dfs(tree):
 <li></li>
 </ol>
 <h3 id="template">Template<a class="headerlink" href="#template" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span>def recursion(level, param1, param2, ...):
+<div class="highlight"><pre><span></span><span class="n">def</span> <span class="n">recursion</span><span class="p">(</span><span class="k">level</span><span class="p">,</span> <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">,</span> <span class="p">...):</span>
 
-    # recursion terminator
-    if level &gt; MAX_LEVEL:
-        print_result
-        return
+    <span class="o">#</span> <span class="n">recursion</span> <span class="n">terminator</span>
+    <span class="k">if</span> <span class="k">level</span> <span class="o">&gt;</span> <span class="n">MAX_LEVEL</span><span class="p">:</span>
+        <span class="n">print_result</span>
+        <span class="k">return</span>
 
-    # process logic in current level
-    process_data(level, data...)
+    <span class="o">#</span> <span class="n">process</span> <span class="n">logic</span> <span class="k">in</span> <span class="k">current</span> <span class="k">level</span>
+    <span class="n">process_data</span><span class="p">(</span><span class="k">level</span><span class="p">,</span> <span class="k">data</span><span class="p">...)</span>
 
-    # drill down
-    self.recursion(level + 1, p1, p2, ...)
+    <span class="o">#</span> <span class="n">drill</span> <span class="n">down</span>
+    <span class="k">self</span><span class="p">.</span><span class="n">recursion</span><span class="p">(</span><span class="k">level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="p">...)</span>
 
-    # reverse the current level status if needed
-    reverse_state(level)
+    <span class="o">#</span> <span class="n">reverse</span> <span class="n">the</span> <span class="k">current</span> <span class="k">level</span> <span class="n">status</span> <span class="k">if</span> <span class="n">needed</span>
+    <span class="n">reverse_state</span><span class="p">(</span><span class="k">level</span><span class="p">)</span>
 </pre></div>
 <h3 id="example">Example:<a class="headerlink" href="#example" title="Permanent link">¶</a></h3>
 <h2 id="divide-and-conquer">Divide and Conquer<a class="headerlink" href="#divide-and-conquer" title="Permanent link">¶</a></h2>
 <p _="%" asset_img="asset_img" divide-and-conquer1.jpg="divide-and-conquer1.jpg">递归的高阶算法应用：分治</p>
 <h3 id="template_1">Template<a class="headerlink" href="#template_1" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span>def divide_conquer(problem, param1, param2, ...):
+<div class="highlight"><pre><span></span><span class="n">def</span> <span class="n">divide_conquer</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">,</span> <span class="p">...):</span>
 
-    # recursion terminator
-    if problem is None:
-        print_result
-        return
+    <span class="o">#</span> <span class="n">recursion</span> <span class="n">terminator</span>
+    <span class="k">if</span> <span class="n">problem</span> <span class="k">is</span> <span class="k">None</span><span class="p">:</span>
+        <span class="n">print_result</span>
+        <span class="k">return</span>
 
-    # prepare data
-    data = prepare_data(problem)
-    subproblem = split_problem(problem, data)
+    <span class="o">#</span> <span class="k">prepare</span> <span class="k">data</span>
+    <span class="k">data</span> <span class="o">=</span> <span class="n">prepare_data</span><span class="p">(</span><span class="n">problem</span><span class="p">)</span>
+    <span class="n">subproblem</span> <span class="o">=</span> <span class="n">split_problem</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="k">data</span><span class="p">)</span>
 
-    # conquer subproblem
-    subresult1 = self.divide_conquer(problem[0], p1, p2, ...)
-    subresult2 = self.divide_conquer(problem[1], p1, p2, ...)
-    subresult3 = self.divide_conquer(problem[2], p1, p2, ...)
-    ...
+    <span class="o">#</span> <span class="n">conquer</span> <span class="n">subproblem</span>
+    <span class="n">subresult1</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">divide_conquer</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="p">...)</span>
+    <span class="n">subresult2</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">divide_conquer</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="p">...)</span>
+    <span class="n">subresult3</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">divide_conquer</span><span class="p">(</span><span class="n">problem</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="p">...)</span>
+    <span class="p">...</span>
 
-    # process and generate the final result
-    result = process_result(subresult1, subresult2, subresult3, ...)
+    <span class="o">#</span> <span class="n">process</span> <span class="k">and</span> <span class="n">generate</span> <span class="n">the</span> <span class="k">final</span> <span class="k">result</span>
+    <span class="k">result</span> <span class="o">=</span> <span class="n">process_result</span><span class="p">(</span><span class="n">subresult1</span><span class="p">,</span> <span class="n">subresult2</span><span class="p">,</span> <span class="n">subresult3</span><span class="p">,</span> <span class="p">...)</span>
 </pre></div>
 <h3 id="example_1">Example:<a class="headerlink" href="#example_1" title="Permanent link">¶</a></h3>
 <p><a href="https://github.com/jerrylsu/Algorithms/blob/master/Divide%20Conquer/23.%20Merge%20k%20Sorted%20Lists.ipynb">23. Merge k Sorted Lists</a></p>
@@ -344,23 +350,25 @@ def dfs(tree):
 </li>
 </ol>
 <p>更新中...</p>
-            <div>
-</div>
 
-            <section>
-    <p id="post-share-links">
+
+                <p id="post-share-links">
     Share on:
     <a href="https://twitter.com/intent/tweet?text=Data%20Structure%20and%20Algorithm%20in%20Python&url=https%3A//www.jerrulsu.com/Data-Structure-and-Algorithm-in-Python.html&hashtags=algorithm" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Data-Structure-and-Algorithm-in-Python.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="" target="_blank" title="Share on Google Plus">Google+</a>
-    ❄
     <a href="mailto:?subject=Data%20Structure%20and%20Algorithm%20in%20Python&amp;body=https%3A//www.jerrulsu.com/Data-Structure-and-Algorithm-in-Python.html" target="_blank" title="Share via Email">Email</a>
     </p>
-</section>
 
             
+            
+
+
+
+
+
+
             <hr/>
 <section>
     <h2>Related Posts</h2>
@@ -390,32 +398,46 @@ def dfs(tree):
             <a class="category-link" href="https://www.jerrulsu.com/categories.html#algorithm-ref">Algorithm</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://www.jerrulsu.com/tags#algorithm-ref">Algorithm
+                <li><a href="https://www.jerrulsu.com/tags.html#algorithm-ref">Algorithm
                     <span>7</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
-    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
-    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-another social link sidebar-social-links"></i></a>
+<div id="sidebar-social-link">
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
         </div>
         </section>
 </div>
 </article>
+                    </div>
+                    <div class="span1"></div>
                 </div>
-                <div class="span1"></div>
             </div>
         </div>
-        <div id="push"></div>
-    </div>
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-subtitle"><span class="site-name">Jerry Su's Blog</span> - Copyright © 2017</li>
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
-    </ul>
-</div>
+
+    <div>
+        <span class="site-name">Jerry Su's Blog</span> - Copyright © 2017
+    </div>
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow">Elegant</a>
+    </div>
 </footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
@@ -425,8 +447,31 @@ def dfs(tree):
             }
         </script>
 
-    
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : MIT -->
+        License : MIT -->
 </html>

@@ -23,44 +23,51 @@
         <title>Building Python Package with Pybuilder  · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?8bdcf96a">
 
 
 
     </head>
     <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://www.jerrulsu.com">Home</a></li>
-                            <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
-                            <li ><a href="https://www.jerrulsu.com/categories">Categories</a></li>
-                            <li ><a href="https://www.jerrulsu.com/tags">Tags</a></li>
-                            <li ><a href="https://www.jerrulsu.com/archives">Archives</a></li>
-                            <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://www.jerrulsu.com
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
+                                <li ><a href="https://www.jerrulsu.com/categories.html">Categories</a></li>
+                                <li ><a href="https://www.jerrulsu.com/tags.html">Tags</a></li>
+                                <li ><a href="https://www.jerrulsu.com/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://www.jerrulsu.com/Building-Python-Package-with-Pybuilder.html"> Building Python Package with Pybuilder  </a></h1>
+        <h1>
+            <a href="https://www.jerrulsu.com/Building-Python-Package-with-Pybuilder.html">
+                Building Python Package with Pybuilder
+            </a>
+        </h1>
     </header>
 </div>
 
@@ -76,7 +83,6 @@
         </nav>
     </div>
     <div class="span8 article-content">
-
             
             
 <h2 id="building-python-package">Building Python Package<a class="headerlink" href="#building-python-package" title="Permanent link">¶</a></h2>
@@ -98,31 +104,33 @@
 <p>使用<code>project.install_file(target, source)</code>安装非python文件。
 <code>target path</code>：可以是绝对路径，也可以是相对于安装前缀(<code>/usr/</code> on most linux systems)。
 <code>source path</code>：必须是<code>distribution directory</code>目录。因为默认情况下non-python文件未复制到分发目录，因此必须使用<code>copy_resources</code>插件来包含它们。</p>
-<div class="highlight"><pre><span></span>use_plugin("copy_resources")
+<div class="highlight"><pre><span></span><span class="n">use_plugin</span><span class="p">(</span><span class="ss">"copy_resources"</span><span class="p">)</span><span class="w"></span>
 
-@init
-def initialize(project):
-    project.get_property("copy_resources_glob").append("src/main/resources/my-config.yaml")
-    project.set_property("copy_resources_target", "$dir_dist")
-    project.install_file("/etc/defaults", "src/main/resources/my-config.yaml")
+<span class="nv">@init</span><span class="w"></span>
+<span class="n">def</span><span class="w"> </span><span class="k">initialize</span><span class="p">(</span><span class="n">project</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">project</span><span class="p">.</span><span class="n">get_property</span><span class="p">(</span><span class="ss">"copy_resources_glob"</span><span class="p">).</span><span class="n">append</span><span class="p">(</span><span class="ss">"src/main/resources/my-config.yaml"</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">project</span><span class="p">.</span><span class="n">set_property</span><span class="p">(</span><span class="ss">"copy_resources_target"</span><span class="p">,</span><span class="w"> </span><span class="ss">"$dir_dist"</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">project</span><span class="p">.</span><span class="n">install_file</span><span class="p">(</span><span class="ss">"/etc/defaults"</span><span class="p">,</span><span class="w"> </span><span class="ss">"src/main/resources/my-config.yaml"</span><span class="p">)</span><span class="w"></span>
 </pre></div>
-            <div>
-</div>
 
-            <section>
-    <p id="post-share-links">
+
+                <p id="post-share-links">
     Share on:
     <a href="https://twitter.com/intent/tweet?text=Building%20Python%20Package%20with%20Pybuilder&url=https%3A//www.jerrulsu.com/Building-Python-Package-with-Pybuilder.html&hashtags=python" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Building-Python-Package-with-Pybuilder.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="" target="_blank" title="Share on Google Plus">Google+</a>
-    ❄
     <a href="mailto:?subject=Building%20Python%20Package%20with%20Pybuilder&amp;body=https%3A//www.jerrulsu.com/Building-Python-Package-with-Pybuilder.html" target="_blank" title="Share via Email">Email</a>
     </p>
-</section>
 
             
+            
+
+
+
+
+
+
             <hr/>
 <section>
     <h2>Related Posts</h2>
@@ -152,32 +160,46 @@ def initialize(project):
             <a class="category-link" href="https://www.jerrulsu.com/categories.html#python-ref">Python</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://www.jerrulsu.com/tags#python-ref">Python
+                <li><a href="https://www.jerrulsu.com/tags.html#python-ref">Python
                     <span>10</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
-    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
-    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-another social link sidebar-social-links"></i></a>
+<div id="sidebar-social-link">
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
         </div>
         </section>
 </div>
 </article>
+                    </div>
+                    <div class="span1"></div>
                 </div>
-                <div class="span1"></div>
             </div>
         </div>
-        <div id="push"></div>
-    </div>
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-subtitle"><span class="site-name">Jerry Su's Blog</span> - Copyright © 2017</li>
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
-    </ul>
-</div>
+
+    <div>
+        <span class="site-name">Jerry Su's Blog</span> - Copyright © 2017
+    </div>
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow">Elegant</a>
+    </div>
 </footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
@@ -187,8 +209,31 @@ def initialize(project):
             }
         </script>
 
-    
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : MIT -->
+        License : MIT -->
 </html>

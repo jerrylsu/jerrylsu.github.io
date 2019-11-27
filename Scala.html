@@ -23,44 +23,51 @@
         <title>Scala  · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?8bdcf96a">
 
 
 
     </head>
     <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://www.jerrulsu.com">Home</a></li>
-                            <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
-                            <li ><a href="https://www.jerrulsu.com/categories">Categories</a></li>
-                            <li ><a href="https://www.jerrulsu.com/tags">Tags</a></li>
-                            <li ><a href="https://www.jerrulsu.com/archives">Archives</a></li>
-                            <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://www.jerrulsu.com/"><span class=site-name>Jerry Su's Blog</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://www.jerrulsu.com
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://www.jerrulsu.com/pages/about.html">About</a></li>
+                                <li ><a href="https://www.jerrulsu.com/categories.html">Categories</a></li>
+                                <li ><a href="https://www.jerrulsu.com/tags.html">Tags</a></li>
+                                <li ><a href="https://www.jerrulsu.com/archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="https://www.jerrulsu.com/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://www.jerrulsu.com/Scala.html"> Scala  </a></h1>
+        <h1>
+            <a href="https://www.jerrulsu.com/Scala.html">
+                Scala
+            </a>
+        </h1>
     </header>
 </div>
 
@@ -102,7 +109,6 @@
         </nav>
     </div>
     <div class="span8 article-content">
-
             
             
 <h2 id="_1">前言<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
@@ -129,8 +135,8 @@ There are three main part:
 - The input
 - The relationship
 - The output</p>
-<div class="highlight"><pre><span></span>Math.sqrt(4.0)
-sqrt就是relationship
+<div class="highlight"><pre><span></span><span class="err">Math.sqrt(4.0)</span>
+<span class="err">sqrt就是relationship</span>
 </pre></div>
 <ol>
 <li>The Input solely determines the output. 无论在哪里或者多少次调用这个函数，只要输入参数相同，就会得到相同的输出。</li>
@@ -147,20 +153,20 @@ sqrt就是relationship
 如果我们可以用相同的值替换它而不改变程序的行为，则称函数是引用透明性。
 即，只要输入相同，总能得到相同的返回值。
 e.g. 1:</p>
-<div class="highlight"><pre><span></span>Replace Math.sqrt(4.0) with 2.0
-# Can you do this ?
-# Yes. Because Math.sqrt(4.0) will always return 2.0 as long as input is 4.0. So sqrt是纯函数。
+<div class="highlight"><pre><span></span><span class="err">Replace Math.sqrt(4.0) with 2.0</span>
+<span class="err"># Can you do this ?</span>
+<span class="err"># Yes. Because Math.sqrt(4.0) will always return 2.0 as long as input is 4.0. So sqrt是纯函数。</span>
 </pre></div>
 <p>e.g. 2:</p>
-<div class="highlight"><pre><span></span>// 全局变量
-var g = 10
-def rt(i:Int):Int = {
-    g = i + g
-    return g
-}
+<div class="highlight"><pre><span></span><span class="o">//</span> <span class="err">全局变量</span>
+<span class="n">var</span> <span class="k">g</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">def</span> <span class="n">rt</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="nb">Int</span><span class="p">):</span><span class="nb">Int</span> <span class="o">=</span> <span class="err">{</span>
+    <span class="k">g</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="k">g</span>
+    <span class="k">return</span> <span class="k">g</span>
+<span class="err">}</span>
 
-val v1 = rt(5)    // v1 = 15
-val v2 = rt(5)    // v2 = 20
+<span class="n">val</span> <span class="n">v1</span> <span class="o">=</span> <span class="n">rt</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>    <span class="o">//</span> <span class="n">v1</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">val</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">rt</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>    <span class="o">//</span> <span class="n">v2</span> <span class="o">=</span> <span class="mi">20</span>
 </pre></div>
 <p>函数rt不是纯函数，因为：
 - 不满足第一条：依赖于全局变量g，输出不是仅仅依赖于输入参数。
@@ -192,9 +198,9 @@ val v2 = rt(5)    // v2 = 20
 2. 返回一个函数作为结果</p>
 <h4 id="anonymous-functions">Anonymous Functions<a class="headerlink" href="#anonymous-functions" title="Permanent link">¶</a></h4>
 <p><strong>什么是匿名函数？</strong></p>
-<div class="highlight"><pre><span></span><span class="err">标准函数：</span><span class="nx">def</span> <span class="kr">double</span><span class="p">(</span><span class="nx">i</span>:<span class="kt">Int</span><span class="p">)</span><span class="o">:</span><span class="nx">Int</span> <span class="o">=</span> <span class="p">{</span><span class="k">return</span> <span class="nx">i</span> <span class="o">*</span> <span class="mi">2</span><span class="p">}</span>
-<span class="err">匿名函数：</span><span class="p">(</span><span class="nx">i</span>:<span class="kt">Int</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">i</span> <span class="o">*</span> <span class="mi">2</span><span class="p">}</span> <span class="o">:</span><span class="nx">Int</span>
-<span class="kd">function</span> <span class="nx">literal</span> <span class="nx">syntax</span> <span class="err">函数文本</span>
+<div class="highlight"><pre><span></span><span class="err">标准函数：def double(i:Int):Int = {return i * 2}</span>
+<span class="err">匿名函数：(i:Int) =&gt; {i * 2} :Int</span>
+<span class="err">function literal syntax 函数文本</span>
 </pre></div>
 <p><strong>匿名函数如何调用？</strong>
 赋值变量：
@@ -204,14 +210,14 @@ val v2 = rt(5)    // v2 = 20
 <strong>匿名函数的目的是什么？</strong>
 内联函数，只使用一次的函数，提供名字是没有意义的。
 e.g. 创建函数返回另一个函数：a little tricky</p>
-<div class="highlight"><pre><span></span>// 返回值省略
-def getOps(c:Int) = (i:Int) =&gt; {
-    // your code here
-    val doubler = (x:Int) =&gt; {x * 2}
-    val tripler = (x:Int) =&gt; {x * 3}
-    if (c&gt;0) doubler(i)
-    else tripler(i)
-}
+<div class="highlight"><pre><span></span><span class="err">// 返回值省略</span>
+<span class="err">def getOps(c:Int) = (i:Int) =&gt; {</span>
+<span class="err">    // your code here</span>
+<span class="err">    val doubler = (x:Int) =&gt; {x * 2}</span>
+<span class="err">    val tripler = (x:Int) =&gt; {x * 3}</span>
+<span class="err">    if (c&gt;0) doubler(i)</span>
+<span class="err">    else tripler(i)</span>
+<span class="err">}</span>
 </pre></div>
 <h4 id="immutability">Immutability<a class="headerlink" href="#immutability" title="Permanent link">¶</a></h4>
 <p><strong>什么是不变性？</strong>
@@ -221,29 +227,29 @@ Immutability = program using constants</p>
 2. 有助于避免各种问题，如不可变对象是线程安全的，易于并发编程。</p>
 <p>How can we program without a variable?
 方法一：</p>
-<div class="highlight"><pre><span></span>def iFactorial(n:Int):Int = {
-    var i = n
-    var f = 1
-    while (i &gt; 0){
-        f = f * i
-        i = i - 1
-    }
-    return f
-}
+<div class="highlight"><pre><span></span><span class="n">def</span> <span class="n">iFactorial</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="nb">Int</span><span class="p">):</span><span class="nb">Int</span> <span class="o">=</span> <span class="err">{</span>
+    <span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="n">var</span> <span class="n">f</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="err">{</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">f</span> <span class="o">*</span> <span class="n">i</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="err">}</span>
+    <span class="k">return</span> <span class="n">f</span>
+<span class="err">}</span>
 
-iFactorial(5)    // =120
+<span class="n">iFactorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>    <span class="o">//</span> <span class="o">=</span><span class="mi">120</span>
 </pre></div>
 <ul>
 <li>iFactorial函数是纯函数吗？</li>
 <li>可以不用变量实现iFactorial函数吗？
 递归。迭代转递归 convert loops to recursion and avoid mutation</li>
 </ul>
-<div class="highlight"><pre><span></span>def iFactorial(n:Int):Int = {
-    if (n &lt;= 0)
-        return 1
-    else
-        return n * iFactorial(n - 1)
-}
+<div class="highlight"><pre><span></span><span class="err">def iFactorial(n:Int):Int = {</span>
+<span class="err">    if (n &lt;= 0)</span>
+<span class="err">        return 1</span>
+<span class="err">    else</span>
+<span class="err">        return n * iFactorial(n - 1)</span>
+<span class="err">}</span>
 </pre></div>
 <p _="%" asset_img="asset_img" immutability.jpg="Immutability.jpg">方法二：</p>
 <p>可变性可能有其明显的优势.</p>
@@ -257,54 +263,54 @@ iFactorial(5)    // =120
 <li>无参函数<code>(</code> <code>)</code>是可选的</li>
 </ul>
 <p>A simple example:</p>
-<div class="highlight"><pre><span></span>def myMax(x:Int, y:Int) : Int = {
-    if (x &gt; y)
-        return x;
-    else
-        return y;
-}
+<div class="highlight"><pre><span></span><span class="err">def myMax(x:Int, y:Int) : Int = {</span>
+<span class="err">    if (x &gt; y)</span>
+<span class="err">        return x;</span>
+<span class="err">    else</span>
+<span class="err">        return y;</span>
+<span class="err">}</span>
 </pre></div>
 <ol>
 <li>省略<code>;</code>和<code>return</code>：</li>
 </ol>
-<div class="highlight"><pre><span></span>def myMax(x:Int, y:Int) : Int = {
-    if (x &gt; y)
-        x
-    else
-        y
-}
+<div class="highlight"><pre><span></span><span class="err">def myMax(x:Int, y:Int) : Int = {</span>
+<span class="err">    if (x &gt; y)</span>
+<span class="err">        x</span>
+<span class="err">    else</span>
+<span class="err">        y</span>
+<span class="err">}</span>
 </pre></div>
 <ol>
 <li>一行函数体：</li>
 </ol>
-<div class="highlight"><pre><span></span>def myMax(x:Int, y:Int) : Int = {
-    if (x &gt; y) x else y
-}
+<div class="highlight"><pre><span></span><span class="err">def myMax(x:Int, y:Int) : Int = {</span>
+<span class="err">    if (x &gt; y) x else y</span>
+<span class="err">}</span>
 </pre></div>
 <ol>
 <li>单行函数体的花括号<code>{</code> <code>}</code>是可选的：</li>
 </ol>
-<div class="highlight"><pre><span></span>def myMax(x:Int, y:Int) : Int = if (x &gt; y) x else y
+<div class="highlight"><pre><span></span><span class="err">def myMax(x:Int, y:Int) : Int = if (x &gt; y) x else y</span>
 </pre></div>
 <ol>
 <li>返回值类型是可选的：</li>
 </ol>
-<div class="highlight"><pre><span></span>def myMax(x:Int, y:Int) = if (x &gt; y) x else y
+<div class="highlight"><pre><span></span><span class="err">def myMax(x:Int, y:Int) = if (x &gt; y) x else y</span>
 </pre></div>
 <p>这种单行<code>functions</code>和<code>methods</code>在Scala中常见。同样Scala中多行函数也很常见，但是函数体需要一对花括号<code>{</code> <code>}</code>：</p>
-<div class="highlight"><pre><span></span>def myMax(x:Int, y:Int) = { if (x &gt; y) x else y }
+<div class="highlight"><pre><span></span><span class="err">def myMax(x:Int, y:Int) = { if (x &gt; y) x else y }</span>
 </pre></div>
 <ol>
 <li>无参函数<code>(</code> <code>)</code>是可选的：</li>
 </ol>
 <p>保留<code>(</code> <code>)</code>：当函数有副作用时使用</p>
-<div class="highlight"><pre><span></span>def hWorld() = println("Hello World!")
-val h = hWorld()
-val h = hWorld
+<div class="highlight"><pre><span></span><span class="err">def hWorld() = println("Hello World!")</span>
+<span class="err">val h = hWorld()</span>
+<span class="err">val h = hWorld</span>
 </pre></div>
 <p>省略<code>(</code> <code>)</code>：当函数没有副作用时使用，即纯函数不使用<code>(</code> <code>)</code></p>
-<div class="highlight"><pre><span></span>def hWorld = println("Hello World!")
-val h = hWorld
+<div class="highlight"><pre><span></span><span class="err">def hWorld = println("Hello World!")</span>
+<span class="err">val h = hWorld</span>
 </pre></div>
 <p>惯例：无参函数没有<code>(</code> <code>)</code>表明副作用</p>
 <h4 id="functions-literals">Functions Literals<a class="headerlink" href="#functions-literals" title="Permanent link">¶</a></h4>
@@ -332,8 +338,8 @@ val l = 5  |  val l:Long = 5   |   val l = 5:Long       // create a integer valu
 <li><code>=</code>变成<code>=&gt;</code></li>
 <li>返回值类型移到末尾</li>
 </ol>
-<div class="highlight"><pre><span></span>val f = (x:Int) =&gt; { x + 5 }
-val f = (x:Int) =&gt; { x + 5 }:Int
+<div class="highlight"><pre><span></span><span class="err">val f = (x:Int) =&gt; { x + 5 }</span>
+<span class="err">val f = (x:Int) =&gt; { x + 5 }:Int</span>
 </pre></div>
 <p>如果把返回值类型移到前面，必须包含输入类型和返回类型。不推荐这种写法，Scala会自动推断：</p>
 <div class="highlight"><pre><span></span>// also like
@@ -352,12 +358,12 @@ val myFun = (x:Int, s:Sring) =&gt; { s + x + s }    // 推荐写法
 <li>Return it from higher order functions</li>
 </ul>
 <p>e.g.</p>
-<div class="highlight"><pre><span></span>val data= List(-250, 57, 54, -33, 43)
-data.map( (x:Int) =&gt; x + 10 )
-&gt;&gt;&gt; [[-240, 67, 64, -23, 53]]
+<div class="highlight"><pre><span></span><span class="err">val data= List(-250, 57, 54, -33, 43)</span>
+<span class="err">data.map( (x:Int) =&gt; x + 10 )</span>
+<span class="err">&gt;&gt;&gt; [[-240, 67, 64, -23, 53]]</span>
 </pre></div>
 <p>当只有一个参数时，参数类型和<code>(</code> <code>)</code>可省略：</p>
-<div class="highlight"><pre><span></span>data.map( x =&gt; x + 10 )
+<div class="highlight"><pre><span></span><span class="err">data.map( x =&gt; x + 10 )</span>
 </pre></div>
 <h4 id="placeholder-syntax">Placeholder Syntax<a class="headerlink" href="#placeholder-syntax" title="Permanent link">¶</a></h4>
 <h4 id="higher-order-functions">Higher Order Functions<a class="headerlink" href="#higher-order-functions" title="Permanent link">¶</a></h4>
@@ -368,23 +374,25 @@ data.map( (x:Int) =&gt; x + 10 )
 <h3 id="pattern-matching">Pattern Matching<a class="headerlink" href="#pattern-matching" title="Permanent link">¶</a></h3>
 <h3 id="scala-closures">Scala Closures<a class="headerlink" href="#scala-closures" title="Permanent link">¶</a></h3>
 <h2 id="scala-basics">Scala Basics<a class="headerlink" href="#scala-basics" title="Permanent link">¶</a></h2>
-            <div>
-</div>
 
-            <section>
-    <p id="post-share-links">
+
+                <p id="post-share-links">
     Share on:
     <a href="https://twitter.com/intent/tweet?text=Scala&url=https%3A//www.jerrulsu.com/Scala.html&hashtags=scala" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Scala.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="" target="_blank" title="Share on Google Plus">Google+</a>
-    ❄
     <a href="mailto:?subject=Scala&amp;body=https%3A//www.jerrulsu.com/Scala.html" target="_blank" title="Share via Email">Email</a>
     </p>
-</section>
 
             
+            
+
+
+
+
+
+
             <hr/>
 <section>
     <h2>Related Posts</h2>
@@ -414,32 +422,46 @@ data.map( (x:Int) =&gt; x + 10 )
             <a class="category-link" href="https://www.jerrulsu.com/categories.html#scala-ref">Scala</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://www.jerrulsu.com/tags#scala-ref">Scala
+                <li><a href="https://www.jerrulsu.com/tags.html#scala-ref">Scala
                     <span>7</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
-    <a href="#" title="My You can add links in your config file Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-you can add links in your config file sidebar-social-links"></i></a>
-    <a href="#" title="My Another social link Profile" class="sidebar-social-links" target="_blank">
-    <i class="fa fa-another social link sidebar-social-links"></i></a>
+<div id="sidebar-social-link">
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
         </div>
         </section>
 </div>
 </article>
+                    </div>
+                    <div class="span1"></div>
                 </div>
-                <div class="span1"></div>
             </div>
         </div>
-        <div id="push"></div>
-    </div>
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-subtitle"><span class="site-name">Jerry Su's Blog</span> - Copyright © 2017</li>
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
-    </ul>
-</div>
+
+    <div>
+        <span class="site-name">Jerry Su's Blog</span> - Copyright © 2017
+    </div>
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow">Elegant</a>
+    </div>
 </footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
@@ -449,8 +471,31 @@ data.map( (x:Int) =&gt; x + 10 )
             }
         </script>
 
-    
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : MIT -->
+        License : MIT -->
 </html>
