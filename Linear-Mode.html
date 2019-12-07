@@ -9,18 +9,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Machine Learning, Regularization, Machine Learning, " />
+<meta name="keywords" content="Machine Learning, Logistic Regression, Machine Learning, " />
 
-<meta property="og:title" content="L1 and L2 Regularization "/>
-<meta property="og:url" content="https://www.jerrulsu.com/L1-and-L2-Regularization.html" />
-<meta property="og:description" content="L范数¶ L0范数：向量中非零元素的个数 在机器学习中，如果使用L0范数即希望大部分权重w为0，即w向量时稀疏的，可以用于特征选择，通过最小化L0，来寻找最优的稀疏特征。然而L0范数的优化问题时一个NP Hard问题，故而通常L1的最优化问题通常会放宽到L1，L2下的最优化。 L1范数：向量中每个元素的绝对值之和 曼哈顿距离 Lasso回归 L2范数：向量元素绝对值的平方和再开方 欧几里得距离 Ridge回归 LP范数 LP-Norm推导： LP-Norm最终是：\(max(x_1, x_2,..,x_n)\)中的绝对值最大的元素，即二维是一个正方形。 L1与L2正则化¶ 为什么需要正则化？ 抑制模型复杂度，防止过拟合。 几何解释：解空间 解空间：损失函数的等高线与圆形正方形相交的区域。 L1：函数连续，但存在不可导点。在特征为二维时，约束线是一个菱形，等值线大概率最先与顶点相交，在这种情况下有一个维度的特征就会为0，这就带来了稀疏。当特征的维度变高，坐标轴上角与边都会变多 …" />
+<meta property="og:title" content="Linear Mode "/>
+<meta property="og:url" content="https://www.jerrulsu.com/Linear-Mode.html" />
+<meta property="og:description" content="Linear Regression¶ 线性模型： \(f(X) = W^TX\) 损失函数：平方损失 什么是最小二乘法？ 基于平方损失误差最小化进行模型求解的方法称为最小二乘法。在线性模型中，最小二乘法就是试图找到一条直线，使得所有样本到直线上的欧式距离之和最小。 平方损失函数是连续可微的凸函数，存在全局最小值，可以通过梯度下降法求解最优值。 Logistic Regression¶ 逻辑回归模型：sigmoid函数 损失函数： 逻辑回归解决的是分类问题，是广义线性模型，在线性模型\(W^TX\)上套一层sigmoid函数。 LR模型的损失函数可以使用线性模型的平方损失函数吗？ 不可以，将LR模型sigmoid函数带入平方损失函数f(x)得到的是一个非凸函数，存在若干个局部最小值，无法利用梯度下降法求解最优值问题。 LR模型的损失函数如何推导？ if (!document.getElementById(&#39;mathjaxscript_pelican_#%@#$@#&#39;)) { var align = &#34;center&#34;, indent = &#34;0em&#34;, linebreak = &#34;false&#34;; if …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2019-06-23T12:33:43+08:00" />
-<meta name="twitter:title" content="L1 and L2 Regularization ">
-<meta name="twitter:description" content="L范数¶ L0范数：向量中非零元素的个数 在机器学习中，如果使用L0范数即希望大部分权重w为0，即w向量时稀疏的，可以用于特征选择，通过最小化L0，来寻找最优的稀疏特征。然而L0范数的优化问题时一个NP Hard问题，故而通常L1的最优化问题通常会放宽到L1，L2下的最优化。 L1范数：向量中每个元素的绝对值之和 曼哈顿距离 Lasso回归 L2范数：向量元素绝对值的平方和再开方 欧几里得距离 Ridge回归 LP范数 LP-Norm推导： LP-Norm最终是：\(max(x_1, x_2,..,x_n)\)中的绝对值最大的元素，即二维是一个正方形。 L1与L2正则化¶ 为什么需要正则化？ 抑制模型复杂度，防止过拟合。 几何解释：解空间 解空间：损失函数的等高线与圆形正方形相交的区域。 L1：函数连续，但存在不可导点。在特征为二维时，约束线是一个菱形，等值线大概率最先与顶点相交，在这种情况下有一个维度的特征就会为0，这就带来了稀疏。当特征的维度变高，坐标轴上角与边都会变多 …">
+<meta property="og:article:published_time" content="2019-12-07T10:31:33+08:00" />
+<meta name="twitter:title" content="Linear Mode ">
+<meta name="twitter:description" content="Linear Regression¶ 线性模型： \(f(X) = W^TX\) 损失函数：平方损失 什么是最小二乘法？ 基于平方损失误差最小化进行模型求解的方法称为最小二乘法。在线性模型中，最小二乘法就是试图找到一条直线，使得所有样本到直线上的欧式距离之和最小。 平方损失函数是连续可微的凸函数，存在全局最小值，可以通过梯度下降法求解最优值。 Logistic Regression¶ 逻辑回归模型：sigmoid函数 损失函数： 逻辑回归解决的是分类问题，是广义线性模型，在线性模型\(W^TX\)上套一层sigmoid函数。 LR模型的损失函数可以使用线性模型的平方损失函数吗？ 不可以，将LR模型sigmoid函数带入平方损失函数f(x)得到的是一个非凸函数，存在若干个局部最小值，无法利用梯度下降法求解最优值问题。 LR模型的损失函数如何推导？ if (!document.getElementById(&#39;mathjaxscript_pelican_#%@#$@#&#39;)) { var align = &#34;center&#34;, indent = &#34;0em&#34;, linebreak = &#34;false&#34;; if …">
 
-        <title>L1 and L2 Regularization  · Jerry Su&#39;s Blog
+        <title>Linear Mode  · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -64,8 +64,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="https://www.jerrulsu.com/L1-and-L2-Regularization.html">
-                L1 and L2 Regularization
+            <a href="https://www.jerrulsu.com/Linear-Mode.html">
+                Linear Mode
             </a>
         </h1>
     </header>
@@ -77,9 +77,8 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#l">L范数</a></li>
-<li><a href="#l1l2">L1与L2正则化</a></li>
-<li><a href="#_1">引用</a></li>
+<li><a href="#linear-regression">Linear Regression</a></li>
+<li><a href="#logistic-regression">Logistic Regression</a></li>
 </ul>
 </div>
         </nav>
@@ -87,57 +86,19 @@
     <div class="span8 article-content">
             
             
-<h3 id="l">L范数<a class="headerlink" href="#l" title="Permanent link">¶</a></h3>
-<ul>
-<li>
-<p><strong>L0范数：向量中非零元素的个数</strong></p>
-<p>在机器学习中，如果使用L0范数即希望大部分权重w为0，即w向量时稀疏的，可以用于特征选择，通过最小化L0，来寻找最优的稀疏特征。然而L0范数的优化问题时一个NP Hard问题，故而通常L1的最优化问题通常会放宽到L1，L2下的最优化。</p>
-</li>
-<li>
-<p><strong>L1范数：向量中每个元素的绝对值之和</strong></p>
-<p>曼哈顿距离  </p>
-<p>Lasso回归</p>
-</li>
-<li>
-<p><strong>L2范数：向量元素绝对值的平方和再开方</strong></p>
-<p>欧几里得距离  </p>
-<p>Ridge回归</p>
-</li>
-</ul>
-<p><img alt="L1&amp;L2" src="images/Regularization/L1&amp;L2.PNG"/></p>
-<ul>
-<li>
-<p><strong>LP范数</strong></p>
-<p><img alt="LP" src="images/Regularization/L norm.png"/></p>
-<p>LP-Norm推导：</p>
-<p><img alt="LP-Norm" src="images/Regularization/LP.PNG"/> </p>
-<p>LP-Norm最终是：<strong><span class="math">\(max(x_1, x_2,..,x_n)\)</span></strong>中的绝对值最大的元素，即二维是一个正方形。</p>
-</li>
-</ul>
-<h3 id="l1l2">L1与L2正则化<a class="headerlink" href="#l1l2" title="Permanent link">¶</a></h3>
-<ul>
-<li>
-<p>为什么需要正则化？</p>
-<p>抑制模型复杂度，防止过拟合。</p>
-</li>
-<li>
-<p>几何解释：解空间</p>
-<p><img alt="L1L2space" src="images/Regularization/L1L2space.JPG"/></p>
-<p>解空间：损失函数的等高线与圆形正方形相交的区域。</p>
-<p>L1：函数连续，但存在不可导点。在特征为二维时，约束线是一个菱形，等值线<strong>大概率</strong>最先与顶点相交，在这种情况下有一个维度的特征就会为0，这就带来了稀疏。当特征的维度变高，坐标轴上角与边都会变多，这更会加大等值线与他们先相交的概率，从而导致了稀疏性。</p>
-<p>L2：函数连续且处处可导。它的约束线是一个圆形，等值线可能与它任意一个位置的点首先相切，这个切点在坐标轴上的概率大大减小，从而不太容易导致稀疏。L2正则化通过<strong>权重衰减</strong>，在权重较大时衰减地快，权重较小时衰减得慢，保证了模型的简单，提高了泛化能力。</p>
-</li>
-<li>
-<p>下降速度</p>
-<p><img alt="l1&amp;l2" src="images/Regularization/l1&amp;l2.png"/></p>
-<p>当w较大时，L2的斜率大于L1，L2正则化权重衰减地比L1正则化快。</p>
-<p>当w较小时，L2的斜率小于L1，L1正则化权重衰减地比L2正则化快。</p>
-<p>因此L1正则化最终会导致模型保留了重要的大权重，不重要的小权重都被衰减为0，产生了稀疏。而L2正则化可以通过限制权重大小让模型变得简单，但却不会导致稀疏。</p>
-</li>
-</ul>
-<h3 id="_1">引用<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
-<p><a href="https://medium.com/datadriveninvestor/l1-l2-regularization-7f1b4fe948f2">L1 and L2 regularization</a></p>
-<p><a href="https://www.jianshu.com/p/4bad38fe07e6">L0、L1、L2范数在机器学习中的应用</a></p>
+<h2 id="linear-regression">Linear Regression<a class="headerlink" href="#linear-regression" title="Permanent link">¶</a></h2>
+<p>线性模型： <span class="math">\(f(X) = W^TX\)</span></p>
+<p>损失函数：平方损失</p>
+<p><strong>什么是最小二乘法？</strong></p>
+<p>基于平方损失误差最小化进行模型求解的方法称为<strong>最小二乘法</strong>。在线性模型中，最小二乘法就是试图找到一条直线，使得所有样本到直线上的欧式距离之和最小。</p>
+<p>平方损失函数是连续可微的凸函数，存在全局最小值，可以通过梯度下降法求解最优值。</p>
+<h2 id="logistic-regression">Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permanent link">¶</a></h2>
+<p>逻辑回归模型：sigmoid函数</p>
+<p>损失函数：</p>
+<p>逻辑回归解决的是分类问题，是<strong>广义线性模型</strong>，在线性模型<span class="math">\(W^TX\)</span>上套一层sigmoid函数。</p>
+<p><strong>LR模型的损失函数可以使用线性模型的平方损失函数吗？</strong></p>
+<p>不可以，将LR模型sigmoid函数带入平方损失函数f(x)得到的是一个非凸函数，存在若干个局部最小值，无法利用梯度下降法求解最优值问题。</p>
+<p><strong>LR模型的损失函数如何推导？</strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -204,11 +165,11 @@
 
                 <p id="post-share-links">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=L1%20and%20L2%20Regularization&url=https%3A//www.jerrulsu.com/L1-and-L2-Regularization.html&hashtags=machine-learning,regularization" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=Linear%20Mode&url=https%3A//www.jerrulsu.com/Linear-Mode.html&hashtags=machine-learning,logistic-regression" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/L1-and-L2-Regularization.html" target="_blank" title="Share on Facebook">Facebook</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Linear-Mode.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="mailto:?subject=L1%20and%20L2%20Regularization&amp;body=https%3A//www.jerrulsu.com/L1-and-L2-Regularization.html" target="_blank" title="Share via Email">Email</a>
+    <a href="mailto:?subject=Linear%20Mode&amp;body=https%3A//www.jerrulsu.com/Linear-Mode.html" target="_blank" title="Share via Email">Email</a>
     </p>
 
             
@@ -229,7 +190,7 @@
                 <a class="accordion-toggle disqus-comment-count comment-count"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   href="https://www.jerrulsu.com/L1-and-L2-Regularization.html#comment_thread"
+                   href="https://www.jerrulsu.com/Linear-Mode.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -240,7 +201,7 @@
 
                         <script src="https://utteranc.es/client.js"
         data-repo="True"
-        data-issue-term="https://www.jerrulsu.com/L1-and-L2-Regularization.html"
+        data-issue-term="https://www.jerrulsu.com/Linear-Mode.html"
         data-label=""
         data-theme=""
         crossorigin="anonymous"
@@ -260,17 +221,16 @@
 <ul class="related-posts-list">
 <li><a href="https://www.jerrulsu.com/GBDT.html" title="GBDT">GBDT</a></li>
 <li><a href="https://www.jerrulsu.com/Bias-vs-Variance.html" title="Bias vs Variance">Bias vs Variance</a></li>
+<li><a href="https://www.jerrulsu.com/L1-and-L2-Regularization.html" title="L1 and L2 Regularization">L1 and L2 Regularization</a></li>
 <li><a href="https://www.jerrulsu.com/PCA.html" title="PCA">PCA</a></li>
 <li><a href="https://www.jerrulsu.com/Automated-Feature-Engineering:-Featuretools.html" title="Automated Feature Engineering: Featuretools">Automated Feature Engineering: Featuretools</a></li>
-<li><a href="https://www.jerrulsu.com/Linear-Mode.html" title="Linear Mode">Linear Mode</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://www.jerrulsu.com/Bias-vs-Variance.html" title="Previous: Bias vs Variance">Bias vs Variance</a></li>
-                <li class="next-article"><a href="https://www.jerrulsu.com/SQLite-Full-text-Search.html" title="Next: SQLite Full-text Search">SQLite Full-text Search</a> »</li>
+                <li class="previous-article">« <a href="https://www.jerrulsu.com/Hadoop-small-files-problem.html" title="Previous: Hadoop-small files problem">Hadoop-small files problem</a></li>
             </ul>
             </nav>
             </aside>
@@ -278,16 +238,16 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2019-06-23T12:33:43+08:00">Jun 23, 2019</time>
+            <time itemprop="dateCreated" datetime="2019-12-07T10:31:33+08:00">Dec 7, 2019</time>
             <h4>Category</h4>
             <a class="category-link" href="https://www.jerrulsu.com/categories.html#machine-learning-ref">Machine Learning</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
+                <li><a href="https://www.jerrulsu.com/tags.html#logistic-regression-ref">Logistic Regression
+                    <span>1</span>
+</a></li>
                 <li><a href="https://www.jerrulsu.com/tags.html#machine-learning-ref">Machine Learning
                     <span>9</span>
-</a></li>
-                <li><a href="https://www.jerrulsu.com/tags.html#regularization-ref">Regularization
-                    <span>1</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
