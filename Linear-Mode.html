@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Linear Mode "/>
 <meta property="og:url" content="https://www.jerrulsu.com/Linear-Mode.html" />
-<meta property="og:description" content="Linear Regression¶ 线性模型： \(f(x) = w^Tx\) 拟合线性模型的损失函数：平方损失\(\frac{1}{m}\sum_{n=1}^{m} \frac{1}{2} \left ( f(x^{(n)}) - y^{(n)} \right )^2\) 什么是最小二乘法？ 基于平方损失误差最小化进行模型求解的方法称为最小二乘法。在线性模型中，最小二乘法就是试图找到一条直线，使得所有样本到直线上的欧式距离之和最小。 平方损失函数是连续可微的凸函数，存在全局最小值，可以通过梯度下降法求解最优值。 Logistic Regression¶ 逻辑回归模型：\(f(x) = \frac{1}{1+e^{-z}}\) sigmoid函数 拟合逻辑回归模型的损失函数：\(-\frac{1 …" />
+<meta property="og:description" content="1. Linear Regression¶ 1.1 线性模型¶ $$**f(x) = w^Tx**$$ 1.2 拟合线性模型的损失函数¶ 平方损失 $$\frac{1}{m}\sum_{n=1}^{m} \frac{1}{2} \left ( f(x^{(n)}) - y^{(n)} \right )^2$$ 什么是最小二乘法？ 基于平方损失误差最小化进行模型求解的方法称为最小二乘法。在线性模型中，最小二乘法就是试图找到一条直线，使得所有样本到直线上的欧式距离之和最小。 平方损失函数是连续可微的凸函数，存在全局最小值，可以通过梯度下降法求解最优值。 2. Logistic Regression¶ 2.1 逻辑回归模型¶ Sigmoid函数: $$ f(x …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-12-07T10:31:33+08:00" />
 <meta name="twitter:title" content="Linear Mode ">
-<meta name="twitter:description" content="Linear Regression¶ 线性模型： \(f(x) = w^Tx\) 拟合线性模型的损失函数：平方损失\(\frac{1}{m}\sum_{n=1}^{m} \frac{1}{2} \left ( f(x^{(n)}) - y^{(n)} \right )^2\) 什么是最小二乘法？ 基于平方损失误差最小化进行模型求解的方法称为最小二乘法。在线性模型中，最小二乘法就是试图找到一条直线，使得所有样本到直线上的欧式距离之和最小。 平方损失函数是连续可微的凸函数，存在全局最小值，可以通过梯度下降法求解最优值。 Logistic Regression¶ 逻辑回归模型：\(f(x) = \frac{1}{1+e^{-z}}\) sigmoid函数 拟合逻辑回归模型的损失函数：\(-\frac{1 …">
+<meta name="twitter:description" content="1. Linear Regression¶ 1.1 线性模型¶ $$**f(x) = w^Tx**$$ 1.2 拟合线性模型的损失函数¶ 平方损失 $$\frac{1}{m}\sum_{n=1}^{m} \frac{1}{2} \left ( f(x^{(n)}) - y^{(n)} \right )^2$$ 什么是最小二乘法？ 基于平方损失误差最小化进行模型求解的方法称为最小二乘法。在线性模型中，最小二乘法就是试图找到一条直线，使得所有样本到直线上的欧式距离之和最小。 平方损失函数是连续可微的凸函数，存在全局最小值，可以通过梯度下降法求解最优值。 2. Logistic Regression¶ 2.1 逻辑回归模型¶ Sigmoid函数: $$ f(x …">
 
         <title>Linear Mode  · Jerry Su&#39;s Blog
 </title>
@@ -77,9 +77,15 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#linear-regression">Linear Regression</a></li>
-<li><a href="#logistic-regression">Logistic Regression</a><ul>
-<li><a href="#lr">LR模型的损失函数如何推导？</a></li>
+<li><a href="#1-linear-regression">1. Linear Regression</a><ul>
+<li><a href="#11">1.1 线性模型</a></li>
+<li><a href="#12">1.2 拟合线性模型的损失函数</a></li>
+</ul>
+</li>
+<li><a href="#2-logistic-regression">2. Logistic Regression</a><ul>
+<li><a href="#21">2.1 逻辑回归模型</a></li>
+<li><a href="#22">2.2 拟合逻辑回归模型的损失函数</a></li>
+<li><a href="#23-lr">2.3 LR模型的损失函数如何推导?</a></li>
 </ul>
 </li>
 </ul>
@@ -89,24 +95,30 @@
     <div class="span8 article-content">
             
             
-<h2 id="linear-regression">Linear Regression<a class="headerlink" href="#linear-regression" title="Permanent link">¶</a></h2>
-<p>线性模型： <span class="math">\(f(x) = w^Tx\)</span></p>
-<p>拟合线性模型的损失函数：平方损失<span class="math">\(\frac{1}{m}\sum_{n=1}^{m} \frac{1}{2} \left ( f(x^{(n)}) - y^{(n)} \right )^2\)</span></p>
+<h2 id="1-linear-regression">1. Linear Regression<a class="headerlink" href="#1-linear-regression" title="Permanent link">¶</a></h2>
+<h3 id="11">1.1 线性模型<a class="headerlink" href="#11" title="Permanent link">¶</a></h3>
+<div class="math">$$**f(x) = w^Tx**$$</div>
+<h3 id="12">1.2 拟合线性模型的损失函数<a class="headerlink" href="#12" title="Permanent link">¶</a></h3>
+<p>平方损失</p>
+<div class="math">$$\frac{1}{m}\sum_{n=1}^{m} \frac{1}{2} \left ( f(x^{(n)}) - y^{(n)} \right )^2$$</div>
 <ul>
 <li><strong>什么是最小二乘法？</strong></li>
 </ul>
 <p>基于平方损失误差最小化进行模型求解的方法称为<strong>最小二乘法</strong>。在线性模型中，最小二乘法就是试图找到一条直线，使得所有样本到直线上的欧式距离之和最小。</p>
 <p>平方损失函数是连续可微的凸函数，存在全局最小值，可以通过梯度下降法求解最优值。</p>
-<h2 id="logistic-regression">Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permanent link">¶</a></h2>
-<p>逻辑回归模型：<span class="math">\(f(x) = \frac{1}{1+e^{-z}}\)</span> sigmoid函数</p>
-<p>拟合逻辑回归模型的损失函数：<span class="math">\(-\frac{1}{m}\left [ \sum_{i=1}^{m} y^{(i)}logf(x^{(i)}) + (1-y^{(i)})log(1-f(x^{(i)})) \right ], \ \ f(x)为逻辑模型\)</span></p>
+<h2 id="2-logistic-regression">2. Logistic Regression<a class="headerlink" href="#2-logistic-regression" title="Permanent link">¶</a></h2>
+<h3 id="21">2.1 逻辑回归模型<a class="headerlink" href="#21" title="Permanent link">¶</a></h3>
+<p>Sigmoid函数: </p>
+<div class="math">$$ f(x) = \frac{1}{1+e^{-z}} $$</div>
+<h3 id="22">2.2 拟合逻辑回归模型的损失函数<a class="headerlink" href="#22" title="Permanent link">¶</a></h3>
+<div class="math">$$-\frac{1}{m}\left [ \sum_{i=1}^{m} y^{(i)}logf(x^{(i)}) + (1-y^{(i)})log(1-f(x^{(i)})) \right ], \ \ f(x)为逻辑模型$$</div>
 <p>逻辑回归解决的是分类问题，是<strong>广义线性模型</strong>，在线性模型<span class="math">\(z=w^Tx\)</span>上套一层sigmoid函数。</p>
 <ul>
 <li><strong>LR模型的损失函数可以使用线性模型的平方损失函数吗？</strong></li>
 </ul>
 <p><img alt="lo" src="images/linear_mode/logi.png"/></p>
 <p>不可以，将LR模型非线性的sigmoid函数带入平方损失函数f(x)得到的是一个非凸函数，存在若干个局部最小值，无法利用梯度下降法求解最优值问题。</p>
-<h3 id="lr"><strong>LR模型的损失函数如何推导？</strong><a class="headerlink" href="#lr" title="Permanent link">¶</a></h3>
+<h3 id="23-lr">2.3 LR模型的损失函数如何推导?<a class="headerlink" href="#23-lr" title="Permanent link">¶</a></h3>
 <p><img alt="cost1" src="images/linear_mode/cost_1.png"/></p>
 <p><strong>图像性质：</strong></p>
 <ul>
