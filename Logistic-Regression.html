@@ -9,18 +9,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Machine Learning, Adaboost, Machine Learning, " />
+<meta name="keywords" content="Machine Learning, Logistic Regression, Machine Learning, " />
 
-<meta property="og:title" content="Adaboost "/>
-<meta property="og:url" content="https://www.jerrulsu.com/Adaboost.html" />
-<meta property="og:description" content="引：理解CART分类回归树 Boosting¶ Boosting , short for Adaptive Boosting, is a machine learning ensemble meta-algorithm for primarily reducing bias, and also variance in supervised learning, and a family of machine learning algorithms that convert weak learners to strong ones. AdaBoost算法¶ 在算法初始化阶段，为每一个样本赋予一个相等的权重,同等概率分布（样本数的倒数），即每个样本在开始都是一样重要的。接下来，每一次训练后得到的模型，对数据点的估计会有所差异，所以在每一步结束后，我们需要对权重进行处理，而处理的方式就是通过增加错分类的样本点的权重 …" />
+<meta property="og:title" content="Logistic RegressionL "/>
+<meta property="og:url" content="https://www.jerrulsu.com/Logistic-Regression.html" />
+<meta property="og:description" content="1. Linear Regression¶ 1.1 线性模型¶ $$f(x) = \Theta^Tx$$ 1.2 拟合线性模型的损失函数¶ 平方损失： $$\frac{1}{m}\sum_{n=1}^{m} \frac{1}{2} \left ( f(x^{(n)}) - y^{(n)} \right )^2$$ 什么是最小二乘法？ 基于平方损失误差最小化进行模型求解的方法称为最小二乘法。在线性模型中，最小二乘法就是试图找到一条直线，使得所有样本到直线上的欧式距离之和最小。 平方损失函数是连续可微的凸函数，存在全局最小值，可以通过梯度下降法求解最优值。 1.3 线性回归的正则化¶ 2. Logistic Regression¶ 2.1 逻辑回归模型 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2018-12-05T01:59:58+08:00" />
-<meta name="twitter:title" content="Adaboost ">
-<meta name="twitter:description" content="引：理解CART分类回归树 Boosting¶ Boosting , short for Adaptive Boosting, is a machine learning ensemble meta-algorithm for primarily reducing bias, and also variance in supervised learning, and a family of machine learning algorithms that convert weak learners to strong ones. AdaBoost算法¶ 在算法初始化阶段，为每一个样本赋予一个相等的权重,同等概率分布（样本数的倒数），即每个样本在开始都是一样重要的。接下来，每一次训练后得到的模型，对数据点的估计会有所差异，所以在每一步结束后，我们需要对权重进行处理，而处理的方式就是通过增加错分类的样本点的权重 …">
+<meta property="og:article:published_time" content="2019-12-07T10:31:33+08:00" />
+<meta name="twitter:title" content="Logistic RegressionL ">
+<meta name="twitter:description" content="1. Linear Regression¶ 1.1 线性模型¶ $$f(x) = \Theta^Tx$$ 1.2 拟合线性模型的损失函数¶ 平方损失： $$\frac{1}{m}\sum_{n=1}^{m} \frac{1}{2} \left ( f(x^{(n)}) - y^{(n)} \right )^2$$ 什么是最小二乘法？ 基于平方损失误差最小化进行模型求解的方法称为最小二乘法。在线性模型中，最小二乘法就是试图找到一条直线，使得所有样本到直线上的欧式距离之和最小。 平方损失函数是连续可微的凸函数，存在全局最小值，可以通过梯度下降法求解最优值。 1.3 线性回归的正则化¶ 2. Logistic Regression¶ 2.1 逻辑回归模型 …">
 
-        <title>Adaboost  · Jerry Su&#39;s Blog
+        <title>Logistic RegressionL  · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -64,8 +64,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="https://www.jerrulsu.com/Adaboost.html">
-                Adaboost
+            <a href="https://www.jerrulsu.com/Logistic-Regression.html">
+                Logistic RegressionL
             </a>
         </h1>
     </header>
@@ -77,12 +77,24 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#boosting">Boosting</a></li>
-<li><a href="#adaboost">AdaBoost算法</a></li>
-<li><a href="#adaboost_1">AdaBoost缺点</a></li>
-<li><a href="#_1">算法原理</a></li>
-<li><a href="#adaboost_2">AdaBoost重点</a></li>
-<li><a href="#_2">引用</a></li>
+<li><a href="#1-linear-regression">1. Linear Regression</a><ul>
+<li><a href="#11">1.1 线性模型</a></li>
+<li><a href="#12">1.2 拟合线性模型的损失函数</a></li>
+<li><a href="#13">1.3 线性回归的正则化</a></li>
+</ul>
+</li>
+<li><a href="#2-logistic-regression">2. Logistic Regression</a><ul>
+<li><a href="#21">2.1 逻辑回归模型</a></li>
+<li><a href="#22">2.2 拟合逻辑回归模型的损失函数</a></li>
+<li><a href="#23-lr">2.3 LR模型的损失函数可以使用线性模型的平方损失函数吗？</a></li>
+<li><a href="#23-lr_1">2.3 LR模型的损失函数如何推导?</a></li>
+<li><a href="#24">2.4 损失函数的紧凑形式是什么？为什么是这种形式？</a></li>
+<li><a href="#25">2.5 如何拟合参数？</a></li>
+<li><a href="#26">2.6 如何最小化损失函数？</a></li>
+<li><a href="#27">2.7 极大似然估计</a></li>
+<li><a href="#28">2.8 逻辑回归的正则化</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </nav>
@@ -90,73 +102,47 @@
     <div class="span8 article-content">
             
             
-<p><a href="https://www.jerrulsu.com/CART.html">引：理解CART分类回归树</a></p>
-<h3 id="boosting">Boosting<a class="headerlink" href="#boosting" title="Permanent link">¶</a></h3>
-<p><strong>Boosting</strong> , short for Adaptive Boosting, is a <a href="https://en.wikipedia.org/wiki/Ensemble_learning" title="Ensemble learning">machine learning ensemble</a> <a href="https://en.wikipedia.org/wiki/Meta-algorithm" title="Meta-algorithm">meta-algorithm</a> for primarily reducing <a href="https://en.wikipedia.org/wiki/Supervised_learning#Bias-variance_tradeoff" title="Supervised learning">bias</a>, and also variance in supervised learning, and a family of machine learning algorithms that convert weak learners to strong ones.</p>
-<h3 id="adaboost">AdaBoost算法<a class="headerlink" href="#adaboost" title="Permanent link">¶</a></h3>
-<p>在算法初始化阶段，为每一个样本赋予一个相等的权重,同等概率分布（样本数的倒数），即每个样本在开始都是一样重要的。接下来，每一次训练后得到的模型，对数据点的估计会有所差异，所以在每一步结束后，我们需要对权重进行处理，而处理的方式就是通过增加错分类的样本点的权重，同时减少分类正确的样本点的权重。这样能够确保，如果某些点经常被分错，那么就会被“严重关注”，也就会被赋予一个很高的权重。然后等进行了N次迭代（迭代次数由用户指定），将会得到N个简单的弱学习器，最后将它们组合起来，可以对它们进行加权（错误率越大的弱学习器其权重值越小，错误率越小的弱分类器权重值越大）或者让它们进行投票等得到一个最终的模型，即带权加法模型。</p>
-<h3 id="adaboost_1">AdaBoost缺点<a class="headerlink" href="#adaboost_1" title="Permanent link">¶</a></h3>
+<h2 id="1-linear-regression">1. Linear Regression<a class="headerlink" href="#1-linear-regression" title="Permanent link">¶</a></h2>
+<h3 id="11">1.1 线性模型<a class="headerlink" href="#11" title="Permanent link">¶</a></h3>
+<p><strong><div class="math">$$f(x) = \Theta^Tx$$</div></strong></p>
+<h3 id="12">1.2 拟合线性模型的损失函数<a class="headerlink" href="#12" title="Permanent link">¶</a></h3>
+<p><strong>平方损失：</strong></p>
+<p><strong><div class="math">$$\frac{1}{m}\sum_{n=1}^{m} \frac{1}{2} \left ( f(x^{(n)}) - y^{(n)} \right )^2$$</div></strong></p>
+<p><strong>什么是最小二乘法？</strong></p>
+<p>基于平方损失误差最小化进行模型求解的方法称为<strong>最小二乘法</strong>。在线性模型中，最小二乘法就是试图找到一条直线，使得所有样本到直线上的欧式距离之和最小。</p>
+<p>平方损失函数是连续可微的凸函数，存在全局最小值，可以通过梯度下降法求解最优值。</p>
+<h3 id="13">1.3 线性回归的正则化<a class="headerlink" href="#13" title="Permanent link">¶</a></h3>
+<h2 id="2-logistic-regression">2. Logistic Regression<a class="headerlink" href="#2-logistic-regression" title="Permanent link">¶</a></h2>
+<h3 id="21">2.1 逻辑回归模型<a class="headerlink" href="#21" title="Permanent link">¶</a></h3>
+<p><strong>Sigmoid函数:</strong></p>
+<p><strong> <div class="math">$$ f(x) = \frac{1}{1+e^{-z}} $$</div></strong></p>
+<h3 id="22">2.2 拟合逻辑回归模型的损失函数<a class="headerlink" href="#22" title="Permanent link">¶</a></h3>
+<p><strong><div class="math">$$-\frac{1}{m}\left [ \sum_{i=1}^{m} y^{(i)}logf(x^{(i)}) + (1-y^{(i)})log(1-f(x^{(i)})) \right ], \ \ f(x)为逻辑模型$$</div></strong></p>
+<p>逻辑回归解决的是分类问题，是<strong>广义线性模型</strong>，在线性模型<span class="math">\(z=\Theta^Tx\)</span>上套一层sigmoid函数。</p>
+<h3 id="23-lr">2.3 LR模型的损失函数可以使用线性模型的平方损失函数吗？<a class="headerlink" href="#23-lr" title="Permanent link">¶</a></h3>
+<p>不可以，将LR模型非线性的sigmoid函数带入平方损失函数f(x)得到的是一个非凸函数，存在若干个局部最小值，无法利用梯度下降法求解最优值问题。</p>
+<p><img alt="lo" src="images/linear_mode/logi.png"/></p>
+<h3 id="23-lr_1">2.3 LR模型的损失函数如何推导?<a class="headerlink" href="#23-lr_1" title="Permanent link">¶</a></h3>
+<p><img alt="cost1" src="images/linear_mode/cost_1.png"/></p>
+<p><strong>图像性质：</strong></p>
 <ul>
-<li>
-<p>AdaBoost对噪声和离群点敏感</p>
-</li>
-<li>
-<p>可扩展性方面，由于提升的时序性，不能进行并行处理。</p>
-</li>
+<li>如果标签y=1，预测值h(x)也为1，此时的损失值最小为0；当h(x)趋向0时，损失值趋近于无穷大。所以，预测值h(x)与y越接近，损失值越趋向于0。</li>
 </ul>
-<h3 id="_1">算法原理<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
-<ol>
-<li>
-<p><strong>初始权重，均匀分布：</strong>
-<div class="math">$$D_i=(w_{11}, ... ,w_{1i}, ... ,w_{1N}), w_{1i}=\frac{1}{N}$$</div>
-</p>
-</li>
-<li>
-<p><strong>m=1,2,...,M迭代：</strong>
-2.1 <strong>由带权数据集学习弱分类器：</strong>
-<div class="math">$$G_m(x)$$</div>
-2.2 <strong>弱分类器<span class="math">\(G_m(x)\)</span>在加权数据集上的分类误差：是被<span class="math">\(G_m(x)\)</span>误分类样本的权重之和。</strong>
-<div class="math">$$e_m=\sum_{i=1}^N w_{mi}I(G_m(x_i) \neq y_i)=\sum_{G_m \neq y_i}w_{mi}$$</div>
-2.3 <strong>The weight of weak learners:</strong>
-<div class="math">$$\alpha_m=\frac{1}{2}\log\frac{1-e_m}{e_m}$$</div>
-2.4 <strong>Re-Weighting:</strong>
-<div class="math">$$w_{m+1,i}=\frac{w_{mi}}{Z_m}exp(-\alpha_my_iG_m(x_i)),$$</div>
-<div class="math">$$Z_m=\sum_{i=1}^Nw_{mi}exp(-\alpha_my_iG_m(x_i))$$</div>
-</p>
-</li>
-<li>
-<p><strong>弱分类器的线性组合：</strong>
-<div class="math">$$f(x)=\sum_{m=1}^M\alpha_mG_m(x)$$</div>
-<strong>Strong learner:</strong>
-<div class="math">$$G(x)=sign(f(x))$$</div>
-</p>
-</li>
-</ol>
-<h3 id="adaboost_2">AdaBoost重点<a class="headerlink" href="#adaboost_2" title="Permanent link">¶</a></h3>
-<ol>
-<li>AdaBoost怎样实现更加关注误分类的数据？</li>
-</ol>
-<p>通过给数据样本增加权重<strong>Weighted data</strong>，分错的数据在下一轮学习中提高权重，反之减小权重。<strong>"re-weighting"</strong></p>
-<ol>
-<li>为什么通过调高误分类数据的权重可以使下一轮的弱分类器更加关注？(数据权重的思想)</li>
-</ol>
-<p>选择决策点与带权分类误差 </p>
-<p>弱分类器的分类误差由误分类权重累加，当寻找最佳划分点时，总是寻找误差最小的，则权重高的数据会尽可能分对，才能使误差尽可能的小，由此实现更加关注误分类的点。</p>
-<p>数据权重主要用于弱分类器寻找其分类误差最小的决策点</p>
-<ol>
-<li>
-<p>数据权重和弱分类器权重</p>
-</li>
-<li>
-<p>AdaBoost主要为减少偏差</p>
-</li>
-<li>
-<p>Adaboost使用的是自适应的方法，其中概率分布式变化的，关注的是难分类的样本。</p>
-</li>
-</ol>
-<h3 id="_2">引用<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
-<p><a href="http://www.ccs.neu.edu/home/vip/teach/MLcourse/4_boosting/slides/gradient_boosting.pdf">PPT - A Gentle Introduction to Gradient Boosting</a></p>
-<p><a href="https://scikit-learn.org/stable/modules/ensemble.html#gradient-boosting">Scikit-learn - GRADIENT BOOSTING</a></p>
+<p><img alt="cost0" src="images/linear_mode/cost_0.png"/></p>
+<ul>
+<li>case y=0: 反之，预测值h(x)接近标签y值0，则损失值收敛与0。</li>
+</ul>
+<h3 id="24">2.4 损失函数的紧凑形式是什么？为什么是这种形式？<a class="headerlink" href="#24" title="Permanent link">¶</a></h3>
+<p><strong><div class="math">$$-\frac{1}{m}\left [ \sum_{i=1}^{m} y^{(i)}logf(x^{(i)}) + (1-y^{(i)})log(1-f(x^{(i)})) \right ], \ \ f(x)为逻辑模型$$</div></strong></p>
+<p>损失函数是统计学中的极大似然估计推导而来，是统计学中为不同模型快速寻找参数的方法。同时拥有一个比较好的性质，是凸函数。</p>
+<h3 id="25">2.5 如何拟合参数？<a class="headerlink" href="#25" title="Permanent link">¶</a></h3>
+<p>通过最小化损失函数，来拟合训练数据集，从而找到模型参数<span class="math">\(\Theta\)</span>，最终确定模型。</p>
+<p><img alt="theta" src="images/linear_mode/arg.png"/></p>
+<h3 id="26">2.6 如何最小化损失函数？<a class="headerlink" href="#26" title="Permanent link">¶</a></h3>
+<p>对损失函数：<strong>梯度下降法</strong></p>
+<p><img alt="gd" src="images/linear_mode/gd.png"/></p>
+<h3 id="27">2.7 极大似然估计<a class="headerlink" href="#27" title="Permanent link">¶</a></h3>
+<h3 id="28">2.8 逻辑回归的正则化<a class="headerlink" href="#28" title="Permanent link">¶</a></h3>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -223,11 +209,11 @@
 
                 <p id="post-share-links">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=Adaboost&url=https%3A//www.jerrulsu.com/Adaboost.html&hashtags=machine-learning,adaboost" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=Logistic%20RegressionL&url=https%3A//www.jerrulsu.com/Logistic-Regression.html&hashtags=machine-learning,logistic-regression" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Adaboost.html" target="_blank" title="Share on Facebook">Facebook</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Logistic-Regression.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="mailto:?subject=Adaboost&amp;body=https%3A//www.jerrulsu.com/Adaboost.html" target="_blank" title="Share via Email">Email</a>
+    <a href="mailto:?subject=Logistic%20RegressionL&amp;body=https%3A//www.jerrulsu.com/Logistic-Regression.html" target="_blank" title="Share via Email">Email</a>
     </p>
 
             
@@ -248,7 +234,7 @@
                 <a class="accordion-toggle disqus-comment-count comment-count"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   href="https://www.jerrulsu.com/Adaboost.html#comment_thread"
+                   href="https://www.jerrulsu.com/Logistic-Regression.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -259,7 +245,7 @@
 
                         <script src="https://utteranc.es/client.js"
         data-repo="True"
-        data-issue-term="https://www.jerrulsu.com/Adaboost.html"
+        data-issue-term="https://www.jerrulsu.com/Logistic-Regression.html"
         data-label=""
         data-theme=""
         crossorigin="anonymous"
@@ -277,19 +263,19 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
+<li><a href="https://www.jerrulsu.com/GBDT.html" title="GBDT">GBDT</a></li>
 <li><a href="https://www.jerrulsu.com/Bias-vs-Variance.html" title="Bias vs Variance">Bias vs Variance</a></li>
 <li><a href="https://www.jerrulsu.com/L1-and-L2-Regularization.html" title="L1 and L2 Regularization">L1 and L2 Regularization</a></li>
 <li><a href="https://www.jerrulsu.com/PCA.html" title="PCA">PCA</a></li>
 <li><a href="https://www.jerrulsu.com/Automated-Feature-Engineering:-Featuretools.html" title="Automated Feature Engineering: Featuretools">Automated Feature Engineering: Featuretools</a></li>
-<li><a href="https://www.jerrulsu.com/Logistic-Regression.html" title="Logistic RegressionL">Logistic RegressionL</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://www.jerrulsu.com/CART.html" title="Previous: CART">CART</a></li>
-                <li class="next-article"><a href="https://www.jerrulsu.com/Spark-RDD.html" title="Next: Spark RDD">Spark RDD</a> »</li>
+                <li class="previous-article">« <a href="https://www.jerrulsu.com/Hadoop-small-files-problem.html" title="Previous: Hadoop-small files problem">Hadoop-small files problem</a></li>
+                <li class="next-article"><a href="https://www.jerrulsu.com/tips.html" title="Next: tips">tips</a> »</li>
             </ul>
             </nav>
             </aside>
@@ -297,12 +283,12 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2018-12-05T01:59:58+08:00">Dec 5, 2018</time>
+            <time itemprop="dateCreated" datetime="2019-12-07T10:31:33+08:00">Dec 7, 2019</time>
             <h4>Category</h4>
             <a class="category-link" href="https://www.jerrulsu.com/categories.html#machine-learning-ref">Machine Learning</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://www.jerrulsu.com/tags.html#adaboost-ref">Adaboost
+                <li><a href="https://www.jerrulsu.com/tags.html#logistic-regression-ref">Logistic Regression
                     <span>1</span>
 </a></li>
                 <li><a href="https://www.jerrulsu.com/tags.html#machine-learning-ref">Machine Learning
