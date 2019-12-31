@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Docker "/>
 <meta property="og:url" content="https://www.jerrulsu.com/Docker.html" />
-<meta property="og:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 docker授权非root用户¶ sudo usermod -a -G docker AD\\yckj2939 docker镜像启动¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式运行 # -d后台运行 -v挂载共享目录，前者主机目录，后者容器m目录 # -p指定端口号，端口号作用? # 参数/bin/bash启动ubuntu $: docker run -itd --name=ieg304 -v /e/docker_share:/home/windows -p 9280:9280 …" />
+<meta property="og:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu docker授权非root用户¶ sudo usermod -a -G docker AD\\yckj2939 docker镜像启动¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式运行 # -d后台运行 -v挂载共享目录，前者主机目录 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-12-23T09:26:47+08:00" />
 <meta name="twitter:title" content="Docker ">
-<meta name="twitter:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 docker授权非root用户¶ sudo usermod -a -G docker AD\\yckj2939 docker镜像启动¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式运行 # -d后台运行 -v挂载共享目录，前者主机目录，后者容器m目录 # -p指定端口号，端口号作用? # 参数/bin/bash启动ubuntu $: docker run -itd --name=ieg304 -v /e/docker_share:/home/windows -p 9280:9280 …">
+<meta name="twitter:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu docker授权非root用户¶ sudo usermod -a -G docker AD\\yckj2939 docker镜像启动¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式运行 # -d后台运行 -v挂载共享目录，前者主机目录 …">
 
         <title>Docker  · Jerry Su&#39;s Blog
 </title>
@@ -89,6 +89,32 @@
             
 <h2 id="nvidia-dockergpu">nvidia-docker多用户共享GPU服务器环境搭建<a class="headerlink" href="#nvidia-dockergpu" title="Permanent link">¶</a></h2>
 <p><a href="https://blog.csdn.net/hangvane123/article/details/88639279">https://blog.csdn.net/hangvane123/article/details/88639279</a></p>
+<ol>
+<li>
+<p>nvidia驱动</p>
+</li>
+<li>
+<p>docker-ce</p>
+</li>
+<li>
+<p>nvidia-docker</p>
+</li>
+<li>
+<p>pull带有cuda和cudnn的ubuntu镜像 <code>docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04</code></p>
+</li>
+<li>
+<p>启动容器，进入容器</p>
+</li>
+<li>
+<p>apt-get update</p>
+</li>
+<li>
+<p>apt-get install python3-pip</p>
+</li>
+<li>
+<p>安装与cuda, cudnn版本匹配的tensorflow-gpu</p>
+</li>
+</ol>
 <h2 id="dockerroot">docker授权非root用户<a class="headerlink" href="#dockerroot" title="Permanent link">¶</a></h2>
 <p><code>sudo usermod -a -G docker AD\\yckj2939</code></p>
 <h2 id="docker">docker镜像启动<a class="headerlink" href="#docker" title="Permanent link">¶</a></h2>
