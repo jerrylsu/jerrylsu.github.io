@@ -79,6 +79,7 @@
 <ul>
 <li><a href="#anaconda3">anaconda3多用户共享安装</a></li>
 <li><a href="#conda">创建conda虚拟环境</a></li>
+<li><a href="#notebookconda">在Notebook中切换conda虚拟环境</a></li>
 </ul>
 </div>
         </nav>
@@ -107,6 +108,49 @@
 
 <span class="nv">C</span><span class="s s-Atom">:\</span><span class="nv">Users</span><span class="s s-Atom">\</span><span class="nv">YCKJ2939</span><span class="s s-Atom">\</span><span class="nv">AppData</span><span class="s s-Atom">\</span><span class="nv">Local</span><span class="s s-Atom">\</span><span class="nv">Continuum</span><span class="s s-Atom">\anaconda3\envs\rasa_101</span>
 </pre></div>
+<h2 id="notebookconda">在Notebook中切换conda虚拟环境<a class="headerlink" href="#notebookconda" title="Permanent link">¶</a></h2>
+<ul>
+<li>安装插件</li>
+</ul>
+<p><code>conda install nb_conda</code></p>
+<ul>
+<li>进入虚拟环境安装jupyter</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="err">$</span><span class="p">:</span> <span class="k">source</span> <span class="n">activate</span> <span class="n">env_name</span>
+
+<span class="err">$</span><span class="p">:</span> <span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">jupyter</span>
+</pre></div>
+<ul>
+<li>推出虚拟环境重启jupyter</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="err">$</span><span class="p">:</span> <span class="n">ps</span> <span class="o">-</span><span class="n">aux</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">jupyter</span>
+
+<span class="err">$</span><span class="p">:</span> <span class="n">kill</span> <span class="n">pid</span>
+
+<span class="err">$</span><span class="p">:</span> <span class="n">nohup</span> <span class="n">jupyter</span> <span class="n">notebook</span> <span class="c1">--ip=0.0.0.0 --no-browser --allow-root --port 8888 &gt; jupyter.log 2&gt;&amp;1 &amp;</span>
+</pre></div>
+<ul>
+<li>Error</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="err">#</span><span class="w"> </span><span class="n">An</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="n">occurred</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="n">retrieving</span><span class="w"> </span><span class="n">installed</span><span class="w"> </span><span class="n">packages</span><span class="p">.</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="nl">EnvironmentLocationNotFound</span><span class="p">:</span><span class="w"> </span><span class="ow">Not</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">conda</span><span class="w"> </span><span class="nl">environment</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">anaconda3</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">解决方法</span><span class="err">：</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">找到Anaconda安装路径下nb_conda库的envmanager</span><span class="p">.</span><span class="n">py文件</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">win系统在目录</span><span class="err">：</span><span class="n">Anaconda3</span><span class="err">\</span><span class="n">Lib</span><span class="err">\</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="err">\</span><span class="n">nb_conda</span><span class="err">\</span><span class="n">envmanager</span><span class="p">.</span><span class="n">py</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">linux系统在目录</span><span class="err">：</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">pkgs</span><span class="o">/</span><span class="n">nb_conda</span><span class="o">-</span><span class="mf">2.2.1</span><span class="o">-</span><span class="n">py37_0</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">nb_conda</span><span class="o">/</span><span class="n">envmanager</span><span class="p">.</span><span class="n">py</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">找到该文件后在83</span><span class="o">~</span><span class="mi">86</span><span class="n">行有这样一段代码</span><span class="err">：</span><span class="w"></span>
+
+
+<span class="k">return</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="ss">"environments"</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">root_env</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">[</span><span class="n">get_info(env) for env in info['envs'</span><span class="o">]</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">env</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">root_env</span><span class="o">[</span><span class="n">'dir'</span><span class="o">]</span><span class="err">]</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+</pre></div>
+<p><a href="https://blog.csdn.net/IT_xiao_bai/article/details/102765922">https://blog.csdn.net/IT_xiao_bai/article/details/102765922</a></p>
 
 
                 <p id="post-share-links">
