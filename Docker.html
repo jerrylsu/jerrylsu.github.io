@@ -82,6 +82,7 @@
 <li><a href="#docker">docker镜像启动</a></li>
 <li><a href="#_1">添加已运行容器端口</a></li>
 <li><a href="#dockerwebjupyter-notebook">服务器docker中启可远程web的jupyter notebook</a></li>
+<li><a href="#_2">制作镜像并上传仓库</a></li>
 </ul>
 </div>
         </nav>
@@ -189,6 +190,30 @@
 <div class="highlight"><pre><span></span><span class="err"># server_ip:port</span>
 <span class="err">10.235.3.43:8888</span>
 </pre></div>
+<h2 id="_2">制作镜像并上传仓库<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p>dockerhub上创建仓库<code>jerrysu666/cuda10.0</code></p>
+</li>
+<li>
+<p>终端登录：<code>docker log</code></p>
+</li>
+<li>
+<p>制作镜像：<code>docker commit containerId dockerUserName/repoName</code></p>
+</li>
+<li>
+<p>镜像打标签：<code>docker tag imageName dockerUserName/repoName[:tag]</code></p>
+</li>
+<li>
+<p>推送镜像： <code>docker push dockerUserName/repoNme[:tag]</code></p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">tag</span> <span class="k">local</span><span class="o">-</span><span class="n">image</span><span class="p">:</span><span class="n">tagname</span> <span class="k">new</span><span class="o">-</span><span class="n">repo</span><span class="p">:</span><span class="n">tagname</span>
+<span class="n">docker</span> <span class="n">push</span> <span class="k">new</span><span class="o">-</span><span class="n">repo</span><span class="p">:</span><span class="n">tagname</span>
+
+<span class="n">docker</span> <span class="n">push</span> <span class="n">jerrysu666</span><span class="o">/</span><span class="n">cuda10</span><span class="p">.</span><span class="mi">0</span><span class="p">:</span><span class="n">tagname</span>
+</pre></div>
+<p>-</p>
 
 
                 <p id="post-share-links">
