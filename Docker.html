@@ -146,13 +146,17 @@
 <p>修改这个容器的hostconfig.json文件中的端口: "PortBindings":{"3306/tcp":[{"HostIp":"","HostPort":"3307"}]} 前一个数字是容器端口, 后一个是宿主机端口。</p>
 </li>
 <li>
+<p>修改该容器的config.v2.json文件中的ExposedPorts。</p>
+</li>
+<li>
 <p>启动docker服务(systemctl start docker)</p>
 </li>
 <li>
 <p>启动容器</p>
 </li>
 </ul>
-<p><a href="https://blog.csdn.net/wesleyflagon/article/details/78961990">https://blog.csdn.net/wesleyflagon/article/details/78961990</a></p>
+<p><a href="https://blog.csdn.net/lypeng_/article/details/98176138">https://blog.csdn.net/lypeng_/article/details/98176138</a>
+<a href="https://blog.csdn.net/wesleyflagon/article/details/78961990">https://blog.csdn.net/wesleyflagon/article/details/78961990</a></p>
 <h2 id="dockerwebjupyter-notebook">服务器docker中启可远程web的jupyter notebook<a class="headerlink" href="#dockerwebjupyter-notebook" title="Permanent link">¶</a></h2>
 <ul>
 <li>启ubuntu容器，开出端口8888</li>
