@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Machine Learning, Machine Learning, " />
 
-<meta property="og:title" content="Bias vs Variance "/>
-<meta property="og:url" content="https://www.jerrulsu.com/Bias-vs-Variance.html" />
-<meta property="og:description" content="方差与偏差¶ 泛化误差分为：偏差和方差 偏差：指算法的期望预测值与真实值之间的偏差程度，反应的是模型本身拟合能力。(单模型) 方差：度量了同等大小数据集的变动导致学习性能的变化，刻画数据扰动所导致的影响。(多模型) 当模型越复杂时，训练数据的拟合程度就越高，模型的训练偏差就越小。但如果还一组数据可能模型的变化就很大，即模型的方差很大。所以复杂度高的模型容易产生过拟合。 当模型简单时，即使还一组训练数据，得出的学习器之间差别不是很大，即模型的方差较小。但由于模型简单，所以存在比较大的偏差。 所以，在训练一个模型时，需要平衡好方差和偏差。 为什么RF的树深一般大于GBDT树的深度？¶ 对于Bagging算法，由于时并行的训练若干个弱学习器，他们之间相互独立，主要目的降低方差。所以为了平衡好方差与偏差，每一个弱学习器目标便是如何降低偏差，因而会采用复杂度高的模型作为弱学习器，例如深度较深甚至不剪枝的树，神经网络等。 对于Boosting算法，训练的弱学习器都是在上一轮基础上更加的拟合数据，保证的是模型的偏差。所以为了平衡好方差与偏差，每一个弱学习器目标便是如何降低弱学习器之间的方差，因而会采用复杂度低的模型作为弱学习器，例如深度很浅的树。" />
+<meta property="og:title" content="Cross Validation-CV "/>
+<meta property="og:url" content="https://www.jerrulsu.com/Cross-Validation-CV.html" />
+<meta property="og:description" content="Cross Validation CV要解决的问题是什么？¶ 当评价模型的不同设置（”hyperparameters(超参数)”）时， 由于在训练集上，通过调整参数设置使模型的性能达到了最佳状态；但在测试集上 可能会出现过拟合的情况。 此时，测试集上的信息反馈足以颠覆训练好的模型，评估的指标不再有效反映出模型的泛化性能。 为了解决此类问题，还应该准备另一部分被称为 “validation set(验证集)” 的数据集，模型训练完成以后在验证集上对模型进行评估。 当验证集上的评估实验比较成功时，在测试集上进行最后的评估。 然而，通过将原始数据分为3个数据集合，我们就大大减少了可用于模型学习的样本数量， 并且得到的结果依赖于集合对（训练，验证）的随机选择。这个问题可以通过 交叉验证（CV ） j来解决。 交叉验证仍需要测试集做最后的模型评估，但不再需要验证集。 K折交叉验证¶" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2019-06-22T04:40:15+08:00" />
-<meta name="twitter:title" content="Bias vs Variance ">
-<meta name="twitter:description" content="方差与偏差¶ 泛化误差分为：偏差和方差 偏差：指算法的期望预测值与真实值之间的偏差程度，反应的是模型本身拟合能力。(单模型) 方差：度量了同等大小数据集的变动导致学习性能的变化，刻画数据扰动所导致的影响。(多模型) 当模型越复杂时，训练数据的拟合程度就越高，模型的训练偏差就越小。但如果还一组数据可能模型的变化就很大，即模型的方差很大。所以复杂度高的模型容易产生过拟合。 当模型简单时，即使还一组训练数据，得出的学习器之间差别不是很大，即模型的方差较小。但由于模型简单，所以存在比较大的偏差。 所以，在训练一个模型时，需要平衡好方差和偏差。 为什么RF的树深一般大于GBDT树的深度？¶ 对于Bagging算法，由于时并行的训练若干个弱学习器，他们之间相互独立，主要目的降低方差。所以为了平衡好方差与偏差，每一个弱学习器目标便是如何降低偏差，因而会采用复杂度高的模型作为弱学习器，例如深度较深甚至不剪枝的树，神经网络等。 对于Boosting算法，训练的弱学习器都是在上一轮基础上更加的拟合数据，保证的是模型的偏差。所以为了平衡好方差与偏差，每一个弱学习器目标便是如何降低弱学习器之间的方差，因而会采用复杂度低的模型作为弱学习器，例如深度很浅的树。">
+<meta property="og:article:published_time" content="2020-01-18T19:43:25+08:00" />
+<meta name="twitter:title" content="Cross Validation-CV ">
+<meta name="twitter:description" content="Cross Validation CV要解决的问题是什么？¶ 当评价模型的不同设置（”hyperparameters(超参数)”）时， 由于在训练集上，通过调整参数设置使模型的性能达到了最佳状态；但在测试集上 可能会出现过拟合的情况。 此时，测试集上的信息反馈足以颠覆训练好的模型，评估的指标不再有效反映出模型的泛化性能。 为了解决此类问题，还应该准备另一部分被称为 “validation set(验证集)” 的数据集，模型训练完成以后在验证集上对模型进行评估。 当验证集上的评估实验比较成功时，在测试集上进行最后的评估。 然而，通过将原始数据分为3个数据集合，我们就大大减少了可用于模型学习的样本数量， 并且得到的结果依赖于集合对（训练，验证）的随机选择。这个问题可以通过 交叉验证（CV ） j来解决。 交叉验证仍需要测试集做最后的模型评估，但不再需要验证集。 K折交叉验证¶">
 
-        <title>Bias vs Variance  · Jerry Su&#39;s Blog
+        <title>Cross Validation-CV  · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -64,8 +64,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="https://www.jerrulsu.com/Bias-vs-Variance.html">
-                Bias vs Variance
+            <a href="https://www.jerrulsu.com/Cross-Validation-CV.html">
+                Cross Validation-CV
             </a>
         </h1>
     </header>
@@ -77,8 +77,8 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#_1">方差与偏差</a></li>
-<li><a href="#rfgbdt">为什么RF的树深一般大于GBDT树的深度？</a></li>
+<li><a href="#cv">CV要解决的问题是什么？</a></li>
+<li><a href="#k">K折交叉验证</a></li>
 </ul>
 </div>
         </nav>
@@ -86,25 +86,21 @@
     <div class="span8 article-content">
             
             
-<h3 id="_1">方差与偏差<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
-<p>泛化误差分为：偏差和方差</p>
-<p>偏差：指算法的期望预测值与真实值之间的偏差程度，反应的是模型本身拟合能力。(单模型)</p>
-<p>方差：度量了同等大小数据集的变动导致学习性能的变化，刻画数据扰动所导致的影响。(多模型)</p>
-<p>当模型越复杂时，训练数据的拟合程度就越高，模型的训练偏差就越小。但如果还一组数据可能模型的变化就很大，即模型的方差很大。所以复杂度高的模型容易产生过拟合。</p>
-<p>当模型简单时，即使还一组训练数据，得出的学习器之间差别不是很大，即模型的方差较小。但由于模型简单，所以存在比较大的偏差。</p>
-<p>所以，在训练一个模型时，需要平衡好方差和偏差。</p>
-<h3 id="rfgbdt">为什么RF的树深一般大于GBDT树的深度？<a class="headerlink" href="#rfgbdt" title="Permanent link">¶</a></h3>
-<p>对于Bagging算法，由于时并行的训练若干个弱学习器，他们之间相互独立，主要目的降低方差。所以为了平衡好方差与偏差，每一个弱学习器目标便是如何降低偏差，因而会采用复杂度高的模型作为弱学习器，例如深度较深甚至不剪枝的树，神经网络等。</p>
-<p>对于Boosting算法，训练的弱学习器都是在上一轮基础上更加的拟合数据，保证的是模型的偏差。所以为了平衡好方差与偏差，每一个弱学习器目标便是如何降低弱学习器之间的方差，因而会采用复杂度低的模型作为弱学习器，例如深度很浅的树。</p>
+<p><a href="https://sklearn.apachecn.org/docs/0.21.3/30.html">Cross Validation</a></p>
+<h2 id="cv">CV要解决的问题是什么？<a class="headerlink" href="#cv" title="Permanent link">¶</a></h2>
+<p>当评价模型的不同设置（”hyperparameters(超参数)”）时， 由于在训练集上，通过调整参数设置使模型的性能达到了最佳状态；但在测试集上 可能会出现过拟合的情况。 此时，测试集上的信息反馈足以颠覆训练好的模型，评估的指标不再有效反映出模型的泛化性能。 为了解决此类问题，还应该准备另一部分被称为 “validation set(验证集)” 的数据集，模型训练完成以后在验证集上对模型进行评估。 当验证集上的评估实验比较成功时，在测试集上进行最后的评估。</p>
+<p>然而，通过将原始数据分为3个数据集合，我们就大大减少了可用于模型学习的样本数量， 并且得到的结果依赖于集合对（训练，验证）的随机选择。这个问题可以通过 交叉验证（CV ） j来解决。 交叉验证仍需要测试集做最后的模型评估，但不再需要验证集。</p>
+<h2 id="k">K折交叉验证<a class="headerlink" href="#k" title="Permanent link">¶</a></h2>
+<p><img alt="k" src="images/grid_search_cross_validation.png"/></p>
 
 
                 <p id="post-share-links">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=Bias%20vs%20Variance&url=https%3A//www.jerrulsu.com/Bias-vs-Variance.html&hashtags=machine-learning" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=Cross%20Validation-CV&url=https%3A//www.jerrulsu.com/Cross-Validation-CV.html&hashtags=machine-learning" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Bias-vs-Variance.html" target="_blank" title="Share on Facebook">Facebook</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Cross-Validation-CV.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="mailto:?subject=Bias%20vs%20Variance&amp;body=https%3A//www.jerrulsu.com/Bias-vs-Variance.html" target="_blank" title="Share via Email">Email</a>
+    <a href="mailto:?subject=Cross%20Validation-CV&amp;body=https%3A//www.jerrulsu.com/Cross-Validation-CV.html" target="_blank" title="Share via Email">Email</a>
     </p>
 
             
@@ -125,7 +121,7 @@
                 <a class="accordion-toggle disqus-comment-count comment-count"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   href="https://www.jerrulsu.com/Bias-vs-Variance.html#comment_thread"
+                   href="https://www.jerrulsu.com/Cross-Validation-CV.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -136,7 +132,7 @@
 
                         <script src="https://utteranc.es/client.js"
         data-repo="True"
-        data-issue-term="https://www.jerrulsu.com/Bias-vs-Variance.html"
+        data-issue-term="https://www.jerrulsu.com/Cross-Validation-CV.html"
         data-label=""
         data-theme=""
         crossorigin="anonymous"
@@ -154,19 +150,18 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
+<li><a href="https://www.jerrulsu.com/Bias-vs-Variance.html" title="Bias vs Variance">Bias vs Variance</a></li>
 <li><a href="https://www.jerrulsu.com/L1-and-L2-Regularization.html" title="L1 and L2 Regularization">L1 and L2 Regularization</a></li>
 <li><a href="https://www.jerrulsu.com/PCA.html" title="PCA">PCA</a></li>
 <li><a href="https://www.jerrulsu.com/Automated-Feature-Engineering:-Featuretools.html" title="Automated Feature Engineering: Featuretools">Automated Feature Engineering: Featuretools</a></li>
 <li><a href="https://www.jerrulsu.com/Logistic-Regression.html" title="Logistic RegressionL">Logistic RegressionL</a></li>
-<li><a href="https://www.jerrulsu.com/Cross-Validation-CV.html" title="Cross Validation-CV">Cross Validation-CV</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://www.jerrulsu.com/疑问句造句.html" title="Previous: 疑问句造句">疑问句造句</a></li>
-                <li class="next-article"><a href="https://www.jerrulsu.com/L1-and-L2-Regularization.html" title="Next: L1 and L2 Regularization">L1 and L2 Regularization</a> »</li>
+                <li class="previous-article">« <a href="https://www.jerrulsu.com/Docker.html" title="Previous: Docker">Docker</a></li>
             </ul>
             </nav>
             </aside>
@@ -174,7 +169,7 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2019-06-22T04:40:15+08:00">Jun 22, 2019</time>
+            <time itemprop="dateCreated" datetime="2020-01-18T19:43:25+08:00">Jan 18, 2020</time>
             <h4>Category</h4>
             <a class="category-link" href="https://www.jerrulsu.com/categories.html#machine-learning-ref">Machine Learning</a>
             <h4>Tags</h4>
