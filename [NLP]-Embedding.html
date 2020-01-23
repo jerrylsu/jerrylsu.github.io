@@ -9,16 +9,16 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content=", posts, " />
+<meta name="keywords" content="Deep Learning, NLP, Deep Learning, " />
 
 <meta property="og:title" content="[NLP]-Embedding "/>
 <meta property="og:url" content="https://www.jerrulsu.com/[NLP]-Embedding.html" />
-<meta property="og:description" content="Deep Learning NLP Tags: Deep Learning, NLP embedding_dim=16 model = keras.Sequential([ layers.Embedding(vocab_size, embedding_dim, input_length=maxlen), layers.GlobalAveragePooling1D(), layers.Dense(16, activation=&#39;relu&#39;), layers.Dense(1, activation=&#39;sigmoid&#39;) ]) Embedding层的任务： 定义矩阵，大小为[vocab_size, embedding_dim] 对于idx后的文本向量[102, 33, 41, ...]，查矩阵，将idx -&gt; embedding向量。最后将句子表示为[max_len, embedding_size]的矩阵。 模型训练时是以batch_size为单位的，所以embedding层最终的输出是：batch_size * max_len …" />
+<meta property="og:description" content="embedding_dim=16 model = keras.Sequential([ layers.Embedding(vocab_size, embedding_dim, input_length=maxlen), layers.GlobalAveragePooling1D(), layers.Dense(16, activation=&#39;relu&#39;), layers.Dense(1, activation=&#39;sigmoid&#39;) ]) Embedding层的任务： 定义矩阵，大小为[vocab_size, embedding_dim] 对于idx后的文本向量[102, 33, 41, ...]，查矩阵，将idx -&gt; embedding向量。最后将句子表示为[max_len, embedding_size]的矩阵。 模型训练时是以batch_size为单位的，所以embedding层最终的输出是：batch_size * max_len * embedding_dim的3维矩阵。 embedding层输出的数据做GlobalAveragePooling1D合并。" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-01-23T11:17:17+08:00" />
 <meta name="twitter:title" content="[NLP]-Embedding ">
-<meta name="twitter:description" content="Deep Learning NLP Tags: Deep Learning, NLP embedding_dim=16 model = keras.Sequential([ layers.Embedding(vocab_size, embedding_dim, input_length=maxlen), layers.GlobalAveragePooling1D(), layers.Dense(16, activation=&#39;relu&#39;), layers.Dense(1, activation=&#39;sigmoid&#39;) ]) Embedding层的任务： 定义矩阵，大小为[vocab_size, embedding_dim] 对于idx后的文本向量[102, 33, 41, ...]，查矩阵，将idx -&gt; embedding向量。最后将句子表示为[max_len, embedding_size]的矩阵。 模型训练时是以batch_size为单位的，所以embedding层最终的输出是：batch_size * max_len …">
+<meta name="twitter:description" content="embedding_dim=16 model = keras.Sequential([ layers.Embedding(vocab_size, embedding_dim, input_length=maxlen), layers.GlobalAveragePooling1D(), layers.Dense(16, activation=&#39;relu&#39;), layers.Dense(1, activation=&#39;sigmoid&#39;) ]) Embedding层的任务： 定义矩阵，大小为[vocab_size, embedding_dim] 对于idx后的文本向量[102, 33, 41, ...]，查矩阵，将idx -&gt; embedding向量。最后将句子表示为[max_len, embedding_size]的矩阵。 模型训练时是以batch_size为单位的，所以embedding层最终的输出是：batch_size * max_len * embedding_dim的3维矩阵。 embedding层输出的数据做GlobalAveragePooling1D合并。">
 
         <title>[NLP]-Embedding  · Jerry Su&#39;s Blog
 </title>
@@ -74,12 +74,7 @@
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
             
-            <ul>
-<li>Deep Learning</li>
-<li>NLP
-Tags: Deep Learning, NLP</li>
-</ul>
-<div class="toc">
+            <div class="toc">
 <ul></ul>
 </div>
 <div class="highlight"><pre><span></span><span class="n">embedding_dim</span><span class="o">=</span><span class="mi">16</span>
@@ -112,7 +107,7 @@ Tags: Deep Learning, NLP</li>
 
                 <p id="post-share-links">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=%5BNLP%5D-Embedding&url=https%3A//www.jerrulsu.com/%5BNLP%5D-Embedding.html" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=%5BNLP%5D-Embedding&url=https%3A//www.jerrulsu.com/%5BNLP%5D-Embedding.html&hashtags=deep-learning,nlp" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/%5BNLP%5D-Embedding.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
@@ -163,6 +158,13 @@ Tags: Deep Learning, NLP</li>
 </section>
 
             <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="https://www.jerrulsu.com/[NLP]-GlobalAveragePooling1D.html" title="[NLP]-GlobalAveragePooling1D">[NLP]-GlobalAveragePooling1D</a></li>
+</ul>
+<hr />
+</section>
             <aside>
             <nav>
             <ul class="articles-timeline">
@@ -176,7 +178,16 @@ Tags: Deep Learning, NLP</li>
             <h4>Published</h4>
             <time itemprop="dateCreated" datetime="2020-01-23T11:17:17+08:00">Jan 23, 2020</time>
             <h4>Category</h4>
-            <a class="category-link" href="https://www.jerrulsu.com/categories.html#posts-ref">posts</a>
+            <a class="category-link" href="https://www.jerrulsu.com/categories.html#deep-learning-ref">Deep Learning</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://www.jerrulsu.com/tags.html#deep-learning-ref">Deep Learning
+                    <span>2</span>
+</a></li>
+                <li><a href="https://www.jerrulsu.com/tags.html#nlp-ref">NLP
+                    <span>2</span>
+</a></li>
+            </ul>
 <h4>Contact</h4>
 <div id="sidebar-social-link">
     <a href="mailto:sa517301@mail.ustc.edu.cn" title="My Email Address" target="_blank" rel="nofollow">
