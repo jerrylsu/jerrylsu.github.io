@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/</loc>
-<lastmod>2020-01-27T21:19:32-00:00</lastmod>
+<lastmod>2020-01-28T12:18:25-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/archives.html</loc>
-<lastmod>2020-01-27T21:19:32-00:00</lastmod>
+<lastmod>2020-01-28T12:18:25-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/tags.html</loc>
-<lastmod>2020-01-27T21:19:32-00:00</lastmod>
+<lastmod>2020-01-28T12:18:25-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/categories.html</loc>
-<lastmod>2020-01-27T21:19:32-00:00</lastmod>
+<lastmod>2020-01-28T12:18:25-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -46,7 +46,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/[NLP]-Embedding.html</loc>
+<loc>https://www.jerrulsu.com/【NLP】Embedding.html</loc>
 <lastmod>2020-01-23T11:17:17+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
