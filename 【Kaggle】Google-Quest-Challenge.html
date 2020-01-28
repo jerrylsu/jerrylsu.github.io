@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="【Kaggle】Google Quest Challenge "/>
 <meta property="og:url" content="https://www.jerrulsu.com/【Kaggle】Google-Quest-Challenge.html" />
-<meta property="og:description" content="EDA¶ A Gentle Introduction - EDA &amp; TFIDF + Word2Vec Kernel¶ FE Bert-base TF2.0 (minimalistic) III Issues¶ QUEST : CV analysis on Different Splitting Methods Submission CSV Not Found 问题描述：使用inference kernel在commit下成功，submit失败。提示Submission CSV Not Found。 原因两条综合造成：使用" />
+<meta property="og:description" content="EDA¶ A Gentle Introduction - EDA &amp; TFIDF + Word2Vec Kernel¶ FE Bert-base TF2.0 (minimalistic) III Issues¶ QUEST : CV analysis on Different Splitting Methods Submission CSV Not Found 问题描述：使用inference kernel在commit下成功，submit失败。提示Submission CSV Not Found。 原因两条综合造成：LB的test数据不是全部。get_dummies构造特征工程，造成维度不一致。 如何发现问题： 通过整个train和test构造特征、创建并训练model。 使用train[:2]和test[:2]构造特征，创建model，加载权重，并inference。 特征维度不一致 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-01-27T21:14:28+08:00" />
 <meta name="twitter:title" content="【Kaggle】Google Quest Challenge ">
-<meta name="twitter:description" content="EDA¶ A Gentle Introduction - EDA &amp; TFIDF + Word2Vec Kernel¶ FE Bert-base TF2.0 (minimalistic) III Issues¶ QUEST : CV analysis on Different Splitting Methods Submission CSV Not Found 问题描述：使用inference kernel在commit下成功，submit失败。提示Submission CSV Not Found。 原因两条综合造成：使用">
+<meta name="twitter:description" content="EDA¶ A Gentle Introduction - EDA &amp; TFIDF + Word2Vec Kernel¶ FE Bert-base TF2.0 (minimalistic) III Issues¶ QUEST : CV analysis on Different Splitting Methods Submission CSV Not Found 问题描述：使用inference kernel在commit下成功，submit失败。提示Submission CSV Not Found。 原因两条综合造成：LB的test数据不是全部。get_dummies构造特征工程，造成维度不一致。 如何发现问题： 通过整个train和test构造特征、创建并训练model。 使用train[:2]和test[:2]构造特征，创建model，加载权重，并inference。 特征维度不一致 …">
 
         <title>【Kaggle】Google Quest Challenge  · Jerry Su&#39;s Blog
 </title>
@@ -98,7 +98,34 @@
 <li>Submission CSV Not Found</li>
 </ol>
 <p>问题描述：使用inference kernel在commit下成功，submit失败。提示Submission CSV Not Found。</p>
-<p>原因两条综合造成：使用</p>
+<p>原因两条综合造成：LB的test数据不是全部。get_dummies构造特征工程，造成维度不一致。</p>
+<p>如何发现问题：</p>
+<ul>
+<li>
+<p>通过整个train和test构造特征、创建并训练model。</p>
+</li>
+<li>
+<p>使用train[:2]和test[:2]构造特征，创建model，加载权重，并inference。</p>
+</li>
+</ul>
+<p>特征维度不一致，创建的模型输入维度不一致，造成权重加载出错。</p>
+<div class="highlight"><pre><span></span><span class="err">Traceback (most recent call last):</span>
+<span class="err">  File "E:/program/software/cygwin/home/YCKJ2939/project/jerry/kaggle/google_qa_challenge/src/main.py", line 123, in &lt;module&gt;</span>
+<span class="err">    model.load_weights(model_path)</span>
+<span class="err">  File "C:\Users\YCKJ2939\AppData\Local\Continuum\anaconda3\envs\kaggle_tf2\lib\site-packages\tensorflow_core\python\keras\engine\training.py", line 181, in load_weights</span>
+<span class="err">    return super(Model, self).load_weights(filepath, by_name)</span>
+<span class="err">  File "C:\Users\YCKJ2939\AppData\Local\Continuum\anaconda3\envs\kaggle_tf2\lib\site-packages\tensorflow_core\python\keras\engine\network.py", line 1177, in load_weights</span>
+<span class="err">    saving.load_weights_from_hdf5_group(f, self.layers)</span>
+<span class="err">  File "C:\Users\YCKJ2939\AppData\Local\Continuum\anaconda3\envs\kaggle_tf2\lib\site-packages\tensorflow_core\python\keras\saving\hdf5_format.py", line 699, in load_weights_from_hdf5_group</span>
+<span class="err">    K.batch_set_value(weight_value_tuples)</span>
+<span class="err">  File "C:\Users\YCKJ2939\AppData\Local\Continuum\anaconda3\envs\kaggle_tf2\lib\site-packages\tensorflow_core\python\keras\backend.py", line 3343, in batch_set_value</span>
+<span class="err">    x.assign(np.asarray(value, dtype=dtype(x)))</span>
+<span class="err">  File "C:\Users\YCKJ2939\AppData\Local\Continuum\anaconda3\envs\kaggle_tf2\lib\site-packages\tensorflow_core\python\ops\resource_variable_ops.py", line 814, in assign</span>
+<span class="err">    self._shape.assert_is_compatible_with(value_tensor.shape)</span>
+<span class="err">  File "C:\Users\YCKJ2939\AppData\Local\Continuum\anaconda3\envs\kaggle_tf2\lib\site-packages\tensorflow_core\python\framework\tensor_shape.py", line 1115, in assert_is_compatible_with</span>
+<span class="err">    raise ValueError("Shapes %s and %s are incompatible" % (self, other))</span>
+<span class="c">ValueError: Shapes (1040, 30) and (1102, 30) are incompatible</span>
+</pre></div>
 
 
                 <p id="post-share-links">
