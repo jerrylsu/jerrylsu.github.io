@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Docker "/>
 <meta property="og:url" content="https://www.jerrulsu.com/Docker.html" />
-<meta property="og:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu docker授权非root用户¶ sudo usermod -a -G docker AD\\yckj2939 docker镜像启动¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式运行 # -d后台运行 -v挂载共享目录，前者主机目录，后者容器m目录 # -p指定端口号 …" />
+<meta property="og:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04切勿下载这个runtime版，而是dev，否则很多配置文件找不到。 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu docker授权非root用户¶ sudo usermod -a -G docker AD\\yckj2939 docker镜像启动¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式运行 # -d后台运行 -v挂载共享目录 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-12-23T09:26:47+08:00" />
 <meta name="twitter:title" content="Docker ">
-<meta name="twitter:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu docker授权非root用户¶ sudo usermod -a -G docker AD\\yckj2939 docker镜像启动¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式运行 # -d后台运行 -v挂载共享目录，前者主机目录，后者容器m目录 # -p指定端口号 …">
+<meta name="twitter:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04切勿下载这个runtime版，而是dev，否则很多配置文件找不到。 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu docker授权非root用户¶ sudo usermod -a -G docker AD\\yckj2939 docker镜像启动¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式运行 # -d后台运行 -v挂载共享目录 …">
 
         <title>Docker  · Jerry Su&#39;s Blog
 </title>
@@ -82,6 +82,7 @@
 <li><a href="#docker">docker镜像启动</a></li>
 <li><a href="#_1">添加已运行容器端口</a></li>
 <li><a href="#dockerwebjupyter-notebook">服务器docker中启可远程web的jupyter notebook</a></li>
+<li><a href="#pycharm-docker">PyCharm + Docker炼丹炉</a></li>
 <li><a href="#_2">制作镜像并上传仓库</a></li>
 </ul>
 </div>
@@ -104,7 +105,7 @@
 </li>
 <li>
 <p>pull带有cuda和cudnn的ubuntu镜像 
-   <code>docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04</code></p>
+   <code>docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04</code>切勿下载这个runtime版，而是dev，否则很多配置文件找不到。</p>
 </li>
 <li>
 <p>启动容器，进入容器</p>
@@ -132,7 +133,7 @@
 <span class="err">#</span><span class="w"> </span><span class="n">查看所有镜像</span><span class="w"></span>
 <span class="err">$:</span><span class="w"> </span><span class="n">docker</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">-</span><span class="n">a</span><span class="w"></span>
 
-<span class="err">#</span><span class="w"> </span><span class="n">启动镜像</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="n">进入容器</span><span class="w"></span>
 <span class="err">$:</span><span class="w"> </span><span class="n">docker</span><span class="w"> </span><span class="k">exec</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="n">ieg304</span><span class="w"> </span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span><span class="w"></span>
 </pre></div>
 <h2 id="_1">添加已运行容器端口<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
@@ -195,6 +196,26 @@
 <div class="highlight"><pre><span></span><span class="err"># server_ip:port</span>
 <span class="err">10.235.3.43:8888</span>
 </pre></div>
+<h2 id="pycharm-docker">PyCharm + Docker炼丹炉<a class="headerlink" href="#pycharm-docker" title="Permanent link">¶</a></h2>
+<p>PyCharm Pro + Nvidia Docker</p>
+<ul>
+<li>
+<p>参照上文增加容器22端口，SFTP默认使用22端口。</p>
+</li>
+<li>
+<p>进入容器配置ssh服务</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="o">#</span> <span class="err">此操作在远程服务器</span>
+<span class="err">$</span> <span class="n">docker</span> <span class="n">port</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">container</span> <span class="n">name</span><span class="o">&gt;</span> <span class="mi">22</span>
+<span class="o">#</span> <span class="err">此操作将查看</span><span class="n">docker</span> <span class="n">container中端口22</span><span class="err">，在远程服务器上端口的映射</span>
+<span class="o">#</span> <span class="err">输出结果如下所示</span>
+<span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">:</span><span class="mi">9380</span>
+<span class="o">#</span> <span class="err">表明只要</span><span class="n">ssh链接远程服务器的9380端口</span><span class="err">，实际是链接</span><span class="n">docker</span> <span class="n">container中的22端口</span>
+
+<span class="n">ssh</span> <span class="n">root</span><span class="o">@&lt;</span><span class="err">服务器的</span><span class="n">ip地址</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9380</span>
+<span class="o">#</span> <span class="err">可以进入容器，</span><span class="n">passwd命令可以修改容器root密码</span>
+</pre></div>
 <h2 id="_2">制作镜像并上传仓库<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
 <ul>
 <li>
@@ -218,7 +239,6 @@
 
 <span class="n">docker</span> <span class="n">push</span> <span class="n">jerrysu666</span><span class="o">/</span><span class="n">cuda10</span><span class="p">.</span><span class="mi">0</span><span class="p">:</span><span class="n">tagname</span>
 </pre></div>
-<p>-</p>
 
 
                 <p id="post-share-links">
