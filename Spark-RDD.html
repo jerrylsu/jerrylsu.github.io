@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Spark, Spark, " />
 
-<meta property="og:title" content="Spark RDD "/>
+<meta property="og:title" content="Spark RDD"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Spark-RDD.html" />
 <meta property="og:description" content="Spark RDD要点总结： Spark RDD弹性分布式数据集 1. RDD简介 - RDD的概述 - RDD的属性 2. RDD的创建方式 - 从文件系统中加载数据创建RDD - 通过并行集合创建RDD 3. RDD的处理过程 - RDD的整体处理流程 - Transformation算子 - Action算子 - 编写WordCount词频统计案例 4. RDD的依赖关系 5. RDD机制 - 持久化机制 - 容错机制 6. Spark的任务调度 - DAG的概念 - 任务调度流程 核心概念和抽象¶ RDD¶ RDD 这是一个核心抽象，既能实现计算的高效执行，又能灵活方便的形式化定义计算 为什么需要一个新的抽象？ MapReduce中的迭代计算： 1. 后续jobs之间的关系仅为用户代码所知，而不是框架。所以，框架无法优化整个计算。 2. 框架必须可靠地持久保存中间数据，从而产生过多的IO Spark将数据保存在内存中，有效地消除了中间磁盘持久性，从而改善了完成时间 RDD Operations¶ RDDs支持两种类型操作 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-01-03T13:48:12+08:00" />
-<meta name="twitter:title" content="Spark RDD ">
+<meta name="twitter:title" content="Spark RDD">
 <meta name="twitter:description" content="Spark RDD要点总结： Spark RDD弹性分布式数据集 1. RDD简介 - RDD的概述 - RDD的属性 2. RDD的创建方式 - 从文件系统中加载数据创建RDD - 通过并行集合创建RDD 3. RDD的处理过程 - RDD的整体处理流程 - Transformation算子 - Action算子 - 编写WordCount词频统计案例 4. RDD的依赖关系 5. RDD机制 - 持久化机制 - 容错机制 6. Spark的任务调度 - DAG的概念 - 任务调度流程 核心概念和抽象¶ RDD¶ RDD 这是一个核心抽象，既能实现计算的高效执行，又能灵活方便的形式化定义计算 为什么需要一个新的抽象？ MapReduce中的迭代计算： 1. 后续jobs之间的关系仅为用户代码所知，而不是框架。所以，框架无法优化整个计算。 2. 框架必须可靠地持久保存中间数据，从而产生过多的IO Spark将数据保存在内存中，有效地消除了中间磁盘持久性，从而改善了完成时间 RDD Operations¶ RDDs支持两种类型操作 …">
 
-        <title>Spark RDD  · Jerry Su&#39;s Blog
+        <title>Spark RDD · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -109,7 +109,7 @@
     <div class="span8 article-content">
             
             
-<div class="highlight"><pre><span></span><span class="err">Spark RDD要点总结：</span>
+<div class="highlight"><pre><span></span><code><span class="err">Spark RDD要点总结：</span>
 <span class="err">Spark RDD弹性分布式数据集</span>
 <span class="err">1. RDD简介</span>
 <span class="err">  - RDD的概述</span>
@@ -129,7 +129,7 @@
 <span class="err">6. Spark的任务调度</span>
 <span class="err">  - DAG的概念</span>
 <span class="err">  - 任务调度流程</span>
-</pre></div>
+</code></pre></div>
 <h1 id="_1">核心概念和抽象<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
 <h2 id="rdd">RDD<a class="headerlink" href="#rdd" title="Permanent link">¶</a></h2>
 <p><a href="https://www.cnblogs.com/frankdeng/p/9301653.html">RDD</a>
@@ -159,10 +159,10 @@
 </li>
 </ol>
 <h3 id="basics">Basics<a class="headerlink" href="#basics" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span><span class="err">1：  lines = sc.textFile("data.txt")</span>
+<div class="highlight"><pre><span></span><code><span class="err">1：  lines = sc.textFile("data.txt")</span>
 <span class="err">2：  lineLengths = lines.map(lambda s: len(s))</span>
 <span class="err">3：  totalLength = lineLengths.reduce(lambda a, b: a + b)</span>
-</pre></div>
+</code></pre></div>
 <p>1: 从外部文件定义基础RDD。 此数据集未加载到内存中或以其他方式操作：<strong>lines</strong> 仅仅是指向文件的指针。
 2: 将 <strong>lineLengths</strong> 定义为 <strong>map</strong> 转换的结果。由于惰性 <strong>lineLengths</strong> 不会立即计算。
 3: 最终运行 <strong>reduce</strong>，是一个 <strong>action</strong>。此时Spark将计算分解为在不同机器上运行的 <strong>Tasks</strong>，并且每台机器都运行其 <strong>map</strong> 的部分和本地的 <strong>reduce</strong>，仅返回其对 <strong>driver program</strong> 的结果。</p>
@@ -174,7 +174,7 @@
 根据是否在运行在同一JVM中可能表现不同 
 Spark应用程序运行：本地模式 vs. 集群模式</p>
 <p>使用<code>foreach()</code>增加<code>counter</code>：</p>
-<div class="highlight"><pre><span></span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">parallelize</span><span class="p">(</span><span class="k">data</span><span class="p">)</span>
 
 <span class="o">#</span> <span class="n">Wrong</span><span class="p">:</span> <span class="n">Don</span><span class="err">'</span><span class="n">t</span> <span class="k">do</span> <span class="n">this</span><span class="o">!!</span>
@@ -184,7 +184,7 @@ Spark应用程序运行：本地模式 vs. 集群模式</p>
 <span class="n">rdd</span><span class="p">.</span><span class="n">foreach</span><span class="p">(</span><span class="n">increment_counter</span><span class="p">)</span>
 
 <span class="n">print</span><span class="p">(</span><span class="ss">"Counter value: "</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 <p><strong>2. Local vs. cluster modes</strong>
 - 上述代码的行为是未定义的，并且不同模式下运行情况不同。为了执行<strong>Job</strong>，Spark将RDD操作的处理分解为<strong>Tasks</strong>，每个<strong>Task</strong>由<strong>Executor</strong>执行。在执行之前，Spark会计算<strong>Task</strong>的闭包。闭包是<strong>Executor</strong>在RDD上进行计算的时候必须可见的那些变量和方法（在这种情况下是<strong>foreach()</strong>）。闭包会被序列化并发送给每个<strong>Executor</strong>。</p>
 <ul>
@@ -234,9 +234,9 @@ partitions, iterator and dependencies</p>
 </ol>
 <p><strong>Action -&gt; Job -&gt; Job stages -&gt; Tasks</strong>
 最终，<strong>Tasks</strong>被分发给<strong>Executors</strong>，执行实际的工作。</p>
-<div class="highlight"><pre><span></span><span class="n">Example</span><span class="o">:</span><span class="err">图</span>
+<div class="highlight"><pre><span></span><code><span class="n">Example</span><span class="o">:</span><span class="err">图</span>
 <span class="mi">1</span><span class="o">.</span> <span class="n">Invoking</span> <span class="n">an</span> <span class="n">action</span>
-</pre></div>
+</code></pre></div>
 <p><strong>Job stages 和 Tasks的区别？</strong>
 - <strong>Job stage</strong>： 是跨越物化边界的流水线计算。定义在RDD level，不是可立即可执行的。a  pipelined computation spanning between materialization boundaries. not immediately executable.</p>
 <ul>
@@ -275,12 +275,12 @@ Wide dependencies forbid it.</li>
 - 如果<strong>Executor</strong>端用到了<strong>Driver</strong>的变量，如果使用<strong>广播变量</strong>在每个<strong>Executor</strong>中只有一份<strong>Driver</strong>端的变量副本</p>
 <p><strong>2. 使用广播变量</strong>
 通过调用<strong><code>SparkContext.broadcast(v)</code></strong>从变量<strong>v</strong>创建广播变量。 广播变量是<strong>v</strong>的包装器，可以通过调用<strong><code>value</code></strong>方法访问其值：</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">broadcastVar</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">broadcast</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">broadcastVar</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">broadcast</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="o">&lt;</span><span class="n">pyspark</span><span class="p">.</span><span class="n">broadcast</span><span class="p">.</span><span class="n">Broadcast</span> <span class="k">object</span> <span class="k">at</span> <span class="mi">0</span><span class="n">x102789f10</span><span class="o">&gt;</span>
 
 <span class="o">&gt;&gt;</span> <span class="n">broadcastVar</span><span class="p">.</span><span class="n">value</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-</pre></div>
+</code></pre></div>
 <p>创建广播变量后，应该在群集上运行的任何函数中使用它而不是值v，这样v不会多次传送到节点。 另外，在广播之后不应修改对象v，以确保所有节点获得广播变量的相同值（例如，如果稍后将变量发送到新节点）。</p>
 <h3 id="accumulators">Accumulators<a class="headerlink" href="#accumulators" title="Permanent link">¶</a></h3>
 <p>在spark应用程序中，我们经常会有这样的需求，如异常监控，调试，记录符合某特性的数据的数目，这种需求都需要用到计数器，如果一个变量不被声明为一个<strong>Accumulator</strong>，那么它将在被改变时不会再<strong>driver</strong>端进行全局汇总，即在分布式运行时每个<strong>Task</strong>运行的只是原始变量的一个副本，并不能改变原始变量的值，但是当这个变量被声明为<strong>Accumulator</strong>后，该变量就会有分布式计数的功能。</p>
@@ -288,7 +288,7 @@ Wide dependencies forbid it.</li>
 - <strong><code>Driver</code></strong>端创建：<strong><code>SparkContext.accumulator(v)</code></strong>
 - <strong><code>Executor</code></strong>端更新：集群上运行的<strong>Task</strong>更新：<strong><code>add</code></strong>和<strong><code>+=</code></strong>
 - <strong><code>Driver</code></strong>端读取：<strong><code>value</code></strong></p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">accum</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">accumulator</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="n">accum</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">accumulator</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="o">&gt;&gt;</span> <span class="n">accum</span>
 <span class="n">Accumulator</span><span class="o">&lt;</span><span class="n">id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="o">&gt;</span>
 
@@ -298,16 +298,16 @@ Wide dependencies forbid it.</li>
 
 <span class="o">&gt;&gt;</span> <span class="n">accum</span><span class="p">.</span><span class="n">value</span>
 <span class="mi">10</span>
-</pre></div>
+</code></pre></div>
 <p><strong>注：</strong>
 累加器不会改变Spark的惰性模型。 如果在RDD上的操作中更新它们，则只有在RDD作为<strong>action</strong>部分计算时才更新它的值。 因此，在像<strong>map()</strong>这样的惰性<strong>transformation</strong>中进行累积器更新时，不能保证执行累加器更新。</p>
-<div class="highlight"><pre><span></span><span class="n">accum</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="nf">accumulator</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">accum</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="nf">accumulator</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">accum</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="k">return</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">data</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 <span class="c1"># Here, accum is still 0 because no actions have caused the `map` to be computed.</span>
-</pre></div>
+</code></pre></div>
 <h1 id="references">References<a class="headerlink" href="#references" title="Permanent link">¶</a></h1>
 <p>[1] <a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2011/EECS-2011-82.pdf">Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</a>
 [2] <a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html">RDD Programming Guide</a>

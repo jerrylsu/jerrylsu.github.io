@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Docker, Docker, " />
 
-<meta property="og:title" content="Docker "/>
+<meta property="og:title" content="Docker"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Docker.html" />
 <meta property="og:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04切勿下载这个runtime版，而是dev，否则很多配置文件找不到。 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu docker授权非root用户¶ sudo usermod -a -G docker AD\\yckj2939 docker镜像启动¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式运行 # -d后台运行 -v挂载共享目录 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-12-23T09:26:47+08:00" />
-<meta name="twitter:title" content="Docker ">
+<meta name="twitter:title" content="Docker">
 <meta name="twitter:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04切勿下载这个runtime版，而是dev，否则很多配置文件找不到。 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu docker授权非root用户¶ sudo usermod -a -G docker AD\\yckj2939 docker镜像启动¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式运行 # -d后台运行 -v挂载共享目录 …">
 
-        <title>Docker  · Jerry Su&#39;s Blog
+        <title>Docker · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -123,7 +123,7 @@
 <h2 id="dockerroot">docker授权非root用户<a class="headerlink" href="#dockerroot" title="Permanent link">¶</a></h2>
 <p><code>sudo usermod -a -G docker AD\\yckj2939</code></p>
 <h2 id="docker">docker镜像启动<a class="headerlink" href="#docker" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><span class="err">#</span><span class="w"> </span><span class="n">启动容器镜像nlp</span><span class="o">/</span><span class="nl">ieg</span><span class="p">:</span><span class="mf">3.0.4</span><span class="err">，</span><span class="n">容器重命名为ieg304</span><span class="err">，</span><span class="o">-</span><span class="n">it交互式运行</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">启动容器镜像nlp</span><span class="o">/</span><span class="nl">ieg</span><span class="p">:</span><span class="mf">3.0.4</span><span class="err">，</span><span class="n">容器重命名为ieg304</span><span class="err">，</span><span class="o">-</span><span class="n">it交互式运行</span><span class="w"> </span>
 <span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="n">d后台运行</span><span class="w"> </span><span class="o">-</span><span class="n">v挂载共享目录</span><span class="err">，</span><span class="n">前者主机目录</span><span class="err">，</span><span class="n">后者容器m目录</span><span class="w"></span>
 <span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="n">p指定端口号</span><span class="err">，</span><span class="n">端口号作用</span><span class="vm">?</span><span class="w"></span>
 <span class="err">#</span><span class="w"> </span><span class="n">参数</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash启动ubuntu</span><span class="w"></span>
@@ -135,7 +135,7 @@
 
 <span class="err">#</span><span class="w"> </span><span class="n">进入容器</span><span class="w"></span>
 <span class="err">$:</span><span class="w"> </span><span class="n">docker</span><span class="w"> </span><span class="k">exec</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="n">ieg304</span><span class="w"> </span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span><span class="w"></span>
-</pre></div>
+</code></pre></div>
 <h2 id="_1">添加已运行容器端口<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
 <ul>
 <li>
@@ -167,24 +167,24 @@
 <ul>
 <li>进入容器安装anaconda</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="err">$</span><span class="p">:</span> <span class="n">docker</span> <span class="k">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">cuda10_0</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span><span class="p">:</span> <span class="n">docker</span> <span class="k">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">cuda10_0</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span>
 
 <span class="err">$</span><span class="p">:</span> <span class="n">cd</span> <span class="o">~</span> <span class="o">|</span> <span class="p">.</span><span class="o">/</span><span class="n">Anaconda</span><span class="p">.</span><span class="n">sh</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>配置notebook在.jupyter文件夹下</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="err">$</span><span class="p">:</span> <span class="n">jupyter</span> <span class="n">notebook</span> <span class="c1">--generate-config</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span><span class="p">:</span> <span class="n">jupyter</span> <span class="n">notebook</span> <span class="c1">--generate-config</span>
 
 <span class="err">$</span><span class="p">:</span> <span class="n">jupyter</span> <span class="n">notebook</span> <span class="n">password</span>
-</pre></div>
+</code></pre></div>
 <p>生成密钥： <code>jupyter_notebook_config.josn</code></p>
 <p>修改文件： <code>jupyter_notebook_config.py</code></p>
-<div class="highlight"><pre><span></span><span class="err">c.NotebookApp.ip='*'</span>
+<div class="highlight"><pre><span></span><code><span class="err">c.NotebookApp.ip='*'</span>
 <span class="err">c.NotebookApp.password = u'生成的密钥'</span>
 <span class="err">c.NotebookApp.open_browser = False</span>
 <span class="err">c.NotebookApp.port =8888 #可指定一个端口, 访问时使用该端口（虽然运行jupyter时可以直接指定端口）</span>
-</pre></div>
+</code></pre></div>
 <p><a href="https://blog.csdn.net/qq_42001765/article/details/96144442">https://blog.csdn.net/qq_42001765/article/details/96144442</a></p>
 <ul>
 <li>后台运行</li>
@@ -193,9 +193,9 @@
 <ul>
 <li>远程访问</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="err"># server_ip:port</span>
+<div class="highlight"><pre><span></span><code><span class="err"># server_ip:port</span>
 <span class="err">10.235.3.43:8888</span>
-</pre></div>
+</code></pre></div>
 <h2 id="pycharm-docker">PyCharm + Docker炼丹炉<a class="headerlink" href="#pycharm-docker" title="Permanent link">¶</a></h2>
 <p>PyCharm Pro + Nvidia Docker</p>
 <ul>
@@ -206,7 +206,7 @@
 <p>进入容器配置ssh服务</p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><span class="o">#</span> <span class="err">此操作在远程服务器</span>
+<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="err">此操作在远程服务器</span>
 <span class="err">$</span> <span class="n">docker</span> <span class="n">port</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">container</span> <span class="n">name</span><span class="o">&gt;</span> <span class="mi">22</span>
 <span class="o">#</span> <span class="err">此操作将查看</span><span class="n">docker</span> <span class="n">container中端口22</span><span class="err">，在远程服务器上端口的映射</span>
 <span class="o">#</span> <span class="err">输出结果如下所示</span>
@@ -215,7 +215,7 @@
 
 <span class="n">ssh</span> <span class="n">root</span><span class="o">@&lt;</span><span class="err">服务器的</span><span class="n">ip地址</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9380</span>
 <span class="o">#</span> <span class="err">可以进入容器，</span><span class="n">passwd命令可以修改容器root密码</span>
-</pre></div>
+</code></pre></div>
 <p>最常见的问题就是docker容器停了以后里面的SSH服务也会相应停止，记得去docker里重启一下ssh服务：</p>
 <p><code>$ service ssh restart</code></p>
 <p><a href="https://www.cnblogs.com/ruiyang-/p/10158658.html">https://www.cnblogs.com/ruiyang-/p/10158658.html</a></p>
@@ -237,11 +237,11 @@
 <p>推送镜像： <code>docker push dockerUserName/repoNme[:tag]</code></p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">tag</span> <span class="k">local</span><span class="o">-</span><span class="n">image</span><span class="p">:</span><span class="n">tagname</span> <span class="k">new</span><span class="o">-</span><span class="n">repo</span><span class="p">:</span><span class="n">tagname</span>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">tag</span> <span class="k">local</span><span class="o">-</span><span class="n">image</span><span class="p">:</span><span class="n">tagname</span> <span class="k">new</span><span class="o">-</span><span class="n">repo</span><span class="p">:</span><span class="n">tagname</span>
 <span class="n">docker</span> <span class="n">push</span> <span class="k">new</span><span class="o">-</span><span class="n">repo</span><span class="p">:</span><span class="n">tagname</span>
 
 <span class="n">docker</span> <span class="n">push</span> <span class="n">jerrysu666</span><span class="o">/</span><span class="n">cuda10</span><span class="p">.</span><span class="mi">0</span><span class="p">:</span><span class="n">tagname</span>
-</pre></div>
+</code></pre></div>
 
 
                 <p id="post-share-links">

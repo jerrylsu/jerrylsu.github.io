@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Algorithm, Breadth First Search, Algorithm, " />
 
-<meta property="og:title" content="Breadth First Search "/>
+<meta property="og:title" content="Breadth First Search"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Breadth-First-Search.html" />
 <meta property="og:description" content="概述¶ 典型BFS三层循环: 先明确队列中放的是什么，即满足怎样的条件才能入队。例如，拓扑排序入度为0的节点入队。 队列不空, while queue 分层遍历，for当前层的size。 循环何时可省？ 不需要分层 从当前点出发，向周围点去循环 例如:拓扑排序去for循环遍历当前点的邻居节点。 循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。 宽搜要点¶ 使用队列为主要数据结构Queue 是否需要分层实现：分层打印多一层for循环，len(queue)缓存队列每一层大小。 for _ range(len(queue)): 错，需缓存 二叉树上的宽搜¶ Binary Tree Level Order Traversal¶ Binary Tree Zigzag Level Order …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-06-16T02:21:38+08:00" />
-<meta name="twitter:title" content="Breadth First Search ">
+<meta name="twitter:title" content="Breadth First Search">
 <meta name="twitter:description" content="概述¶ 典型BFS三层循环: 先明确队列中放的是什么，即满足怎样的条件才能入队。例如，拓扑排序入度为0的节点入队。 队列不空, while queue 分层遍历，for当前层的size。 循环何时可省？ 不需要分层 从当前点出发，向周围点去循环 例如:拓扑排序去for循环遍历当前点的邻居节点。 循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。 宽搜要点¶ 使用队列为主要数据结构Queue 是否需要分层实现：分层打印多一层for循环，len(queue)缓存队列每一层大小。 for _ range(len(queue)): 错，需缓存 二叉树上的宽搜¶ Binary Tree Level Order Traversal¶ Binary Tree Zigzag Level Order …">
 
-        <title>Breadth First Search  · Jerry Su&#39;s Blog
+        <title>Breadth First Search · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -142,11 +142,11 @@
 <ul>
 <li>图如何存储？ 临接点</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">GraphNode</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">GraphNode</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">neighbors</span> <span class="o">=</span> <span class="p">[]</span>
-</pre></div>
+</code></pre></div>
 <h4 id="_5">图的遍历<a class="headerlink" href="#_5" title="Permanent link">¶</a></h4>
 <h4 id="_6">层级遍历<a class="headerlink" href="#_6" title="Permanent link">¶</a></h4>
 <h4 id="_7">由点及面<a class="headerlink" href="#_7" title="Permanent link">¶</a></h4>

@@ -11,16 +11,16 @@
 
 <meta name="keywords" content=", posts, " />
 
-<meta property="og:title" content="Spark "/>
+<meta property="og:title" content="Spark"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Spark.html" />
 <meta property="og:description" content="3.spark简介¶ 3.1.spark定义¶ spark是基于内存的， 分布式的， 大数据并行计算框架（处理引擎） 迭代式计算，优先使用内存，内存不足，再使用磁盘。 分布式：数据存储分布式；运算分布式。 spark + 数据源（hdfs） 3.2.spark和hadoop关系¶ hadoop：hdfs mapreduce yarn spark + hadfs spark + yarn spark 和 mapreduce比较 mapreduce：第一代分布式运行框架。分治编程思想。 mapreduce： 两步计算，磁盘存储; spark：多步计算，内存存储。类似于scala的函数式编程，链式编程。 spark基于内存，迭代效率更高 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-07-20T08:55:52+08:00" />
-<meta name="twitter:title" content="Spark ">
+<meta name="twitter:title" content="Spark">
 <meta name="twitter:description" content="3.spark简介¶ 3.1.spark定义¶ spark是基于内存的， 分布式的， 大数据并行计算框架（处理引擎） 迭代式计算，优先使用内存，内存不足，再使用磁盘。 分布式：数据存储分布式；运算分布式。 spark + 数据源（hdfs） 3.2.spark和hadoop关系¶ hadoop：hdfs mapreduce yarn spark + hadfs spark + yarn spark 和 mapreduce比较 mapreduce：第一代分布式运行框架。分治编程思想。 mapreduce： 两步计算，磁盘存储; spark：多步计算，内存存储。类似于scala的函数式编程，链式编程。 spark基于内存，迭代效率更高 …">
 
-        <title>Spark  · Jerry Su&#39;s Blog
+        <title>Spark · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -173,19 +173,19 @@ a3 192.168.23.3 worker</p>
 <h3 id="52">5.2.机器的环境配置<a class="headerlink" href="#52" title="Permanent link">¶</a></h3>
 <h4 id="521">5.2.1.免密登陆<a class="headerlink" href="#521" title="Permanent link">¶</a></h4>
 <p>配置主节点到从节点的免密登陆即可。</p>
-<div class="highlight"><pre><span></span><span class="err"># ssh-keygen</span>
+<div class="highlight"><pre><span></span><code><span class="err"># ssh-keygen</span>
 <span class="err"># ssh-copy-id ip</span>
-</pre></div>
+</code></pre></div>
 <h4 id="522">5.2.2.关闭防火墙<a class="headerlink" href="#522" title="Permanent link">¶</a></h4>
 <p>大数据集群，一般都是内网集群，不需要开启防火墙。</p>
 <p>有单独的机器，具备内网和外网环境，可以通过该机器进行对外通信。</p>
-<div class="highlight"><pre><span></span><span class="err"># service iptables status    // 查看防火墙</span>
+<div class="highlight"><pre><span></span><code><span class="err"># service iptables status    // 查看防火墙</span>
 <span class="err"># service iptables stop      // 关闭防火墙</span>
 <span class="err"># ckconfig iptables off      // 永久关闭</span>
-</pre></div>
+</code></pre></div>
 <h4 id="523iphost">5.2.3.ip与host的映射关系<a class="headerlink" href="#523iphost" title="Permanent link">¶</a></h4>
 <p>使用hostname</p>
-<div class="highlight"><pre><span></span><span class="err"># cat /etc/hosts</span>
+<div class="highlight"><pre><span></span><code><span class="err"># cat /etc/hosts</span>
 <span class="err">127.0.0.1   localhost</span>
 <span class="err">255.255.255.255 broadcasthost</span>
 <span class="err">::1             localhost</span>
@@ -193,7 +193,7 @@ a3 192.168.23.3 worker</p>
 <span class="err">192.168.23.1 a1</span>
 <span class="err">192.168.23.2 a2</span>
 <span class="err">192.168.23.3 a3</span>
-</pre></div>
+</code></pre></div>
 
 
                 <p id="post-share-links">

@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Python, Python, " />
 
-<meta property="og:title" content="Building Python Package with Pybuilder "/>
+<meta property="og:title" content="Building Python Package with Pybuilder"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Building-Python-Package-with-Pybuilder.html" />
 <meta property="og:description" content="Building Python Package¶ git + venv + pybuilder [1] virtualenv user guide [2] 廖雪峰-virtualenv [3] pybuilder tutorial [4] Managing Your Python Project with Git and PyBuilder [5] examples How to add non-python file into a distribution? [1] Install additional files [2] doc 使用project.install_file(target, source)安装非python文件。 target path：可以是绝对路径，也可以是相对于安装前缀 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2018-10-03T11:23:36+08:00" />
-<meta name="twitter:title" content="Building Python Package with Pybuilder ">
+<meta name="twitter:title" content="Building Python Package with Pybuilder">
 <meta name="twitter:description" content="Building Python Package¶ git + venv + pybuilder [1] virtualenv user guide [2] 廖雪峰-virtualenv [3] pybuilder tutorial [4] Managing Your Python Project with Git and PyBuilder [5] examples How to add non-python file into a distribution? [1] Install additional files [2] doc 使用project.install_file(target, source)安装非python文件。 target path：可以是绝对路径，也可以是相对于安装前缀 …">
 
-        <title>Building Python Package with Pybuilder  · Jerry Su&#39;s Blog
+        <title>Building Python Package with Pybuilder · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -104,14 +104,14 @@
 <p>使用<code>project.install_file(target, source)</code>安装非python文件。
 <code>target path</code>：可以是绝对路径，也可以是相对于安装前缀(<code>/usr/</code> on most linux systems)。
 <code>source path</code>：必须是<code>distribution directory</code>目录。因为默认情况下non-python文件未复制到分发目录，因此必须使用<code>copy_resources</code>插件来包含它们。</p>
-<div class="highlight"><pre><span></span><span class="n">use_plugin</span><span class="p">(</span><span class="ss">"copy_resources"</span><span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">use_plugin</span><span class="p">(</span><span class="ss">"copy_resources"</span><span class="p">)</span><span class="w"></span>
 
 <span class="nv">@init</span><span class="w"></span>
 <span class="n">def</span><span class="w"> </span><span class="k">initialize</span><span class="p">(</span><span class="n">project</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
 <span class="w">    </span><span class="n">project</span><span class="p">.</span><span class="n">get_property</span><span class="p">(</span><span class="ss">"copy_resources_glob"</span><span class="p">).</span><span class="n">append</span><span class="p">(</span><span class="ss">"src/main/resources/my-config.yaml"</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">project</span><span class="p">.</span><span class="n">set_property</span><span class="p">(</span><span class="ss">"copy_resources_target"</span><span class="p">,</span><span class="w"> </span><span class="ss">"$dir_dist"</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">project</span><span class="p">.</span><span class="n">install_file</span><span class="p">(</span><span class="ss">"/etc/defaults"</span><span class="p">,</span><span class="w"> </span><span class="ss">"src/main/resources/my-config.yaml"</span><span class="p">)</span><span class="w"></span>
-</pre></div>
+</code></pre></div>
 
 
                 <p id="post-share-links">

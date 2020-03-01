@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Python, Python, " />
 
-<meta property="og:title" content="Passing a function as an argument: Lambda Function "/>
+<meta property="og:title" content="Passing a function as an argument: Lambda Function"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Passing-a-function-as-an-argument:-Lambda-Function.html" />
 <meta property="og:description" content="f = lambda x: x * 2 is exactly the same thing as def f(x): return x * 2 Lambdas are usually used to create small, anonymous functions. Actually, they are just a syntatic sugar to define functions. The lambda expression above is exactly the same as your function, only without a …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-05-23T07:06:14+08:00" />
-<meta name="twitter:title" content="Passing a function as an argument: Lambda Function ">
+<meta name="twitter:title" content="Passing a function as an argument: Lambda Function">
 <meta name="twitter:description" content="f = lambda x: x * 2 is exactly the same thing as def f(x): return x * 2 Lambdas are usually used to create small, anonymous functions. Actually, they are just a syntatic sugar to define functions. The lambda expression above is exactly the same as your function, only without a …">
 
-        <title>Passing a function as an argument: Lambda Function  · Jerry Su&#39;s Blog
+        <title>Passing a function as an argument: Lambda Function · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -74,14 +74,14 @@
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
             
-            <div class="highlight"><pre><span></span><span class="err">f = lambda x: x * 2</span>
-</pre></div>
+            <div class="highlight"><pre><span></span><code><span class="err">f = lambda x: x * 2</span>
+</code></pre></div>
 
 
 <p>is exactly the same thing as</p>
-<div class="highlight"><pre><span></span><span class="err">def f(x):</span>
+<div class="highlight"><pre><span></span><code><span class="err">def f(x):</span>
 <span class="err">    return x * 2</span>
-</pre></div>
+</code></pre></div>
 
 
 <blockquote>
@@ -91,12 +91,12 @@
 <ul>
 <li>Lambda表达式只能包含表达式，不能包含语句。表达式是任何可以放在=赋值右侧的。</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">lambda</span> <span class="k">function</span> <span class="n">pass</span>
+<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="n">lambda</span> <span class="k">function</span> <span class="n">pass</span>
 <span class="n">logger</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">tmpfile</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="n">lambda</span> <span class="n">path</span><span class="p">:</span> <span class="n">email</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">app_name</span><span class="o">=</span><span class="n">conf</span><span class="p">[</span><span class="s1">&#39;app_name&#39;</span><span class="p">],</span> <span class="n">model_owner</span><span class="o">=</span><span class="n">conf</span><span class="p">[</span><span class="s1">&#39;model_owner&#39;</span><span class="p">]))</span> 
 
 <span class="o">#</span> <span class="k">function</span> <span class="k">call</span> <span class="o">!!!</span>
 <span class="n">logger</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">tmpfile</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="n">email</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">app_name</span><span class="o">=</span><span class="n">conf</span><span class="p">[</span><span class="s1">&#39;app_name&#39;</span><span class="p">],</span> <span class="n">model_owner</span><span class="o">=</span><span class="n">conf</span><span class="p">[</span><span class="s1">&#39;model_owner&#39;</span><span class="p">]))</span> 
-</pre></div>
+</code></pre></div>
 
 
                 <p id="post-share-links">

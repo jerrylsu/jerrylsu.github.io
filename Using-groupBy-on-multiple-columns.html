@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Python, Python, " />
 
-<meta property="og:title" content="Using groupBy on multiple columns "/>
+<meta property="og:title" content="Using groupBy on multiple columns"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Using-groupBy-on-multiple-columns.html" />
 <meta property="og:description" content="Group By X means put all those with the same value for X in the one group. Group By X, Y means put all those with the same values for both X and Y in the one group. To illustrate using an example, let&#39;s say we have the following table …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-05-23T06:42:23+08:00" />
-<meta name="twitter:title" content="Using groupBy on multiple columns ">
+<meta name="twitter:title" content="Using groupBy on multiple columns">
 <meta name="twitter:description" content="Group By X means put all those with the same value for X in the one group. Group By X, Y means put all those with the same values for both X and Y in the one group. To illustrate using an example, let&#39;s say we have the following table …">
 
-        <title>Using groupBy on multiple columns  · Jerry Su&#39;s Blog
+        <title>Using groupBy on multiple columns · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -78,7 +78,7 @@
 <p>Group By X, Y means put all those with the same values for both X and Y in the one group.</p>
 <p>To illustrate using an example, let's say we have the following table, to do with who is attending what subject at a university:</p>
 <p>Table: Subject_Selection</p>
-<div class="highlight"><pre><span></span><span class="err">Subject   Semester   Attendee</span>
+<div class="highlight"><pre><span></span><code><span class="err">Subject   Semester   Attendee</span>
 <span class="err">---------------------------------</span>
 <span class="err">ITB001    1          John</span>
 <span class="err">ITB001    1          Bob</span>
@@ -87,39 +87,39 @@
 <span class="err">ITB001    2          James</span>
 <span class="err">MKB114    1          John</span>
 <span class="err">MKB114    1          Erica</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>When you use a group by on the subject column only; say:</p>
-<div class="highlight"><pre><span></span><span class="err">select Subject, Count(*)</span>
+<div class="highlight"><pre><span></span><code><span class="err">select Subject, Count(*)</span>
 <span class="err">from Subject_Selection</span>
 <span class="err">group by Subject</span>
 <span class="err">You will get something like:</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="err">Subject    Count</span>
+<div class="highlight"><pre><span></span><code><span class="err">Subject    Count</span>
 <span class="err">------------------------------</span>
 <span class="err">ITB001     5</span>
 <span class="err">MKB114     2</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>...because there are 5 entries for ITB001, and 2 for MKB114</p>
 <p>If we were to group by two columns:</p>
-<div class="highlight"><pre><span></span><span class="err">select Subject, Semester, Count(*)</span>
+<div class="highlight"><pre><span></span><code><span class="err">select Subject, Semester, Count(*)</span>
 <span class="err">from Subject_Selection</span>
 <span class="err">group by Subject, Semester</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>we would get this:</p>
-<div class="highlight"><pre><span></span><span class="err">Subject    Semester   Count</span>
+<div class="highlight"><pre><span></span><code><span class="err">Subject    Semester   Count</span>
 <span class="err">------------------------------</span>
 <span class="err">ITB001     1          3</span>
 <span class="err">ITB001     2          2</span>
 <span class="err">MKB114     1          2</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>This is because, when we group by two columns, it is saying <strong>"Group them so that all of those with the same Subject and Semester are in the same group, and then calculate all the aggregate functions (Count, Sum, Average, etc.) for each of those groups".</strong> </p>

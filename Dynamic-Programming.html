@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Algorithm, Dynamic Programming, Algorithm, " />
 
-<meta property="og:title" content="Dynamic Programming "/>
+<meta property="og:title" content="Dynamic Programming"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Dynamic-Programming.html" />
 <meta property="og:description" content="动态规划四要素¶ 状态的定义¶ 状态的定义是动态规划最难的地方，根据定义状态可以将其分类。 状态的转移方程¶ 状态之间的联系，如何通过小状态推出大状态。 状态的初始化¶ 最小状态是什么，即递归中的base case起点。 以及转移方程推算不出的需要手工计算的状态。 返回结果¶ 最终要求解的问题，即最大的状态。终点 与递归三要素对比¶ 定义 ---&gt; 状态¶ 接收什么参数 处理过程 返回的结果 拆解 ---&gt; 方程¶ 如何将参数变小，问题规模变小。大状态变小状态。 出口 ---&gt; 初始化¶ base case最小，可以直接解决的状态 判断动态规划依据¶ 不适用动态规划情况¶ 求出所有具体方案，而非方案个数 输入数据是一个集合，而非序列 暴力算法的时间复杂度已经是多项式级别 动态规划擅长优化NP问题到P问题，即指数级时间复杂度\((2^n …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-06-01T01:40:10+08:00" />
-<meta name="twitter:title" content="Dynamic Programming ">
+<meta name="twitter:title" content="Dynamic Programming">
 <meta name="twitter:description" content="动态规划四要素¶ 状态的定义¶ 状态的定义是动态规划最难的地方，根据定义状态可以将其分类。 状态的转移方程¶ 状态之间的联系，如何通过小状态推出大状态。 状态的初始化¶ 最小状态是什么，即递归中的base case起点。 以及转移方程推算不出的需要手工计算的状态。 返回结果¶ 最终要求解的问题，即最大的状态。终点 与递归三要素对比¶ 定义 ---&gt; 状态¶ 接收什么参数 处理过程 返回的结果 拆解 ---&gt; 方程¶ 如何将参数变小，问题规模变小。大状态变小状态。 出口 ---&gt; 初始化¶ base case最小，可以直接解决的状态 判断动态规划依据¶ 不适用动态规划情况¶ 求出所有具体方案，而非方案个数 输入数据是一个集合，而非序列 暴力算法的时间复杂度已经是多项式级别 动态规划擅长优化NP问题到P问题，即指数级时间复杂度\((2^n …">
 
-        <title>Dynamic Programming  · Jerry Su&#39;s Blog
+        <title>Dynamic Programming · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -188,7 +188,7 @@
 <p>根据如何定义状态，将动态规划分类：</p>
 <h3 id="_11">坐标型动态规划<a class="headerlink" href="#_11" title="Permanent link">¶</a></h3>
 <h4 id="triangle">Triangle<a class="headerlink" href="#triangle" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">minimumTotal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">triangle</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">minimumTotal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">triangle</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">triangle</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="n">row</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span>
@@ -203,9 +203,9 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">triangle</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
     <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
+</code></pre></div>
 <h4 id="minimum-path-sum">Minimum Path Sum<a class="headerlink" href="#minimum-path-sum" title="Permanent link">¶</a></h4>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">minPathSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">minPathSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">grid</span><span class="p">:</span>
         <span class="k">return</span>
     <span class="n">row</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
@@ -228,12 +228,12 @@
             <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
+</code></pre></div>
 <h4 id="maximal-square">Maximal Square<a class="headerlink" href="#maximal-square" title="Permanent link">¶</a></h4>
 <p>状态定义：dp[i][j]表示以坐标为 i, j 的这个点，作为正方形的右下角，可以扩展的最大边长</p>
 <p>转移方程：dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1</p>
 <p>取最小的是因为加上(i, j)这一点一定时正方形。画图理解</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">maximalSquare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">matrix</span><span class="p">:</span>
             <span class="k">return</span> <span class="mi">0</span>
@@ -248,12 +248,12 @@
                 <span class="k">else</span><span class="p">:</span>
                         <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">return</span> <span class="n">res</span><span class="o">**</span><span class="mi">2</span>
-</pre></div>
+</code></pre></div>
 <h4 id="longest-increasing-subsequence-lis">Longest Increasing Subsequence (LIS)<a class="headerlink" href="#longest-increasing-subsequence-lis" title="Permanent link">¶</a></h4>
 <p>状态的定义：dp[i]</p>
 <p>本题特殊在于：当前状态dp[i]并非由前一个状态dp[i-1]直接推来，而是在0 ~ i-1的状态dp[0] ~ dp[i-1]中搜寻。如下：</p>
 <p>dp[j]是前一个状态， j属于0 ~ i-1遍历</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">lengthOfLIS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
 
@@ -265,7 +265,7 @@
                     <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># dp[i]迭代放置最大状态</span>
 
         <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 <h3 id="_12">接龙型动态规划<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
 <h4 id="maximum-subarray">Maximum Subarray<a class="headerlink" href="#maximum-subarray" title="Permanent link">¶</a></h4>
 <ul>
@@ -294,7 +294,7 @@
 <p><strong>测试用例：</strong></p>
 <p>功能测试：数组全负数，数组全正数，数组有正有负</p>
 <p>特殊用例：数组不存在</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">maxSubArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">maxSubArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span> 
         <span class="k">return</span>
     <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
@@ -312,20 +312,20 @@
         <span class="n">dp</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
         <span class="n">res</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">res</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span>
-</pre></div>
+</code></pre></div>
 <h4 id="maximum-product-subarray">Maximum Product Subarray<a class="headerlink" href="#maximum-product-subarray" title="Permanent link">¶</a></h4>
 <ul>
 <li>dp状态：</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">2</span><span class="o">]</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">2</span><span class="o">]</span><span class="w"></span>
 <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nf">max</span><span class="w"></span>
 <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nf">min</span><span class="w"></span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>dp初始状态：</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="err">dp[0][0], dp[0][1] = nums[0], nums[0]</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">dp[0][0], dp[0][1] = nums[0], nums[0]</span>
+</code></pre></div>
 <ul>
 <li>dp状态转移方程：</li>
 </ul>
@@ -348,10 +348,10 @@
 <p>则当前状态的最小值为上个状态的最大值乘以当前值<code>dp[i][1] = min(dp[i - 1][0] * nums[i], nums[i])</code></p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">dp</span><span class="o">[</span><span class="n">i - 1</span><span class="o">][</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">i - 1</span><span class="o">][</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">dp</span><span class="o">[</span><span class="n">i - 1</span><span class="o">][</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">i - 1</span><span class="o">][</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
 <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">dp</span><span class="o">[</span><span class="n">i - 1</span><span class="o">][</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">i - 1</span><span class="o">][</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
-</pre></div>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">maxProduct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">maxProduct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span> <span class="k">return</span>
     <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
     <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">res</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -361,7 +361,7 @@
         <span class="n">dp</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
         <span class="n">res</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">res</span>
-</pre></div>
+</code></pre></div>
 <h4 id="coin-change">Coin Change<a class="headerlink" href="#coin-change" title="Permanent link">¶</a></h4>
 <blockquote>
 <p><strong>分析:</strong> 有多少种面值的硬币，前一个状态dp[i - coin]就有多少种。 i表示当前的要计算的总额，i - coin表示去掉添加上来的硬币面值剩下总额。</p>
@@ -380,14 +380,14 @@
 </li>
 </ul>
 <p>时间复杂度<span class="math">\(O(M*N)\)</span>： M是待兑换的总金额，从1递推到M；N是可以兑换的硬币种类数，也是loop所有币种。</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">coinChange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coins</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">coinChange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coins</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">)]</span> <span class="o">*</span> <span class="n">amount</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">amount</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">coin</span> <span class="ow">in</span> <span class="n">coins</span><span class="p">:</span>                            <span class="c1"># 遍历前一个状态</span>
             <span class="k">if</span> <span class="n">coin</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">:</span>                             <span class="c1"># 硬币的面值需要小于i，即当前总amount</span>
                 <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">coin</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># dp[i]迭代放置最小状态， 1表示加上一个面值硬币后的最少硬币数</span>
     <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
-</pre></div>
+</code></pre></div>
 <h3 id="_13">划分行动态规划<a class="headerlink" href="#_13" title="Permanent link">¶</a></h3>
 <h3 id="_14">双序列动态规划<a class="headerlink" href="#_14" title="Permanent link">¶</a></h3>
 <h3 id="_15">背包型动态规划<a class="headerlink" href="#_15" title="Permanent link">¶</a></h3>

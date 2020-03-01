@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Python, Python, " />
 
-<meta property="og:title" content="Python email "/>
+<meta property="og:title" content="Python email"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Python-email.html" />
 <meta property="og:description" content="import smtplib from email.mime.text import MIMEText from email.mime.multipart import MIMEMultipart from email.mime.image import MIMEImage #设置登录及服务器信息 mail_host = &#39;smtp.163.com&#39; mail_user = &#39;jerrylsu&#39; mail_pass = input(&#39;输入授权码102：&#39;) # 授权码， 非密码 sender = &#39;jerrylsu@163.com&#39; receivers = [&#39;sa517301@mail.ustc.edu.cn&#39;] #设置eamil信息 #添加一个MIMEmultipart类，处理正文及附件 message = MIMEMultipart() message[&#39;From&#39;] = sender …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-03-28T02:56:02+08:00" />
-<meta name="twitter:title" content="Python email ">
+<meta name="twitter:title" content="Python email">
 <meta name="twitter:description" content="import smtplib from email.mime.text import MIMEText from email.mime.multipart import MIMEMultipart from email.mime.image import MIMEImage #设置登录及服务器信息 mail_host = &#39;smtp.163.com&#39; mail_user = &#39;jerrylsu&#39; mail_pass = input(&#39;输入授权码102：&#39;) # 授权码， 非密码 sender = &#39;jerrylsu@163.com&#39; receivers = [&#39;sa517301@mail.ustc.edu.cn&#39;] #设置eamil信息 #添加一个MIMEmultipart类，处理正文及附件 message = MIMEMultipart() message[&#39;From&#39;] = sender …">
 
-        <title>Python email  · Jerry Su&#39;s Blog
+        <title>Python email · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -77,7 +77,7 @@
             <div class="toc">
 <ul></ul>
 </div>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">smtplib</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">smtplib</span>
 <span class="kn">from</span> <span class="nn">email.mime.text</span> <span class="kn">import</span> <span class="n">MIMEText</span>
 <span class="kn">from</span> <span class="nn">email.mime.multipart</span> <span class="kn">import</span> <span class="n">MIMEMultipart</span>
 <span class="kn">from</span> <span class="nn">email.mime.image</span> <span class="kn">import</span> <span class="n">MIMEImage</span>
@@ -119,10 +119,10 @@
 <span class="k">finally</span><span class="p">:</span>
     <span class="c1"># 退出SMTP服务器</span>
     <span class="n">server</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="c1">#=========================================================================</span>
+<div class="highlight"><pre><span></span><code><span class="c1">#=========================================================================</span>
 <span class="c1"># 加密SMTP</span>
 <span class="c1">#</span>
 <span class="c1"># 使用标准的25端口连接SMTP服务器时，使用的是明文传输，发送邮件的整个过程可能会被窃听。要更安全地发送邮件，可以加密SMTP会话，实际上就是先创建SSL安全连接，然后再使用SMTP协议发送邮件。  </span>
@@ -218,7 +218,7 @@
     <span class="k">finally</span><span class="p">:</span>
         <span class="c1"># 退出SMTP服务器</span>
         <span class="n">server</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
                 <p id="post-share-links">

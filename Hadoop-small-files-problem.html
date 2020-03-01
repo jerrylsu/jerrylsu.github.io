@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Hadoop, Hadoop, " />
 
-<meta property="og:title" content="Hadoop-small files problem "/>
+<meta property="og:title" content="Hadoop-small files problem"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Hadoop-small-files-problem.html" />
 <meta property="og:description" content="If there are too many small files then the NameNode might get loaded since it stores the name space for HDFS. Check hdfs dfs -du -s -h /apps/hdmi-technology/item_pla_event/* 先按照不分区执行Job，查看整张表的大小。然后计算一个合适的分区数num，按照重新分区repartitioN(num)重新跑Job。 Repartition sellerTransStatsFeatures.repartition(num) NameNode 存储文件的metadata，运行时所有数据都保存到内存，整个HDFS可存储的文件数受限于NameNode的内存大小 一个Block在NameNode中对应一条记录（一般一个block占用150字节），如果是大量的小文件，会消耗大量内存。同时map task的数量是由splits来决定的 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-07-22T07:37:59+08:00" />
-<meta name="twitter:title" content="Hadoop-small files problem ">
+<meta name="twitter:title" content="Hadoop-small files problem">
 <meta name="twitter:description" content="If there are too many small files then the NameNode might get loaded since it stores the name space for HDFS. Check hdfs dfs -du -s -h /apps/hdmi-technology/item_pla_event/* 先按照不分区执行Job，查看整张表的大小。然后计算一个合适的分区数num，按照重新分区repartitioN(num)重新跑Job。 Repartition sellerTransStatsFeatures.repartition(num) NameNode 存储文件的metadata，运行时所有数据都保存到内存，整个HDFS可存储的文件数受限于NameNode的内存大小 一个Block在NameNode中对应一条记录（一般一个block占用150字节），如果是大量的小文件，会消耗大量内存。同时map task的数量是由splits来决定的 …">
 
-        <title>Hadoop-small files problem  · Jerry Su&#39;s Blog
+        <title>Hadoop-small files problem · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">

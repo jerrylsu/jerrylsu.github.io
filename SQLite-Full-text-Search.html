@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="SQL, Python, SQL, " />
 
-<meta property="og:title" content="SQLite Full-text Search "/>
+<meta property="og:title" content="SQLite Full-text Search"/>
 <meta property="og:url" content="https://www.jerrulsu.com/SQLite-Full-text-Search.html" />
 <meta property="og:description" content="Sqlite Full-text Search¶ 理解虚表 理解全文本查找 https://www.sqlite.org/fts5.html http://www.sqlitetutorial.net/sqlite-full-text-search ¶ def _is_to_exec(self, sha1): &#34;&#34;&#34;Check whether the query has been run in the past. &#34;&#34;&#34; sql = f&#39;&#39;&#39; SELECT DISTINCT sha1 FROM queries WHERE queries MATCH &#39;{sha1}&#39; &#39;&#39;&#39; if self._conn.execute(sql).fetchall(): answer = input(&#39;The …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-06-26T00:23:42+08:00" />
-<meta name="twitter:title" content="SQLite Full-text Search ">
+<meta name="twitter:title" content="SQLite Full-text Search">
 <meta name="twitter:description" content="Sqlite Full-text Search¶ 理解虚表 理解全文本查找 https://www.sqlite.org/fts5.html http://www.sqlitetutorial.net/sqlite-full-text-search ¶ def _is_to_exec(self, sha1): &#34;&#34;&#34;Check whether the query has been run in the past. &#34;&#34;&#34; sql = f&#39;&#39;&#39; SELECT DISTINCT sha1 FROM queries WHERE queries MATCH &#39;{sha1}&#39; &#39;&#39;&#39; if self._conn.execute(sql).fetchall(): answer = input(&#39;The …">
 
-        <title>SQLite Full-text Search  · Jerry Su&#39;s Blog
+        <title>SQLite Full-text Search · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -92,7 +92,7 @@
 <p><a href="https://www.sqlite.org/fts5.html">https://www.sqlite.org/fts5.html</a></p>
 <p><a href="http://www.sqlitetutorial.net/sqlite-full-text-search">http://www.sqlitetutorial.net/sqlite-full-text-search</a></p>
 <h3 id="_1"><a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_is_to_exec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sha1</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">_is_to_exec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sha1</span><span class="p">):</span>
         <span class="sd">"""Check whether the query has been run in the past.</span>
 <span class="sd">        """</span>
         <span class="n">sql</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'''</span>
@@ -107,7 +107,7 @@
             <span class="k">if</span> <span class="n">answer</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">'y'</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="kc">True</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li>
 <p>Don't use match! match is for full-text search. Use ordinary SQL queries please. Just compare the column sha1 with the sha1sum of the query</p>

@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Spark, Spark, " />
 
-<meta property="og:title" content="Spark: Shuffling and Partitioning "/>
+<meta property="og:title" content="Spark: Shuffling and Partitioning"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Spark:-Shuffling-and-Partitioning.html" />
 <meta property="og:description" content="Shuffling¶ org.apache.spark.rdd.RDD[(String, Int)]= ShuffledRDD[366]¶ Think again what happens when you have to do a groupBy or a groupByKey. Remember our data is distributed! Did you notice anything odd? val pairs = sc.parallelize(List((1, &#34;one&#34;), (2, &#34;two&#34;), (3, &#34;three&#34;))) pairs.groupByKey() // res2: org.apache …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-03-11T01:56:02+08:00" />
-<meta name="twitter:title" content="Spark: Shuffling and Partitioning ">
+<meta name="twitter:title" content="Spark: Shuffling and Partitioning">
 <meta name="twitter:description" content="Shuffling¶ org.apache.spark.rdd.RDD[(String, Int)]= ShuffledRDD[366]¶ Think again what happens when you have to do a groupBy or a groupByKey. Remember our data is distributed! Did you notice anything odd? val pairs = sc.parallelize(List((1, &#34;one&#34;), (2, &#34;two&#34;), (3, &#34;three&#34;))) pairs.groupByKey() // res2: org.apache …">
 
-        <title>Spark: Shuffling and Partitioning  · Jerry Su&#39;s Blog
+        <title>Spark: Shuffling and Partitioning · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -113,12 +113,12 @@
 <h2 id="orgapachesparkrddrddstring-int-shuffledrdd366">org.apache.spark.rdd.RDD[(String, Int)]= ShuffledRDD[366]<a class="headerlink" href="#orgapachesparkrddrddstring-int-shuffledrdd366" title="Permanent link">¶</a></h2>
 <p>Think again what happens when you have to do a groupBy or a groupByKey.
 Remember our data is distributed! Did you notice anything odd?</p>
-<div class="highlight"><pre><span></span><span class="n">val</span><span class="w"> </span><span class="n">pairs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="n">parallelize</span><span class="p">(</span><span class="n">List</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">"one"</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">"two"</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ss">"three"</span><span class="p">)))</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">val</span><span class="w"> </span><span class="n">pairs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="n">parallelize</span><span class="p">(</span><span class="n">List</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">"one"</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">"two"</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ss">"three"</span><span class="p">)))</span><span class="w"></span>
 <span class="n">pairs</span><span class="p">.</span><span class="n">groupByKey</span><span class="p">()</span><span class="w"></span>
 
 <span class="o">//</span><span class="w"> </span><span class="nl">res2</span><span class="p">:</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="n">apache</span><span class="p">.</span><span class="n">spark</span><span class="p">.</span><span class="n">rdd</span><span class="p">.</span><span class="n">RDD</span><span class="o">[</span><span class="n">(Int, Iterable[String</span><span class="o">]</span><span class="p">)</span><span class="err">]</span><span class="w"></span>
 <span class="o">//</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShuffledRDD</span><span class="o">[</span><span class="n">16</span><span class="o">]</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">groupByKey</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="o">&lt;</span><span class="n">console</span><span class="o">&gt;</span><span class="err">:</span><span class="mi">37</span><span class="w"></span>
-</pre></div>
+</code></pre></div>
 <p>We typically have to move data from one node to another to be "grouped with" its key. Doing this is called "shuffling".
 <strong>Shuffles Happen</strong>
 Shuffles can be an enormous hit to because it means that Spark must send data from one node to another. Why? Latency! </p>
@@ -128,7 +128,7 @@ Shuffles can be an enormous hit to because it means that Spark must send data fr
 假设我们有瑞士火车公司（CFF）移动应用程序用户在过去一个月内购买的数据集RDD。
 <code>val purchasesRdd: RDD[CFFPurchaseJ = sc.textFile( ... )</code>
 目标：每个客户在这个月内的旅行次数和花费金额。</p>
-<div class="highlight"><pre><span></span>val purchasesRdd: RDD[CFFPurchaseJ = sc.textFile( ... )
+<div class="highlight"><pre><span></span><code>val purchasesRdd: RDD[CFFPurchaseJ = sc.textFile( ... )
 
 // Returns: Array[(Int, (Int, Double))]
 val purchasesPerMonth =
@@ -136,15 +136,15 @@ val purchasesPerMonth =
                 .groupByKey() // groupByKey returns RDD[(K, Iterable[VJ )J
                 .map(p =&gt; (p._1, (p._2.size, p._2.sum)))
                 .collect() 
-</pre></div>
+</code></pre></div>
 <p>An example dataset: </p>
-<div class="highlight"><pre><span></span><span class="err">val purchases = List(CFFPurchase(100, "Geneva", 22.25),</span>
+<div class="highlight"><pre><span></span><code><span class="err">val purchases = List(CFFPurchase(100, "Geneva", 22.25),</span>
 <span class="err">                     CFFPurchase (300, ''Zurich'', 42. 10),</span>
 <span class="err">                     CFFPurchase(100, "Fribourg", 12.40),</span>
 <span class="err">                     CFFPurchase (200, ''St. Gallen'', 8. 20),</span>
 <span class="err">                     CFFPurchase(100, ''Lucerne'', 31.60),</span>
 <span class="err">                     CFFPurchase (300, ''Basel'', 16. 20)) </span>
-</pre></div>
+</code></pre></div>
 <p>{% asset_img groupByKey.jpg %}</p>
 <p><strong>注意：<code>groupByKey</code>会为每个<code>Key</code>生成一个键值对。 且单个键值对不能跨越多个<code>worker</code>节点。</strong></p>
 <h2 id="reminder-latency">Reminder: Latency<a class="headerlink" href="#reminder-latency" title="Permanent link">¶</a></h2>
@@ -159,19 +159,19 @@ val purchasesPerMonth =
 <p>然而，<code>reduceByKey</code>比单独使用<code>groupByKey</code>和<code>reduce</code>更有效。</p>
 <p><strong>Signature:</strong>
 <code>def reduceByKey(func: (V, V) =&gt; V): RDD[(K, V)]</code></p>
-<div class="highlight"><pre><span></span>val purchasesRdd: RDD[CFFPurchaseJ = sc.textFile( ... )
+<div class="highlight"><pre><span></span><code>val purchasesRdd: RDD[CFFPurchaseJ = sc.textFile( ... )
 
 val purchasesPerMonth =
 purchasesRdd.map(p =&gt; (p.customerld, (1, p.price))) // Pair ROD
             .reduceByKey( ... ) //? 
-</pre></div>
+</code></pre></div>
 <p>注意：传递给<code>map</code>的函数变为<code>p =&gt; (p.customerld, (1, p.price))</code>
 传递给<code>reduceByKey</code>怎样的函数可以返回这样形式的结果<code>(customerid, (numTrips, totalSpent))</code>？</p>
-<div class="highlight"><pre><span></span><span class="err">val purchasesPerMonth =</span>
+<div class="highlight"><pre><span></span><code><span class="err">val purchasesPerMonth =</span>
 <span class="err">purchasesRdd.map(p =&gt; (p.customerld, (1, p.price))) // Pair ROD</span>
 <span class="err">            .reduceByKey((v1, v2) =&gt; (v1 ._1 + v2._1, v1 ._2 + v2._2))</span>
 <span class="err">            .collect() </span>
-</pre></div>
+</code></pre></div>
 <p _="%" asset_img="asset_img" reducebykey2.jpg="reduceByKey2.jpg"><strong>1. map</strong>
 <strong>2. <code>reduceByKey</code>reduce on mapper side first !</strong>  从而减少了用于<code>shuffle</code>的<code>key-value pairs</code>数据量，如下图所示：
 {% asset_img reduceByKey1.jpg %}
@@ -183,10 +183,10 @@ purchasesRdd.map(p =&gt; (p.customerld, (1, p.price))) // Pair ROD
 <p>{% asset_img runTime.jpg %}</p>
 <h2 id="shuffling_1">Shuffling<a class="headerlink" href="#shuffling_1" title="Permanent link">¶</a></h2>
 <p>回想一下使用<code>groupByKey</code>的示例：</p>
-<div class="highlight"><pre><span></span><span class="err">val purchasesPerCust =</span>
+<div class="highlight"><pre><span></span><code><span class="err">val purchasesPerCust =</span>
 <span class="err">purchasesRdd.map(p =&gt; (p.customerld, p.price)) // Pair RDD</span>
 <span class="err">            .groupByKey() </span>
-</pre></div>
+</code></pre></div>
 <p><font color="red"><strong>Grouping all values of key-value pairs with the same key requires collecting all key-value pairs with the same key on the same machine. </strong></font>
 <strong>Shuffling</strong>产生的原因是：将与<code>Key</code>相关的所有<code>Value</code>移到同一台机器上，从而导致数据在网络中<code>Shuffle</code>。
 <strong>但是Spark怎么知道哪个<code>Key</code>放在哪台机器上呢？</strong>
@@ -204,10 +204,10 @@ purchasesRdd.map(p =&gt; (p.customerld, (1, p.price))) // Pair ROD
 <p><strong>注意：只能在Pair RDD上自定义分区。</strong></p>
 <h2 id="hash-partitioning">Hash partitioning<a class="headerlink" href="#hash-partitioning" title="Permanent link">¶</a></h2>
 <p>Given a Pair RDD that should be grouped: </p>
-<div class="highlight"><pre><span></span><span class="err">val purchasesPerCust =</span>
+<div class="highlight"><pre><span></span><code><span class="err">val purchasesPerCust =</span>
 <span class="err">purchasesRdd.map(p =&gt; (p.customerld, p.price)) // Pair RDD</span>
 <span class="err">            .groupByKey() </span>
-</pre></div>
+</code></pre></div>
 <ol>
 <li><code>groupByKey</code>首先计算RDD对中每个元组的分区p:
 <code>p = k.hashCode() % numPartitions</code></li>
@@ -252,10 +252,10 @@ Using a range partitioner, keys are partitioned according to:
 <h3 id="partitioning-data-partitionby">Partitioning Data: partitionBy<a class="headerlink" href="#partitioning-data-partitionby" title="Permanent link">¶</a></h3>
 <p>调用<strong>partitionBy</strong>会使用指定的分区程序创建<strong>RDD</strong>。
 Example:</p>
-<div class="highlight"><pre><span></span><span class="err">val pairs = purchasesRdd.map(p =&gt; (p.customerld, p.price))</span>
+<div class="highlight"><pre><span></span><code><span class="err">val pairs = purchasesRdd.map(p =&gt; (p.customerld, p.price))</span>
 <span class="err">val tunedPartitioner = new RangePartitioner(8, pairs)</span>
 <span class="err">val partitioned = pairs.partitionBy(tunedPartitioner).persist() </span>
-</pre></div>
+</code></pre></div>
 <p>创建RangePartitioner需要：
 1. 指定所需的分区数。
 2. 提供带有序<strong>Keys</strong>的<strong>Pair RDD</strong>。 对该<strong>RDD</strong>进行采样以创建一组合适的排序范围。</p>

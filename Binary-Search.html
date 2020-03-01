@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Algorithm, Binary Search, Algorithm, " />
 
-<meta property="og:title" content="Binary Search "/>
+<meta property="og:title" content="Binary Search"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Binary-Search.html" />
 <meta property="og:description" content="二分查找初级：二分模板¶ Classical Binary Search¶ 数组元素无重复 class Solution: def search(self, nums: List[int], target: int) -&gt; int: if not nums or len(nums) == 0: return -1 left, right = 0, len(nums) - 1 while left + 1 &lt; right: # 相邻即退出，防止某些问题造成死循环。 mid = left + ((right - left) &gt;&gt; 1) if nums[mid] == target: # find target and …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-04-08T13:10:38+08:00" />
-<meta name="twitter:title" content="Binary Search ">
+<meta name="twitter:title" content="Binary Search">
 <meta name="twitter:description" content="二分查找初级：二分模板¶ Classical Binary Search¶ 数组元素无重复 class Solution: def search(self, nums: List[int], target: int) -&gt; int: if not nums or len(nums) == 0: return -1 left, right = 0, len(nums) - 1 while left + 1 &lt; right: # 相邻即退出，防止某些问题造成死循环。 mid = left + ((right - left) &gt;&gt; 1) if nums[mid] == target: # find target and …">
 
-        <title>Binary Search  · Jerry Su&#39;s Blog
+        <title>Binary Search · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -106,7 +106,7 @@
 <ul>
 <li>数组元素无重复</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
@@ -125,7 +125,7 @@
         <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
             <span class="k">return</span> <span class="n">right</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-</pre></div>
+</code></pre></div>
 <p>模板四要素：
 1. <code>left + 1 &lt; right 相邻时结束</code>
 2. <code>left + ((right - left) &gt;&gt; 1)</code>
@@ -137,7 +137,7 @@
 <ul>
 <li>Target有重复，其他元素无重复。</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">searchRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -174,10 +174,10 @@
             <span class="n">upper</span> <span class="o">=</span> <span class="n">right</span>
 
         <span class="k">return</span> <span class="p">[</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">]</span>
-</pre></div>
+</code></pre></div>
 <p><a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/34.Find_First_and_Last_Position_of_Element_in_Sorted_Array.ipynb">34. Find First and Last Position of Element in Sorted Array</a></p>
 <h3 id="search-a-2d-matrix">Search a 2D Matrix<a class="headerlink" href="#search-a-2d-matrix" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">searchMatrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">matrix</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
             <span class="k">return</span> <span class="kc">False</span>
@@ -199,18 +199,18 @@
         <span class="k">if</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">False</span>
-</pre></div>
+</code></pre></div>
 <h3 id="_2">总结<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
 <ol>
 <li>二分查找的本质是缩小搜索范围：<strong>区间缩小 ===&gt; 剩下两个下标 ===&gt; 判断两个下标</strong></li>
 <li>时间复杂度</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="err">  T(n) = T(n/2) + O(1)</span>
+<div class="highlight"><pre><span></span><code><span class="err">  T(n) = T(n/2) + O(1)</span>
 <span class="err">       = T(n/4) + O(1) + O(1)</span>
 <span class="err">       = T(n/8) + O(1) +O(1) +O(1)</span>
 <span class="err">       = T(1) + logn * O(1)</span>
 <span class="err">       = O(logn)</span>
-</pre></div>
+</code></pre></div>
 <ul>
 <li><code>O(1)</code> 极少</li>
 <li><code>O(logn)</code>几乎都是二分法</li>
@@ -229,7 +229,7 @@
 <ul>
 <li>数组没有重复元素</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">findMin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span>
             <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
@@ -243,13 +243,13 @@
             <span class="k">else</span><span class="p">:</span>                        <span class="c1"># nums[mid] &gt; nums[left] ， 不存在nums[mid] == nums[left]情况。</span>
                 <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
         <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
-</pre></div>
+</code></pre></div>
 <p><a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/153.Find_Minimum_in_Rotated_Sorted_Array.ipynb">153. Find Minimum in Rotated Sorted Array</a></p>
 <h3 id="find-minimum-in-rotated-sorted-array-ii">Find Minimum in Rotated Sorted Array II<a class="headerlink" href="#find-minimum-in-rotated-sorted-array-ii" title="Permanent link">¶</a></h3>
 <ul>
 <li>数组包含<code>重复元素</code></li>
 </ul>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">findMin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span>
             <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
@@ -263,10 +263,10 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">right</span> <span class="o">-=</span> <span class="mi">1</span>                     <span class="c1"># 重复元素，保守缩小right界, 防止越过[3, 4]。 [5, 5, 5, 5, 3, 4, 5, 5, 5]</span>
         <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>        
-</pre></div>
+</code></pre></div>
 <p>### Search in Rotated Sorted Array
 - 数组没有重复元素</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span>
             <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
@@ -290,13 +290,13 @@
         <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
             <span class="k">return</span> <span class="n">right</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-</pre></div>
+</code></pre></div>
 <p><a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/33.Search_in_Rotated_Sorted_Array.ipynb">33. Search in Rotated Sorted Array</a></p>
 <h3 id="search-in-rotated-sorted-array-ii">Search in Rotated Sorted Array II<a class="headerlink" href="#search-in-rotated-sorted-array-ii" title="Permanent link">¶</a></h3>
 <ul>
 <li>数组包含<code>重复元素</code></li>
 </ul>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
@@ -323,7 +323,7 @@
         <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">False</span>
-</pre></div>
+</code></pre></div>
 <p><a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/81.Search_in_Rotated_Sorted_Array_II.ipynb">81. Search in Rotated Sorted Array II</a></p>
 <h2 id="half">二分查找高阶：Half<a class="headerlink" href="#half" title="Permanent link">¶</a></h2>
 <h3 id="find-peak-element">Find Peak Element<a class="headerlink" href="#find-peak-element" title="Permanent link">¶</a></h3>
@@ -337,7 +337,7 @@
    (3) take the right half array if nums[mid] smaller than right neighbor
    (4) otherwise, take the left half</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">findPeakElement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span>
             <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
@@ -351,7 +351,7 @@
             <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
                 <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
         <span class="k">return</span> <span class="n">left</span> <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="k">else</span> <span class="n">right</span> 
-</pre></div>
+</code></pre></div>
 
 
                 <p id="post-share-links">

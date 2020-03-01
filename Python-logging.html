@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Python, Python, " />
 
-<meta property="og:title" content="Python logging "/>
+<meta property="og:title" content="Python logging"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Python-logging.html" />
 <meta property="og:description" content="logging总结 Logger：记录器，暴露函数给应用程序，基于日志记录器和过滤器级别决定哪些日志有效。 Handler ：处理器, 将(日志记录器产生的)日志记录发送至合适的目的地。 Filter ：过滤器, 提供了更好的粒度控制,它可以决定输出哪些日志记录。 Formatter：格式化器, 指明了最终输出中日志记录的布局。 import logging from logging import handlers import sys if True: # 1. 创建记录器 logger = logging.getLogger() logger.setLevel(logging.INFO) # log日志总开关，默认WARNING级 # 2. 创建handler # 2.1. 输出到终端 console = logging.StreamHandler(sys.stdout) # 配置日志输出到控制台 console …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-03-28T01:56:02+08:00" />
-<meta name="twitter:title" content="Python logging ">
+<meta name="twitter:title" content="Python logging">
 <meta name="twitter:description" content="logging总结 Logger：记录器，暴露函数给应用程序，基于日志记录器和过滤器级别决定哪些日志有效。 Handler ：处理器, 将(日志记录器产生的)日志记录发送至合适的目的地。 Filter ：过滤器, 提供了更好的粒度控制,它可以决定输出哪些日志记录。 Formatter：格式化器, 指明了最终输出中日志记录的布局。 import logging from logging import handlers import sys if True: # 1. 创建记录器 logger = logging.getLogger() logger.setLevel(logging.INFO) # log日志总开关，默认WARNING级 # 2. 创建handler # 2.1. 输出到终端 console = logging.StreamHandler(sys.stdout) # 配置日志输出到控制台 console …">
 
-        <title>Python logging  · Jerry Su&#39;s Blog
+        <title>Python logging · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -82,7 +82,7 @@
 <p>Handler ：处理器, 将(日志记录器产生的)日志记录发送至合适的目的地。</p>
 <p>Filter ：过滤器, 提供了更好的粒度控制,它可以决定输出哪些日志记录。</p>
 <p>Formatter：格式化器, 指明了最终输出中日志记录的布局。</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">handlers</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
@@ -138,12 +138,12 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;warning&quot;</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;critical message&quot;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>log输出到文件除了上面的方式，还有一种便捷的方式：基于<code>StreamHandler</code>和重定位符<code>&gt;</code>。</p>
-<div class="highlight"><pre><span></span>$ python3 script.py --argv &gt; log_path
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ python3 script.py --argv &gt; log_path
+</code></pre></div>
 
 
 <p>输出到终端的log数据，重定位到log文件中。</p>

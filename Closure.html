@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Scala, Scala, " />
 
-<meta property="og:title" content="Closure "/>
+<meta property="og:title" content="Closure"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Closure.html" />
 <meta property="og:description" content="什么是闭包？¶ 引用至少一个自由变量的函数称为闭包。 闭包是一个函数，可纯函数或非纯函数，可有名字或匿名，但重要的是它是一个函数。 为何称其为闭包，它与函数最重要的区别是：引用自由变量。 // p相对于getHike，是其自由变量。getHike函数没有局部变量和列表参数p。 var p =10 def getHike(salary:Double) = salary * p/100 getHike(5000) 如果自由变量值发生变化会怎样？¶ 执行闭包时，它采用最新的自由变量的值。 var p =10 def getHike(salary:Double) = salary * p/100 getHike(5000) //res1: Double = 500.0 p=20 getHike(5000) //res2: Double = 1000 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-05-24T03:16:07+08:00" />
-<meta name="twitter:title" content="Closure ">
+<meta name="twitter:title" content="Closure">
 <meta name="twitter:description" content="什么是闭包？¶ 引用至少一个自由变量的函数称为闭包。 闭包是一个函数，可纯函数或非纯函数，可有名字或匿名，但重要的是它是一个函数。 为何称其为闭包，它与函数最重要的区别是：引用自由变量。 // p相对于getHike，是其自由变量。getHike函数没有局部变量和列表参数p。 var p =10 def getHike(salary:Double) = salary * p/100 getHike(5000) 如果自由变量值发生变化会怎样？¶ 执行闭包时，它采用最新的自由变量的值。 var p =10 def getHike(salary:Double) = salary * p/100 getHike(5000) //res1: Double = 500.0 p=20 getHike(5000) //res2: Double = 1000 …">
 
-        <title>Closure  · Jerry Su&#39;s Blog
+        <title>Closure · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -91,25 +91,25 @@
 <h1 id="_1">什么是闭包？<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
 <p>引用至少一个自由变量的函数称为闭包。</p>
 <p>闭包是一个函数，可纯函数或非纯函数，可有名字或匿名，但重要的是它是一个函数。 为何称其为闭包，它与函数最重要的区别是：<strong>引用自由变量</strong>。</p>
-<div class="highlight"><pre><span></span><span class="c1">// p相对于getHike，是其自由变量。getHike函数没有局部变量和列表参数p。</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// p相对于getHike，是其自由变量。getHike函数没有局部变量和列表参数p。</span>
 <span class="k">var</span> <span class="n">p</span> <span class="k">=</span><span class="mi">10</span>
 <span class="k">def</span> <span class="n">getHike</span><span class="o">(</span><span class="n">salary</span><span class="k">:</span><span class="kt">Double</span><span class="o">)</span> <span class="k">=</span> <span class="n">salary</span> <span class="o">*</span> <span class="n">p</span><span class="o">/</span><span class="mi">100</span>
 <span class="n">getHike</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span>
-</pre></div>
+</code></pre></div>
 <h1 id="_2">如果自由变量值发生变化会怎样？<a class="headerlink" href="#_2" title="Permanent link">¶</a></h1>
 <p>执行闭包时，它采用最新的自由变量的值。</p>
-<div class="highlight"><pre><span></span>    <span class="k">var</span> <span class="n">p</span> <span class="k">=</span><span class="mi">10</span>
+<div class="highlight"><pre><span></span><code>    <span class="k">var</span> <span class="n">p</span> <span class="k">=</span><span class="mi">10</span>
     <span class="k">def</span> <span class="n">getHike</span><span class="o">(</span><span class="n">salary</span><span class="k">:</span><span class="kt">Double</span><span class="o">)</span> <span class="k">=</span> <span class="n">salary</span> <span class="o">*</span> <span class="n">p</span><span class="o">/</span><span class="mi">100</span>
     <span class="n">getHike</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span>
     <span class="c1">//res1: Double = 500.0</span>
     <span class="n">p</span><span class="k">=</span><span class="mi">20</span>
     <span class="n">getHike</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span>
     <span class="c1">//res2: Double = 1000.0    </span>
-</pre></div>
+</code></pre></div>
 <p>闭包是否为纯函数：取决于自由变量的类型var和val</p>
 <h1 id="_3">如果闭包修改了自由变量的值会怎样？<a class="headerlink" href="#_3" title="Permanent link">¶</a></h1>
 <p>如果闭包修改了自由变量，则更改在闭包外部可见。</p>
-<div class="highlight"><pre><span></span>    <span class="k">var</span> <span class="n">p</span> <span class="k">=</span><span class="mi">10</span>
+<div class="highlight"><pre><span></span><code>    <span class="k">var</span> <span class="n">p</span> <span class="k">=</span><span class="mi">10</span>
     <span class="k">def</span> <span class="n">getHike</span><span class="o">(</span><span class="n">salary</span><span class="k">:</span><span class="kt">Double</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span> 
             <span class="n">p</span><span class="k">=</span><span class="n">p</span><span class="o">*</span><span class="mi">2</span>
             <span class="n">salary</span> <span class="o">*</span> <span class="n">p</span><span class="o">/</span><span class="mi">100</span>
@@ -120,23 +120,23 @@
     <span class="c1">//res8: Double = 1000.0</span>
     <span class="n">println</span><span class="o">(</span><span class="n">p</span><span class="o">)</span>
     <span class="c1">//20    </span>
-</pre></div>
+</code></pre></div>
 <h1 id="_4">为什么需要闭包，有什么优势？<a class="headerlink" href="#_4" title="Permanent link">¶</a></h1>
 <p>函数式编程，函数可以最为参数传递和返回，与面向对象类似。</p>
 <p>对于某些例子，对象更灵活，因为对象携带方法和数据元素（状态）。然而，函数是唯一的，因为它没有任何数据元素（状态）。</p>
 <p>所以，如果我们需要传递一堆状态和一个函数，那么使用：<strong>闭包</strong>和<strong>自由变量</strong>。</p>
-<div class="highlight"><pre><span></span>    <span class="k">val</span> <span class="n">l</span> <span class="k">=</span> <span class="o">(</span><span class="mi">1001</span> <span class="n">to</span> <span class="mi">1005</span><span class="o">).</span><span class="n">toList</span>
+<div class="highlight"><pre><span></span><code>    <span class="k">val</span> <span class="n">l</span> <span class="k">=</span> <span class="o">(</span><span class="mi">1001</span> <span class="n">to</span> <span class="mi">1005</span><span class="o">).</span><span class="n">toList</span>
     <span class="n">l</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">getHike</span><span class="o">)</span>     
 
     <span class="k">def</span> <span class="n">getHike</span> <span class="k">=</span>  <span class="o">{</span>
         <span class="c1">//Load employee and their current salary</span>
-        <span class="k">val</span> <span class="n">e</span><span class="k">:</span><span class="kt">Map</span><span class="o">[</span><span class="kt">Int</span>,<span class="kt">Double</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Map</span><span class="o">(</span><span class="mi">1001</span><span class="o">-&gt;</span><span class="mf">35000.00</span><span class="o">,</span> 
+        <span class="k">val</span> <span class="n">e</span><span class="k">:</span><span class="kt">Map</span><span class="o">[</span><span class="kt">Int</span><span class="p">,</span><span class="kt">Double</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Map</span><span class="o">(</span><span class="mi">1001</span><span class="o">-&gt;</span><span class="mf">35000.00</span><span class="o">,</span> 
                                 <span class="mi">1002</span><span class="o">-&gt;</span><span class="mf">43000.00</span><span class="o">,</span> 
                                 <span class="mi">1003</span><span class="o">-&gt;</span><span class="mf">28000.00</span><span class="o">,</span> 
                                 <span class="mi">1004</span><span class="o">-&gt;</span><span class="mf">54000.00</span><span class="o">,</span> 
                                 <span class="mi">1005</span><span class="o">-&gt;</span><span class="mf">17000.00</span><span class="o">)</span>
         <span class="c1">// Some logic to derive percentage for each employee</span>
-        <span class="k">val</span> <span class="n">p</span><span class="k">:</span><span class="kt">Map</span><span class="o">[</span><span class="kt">Int</span>,<span class="kt">Double</span><span class="o">]</span>  <span class="k">=</span> <span class="nc">Map</span><span class="o">(</span><span class="mi">1001</span> <span class="o">-&gt;</span> <span class="mf">10.00</span><span class="o">,</span> 
+        <span class="k">val</span> <span class="n">p</span><span class="k">:</span><span class="kt">Map</span><span class="o">[</span><span class="kt">Int</span><span class="p">,</span><span class="kt">Double</span><span class="o">]</span>  <span class="k">=</span> <span class="nc">Map</span><span class="o">(</span><span class="mi">1001</span> <span class="o">-&gt;</span> <span class="mf">10.00</span><span class="o">,</span> 
                                 <span class="mi">1002</span><span class="o">-&gt;</span><span class="mf">12.00</span><span class="o">,</span> 
                                 <span class="mi">1003</span><span class="o">-&gt;</span><span class="mf">7.50</span><span class="o">,</span> 
                                 <span class="mi">1004</span><span class="o">-&gt;</span><span class="mf">6.80</span><span class="o">,</span> 
@@ -152,7 +152,7 @@
     <span class="c1">//Get Hike for a non existant employee</span>
     <span class="n">f</span><span class="o">(</span><span class="mi">1006</span><span class="o">)</span>
     <span class="c1">//java.util.NoSuchElementException: key not found: 1006     </span>
-</pre></div>
+</code></pre></div>
 <p>从最后一行返回的匿名函数是一个闭包。它使用两个自由变量e和p。</p>
 <p>当我们从getHike返回它时，它带有e和p的状态。</p>
 <p>所以，f包含它的数据。<font color="red"><strong>闭包就像面向对象世界里传递的一个对象！</strong></font></p>

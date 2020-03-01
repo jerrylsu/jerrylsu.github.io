@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Linux, Linux, " />
 
-<meta property="og:title" content="Linux "/>
+<meta property="og:title" content="Linux"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Linux.html" />
 <meta property="og:description" content="Redirection of standard output &gt;¶ The default standard output is the screen. &gt; is output redirection symbol and syntax is: $ command &gt; output.file.name https://bash.cyberciti.biz/guide/Standard_output Redirected output &gt;&gt;¶ Appending the output to the same file using &gt;&gt; operator. Pipes |¶ https://bash.cyberciti.biz/guide/Chapter_7:_Pipes_and_Filters cat¶ Displaying The …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-01-23T08:24:33+08:00" />
-<meta name="twitter:title" content="Linux ">
+<meta name="twitter:title" content="Linux">
 <meta name="twitter:description" content="Redirection of standard output &gt;¶ The default standard output is the screen. &gt; is output redirection symbol and syntax is: $ command &gt; output.file.name https://bash.cyberciti.biz/guide/Standard_output Redirected output &gt;&gt;¶ Appending the output to the same file using &gt;&gt; operator. Pipes |¶ https://bash.cyberciti.biz/guide/Chapter_7:_Pipes_and_Filters cat¶ Displaying The …">
 
-        <title>Linux  · Jerry Su&#39;s Blog
+        <title>Linux · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -77,8 +77,8 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#redirection-of-standard-output-gt">Redirection of standard output &gt;</a></li>
-<li><a href="#redirected-output-gtgt">Redirected output &gt;&gt;</a></li>
+<li><a href="#redirection-of-standard-output-gt">Redirection of standard output &amp;gt;</a></li>
+<li><a href="#redirected-output-gtgt">Redirected output &amp;gt;&amp;gt;</a></li>
 <li><a href="#pipes">Pipes |</a></li>
 <li><a href="#cat">cat</a></li>
 <li><a href="#chmod">chmod</a></li>
@@ -159,7 +159,7 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 <h2 id="rsync">rsync<a class="headerlink" href="#rsync" title="Permanent link">¶</a></h2>
 <p>upload: <code>rsync -avh --progress --delete --exclude=analysis/ src_dir/ host:dest_dir</code></p>
 <p>download: <code>rsync -avh --progress host:dest_dir ./</code></p>
-<div class="highlight"><pre><span></span><span class="err">-a, ––archive     # 归档模式，表示以递归方式传输文件，并保持所有文件属性，等价于 -rlptgoD</span>
+<div class="highlight"><pre><span></span><code><span class="err">-a, ––archive     # 归档模式，表示以递归方式传输文件，并保持所有文件属性，等价于 -rlptgoD</span>
 <span class="err">-r, ––recursive   # 对子目录以递归模式处理</span>
 <span class="err">-l, ––links       # 保持符号链接文件</span>
 <span class="err">-H, ––hard-links  # 保持硬链接文件</span>
@@ -173,7 +173,7 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 <span class="err">––progress        # 在传输时显示传输过程</span>
 <span class="err">-v, ––verbose     # 详细输出模式</span>
 <span class="err">-h, ––human-readable # 输出文件大小使用易读的单位（如，K，M等）</span>
-</pre></div>
+</code></pre></div>
 <p><a href="https://download.samba.org/pub/rsync/rsync.html">https://download.samba.org/pub/rsync/rsync.html</a></p>
 <p><a href="https://rsync.samba.org/how-rsync-works.html">https://rsync.samba.org/how-rsync-works.html</a></p>
 <h2 id="ssh">SSH<a class="headerlink" href="#ssh" title="Permanent link">¶</a></h2>
@@ -204,11 +204,11 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 <p><code>sudo service ssh restart</code></p>
 <p><a href="https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps">https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps</a></p>
 <h3 id="auto-disconnect">Auto disconnect<a class="headerlink" href="#auto-disconnect" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span>
+<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span>
 
 <span class="n">ClientAliveInterval</span> <span class="mi">60</span>
 <span class="n">ClientAliveCountMax</span> <span class="mi">3</span>
-</pre></div>
+</code></pre></div>
 <p>restart sshd：</p>
 <p>Linux: <code>service sshd restart</code></p>
 <p>MAC: service: command not found</p>
@@ -216,21 +216,21 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 <h2 id="setting-environmental-var">Setting Environmental Var<a class="headerlink" href="#setting-environmental-var" title="Permanent link">¶</a></h2>
 <h3 id="permanent-var-in-bashrc">Permanent var in <code>~/.bashrc</code><a class="headerlink" href="#permanent-var-in-bashrc" title="Permanent link">¶</a></h3>
 <p><code>vim ~/.bashrc</code></p>
-<div class="highlight"><pre><span></span><span class="err"># open ~/.bashrc file &amp;</span>
+<div class="highlight"><pre><span></span><code><span class="err"># open ~/.bashrc file &amp;</span>
 <span class="err"># set environmental varuable</span>
 <span class="err">TEST="Hi Jerry"</span>
 <span class="err">alias ll='ls -alF'</span>
-</pre></div>
+</code></pre></div>
 <p><code>source ~/.bashrc</code></p>
-<div class="highlight"><pre><span></span><span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">vim</span> <span class="o">~/</span><span class="p">.</span><span class="n">bashrc</span>
+<div class="highlight"><pre><span></span><code><span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">vim</span> <span class="o">~/</span><span class="p">.</span><span class="n">bashrc</span>
 <span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">echo</span> <span class="err">$</span><span class="n">TEST</span>
 
 <span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">source</span> <span class="o">~/</span><span class="p">.</span><span class="n">bashrc</span>
 <span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">echo</span> <span class="err">$</span><span class="n">TEST</span>
 <span class="n">Hi</span> <span class="n">Jerry</span>
-</pre></div>
+</code></pre></div>
 <h3 id="temporary-var-in-shell">Temporary var in Shell<a class="headerlink" href="#temporary-var-in-shell" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span><span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">TEST</span><span class="o">=</span><span class="s">"Hi Jerry"</span>
+<div class="highlight"><pre><span></span><code><span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">TEST</span><span class="o">=</span><span class="s">"Hi Jerry"</span>
 <span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">echo</span> <span class="err">$</span><span class="n">TEST</span>
 <span class="n">Hi</span> <span class="n">Jerry</span>
 <span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">set</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">TEST</span>
@@ -243,7 +243,7 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 <span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">echo</span> <span class="err">$</span><span class="n">TEST</span>
 
 <span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span>
-</pre></div>
+</code></pre></div>
 <p><strong>Note: var is temporary, and shutting down Shell, then the var is gone!</strong></p>
 <p><a href="https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps">How To Read and Set Environmental and Shell Variables on a Linux VPS</a></p>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">¶</a></h2>

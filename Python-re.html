@@ -11,16 +11,16 @@
 
 <meta name="keywords" content="Python, Python, " />
 
-<meta property="og:title" content="Python re "/>
+<meta property="og:title" content="Python re"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Python-re.html" />
 <meta property="og:description" content="&#39;&#39;&#39; Record 3: SELECT * FROM mrkt_data.item_perf_mtrc LIMIT 100000 [ {} ] User: chdu, Start: 2019-06-30 16:10:25, End: 2019-06-30 16:12:07 Format: Parquet, Size: 2.6M, Sha1: e2195477d67ca3248cca6c9c804ada9af200c072 Record 4: SELECT cal_dt, count(*) AS n FROM mrkt_data.item_perf_mtrc WHERE abc_id = &#39;1140976&#39; GROUP BY cal_dt [ {} ] User: chdu, Start: 2019-06-30 16:14:32 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-07-04T02:28:27+08:00" />
-<meta name="twitter:title" content="Python re ">
+<meta name="twitter:title" content="Python re">
 <meta name="twitter:description" content="&#39;&#39;&#39; Record 3: SELECT * FROM mrkt_data.item_perf_mtrc LIMIT 100000 [ {} ] User: chdu, Start: 2019-06-30 16:10:25, End: 2019-06-30 16:12:07 Format: Parquet, Size: 2.6M, Sha1: e2195477d67ca3248cca6c9c804ada9af200c072 Record 4: SELECT cal_dt, count(*) AS n FROM mrkt_data.item_perf_mtrc WHERE abc_id = &#39;1140976&#39; GROUP BY cal_dt [ {} ] User: chdu, Start: 2019-06-30 16:14:32 …">
 
-        <title>Python re  · Jerry Su&#39;s Blog
+        <title>Python re · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -77,7 +77,7 @@
             <div class="toc">
 <ul></ul>
 </div>
-<div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">Record 3:</span>
 <span class="sd">    SELECT *</span>
 <span class="sd">    FROM mrkt_data.item_perf_mtrc</span>
@@ -154,10 +154,10 @@
         <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parse_record</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd"># dataframe</span>
 <span class="sd"># dict</span>
 <span class="sd">{</span>
@@ -266,7 +266,7 @@
         <span class="k">if</span> <span class="n">rtype</span> <span class="o">==</span> <span class="s1">&#39;Series&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_series</span><span class="p">(</span><span class="n">rstr</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">rstr</span>
-</pre></div>
+</code></pre></div>
 
 
                 <p id="post-share-links">
