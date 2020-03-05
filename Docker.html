@@ -82,11 +82,12 @@
 <li><a href="#_2">进入容器</a></li>
 <li><a href="#_3">添加已运行容器端口</a></li>
 <li><a href="#_4">修改容器容量</a></li>
-<li><a href="#dockerroot">docker授权非root用户</a></li>
-<li><a href="#_5">容器内中文乱码</a></li>
-<li><a href="#dockerwebjupyter-notebook">服务器docker中启可远程web的jupyter notebook</a></li>
-<li><a href="#pycharm-docker">PyCharm + Docker炼丹炉</a></li>
-<li><a href="#_6">制作镜像并上传仓库</a></li>
+<li><a href="#server_ipport">server_ip:port</a></li>
+<li><a href="#_5">此操作在远程服务器</a></li>
+<li><a href="#docker-container22">此操作将查看docker container中端口22，在远程服务器上端口的映射</a></li>
+<li><a href="#_6">输出结果如下所示</a></li>
+<li><a href="#ssh9380docker-container22">表明只要ssh链接远程服务器的9380端口，实际是链接docker container中的22端口</a></li>
+<li><a href="#passwdroot">可以进入容器，passwd命令可以修改容器root密码</a></li>
 </ul>
 </div>
         </nav>
@@ -159,110 +160,163 @@
 <p><a href="https://blog.csdn.net/lypeng_/article/details/98176138">https://blog.csdn.net/lypeng_/article/details/98176138</a>
 <a href="https://blog.csdn.net/wesleyflagon/article/details/78961990">https://blog.csdn.net/wesleyflagon/article/details/78961990</a></p>
 <h2 id="_4">修改容器容量<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nt">CID</span><span class="o">=</span><span class="s2">"62f54c85d02ec67b64c1ea15b0c3820edeea6744f7a052f0e795ea127d3fb28e"</span> <span class="err">#</span><span class="o">$</span><span class="nt">1</span>
-<span class="nt">SIZE</span><span class="o">=$</span><span class="nt">1</span>
+<div class="highlight"><pre><span></span><code><span class="err"># CID ---&gt; /dev/mapper/docker</span>
+<span class="err"># 100 ---&gt; 100G</span>
+<span class="err">./script.sh 100`</span>
+</code></pre></div>
+<p>CID="62f54c85d02ec67b64c1ea15b0c3820edeea6744f7a052f0e795ea127d3fb28e" #<span class="math">\(1
+SIZE=\)</span>1</p>
+<p>if [ "<span class="math">\(CID" != "" ] &amp;&amp; [ "\)</span>SIZE" != "" ]; then
+    DEV=<span class="math">\((basename $(echo /dev/mapper/docker-*-\)</span>CID));
+    dmsetup table <span class="math">\(DEV | sed "s/0 [0-9]* thin/0 $((\)</span>SIZE<em>1024</em>1024*1024/512)) thin/" | dmsetup load <span class="math">\(DEV;
+    dmsetup resume $DEV;
+    xfs_growfs /dev/mapper/\)</span>DEV;
+    docker start container_name
+    docker exec -it container_name env LANG=C.UTF-8 /bin/bash
+  echo "Resize $CID completed."
+else
+    echo "Usage: sh resize_container 459fd505311ad364309940ac24dcdb2bdfc68e3c3b0f291c9153fb54fbd46771 100";
+fi</p>
+<div class="highlight"><pre><span></span><code><span class="o">##</span> <span class="n">docker授权非root用户</span>
 
-<span class="nt">if</span> <span class="cp">[</span> <span class="s2">"$CID"</span> <span class="o">!=</span> <span class="s2">""</span> <span class="cp">]</span> <span class="o">&amp;&amp;</span> <span class="cp">[</span> <span class="s2">"$SIZE"</span> <span class="o">!=</span> <span class="s2">""</span> <span class="cp">]</span><span class="o">;</span> <span class="nt">then</span>
-    <span class="nt">DEV</span><span class="o">=$(</span><span class="nt">basename</span> <span class="o">$(</span><span class="nt">echo</span> <span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">mapper</span><span class="o">/</span><span class="nt">docker-</span><span class="o">*</span><span class="nt">-</span><span class="o">$</span><span class="nt">CID</span><span class="o">));</span>
-    <span class="nt">dmsetup</span> <span class="nt">table</span> <span class="o">$</span><span class="nt">DEV</span> <span class="o">|</span> <span class="nt">sed</span> <span class="s2">"s/0 </span><span class="cp">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="cp">]</span><span class="s2">* thin/0 $(($SIZE*1024*1024*1024/512)) thin/"</span> <span class="o">|</span> <span class="nt">dmsetup</span> <span class="nt">load</span> <span class="o">$</span><span class="nt">DEV</span><span class="o">;</span>
-    <span class="nt">dmsetup</span> <span class="nt">resume</span> <span class="o">$</span><span class="nt">DEV</span><span class="o">;</span>
-    <span class="nt">xfs_growfs</span> <span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">mapper</span><span class="o">/$</span><span class="nt">DEV</span><span class="o">;</span>
-    <span class="nt">docker</span> <span class="nt">start</span> <span class="nt">container_name</span>
-    <span class="nt">docker</span> <span class="nt">exec</span> <span class="nt">-it</span> <span class="nt">container_name</span> <span class="nt">env</span> <span class="nt">LANG</span><span class="o">=</span><span class="nt">C</span><span class="p">.</span><span class="nc">UTF-8</span> <span class="o">/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">bash</span>
-  <span class="nt">echo</span> <span class="s2">"Resize $CID completed."</span>
-<span class="nt">else</span>
-    <span class="nt">echo</span> <span class="s2">"Usage: sh resize_container 459fd505311ad364309940ac24dcdb2bdfc68e3c3b0f291c9153fb54fbd46771 100"</span><span class="o">;</span>
-<span class="nt">fi</span>
-</code></pre></div>
-<h2 id="dockerroot">docker授权非root用户<a class="headerlink" href="#dockerroot" title="Permanent link">¶</a></h2>
-<p><code>sudo usermod -a -G docker AD\\yckj2939</code></p>
-<h2 id="_5">容器内中文乱码<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code>$ vim /etc/profile
-$ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span>C.UTF-8
-</code></pre></div>
-<h2 id="dockerwebjupyter-notebook">服务器docker中启可远程web的jupyter notebook<a class="headerlink" href="#dockerwebjupyter-notebook" title="Permanent link">¶</a></h2>
-<ul>
-<li>启ubuntu容器，开出端口8888</li>
-</ul>
-<p><code>nvidia-docker run -itd --name=cuda10_0 -v /mnt/docker_share:/home/centos -p 8888:8888 nvidia/cuda</code></p>
-<ul>
-<li>进入容器安装anaconda</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="err">$</span><span class="p">:</span> <span class="n">docker</span> <span class="k">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">cuda10_0</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span>
+<span class="o">`</span><span class="n">sudo</span> <span class="n">usermod</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="k">G</span> <span class="n">docker</span> <span class="n">AD</span><span class="err">\\</span><span class="n">yckj2939</span><span class="o">`</span>
 
-<span class="err">$</span><span class="p">:</span> <span class="n">cd</span> <span class="o">~</span> <span class="o">|</span> <span class="p">.</span><span class="o">/</span><span class="n">Anaconda</span><span class="p">.</span><span class="n">sh</span>
+<span class="o">##</span> <span class="err">容器内中文乱码</span>
 </code></pre></div>
-<ul>
-<li>配置notebook在.jupyter文件夹下</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="err">$</span><span class="p">:</span> <span class="n">jupyter</span> <span class="n">notebook</span> <span class="c1">--generate-config</span>
+<p>$ vim /etc/profile
+$ export LANG=C.UTF-8</p>
+<div class="highlight"><pre><span></span><code><span class="o">##</span> <span class="err">服务器</span><span class="n">docker中启可远程web的jupyter</span> <span class="n">notebook</span>
 
-<span class="err">$</span><span class="p">:</span> <span class="n">jupyter</span> <span class="n">notebook</span> <span class="n">password</span>
-</code></pre></div>
-<p>生成密钥： <code>jupyter_notebook_config.josn</code></p>
-<p>修改文件： <code>jupyter_notebook_config.py</code></p>
-<div class="highlight"><pre><span></span><code><span class="err">c.NotebookApp.ip='*'</span>
-<span class="err">c.NotebookApp.password = u'生成的密钥'</span>
-<span class="err">c.NotebookApp.open_browser = False</span>
-<span class="err">c.NotebookApp.port =8888 #可指定一个端口, 访问时使用该端口（虽然运行jupyter时可以直接指定端口）</span>
-</code></pre></div>
-<p><a href="https://blog.csdn.net/qq_42001765/article/details/96144442">https://blog.csdn.net/qq_42001765/article/details/96144442</a></p>
-<ul>
-<li>后台运行</li>
-</ul>
-<p><code>nohup jupyter notebook --ip=0.0.0.0 --no-browser --allow-root --port 8888 &gt; jupyter.log 2&gt;&amp;1 &amp;</code></p>
-<ul>
-<li>远程访问</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="err"># server_ip:port</span>
-<span class="err">10.235.3.43:8888</span>
-</code></pre></div>
-<h2 id="pycharm-docker">PyCharm + Docker炼丹炉<a class="headerlink" href="#pycharm-docker" title="Permanent link">¶</a></h2>
-<p>PyCharm Pro + Nvidia Docker</p>
-<ul>
-<li>
-<p>参照上文增加容器22端口，SFTP默认使用22端口。</p>
-</li>
-<li>
-<p>进入容器配置ssh服务</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="err">此操作在远程服务器</span>
-<span class="err">$</span> <span class="n">docker</span> <span class="n">port</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">container</span> <span class="n">name</span><span class="o">&gt;</span> <span class="mi">22</span>
-<span class="o">#</span> <span class="err">此操作将查看</span><span class="n">docker</span> <span class="n">container中端口22</span><span class="err">，在远程服务器上端口的映射</span>
-<span class="o">#</span> <span class="err">输出结果如下所示</span>
-<span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">:</span><span class="mi">9380</span>
-<span class="o">#</span> <span class="err">表明只要</span><span class="n">ssh链接远程服务器的9380端口</span><span class="err">，实际是链接</span><span class="n">docker</span> <span class="n">container中的22端口</span>
+<span class="o">-</span> <span class="err">启</span><span class="n">ubuntu容器</span><span class="err">，开出端口</span><span class="mi">8888</span>
 
-<span class="n">ssh</span> <span class="n">root</span><span class="o">@&lt;</span><span class="err">服务器的</span><span class="n">ip地址</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9380</span>
-<span class="o">#</span> <span class="err">可以进入容器，</span><span class="n">passwd命令可以修改容器root密码</span>
-</code></pre></div>
-<p>最常见的问题就是docker容器停了以后里面的SSH服务也会相应停止，记得去docker里重启一下ssh服务：</p>
-<p><code>$ service ssh restart</code></p>
-<p><a href="https://www.cnblogs.com/ruiyang-/p/10158658.html">https://www.cnblogs.com/ruiyang-/p/10158658.html</a></p>
-<h2 id="_6">制作镜像并上传仓库<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
-<ul>
-<li>
-<p>dockerhub上创建仓库<code>jerrysu666/cuda10.0</code></p>
-</li>
-<li>
-<p>终端登录：<code>docker log</code></p>
-</li>
-<li>
-<p>制作镜像：<code>docker commit containerId dockerUserName/repoName</code></p>
-</li>
-<li>
-<p>镜像打标签：<code>docker tag imageName dockerUserName/repoName[:tag]</code></p>
-</li>
-<li>
-<p>推送镜像： <code>docker push dockerUserName/repoNme[:tag]</code></p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">tag</span> <span class="k">local</span><span class="o">-</span><span class="n">image</span><span class="p">:</span><span class="n">tagname</span> <span class="k">new</span><span class="o">-</span><span class="n">repo</span><span class="p">:</span><span class="n">tagname</span>
-<span class="n">docker</span> <span class="n">push</span> <span class="k">new</span><span class="o">-</span><span class="n">repo</span><span class="p">:</span><span class="n">tagname</span>
+<span class="o">`</span><span class="n">nvidia</span><span class="o">-</span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">itd</span> <span class="c1">--name=cuda10_0 -v /mnt/docker_share:/home/centos -p 8888:8888 nvidia/cuda`</span>
 
-<span class="n">docker</span> <span class="n">push</span> <span class="n">jerrysu666</span><span class="o">/</span><span class="n">cuda10</span><span class="p">.</span><span class="mi">0</span><span class="p">:</span><span class="n">tagname</span>
+<span class="o">-</span> <span class="err">进入容器安装</span><span class="n">anaconda</span>
 </code></pre></div>
+<p>$: docker exec -it cuda10_0 /bin/bash</p>
+<p>$: cd ~ | ./Anaconda.sh</p>
+<div class="highlight"><pre><span></span><code><span class="err">- 配置notebook在.jupyter文件夹下</span>
+</code></pre></div>
+<p>$: jupyter notebook --generate-config</p>
+<p>$: jupyter notebook password</p>
+<div class="highlight"><pre><span></span><code><span class="err">生成密钥：</span> <span class="o">`</span><span class="n">jupyter_notebook_config</span><span class="p">.</span><span class="n">josn</span><span class="o">`</span>
+
+<span class="err">修改文件：</span> <span class="o">`</span> <span class="n">jupyter_notebook_config</span><span class="p">.</span><span class="n">py</span><span class="o">`</span>
+</code></pre></div>
+<p>c.NotebookApp.ip='*'
+c.NotebookApp.password = u'生成的密钥'
+c.NotebookApp.open_browser = False
+c.NotebookApp.port =8888 #可指定一个端口, 访问时使用该端口（虽然运行jupyter时可以直接指定端口）</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">blog</span><span class="p">.</span><span class="n">csdn</span><span class="p">.</span><span class="n">net</span><span class="o">/</span><span class="n">qq_42001765</span><span class="o">/</span><span class="n">article</span><span class="o">/</span><span class="n">details</span><span class="o">/</span><span class="mi">96144442</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">blog</span><span class="p">.</span><span class="n">csdn</span><span class="p">.</span><span class="n">net</span><span class="o">/</span><span class="n">qq_42001765</span><span class="o">/</span><span class="n">article</span><span class="o">/</span><span class="n">details</span><span class="o">/</span><span class="mi">96144442</span><span class="p">)</span>
+
+<span class="o">-</span> <span class="err">后台运行</span>
+
+<span class="o">`</span><span class="n">nohup</span> <span class="n">jupyter</span> <span class="n">notebook</span> <span class="c1">--ip=0.0.0.0 --no-browser --allow-root --port 8888 &gt; jupyter.log 2&gt;&amp;1 &amp;`</span>
+
+<span class="o">-</span> <span class="err">远程访问</span>
+</code></pre></div>
+<h1 id="server_ipport">server_ip:port<a class="headerlink" href="#server_ipport" title="Permanent link">¶</a></h1>
+<p>10.235.3.43:8888</p>
+<div class="highlight"><pre><span></span><code><span class="o">##</span> <span class="n">PyCharm</span> <span class="o">+</span> <span class="n">Docker炼丹炉</span>
+
+<span class="n">PyCharm</span> <span class="n">Pro</span> <span class="o">+</span> <span class="n">Nvidia</span> <span class="n">Docker</span>
+
+<span class="o">-</span> <span class="err">参照上文增加容器</span><span class="mi">22</span><span class="err">端口，</span><span class="n">SFTP默认使用22端口</span><span class="err">。</span>
+
+<span class="o">-</span> <span class="err">进入容器配置</span><span class="n">ssh服务</span>
+</code></pre></div>
+<h1 id="_5">此操作在远程服务器<a class="headerlink" href="#_5" title="Permanent link">¶</a></h1>
+<p>$ docker port <your container="" name=""> 22</your></p>
+<h1 id="docker-container22">此操作将查看docker container中端口22，在远程服务器上端口的映射<a class="headerlink" href="#docker-container22" title="Permanent link">¶</a></h1>
+<h1 id="_6">输出结果如下所示<a class="headerlink" href="#_6" title="Permanent link">¶</a></h1>
+<p>0.0.0.0:9380</p>
+<h1 id="ssh9380docker-container22">表明只要ssh链接远程服务器的9380端口，实际是链接docker container中的22端口<a class="headerlink" href="#ssh9380docker-container22" title="Permanent link">¶</a></h1>
+<p>ssh root@&lt;服务器的ip地址&gt; -p 9380</p>
+<h1 id="passwdroot">可以进入容器，passwd命令可以修改容器root密码<a class="headerlink" href="#passwdroot" title="Permanent link">¶</a></h1>
+<div class="highlight"><pre><span></span><code><span class="err">最常见的问题就是</span><span class="n">docker容器停了以后里面的SSH服务也会相应停止</span><span class="err">，记得去</span><span class="n">docker里重启一下ssh服务</span><span class="err">：</span>
+
+<span class="o">`</span><span class="err">$</span> <span class="n">service</span> <span class="n">ssh</span> <span class="k">restart</span><span class="o">`</span>
+
+<span class="p">[</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">cnblogs</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">ruiyang</span><span class="o">-/</span><span class="n">p</span><span class="o">/</span><span class="mi">10158658</span><span class="p">.</span><span class="n">html</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">cnblogs</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">ruiyang</span><span class="o">-/</span><span class="n">p</span><span class="o">/</span><span class="mi">10158658</span><span class="p">.</span><span class="n">html</span><span class="p">)</span>
+
+<span class="o">##</span> <span class="err">制作镜像并上传仓库</span>
+
+<span class="o">-</span> <span class="n">dockerhub上创建仓库</span><span class="o">`</span><span class="n">jerrysu666</span><span class="o">/</span><span class="n">cuda10</span><span class="p">.</span><span class="mi">0</span><span class="o">`</span>
+
+<span class="o">-</span> <span class="err">终端登录：</span><span class="o">`</span><span class="n">docker</span> <span class="n">log</span><span class="o">`</span>
+
+<span class="o">-</span> <span class="err">制作镜像：</span><span class="o">`</span><span class="n">docker</span> <span class="k">commit</span> <span class="n">containerId</span> <span class="n">dockerUserName</span><span class="o">/</span><span class="n">repoName</span><span class="o">`</span>
+
+<span class="o">-</span> <span class="err">镜像打标签：</span><span class="o">`</span><span class="n">docker</span> <span class="n">tag</span> <span class="n">imageName</span> <span class="n">dockerUserName</span><span class="o">/</span><span class="n">repoName</span><span class="p">[:</span><span class="n">tag</span><span class="p">]</span><span class="o">`</span>
+
+<span class="o">-</span> <span class="err">推送镜像：</span> <span class="o">`</span><span class="n">docker</span> <span class="n">push</span> <span class="n">dockerUserName</span><span class="o">/</span><span class="n">repoNme</span><span class="p">[:</span><span class="n">tag</span><span class="p">]</span><span class="o">`</span>
+</code></pre></div>
+<p>docker tag local-image:tagname new-repo:tagname
+docker push new-repo:tagname</p>
+<p>docker push jerrysu666/cuda10.0:tagname</p>
+<p>```</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
 
 
                 <p id="post-share-links">
