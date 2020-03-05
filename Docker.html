@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Docker"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Docker.html" />
-<meta property="og:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04切勿下载这个runtime版，而是dev，否则很多配置文件找不到。 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu docker授权非root用户¶ sudo usermod -a -G docker AD\\yckj2939 docker镜像启动¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式运行 # -d后台运行 -v挂载共享目录 …" />
+<meta property="og:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04切勿下载这个runtime版，而是dev，否则很多配置文件找不到。 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu 创建容器¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式终端运行 # -d后台运行 -v挂载共享目录，前者主机目录，后者容器m目录 # 参数/bin/bash启动ubuntu # docker run -it …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-12-23T09:26:47+08:00" />
 <meta name="twitter:title" content="Docker">
-<meta name="twitter:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04切勿下载这个runtime版，而是dev，否则很多配置文件找不到。 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu docker授权非root用户¶ sudo usermod -a -G docker AD\\yckj2939 docker镜像启动¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式运行 # -d后台运行 -v挂载共享目录 …">
+<meta name="twitter:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04切勿下载这个runtime版，而是dev，否则很多配置文件找不到。 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu 创建容器¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式终端运行 # -d后台运行 -v挂载共享目录，前者主机目录，后者容器m目录 # 参数/bin/bash启动ubuntu # docker run -it …">
 
         <title>Docker · Jerry Su&#39;s Blog
 </title>
@@ -78,12 +78,16 @@
         <div class="toc">
 <ul>
 <li><a href="#nvidia-dockergpu">nvidia-docker多用户共享GPU服务器环境搭建</a></li>
+<li><a href="#_1">创建容器</a></li>
+<li><a href="#_2">进入容器</a><ul>
+<li><a href="#_3">添加已运行容器端口</a></li>
 <li><a href="#dockerroot">docker授权非root用户</a></li>
-<li><a href="#docker">docker镜像启动</a></li>
-<li><a href="#_1">添加已运行容器端口</a></li>
+<li><a href="#_4">容器内中文乱码</a></li>
 <li><a href="#dockerwebjupyter-notebook">服务器docker中启可远程web的jupyter notebook</a></li>
 <li><a href="#pycharm-docker">PyCharm + Docker炼丹炉</a></li>
-<li><a href="#_2">制作镜像并上传仓库</a></li>
+<li><a href="#_5">制作镜像并上传仓库</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </nav>
@@ -120,23 +124,20 @@
 <p>安装与cuda, cudnn版本匹配的tensorflow-gpu</p>
 </li>
 </ol>
-<h2 id="dockerroot">docker授权非root用户<a class="headerlink" href="#dockerroot" title="Permanent link">¶</a></h2>
-<p><code>sudo usermod -a -G docker AD\\yckj2939</code></p>
-<h2 id="docker">docker镜像启动<a class="headerlink" href="#docker" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">启动容器镜像nlp</span><span class="o">/</span><span class="nl">ieg</span><span class="p">:</span><span class="mf">3.0.4</span><span class="err">，</span><span class="n">容器重命名为ieg304</span><span class="err">，</span><span class="o">-</span><span class="n">it交互式运行</span><span class="w"> </span>
+<h2 id="_1">创建容器<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">启动容器镜像nlp</span><span class="o">/</span><span class="nl">ieg</span><span class="p">:</span><span class="mf">3.0.4</span><span class="err">，</span><span class="n">容器重命名为ieg304</span><span class="err">，</span><span class="o">-</span><span class="n">it交互式终端运行</span><span class="w"> </span>
 <span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="n">d后台运行</span><span class="w"> </span><span class="o">-</span><span class="n">v挂载共享目录</span><span class="err">，</span><span class="n">前者主机目录</span><span class="err">，</span><span class="n">后者容器m目录</span><span class="w"></span>
-<span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="n">p指定端口号</span><span class="err">，</span><span class="n">端口号作用</span><span class="vm">?</span><span class="w"></span>
 <span class="err">#</span><span class="w"> </span><span class="n">参数</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash启动ubuntu</span><span class="w"></span>
-<span class="err">#</span><span class="w"> </span><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">[</span><span class="n">host_port</span><span class="o">]</span><span class="err">:</span><span class="o">[</span><span class="n">container_port</span><span class="o">]</span><span class="p">(</span><span class="n">do</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="mi">8888</span><span class="p">)</span><span class="w"> </span><span class="c1">--name:[container_name] [image_name] -v [container_path]:[host_path] /bin/bash</span>
+<span class="err">#</span><span class="w"> </span><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">[</span><span class="n">host_port</span><span class="o">]</span><span class="err">:</span><span class="o">[</span><span class="n">container_port</span><span class="o">]</span><span class="p">(</span><span class="n">do</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="mi">8888</span><span class="p">)</span><span class="w"> </span><span class="c1">--name=[container_name] [image_name] -v [container_path]:[host_path] /bin/bash</span>
 <span class="err">$:</span><span class="w"> </span><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">itd</span><span class="w"> </span><span class="c1">--name=ieg304 -v /e/docker_share:/home/windows -p 9280:9280 -p 9180:9180 -p 9080:9080 nlp/ieg:3.0.4 /bin/bash</span>
 
-<span class="err">#</span><span class="w"> </span><span class="n">查看所有镜像</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="n">查看所有容器</span><span class="w"></span>
 <span class="err">$:</span><span class="w"> </span><span class="n">docker</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">-</span><span class="n">a</span><span class="w"></span>
-
-<span class="err">#</span><span class="w"> </span><span class="n">进入容器</span><span class="w"></span>
-<span class="err">$:</span><span class="w"> </span><span class="n">docker</span><span class="w"> </span><span class="k">exec</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="n">ieg304</span><span class="w"> </span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span><span class="w"></span>
 </code></pre></div>
-<h2 id="_1">添加已运行容器端口<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<h1 id="_2">进入容器<a class="headerlink" href="#_2" title="Permanent link">¶</a></h1>
+<div class="highlight"><pre><span></span><code><span class="err">$: docker exec -it ieg304 /bin/bash</span>
+</code></pre></div>
+<h2 id="_3">添加已运行容器端口<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
 <ul>
 <li>
 <p>停止容器 docker stop</p>
@@ -159,6 +160,12 @@
 </ul>
 <p><a href="https://blog.csdn.net/lypeng_/article/details/98176138">https://blog.csdn.net/lypeng_/article/details/98176138</a>
 <a href="https://blog.csdn.net/wesleyflagon/article/details/78961990">https://blog.csdn.net/wesleyflagon/article/details/78961990</a></p>
+<h2 id="dockerroot">docker授权非root用户<a class="headerlink" href="#dockerroot" title="Permanent link">¶</a></h2>
+<p><code>sudo usermod -a -G docker AD\\yckj2939</code></p>
+<h2 id="_4">容器内中文乱码<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code>$ vim /etc/profile
+$ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span>C.UTF-8
+</code></pre></div>
 <h2 id="dockerwebjupyter-notebook">服务器docker中启可远程web的jupyter notebook<a class="headerlink" href="#dockerwebjupyter-notebook" title="Permanent link">¶</a></h2>
 <ul>
 <li>启ubuntu容器，开出端口8888</li>
@@ -219,7 +226,7 @@
 <p>最常见的问题就是docker容器停了以后里面的SSH服务也会相应停止，记得去docker里重启一下ssh服务：</p>
 <p><code>$ service ssh restart</code></p>
 <p><a href="https://www.cnblogs.com/ruiyang-/p/10158658.html">https://www.cnblogs.com/ruiyang-/p/10158658.html</a></p>
-<h2 id="_2">制作镜像并上传仓库<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<h2 id="_5">制作镜像并上传仓库<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
 <ul>
 <li>
 <p>dockerhub上创建仓库<code>jerrysu666/cuda10.0</code></p>
