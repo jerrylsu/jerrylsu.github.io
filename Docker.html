@@ -81,11 +81,12 @@
 <li><a href="#_1">创建容器</a></li>
 <li><a href="#_2">进入容器</a></li>
 <li><a href="#_3">添加已运行容器端口</a></li>
+<li><a href="#_4">修改容器容量</a></li>
 <li><a href="#dockerroot">docker授权非root用户</a></li>
-<li><a href="#_4">容器内中文乱码</a></li>
+<li><a href="#_5">容器内中文乱码</a></li>
 <li><a href="#dockerwebjupyter-notebook">服务器docker中启可远程web的jupyter notebook</a></li>
 <li><a href="#pycharm-docker">PyCharm + Docker炼丹炉</a></li>
-<li><a href="#_5">制作镜像并上传仓库</a></li>
+<li><a href="#_6">制作镜像并上传仓库</a></li>
 </ul>
 </div>
         </nav>
@@ -157,9 +158,25 @@
 </ul>
 <p><a href="https://blog.csdn.net/lypeng_/article/details/98176138">https://blog.csdn.net/lypeng_/article/details/98176138</a>
 <a href="https://blog.csdn.net/wesleyflagon/article/details/78961990">https://blog.csdn.net/wesleyflagon/article/details/78961990</a></p>
+<h2 id="_4">修改容器容量<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nt">CID</span><span class="o">=</span><span class="s2">"62f54c85d02ec67b64c1ea15b0c3820edeea6744f7a052f0e795ea127d3fb28e"</span> <span class="err">#</span><span class="o">$</span><span class="nt">1</span>
+<span class="nt">SIZE</span><span class="o">=$</span><span class="nt">1</span>
+
+<span class="nt">if</span> <span class="cp">[</span> <span class="s2">"$CID"</span> <span class="o">!=</span> <span class="s2">""</span> <span class="cp">]</span> <span class="o">&amp;&amp;</span> <span class="cp">[</span> <span class="s2">"$SIZE"</span> <span class="o">!=</span> <span class="s2">""</span> <span class="cp">]</span><span class="o">;</span> <span class="nt">then</span>
+    <span class="nt">DEV</span><span class="o">=$(</span><span class="nt">basename</span> <span class="o">$(</span><span class="nt">echo</span> <span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">mapper</span><span class="o">/</span><span class="nt">docker-</span><span class="o">*</span><span class="nt">-</span><span class="o">$</span><span class="nt">CID</span><span class="o">));</span>
+    <span class="nt">dmsetup</span> <span class="nt">table</span> <span class="o">$</span><span class="nt">DEV</span> <span class="o">|</span> <span class="nt">sed</span> <span class="s2">"s/0 </span><span class="cp">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="cp">]</span><span class="s2">* thin/0 $(($SIZE*1024*1024*1024/512)) thin/"</span> <span class="o">|</span> <span class="nt">dmsetup</span> <span class="nt">load</span> <span class="o">$</span><span class="nt">DEV</span><span class="o">;</span>
+    <span class="nt">dmsetup</span> <span class="nt">resume</span> <span class="o">$</span><span class="nt">DEV</span><span class="o">;</span>
+    <span class="nt">xfs_growfs</span> <span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">mapper</span><span class="o">/$</span><span class="nt">DEV</span><span class="o">;</span>
+    <span class="nt">docker</span> <span class="nt">start</span> <span class="nt">container_name</span>
+    <span class="nt">docker</span> <span class="nt">exec</span> <span class="nt">-it</span> <span class="nt">container_name</span> <span class="nt">env</span> <span class="nt">LANG</span><span class="o">=</span><span class="nt">C</span><span class="p">.</span><span class="nc">UTF-8</span> <span class="o">/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">bash</span>
+  <span class="nt">echo</span> <span class="s2">"Resize $CID completed."</span>
+<span class="nt">else</span>
+    <span class="nt">echo</span> <span class="s2">"Usage: sh resize_container 459fd505311ad364309940ac24dcdb2bdfc68e3c3b0f291c9153fb54fbd46771 100"</span><span class="o">;</span>
+<span class="nt">fi</span>
+</code></pre></div>
 <h2 id="dockerroot">docker授权非root用户<a class="headerlink" href="#dockerroot" title="Permanent link">¶</a></h2>
 <p><code>sudo usermod -a -G docker AD\\yckj2939</code></p>
-<h2 id="_4">容器内中文乱码<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<h2 id="_5">容器内中文乱码<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
 <div class="highlight"><pre><span></span><code>$ vim /etc/profile
 $ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span>C.UTF-8
 </code></pre></div>
@@ -223,7 +240,7 @@ $ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</
 <p>最常见的问题就是docker容器停了以后里面的SSH服务也会相应停止，记得去docker里重启一下ssh服务：</p>
 <p><code>$ service ssh restart</code></p>
 <p><a href="https://www.cnblogs.com/ruiyang-/p/10158658.html">https://www.cnblogs.com/ruiyang-/p/10158658.html</a></p>
-<h2 id="_5">制作镜像并上传仓库<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<h2 id="_6">制作镜像并上传仓库<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
 <ul>
 <li>
 <p>dockerhub上创建仓库<code>jerrysu666/cuda10.0</code></p>
