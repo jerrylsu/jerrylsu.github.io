@@ -13,12 +13,12 @@
 
 <meta property="og:title" content="Docker"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Docker.html" />
-<meta property="og:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 https://hub.docker.com/r/nvidia/cuda docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04切勿下载这个runtime版，而是dev，否则很多配置文件找不到。 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu 创建容器¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式终端运行 # -d后台运行 -v挂载共享目录，前者主机目录 …" />
+<meta property="og:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 https://hub.docker.com/r/nvidia/cuda docker pull nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04切勿下载这个runtime版，而是devel，否则很多配置文件找不到。 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu 创建容器¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式终端运行 # -d后台运行 -v挂载共享目录，前者主机目录 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-12-23T09:26:47+08:00" />
 <meta name="twitter:title" content="Docker">
-<meta name="twitter:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 https://hub.docker.com/r/nvidia/cuda docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04切勿下载这个runtime版，而是dev，否则很多配置文件找不到。 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu 创建容器¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式终端运行 # -d后台运行 -v挂载共享目录，前者主机目录 …">
+<meta name="twitter:description" content="nvidia-docker多用户共享GPU服务器环境搭建¶ https://blog.csdn.net/hangvane123/article/details/88639279 nvidia驱动 docker-ce nvidia-docker pull带有cuda和cudnn的ubuntu镜像 https://hub.docker.com/r/nvidia/cuda docker pull nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04切勿下载这个runtime版，而是devel，否则很多配置文件找不到。 启动容器，进入容器 apt-get update apt-get install python3-pip 安装与cuda, cudnn版本匹配的tensorflow-gpu 创建容器¶ # 启动容器镜像nlp/ieg:3.0.4，容器重命名为ieg304，-it交互式终端运行 # -d后台运行 -v挂载共享目录，前者主机目录 …">
 
         <title>Docker · Jerry Su&#39;s Blog
 </title>
@@ -109,10 +109,8 @@
 <li>
 <p>pull带有cuda和cudnn的ubuntu镜像 </p>
 <p><a href="https://hub.docker.com/r/nvidia/cuda">https://hub.docker.com/r/nvidia/cuda</a></p>
+<p><code>docker pull nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04</code>切勿下载这个runtime版，而是devel，否则很多配置文件找不到。</p>
 </li>
-</ol>
-<p><code>docker pull nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04</code>切勿下载这个runtime版，而是dev，否则很多配置文件找不到。</p>
-<ol>
 <li>
 <p>启动容器，进入容器</p>
 </li>
