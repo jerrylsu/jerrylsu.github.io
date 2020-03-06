@@ -201,7 +201,7 @@ $ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</
 <ul>
 <li>配置notebook在.jupyter文件夹下</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="err">$</span><span class="p">:</span> <span class="n">jupyter</span> <span class="n">notebook</span> <span class="c1">--generate-config</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span><span class="p">:</span> <span class="n">jupyter</span> <span class="n">notebook</span> <span class="c1">--generate-config # 会自动生成.jupyter文件夹</span>
 
 <span class="err">$</span><span class="p">:</span> <span class="n">jupyter</span> <span class="n">notebook</span> <span class="n">password</span>
 </code></pre></div>
@@ -230,18 +230,32 @@ $ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</
 <p>参照上文增加容器22端口，SFTP默认使用22端口。</p>
 </li>
 <li>
-<p>进入容器配置ssh服务</p>
+<p>远程服务器配置</p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="err">此操作在远程服务器</span>
-<span class="err">$</span> <span class="n">docker</span> <span class="n">port</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">container</span> <span class="n">name</span><span class="o">&gt;</span> <span class="mi">22</span>
-<span class="o">#</span> <span class="err">此操作将查看</span><span class="n">docker</span> <span class="n">container中端口22</span><span class="err">，在远程服务器上端口的映射</span>
-<span class="o">#</span> <span class="err">输出结果如下所示</span>
-<span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">:</span><span class="mi">9380</span>
-<span class="o">#</span> <span class="err">表明只要</span><span class="n">ssh链接远程服务器的9380端口</span><span class="err">，实际是链接</span><span class="n">docker</span> <span class="n">container中的22端口</span>
+<div class="highlight"><pre><span></span><code><span class="err"># 安装openssh-server</span>
+<span class="err">$ apt-get update</span>
+<span class="err">$ apt-get install openssh-server</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$ docker port &lt;your container name&gt; <span class="m">22</span>
+<span class="c1"># 此操作将查看docker container中端口22，在远程服务器上端口的映射</span>
+<span class="c1"># 输出结果如下所示</span>
+<span class="m">0</span>.0.0.0:9380
+<span class="c1"># 表明只要ssh链接远程服务器的9380端口，实际是链接docker container中的22端口</span>
 
-<span class="n">ssh</span> <span class="n">root</span><span class="o">@&lt;</span><span class="err">服务器的</span><span class="n">ip地址</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9380</span>
-<span class="o">#</span> <span class="err">可以进入容器，</span><span class="n">passwd命令可以修改容器root密码</span>
+ssh root@&lt;服务器的ip地址&gt; -p <span class="m">9380</span>
+<span class="c1"># 可以进入容器，passwd命令可以修改容器root密码</span>
+</code></pre></div>
+<ul>
+<li>进入容器配置ssh服务</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err"># 进入docker container</span>
+<span class="err">$ echo 'root:own_password' | chpasswd</span>
+<span class="err"># 将root的密码修改为自己的密钥字符串</span>
+<span class="err">$ sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config</span>
+<span class="err"># 允许使用root身份登录</span>
+<span class="err">$ sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd</span>
+<span class="err">$ echo "export VISIBLE=now" &gt;&gt; /etc/profile12345678</span>
 </code></pre></div>
 <p>最常见的问题就是docker容器停了以后里面的SSH服务也会相应停止，记得去docker里重启一下ssh服务：</p>
 <p><code>$ service ssh restart</code></p>

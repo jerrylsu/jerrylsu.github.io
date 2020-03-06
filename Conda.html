@@ -111,7 +111,7 @@
 </code></pre></div>
 <h2 id="notebookconda">在Notebook中切换conda虚拟环境<a class="headerlink" href="#notebookconda" title="Permanent link">¶</a></h2>
 <ul>
-<li>安装插件</li>
+<li>进入容器安装nb_conda插件</li>
 </ul>
 <p><code>conda install nb_conda</code></p>
 <ul>
@@ -122,7 +122,7 @@
 <span class="err">$</span><span class="p">:</span> <span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">jupyter</span>
 </code></pre></div>
 <ul>
-<li>推出虚拟环境重启jupyter</li>
+<li>退出虚拟环境重启jupyter</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="err">$</span><span class="p">:</span> <span class="n">ps</span> <span class="o">-</span><span class="n">aux</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">jupyter</span>
 
@@ -144,12 +144,14 @@
 
 <span class="err">#</span><span class="w"> </span><span class="n">linux系统在目录</span><span class="err">：</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">pkgs</span><span class="o">/</span><span class="n">nb_conda</span><span class="o">-</span><span class="mf">2.2.1</span><span class="o">-</span><span class="n">py37_0</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">nb_conda</span><span class="o">/</span><span class="n">envmanager</span><span class="p">.</span><span class="n">py</span><span class="w"></span>
 
-<span class="err">#</span><span class="w"> </span><span class="n">找到该文件后在83</span><span class="o">~</span><span class="mi">86</span><span class="n">行有这样一段代码</span><span class="err">：</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="n">找到该文件后在83</span><span class="o">~</span><span class="mi">86</span><span class="n">行代码改成如下代码</span><span class="err">：</span><span class="w"></span>
 
 
 <span class="k">return</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
 <span class="w">            </span><span class="ss">"environments"</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">root_env</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">[</span><span class="n">get_info(env) for env in info['envs'</span><span class="o">]</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">env</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">root_env</span><span class="o">[</span><span class="n">'dir'</span><span class="o">]</span><span class="err">]</span><span class="w"></span>
 <span class="w">        </span><span class="err">}</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">重启jupyter</span><span class="err">，</span><span class="n">参见上述</span><span class="w"></span>
 </code></pre></div>
 <p><a href="https://blog.csdn.net/IT_xiao_bai/article/details/102765922">https://blog.csdn.net/IT_xiao_bai/article/details/102765922</a></p>
 
