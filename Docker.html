@@ -230,13 +230,9 @@ $ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</
 <p>参照上文增加容器22端口，SFTP默认使用22端口。</p>
 </li>
 <li>
-<p>远程服务器配置</p>
+<p>远程服务器参数查看</p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="err"># 容器和服务器均需要安装openssh-server</span>
-<span class="err">$ apt-get update</span>
-<span class="err">$ apt-get install openssh-server</span>
-</code></pre></div>
 <div class="highlight"><pre><span></span><code>$ docker port &lt;your container name&gt; <span class="m">22</span>
 <span class="c1"># 此操作将查看docker container中端口22，在远程服务器上端口的映射</span>
 <span class="c1"># 输出结果如下所示</span>
@@ -249,13 +245,26 @@ ssh root@&lt;服务器的ip地址&gt; -p <span class="m">9380</span>
 <ul>
 <li>进入容器配置ssh服务</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="err"># 进入docker container</span>
-<span class="err">$ echo 'root:own_password' | chpasswd</span>
-<span class="err"># 将root的密码修改为自己的密钥字符串</span>
-<span class="err">$ sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config</span>
-<span class="err"># 允许使用root身份登录</span>
-<span class="err">$ sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd</span>
-<span class="err">$ echo "export VISIBLE=now" &gt;&gt; /etc/profile12345678</span>
+<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="err">修改</span><span class="n">root密码</span>
+<span class="err">$</span> <span class="n">passwd</span>
+
+<span class="o">#</span> <span class="err">安装</span><span class="k">open</span><span class="o">-</span><span class="n">ssh</span>
+<span class="err">$</span> <span class="n">apt</span><span class="o">-</span><span class="k">get</span> <span class="k">update</span>
+<span class="err">$</span> <span class="n">apt</span><span class="o">-</span><span class="k">get</span> <span class="n">install</span> <span class="n">openssh</span><span class="o">-</span><span class="n">server</span>
+
+<span class="err">$</span> <span class="n">vim</span>  <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span>
+
+<span class="err">$</span> <span class="n">server</span> <span class="n">ssh</span> <span class="k">restart</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config修改以下位置</span><span class="err">：</span>
+<span class="o">#</span> <span class="n">Subsystem</span>  <span class="n">sftp</span>  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">openssh</span><span class="o">/</span><span class="n">sftp</span><span class="o">-</span><span class="n">server</span>
+<span class="n">Subsystem</span>  <span class="n">sftp</span>  <span class="n">internal</span><span class="o">-</span><span class="n">sftp</span>
+
+<span class="n">PubkeyAuthentication</span> <span class="n">yes</span> 
+
+<span class="n">AuthorizedKeysFile</span> <span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">authorized_keys</span> <span class="o">#</span><span class="err">公钥文件路径（和上面生成的文件同）</span>
+
+<span class="n">PermitRootLogin</span> <span class="n">yes</span>
 </code></pre></div>
 <p>最常见的问题就是docker容器停了以后里面的SSH服务也会相应停止，记得去docker里重启一下ssh服务：</p>
 <p><code>$ service ssh restart</code></p>
