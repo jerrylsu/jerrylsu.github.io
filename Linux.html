@@ -92,11 +92,7 @@
 <li><a href="#auto-disconnect">Auto disconnect</a></li>
 </ul>
 </li>
-<li><a href="#setting-environmental-var">Setting Environmental Var</a><ul>
-<li><a href="#permanent-var-in-bashrc">Permanent var in ~/.bashrc</a></li>
-<li><a href="#temporary-var-in-shell">Temporary var in Shell</a></li>
-</ul>
-</li>
+<li><a href="#_1">设置环境变量</a></li>
 <li><a href="#reference">Reference</a></li>
 </ul>
 </div>
@@ -213,38 +209,20 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 <p>Linux: <code>service sshd restart</code></p>
 <p>MAC: service: command not found</p>
 <p>MAC: <code>brew services start sshd</code></p>
-<h2 id="setting-environmental-var">Setting Environmental Var<a class="headerlink" href="#setting-environmental-var" title="Permanent link">¶</a></h2>
-<h3 id="permanent-var-in-bashrc">Permanent var in <code>~/.bashrc</code><a class="headerlink" href="#permanent-var-in-bashrc" title="Permanent link">¶</a></h3>
-<p><code>vim ~/.bashrc</code></p>
-<div class="highlight"><pre><span></span><code><span class="err"># open ~/.bashrc file &amp;</span>
-<span class="err"># set environmental varuable</span>
-<span class="err">TEST="Hi Jerry"</span>
-<span class="err">alias ll='ls -alF'</span>
+<h2 id="_1">设置环境变量<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<ul>
+<li>Shell临时设置, 终端关闭后失效</li>
+</ul>
+<p><code>export PATH=/cygdrive/c/Users/YCKJ2939/AppData/Local/Continuum/anaconda3:$PATH</code></p>
+<ul>
+<li>~/.bashrc永久设置，只对本用户可见</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s1">'export PATH=/cygdrive/c/Users/YCKJ2939/AppData/Local/Continuum/anaconda3:$PATH'</span> &gt;&gt; ~/.bashrc
+$ <span class="nb">source</span> ~./bashrc
 </code></pre></div>
-<p><code>source ~/.bashrc</code></p>
-<div class="highlight"><pre><span></span><code><span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">vim</span> <span class="o">~/</span><span class="p">.</span><span class="n">bashrc</span>
-<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">echo</span> <span class="err">$</span><span class="n">TEST</span>
-
-<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">source</span> <span class="o">~/</span><span class="p">.</span><span class="n">bashrc</span>
-<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">echo</span> <span class="err">$</span><span class="n">TEST</span>
-<span class="n">Hi</span> <span class="n">Jerry</span>
-</code></pre></div>
-<h3 id="temporary-var-in-shell">Temporary var in Shell<a class="headerlink" href="#temporary-var-in-shell" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">TEST</span><span class="o">=</span><span class="s">"Hi Jerry"</span>
-<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">echo</span> <span class="err">$</span><span class="n">TEST</span>
-<span class="n">Hi</span> <span class="n">Jerry</span>
-<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">set</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">TEST</span>
-<span class="n">TEST</span><span class="o">=</span><span class="err">'</span><span class="n">Hi</span> <span class="n">Jerry</span><span class="err">'</span>
-<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">env</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">TEST</span>
-<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">export</span> <span class="n">TEST</span>
-<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">env</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">TEST</span>
-<span class="n">TEST</span><span class="o">=</span><span class="n">Hi</span> <span class="n">Jerry</span>
-<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">unset</span> <span class="n">TEST</span>
-<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">echo</span> <span class="err">$</span><span class="n">TEST</span>
-
-<span class="n">lsu1</span><span class="mi">@3</span><span class="nl">b956a9b2b24</span><span class="p">:</span><span class="o">~</span><span class="err">$</span>
-</code></pre></div>
-<p><strong>Note: var is temporary, and shutting down Shell, then the var is gone!</strong></p>
+<ul>
+<li>/etc/profile永久设置，对所有用户可见</li>
+</ul>
 <p><a href="https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps">How To Read and Set Environmental and Shell Variables on a Linux VPS</a></p>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">¶</a></h2>
 <p><a href="https://bash.cyberciti.biz/guide/Main_Page">Linux Shell Scripting Tutorial (LSST) v2.0</a></p>

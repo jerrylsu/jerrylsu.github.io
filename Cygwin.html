@@ -9,18 +9,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Tools, Tools, " />
+<meta name="keywords" content="Tools, Cygwin, Cygwin, " />
 
-<meta property="og:title" content="Auto-generated subtitles for any video"/>
-<meta property="og:url" content="https://www.jerrulsu.com/Auto-generated-subtitles-for-any-video.html" />
-<meta property="og:description" content="Autosub¶ Autosub is a utility for automatic speech recognition and subtitle generation. It takes a video or an audio file as input, performs voice activity detection to find speech regions, makes parallel requests to Google Web Speech API to generate transcriptions for those regions, (optionally) translates them to a different …" />
+<meta property="og:title" content="Cygwin"/>
+<meta property="og:url" content="https://www.jerrulsu.com/Cygwin.html" />
+<meta property="og:description" content="Cygwin中安装软件¶ #download setup-x86_64.exe https://cygwin.com/setup-x86_64.exe $ cd C:cygwin64 $ ./setup-x86_64.exe -q -P wget,tar,qawk,bzip2,subversion,vim,git # git clone https://github.com/transcode-open/apt-cyg $ cd apt-cyg $ mv apt-cyg /usr/local/bin/ $ apt-cyg --help $ cygcheck --help # modify mirror $ apt-cyg --mirror http://mirrors.163.com/cygwin …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2019-04-13T06:35:27+08:00" />
-<meta name="twitter:title" content="Auto-generated subtitles for any video">
-<meta name="twitter:description" content="Autosub¶ Autosub is a utility for automatic speech recognition and subtitle generation. It takes a video or an audio file as input, performs voice activity detection to find speech regions, makes parallel requests to Google Web Speech API to generate transcriptions for those regions, (optionally) translates them to a different …">
+<meta property="og:article:published_time" content="2019-04-24T07:05:27+08:00" />
+<meta name="twitter:title" content="Cygwin">
+<meta name="twitter:description" content="Cygwin中安装软件¶ #download setup-x86_64.exe https://cygwin.com/setup-x86_64.exe $ cd C:cygwin64 $ ./setup-x86_64.exe -q -P wget,tar,qawk,bzip2,subversion,vim,git # git clone https://github.com/transcode-open/apt-cyg $ cd apt-cyg $ mv apt-cyg /usr/local/bin/ $ apt-cyg --help $ cygcheck --help # modify mirror $ apt-cyg --mirror http://mirrors.163.com/cygwin …">
 
-        <title>Auto-generated subtitles for any video · Jerry Su&#39;s Blog
+        <title>Cygwin · Jerry Su&#39;s Blog
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.jerrulsu.com/theme/css/style.min.css?605d3017">
@@ -64,8 +64,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="https://www.jerrulsu.com/Auto-generated-subtitles-for-any-video.html">
-                Auto-generated subtitles for any video
+            <a href="https://www.jerrulsu.com/Cygwin.html">
+                Cygwin
             </a>
         </h1>
     </header>
@@ -77,10 +77,9 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#autosub">Autosub</a></li>
-<li><a href="#install-ffmpeg">Install ffmpeg</a></li>
-<li><a href="#install-autosub">Install autosub</a></li>
-<li><a href="#usage">Usage</a></li>
+<li><a href="#cygwin">Cygwin中安装软件</a></li>
+<li><a href="#pycahrmcygwin">Pycahrm中启Cygwin终端</a></li>
+<li><a href="#cygwinwindowsanaconda">Cygwin中使用windows的anaconda环境</a></li>
 </ul>
 </div>
         </nav>
@@ -88,31 +87,47 @@
     <div class="span8 article-content">
             
             
-<h2 id="autosub">Autosub<a class="headerlink" href="#autosub" title="Permanent link">¶</a></h2>
-<p><a href="https://github.com/agermanidis/autosub">Autosub</a> is a utility for automatic speech recognition and subtitle generation. It takes a video or an audio file as input, performs voice activity detection to find speech regions, makes parallel requests to Google Web Speech API to generate transcriptions for those regions, (optionally) translates them to a different language, and finally saves the resulting subtitles to disk. It supports a variety of input and output languages (to see which, run the utility with the argument --list-languages) and can currently produce subtitles in either the SRT format or simple JSON.</p>
-<h2 id="install-ffmpeg">Install ffmpeg<a class="headerlink" href="#install-ffmpeg" title="Permanent link">¶</a></h2>
-<ul>
-<li><code>sudo add-apt-repository ppa:djcj/hybrid</code></li>
-<li><code>sudo apt-get update</code></li>
-<li><code>sudo apt-get install ffmpeg</code></li>
-</ul>
-<h2 id="install-autosub">Install autosub<a class="headerlink" href="#install-autosub" title="Permanent link">¶</a></h2>
-<ul>
-<li><code>pip install autosub</code></li>
-</ul>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">¶</a></h2>
-<ul>
-<li><code>autosub -S en -D en file_path</code></li>
-</ul>
+<h2 id="cygwin">Cygwin中安装软件<a class="headerlink" href="#cygwin" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><span class="err">#download setup-x86_64.exe https://cygwin.com/setup-x86_64.exe</span>
+<span class="err">$ cd C:cygwin64</span>
+<span class="err">$ ./setup-x86_64.exe -q -P wget,tar,qawk,bzip2,subversion,vim,git</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="err"># git clone https://github.com/transcode-open/apt-cyg</span>
+<span class="err">$ cd apt-cyg</span>
+<span class="err">$ mv apt-cyg /usr/local/bin/</span>
+<span class="err">$ apt-cyg --help</span>
+<span class="err">$ cygcheck --help</span>
+<span class="err"># modify mirror</span>
+<span class="err">$ apt-cyg --mirror http://mirrors.163.com/cygwin</span>
+<span class="err"># mirrors backup </span>
+<span class="err"># ftp://mirror.mcs.anl.gov/pub/cygwin</span>
+<span class="err"># http://mirrors.163.com/cygwin</span>
+<span class="err"># ftp://ftp.ges.redhat.com/private/releng/cygwin-1.8</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="err"># apt-cyg install man cygwin-doc</span>
+<span class="err">apt-cyg install vim screenwget subversion openssh</span>
+</code></pre></div>
+<h2 id="pycahrmcygwin">Pycahrm中启Cygwin终端<a class="headerlink" href="#pycahrmcygwin" title="Permanent link">¶</a></h2>
+<p><code>Files|Settings|Tools|Terminal|Shellpath</code> path: <code>C:\cygwin64\bin\bash.exe</code>
+This is a non-interactive shell, and does not source your profile. The next try is:</p>
+<p><code>C:\cygwin64\bin\bash.exe --login -i</code>
+This produces an error from Pycharm that it cannot start the program correctly. A little checking says the leading command needs to be quoted, else Pycahrm treats the entire line as the name of the command, not as a command followed by flags. OK:</p>
+<p><code>"C:\cygwin64\bin\bash.exe" --login -i</code>
+It starts in my home directory, not in my project root. Starting in the project root is one of the nice features of the terminal in IntelliJ. Finally, two changes. First the IntelliJ setting:</p>
+<p><code>`"C:\cygwin64\bin\bash" -c "exec /usr/bin/env INTELLIJ=true $SHELL --login -i"</code>
+And an addition to my <code>~/.bashrc</code>:</p>
+<p><code>${INTELLIJ-false} &amp;&amp; cd ${OLDPWD-.}</code></p>
+<h2 id="cygwinwindowsanaconda">Cygwin中使用windows的anaconda环境<a class="headerlink" href="#cygwinwindowsanaconda" title="Permanent link">¶</a></h2>
+<p><a href="https://stackoverflow.com/questions/36969824/using-anaconda-environments-with-cygwin-on-windows">Reference: using-anaconda-environments-with-cygwin-on-windows</a></p>
 
 
                 <p id="post-share-links">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=Auto-generated%20subtitles%20for%20any%20video&url=https%3A//www.jerrulsu.com/Auto-generated-subtitles-for-any-video.html&hashtags=tools" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=Cygwin&url=https%3A//www.jerrulsu.com/Cygwin.html&hashtags=tools,cygwin" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Auto-generated-subtitles-for-any-video.html" target="_blank" title="Share on Facebook">Facebook</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Cygwin.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
-    <a href="mailto:?subject=Auto-generated%20subtitles%20for%20any%20video&amp;body=https%3A//www.jerrulsu.com/Auto-generated-subtitles-for-any-video.html" target="_blank" title="Share via Email">Email</a>
+    <a href="mailto:?subject=Cygwin&amp;body=https%3A//www.jerrulsu.com/Cygwin.html" target="_blank" title="Share via Email">Email</a>
     </p>
 
             
@@ -133,7 +148,7 @@
                 <a class="accordion-toggle disqus-comment-count comment-count"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   href="https://www.jerrulsu.com/Auto-generated-subtitles-for-any-video.html#comment_thread"
+                   href="https://www.jerrulsu.com/Cygwin.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -144,7 +159,7 @@
 
                         <script src="https://utteranc.es/client.js"
         data-repo="True"
-        data-issue-term="https://www.jerrulsu.com/Auto-generated-subtitles-for-any-video.html"
+        data-issue-term="https://www.jerrulsu.com/Cygwin.html"
         data-label=""
         data-theme=""
         crossorigin="anonymous"
@@ -162,15 +177,15 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="https://www.jerrulsu.com/Cygwin.html" title="Cygwin">Cygwin</a></li>
+<li><a href="https://www.jerrulsu.com/Auto-generated-subtitles-for-any-video.html" title="Auto-generated subtitles for any video">Auto-generated subtitles for any video</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://www.jerrulsu.com/Using-loguru-and-notifiers-instead-of-logging.html" title="Previous: Using loguru and notifiers instead of logging">Using loguru and notifiers instead of logging</a></li>
-                <li class="next-article"><a href="https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html" title="Next: Binary Tree and Divide Conquer">Binary Tree and Divide Conquer</a> »</li>
+                <li class="previous-article">« <a href="https://www.jerrulsu.com/Case-Class-vs-Class.html" title="Previous: Case Class vs Class">Case Class vs Class</a></li>
+                <li class="next-article"><a href="https://www.jerrulsu.com/Python Object and Reference.html" title="Next: Python Object and Reference">Python Object and Reference</a> »</li>
             </ul>
             </nav>
             </aside>
@@ -178,11 +193,14 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2019-04-13T06:35:27+08:00">Apr 13, 2019</time>
+            <time itemprop="dateCreated" datetime="2019-04-24T07:05:27+08:00">Apr 24, 2019</time>
             <h4>Category</h4>
-            <a class="category-link" href="https://www.jerrulsu.com/categories.html#tools-ref">Tools</a>
+            <a class="category-link" href="https://www.jerrulsu.com/categories.html#cygwin-ref">Cygwin</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
+                <li><a href="https://www.jerrulsu.com/tags.html#cygwin-ref">Cygwin
+                    <span>1</span>
+</a></li>
                 <li><a href="https://www.jerrulsu.com/tags.html#tools-ref">Tools
                     <span>2</span>
 </a></li>
