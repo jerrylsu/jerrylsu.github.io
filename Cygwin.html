@@ -9,7 +9,7 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Tools, Cygwin, Cygwin, " />
+<meta name="keywords" content="Cygwin, Tools, Cygwin, " />
 
 <meta property="og:title" content="Cygwin"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Cygwin.html" />
@@ -79,7 +79,7 @@
 <ul>
 <li><a href="#cygwin">Cygwin中安装软件</a></li>
 <li><a href="#pycahrmcygwin">Pycahrm中启Cygwin终端</a></li>
-<li><a href="#cygwinwindowsanaconda">Cygwin中使用windows的anaconda环境</a></li>
+<li><a href="#cygwinwindows-anaconda">Cygwin中使用windows anaconda</a></li>
 </ul>
 </div>
         </nav>
@@ -117,9 +117,9 @@ It starts in my home directory, not in my project root. Starting in the project 
 <p><code>`"C:\cygwin64\bin\bash" -c "exec /usr/bin/env INTELLIJ=true $SHELL --login -i"</code>
 And an addition to my <code>~/.bashrc</code>:</p>
 <p><code>${INTELLIJ-false} &amp;&amp; cd ${OLDPWD-.}</code></p>
-<h2 id="cygwinwindowsanaconda">Cygwin中使用windows的anaconda环境<a class="headerlink" href="#cygwinwindowsanaconda" title="Permanent link">¶</a></h2>
-<p><code>vim ~/.bashrc</code>加入一下脚本：</p>
-<div class="highlight"><pre><span></span><code>####################################By Jerry for using Anaconda on Cygwin#########################################
+<h2 id="cygwinwindows-anaconda">Cygwin中使用windows anaconda<a class="headerlink" href="#cygwinwindows-anaconda" title="Permanent link">¶</a></h2>
+<p><code>vim ~/.bashrc</code>加入以下脚本：</p>
+<div class="highlight"><pre><span></span><code>##########################By Jerry for using Anaconda on Cygwin#################
 
 #  Anaconda Environment Selection - Plese set CONDA_BASE_DIR to the directory
 #  containing the base installation of anaconda/miniconda.
@@ -192,7 +192,7 @@ export PATH
 
                 <p id="post-share-links">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=Cygwin&url=https%3A//www.jerrulsu.com/Cygwin.html&hashtags=tools,cygwin" target="_blank" title="Share on Twitter">Twitter</a>
+    <a href="https://twitter.com/intent/tweet?text=Cygwin&url=https%3A//www.jerrulsu.com/Cygwin.html&hashtags=cygwin,tools" target="_blank" title="Share on Twitter">Twitter</a>
     ❄
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/Cygwin.html" target="_blank" title="Share on Facebook">Facebook</a>
     ❄
