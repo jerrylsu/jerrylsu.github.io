@@ -5,42 +5,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/</loc>
-<lastmod>2020-03-08T03:21:58-00:00</lastmod>
+<lastmod>2020-03-08T03:27:24-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/tags.html</loc>
-<lastmod>2020-03-08T03:21:58-00:00</lastmod>
+<lastmod>2020-03-08T03:27:24-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/categories.html</loc>
-<lastmod>2020-03-08T03:21:58-00:00</lastmod>
+<lastmod>2020-03-08T03:27:24-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/authors.html</loc>
-<lastmod>2020-03-08T03:21:58-00:00</lastmod>
+<lastmod>2020-03-08T03:27:24-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/archives.html</loc>
-<lastmod>2020-03-08T03:21:58-00:00</lastmod>
+<lastmod>2020-03-08T03:27:24-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/search.html</loc>
-<lastmod>2020-03-08T03:21:58-00:00</lastmod>
+<lastmod>2020-03-08T03:27:24-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -48,6 +48,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.jerrulsu.com/pages/about.html</loc>
 <lastmod>2019-05-04T15:04:40+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://www.jerrulsu.com/Deploy-my-blog-quickly.html</loc>
+<lastmod>2020-03-08T03:25:53+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -508,6 +515,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://www.jerrulsu.com/category/blog.html</loc>
+<lastmod>2020-03-08T03:25:53+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://www.jerrulsu.com/category/conda.html</loc>
 <lastmod>2019-12-22T16:29:23+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -650,6 +664,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.jerrulsu.com/category/vim.html</loc>
 <lastmod>2018-10-04T11:23:36+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://www.jerrulsu.com/tag/blog.html</loc>
+<lastmod>2020-03-08T03:25:53+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -908,7 +929,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/author/jerry-su.html</loc>
-<lastmod>2020-03-07T01:55:15+08:06</lastmod>
+<lastmod>2020-03-08T03:25:53+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
