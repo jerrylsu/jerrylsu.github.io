@@ -220,7 +220,7 @@ partitions, iterator and dependencies</p>
 <h1 id="_2">高级主题<a class="headerlink" href="#_2" title="Permanent link">¶</a></h1>
 <h2 id="execution-scheduling">Execution &amp; Scheduling<a class="headerlink" href="#execution-scheduling" title="Permanent link">¶</a></h2>
 <p><strong>当在Spark上运行我们的应用程序 ( 调用一个Action ) 时会发生什么？</strong>
-{% asset_img Spark.jpg %}
+<img alt="Spark" src="content/images/Spark-RDD/Spark.jpg"/>
 1. <strong>SparkContext</strong>：是应用的核心
     - 告诉应用如何访问集群
     - 协调集群上的进程集来运行我们的应用
@@ -264,7 +264,7 @@ Wide dependencies forbid it.</li>
 <li>有时，变量需要跨任务共享，或者在任务和驱动程序之间共享。通常跨任务的读写共享变量是低效的，但是，Spark还是为两种常见的使用模式提供了两种有限的共享变量：<strong>广播变量 ( Broadcast Variables ) 和累加器 ( Accumulator )</strong>。</li>
 </ul>
 <h3 id="broadcast-variables">Broadcast Variables<a class="headerlink" href="#broadcast-variables" title="Permanent link">¶</a></h3>
-<p>{% asset_img BroadcastVariable.jpg %}
+<p><img alt="BroadcastVariable" src="images/Spark-RDD/BroadcastVariable.jpg"/>
 <strong>1. 为什么需要广播变量？</strong>
 如果我们要在分布式计算里面分发大的对象，例如：字典，模型等，这个都会由<strong>Driver</strong>端进行分发。一般来讲，如果这个变量不是广播变量，那么每个<strong>Task</strong>就会分发一份，这在<strong>Task</strong>数目十分多的情况下<strong>Driver</strong>的带宽会成为系统的瓶颈，而且会大量消耗<strong>Task</strong>服务器上的资源，如果将这个变量声明为<strong>广播变量</strong>，那么只是每个<strong>Executor</strong>拥有一份，由这个<strong>Executor</strong>启动的<strong>Task</strong>会共享这个变量，节省了通信的成本和服务器的资源。</p>
 <p><strong>注：</strong>

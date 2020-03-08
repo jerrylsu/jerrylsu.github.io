@@ -186,7 +186,8 @@
 <li><strong><code>W</code></strong> → go to the start of the following WORD,</li>
 <li><strong><code>E</code></strong> → go to the end of this WORD.</li>
 </ul>
-<p _="%" asset_img="asset_img" word_moves.jpg="word_moves.jpg">By default, words are composed of letters and the underscore character. Let’s call a WORD a group of letter separated by blank characters. If you want to consider WORDS, then just use uppercase characters.</p>
+<p>By default, words are composed of letters and the underscore character. Let’s call a WORD a group of letter separated by blank characters. If you want to consider WORDS, then just use uppercase characters.
+<img alt="word_moves" src="images/Vim/word_moves.jpg"/></p>
 </li>
 <li>
 <p><strong><font color="red"><code>%</code></font></strong> : Go to the corresponding <strong><code>(</code></strong>, <strong><code>{</code></strong>, <strong><code>[</code></strong>.</p>
@@ -215,7 +216,7 @@ But what was true for <strong><code>y</code></strong> (yank), is also true for <
 <li><strong><code>3fa</code></strong> → find the 3rd occurrence of <strong><code>a</code></strong> on this line.</li>
 <li><strong><code>F</code></strong> and <strong><code>T</code></strong> → like <strong><code>f</code></strong> and <strong><code>t</code></strong> but backward.</li>
 </ul>
-<p>{% asset_img line_moves.jpg %}
+<p><img alt="line_moves" src="images/Vim/line_moves.jpg"/>
 A useful tip is: <strong><code>dt"</code></strong> → remove everything until the <strong><code>"</code></strong>.</p>
 <h3 id="zone-selection-ltactiongtaltobjectgt-or-ltactiongtiltobjectgt">Zone selection <strong><code>&lt;action&gt;a&lt;object&gt;</code></strong> or <strong><code>&lt;action&gt;i&lt;object&gt;</code></strong><a class="headerlink" href="#zone-selection-ltactiongtaltobjectgt-or-ltactiongtiltobjectgt" title="Permanent link">¶</a></h3>
 <p>These command can only be used after an operator in visual mode. But they are very powerful. Their main pattern is:</p>
@@ -230,7 +231,7 @@ A useful tip is: <strong><code>dt"</code></strong> → remove everything until t
 <li><strong><code>v2i)</code></strong> → will select <strong><code>map (+) ("foo")</code></strong></li>
 <li><strong><code>v2a)</code></strong> → will select <strong><code>(map (+) ("foo"))</code></strong></li>
 </ul>
-<p>{% asset_img textobjects.jpg %}</p>
+<p><img alt="textobjects" src="images/Vim/textobjects.jpg"/></p>
 <h3 id="select-rectangular-blocks-ltc-vgt">Select rectangular blocks: <strong><code>&lt;C-v&gt;</code></strong>.<a class="headerlink" href="#select-rectangular-blocks-ltc-vgt" title="Permanent link">¶</a></h3>
 <p>Rectangular blocks are very useful for commenting many lines of code. Typically: <strong><code>0&lt;C-v&gt;&lt;C-d&gt;I-- [ESC]</code></strong></p>
 <ul>
@@ -239,7 +240,7 @@ A useful tip is: <strong><code>dt"</code></strong> → remove everything until t
 <li><strong><code>&lt;C-d&gt;</code></strong> → move down (could also be jjj or %, etc…)</li>
 <li><strong><code>I-- [ESC]</code></strong> → write -- to comment each line</li>
 </ul>
-<p>{% asset_img rectangular-blocks.gif %}</p>
+<p><img alt="rectangular-blocks" src="images/Vim/rectangular-blocks.gif"/></p>
 <p>Note: in Windows you might have to use <strong><code>&lt;C-q&gt;</code></strong> instead of <strong><code>&lt;C-v&gt;</code></strong> if your clipboard is not empty.</p>
 
 
