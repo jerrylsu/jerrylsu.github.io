@@ -89,6 +89,7 @@
 <li><a href="#dockerwebjupyter-notebook">服务器docker中启可远程web的jupyter notebook</a></li>
 <li><a href="#pycharm-docker">PyCharm + Docker炼丹炉</a></li>
 <li><a href="#_6">制作镜像并上传仓库</a></li>
+<li><a href="#docker-compose-dockerfile">docker-compose &amp;&amp; dockerfile</a></li>
 </ul>
 </div>
         </nav>
@@ -128,8 +129,7 @@
 </ol>
 <h2 id="_1">创建容器<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
 <div class="highlight"><pre><span></span><code><span class="err">#</span><span class="o">-</span><span class="n">it交互式终端运行</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">参数</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash启动ubuntu</span><span class="p">,</span><span class="w"> </span><span class="c1">--name命名容器</span>
-<span class="err">#</span><span class="w"> </span><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">[</span><span class="n">host_port</span><span class="o">]</span><span class="err">:</span><span class="o">[</span><span class="n">container_port</span><span class="o">]</span><span class="p">(</span><span class="n">do</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="mi">8888</span><span class="p">)</span><span class="w"> </span><span class="c1">--name=[container_name] [image_name] \</span>
-<span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">[</span><span class="n">container_path</span><span class="o">]</span><span class="err">:</span><span class="o">[</span><span class="n">host_path</span><span class="o">]</span><span class="w"> </span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">[</span><span class="n">host_port</span><span class="o">]</span><span class="err">:</span><span class="o">[</span><span class="n">container_port</span><span class="o">]</span><span class="p">(</span><span class="n">do</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="mi">8888</span><span class="p">)</span><span class="w"> </span><span class="c1">--name=[container_name] [image_name] -v [host_path]:[container_path] /bin/bash</span>
 
 <span class="err">$</span><span class="w"> </span><span class="n">nvidia</span><span class="o">-</span><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">itd</span><span class="w"> </span><span class="c1">--name=dev -v /home:/home/centos -p 8480:8480 -p 8180:8180 -p 8280:8280 -p 8380:8380 -p 8580:22  nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04 /bin/bash</span>
 
@@ -295,6 +295,72 @@ ssh root@&lt;服务器的ip地址&gt; -p <span class="m">9380</span>
 <span class="n">docker</span> <span class="n">push</span> <span class="k">new</span><span class="o">-</span><span class="n">repo</span><span class="p">:</span><span class="n">tagname</span>
 
 <span class="n">docker</span> <span class="n">push</span> <span class="n">jerrysu666</span><span class="o">/</span><span class="n">cuda10</span><span class="p">.</span><span class="mi">0</span><span class="p">:</span><span class="n">tagname</span>
+</code></pre></div>
+<h2 id="docker-compose-dockerfile">docker-compose &amp;&amp; dockerfile<a class="headerlink" href="#docker-compose-dockerfile" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><span class="s s-Atom">#</span> <span class="s s-Atom">docker</span><span class="o">-</span><span class="s s-Atom">compose</span>
+<span class="nn">version</span><span class="p">:</span> <span class="s2">"2.3"</span>
+<span class="nn">services</span><span class="p">:</span>
+  <span class="s s-Atom">detectron2:</span>
+    <span class="nn">build</span><span class="p">:</span>
+      <span class="nn">context</span><span class="p">:</span> <span class="p">.</span>
+      <span class="nn">dockerfile</span><span class="p">:</span> <span class="nv">Dockerfile</span>
+      <span class="nn">args</span><span class="p">:</span>
+        <span class="nv">USER_ID</span><span class="s s-Atom">:</span> <span class="err">$</span><span class="p">{</span><span class="nv">USER_ID</span><span class="p">:-</span><span class="mi">1000</span><span class="p">}</span>
+    <span class="nn">runtime</span><span class="p">:</span> <span class="s s-Atom">nvidia</span>
+    <span class="s s-Atom">shm_size:</span> <span class="s2">"8gb"</span>
+    <span class="nn">ulimits</span><span class="p">:</span>
+      <span class="nn">memlock</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
+      <span class="nn">stack</span><span class="p">:</span> <span class="mi">67108864</span>
+    <span class="nn">ports</span><span class="p">:</span>
+      <span class="o">-</span> <span class="s2">"8170:8170"</span>
+      <span class="o">-</span> <span class="s2">"8270:8270"</span>
+      <span class="o">-</span> <span class="s2">"8370:8370"</span>
+      <span class="o">-</span> <span class="s2">"8470:8470"</span>
+      <span class="o">-</span> <span class="s2">"8570:22"</span>
+    <span class="nn">volumes</span><span class="p">:</span>
+      <span class="o">-</span> <span class="o">/</span><span class="nn">data</span><span class="p">:</span><span class="o">/</span><span class="s s-Atom">home</span>
+    <span class="nn">environment</span><span class="p">:</span>
+      <span class="o">-</span> <span class="nv">DISPLAY</span><span class="s s-Atom">=</span><span class="err">$</span><span class="nv">DISPLAY</span>
+      <span class="o">-</span> <span class="nv">NVIDIA_VISIBLE_DEVICES</span><span class="o">=</span><span class="s s-Atom">all</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># dockerfile
+
+FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update <span class="err">&amp;&amp;</span> apt-get install -y \
+        python3-opencv ca-certificates python3-dev git wget sudo <span class="err">&amp;&amp;</span> \
+  rm -rf /var/lib/apt/lists/*
+
+# create a non-root user
+ARG USER_ID=1000
+RUN useradd -m --no-log-init --system  --uid <span class="cp">${</span><span class="n">USER_ID</span><span class="cp">}</span> appuser -g sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' &gt;&gt; /etc/sudoers
+USER appuser
+WORKDIR /home/appuser
+
+ENV PATH="/home/appuser/.local/bin:<span class="cp">${</span><span class="n">PATH</span><span class="cp">}</span>"
+RUN wget https://bootstrap.pypa.io/get-pip.py <span class="err">&amp;&amp;</span> \
+        python3 get-pip.py --user <span class="err">&amp;&amp;</span> \
+        rm get-pip.py
+
+# install dependencies
+# See https://pytorch.org/ for other options if you use a different version of CUDA
+RUN pip install --user torch torchvision tensorboard cython -i https://pypi.doubanio.com/simple
+RUN pip install --user 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
+
+RUN pip install --user 'git+https://github.com/facebookresearch/fvcore'
+# install detectron2
+RUN git clone https://github.com/facebookresearch/detectron2 detectron2_repo
+ENV FORCE_CUDA="1"
+# This will build detectron2 for all common cuda architectures and take a lot more time,
+# because inside `docker build`, there is no way to tell which architecture will be used.
+ENV TORCH_CUDA_ARCH_LIST="Kepler;Kepler+Tesla;Maxwell;Maxwell+Tegra;Pascal;Volta;Turing"
+RUN pip install --user -e detectron2_repo
+
+# Set a fixed model cache directory.
+ENV FVCORE_CACHE="/tmp"
+WORKDIR /home/appuser/detectron2_repo
 </code></pre></div>
 
 
