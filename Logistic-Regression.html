@@ -97,6 +97,7 @@
 <li><a href="#28">2.8 逻辑回归的正则化</a></li>
 </ul>
 </li>
+<li><a href="#3">3. 回归和分类的本质区别</a></li>
 </ul>
 </div>
         </nav>
@@ -145,6 +146,19 @@
 <p><img alt="gd" src="images/linear_mode/gd.png"/></p>
 <h3 id="27">2.7 极大似然估计<a class="headerlink" href="#27" title="Permanent link">¶</a></h3>
 <h3 id="28">2.8 逻辑回归的正则化<a class="headerlink" href="#28" title="Permanent link">¶</a></h3>
+<h2 id="3">3. 回归和分类的本质区别<a class="headerlink" href="#3" title="Permanent link">¶</a></h2>
+<p><strong>目标和方法：</strong></p>
+<ul>
+<li>对于回归问题：目标和方法是一致的</li>
+</ul>
+<p>目标： <strong><code>pred = y</code></strong></p>
+<p>方法： 最小化预测值pred和真实值y的距离，即<code>minimize dist(pred, y)</code></p>
+<ul>
+<li>对于分类问题：</li>
+</ul>
+<p>目标： maxmize baseline. e.g. accuracy</p>
+<p>方法： <strong><code>$$minimize dst(p_θ(y|x), p_r(y|x))$$</code></strong> </p>
+<p><img alt="cross_entropy" src="images/entropy/cross_entropy.png"/></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
