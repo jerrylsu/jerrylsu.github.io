@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="【DRL】Policy Gradient"/>
 <meta property="og:url" content="https://www.jerrulsu.com/【DRL】Policy-Gradient.html" />
-<meta property="og:description" content="1. Reinforcement Learning¶ Actor(Policy) Neural Network as Actor (Deep). vs lookup Table(Q Learning). 使用神经网络作为Actor比查表的优势？ 查表无法穷举输入，e.g.图像画面或者语言输入。NN泛化性比较强，对于未看过的Observation，举一反三，合理的输出。 Environment Reward 2. Deep Learning¶ 如何选取Actor？ Neural Network as Actor (Deep) 如何衡量Actor的好坏？ Maxmize Reward的期望。Reward是一个回合episode，每轮Reward的总和。由于Actor是stochastic随机的，每个回合的Reward不同。所以maxmize sampling N回合Reward的期望。 期望就衡量了Actor actor_goodness" />
+<meta property="og:description" content="1. Reinforcement Learning¶ Actor(Policy) Neural Network as Actor (Deep). vs lookup Table(Q Learning). 使用神经网络作为Actor比查表的优势？ 查表无法穷举输入，e.g.图像画面或者语言输入。NN泛化性比较强，对于未看过的Observation，举一反三，合理的输出。 Environment Reward 2. Deep Learning¶ 如何选取Actor？ Neural Network as Actor (Deep) 如何衡量Actor的好坏？ Maxmize Reward的期望。Reward是一个回合episode，每轮Reward的总和。由于Actor是stochastic随机的，每个回合的Reward不同。所以maxmize sampling N回合Reward的期望。 期望就衡量了Actor" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-03-12T03:40:50+08:00" />
 <meta name="twitter:title" content="【DRL】Policy Gradient">
-<meta name="twitter:description" content="1. Reinforcement Learning¶ Actor(Policy) Neural Network as Actor (Deep). vs lookup Table(Q Learning). 使用神经网络作为Actor比查表的优势？ 查表无法穷举输入，e.g.图像画面或者语言输入。NN泛化性比较强，对于未看过的Observation，举一反三，合理的输出。 Environment Reward 2. Deep Learning¶ 如何选取Actor？ Neural Network as Actor (Deep) 如何衡量Actor的好坏？ Maxmize Reward的期望。Reward是一个回合episode，每轮Reward的总和。由于Actor是stochastic随机的，每个回合的Reward不同。所以maxmize sampling N回合Reward的期望。 期望就衡量了Actor actor_goodness">
+<meta name="twitter:description" content="1. Reinforcement Learning¶ Actor(Policy) Neural Network as Actor (Deep). vs lookup Table(Q Learning). 使用神经网络作为Actor比查表的优势？ 查表无法穷举输入，e.g.图像画面或者语言输入。NN泛化性比较强，对于未看过的Observation，举一反三，合理的输出。 Environment Reward 2. Deep Learning¶ 如何选取Actor？ Neural Network as Actor (Deep) 如何衡量Actor的好坏？ Maxmize Reward的期望。Reward是一个回合episode，每轮Reward的总和。由于Actor是stochastic随机的，每个回合的Reward不同。所以maxmize sampling N回合Reward的期望。 期望就衡量了Actor">
 
         <title>【DRL】Policy Gradient · Jerry Su&#39;s Blog
 </title>
@@ -90,11 +90,14 @@
             
 <h2 id="1-reinforcement-learning">1. Reinforcement Learning<a class="headerlink" href="#1-reinforcement-learning" title="Permanent link">¶</a></h2>
 <ul>
-<li><strong>Actor(Policy)</strong></li>
-</ul>
+<li>
+<p><strong>Actor(Policy)</strong></p>
 <p>Neural Network as Actor (Deep). vs lookup Table(Q Learning).</p>
+</li>
+</ul>
 <p><strong>使用神经网络作为Actor比查表的优势？</strong></p>
-<p>查表无法穷举输入，e.g.图像画面或者语言输入。NN泛化性比较强，对于未看过的Observation，举一反三，合理的输出。</p>
+<div class="highlight"><pre><span></span><code><span class="err">查表无法穷举输入，e.g.图像画面或者语言输入。NN泛化性比较强，对于未看过的Observation，举一反三，合理的输出。</span>
+</code></pre></div>
 <ul>
 <li>
 <p><strong>Environment</strong></p>
@@ -110,11 +113,11 @@
 </li>
 <li>
 <p>如何衡量Actor的好坏？</p>
-</li>
-</ul>
 <p>Maxmize <strong>Reward</strong>的期望。Reward是一个回合<strong>episode</strong>，每轮Reward的总和。由于Actor是stochastic随机的，每个回合的Reward不同。所以maxmize sampling N回合Reward的期望。 </p>
 <p>期望就衡量了Actor</p>
-<p><a href="images/RL/actor_goodness.png">actor_goodness</a></p>
+</li>
+</ul>
+<p><img alt="actor_goodness" src="images/RL/actor_goodness.png"/></p>
 
 
             
