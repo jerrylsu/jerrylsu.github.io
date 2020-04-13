@@ -80,7 +80,10 @@
         <div class="toc">
 <ul>
 <li><a href="#user-simulator-background">User Simulator BackGround</a></li>
-<li><a href="#rule-based-simulator">Rule-Based Simulator</a></li>
+<li><a href="#rule-based-simulator">Rule-Based Simulator</a><ul>
+<li><a href="#agenda-based-simulator">Agenda-Based Simulator</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </nav>
@@ -117,7 +120,7 @@ NLG：对话动作 ---&gt; 自然语言</p>
 <p>User model：用户模型对应对话系统的对话管理模块。它的任务是根据对话历史生成当前的用户动作，用户动作是预先定义好的语义标签，例如“inform, request, greet, bye”。</p>
 <p>Paper: End-to-End Task-Completion Neural Dialogue Systems</p>
 <h2 id="rule-based-simulator">Rule-Based Simulator<a class="headerlink" href="#rule-based-simulator" title="Permanent link">¶</a></h2>
-<p><strong>Agenda-Based Simulator:</strong></p>
+<h3 id="agenda-based-simulator">Agenda-Based Simulator<a class="headerlink" href="#agenda-based-simulator" title="Permanent link">¶</a></h3>
 <p>Plato Paper: Statistical User Simulation with a Hidden Agenda</p>
 <p>在对话过程中，用户模拟器维护着一个紧凑的，类似堆栈的表示形式，称为用户议程Agenda，其中用户状态被分解为议程A和目标G。该目标G由约束C和请求R组成。在每个时间步t处，用户模拟器都会基于当前状态和上一个代理动作生成下一个用户动作，然后更新当前状态。
 当用户模拟器收到输入时，它会参考Policy/ Rule以查看将哪些内容推送到议程Agenda中，作为对输入的响应。 经过一些整理后（例如，删除重复的内容或不再有效的内容），用户模拟器会将一个或多个项目从议程Agenda中弹出作为回复。</p>
