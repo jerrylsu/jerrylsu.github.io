@@ -14,18 +14,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Deep Learning, NLP, ELMo, ELMo, " />
+<meta name="keywords" content="Reinforcement Learning, Reinforcement Learning, " />
 
-<meta property="og:title" content="【NLP】ELMo"/>
-<meta property="og:url" content="https://www.jerrulsu.com/【NLP】ELMo.html" />
-<meta property="og:description" content="ELMo: Embeddings from Language models, BiLSTM vector concat，weighed hidden layers stacked 与GloVe embedding最大区别，引入了上下文，contextualized word-embeddings (BERT, ELMo) ELMo不会为每个单词使用固定的embedding向量，而是会在为每个单词分配embedding之前先查看整个句子(上下文)。 http://jalammar.github.io/illustrated-bert" />
+<meta property="og:title" content="【RL】Simulator"/>
+<meta property="og:url" content="https://www.jerrulsu.com/【RL】Simulator.html" />
+<meta property="og:description" content="User Simulator BackGround¶ NLU：自然语言 ---&gt; 字典语义标签 DST：对话历史追踪 DP：选择对话动作 NLG：对话动作 ---&gt; 自然语言 对话系统回复（action）---&gt; 用户模拟器 用户模拟器与对话系统结构相似。 User goal：用户模拟器第一步首先生成对话目标。对话系统Agent对此目标不可知，但是需要通过多轮对话完成用户模拟器的目标。 e.g. user goal = inform_slots + request_slots： { “request_slots”: { “ticket”: “UNK” }, “inform_slots”: { “city”: “seattle”, “numberofpeople”: “2”, “theater”: “regal meridian 16”, “starttime”: “9:25 pm”, “date”: “tomorrow”, “moviename”: “zoolander 2” } } 信息槽 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2020-03-24T04:50:40+08:00" />
-<meta name="twitter:title" content="【NLP】ELMo">
-<meta name="twitter:description" content="ELMo: Embeddings from Language models, BiLSTM vector concat，weighed hidden layers stacked 与GloVe embedding最大区别，引入了上下文，contextualized word-embeddings (BERT, ELMo) ELMo不会为每个单词使用固定的embedding向量，而是会在为每个单词分配embedding之前先查看整个句子(上下文)。 http://jalammar.github.io/illustrated-bert">
+<meta property="og:article:published_time" content="2020-04-13T11:21:03+08:00" />
+<meta name="twitter:title" content="【RL】Simulator">
+<meta name="twitter:description" content="User Simulator BackGround¶ NLU：自然语言 ---&gt; 字典语义标签 DST：对话历史追踪 DP：选择对话动作 NLG：对话动作 ---&gt; 自然语言 对话系统回复（action）---&gt; 用户模拟器 用户模拟器与对话系统结构相似。 User goal：用户模拟器第一步首先生成对话目标。对话系统Agent对此目标不可知，但是需要通过多轮对话完成用户模拟器的目标。 e.g. user goal = inform_slots + request_slots： { “request_slots”: { “ticket”: “UNK” }, “inform_slots”: { “city”: “seattle”, “numberofpeople”: “2”, “theater”: “regal meridian 16”, “starttime”: “9:25 pm”, “date”: “tomorrow”, “moviename”: “zoolander 2” } } 信息槽 …">
 
-        <title>【NLP】ELMo · Jerry Su&#39;s Blog
+        <title>【RL】Simulator · Jerry Su&#39;s Blog
 </title>
 
 
@@ -66,40 +66,69 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="https://www.jerrulsu.com/【NLP】ELMo.html">
-                【NLP】ELMo
+            <a href="https://www.jerrulsu.com/【RL】Simulator.html">
+                【RL】Simulator
             </a>
         </h1>
     </header>
 </div>
 
 <div class="row-fluid">
-        <div class="span8 offset2 article-content">
-            
-            <div class="toc">
-<ul></ul>
-</div>
-<p>ELMo: Embeddings from Language models, BiLSTM vector concat，weighed hidden layers stacked</p>
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
 <ul>
-<li>
-<p>与GloVe embedding最大区别，引入了上下文，contextualized word-embeddings (BERT, ELMo)</p>
-</li>
-<li>
-<p>ELMo不会为每个单词使用固定的embedding向量，而是会在为每个单词分配embedding之前先查看整个句子(上下文)。</p>
-</li>
+<li><a href="#user-simulator-background">User Simulator BackGround</a></li>
+<li><a href="#rule-based-simulatoragenda-based-simulator">Rule-Based Simulator：Agenda-Based Simulator</a></li>
 </ul>
-<p><img alt="elmo1" src="../images/ELMo/elmo1.png" /></p>
-<p><img alt="elmo2" src="../images/ELMo/elmo2.png" /></p>
-<p><a href="http://jalammar.github.io/illustrated-bert">http://jalammar.github.io/illustrated-bert</a></p>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+            
+            
+<h2 id="user-simulator-background">User Simulator BackGround<a class="headerlink" href="#user-simulator-background" title="Permanent link">¶</a></h2>
+<p>NLU：自然语言 ---&gt; 字典语义标签
+DST：对话历史追踪
+DP：选择对话动作
+NLG：对话动作 ---&gt; 自然语言</p>
+<p><img alt="Simulator" src="../images/RL/simulator.jpg"/></p>
+<p>对话系统回复（action）---&gt; 用户模拟器
+用户模拟器与对话系统结构相似。</p>
+<p>User goal：用户模拟器第一步首先生成对话目标。对话系统Agent对此目标不可知，但是需要通过多轮对话完成用户模拟器的目标。
+e.g.  user goal = inform_slots + request_slots：</p>
+<div class="highlight"><pre><span></span><code><span class="err">{ </span>
+<span class="err">“request_slots”: { </span>
+<span class="err">“ticket”:   “UNK”</span>
+<span class="err">},</span>
+<span class="err">“inform_slots”: { </span>
+<span class="err">“city”:                 “seattle”, </span>
+<span class="err">“numberofpeople”:   “2”, </span>
+<span class="err">“theater”:          “regal meridian 16”, </span>
+<span class="err">“starttime”:            “9:25 pm”, </span>
+<span class="err">“date”:                 “tomorrow”, </span>
+<span class="err">“moviename”:        “zoolander 2”</span>
+<span class="err">}</span>
+<span class="err">}</span>
+</code></pre></div>
+<p>信息槽：slot=value。若干槽值对，是用户用于查询的约束。
+请求槽：slot。若干槽，没有信息值，用户期望通过对话从对话系统方获取的信息值。</p>
+<p>User model：用户模型对应对话系统的对话管理模块。它的任务是根据对话历史生成当前的用户动作，用户动作是预先定义好的语义标签，例如“inform, request, greet, bye”。</p>
+<p>Paper: End-to-End Task-Completion Neural Dialogue Systems</p>
+<h2 id="rule-based-simulatoragenda-based-simulator">Rule-Based Simulator：Agenda-Based Simulator<a class="headerlink" href="#rule-based-simulatoragenda-based-simulator" title="Permanent link">¶</a></h2>
+<p>Plato Paper: Statistical User Simulation with a Hidden Agenda
+在对话过程中，用户模拟器维护着一个紧凑的，类似堆栈的表示形式，称为用户议程Agenda，其中用户状态被分解为议程A和目标G。该目标G由约束C和请求R组成。在每个时间步t处，用户模拟器都会基于当前状态和上一个代理动作生成下一个用户动作，然后更新当前状态。
+当用户模拟器收到输入时，它会参考Policy/ Rule以查看将哪些内容推送到议程Agenda中，作为对输入的响应。 经过一些整理后（例如，删除重复的内容或不再有效的内容），用户模拟器会将一个或多个项目从议程Agenda中弹出作为回复。</p>
 
 
             
 
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=%E3%80%90NLP%E3%80%91ELMo&url=https%3A//www.jerrulsu.com/%E3%80%90NLP%E3%80%91ELMo.html&hashtags=deep-learning,nlp,elmo" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
- ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/%E3%80%90NLP%E3%80%91ELMo.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=%E3%80%90NLP%E3%80%91ELMo&amp;body=https%3A//www.jerrulsu.com/%E3%80%90NLP%E3%80%91ELMo.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+      <a href="https://twitter.com/intent/tweet?text=%E3%80%90RL%E3%80%91Simulator&url=https%3A//www.jerrulsu.com/%E3%80%90RL%E3%80%91Simulator.html&hashtags=reinforcement-learning" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.jerrulsu.com/%E3%80%90RL%E3%80%91Simulator.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=%E3%80%90RL%E3%80%91Simulator&amp;body=https%3A//www.jerrulsu.com/%E3%80%90RL%E3%80%91Simulator.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -120,7 +149,7 @@
                 <a class="accordion-toggle disqus-comment-count comment-count collapsed"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   href="https://www.jerrulsu.com/【NLP】ELMo.html#comment_thread"
+                   href="https://www.jerrulsu.com/【RL】Simulator.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -131,7 +160,7 @@
 
                         <script src="https://utteranc.es/client.js"
         data-repo="True"
-        data-issue-term="https://www.jerrulsu.com/【NLP】ELMo.html"
+        data-issue-term="https://www.jerrulsu.com/【RL】Simulator.html"
         data-label=""
         data-theme=""
         crossorigin="anonymous"
@@ -151,38 +180,27 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="https://www.jerrulsu.com/RASA-Featurizer.html" title="【NLP】RASA Featurizer">【NLP】RASA Featurizer</a></li>
-<li><a href="https://www.jerrulsu.com/【NLP】RASA-Dialogue-Transformers.html" title="【NLP】RASA Dialogue Transformers">【NLP】RASA Dialogue Transformers</a></li>
-<li><a href="https://www.jerrulsu.com/【NLP】RASA-Issues.html" title="【NLP】RASA Issues">【NLP】RASA Issues</a></li>
-<li><a href="https://www.jerrulsu.com/【NLP】BERT.html" title="【NLP】BERT">【NLP】BERT</a></li>
-<li><a href="https://www.jerrulsu.com/【NLP】Attention.html" title="【NLP】Attention">【NLP】Attention</a></li>
+<li><a href="https://www.jerrulsu.com/【RL】Policy-Gradient.html" title="【RL】Policy Gradient">【RL】Policy Gradient</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://www.jerrulsu.com/【RL】Policy-Gradient.html" title="Previous: 【RL】Policy Gradient">【RL】Policy Gradient</a></li>
-                <li class="next-article"><a href="https://www.jerrulsu.com/【NLP】BERT.html" title="Next: 【NLP】BERT">【NLP】BERT</a> »</li>
+                <li class="previous-article">« <a href="https://www.jerrulsu.com/BackTrack.html" title="Previous: BackTrack">BackTrack</a></li>
             </ul>
             </nav>
             </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2020-03-24T04:50:40+08:00">3月 24, 2020</time>
+            <time itemprop="dateCreated" datetime="2020-04-13T11:21:03+08:00">4月 13, 2020</time>
             <h4>Category</h4>
-            <a class="category-link" href="https://www.jerrulsu.com/categories.html#elmo-ref">ELMo</a>
+            <a class="category-link" href="https://www.jerrulsu.com/categories.html#reinforcement-learning-ref">Reinforcement Learning</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://www.jerrulsu.com/tags.html#deep-learning-ref">Deep Learning
-                    <span class="superscript">9</span>
-</a></li>
-                <li><a href="https://www.jerrulsu.com/tags.html#elmo-ref">ELMo
-                    <span class="superscript">1</span>
-</a></li>
-                <li><a href="https://www.jerrulsu.com/tags.html#nlp-ref">NLP
-                    <span class="superscript">8</span>
+                <li><a href="https://www.jerrulsu.com/tags.html#reinforcement-learning-ref">Reinforcement Learning
+                    <span class="superscript">2</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
