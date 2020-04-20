@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="BackTracking"/>
 <meta property="og:url" content="https://www.jerrulsu.com/BackTracking.html" />
-<meta property="og:description" content="https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-xiang-jie-by-labuladong-2/ 回溯算法：本质是N叉树的遍历问题，关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架： 路径：也就是已经做出的选择。 选择列表：也就是你当前可以做的选择。（一般会定义一个visited布尔数组，用于剪枝） 结束条件：也就是到达决策树底层，无法再做选择的条件。 result = [] def dfs(路径, 选择列表): if 满足结束条件: result.append(路径) return for 选择 in 选择列表: 做选择 dfs(路径, 选择列表) 撤销选择 写 backtrack 函数时，需要维护走过的「路径」和当前可以做的「选择列表」，当触发「结束条件」时 …" />
+<meta property="og:description" content="https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-xiang-jie-by-labuladong-2/ 回溯算法：本质是N叉树的遍历问题，关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架： 路径：也就是已经做出的选择。 选择列表：也就是你当前可以做的选择。（一般会定义一个visited布尔数组，用于剪枝） 结束条件：也就是到达决策树底层，无法再做选择的条件。 result = [] def dfs(路径, 选择列表): if 满足结束条件: result.append(路径) return for 选择 in 选择列表: 做选择 dfs(路径, 选择列表) 撤销选择 写dfs函数时，需要维护走过的「路径」和当前可以做的「选择列表」，当触发「结束条件」时，将「路径 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-04-09T10:12:16+08:00" />
 <meta name="twitter:title" content="BackTracking">
-<meta name="twitter:description" content="https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-xiang-jie-by-labuladong-2/ 回溯算法：本质是N叉树的遍历问题，关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架： 路径：也就是已经做出的选择。 选择列表：也就是你当前可以做的选择。（一般会定义一个visited布尔数组，用于剪枝） 结束条件：也就是到达决策树底层，无法再做选择的条件。 result = [] def dfs(路径, 选择列表): if 满足结束条件: result.append(路径) return for 选择 in 选择列表: 做选择 dfs(路径, 选择列表) 撤销选择 写 backtrack 函数时，需要维护走过的「路径」和当前可以做的「选择列表」，当触发「结束条件」时 …">
+<meta name="twitter:description" content="https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-xiang-jie-by-labuladong-2/ 回溯算法：本质是N叉树的遍历问题，关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架： 路径：也就是已经做出的选择。 选择列表：也就是你当前可以做的选择。（一般会定义一个visited布尔数组，用于剪枝） 结束条件：也就是到达决策树底层，无法再做选择的条件。 result = [] def dfs(路径, 选择列表): if 满足结束条件: result.append(路径) return for 选择 in 选择列表: 做选择 dfs(路径, 选择列表) 撤销选择 写dfs函数时，需要维护走过的「路径」和当前可以做的「选择列表」，当触发「结束条件」时，将「路径 …">
 
         <title>BackTracking · Jerry Su&#39;s Blog
 </title>
@@ -114,7 +114,7 @@
         <span class="n">dfs</span><span class="p">(</span><span class="err">路径</span><span class="p">,</span> <span class="err">选择列表</span><span class="p">)</span>
         <span class="err">撤销选择</span>
 </code></pre></div>
-<p>写 backtrack 函数时，需要维护走过的「路径」和当前可以做的「选择列表」，当触发「结束条件」时，将「路径」记入结果集。</p>
+<p>写dfs函数时，需要维护走过的「路径」和当前可以做的「选择列表」，当触发「结束条件」时，将「路径」记入结果集。</p>
 <h2 id="backtracking">BackTracking<a class="headerlink" href="#backtracking" title="Permanent link">¶</a></h2>
 <div class="highlight"><pre><span></span><code><span class="cm">/*</span>
 <span class="cm"> * 回溯法</span>
