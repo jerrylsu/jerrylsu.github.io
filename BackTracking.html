@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="BackTracking"/>
 <meta property="og:url" content="https://www.jerrulsu.com/BackTracking.html" />
-<meta property="og:description" content="ref. backtracking BackTracking¶ 回溯算法：本质是N叉树的遍历问题，关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架： 路径：也就是已经做出的选择。 选择列表：也就是你当前可以做的选择。（一般会定义一个visited布尔数组，用于剪枝） 结束条件：也就是到达决策树底层，无法再做选择的条件。 result = [] def dfs(路径, 选择列表): if 满足结束条件: result.append(路径) return for 选择 in 选择列表: 做选择 dfs(路径, 选择列表) 撤销选择 写dfs函数时，需要维护走过的「路径」和当前可以做的「选择列表」，当触发「结束条件」时，将「路径」记入结果集。 Permutation¶ #include&lt;string …" />
+<meta property="og:description" content="Ref. Backtracking BackTracking¶ 回溯算法：本质是N叉树的遍历问题，关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架： 路径：也就是已经做出的选择。 选择列表：也就是你当前可以做的选择。（一般会定义一个visited布尔数组，用于剪枝） 结束条件：也就是到达决策树底层，无法再做选择的条件。 result = [] def dfs(路径, 选择列表): if 满足结束条件: result.append(路径) return for 选择 in 选择列表: 做选择 dfs(路径, 选择列表) 撤销选择 写dfs函数时，需要维护走过的路径和当前可以做的选择列表，当触发结束条件时，将路径记入结果集。 Permutation I/II …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-04-09T10:12:16+08:00" />
 <meta name="twitter:title" content="BackTracking">
-<meta name="twitter:description" content="ref. backtracking BackTracking¶ 回溯算法：本质是N叉树的遍历问题，关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架： 路径：也就是已经做出的选择。 选择列表：也就是你当前可以做的选择。（一般会定义一个visited布尔数组，用于剪枝） 结束条件：也就是到达决策树底层，无法再做选择的条件。 result = [] def dfs(路径, 选择列表): if 满足结束条件: result.append(路径) return for 选择 in 选择列表: 做选择 dfs(路径, 选择列表) 撤销选择 写dfs函数时，需要维护走过的「路径」和当前可以做的「选择列表」，当触发「结束条件」时，将「路径」记入结果集。 Permutation¶ #include&lt;string …">
+<meta name="twitter:description" content="Ref. Backtracking BackTracking¶ 回溯算法：本质是N叉树的遍历问题，关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架： 路径：也就是已经做出的选择。 选择列表：也就是你当前可以做的选择。（一般会定义一个visited布尔数组，用于剪枝） 结束条件：也就是到达决策树底层，无法再做选择的条件。 result = [] def dfs(路径, 选择列表): if 满足结束条件: result.append(路径) return for 选择 in 选择列表: 做选择 dfs(路径, 选择列表) 撤销选择 写dfs函数时，需要维护走过的路径和当前可以做的选择列表，当触发结束条件时，将路径记入结果集。 Permutation I/II …">
 
         <title>BackTracking · Jerry Su&#39;s Blog
 </title>
@@ -80,9 +80,11 @@
         <div class="toc">
 <ul>
 <li><a href="#backtracking">BackTracking</a></li>
-<li><a href="#permutation">Permutation</a></li>
-<li><a href="#word-search">Word Search</a></li>
+<li><a href="#permutation-iii">Permutation I/II</a></li>
+<li><a href="#subset">Subset</a></li>
+<li><a href="#combination">Combination</a></li>
 <li><a href="#n-queens">N Queens</a></li>
+<li><a href="#word-search">Word Search</a></li>
 </ul>
 </div>
         </nav>
@@ -90,10 +92,10 @@
     <div class="span8 article-content">
             
             
-<p><a href="https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-xiang-jie-by-labuladong-2/">ref. backtracking</a></p>
+<p><a href="https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-xiang-jie-by-labuladong-2/">Ref. Backtracking</a></p>
 <h2 id="backtracking">BackTracking<a class="headerlink" href="#backtracking" title="Permanent link">¶</a></h2>
-<p><strong>回溯算法：本质是N叉树的遍历问题，</strong>关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架：</p>
-<ol>
+<p><strong>回溯算法：本质是N叉树的遍历问题</strong>，关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架：</p>
+<ul>
 <li>
 <p>路径：也就是已经做出的选择。</p>
 </li>
@@ -103,7 +105,7 @@
 <li>
 <p>结束条件：也就是到达决策树底层，无法再做选择的条件。</p>
 </li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="k">result</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">def</span> <span class="n">dfs</span><span class="p">(</span><span class="err">路径</span><span class="p">,</span> <span class="err">选择列表</span><span class="p">):</span>
     <span class="k">if</span> <span class="err">满足结束条件</span><span class="p">:</span>
@@ -115,8 +117,8 @@
         <span class="n">dfs</span><span class="p">(</span><span class="err">路径</span><span class="p">,</span> <span class="err">选择列表</span><span class="p">)</span>
         <span class="err">撤销选择</span>
 </code></pre></div>
-<p>写dfs函数时，需要维护走过的「路径」和当前可以做的「选择列表」，当触发「结束条件」时，将「路径」记入结果集。</p>
-<h2 id="permutation">Permutation<a class="headerlink" href="#permutation" title="Permanent link">¶</a></h2>
+<p>写dfs函数时，需要维护走过的<strong>路径</strong>和当前可以做的<strong>选择列表</strong>，当触发<strong>结束条件</strong>时，将<strong>路径</strong>记入结果集。</p>
+<h2 id="permutation-iii">Permutation I/II<a class="headerlink" href="#permutation-iii" title="Permanent link">¶</a></h2>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
@@ -161,6 +163,53 @@
                 <span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
             <span class="p">}</span>
         <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<h2 id="subset">Subset<a class="headerlink" href="#subset" title="Permanent link">¶</a></h2>
+<h2 id="combination">Combination<a class="headerlink" href="#combination" title="Permanent link">¶</a></h2>
+<h2 id="n-queens">N Queens<a class="headerlink" href="#n-queens" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="cm">/* In this problem, we can go row by row, and in each position, we need to check</span>
+<span class="cm">*  if the column, the 45° diagonal and the 135° diagonal had a queen before.</span>
+<span class="cm">* Solution: Directly check the validity of each position using nQueens.</span>
+<span class="cm">*/</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">solveNQueens</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">res</span><span class="p">;</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">nQueens</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">string</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="sc">'.'</span><span class="p">));</span>
+        <span class="n">solveNQueens</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">nQueens</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">solveNQueens</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&gt;&amp;</span> <span class="n">res</span><span class="p">,</span> \
+                      <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">nQueens</span><span class="p">,</span> \
+                      <span class="kt">int</span> <span class="n">row</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">row</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nQueens</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">col</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">col</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">isValid</span><span class="p">(</span><span class="n">nQueens</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span> <span class="p">{</span>
+                <span class="n">nQueens</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'Q'</span><span class="p">;</span>
+                <span class="n">solveNQueens</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">nQueens</span><span class="p">,</span> <span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+                <span class="n">nQueens</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
+            <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kt">bool</span> <span class="n">isValid</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">nQueens</span><span class="p">,</span> <span class="kt">int</span> <span class="n">row</span><span class="p">,</span> <span class="kt">int</span> <span class="n">col</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//check if the column had a queen before.</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">row</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">nQueens</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'Q'</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="c1">//check if the 45° diagonal had a queen before.</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">,</span> <span class="o">--</span><span class="n">j</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">nQueens</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'Q'</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="c1">//check if the 135° diagonal had a queen before.</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">,</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">nQueens</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'Q'</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 <h2 id="word-search">Word Search<a class="headerlink" href="#word-search" title="Permanent link">¶</a></h2>
@@ -226,51 +275,6 @@
             <span class="p">}</span>
             <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
         <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-<h2 id="n-queens">N Queens<a class="headerlink" href="#n-queens" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
-<span class="cm">/* In this problem, we can go row by row, and in each position, we need to check</span>
-<span class="cm">*  if the column, the 45° diagonal and the 135° diagonal had a queen before.</span>
-<span class="cm">* Solution: Directly check the validity of each position using nQueens.</span>
-<span class="cm">*/</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">solveNQueens</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">res</span><span class="p">;</span>
-        <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">nQueens</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">string</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="sc">'.'</span><span class="p">));</span>
-        <span class="n">solveNQueens</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">nQueens</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="kt">void</span> <span class="n">solveNQueens</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&gt;&amp;</span> <span class="n">res</span><span class="p">,</span> \
-                      <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">nQueens</span><span class="p">,</span> \
-                      <span class="kt">int</span> <span class="n">row</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">row</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nQueens</span><span class="p">);</span>
-            <span class="k">return</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">col</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">col</span><span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">isValid</span><span class="p">(</span><span class="n">nQueens</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span> <span class="p">{</span>
-                <span class="n">nQueens</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'Q'</span><span class="p">;</span>
-                <span class="n">solveNQueens</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">nQueens</span><span class="p">,</span> <span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-                <span class="n">nQueens</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'.'</span><span class="p">;</span>
-            <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="kt">bool</span> <span class="n">isValid</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">nQueens</span><span class="p">,</span> <span class="kt">int</span> <span class="n">row</span><span class="p">,</span> <span class="kt">int</span> <span class="n">col</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">//check if the column had a queen before.</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">row</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">nQueens</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'Q'</span><span class="p">)</span>
-                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-        <span class="c1">//check if the 45° diagonal had a queen before.</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">,</span> <span class="o">--</span><span class="n">j</span><span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">nQueens</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'Q'</span><span class="p">)</span>
-                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-        <span class="c1">//check if the 135° diagonal had a queen before.</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">,</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">nQueens</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'Q'</span><span class="p">)</span>
-                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
