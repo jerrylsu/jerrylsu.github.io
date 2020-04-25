@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="Dynamic Programming"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Dynamic-Programming.html" />
-<meta property="og:description" content="动态规划四要素¶ 状态的定义¶ 状态的定义是动态规划最难的地方，根据定义状态可以将其分类。 状态的转移方程¶ 状态之间的联系，如何通过小状态推出大状态。 状态的初始化¶ 最小状态是什么，即递归中的base case起点。 以及转移方程推算不出的需要手工计算的状态。 返回结果¶ 最终要求解的问题，即最大的状态。终点 与递归三要素对比¶ 定义 ---&gt; 状态¶ 接收什么参数 处理过程 返回的结果 拆解 ---&gt; 方程¶ 如何将参数变小，问题规模变小。大状态变小状态。 出口 ---&gt; 初始化¶ base case最小，可以直接解决的状态 判断动态规划依据¶ 不适用动态规划情况¶ 求出所有具体方案，而非方案个数 输入数据是一个集合，而非序列 暴力算法的时间复杂度已经是多项式级别 动态规划擅长优化NP问题到P问题，即指数级时间复杂度\((2^n …" />
+<meta property="og:description" content="动态规划四要素¶ 状态的定义 状态的定义是动态规划最难的地方，根据定义状态可以将其分类。 状态的转移方程 状态之间的联系，如何通过小状态推出大状态。 状态的初始化 最小状态是什么，即递归中的base case起点。 以及转移方程推算不出的需要手工计算的状态。 返回结果 最终要求解的问题，即最大的状态。终点 与递归三要素对比¶ 所有的动态规划都是由暴力递归优化而来 动态规划是一种分阶段求解决策问题的数学思想。 三个重要的概念： 状态（最优子结构）、递推方程、边界。 动态规划利用自底向上的递推方式，实现时间和空间上的最优化。 递归展开过程中存在重复状态，即重叠子问题 重复状态无后效性：与到达这个状态的路径无关，即只要这个状态参数确定，则返回值确定。 暴力递归到动态规划的解法： 1. 找出需要求解的状态位置 2. 回到Base case中设置不被依赖的边界状态 3. 分析普遍状态如何依赖 定义 ---&gt; 状态¶ 接收什么参数 处理过程 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-06-01T01:40:10+08:00" />
 <meta name="twitter:title" content="Dynamic Programming">
-<meta name="twitter:description" content="动态规划四要素¶ 状态的定义¶ 状态的定义是动态规划最难的地方，根据定义状态可以将其分类。 状态的转移方程¶ 状态之间的联系，如何通过小状态推出大状态。 状态的初始化¶ 最小状态是什么，即递归中的base case起点。 以及转移方程推算不出的需要手工计算的状态。 返回结果¶ 最终要求解的问题，即最大的状态。终点 与递归三要素对比¶ 定义 ---&gt; 状态¶ 接收什么参数 处理过程 返回的结果 拆解 ---&gt; 方程¶ 如何将参数变小，问题规模变小。大状态变小状态。 出口 ---&gt; 初始化¶ base case最小，可以直接解决的状态 判断动态规划依据¶ 不适用动态规划情况¶ 求出所有具体方案，而非方案个数 输入数据是一个集合，而非序列 暴力算法的时间复杂度已经是多项式级别 动态规划擅长优化NP问题到P问题，即指数级时间复杂度\((2^n …">
+<meta name="twitter:description" content="动态规划四要素¶ 状态的定义 状态的定义是动态规划最难的地方，根据定义状态可以将其分类。 状态的转移方程 状态之间的联系，如何通过小状态推出大状态。 状态的初始化 最小状态是什么，即递归中的base case起点。 以及转移方程推算不出的需要手工计算的状态。 返回结果 最终要求解的问题，即最大的状态。终点 与递归三要素对比¶ 所有的动态规划都是由暴力递归优化而来 动态规划是一种分阶段求解决策问题的数学思想。 三个重要的概念： 状态（最优子结构）、递推方程、边界。 动态规划利用自底向上的递推方式，实现时间和空间上的最优化。 递归展开过程中存在重复状态，即重叠子问题 重复状态无后效性：与到达这个状态的路径无关，即只要这个状态参数确定，则返回值确定。 暴力递归到动态规划的解法： 1. 找出需要求解的状态位置 2. 回到Base case中设置不被依赖的边界状态 3. 分析普遍状态如何依赖 定义 ---&gt; 状态¶ 接收什么参数 处理过程 …">
 
         <title>Dynamic Programming · Jerry Su&#39;s Blog
 </title>
@@ -79,42 +79,32 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#_1">动态规划四要素</a><ul>
-<li><a href="#_2">状态的定义</a></li>
-<li><a href="#_3">状态的转移方程</a></li>
-<li><a href="#_4">状态的初始化</a></li>
-<li><a href="#_5">返回结果</a></li>
-</ul>
-</li>
-<li><a href="#_6">与递归三要素对比</a><ul>
+<li><a href="#_1">动态规划四要素</a></li>
+<li><a href="#_2">与递归三要素对比</a><ul>
 <li><a href="#-">定义 ---&gt; 状态</a></li>
 <li><a href="#-_1">拆解 ---&gt; 方程</a></li>
 <li><a href="#-_2">出口 ---&gt; 初始化</a></li>
 </ul>
 </li>
-<li><a href="#_7">判断动态规划依据</a><ul>
-<li><a href="#_8">不适用动态规划情况</a></li>
-<li><a href="#_9">适用动态规划情况</a></li>
-</ul>
-</li>
-<li><a href="#_10">动态规划的分类</a><ul>
-<li><a href="#_11">坐标型动态规划</a><ul>
+<li><a href="#_3">判断动态规划依据</a></li>
+<li><a href="#_4">动态规划的分类</a><ul>
+<li><a href="#_5">坐标型动态规划</a><ul>
 <li><a href="#triangle">Triangle</a></li>
 <li><a href="#minimum-path-sum">Minimum Path Sum</a></li>
 <li><a href="#maximal-square">Maximal Square</a></li>
 <li><a href="#longest-increasing-subsequence-lis">Longest Increasing Subsequence (LIS)</a></li>
 </ul>
 </li>
-<li><a href="#_12">接龙型动态规划</a><ul>
+<li><a href="#_6">接龙型动态规划</a><ul>
 <li><a href="#maximum-subarray">Maximum Subarray</a></li>
 <li><a href="#maximum-product-subarray">Maximum Product Subarray</a></li>
 <li><a href="#coin-change">Coin Change</a></li>
 </ul>
 </li>
-<li><a href="#_13">划分行动态规划</a></li>
-<li><a href="#_14">双序列动态规划</a></li>
-<li><a href="#_15">背包型动态规划</a></li>
-<li><a href="#_16">区间型动态规划</a><ul>
+<li><a href="#_7">划分行动态规划</a></li>
+<li><a href="#_8">双序列动态规划</a></li>
+<li><a href="#_9">背包型动态规划</a></li>
+<li><a href="#_10">区间型动态规划</a><ul>
 <li><a href="#longest-palindromic-substring">Longest Palindromic Substring</a></li>
 </ul>
 </li>
@@ -128,18 +118,42 @@
             
             
 <h2 id="_1">动态规划四要素<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
-<h3 id="_2">状态的定义<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
+<ol>
+<li>状态的定义</li>
+</ol>
 <p>状态的定义是动态规划最难的地方，根据定义状态可以将其分类。</p>
-<h3 id="_3">状态的转移方程<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<ol>
+<li>状态的转移方程</li>
+</ol>
 <p>状态之间的联系，如何通过小状态推出大状态。</p>
-<h3 id="_4">状态的初始化<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
-<ul>
-<li>最小状态是什么，即递归中的base case起点。</li>
-<li>以及转移方程推算不出的需要手工计算的状态。</li>
-</ul>
-<h3 id="_5">返回结果<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<ol>
+<li>
+<p>状态的初始化</p>
+</li>
+<li>
+<p>最小状态是什么，即递归中的base case起点。</p>
+</li>
+<li>
+<p>以及转移方程推算不出的需要手工计算的状态。</p>
+</li>
+<li>
+<p>返回结果</p>
+</li>
+</ol>
 <p>最终要求解的问题，即最大的状态。终点</p>
-<h2 id="_6">与递归三要素对比<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<h2 id="_2">与递归三要素对比<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p><strong>所有的动态规划都是由暴力递归优化而来</strong>
+动态规划是一种分阶段求解决策问题的数学思想。
+ 三个重要的概念： <strong>状态</strong>（最优子结构）、<strong>递推方程</strong>、<strong>边界</strong>。 
+动态规划利用<strong>自底向上的递推</strong>方式，实现时间和空间上的最优化。</p>
+<ol>
+<li>递归展开过程中存在重复状态，即重叠子问题</li>
+<li>重复状态无后效性：与到达这个状态的路径无关，即只要这个状态参数确定，则返回值确定。</li>
+</ol>
+<p>暴力递归到动态规划的解法：
+1. 找出需要求解的<strong>状态位置</strong>
+2. 回到Base case中设置不被依赖的<strong>边界状态</strong>
+3. 分析<strong>普遍状态</strong>如何依赖</p>
 <h3 id="-">定义 ---&gt; 状态<a class="headerlink" href="#-" title="Permanent link">¶</a></h3>
 <ul>
 <li>
@@ -160,9 +174,11 @@
 <ul>
 <li>base case最小，可以直接解决的状态</li>
 </ul>
-<h2 id="_7">判断动态规划依据<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
-<h3 id="_8">不适用动态规划情况<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
-<ul>
+<h2 id="_3">判断动态规划依据<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<ol>
+<li>
+<p>不适用动态规划情况</p>
+</li>
 <li>
 <p>求出所有<strong>具体</strong>方案，而非方案<strong>个数</strong></p>
 </li>
@@ -172,10 +188,12 @@
 <li>
 <p>暴力算法的时间复杂度已经是<strong>多项式</strong>级别</p>
 </li>
-</ul>
+</ol>
 <p>动态规划擅长优化NP问题到P问题，即指数级时间复杂度<span class="math">\((2^n, n!)\)</span>到多项式时间复杂度<span class="math">\((n^2, n^3)\)</span>。不擅长优化<span class="math">\(n^3\)</span>到<span class="math">\(n^2\)</span>。</p>
-<h3 id="_9">适用动态规划情况<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
-<ul>
+<ol>
+<li>
+<p>适用动态规划情况</p>
+</li>
 <li>
 <p>求最大值，最小值</p>
 </li>
@@ -185,10 +203,10 @@
 <li>
 <p>统计方案个数</p>
 </li>
-</ul>
-<h2 id="_10">动态规划的分类<a class="headerlink" href="#_10" title="Permanent link">¶</a></h2>
+</ol>
+<h2 id="_4">动态规划的分类<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
 <p>根据如何定义状态，将动态规划分类：</p>
-<h3 id="_11">坐标型动态规划<a class="headerlink" href="#_11" title="Permanent link">¶</a></h3>
+<h3 id="_5">坐标型动态规划<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
 <h4 id="triangle">Triangle<a class="headerlink" href="#triangle" title="Permanent link">¶</a></h4>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">minimumTotal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">triangle</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">triangle</span><span class="p">:</span>
@@ -293,7 +311,7 @@
         <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
-<h3 id="_12">接龙型动态规划<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
+<h3 id="_6">接龙型动态规划<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
 <h4 id="maximum-subarray">Maximum Subarray<a class="headerlink" href="#maximum-subarray" title="Permanent link">¶</a></h4>
 <ul>
 <li>
@@ -415,10 +433,10 @@
                 <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">coin</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># dp[i]迭代放置最小状态， 1表示加上一个面值硬币后的最少硬币数</span>
     <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
 </code></pre></div>
-<h3 id="_13">划分行动态规划<a class="headerlink" href="#_13" title="Permanent link">¶</a></h3>
-<h3 id="_14">双序列动态规划<a class="headerlink" href="#_14" title="Permanent link">¶</a></h3>
-<h3 id="_15">背包型动态规划<a class="headerlink" href="#_15" title="Permanent link">¶</a></h3>
-<h3 id="_16">区间型动态规划<a class="headerlink" href="#_16" title="Permanent link">¶</a></h3>
+<h3 id="_7">划分行动态规划<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<h3 id="_8">双序列动态规划<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
+<h3 id="_9">背包型动态规划<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
+<h3 id="_10">区间型动态规划<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
 <h4 id="longest-palindromic-substring">Longest Palindromic Substring<a class="headerlink" href="#longest-palindromic-substring" title="Permanent link">¶</a></h4>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
