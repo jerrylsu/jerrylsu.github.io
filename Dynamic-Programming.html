@@ -286,17 +286,17 @@
 <span class="p">};</span>
 </code></pre></div>
 <h3 id="longest-common-subsequence-lcs">Longest Common Subsequence (LCS)<a class="headerlink" href="#longest-common-subsequence-lcs" title="Permanent link">¶</a></h3>
-<p>状态的定义： dp[i][j]是字串string1[0 ~ i]与字串string[0 ~ j]的最长公共字串的长度。</p>
+<p>状态的定义： dp[i][j]是子串string1[0 ~ i]与字串string[0 ~ j]的最长公共字串的长度。</p>
 <p>递推方程：<strong>若求原问题dp[i][j]，从子问题dp[i-1][j-1]或者max(dp[i-1][j], dp[i][j-1])递推而来。</strong></p>
 <ul>
 <li>
-<p>当string1[i] == string2[j]时，原问题dp[i][j] = dp[i-1][j-1] + 1，即string1[0 ~ i]与字串string[0 ~ j]的最长公共字串的长度加1</p>
+<p>当string1[i] == string2[j]时，原问题dp[i][j] = dp[i-1][j-1] + 1，即string1[0 ~ i-1]与字串string[0 ~ j-1]的最长公共字串的长度加1</p>
 </li>
 <li>
-<p>当string1[i] != string2[j]时，则必须求解dp[i-1][j]和dp[i][j-1]两个子问题，原问题dp[i][j] = max(dp[i-1][j], dp[i][j-1])，即string1[0 ~ i-1]与字串string[0 ~ j]的LCS与string1[0 ~ i]与字串string[0 ~ j-1]的LCS。</p>
+<p>当string1[i] != string2[j]时，则必须求解dp[i-1][j]和dp[i][j-1]两个子问题并取最大的结果，原问题dp[i][j] = max(dp[i-1][j], dp[i][j-1])，即子串string1[0 ~ i-1]与string[0 ~ j]的LCS与子串string1[0 ~ i]与string[0 ~ j-1]的LCS中最大的LCS。</p>
 </li>
 </ul>
-<p>边界初始化技巧：字符串前增加一个空字符。</p>
+<p>边界初始化技巧：字符串前增加一个空字符#。</p>
 <div class="highlight"><pre><span></span><code><span class="n">C</span><span class="o">++</span>
 
 <span class="k">class</span> <span class="nc">Solution</span><span class="p">{</span>
@@ -316,12 +316,10 @@
 <span class="cm">            */</span>
             <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">len1</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
                 <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">len2</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
-                    <span class="k">if</span><span class="p">(</span><span class="n">text1</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">text2</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]){</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">text1</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">text2</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
                         <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-                    <span class="p">}</span>
-                    <span class="k">else</span><span class="p">{</span>
+                    <span class="k">else</span>
                         <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
-                    <span class="p">}</span>
                 <span class="p">}</span>
             <span class="p">}</span>
             <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">len1</span><span class="p">][</span><span class="n">len2</span><span class="p">];</span>
