@@ -330,7 +330,7 @@
 <h3 id="longest-palindromic-substring">Longest Palindromic Substring<a class="headerlink" href="#longest-palindromic-substring" title="Permanent link">¶</a></h3>
 <p>状态定义：dp[i][j]是字符串s[i:j]是否为回文子串。</p>
 <p>base case：1. 单个字母dp[i][i] 2. 相邻字母dp[i][i+1]</p>
-<p>dp数组遍历方式：遍历所有可能字串长度len （子串长度len + 其实位置start）方式</p>
+<p>dp数组遍历方式：遍历所有可能字串长度len （子串长度len + 开始位置start）方式</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">{</span>
     <span class="k">public</span><span class="o">:</span>
         <span class="n">string</span> <span class="n">longestPalindrome</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">){</span>
