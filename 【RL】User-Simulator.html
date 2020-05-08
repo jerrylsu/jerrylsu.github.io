@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="【RL】User Simulator"/>
 <meta property="og:url" content="https://www.jerrulsu.com/【RL】User-Simulator.html" />
-<meta property="og:description" content="User Simulator BackGround¶ NLU：自然语言 ---&gt; 字典语义标签 DST：对话历史追踪 DP：选择对话动作 NLG：对话动作 ---&gt; 自然语言 对话系统回复（action）---&gt; 用户模拟器 用户模拟器与对话系统结构相似。 User goal：用户模拟器第一步首先生成对话目标。对话系统Agent对此目标不可知，但是需要通过多轮对话完成用户模拟器的目标。 e.g. user goal = inform_slots + request_slots： { “request_slots”: { “ticket”: “UNK” }, “inform_slots”: { “city”: “seattle”, “numberofpeople”: “2”, “theater”: “regal meridian 16”, “starttime”: “9:25 pm”, “date”: “tomorrow”, “moviename”: “zoolander 2” } } 信息槽 …" />
+<meta property="og:description" content="User Simulator BackGround¶ 为什么需要用户模拟器？ 强化学习通常需要与环境互动，因此常规对话语料库不能直接使用。 每个任务都提出了特定的挑战，需要单独的任务专用语料库。 为面向任务的对话收集和标注人机对话或人人对话需要广泛的领域知识。 NLU：自然语言 ---&gt; 字典语义标签 DST：对话历史追踪 DP：选择对话动作 NLG：对话动作 ---&gt; 自然语言 对话系统回复（action）---&gt; 用户模拟器 用户模拟器与对话系统结构相似。 User goal：用户模拟器第一步首先生成对话目标。对话系统Agent对此目标不可知，但是需要通过多轮对话完成用户模拟器的目标。 e.g. user goal = inform_slots + request_slots： { “request_slots”: { “ticket”: “UNK” }, “inform_slots”: { “city”: “seattle”, “numberofpeople”: “2”, “theater”: “regal meridian 16”, “starttime”: “9:25 pm …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-04-13T11:21:03+08:00" />
 <meta name="twitter:title" content="【RL】User Simulator">
-<meta name="twitter:description" content="User Simulator BackGround¶ NLU：自然语言 ---&gt; 字典语义标签 DST：对话历史追踪 DP：选择对话动作 NLG：对话动作 ---&gt; 自然语言 对话系统回复（action）---&gt; 用户模拟器 用户模拟器与对话系统结构相似。 User goal：用户模拟器第一步首先生成对话目标。对话系统Agent对此目标不可知，但是需要通过多轮对话完成用户模拟器的目标。 e.g. user goal = inform_slots + request_slots： { “request_slots”: { “ticket”: “UNK” }, “inform_slots”: { “city”: “seattle”, “numberofpeople”: “2”, “theater”: “regal meridian 16”, “starttime”: “9:25 pm”, “date”: “tomorrow”, “moviename”: “zoolander 2” } } 信息槽 …">
+<meta name="twitter:description" content="User Simulator BackGround¶ 为什么需要用户模拟器？ 强化学习通常需要与环境互动，因此常规对话语料库不能直接使用。 每个任务都提出了特定的挑战，需要单独的任务专用语料库。 为面向任务的对话收集和标注人机对话或人人对话需要广泛的领域知识。 NLU：自然语言 ---&gt; 字典语义标签 DST：对话历史追踪 DP：选择对话动作 NLG：对话动作 ---&gt; 自然语言 对话系统回复（action）---&gt; 用户模拟器 用户模拟器与对话系统结构相似。 User goal：用户模拟器第一步首先生成对话目标。对话系统Agent对此目标不可知，但是需要通过多轮对话完成用户模拟器的目标。 e.g. user goal = inform_slots + request_slots： { “request_slots”: { “ticket”: “UNK” }, “inform_slots”: { “city”: “seattle”, “numberofpeople”: “2”, “theater”: “regal meridian 16”, “starttime”: “9:25 pm …">
 
         <title>【RL】User Simulator · Jerry Su&#39;s Blog
 </title>
@@ -91,6 +91,18 @@
             
             
 <h2 id="user-simulator-background">User Simulator BackGround<a class="headerlink" href="#user-simulator-background" title="Permanent link">¶</a></h2>
+<p><strong>为什么需要用户模拟器？</strong></p>
+<ul>
+<li>
+<p>强化学习通常需要与环境互动，因此常规对话语料库不能直接使用。</p>
+</li>
+<li>
+<p>每个任务都提出了特定的挑战，需要单独的任务专用语料库。</p>
+</li>
+<li>
+<p>为面向任务的对话收集和标注人机对话或人人对话需要广泛的领域知识。</p>
+</li>
+</ul>
 <p>NLU：自然语言 ---&gt; 字典语义标签</p>
 <p>DST：对话历史追踪</p>
 <p>DP：选择对话动作
