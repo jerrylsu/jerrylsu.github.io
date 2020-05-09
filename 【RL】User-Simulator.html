@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="【RL】User Simulator"/>
 <meta property="og:url" content="https://www.jerrulsu.com/【RL】User-Simulator.html" />
-<meta property="og:description" content="User Simulator BackGround¶ 为什么需要用户模拟器？ 强化学习通常需要与环境互动，因此常规对话语料库不能直接使用。 每个任务都提出了特定的挑战，需要单独的任务专用语料库。 为面向任务的对话收集和标注人机对话或人人对话需要广泛的领域知识。 NLU：自然语言 ---&gt; 字典语义标签 DST：对话历史追踪 DP：选择对话动作 NLG：对话动作 ---&gt; 自然语言 对话系统回复（action）---&gt; 用户模拟器 用户模拟器与对话系统结构相似。 User goal：用户模拟器第一步首先生成对话目标。对话系统Agent对此目标不可知，但是需要通过多轮对话完成用户模拟器的目标。 e.g. user goal = inform_slots + request_slots： { “request_slots”: { “ticket”: “UNK” }, “inform_slots”: { “city”: “seattle”, “numberofpeople”: “2”, “theater”: “regal meridian 16”, “starttime”: “9:25 pm …" />
+<meta property="og:description" content="User Simulator BackGround¶ 为什么需要用户模拟器？ 监督学习方法缺陷： 需要收集大量实际的人机与人人的训练标注数据，昂贵且耗时。 此外，即使有大量的训练数据，也有可能在训练数据中未充分探究某些对话状态空间，从而阻止了受监督的学习者找到好的策略。 强化学习优势： 不需要大量训练数据，仅给出奖励信号，智能体即可通过与用户交互来优化对话策略。 强化学习在对话领域存在的问题： 强化学习模型需要从环境中获取很多样本，但是从零开始与真实用户交互是不切实际的。所以需要用户模拟器模拟真实世界的环境。 用户模拟器： 用户模拟的目标是产生自然而合理的对话，从而使强化学习智能体能够探索策略空间。 基于模拟的方法允许代理探索先前观察到的数据中可能不存在的trajectory，克服了基于模拟的方法的主要局限性。 在用户模拟器上训练的智能体可以作为有效的起点，之后部署在真实世界与人互动，从而通过强化学习来进一步改进。 NLU：自然语言 ---&gt; 字典语义标签 DST：对话历史追踪 DP：选择对话动作 NLG：对话动作 ---&gt; 自然语言 对话系统回复（action）---&gt; 用户模拟器 用户模拟器与对话系统结构相似。 User goal：用户模拟器第一步首先生成对话目标。对话系统Agent对此目标不可知，但是需要通过多轮对话完成用户模拟器的目标。 e.g. user goal …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-04-13T11:21:03+08:00" />
 <meta name="twitter:title" content="【RL】User Simulator">
-<meta name="twitter:description" content="User Simulator BackGround¶ 为什么需要用户模拟器？ 强化学习通常需要与环境互动，因此常规对话语料库不能直接使用。 每个任务都提出了特定的挑战，需要单独的任务专用语料库。 为面向任务的对话收集和标注人机对话或人人对话需要广泛的领域知识。 NLU：自然语言 ---&gt; 字典语义标签 DST：对话历史追踪 DP：选择对话动作 NLG：对话动作 ---&gt; 自然语言 对话系统回复（action）---&gt; 用户模拟器 用户模拟器与对话系统结构相似。 User goal：用户模拟器第一步首先生成对话目标。对话系统Agent对此目标不可知，但是需要通过多轮对话完成用户模拟器的目标。 e.g. user goal = inform_slots + request_slots： { “request_slots”: { “ticket”: “UNK” }, “inform_slots”: { “city”: “seattle”, “numberofpeople”: “2”, “theater”: “regal meridian 16”, “starttime”: “9:25 pm …">
+<meta name="twitter:description" content="User Simulator BackGround¶ 为什么需要用户模拟器？ 监督学习方法缺陷： 需要收集大量实际的人机与人人的训练标注数据，昂贵且耗时。 此外，即使有大量的训练数据，也有可能在训练数据中未充分探究某些对话状态空间，从而阻止了受监督的学习者找到好的策略。 强化学习优势： 不需要大量训练数据，仅给出奖励信号，智能体即可通过与用户交互来优化对话策略。 强化学习在对话领域存在的问题： 强化学习模型需要从环境中获取很多样本，但是从零开始与真实用户交互是不切实际的。所以需要用户模拟器模拟真实世界的环境。 用户模拟器： 用户模拟的目标是产生自然而合理的对话，从而使强化学习智能体能够探索策略空间。 基于模拟的方法允许代理探索先前观察到的数据中可能不存在的trajectory，克服了基于模拟的方法的主要局限性。 在用户模拟器上训练的智能体可以作为有效的起点，之后部署在真实世界与人互动，从而通过强化学习来进一步改进。 NLU：自然语言 ---&gt; 字典语义标签 DST：对话历史追踪 DP：选择对话动作 NLG：对话动作 ---&gt; 自然语言 对话系统回复（action）---&gt; 用户模拟器 用户模拟器与对话系统结构相似。 User goal：用户模拟器第一步首先生成对话目标。对话系统Agent对此目标不可知，但是需要通过多轮对话完成用户模拟器的目标。 e.g. user goal …">
 
         <title>【RL】User Simulator · Jerry Su&#39;s Blog
 </title>
@@ -92,17 +92,25 @@
             
 <h2 id="user-simulator-background">User Simulator BackGround<a class="headerlink" href="#user-simulator-background" title="Permanent link">¶</a></h2>
 <p><strong>为什么需要用户模拟器？</strong></p>
+<p>监督学习方法缺陷：</p>
+<ol>
+<li>
+<p>需要收集大量实际的人机与人人的训练标注数据，昂贵且耗时。</p>
+</li>
+<li>
+<p>此外，即使有大量的训练数据，也有可能在训练数据中未充分探究某些对话状态空间，从而阻止了受监督的学习者找到好的策略。</p>
+</li>
+</ol>
+<p>强化学习优势：</p>
 <ul>
-<li>
-<p>强化学习通常需要与环境互动，因此常规对话语料库不能直接使用。</p>
-</li>
-<li>
-<p>每个任务都提出了特定的挑战，需要单独的任务专用语料库。</p>
-</li>
-<li>
-<p>为面向任务的对话收集和标注人机对话或人人对话需要广泛的领域知识。</p>
-</li>
+<li>不需要大量训练数据，仅给出奖励信号，智能体即可通过与用户交互来优化对话策略。</li>
 </ul>
+<p>强化学习在对话领域存在的问题：</p>
+<ul>
+<li>强化学习模型需要从环境中获取很多样本，但是从零开始与真实用户交互是不切实际的。所以需要用户模拟器模拟真实世界的环境。</li>
+</ul>
+<p>用户模拟器：</p>
+<p>用户模拟的目标是产生自然而合理的对话，从而使强化学习智能体能够探索策略空间。 基于模拟的方法允许代理探索先前观察到的数据中可能不存在的trajectory，克服了基于模拟的方法的主要局限性。 在用户模拟器上训练的智能体可以作为有效的起点，之后部署在真实世界与人互动，从而通过强化学习来进一步改进。</p>
 <p>NLU：自然语言 ---&gt; 字典语义标签</p>
 <p>DST：对话历史追踪</p>
 <p>DP：选择对话动作
