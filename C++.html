@@ -232,6 +232,7 @@
 </code></pre></div>
 <h2 id="14-delete">1.4 delete<a class="headerlink" href="#14-delete" title="Permanent link">¶</a></h2>
 <p>先调用析构函数，再释放内存</p>
+<p><strong>注意：</strong>delete存在两个删除动作。1.先调用析构函数，把类中动态分配的内存空间<code>Hello</code>删除；2.再将指向字符串的指针<code>ps</code>删除。</p>
 <div class="highlight"><pre><span></span><code><span class="n">String</span><span class="o">*</span> <span class="n">ps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">);</span>
 <span class="p">...</span>
 <span class="k">delete</span> <span class="n">ps</span><span class="p">;</span>
