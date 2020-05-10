@@ -339,7 +339,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <h4 id="19-function-template">1.9 function template<a class="headerlink" href="#19-function-template" title="Permanent link">¶</a></h4>
-<p><strong>template<class t=""></class></strong>：编译器会对模板函数做参数类型推导</p>
+<p><strong>template<class t=""></class></strong>：编译器会对模板函数做参数类型推导。C++标准库中算法均采用函数模板。</p>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
 <span class="kr">inline</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">min</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">a</span> <span class="o">?</span> <span class="nl">b</span> <span class="p">:</span> <span class="n">a</span><span class="p">;</span>
@@ -360,7 +360,7 @@
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>使用时，<code>min</code>函数不需要像类模板<code>min&lt;double&gt;(r1, r2)</code>指定参数，通过参数推导。通过推导<code>T</code>为<code>Stone</code>类型，<code>b &lt; a</code>调用对象<code>b</code>的<code>Stone::operator&lt;</code>。</p>
+<p>使用时，<code>min</code>函数不需要像类模板<code>min&lt;double&gt;(r1, r2)</code>指定参数，通过参数推导。通过推导<code>T</code>为<code>Stone</code>类型，<strong><code>b &lt; a</code>调用对象<code>b</code>的类型<code>T</code>中的<code>Stone::operator&lt;</code>，即在<code>T</code>中。</strong></p>
 
 
             
