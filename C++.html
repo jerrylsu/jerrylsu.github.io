@@ -293,7 +293,26 @@
     <span class="p">...</span>
 <span class="p">};</span>
 
-<span class="n">Singleton</span><span class="o">::</span><span class="n">getInstance</span><span class="p">.</span><span class="n">setup</span><span class="p">()</span>  <span class="c1">// 获取单例对象并调用对象的类成员函数setup()。</span>
+<span class="n">Singleton</span><span class="o">::</span><span class="n">getInstance</span><span class="p">.</span><span class="n">setup</span><span class="p">();</span>  <span class="c1">// 获取单例对象并调用对象的类成员函数setup()。</span>
+</code></pre></div>
+<p>上述单例模式并非最佳写法，待优化的问题是：对象a已经在内存中构建，即使不使用。</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Singleton</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">static</span> <span class="n">Singleton</span><span class="o">&amp;</span> <span class="n">getInstance</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span> 
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">Singleton</span><span class="p">();</span>        
+    <span class="n">Signleton</span><span class="p">(</span><span class="k">const</span> <span class="n">Singleton</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+    <span class="p">...</span>
+<span class="p">};</span>
+
+<span class="c1">// 单例对象在使用时内存构建，getInstance函数退出时，static变量依然存在。</span>
+<span class="n">Single</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="n">Singleton</span> <span class="n">a</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">Singleton</span><span class="o">::</span><span class="n">getInstance</span><span class="p">.</span><span class="n">setup</span><span class="p">();</span> 
 </code></pre></div>
 
 
