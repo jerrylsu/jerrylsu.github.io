@@ -237,9 +237,9 @@
 <span class="k">delete</span> <span class="n">ps</span><span class="p">;</span>
 </code></pre></div>
 <p>编译器转化为：</p>
-<div class="highlight"><pre><span></span><code><span class="n">String</span><span class="o">::~</span><span class="n">String</span><span class="p">(</span><span class="n">ps</span><span class="p">);</span>            <span class="c1">// 析构函数</span>
-<span class="c1">// delete(ps)内部调用free(ps)</span>
-<span class="k">operator</span> <span class="nf">delete</span><span class="p">(</span><span class="n">ps</span><span class="p">);</span>            <span class="c1">// 释放内存</span>
+<div class="highlight"><pre><span></span><code><span class="n">String</span><span class="o">::~</span><span class="n">String</span><span class="p">(</span><span class="n">ps</span><span class="p">);</span>                        <span class="c1">// 析构函数</span>
+<span class="c1">// operator delete是函数名，内部调用free(ps)</span>
+<span class="k">operator</span> <span class="nf">delete</span><span class="p">(</span><span class="n">ps</span><span class="p">);</span>                        <span class="c1">// 释放内存</span>
 </code></pre></div>
 
 
