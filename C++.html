@@ -81,7 +81,7 @@
         <div class="toc">
 <ul>
 <li><a href="#1-class-without-pointer-members">1. Class without pointer members</a></li>
-<li><a href="#1-class-with-pointer-members">1. Class with pointer members</a></li>
+<li><a href="#2-class-with-pointer-members">2. Class with pointer members</a></li>
 </ul>
 </div>
         </nav>
@@ -155,8 +155,66 @@
 
 <span class="cp">#endif</span>
 </code></pre></div>
-<h2 id="1-class-with-pointer-members">1. Class with pointer members<a class="headerlink" href="#1-class-with-pointer-members" title="Permanent link">¶</a></h2>
+<h2 id="2-class-with-pointer-members">2. Class with pointer members<a class="headerlink" href="#2-class-with-pointer-members" title="Permanent link">¶</a></h2>
 <p><strong>string class</strong></p>
+<div class="highlight"><pre><span></span><code><span class="cp">#ifndef __MYSTRING__</span>
+<span class="cp">#define __MYSTRING__</span>
+
+<span class="cp">#include</span><span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+
+<span class="k">class</span> <span class="nc">String</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="c1">// Big Three</span>
+    <span class="n">String</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">cstr</span><span class="p">);</span>             <span class="c1">// constructor func</span>
+    <span class="n">String</span><span class="p">(</span><span class="k">const</span> <span class="n">String</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">);</span>            <span class="c1">// copy constructor func</span>
+    <span class="n">String</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">String</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">);</span> <span class="c1">// copy asignment func</span>
+    <span class="o">~</span><span class="n">String</span><span class="p">();</span>                            <span class="c1">// destructor func</span>
+    <span class="kt">char</span><span class="o">*</span> <span class="nf">get_c_str</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">m_data</span><span class="p">;</span> <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">char</span><span class="o">*</span> <span class="n">m_data</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kr">inline</span> <span class="n">String</span><span class="o">::</span><span class="n">String</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">cstr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">cstr</span><span class="p">){</span>
+        <span class="n">m_data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">cstr</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+        <span class="n">strcpy</span><span class="p">(</span><span class="n">m_data</span><span class="p">,</span> <span class="n">cstr</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="n">m_data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+        <span class="o">*</span><span class="n">m_data</span> <span class="o">=</span> <span class="sc">'\0'</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kr">inline</span> <span class="n">String</span><span class="o">::</span><span class="n">String</span><span class="p">(</span><span class="k">const</span> <span class="n">String</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">){</span>
+    <span class="n">m_data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="n">m_data</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">m_data</span><span class="p">,</span> <span class="n">str</span><span class="p">.</span><span class="n">m_data</span><span class="p">);</span>  <span class="c1">// deep copy</span>
+<span class="p">}</span>
+
+<span class="kr">inline</span> <span class="n">String</span><span class="o">&amp;</span> <span class="n">String</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">String</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">){</span>
+    <span class="c1">// checking self-assignment</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">str</span><span class="p">){</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">delete</span><span class="p">[]</span> <span class="n">m_data</span><span class="p">;</span>  <span class="c1">// preventing memory leak</span>
+    <span class="n">m_data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="n">m_data</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">m_data</span><span class="p">,</span> <span class="n">str</span><span class="p">.</span><span class="n">m_data</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">inline</span> <span class="n">String</span><span class="o">::~</span><span class="n">String</span><span class="p">(){</span>
+    <span class="k">delete</span><span class="p">[]</span> <span class="n">m_data</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">String</span> <span class="n">str</span><span class="p">){</span>
+    <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="n">str</span><span class="p">.</span><span class="n">get_c_str</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">os</span>
+<span class="p">}</span>
+
+<span class="cp">#endif</span>
+</code></pre></div>
 
 
             
