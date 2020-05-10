@@ -87,6 +87,7 @@
 <li><a href="#14-delete">1.4 delete</a></li>
 <li><a href="#15-this">1.5 this</a></li>
 <li><a href="#16-static">1.6 static</a></li>
+<li><a href="#17">1.7 单例模式</a></li>
 </ul>
 </li>
 </ul>
@@ -278,6 +279,21 @@
     <span class="n">Account</span> <span class="n">a</span><span class="p">;</span>
     <span class="n">a</span><span class="p">.</span><span class="n">set_rate</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span> 
 <span class="p">}</span>
+</code></pre></div>
+<h4 id="17">1.7 单例模式<a class="headerlink" href="#17" title="Permanent link">¶</a></h4>
+<p>一个类只存在一个对象，实现方法是将类的构造器私有化private与static的综合应用。</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Singleton</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">static</span> <span class="n">Singleton</span><span class="o">&amp;</span> <span class="n">getInstance</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span><span class="p">;</span> <span class="p">}</span>  <span class="c1">// 获取单例对象。</span>
+    <span class="kt">void</span> <span class="n">setup</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span> 
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">Singleton</span><span class="p">();</span>          <span class="c1">// 构造器私有化，外界禁止创建对象。</span>
+    <span class="n">Signleton</span><span class="p">(</span><span class="k">const</span> <span class="n">Singleton</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+    <span class="k">static</span> <span class="n">Singleton</span> <span class="n">a</span><span class="p">;</span>   <span class="c1">// 定义唯一一个静态单列对象。</span>
+    <span class="p">...</span>
+<span class="p">};</span>
+
+<span class="n">Singleton</span><span class="o">::</span><span class="n">getInstance</span><span class="p">.</span><span class="n">setup</span><span class="p">()</span>  <span class="c1">// 获取单例对象并调用对象的类成员函数setup()。</span>
 </code></pre></div>
 
 
