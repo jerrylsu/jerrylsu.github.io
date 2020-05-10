@@ -219,6 +219,7 @@
 <span class="cp">#endif</span>
 </code></pre></div>
 <h2 id="new">new<a class="headerlink" href="#new" title="Permanent link">¶</a></h2>
+<p>先分配内存，在调用构造函数</p>
 <p><code>Complex* pc = new Complex(1, 2);</code> 编译器编译为：</p>
 <div class="highlight"><pre><span></span><code><span class="n">Complex</span> <span class="o">*</span><span class="n">pc</span><span class="p">;</span>
 
@@ -226,6 +227,7 @@
 <span class="kt">void</span><span class="o">*</span> <span class="n">mem</span> <span class="o">=</span> <span class="k">operator</span> <span class="k">new</span><span class="p">(</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Complex</span><span class="p">)</span> <span class="p">);</span>  <span class="c1">// 1. 分配内存</span>
 <span class="n">pc</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">Complex</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">mem</span><span class="p">);</span>              <span class="c1">// 2. 类型转换</span>
 <span class="n">pc</span><span class="o">-&gt;</span><span class="n">Complex</span><span class="o">::</span><span class="n">Complex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                    <span class="c1">// 3. 构造函数</span>
+<span class="c1">// 3等价于Complex::Complex(pc, 1, 2); pc即this</span>
 </code></pre></div>
 
 
