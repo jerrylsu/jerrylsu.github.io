@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="C++"/>
 <meta property="og:url" content="https://www.jerrulsu.com/C++.html" />
-<meta property="og:description" content="编写类class的良好习惯： 数据私有化private 构造函数尽量使用初始化列表initialization list 参数与返回值尽量引用传递by reference 在类体中的函数需要加const的尽量加 1. Class without pointer members¶ complex class #ifndef __COMPLEX__ #define __COMPLEX__ class complex { public: complex (double r = 0, double i = 0) : re (r), im (i) { } complex&amp; operator += (const complex&amp;); double real () const { return re; } double imag …" />
+<meta property="og:description" content="编写类class的良好习惯： 数据私有化private 构造函数尽量使用初始化列表initialization list 参数与返回值尽量引用传递by reference 在类体中的函数需要加const的尽量加 1.1 Class without pointer members¶ complex class #ifndef __COMPLEX__ #define __COMPLEX__ class complex { public: complex (double r = 0, double i = 0) : re (r), im (i) { } complex&amp; operator += (const complex&amp;); double real () const { return re; } double …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2018-05-09T15:42:27+08:00" />
 <meta name="twitter:title" content="C++">
-<meta name="twitter:description" content="编写类class的良好习惯： 数据私有化private 构造函数尽量使用初始化列表initialization list 参数与返回值尽量引用传递by reference 在类体中的函数需要加const的尽量加 1. Class without pointer members¶ complex class #ifndef __COMPLEX__ #define __COMPLEX__ class complex { public: complex (double r = 0, double i = 0) : re (r), im (i) { } complex&amp; operator += (const complex&amp;); double real () const { return re; } double imag …">
+<meta name="twitter:description" content="编写类class的良好习惯： 数据私有化private 构造函数尽量使用初始化列表initialization list 参数与返回值尽量引用传递by reference 在类体中的函数需要加const的尽量加 1.1 Class without pointer members¶ complex class #ifndef __COMPLEX__ #define __COMPLEX__ class complex { public: complex (double r = 0, double i = 0) : re (r), im (i) { } complex&amp; operator += (const complex&amp;); double real () const { return re; } double …">
 
         <title>C++ · Jerry Su&#39;s Blog
 </title>
@@ -80,10 +80,10 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#1-class-without-pointer-members">1. Class without pointer members</a></li>
-<li><a href="#2-class-with-pointer-members">2. Class with pointer members</a></li>
-<li><a href="#new">new</a></li>
-<li><a href="#delete">delete</a></li>
+<li><a href="#11-class-without-pointer-members">1.1 Class without pointer members</a></li>
+<li><a href="#12-class-with-pointer-members">1.2 Class with pointer members</a></li>
+<li><a href="#13-new">1.3 new</a></li>
+<li><a href="#14-delete">1.4 delete</a></li>
 </ul>
 </div>
         </nav>
@@ -106,7 +106,7 @@
 <p>在类体中的函数需要加<strong>const</strong>的尽量加</p>
 </li>
 </ul>
-<h2 id="1-class-without-pointer-members">1. Class without pointer members<a class="headerlink" href="#1-class-without-pointer-members" title="Permanent link">¶</a></h2>
+<h2 id="11-class-without-pointer-members">1.1 Class without pointer members<a class="headerlink" href="#11-class-without-pointer-members" title="Permanent link">¶</a></h2>
 <p><strong>complex class</strong></p>
 <div class="highlight"><pre><span></span><code><span class="cp">#ifndef __COMPLEX__</span>
 <span class="cp">#define __COMPLEX__</span>
@@ -157,7 +157,7 @@
 
 <span class="cp">#endif</span>
 </code></pre></div>
-<h2 id="2-class-with-pointer-members">2. Class with pointer members<a class="headerlink" href="#2-class-with-pointer-members" title="Permanent link">¶</a></h2>
+<h2 id="12-class-with-pointer-members">1.2 Class with pointer members<a class="headerlink" href="#12-class-with-pointer-members" title="Permanent link">¶</a></h2>
 <p><strong>string class</strong></p>
 <div class="highlight"><pre><span></span><code><span class="cp">#ifndef __MYSTRING__</span>
 <span class="cp">#define __MYSTRING__</span>
@@ -219,7 +219,7 @@
 
 <span class="cp">#endif</span>
 </code></pre></div>
-<h2 id="new">new<a class="headerlink" href="#new" title="Permanent link">¶</a></h2>
+<h2 id="13-new">1.3 new<a class="headerlink" href="#13-new" title="Permanent link">¶</a></h2>
 <p>先分配内存，再调用构造函数</p>
 <p><code>Complex* pc = new Complex(1, 2);</code> 编译器转化为：</p>
 <div class="highlight"><pre><span></span><code><span class="n">Complex</span> <span class="o">*</span><span class="n">pc</span><span class="p">;</span>
@@ -230,7 +230,7 @@
 <span class="n">pc</span><span class="o">-&gt;</span><span class="n">Complex</span><span class="o">::</span><span class="n">Complex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                    <span class="c1">// 3. 构造函数</span>
 <span class="c1">// 3等价于Complex::Complex(pc, 1, 2); pc即this</span>
 </code></pre></div>
-<h2 id="delete">delete<a class="headerlink" href="#delete" title="Permanent link">¶</a></h2>
+<h2 id="14-delete">1.4 delete<a class="headerlink" href="#14-delete" title="Permanent link">¶</a></h2>
 <p>先调用析构函数，再释放内存</p>
 <div class="highlight"><pre><span></span><code><span class="n">String</span><span class="o">*</span> <span class="n">ps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">);</span>
 <span class="p">...</span>
