@@ -230,6 +230,7 @@
 <span class="n">pc</span><span class="o">-&gt;</span><span class="n">Complex</span><span class="o">::</span><span class="n">Complex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                    <span class="c1">// 3. 构造函数</span>
 <span class="c1">// 3等价于Complex::Complex(pc, 1, 2); pc即this</span>
 </code></pre></div>
+<p><img alt="new" src="../images/c++/new.png"/></p>
 <h2 id="14-delete">1.4 delete<a class="headerlink" href="#14-delete" title="Permanent link">¶</a></h2>
 <p><strong>先调用析构函数，再释放内存。</strong>delete是运算符，内部调用C语言的free函数。</p>
 <p><strong>注意：</strong>delete存在两个删除动作。1.先调用析构函数，把类中动态分配的内存空间<code>"Hello"</code>删除；2.再将指向字符串的指针<code>ps</code>删除。</p>
@@ -242,7 +243,8 @@
 <span class="c1">// operator delete是函数名，内部调用free(ps)</span>
 <span class="k">operator</span> <span class="nf">delete</span><span class="p">(</span><span class="n">ps</span><span class="p">);</span>                        <span class="c1">// 释放内存</span>
 </code></pre></div>
-<p><img alt="delete" src="../images/c++/delete.png"/></p>
+<p>array new与array delete搭配使用，否则存在内存泄漏。
+<img alt="delete" src="../images/c++/delete.png"/></p>
 
 
             
