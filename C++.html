@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="C++"/>
 <meta property="og:url" content="https://www.jerrulsu.com/C++.html" />
-<meta property="og:description" content="1. 基于对象的程序设计¶ 只包含单一类的程序设计，包含两种类型的类：是否含有指针成员。 编写类class的良好习惯： 数据私有化private 构造函数尽量使用初始化列表initialization list，效率高。 参数与返回值尽量引用传递by reference，返回的值只要不是local object，尽量使用引用返回。 在类体中的函数需要加const的尽量加，不会修改成员变量。 1.1 不含指针成员的类¶ Complex class #ifndef __COMPLEX__ #define __COMPLEX__ class Complex { public: Complex (double r = 0, double i = 0) : re (r), im (i) { } Complex&amp; operator += (const …" />
+<meta property="og:description" content="1. 基于对象的程序设计¶ 只包含单一类的程序设计，存在两种类型的类的设计思想：是否含有指针成员。 编写类class的良好习惯： 数据私有化private 构造函数尽量使用初始化列表initialization list，效率高。 参数与返回值尽量引用传递by reference，返回的值只要不是local object，尽量使用引用返回。 在类体中的函数需要加const的尽量加，不会修改成员变量。 1.1 不含指针成员的类¶ Complex class #ifndef __COMPLEX__ #define __COMPLEX__ class Complex { public: Complex (double r = 0, double i = 0) : re (r), im (i) { } Complex&amp; operator += (const …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2018-05-09T15:42:27+08:00" />
 <meta name="twitter:title" content="C++">
-<meta name="twitter:description" content="1. 基于对象的程序设计¶ 只包含单一类的程序设计，包含两种类型的类：是否含有指针成员。 编写类class的良好习惯： 数据私有化private 构造函数尽量使用初始化列表initialization list，效率高。 参数与返回值尽量引用传递by reference，返回的值只要不是local object，尽量使用引用返回。 在类体中的函数需要加const的尽量加，不会修改成员变量。 1.1 不含指针成员的类¶ Complex class #ifndef __COMPLEX__ #define __COMPLEX__ class Complex { public: Complex (double r = 0, double i = 0) : re (r), im (i) { } Complex&amp; operator += (const …">
+<meta name="twitter:description" content="1. 基于对象的程序设计¶ 只包含单一类的程序设计，存在两种类型的类的设计思想：是否含有指针成员。 编写类class的良好习惯： 数据私有化private 构造函数尽量使用初始化列表initialization list，效率高。 参数与返回值尽量引用传递by reference，返回的值只要不是local object，尽量使用引用返回。 在类体中的函数需要加const的尽量加，不会修改成员变量。 1.1 不含指针成员的类¶ Complex class #ifndef __COMPLEX__ #define __COMPLEX__ class Complex { public: Complex (double r = 0, double i = 0) : re (r), im (i) { } Complex&amp; operator += (const …">
 
         <title>C++ · Jerry Su&#39;s Blog
 </title>
@@ -88,6 +88,8 @@
 <li><a href="#15-this">1.5 this</a></li>
 <li><a href="#16-static">1.6 static</a></li>
 <li><a href="#17">1.7 单例模式</a></li>
+<li><a href="#18-class-template">1.8 class template</a></li>
+<li><a href="#19-function-template">1.9 function template</a></li>
 </ul>
 </li>
 </ul>
@@ -98,7 +100,7 @@
             
             
 <h3 id="1">1. 基于对象的程序设计<a class="headerlink" href="#1" title="Permanent link">¶</a></h3>
-<p>只包含单一类的程序设计，包含两种类型的类：是否含有指针成员。</p>
+<p>只包含单一类的程序设计，存在两种类型的类的设计思想：是否含有指针成员。</p>
 <p>编写类<strong>class</strong>的良好习惯：</p>
 <ul>
 <li>
@@ -295,7 +297,7 @@
 
 <span class="n">Singleton</span><span class="o">::</span><span class="n">getInstance</span><span class="p">.</span><span class="n">setup</span><span class="p">();</span>  <span class="c1">// 获取单例对象并调用对象的类成员函数setup()。</span>
 </code></pre></div>
-<p>上述单例模式并非最佳写法，待优化的问题是：对象a已经在内存中构建，即使不使用。</p>
+<p>上述单例模式并非最佳写法，待优化的问题是：对象a已经在内存中构建，即使不使用。最佳写法如下：</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Singleton</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="k">static</span> <span class="n">Singleton</span><span class="o">&amp;</span> <span class="n">getInstance</span><span class="p">();</span>
@@ -306,7 +308,7 @@
     <span class="p">...</span>
 <span class="p">};</span>
 
-<span class="c1">// 单例对象在使用时内存构建，getInstance函数退出时，static变量依然存在。</span>
+<span class="c1">// 单例对象a在使用时内存构建，getInstance函数退出时，static变量依然存在。</span>
 <span class="n">Single</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">static</span> <span class="n">Singleton</span> <span class="n">a</span><span class="p">;</span>
     <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
@@ -314,6 +316,51 @@
 
 <span class="n">Singleton</span><span class="o">::</span><span class="n">getInstance</span><span class="p">.</span><span class="n">setup</span><span class="p">();</span> 
 </code></pre></div>
+<h4 id="18-class-template">1.8 class template<a class="headerlink" href="#18-class-template" title="Permanent link">¶</a></h4>
+<p><strong>template<typename t=""></typename></strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Complex</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Complex</span> <span class="p">(</span><span class="n">T</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">T</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">re</span> <span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">im</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="n">Complex</span><span class="o">&amp;</span> <span class="k">operator</span> <span class="o">+=</span> <span class="p">(</span><span class="k">const</span> <span class="n">Complex</span><span class="o">&amp;</span><span class="p">);</span>
+    <span class="n">T</span> <span class="nf">real</span> <span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">re</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">T</span> <span class="nf">imag</span> <span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">im</span><span class="p">;</span> <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">T</span> <span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">;</span>
+
+    <span class="k">friend</span> <span class="n">Complex</span><span class="o">&amp;</span> <span class="n">__doapl</span> <span class="p">(</span><span class="n">Complex</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Complex</span><span class="o">&amp;</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 代码膨胀</span>
+    <span class="n">Complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">c1</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">);</span>
+    <span class="n">Complex</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">c1</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="19-function-template">1.9 function template<a class="headerlink" href="#19-function-template" title="Permanent link">¶</a></h4>
+<p><strong>template<class t=""></class></strong>：编译器会对模板函数做参数类型推导</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kr">inline</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">min</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">a</span> <span class="o">?</span> <span class="nl">b</span> <span class="p">:</span> <span class="n">a</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Stone</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Stone</span><span class="p">(</span><span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="kt">int</span> <span class="n">h</span><span class="p">,</span> <span class="kt">int</span> <span class="n">weight</span><span class="p">)</span> <span class="o">:</span> <span class="n">_w</span><span class="p">(</span><span class="n">w</span><span class="p">),</span> <span class="n">_h</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="n">_weight</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span><span class="p">(</span><span class="k">const</span> <span class="n">Stone</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_weight</span> <span class="o">&lt;</span> <span class="n">rhs</span><span class="p">.</span><span class="n">_weight</span><span class="p">;</span> <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">_w</span><span class="p">,</span> <span class="n">_h</span><span class="p">,</span> <span class="n">_weight</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Stone</span> <span class="n">r1</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">r2</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">r3</span><span class="p">;</span>
+    <span class="n">r3</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>使用时，<code>min</code>函数不需要像类模板<code>min&lt;double&gt;(r1, r2)</code>指定参数，通过参数推导。通过推导<code>T</code>为<code>Stone</code>类型，<code>b &lt; a</code>调用对象<code>b</code>的<code>Stone::operator&lt;</code>。</p>
 
 
             
