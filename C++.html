@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="C++"/>
 <meta property="og:url" content="https://www.jerrulsu.com/C++.html" />
-<meta property="og:description" content="编写类class的良好习惯： 数据私有化private 构造函数尽量使用初始化列表initialization list，效率高。 参数与返回值尽量引用传递by reference，返回的值只要不是local object，尽量使用引用返回。 在类体中的函数需要加const的尽量加，不会修改成员变量。 基于对象的程序设计¶ 只包含单一类的程序设计，包含两种类型的类：是否含有指针成员。 1.1 不含指针成员的类¶ Complex class #ifndef __COMPLEX__ #define __COMPLEX__ class Complex { public: Complex (double r = 0, double i = 0) : re (r), im (i) { } Complex&amp; operator += (const Complex …" />
+<meta property="og:description" content="1. 基于对象的程序设计¶ 只包含单一类的程序设计，包含两种类型的类：是否含有指针成员。 编写类class的良好习惯： 数据私有化private 构造函数尽量使用初始化列表initialization list，效率高。 参数与返回值尽量引用传递by reference，返回的值只要不是local object，尽量使用引用返回。 在类体中的函数需要加const的尽量加，不会修改成员变量。 1.1 不含指针成员的类¶ Complex class #ifndef __COMPLEX__ #define __COMPLEX__ class Complex { public: Complex (double r = 0, double i = 0) : re (r), im (i) { } Complex&amp; operator += (const …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2018-05-09T15:42:27+08:00" />
 <meta name="twitter:title" content="C++">
-<meta name="twitter:description" content="编写类class的良好习惯： 数据私有化private 构造函数尽量使用初始化列表initialization list，效率高。 参数与返回值尽量引用传递by reference，返回的值只要不是local object，尽量使用引用返回。 在类体中的函数需要加const的尽量加，不会修改成员变量。 基于对象的程序设计¶ 只包含单一类的程序设计，包含两种类型的类：是否含有指针成员。 1.1 不含指针成员的类¶ Complex class #ifndef __COMPLEX__ #define __COMPLEX__ class Complex { public: Complex (double r = 0, double i = 0) : re (r), im (i) { } Complex&amp; operator += (const Complex …">
+<meta name="twitter:description" content="1. 基于对象的程序设计¶ 只包含单一类的程序设计，包含两种类型的类：是否含有指针成员。 编写类class的良好习惯： 数据私有化private 构造函数尽量使用初始化列表initialization list，效率高。 参数与返回值尽量引用传递by reference，返回的值只要不是local object，尽量使用引用返回。 在类体中的函数需要加const的尽量加，不会修改成员变量。 1.1 不含指针成员的类¶ Complex class #ifndef __COMPLEX__ #define __COMPLEX__ class Complex { public: Complex (double r = 0, double i = 0) : re (r), im (i) { } Complex&amp; operator += (const …">
 
         <title>C++ · Jerry Su&#39;s Blog
 </title>
@@ -80,11 +80,13 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#_1">基于对象的程序设计</a><ul>
+<li><a href="#1">1. 基于对象的程序设计</a><ul>
 <li><a href="#11">1.1 不含指针成员的类</a></li>
 <li><a href="#12">1.2 含有指针成员的类</a></li>
 <li><a href="#13-new">1.3 new</a></li>
 <li><a href="#14-delete">1.4 delete</a></li>
+<li><a href="#15-this-pointer">1.5 this pointer</a></li>
+<li><a href="#16-static">1.6 static</a></li>
 </ul>
 </li>
 </ul>
@@ -94,6 +96,8 @@
     <div class="span8 article-content">
             
             
+<h3 id="1">1. 基于对象的程序设计<a class="headerlink" href="#1" title="Permanent link">¶</a></h3>
+<p>只包含单一类的程序设计，包含两种类型的类：是否含有指针成员。</p>
 <p>编写类<strong>class</strong>的良好习惯：</p>
 <ul>
 <li>
@@ -109,9 +113,7 @@
 <p>在类体中的函数需要加<strong>const</strong>的尽量加，不会修改成员变量。</p>
 </li>
 </ul>
-<h1 id="_1">基于对象的程序设计<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
-<p>只包含单一类的程序设计，包含两种类型的类：是否含有指针成员。</p>
-<h2 id="11">1.1 不含指针成员的类<a class="headerlink" href="#11" title="Permanent link">¶</a></h2>
+<h4 id="11">1.1 不含指针成员的类<a class="headerlink" href="#11" title="Permanent link">¶</a></h4>
 <p><strong>Complex class</strong></p>
 <div class="highlight"><pre><span></span><code><span class="cp">#ifndef __COMPLEX__</span>
 <span class="cp">#define __COMPLEX__</span>
@@ -161,7 +163,7 @@
 
 <span class="cp">#endif</span>
 </code></pre></div>
-<h2 id="12">1.2 含有指针成员的类<a class="headerlink" href="#12" title="Permanent link">¶</a></h2>
+<h4 id="12">1.2 含有指针成员的类<a class="headerlink" href="#12" title="Permanent link">¶</a></h4>
 <p><strong>String class</strong></p>
 <div class="highlight"><pre><span></span><code><span class="cp">#ifndef __MYSTRING__</span>
 <span class="cp">#define __MYSTRING__</span>
@@ -223,7 +225,7 @@
 
 <span class="cp">#endif</span>
 </code></pre></div>
-<h2 id="13-new">1.3 new<a class="headerlink" href="#13-new" title="Permanent link">¶</a></h2>
+<h4 id="13-new">1.3 new<a class="headerlink" href="#13-new" title="Permanent link">¶</a></h4>
 <p><strong>先分配内存，再调用构造函数。</strong> new是运算符，内部调用C语言的malloc函数。</p>
 <p><code>Complex* pc = new Complex(1, 2);</code> 编译器转化为：</p>
 <div class="highlight"><pre><span></span><code><span class="n">Complex</span> <span class="o">*</span><span class="n">pc</span><span class="p">;</span>
@@ -235,7 +237,7 @@
 <span class="c1">// 3等价于Complex::Complex(pc, 1, 2); pc即this</span>
 </code></pre></div>
 <p><img alt="new" src="../images/c++/new.png"/></p>
-<h2 id="14-delete">1.4 delete<a class="headerlink" href="#14-delete" title="Permanent link">¶</a></h2>
+<h4 id="14-delete">1.4 delete<a class="headerlink" href="#14-delete" title="Permanent link">¶</a></h4>
 <p><strong>先调用析构函数，再释放内存。</strong>delete是运算符，内部调用C语言的free函数。</p>
 <p><strong>注意：</strong>delete存在两个删除动作。1.先调用析构函数，把类中动态分配的内存空间<code>"Hello"</code>删除；2.再将指向字符串的指针<code>ps</code>删除。</p>
 <div class="highlight"><pre><span></span><code><span class="n">String</span><span class="o">*</span> <span class="n">ps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">);</span>
@@ -249,6 +251,34 @@
 </code></pre></div>
 <p><strong>array new</strong>与<strong>array delete</strong>搭配使用，否则存在内存泄漏。</p>
 <p><img alt="delete" src="../images/c++/delete.png"/></p>
+<h4 id="15-this-pointer">1.5 this pointer<a class="headerlink" href="#15-this-pointer" title="Permanent link">¶</a></h4>
+<p>类的成员函数在内存中只有一份，默认存在this指针，指向实例化的对象，类的成员函数是通过this指针来处理每个对象对应的数据。</p>
+<div class="highlight"><pre><span></span><code><span class="err">Complex c1, c2;</span>
+<span class="err">c1.real(); ---&gt; Complex::real(&amp;c1);</span>
+<span class="err">c2.real(); ---&gt; Complex::real(&amp;c2);</span>
+</code></pre></div>
+<h4 id="16-static">1.6 static<a class="headerlink" href="#16-static" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><span class="err">static data members // 静态数据，与类的对象脱离</span>
+<span class="err">static member func  // 静态函数，与类的成员函数相同，内存中只存在一份</span>
+</code></pre></div>
+<p>静态函数与类成员函数最大区别在于：没有this指针</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Account</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">static</span> <span class="kt">double</span> <span class="n">m_rate</span><span class="p">;</span>
+    <span class="k">static</span> <span class="kt">void</span> <span class="nf">set_rate</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="n">m_rate</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+<span class="kt">double</span> <span class="n">Account</span><span class="o">::</span><span class="n">m_rate</span> <span class="o">=</span> <span class="mf">8.0</span><span class="p">;</span> <span class="c1">// 静态数据成员一定要在类体外定义</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 静态函数的调用两种方法</span>
+
+    <span class="c1">// 类名调用</span>
+    <span class="n">Account</span><span class="o">::</span><span class="n">set_rate</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span>
+    <span class="c1">// 对象调用</span>
+    <span class="n">Account</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">set_rate</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
             
