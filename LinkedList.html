@@ -85,6 +85,7 @@
 <li><a href="#remove-duplicates-from-sorted-list">Remove Duplicates from Sorted List</a></li>
 <li><a href="#reverse-linked-list">Reverse Linked List</a></li>
 <li><a href="#merge-two-sorted-lists">Merge Two Sorted Lists</a></li>
+<li><a href="#merge-k-sorted-lists">Merge k Sorted Lists</a></li>
 </ul>
 </li>
 <li><a href="#dummy">擅用Dummy节点</a><ul>
@@ -210,6 +211,83 @@
             <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
         <span class="p">}</span>
         <span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="o">?</span> <span class="nl">l2</span> <span class="p">:</span> <span class="n">l1</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">dummy</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="merge-k-sorted-lists">Merge k Sorted Lists<a class="headerlink" href="#merge-k-sorted-lists" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ListNode</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>
+
+    <span class="n">ListNode</span><span class="p">()</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="n">ListNode</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">val</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="n">ListNode</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">,</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">next</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">val</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">};</span>
+
+
+<span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">mergeKLists</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ListNode</span><span class="o">*&gt;&amp;</span> <span class="n">lists</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/*O(K*N)*/</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">lists</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">lists</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">lists</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="p">}</span>
+
+        <span class="n">ListNode</span><span class="o">*</span> <span class="n">res</span> <span class="o">=</span> <span class="n">lists</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">lists</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">mergeLists</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">lists</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">mergeKLists</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ListNode</span><span class="o">*&gt;&amp;</span> <span class="n">lists</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/* 时间复杂度分析：K 条链表的总结点数是 N，平均每条链表有 N/K 个</span>
+<span class="cm">     * 节点，因此合并两条链表的时间复杂度是 O(N/K)。从 K 条链表开始</span>
+<span class="cm">     * 两两合并成 1 条链表，因此每条链表都会被合并 logK 次，因此 K</span>
+<span class="cm">     * 条链表会被合并 K * logK 次，因此总共的时间复杂度是 K*logK*N/K</span>
+<span class="cm">     * 即 O（NlogK）。*/</span>
+        <span class="k">return</span> <span class="n">partition</span><span class="p">(</span><span class="n">lists</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lists</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">partition</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ListNode</span><span class="o">*&gt;&amp;</span> <span class="n">lists</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="kt">int</span> <span class="n">end</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">)</span> <span class="p">{{</span> <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o">==</span> <span class="n">end</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">lists</span><span class="p">[</span><span class="n">start</span><span class="p">];</span> <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="p">((</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="n">ListNode</span><span class="o">*</span> <span class="n">l</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">lists</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">mid</span><span class="p">);</span>
+            <span class="n">ListNode</span><span class="o">*</span> <span class="n">r</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">lists</span><span class="p">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
+            <span class="k">return</span> <span class="nf">mergeTwoLists</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">ListNode</span><span class="o">*</span> <span class="n">mergeTwoLists</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">l1</span><span class="p">,</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">l2</span><span class="p">){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">l1</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="o">&amp;&amp;</span> <span class="n">l2</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">l1</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">l2</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">l2</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">l1</span><span class="p">;</span> <span class="p">}</span>
+
+        <span class="n">ListNode</span> <span class="n">dummy</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="o">*</span><span class="n">cur</span><span class="p">;</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">dummy</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">l1</span> <span class="o">&amp;&amp;</span> <span class="n">l2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">l1</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">l2</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">l1</span><span class="p">;</span>
+                <span class="n">l1</span> <span class="o">=</span> <span class="n">l1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span><span class="p">{</span>
+                <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">l2</span><span class="p">;</span>
+                <span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">cur</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="o">?</span> <span class="nl">l2</span> <span class="p">:</span> <span class="n">l1</span><span class="p">;</span>
         <span class="k">return</span> <span class="n">dummy</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">};</span>
