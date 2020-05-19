@@ -92,6 +92,10 @@
 <li><a href="#19-function-template">1.9 function template</a></li>
 </ul>
 </li>
+<li><a href="#2">2. 面向对象的程序设计</a><ul>
+<li><a href="#21">2.1 组合</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </nav>
@@ -361,6 +365,10 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>使用时，<code>min</code>函数不需要像类模板<code>min&lt;double&gt;(r1, r2)</code>指定参数，通过参数推导。通过推导<code>T</code>为<code>Stone</code>类型，<strong><code>b &lt; a</code>调用对象<code>b</code>的类型<code>T</code>中的<code>Stone::operator&lt;</code>，即在<code>Stone</code>类中。</strong></p>
+<h3 id="2">2. 面向对象的程序设计<a class="headerlink" href="#2" title="Permanent link">¶</a></h3>
+<p>面向多个类的程序设计，类与类之间存在关系</p>
+<h4 id="21">2.1 组合<a class="headerlink" href="#21" title="Permanent link">¶</a></h4>
+<p>一个类包含另一个类，has a关系。实现方式：一个类的成员变量为另一个类的类对象。<code>queue -&gt; deque</code>，设计模式：Adapter是适配器模式。</p>
 
 
             
