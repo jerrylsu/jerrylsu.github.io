@@ -470,6 +470,35 @@
 <p>父类<code>OnFileOpen</code>方法在执行时，遇到虚函数<code>Serialize</code>实际时执行<code>this-&gt;Serialize()</code>子类的<code>Serialize()</code>方法。</p>
 </li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CDocument</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">OnFileOpen</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// 模板方法，存在尚未实现的虚函数</span>
+        <span class="c1">// 应用程序框架，每一个cout表示一个实际的操作</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"dialogue ..."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"check file status ..."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"open file ..."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="n">Serialize</span><span class="p">();</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"close file ..."</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Serialize</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span> <span class="c1">// 推迟到子类实现</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">CMyDoc</span> <span class="o">:</span> <span class="k">public</span> <span class="n">CDocument</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Serialize</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">CMyDoc</span><span class="o">::</span><span class="n">Serialize</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">CMyDoc</span> <span class="n">myDoc</span><span class="p">;</span>
+    <span class="n">myDoc</span><span class="p">.</span><span class="n">OnFileOpen</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
             
