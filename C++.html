@@ -433,6 +433,27 @@
 <p>父类的析构函数必须是虚函数virtual</p>
 <h5 id="_8">含有虚函数的继承<a class="headerlink" href="#_8" title="Permanent link">¶</a></h5>
 <p>继承最重要的是需要与虚函数结合才能达到强有力的效果。</p>
+<p>类的成员函数分为：非虚函数，虚函数，纯虚函数。</p>
+<ul>
+<li>
+<p>非虚函数：子类是不可覆写override的。</p>
+</li>
+<li>
+<p>虚函数：存在默认定义，期望子类覆写override。</p>
+</li>
+<li>
+<p>纯虚函数：不存在默认定义，子类一定需要覆写override。</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Shape</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">virtual</span> <span class="n">draw</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>               <span class="c1">// pure virtual      </span>
+    <span class="k">virtual</span> <span class="nf">error</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">msg</span><span class="p">);</span>  <span class="c1">// impure virtual</span>
+    <span class="kt">int</span> <span class="nf">objectID</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>                   <span class="c1">// non-virtual</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Rectangle</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Shape</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span>
+</code></pre></div>
 
 
             
