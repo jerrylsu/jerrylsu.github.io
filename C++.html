@@ -458,7 +458,18 @@
 </code></pre></div>
 <h5 id="_9">模板方法模式<a class="headerlink" href="#_9" title="Permanent link">¶</a></h5>
 <p><strong>模板方法模式(Template Method Pattern)</strong>是一种行为设计模式，它在父类中定义了一个算法的框架，允许子类在不修改结构的情况下重写算法的特定步骤。模板方法模式，定义一个操作中的算法骨架，而将一些步骤延迟到子类中。模板方法使得子类可以不改变一个算法的结构即可重新定义该算法的某些特定步骤。</p>
+<p>经典场景：<strong>应用程序框架</strong>中大量使用模板方法，不能确定的功能设置为虚函数推迟到子类实现。</p>
 <p><img alt="inher" src="../images/c++/inheritance2.png"/></p>
+<p>模板方法就是图中的<code>OnFileOpen()</code>方法，方法体内的<code>Serialize</code>是虚函数，推迟到子类<code>CMyDoc</code>中实现。</p>
+<p>子类的实现的虚函数是如何调用的？ 即子类对象调用父类方法的过程。</p>
+<ul>
+<li>
+<p>子类对象<code>myDoc</code>在调用父类方法<code>OnFileOpen</code>时，编译器会隐式的将子类对象<code>&amp;myDoc</code>的地址传递给父类<code>OnFileOpen(&amp;myDoc)</code>方法，即<code>this = &amp;myDoc</code>指针。</p>
+</li>
+<li>
+<p>父类<code>OnFileOpen</code>方法在执行时，遇到虚函数<code>Serialize</code>实际时执行<code>this-&gt;Serialize()</code>子类的<code>Serialize()</code>方法。</p>
+</li>
+</ul>
 
 
             
