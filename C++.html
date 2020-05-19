@@ -109,6 +109,7 @@
 <li><a href="#_6">定义</a></li>
 <li><a href="#_7">构造与析构</a></li>
 <li><a href="#_8">含有虚函数的继承</a></li>
+<li><a href="#_9">模板方法模式</a></li>
 </ul>
 </li>
 </ul>
@@ -394,6 +395,7 @@
 <p>组合的内存角度：</p>
 <p><img alt="composition" src="../images/c++/composition.png"/></p>
 <h5 id="_4">适配器模式<a class="headerlink" href="#_4" title="Permanent link">¶</a></h5>
+<p><strong>适配器模式(Adapter Pattern)</strong>是一种结构型设计模式， 它能使接口不兼容的对象能够相互合作。适配器模式将一个接口转换成客户希望的另一个接口，适配器模式使接口不兼容的那些类可以一起工作，其别名为包装器(Wrapper)。</p>
 <p><code>queue -&gt; deque</code>，设计模式：Adapter是适配器模式。</p>
 <p>适配器模式：现有类deque的功能已经满足客户需求，但是deque类的名称和接口无法满足客户。需要一个新的queue类包装现有的deque类，适配满足客户的接口和名称。</p>
 <h4 id="22">2.2 委托<a class="headerlink" href="#22" title="Permanent link">¶</a></h4>
@@ -454,6 +456,8 @@
 
 <span class="k">class</span> <span class="nc">Rectangle</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Shape</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span>
 </code></pre></div>
+<h5 id="_9">模板方法模式<a class="headerlink" href="#_9" title="Permanent link">¶</a></h5>
+<p><strong>模板方法模式(Template Method Pattern)</strong>是一种行为设计模式，它在父类中定义了一个算法的框架，允许子类在不修改结构的情况下重写算法的特定步骤。模板方法模式，定义一个操作中的算法骨架，而将一些步骤延迟到子类中。模板方法使得子类可以不改变一个算法的结构即可重新定义该算法的某些特定步骤。</p>
 <p><img alt="inher" src="../images/c++/inheritance2.png"/></p>
 
 
