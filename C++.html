@@ -94,6 +94,7 @@
 </li>
 <li><a href="#2">2. 面向对象的程序设计</a><ul>
 <li><a href="#21">2.1 组合</a></li>
+<li><a href="#22">2.2 委托</a></li>
 </ul>
 </li>
 </ul>
@@ -372,9 +373,35 @@
 <p><img alt="composition" src="../images/c++/composition1.png"/></p>
 <p><code>queue -&gt; deque</code>，设计模式：Adapter是适配器模式。</p>
 <p>适配器模式：现有类deque的功能已经满足客户需求，但是deque类的名称和接口无法满足客户。需要一个新的queue类包装现有的deque类，适配满足客户的接口和名称。</p>
-<p>组合的内存角度：
-<img alt="composition" src="../images/c++/composition.png"/></p>
+<p>组合的内存角度：</p>
+<p><img alt="composition" src="../images/c++/composition.png"/></p>
 <p>组合的构造与析构：构造<strong>由内而外</strong>，析构<strong>由外而内</strong></p>
+<h4 id="22">2.2 委托<a class="headerlink" href="#22" title="Permanent link">¶</a></h4>
+<p>委托又称通过引用的组合。一个类String通过引用包含另一个类StrigRef的指针，并非真正意义上的包含。</p>
+<p>思想：称为Handle and Body 或 pimpl指针实现。Handle类通过指针指向实现类Body。</p>
+<p>优点：解耦。Body实现类任意变动不会影响Handle端，Handle端进而也不会影响客户端。</p>
+<p><img alt="delegation" src="../images/c++/delegation.png"/></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">String</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">String</span><span class="p">();</span>
+    <span class="n">String</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">);</span>
+    <span class="n">String</span><span class="p">(</span><span class="k">const</span> <span class="n">String</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">);</span>
+    <span class="n">String</span><span class="o">&amp;</span> <span class="n">Operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">String</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">);</span>
+    <span class="o">~</span><span class="n">String</span><span class="p">();</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">StringRef</span><span class="o">*</span> <span class="n">rep</span><span class="p">;</span> <span class="c1">// pimpl该方法称为指针实现</span>
+<span class="p">};</span>
+
+<span class="k">namespace</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">StringRef</span> <span class="p">{</span>
+<span class="k">friend</span> <span class="k">class</span> <span class="nc">String</span><span class="p">;</span>
+    <span class="n">StringRep</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">);</span>
+    <span class="o">~</span><span class="n">StringRep</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">count</span><span class="p">;</span>
+    <span class="kt">char</span><span class="o">*</span> <span class="n">ref</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
             
