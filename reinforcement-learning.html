@@ -87,6 +87,7 @@
 </ul>
 </li>
 <li><a href="#_3">期望回报</a></li>
+<li><a href="#_4">折扣期望回报</a></li>
 </ul>
 </div>
         </nav>
@@ -126,11 +127,15 @@
 <div class="math">\begin{equation*} p\left( s^{\prime },r\mid s,a\right) =\Pr \left\{ S_{t}=s^{\prime },R_{t}=r\mid S_{t-1}=s,A_{t-1}=a\right\} \text{.} \end{equation*}</div>
 <h2 id="_3">期望回报<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
 <p>在一个MDP过程中，是什么驱动强化学习智能体？<strong>期望回报 Expected Return</strong></p>
-<p><strong>在一个MDP过程中，智能体的目标是最大化它的奖励Reward</strong>。数学表示方式：</p>
+<p><strong>在一个MDP过程中，智能体的目标是最大化它的期望奖励Reward</strong>。数学表示方式：</p>
 <p>定义在在<span class="math">\(t\)</span>时刻所获得的期望奖励<span class="math">\(G\)</span>是： </p>
 <div class="math">\begin{equation*} G_{t}=R_{t+1}+R_{t+2}+R_{t+3}+\cdots +R_{T}\text{,} \end{equation*}</div>
 <p> <span class="math">\(T\)</span>是最后一个时间步。</p>
 <p><strong>期望奖励的概念非常重要，因为这是智能体的目标就是最大化期望奖励。期望奖励是推动智能体做出决策的动力。</strong></p>
+<h2 id="_4">折扣期望回报<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<p><strong>在一个MDP过程中，智能体的目标是最大化它的期望折扣奖励Reward</strong></p>
+<p>折扣率<span class="math">\(\gamma\)</span>，取值0~1之间，是折扣将来奖励的比率。  </p>
+<div class="math">\begin{eqnarray*} G_{t} &amp;=&amp;R_{t+1}+\gamma R_{t+2}+\gamma ^{2}R_{t+3}+\cdots \\ &amp;=&amp;\sum_{k=0}^{\infty }\gamma ^{k}R_{t+k+1}\text{.} \end{eqnarray*}</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
