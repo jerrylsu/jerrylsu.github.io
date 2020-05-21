@@ -86,8 +86,12 @@
 <li><a href="#_2">转换概率</a></li>
 </ul>
 </li>
-<li><a href="#_3">期望回报</a></li>
-<li><a href="#_4">折扣期望回报</a></li>
+<li><a href="#_3">期望回报</a><ul>
+<li><a href="#_4">期望奖励</a></li>
+<li><a href="#_5">折扣期望奖励</a></li>
+</ul>
+</li>
+<li><a href="#_6">策略与值函数</a></li>
 </ul>
 </div>
         </nav>
@@ -126,13 +130,14 @@
 <p>因为集合<span class="math">\(S\)</span>和<span class="math">\(R\)</span>是有限集，随机变量<span class="math">\(S_t\)</span>和<span class="math">\(R_t\)</span>具有明确定义的概率分布，即</p>
 <div class="math">\begin{equation*} p\left( s^{\prime },r\mid s,a\right) =\Pr \left\{ S_{t}=s^{\prime },R_{t}=r\mid S_{t-1}=s,A_{t-1}=a\right\} \text{.} \end{equation*}</div>
 <h2 id="_3">期望回报<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="_4">期望奖励<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
 <p>在一个MDP过程中，是什么驱动强化学习智能体？<strong>期望回报 Expected Return</strong></p>
 <p><strong>在一个MDP过程中，智能体的目标是最大化它的期望奖励Reward</strong>。数学表示方式：</p>
 <p>定义在在<span class="math">\(t\)</span>时刻所获得的期望奖励<span class="math">\(G\)</span>是： </p>
 <div class="math">\begin{equation*} G_{t}=R_{t+1}+R_{t+2}+R_{t+3}+\cdots +R_{T}\text{,} \end{equation*}</div>
 <p> <span class="math">\(T\)</span>是最后一个时间步。</p>
 <p><strong>期望奖励的概念非常重要，因为这是智能体的目标就是最大化期望奖励。期望奖励是推动智能体做出决策的动力。</strong></p>
-<h2 id="_4">折扣期望回报<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<h3 id="_5">折扣期望奖励<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
 <p><strong>在一个MDP过程中，智能体的目标是最大化它的期望折扣奖励Reward</strong></p>
 <p>折扣率<span class="math">\(\gamma\)</span>，取值0~1之间，是折扣将来奖励的比率。  </p>
 <div class="math">\begin{eqnarray*} G_{t} &amp;=&amp;R_{t+1}+\gamma R_{t+2}+\gamma ^{2}R_{t+3}+\cdots \\ &amp;=&amp;\sum_{k=0}^{\infty }\gamma ^{k}R_{t+k+1}\text{.} \end{eqnarray*}</div>
@@ -140,6 +145,12 @@
 <p><font color="red"></font></p>
 <div class="math">\begin{eqnarray*} G_{t} &amp;=&amp;R_{t+1}+\gamma R_{t+2}+\gamma ^{2}R_{t+3}+\gamma ^{3}R_{t+4}+\cdots \\ &amp;=&amp;R_{t+1}+\gamma \left( R_{t+2}+\gamma R_{t+3}+\gamma ^{2}R_{t+4}+\cdots \right) \\ &amp;=&amp;R_{t+1}+\gamma G_{t+1} \end{eqnarray*}</div>
 <p></p>
+<h2 id="_6">策略与值函数<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>策略：给定一个状态，智能体选择任意一个动作的概率是多少。</p>
+<p>策略用符号<span class="math">\(\pi\)</span>表示，<span class="math">\(\pi(a|s)\)</span>：在<span class="math">\(t\)</span>时刻，<span class="math">\(\pi\)</span>策略下，给定状态<span class="math">\(s\)</span>选择动作<span class="math">\(a\)</span>的概率是<span class="math">\(\pi(a|s)\)</span>。<span class="math">\(\pi\)</span>是动作<span class="math">\(a\)</span>的概率分布。</p>
+<p>值函数：智能体选择某一个状态有多好。从reward的角度看就是，在给定一个状态选择一个动作可能增加或者减少reward。</p>
+<p>动作值函数：<span class="math">\(q_\pi\)</span>表示基于策略<span class="math">\(\pi\)</span>的动作值函数。即<strong>在给定一个状态，基于策略<span class="math">\(\pi\)</span>选择一个动作后，给定的值，这个值用来评价选择该动作有多好。值用期望奖励定义</strong></p>
+<div class="math">\begin{eqnarray*} q_{\pi }\left( s,a\right) &amp;=&amp;E_{\pi }\left[ G_{t}\mid S_{t}=s,A_{t}=a \rule[-0.05in]{0in}{0.2in}\right] \\ &amp;=&amp;E_{\pi }\left[ \sum_{k=0}^{\infty }\gamma ^{k}R_{t+k+1}\mid S_{t}=s,A_{t}=a\right] \text{.} \end{eqnarray*}</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
