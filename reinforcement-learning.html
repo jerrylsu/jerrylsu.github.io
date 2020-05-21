@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="【RL】Reinforcement Learning"/>
 <meta property="og:url" content="https://www.jerrulsu.com/reinforcement-learning.html" />
-<meta property="og:description" content="马尔可夫决策过程¶ 马尔可夫决策过程为我们提供了一种形式化顺序决策的方法。 这种形式化是构建通过强化学习解决的问题的基础。 在马尔可夫决策过程中，智能体Agent与其所在的环境进行交互。这些交互随着时间的流逝依次发生。 在每个时间步t中，Agent都会获得环境状态\(s_t\)的编码。给定\(s_t\)，Agent将选择要采取的行动\(a_t\)。 然后，环境通过\(a_t\)将更新新的状态\(s_{t+1}\)，并且由于先前的操作，Agent会获得奖励\(r_{t+1}\)。 一个马尔可夫决策过程的组建包括： Agent Environment State Action Reward 从给定状态State中选择动作Action，过渡到新状态并获得奖励Reward的过程是一遍又一遍地依次进行的，这创建的一系列成为轨迹Trajectory，该轨迹显示状态，动作和奖励的顺序 …" />
+<meta property="og:description" content="马尔可夫决策过程¶ 马尔可夫决策过程为我们提供了一种形式化顺序决策的方法。 这种形式化是构建通过强化学习解决的问题的基础。 在马尔可夫决策过程中，智能体\(Agent\)与其所在的环境进行交互。这些交互随着时间的流逝依次发生。 在每个时间步\(t\)中，\(Agent\)都会获得环境状态\(s_t\)的编码。给定\(s_t\)，\(Agent\)将选择要采取的行动\(a_t\)。 然后，环境通过\(a_t\)将更新新的状态\(s_{t+1}\)，并且由于先前的操作，\(Agent\)会获得奖励\(r_{t+1}\)。 一个马尔可夫决策过程的组建包括： Agent Environment State Action Reward 从给定状态\(State\)中选择动作\(Action\)，过渡到新状态并获得奖励\(Reward\)的过程是一遍又一遍地依次进行的，这创建的一系列成为轨迹\(Trajectory\)，该轨迹显示状态，动作和奖励的顺序 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-05-21T07:20:38+08:00" />
 <meta name="twitter:title" content="【RL】Reinforcement Learning">
-<meta name="twitter:description" content="马尔可夫决策过程¶ 马尔可夫决策过程为我们提供了一种形式化顺序决策的方法。 这种形式化是构建通过强化学习解决的问题的基础。 在马尔可夫决策过程中，智能体Agent与其所在的环境进行交互。这些交互随着时间的流逝依次发生。 在每个时间步t中，Agent都会获得环境状态\(s_t\)的编码。给定\(s_t\)，Agent将选择要采取的行动\(a_t\)。 然后，环境通过\(a_t\)将更新新的状态\(s_{t+1}\)，并且由于先前的操作，Agent会获得奖励\(r_{t+1}\)。 一个马尔可夫决策过程的组建包括： Agent Environment State Action Reward 从给定状态State中选择动作Action，过渡到新状态并获得奖励Reward的过程是一遍又一遍地依次进行的，这创建的一系列成为轨迹Trajectory，该轨迹显示状态，动作和奖励的顺序 …">
+<meta name="twitter:description" content="马尔可夫决策过程¶ 马尔可夫决策过程为我们提供了一种形式化顺序决策的方法。 这种形式化是构建通过强化学习解决的问题的基础。 在马尔可夫决策过程中，智能体\(Agent\)与其所在的环境进行交互。这些交互随着时间的流逝依次发生。 在每个时间步\(t\)中，\(Agent\)都会获得环境状态\(s_t\)的编码。给定\(s_t\)，\(Agent\)将选择要采取的行动\(a_t\)。 然后，环境通过\(a_t\)将更新新的状态\(s_{t+1}\)，并且由于先前的操作，\(Agent\)会获得奖励\(r_{t+1}\)。 一个马尔可夫决策过程的组建包括： Agent Environment State Action Reward 从给定状态\(State\)中选择动作\(Action\)，过渡到新状态并获得奖励\(Reward\)的过程是一遍又一遍地依次进行的，这创建的一系列成为轨迹\(Trajectory\)，该轨迹显示状态，动作和奖励的顺序 …">
 
         <title>【RL】Reinforcement Learning · Jerry Su&#39;s Blog
 </title>
@@ -90,7 +90,7 @@
             
 <h3 id="_1">马尔可夫决策过程<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
 <p>马尔可夫决策过程为我们提供了一种形式化顺序决策的方法。 这种形式化是构建通过强化学习解决的问题的基础。</p>
-<p>在马尔可夫决策过程中，智能体<code>Agent</code>与其所在的环境进行交互。这些交互随着时间的流逝依次发生。 在每个时间步<code>t</code>中，<code>Agent</code>都会获得环境状态<span class="math">\(s_t\)</span>的编码。给定<span class="math">\(s_t\)</span>，<code>Agent</code>将选择要采取的行动<span class="math">\(a_t\)</span>。 然后，环境通过<span class="math">\(a_t\)</span>将更新新的状态<span class="math">\(s_{t+1}\)</span>，并且由于先前的操作，<code>Agent</code>会获得奖励<span class="math">\(r_{t+1}\)</span>。</p>
+<p>在马尔可夫决策过程中，智能体<span class="math">\(Agent\)</span>与其所在的环境进行交互。这些交互随着时间的流逝依次发生。 在每个时间步<span class="math">\(t\)</span>中，<span class="math">\(Agent\)</span>都会获得环境状态<span class="math">\(s_t\)</span>的编码。给定<span class="math">\(s_t\)</span>，<span class="math">\(Agent\)</span>将选择要采取的行动<span class="math">\(a_t\)</span>。 然后，环境通过<span class="math">\(a_t\)</span>将更新新的状态<span class="math">\(s_{t+1}\)</span>，并且由于先前的操作，<span class="math">\(Agent\)</span>会获得奖励<span class="math">\(r_{t+1}\)</span>。</p>
 <p>一个马尔可夫决策过程的组建包括：</p>
 <ul>
 <li>Agent</li>
@@ -99,11 +99,18 @@
 <li>Action</li>
 <li>Reward</li>
 </ul>
-<p>从给定状态<code>State</code>中选择动作<code>Action</code>，过渡到新状态并获得奖励<code>Reward</code>的过程是一遍又一遍地依次进行的，这创建的一系列成为轨迹<code>Trajectory</code>，该轨迹显示状态，动作和奖励的顺序。</p>
-<p>在此过程中，<code>Agent</code>的目标是最大限度地提高在给定这些状态下采取的这些行动所获得的奖励总额。 这意味着<code>Agent</code>不仅希望最大化即时奖励，还希望<strong>最大化其随着时间的推移所获得的累积奖励</strong>。</p>
+<p>从给定状态<span class="math">\(State\)</span>中选择动作<span class="math">\(Action\)</span>，过渡到新状态并获得奖励<span class="math">\(Reward\)</span>的过程是一遍又一遍地依次进行的，这创建的一系列成为轨迹<span class="math">\(Trajectory\)</span>，该轨迹显示状态，动作和奖励的顺序。</p>
+<p>在此过程中，<span class="math">\(Agent\)</span>的目标是最大限度地提高在给定这些状态下采取的这些行动所获得的奖励总额。 这意味着<span class="math">\(Agent\)</span>不仅希望最大化即时奖励，还希望<strong>最大化其随着时间的推移所获得的累积奖励</strong>。</p>
 <p><img alt="mdp" src="../images/RL/MDP-diagram.png"/></p>
-<p>在一个马尔可夫决策过程中，有一个状态集合s，动作集合A，奖励集合R，且这些集合的元素是有限的。</p>
-<p>在每一个时间步t = 0, 1, 2, ..., Agent接收环境的状态<span class="math">\(S_t in S\)</span>，基于当前状态<span class="math">\(S_t\)</span>，Agent选择一个动作<span class="math">\(A_t in A\)</span>。形成一个state-action对(<span class="math">\(S_t, A_t\)</span>)。</p>
+<p>在一个马尔可夫决策过程中，有一个状态集合<span class="math">\(S\)</span>，动作集合<span class="math">\(A\)</span>，奖励集合<span class="math">\(R\)</span>，且这些集合的元素是有限的。</p>
+<ol>
+<li>
+<p>在每一个时间步<span class="math">\(t = 0, 1, 2, ...\)</span>, <span class="math">\(Agent\)</span>接收环境的状态<span class="math">\(S_t \in S\)</span>，基于当前状态<span class="math">\(S_t\)</span>，<span class="math">\(Agent\)</span>选择一个动作<span class="math">\(A_t \in A\)</span>。形成一个state-action对(<span class="math">\(S_t, A_t\)</span>)。</p>
+</li>
+<li>
+<p>时间推移到下一个时间步<span class="math">\(t + 1\)</span>，环境受到<span class="math">\(Agent\)</span>选择的动作<span class="math">\(A_t\)</span>影响，将状态从<span class="math">\(S_t\)</span>转为<span class="math">\(S_{t+1} \in S\)</span>，此时Agent获得一个数值奖励<span class="math">\(R_{t+1} \in R\)</span>，该奖励是关于Agent从状态<span class="math">\(S_t\)</span>选择动作<span class="math">\(A_t\)</span>的奖励。</p>
+</li>
+</ol>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
