@@ -94,10 +94,11 @@
 <li><a href="#_6">策略与值函数</a><ul>
 <li><a href="#_7">策略</a></li>
 <li><a href="#q">Q值函数</a></li>
+<li><a href="#_8">最优策略</a></li>
+<li><a href="#q_1">最优Q值函数</a></li>
 </ul>
 </li>
-<li><a href="#_8">最优策略</a></li>
-<li><a href="#_9">最优动作值函数</a></li>
+<li><a href="#_9">贝尔曼最优方程</a></li>
 </ul>
 </div>
         </nav>
@@ -161,13 +162,17 @@
 <p>动作值函数：<span class="math">\(q_\pi\)</span>表示基于策略<span class="math">\(\pi\)</span>的动作值函数。即<strong>在给定一个状态，基于策略<span class="math">\(\pi\)</span>选择一个动作后，给定的值，这个值用来评价选择该动作有多好。值用期望奖励定义</strong></p>
 <p><span class="math">\(q_\pi\)</span>称Q值函数，Q: quality</p>
 <div class="math">\begin{eqnarray*} q_{\pi }\left( s,a\right) &amp;=&amp;E_{\pi }\left[ G_{t}\mid S_{t}=s,A_{t}=a \rule[-0.05in]{0in}{0.2in}\right] \\ &amp;=&amp;E_{\pi }\left[ \sum_{k=0}^{\infty }\gamma ^{k}R_{t+k+1}\mid S_{t}=s,A_{t}=a\right] \text{.} \end{eqnarray*}</div>
-<h2 id="_8">最优策略<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<h3 id="_8">最优策略<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
 <p>什么是最优策略？ </p>
 <div class="math">\begin{equation*}\pi \geq \pi^\prime \text{ if and only if } q_{π}(s, a) \geq q_{π^\prime}(s, a) \text{ for all } s\in\boldsymbol{S}\text{.} \end{equation*}</div>
 <p>对于所有状态<span class="math">\(s\)</span>，当且仅当基于策略<span class="math">\(\pi\)</span>的值函数均大于其他所有策略<span class="math">\(\pi^\prime\)</span>的值函数时，这个策略<span class="math">\(\pi\)</span>就是最优测策略。</p>
-<h2 id="_9">最优动作值函数<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
-<p>相似的，最优策略有一个最优动作值函数，即最优Q值函数，<span class="math">\(q_*\)</span>表示。 </p>
+<h3 id="q_1">最优Q值函数<a class="headerlink" href="#q_1" title="Permanent link">¶</a></h3>
+<p>相似的，<strong>最优策略有一个最优动作值函数，即最优Q值函数，<span class="math">\(q_*\)</span>表示。</strong></p>
 <div class="math">\begin{equation*} q_{\ast }\left( s,a\right) =\max_{\pi }q_{\pi }\left( s,a\right) \end{equation*}</div>
+<p><span class="math">\(q_*\)</span>表示对于给定状态动作对，该策略比任何其他策略更能获得最大期望奖励。</p>
+<h2 id="_9">贝尔曼最优方程<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<p><span class="math">\(q_*\)</span>最优Q值函数的基本属性，满足贝尔曼最优方程：</p>
+<div class="math">\begin{eqnarray*} q_{\ast }\left( s,a\right) &amp;=&amp;E\left[ R_{t+1}+\gamma \max_{a^{\prime }}q_{\ast }\left( s^\prime,a^{\prime }\right)\right] \end{eqnarray*}</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
