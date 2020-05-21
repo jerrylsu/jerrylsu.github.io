@@ -108,9 +108,10 @@
 <p>在每一个时间步<span class="math">\(t = 0, 1, 2, ...\)</span>, <span class="math">\(Agent\)</span>接收环境的状态<span class="math">\(S_t \in S\)</span>，基于当前状态<span class="math">\(S_t\)</span>，<span class="math">\(Agent\)</span>选择一个动作<span class="math">\(A_t \in A\)</span>。形成一个state-action对(<span class="math">\(S_t, A_t\)</span>)。</p>
 </li>
 <li>
-<p>时间推移到下一个时间步<span class="math">\(t + 1\)</span>，环境受到<span class="math">\(Agent\)</span>选择的动作<span class="math">\(A_t\)</span>影响，将状态从<span class="math">\(S_t\)</span>转为<span class="math">\(S_{t+1} \in S\)</span>，此时Agent获得一个数值奖励<span class="math">\(R_{t+1} \in R\)</span>，该奖励是关于Agent从状态<span class="math">\(S_t\)</span>选择动作<span class="math">\(A_t\)</span>的奖励。</p>
+<p>时间推移到下一个时间步<span class="math">\(t + 1\)</span>，环境受到<span class="math">\(Agent\)</span>选择的动作<span class="math">\(A_t\)</span>影响，将状态从<span class="math">\(S_t\)</span>转为<span class="math">\(S_{t+1} \in S\)</span>，此时Agent获得一个数值奖励<span class="math">\(R_{t+1} \in R\)</span>，该奖励是关于Agent从状态<span class="math">\(S_t\)</span>选择动作<span class="math">\(A_t\)</span>的奖励。即奖励函数：<span class="math">\(f(S_t, A_t) = R_{t+1}\)</span></p>
 </li>
 </ol>
+<p><span class="math">\(Trajectory: S_0, A_0, R_1, S_1, A_1, R_2, S_2, A_2, R_3, ...\)</span></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
