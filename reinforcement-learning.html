@@ -97,6 +97,7 @@
 </ul>
 </li>
 <li><a href="#_8">最优策略</a></li>
+<li><a href="#_9">最优动作值函数</a></li>
 </ul>
 </div>
         </nav>
@@ -161,9 +162,12 @@
 <p><span class="math">\(q_\pi\)</span>称Q值函数，Q: quality</p>
 <div class="math">\begin{eqnarray*} q_{\pi }\left( s,a\right) &amp;=&amp;E_{\pi }\left[ G_{t}\mid S_{t}=s,A_{t}=a \rule[-0.05in]{0in}{0.2in}\right] \\ &amp;=&amp;E_{\pi }\left[ \sum_{k=0}^{\infty }\gamma ^{k}R_{t+k+1}\mid S_{t}=s,A_{t}=a\right] \text{.} \end{eqnarray*}</div>
 <h2 id="_8">最优策略<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
-<p>什么是最佳策略？ </p>
-<p>\pi \geq \pi^\prime \text{ if and only if } q_{π}(s, a) \geq q_{π^\prime}(s, a) \text{ for all } s\in\boldsymbol{S}\text{.}</p>
-<p>对于所有状态<span class="math">\(s\)</span>，当且仅当基于策略<span class="math">\(\pi\)</span>的值函数均大于其他所有策略<span class="math">\(\pi^\prime\)</span>的值函数时，这个策略<span class="math">\(\pi\)</span>就是最佳测策略。</p>
+<p>什么是最优策略？ </p>
+<div class="math">\begin{equation*}\pi \geq \pi^\prime \text{ if and only if } q_{π}(s, a) \geq q_{π^\prime}(s, a) \text{ for all } s\in\boldsymbol{S}\text{.} \end{equation*}</div>
+<p>对于所有状态<span class="math">\(s\)</span>，当且仅当基于策略<span class="math">\(\pi\)</span>的值函数均大于其他所有策略<span class="math">\(\pi^\prime\)</span>的值函数时，这个策略<span class="math">\(\pi\)</span>就是最优测策略。</p>
+<h2 id="_9">最优动作值函数<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<p>相似的，最优策略有一个最优动作值函数，即最优Q值函数，<span class="math">\(q_*\)</span>表示。 </p>
+<div class="math">\begin{equation*} q_{\ast }\left( s,a\right) =\max_{\pi }q_{\pi }\left( s,a\right) \end{equation*}</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
