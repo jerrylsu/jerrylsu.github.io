@@ -96,6 +96,7 @@
 <li><a href="#q">Q值函数</a></li>
 </ul>
 </li>
+<li><a href="#_8">最优策略</a></li>
 </ul>
 </div>
         </nav>
@@ -146,7 +147,7 @@
 <p>折扣率<span class="math">\(\gamma\)</span>，取值0~1之间，是折扣将来奖励的比率。  </p>
 <div class="math">\begin{eqnarray*} G_{t} &amp;=&amp;R_{t+1}+\gamma R_{t+2}+\gamma ^{2}R_{t+3}+\cdots \\ &amp;=&amp;\sum_{k=0}^{\infty }\gamma ^{k}R_{t+k+1}\text{.} \end{eqnarray*}</div>
 <p>折扣奖励的定义使智能体更关心即时奖励而不是未来奖励，因为未来奖励将得到更大的折扣。因此，尽管智能体确实考虑了预期在将来获得的奖励，但当智能体做出关于采取特定动作的决定时，越直接的奖励就具有更大的影响力。</p>
-<p><font color="red"></font></p>
+<p><span style="color: red; "> </span></p>
 <div class="math">\begin{eqnarray*} G_{t} &amp;=&amp;R_{t+1}+\gamma R_{t+2}+\gamma ^{2}R_{t+3}+\gamma ^{3}R_{t+4}+\cdots \\ &amp;=&amp;R_{t+1}+\gamma \left( R_{t+2}+\gamma R_{t+3}+\gamma ^{2}R_{t+4}+\cdots \right) \\ &amp;=&amp;R_{t+1}+\gamma G_{t+1} \end{eqnarray*}</div>
 <p></p>
 <h2 id="_6">策略与值函数<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
@@ -158,6 +159,7 @@
 <p>动作值函数：<span class="math">\(q_\pi\)</span>表示基于策略<span class="math">\(\pi\)</span>的动作值函数。即<strong>在给定一个状态，基于策略<span class="math">\(\pi\)</span>选择一个动作后，给定的值，这个值用来评价选择该动作有多好。值用期望奖励定义</strong></p>
 <p><span class="math">\(q_\pi\)</span>称Q值函数，Q: quality</p>
 <div class="math">\begin{eqnarray*} q_{\pi }\left( s,a\right) &amp;=&amp;E_{\pi }\left[ G_{t}\mid S_{t}=s,A_{t}=a \rule[-0.05in]{0in}{0.2in}\right] \\ &amp;=&amp;E_{\pi }\left[ \sum_{k=0}^{\infty }\gamma ^{k}R_{t+k+1}\mid S_{t}=s,A_{t}=a\right] \text{.} \end{eqnarray*}</div>
+<h2 id="_8">最优策略<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
