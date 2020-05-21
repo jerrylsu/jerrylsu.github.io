@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="【RL】Reinforcement Learning"/>
 <meta property="og:url" content="https://www.jerrulsu.com/reinforcement-learning.html" />
-<meta property="og:description" content="马尔可夫决策过程 MDP¶ MDP组件¶ 马尔可夫决策过程为我们提供了一种形式化顺序决策的方法。 这种形式化是构建通过强化学习解决的问题的基础。 在马尔可夫决策过程中，智能体\(Agent\)与其所在的环境进行交互。这些交互随着时间的流逝依次发生。 在每个时间步\(t\)中，\(Agent\)都会获得环境状态\(s_t\)的编码。给定\(s_t\)，\(Agent\)将选择要采取的行动\(a_t\)。 然后，环境通过\(a_t\)将更新新的状态\(s_{t+1}\)，并且由于先前的操作，\(Agent\)会获得奖励\(r_{t+1}\)。 一个马尔可夫决策过程的组建包括： Agent Environment State Action Reward 从给定状态\(State\)中选择动作\(Action\)，过渡到新状态并获得奖励\(Reward\)的过程是一遍又一遍地依次进行的，这创建的一系列成为轨迹\(Trajectory …" />
+<meta property="og:description" content="马尔可夫决策过程¶ 构建强化学习问题：马尔可夫决策过程 Markov Decision Processes (MDPs) MDP组件¶ 马尔可夫决策过程为我们提供了一种形式化顺序决策的方法。 这种形式化是构建通过强化学习解决的问题的基础。 在马尔可夫决策过程中，智能体\(Agent\)与其所在的环境进行交互。这些交互随着时间的流逝依次发生。 在每个时间步\(t\)中，\(Agent\)都会获得环境状态\(s_t\)的编码。给定\(s_t\)，\(Agent\)将选择要采取的行动\(a_t\)。 然后，环境通过\(a_t\)将更新新的状态\(s_{t+1}\)，并且由于先前的操作，\(Agent\)会获得奖励\(r_{t+1}\)。 一个马尔可夫决策过程的组建包括： Agent Environment State Action Reward 从给定状态\(State\)中选择动作\(Action …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-05-21T07:20:38+08:00" />
 <meta name="twitter:title" content="【RL】Reinforcement Learning">
-<meta name="twitter:description" content="马尔可夫决策过程 MDP¶ MDP组件¶ 马尔可夫决策过程为我们提供了一种形式化顺序决策的方法。 这种形式化是构建通过强化学习解决的问题的基础。 在马尔可夫决策过程中，智能体\(Agent\)与其所在的环境进行交互。这些交互随着时间的流逝依次发生。 在每个时间步\(t\)中，\(Agent\)都会获得环境状态\(s_t\)的编码。给定\(s_t\)，\(Agent\)将选择要采取的行动\(a_t\)。 然后，环境通过\(a_t\)将更新新的状态\(s_{t+1}\)，并且由于先前的操作，\(Agent\)会获得奖励\(r_{t+1}\)。 一个马尔可夫决策过程的组建包括： Agent Environment State Action Reward 从给定状态\(State\)中选择动作\(Action\)，过渡到新状态并获得奖励\(Reward\)的过程是一遍又一遍地依次进行的，这创建的一系列成为轨迹\(Trajectory …">
+<meta name="twitter:description" content="马尔可夫决策过程¶ 构建强化学习问题：马尔可夫决策过程 Markov Decision Processes (MDPs) MDP组件¶ 马尔可夫决策过程为我们提供了一种形式化顺序决策的方法。 这种形式化是构建通过强化学习解决的问题的基础。 在马尔可夫决策过程中，智能体\(Agent\)与其所在的环境进行交互。这些交互随着时间的流逝依次发生。 在每个时间步\(t\)中，\(Agent\)都会获得环境状态\(s_t\)的编码。给定\(s_t\)，\(Agent\)将选择要采取的行动\(a_t\)。 然后，环境通过\(a_t\)将更新新的状态\(s_{t+1}\)，并且由于先前的操作，\(Agent\)会获得奖励\(r_{t+1}\)。 一个马尔可夫决策过程的组建包括： Agent Environment State Action Reward 从给定状态\(State\)中选择动作\(Action …">
 
         <title>【RL】Reinforcement Learning · Jerry Su&#39;s Blog
 </title>
@@ -80,12 +80,13 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#mdp">马尔可夫决策过程 MDP</a><ul>
-<li><a href="#mdp_1">MDP组件</a></li>
-<li><a href="#mdp_2">MDP符号表示</a></li>
-<li><a href="#_1">转换概率</a></li>
+<li><a href="#_1">马尔可夫决策过程</a><ul>
+<li><a href="#mdp">MDP组件</a></li>
+<li><a href="#mdp_1">MDP符号表示</a></li>
+<li><a href="#_2">转换概率</a></li>
 </ul>
 </li>
+<li><a href="#_3">期望回报</a></li>
 </ul>
 </div>
         </nav>
@@ -93,8 +94,9 @@
     <div class="span8 article-content">
             
             
-<h2 id="mdp">马尔可夫决策过程 MDP<a class="headerlink" href="#mdp" title="Permanent link">¶</a></h2>
-<h3 id="mdp_1">MDP组件<a class="headerlink" href="#mdp_1" title="Permanent link">¶</a></h3>
+<h2 id="_1">马尔可夫决策过程<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<p>构建强化学习问题：马尔可夫决策过程 Markov Decision Processes (MDPs) </p>
+<h3 id="mdp">MDP组件<a class="headerlink" href="#mdp" title="Permanent link">¶</a></h3>
 <p>马尔可夫决策过程为我们提供了一种形式化顺序决策的方法。 这种形式化是构建通过强化学习解决的问题的基础。</p>
 <p>在马尔可夫决策过程中，智能体<span class="math">\(Agent\)</span>与其所在的环境进行交互。这些交互随着时间的流逝依次发生。 在每个时间步<span class="math">\(t\)</span>中，<span class="math">\(Agent\)</span>都会获得环境状态<span class="math">\(s_t\)</span>的编码。给定<span class="math">\(s_t\)</span>，<span class="math">\(Agent\)</span>将选择要采取的行动<span class="math">\(a_t\)</span>。 然后，环境通过<span class="math">\(a_t\)</span>将更新新的状态<span class="math">\(s_{t+1}\)</span>，并且由于先前的操作，<span class="math">\(Agent\)</span>会获得奖励<span class="math">\(r_{t+1}\)</span>。</p>
 <p>一个马尔可夫决策过程的组建包括：</p>
@@ -107,7 +109,7 @@
 </ul>
 <p>从给定状态<span class="math">\(State\)</span>中选择动作<span class="math">\(Action\)</span>，过渡到新状态并获得奖励<span class="math">\(Reward\)</span>的过程是一遍又一遍地依次进行的，这创建的一系列成为轨迹<span class="math">\(Trajectory\)</span>，该轨迹显示状态，动作和奖励的顺序。</p>
 <p>在此过程中，<span class="math">\(Agent\)</span>的目标是最大限度地提高在给定这些状态下采取的这些行动所获得的奖励总额。 这意味着<span class="math">\(Agent\)</span>不仅希望最大化即时奖励，还希望<strong>最大化其随着时间的推移所获得的累积奖励</strong>。</p>
-<h3 id="mdp_2">MDP符号表示<a class="headerlink" href="#mdp_2" title="Permanent link">¶</a></h3>
+<h3 id="mdp_1">MDP符号表示<a class="headerlink" href="#mdp_1" title="Permanent link">¶</a></h3>
 <p><img alt="mdp" src="../images/RL/MDP-diagram.png"/></p>
 <p>在一个马尔可夫决策过程中，有一个状态集合<span class="math">\(S\)</span>，动作集合<span class="math">\(A\)</span>，奖励集合<span class="math">\(R\)</span>，且这些集合的元素是有限的。</p>
 <ol>
@@ -119,8 +121,16 @@
 </li>
 </ol>
 <p><span class="math">\(Trajectory: S_0, A_0, R_1, S_1, A_1, R_2, S_2, A_2, R_3, ...\)</span></p>
-<h3 id="_1">转换概率<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
+<h3 id="_2">转换概率<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
+<p>因为集合<span class="math">\(S\)</span>和<span class="math">\(R\)</span>是有限集，随机变量<span class="math">\(S_t\)</span>和<span class="math">\(R_t\)</span>具有明确定义的概率分布，即</p>
 <div class="math">\begin{equation*} p\left( s^{\prime },r\mid s,a\right) =\Pr \left\{ S_{t}=s^{\prime },R_{t}=r\mid S_{t-1}=s,A_{t-1}=a\right\} \text{.} \end{equation*}</div>
+<h2 id="_3">期望回报<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<p>在一个MDP过程中，是什么驱动强化学习智能体？<strong>期望回报 Expected Return</strong></p>
+<p><strong>在一个MDP过程中，智能体的目标是最大化它的奖励Reward</strong>。数学表示方式：</p>
+<p>定义在在<span class="math">\(t\)</span>时刻所获得的期望奖励<span class="math">\(G\)</span>是： </p>
+<div class="math">\begin{equation*} G_{t}=R_{t+1}+R_{t+2}+R_{t+3}+\cdots +R_{T}\text{,} \end{equation*}</div>
+<p> <span class="math">\(T\)</span>是最后一个时间步。</p>
+<p><strong>期望奖励的概念非常重要，因为这是智能体的目标就是最大化期望奖励。期望奖励是推动智能体做出决策的动力。</strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
