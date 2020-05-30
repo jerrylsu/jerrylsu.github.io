@@ -100,14 +100,11 @@
 <li><a href="#_8">平衡二叉树</a></li>
 <li><a href="#bst">二叉搜索树 BST</a></li>
 <li><a href="#insert-remove-find-validate">Insert / Remove / Find / Validate</a></li>
-<li><a href="#leetcode">Leetcode</a><ul>
-<li><a href="#lowest-common-ancestor-of-a-binary-search-tree">Lowest Common Ancestor of a Binary Search Tree</a></li>
-<li><a href="#lowest-common-ancestor-of-a-binary-tree">Lowest Common Ancestor of a Binary Tree</a></li>
+<li><a href="#_9">二叉搜索树的最近公共祖先</a></li>
+<li><a href="#_10">二叉树的最近公共祖先</a></li>
 <li><a href="#same-tree">Same Tree</a></li>
 <li><a href="#subtree-of-another-tree">Subtree of Another Tree</a></li>
 <li><a href="#binary-tree-maximum-path-sum">Binary Tree Maximum Path Sum</a></li>
-</ul>
-</li>
 </ul>
 </div>
         </nav>
@@ -530,8 +527,7 @@
 - 定义：左子树都比根节点小，右子树都不小于根节点。左右子树也必须是BST。单节点树是BST。
 - BST的中序遍历是<strong><code>不降序列</code></strong></p>
 <h3 id="insert-remove-find-validate">Insert / Remove / Find / Validate<a class="headerlink" href="#insert-remove-find-validate" title="Permanent link">¶</a></h3>
-<h2 id="leetcode">Leetcode<a class="headerlink" href="#leetcode" title="Permanent link">¶</a></h2>
-<h3 id="lowest-common-ancestor-of-a-binary-search-tree">Lowest Common Ancestor of a Binary Search Tree<a class="headerlink" href="#lowest-common-ancestor-of-a-binary-search-tree" title="Permanent link">¶</a></h3>
+<h3 id="_9">二叉搜索树的最近公共祖先<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">lowestCommonAncestor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="s1">'TreeNode'</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="s1">'TreeNode'</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="s1">'TreeNode'</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">'TreeNode'</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span> <span class="k">return</span> <span class="kc">None</span>
@@ -542,7 +538,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">root</span>  <span class="c1"># 包含p或q就是root和p，q在root两边情况。</span>
 </code></pre></div>
-<h3 id="lowest-common-ancestor-of-a-binary-tree">Lowest Common Ancestor of a Binary Tree<a class="headerlink" href="#lowest-common-ancestor-of-a-binary-tree" title="Permanent link">¶</a></h3>
+<h3 id="_10">二叉树的最近公共祖先<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
 <ol>
 <li>我们自底部遍历，一旦我们到达一个与两个节点之一匹配的节点，我们就将它传递给它的父节点。</li>
 <li>否则，在左右孩子中查找：</li>
