@@ -5,42 +5,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/</loc>
-<lastmod>2020-05-30T10:25:12-00:00</lastmod>
+<lastmod>2020-05-30T10:32:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/tags.html</loc>
-<lastmod>2020-05-30T10:25:12-00:00</lastmod>
+<lastmod>2020-05-30T10:32:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/categories.html</loc>
-<lastmod>2020-05-30T10:25:12-00:00</lastmod>
+<lastmod>2020-05-30T10:32:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/authors.html</loc>
-<lastmod>2020-05-30T10:25:12-00:00</lastmod>
+<lastmod>2020-05-30T10:32:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/archives.html</loc>
-<lastmod>2020-05-30T10:25:12-00:00</lastmod>
+<lastmod>2020-05-30T10:32:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/search.html</loc>
-<lastmod>2020-05-30T10:25:12-00:00</lastmod>
+<lastmod>2020-05-30T10:32:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -417,7 +417,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html</loc>
+<loc>https://www.jerrulsu.com/Binary-Tree.html</loc>
 <lastmod>2019-04-15T09:18:10+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -1068,7 +1068,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://www.jerrulsu.com/tag/divide-conquer.html</loc>
+<loc>https://www.jerrulsu.com/tag/binary-tree.html</loc>
 <lastmod>2019-04-15T09:18:10+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
