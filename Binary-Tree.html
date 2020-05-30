@@ -86,19 +86,15 @@
 <li><a href="#_2">前序遍历</a></li>
 <li><a href="#_3">中序遍历</a></li>
 <li><a href="#_4">后序遍历</a></li>
-<li><a href="#_5">层序遍历</a><ul>
+<li><a href="#_5">层序遍历</a></li>
 <li><a href="#_6">之字层序遍历</a></li>
 <li><a href="#_7">序列化和反序列化</a></li>
-</ul>
-</li>
-<li><a href="#_8">前中序重构二叉树</a><ul>
+<li><a href="#_8">前中序重构二叉树</a></li>
 <li><a href="#_9">二叉树最大深度</a></li>
-</ul>
-</li>
 <li><a href="#_10">二叉树最小深度</a></li>
 <li><a href="#_11">平衡二叉树</a></li>
 <li><a href="#bst">二叉搜索树 BST</a></li>
-<li><a href="#_12">二叉搜索树的最近公共祖先</a></li>
+<li><a href="#_12">二叉搜索树最近公共祖先</a></li>
 <li><a href="#_13">二叉树的最近公共祖先</a></li>
 <li><a href="#same-tree">Same Tree</a></li>
 <li><a href="#subtree-of-another-tree">Subtree of Another Tree</a></li>
@@ -331,7 +327,7 @@
     <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
-<h4 id="_6">之字层序遍历<a class="headerlink" href="#_6" title="Permanent link">¶</a></h4>
+<h3 id="_6">之字层序遍历<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">zigzagLevelOrder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
@@ -352,7 +348,7 @@
             <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">res</span>
 </code></pre></div>
-<h4 id="_7">序列化和反序列化<a class="headerlink" href="#_7" title="Permanent link">¶</a></h4>
+<h3 id="_7">序列化和反序列化<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
 <span class="k">class</span> <span class="nc">Codec</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
@@ -448,7 +444,7 @@
 <span class="w">    </span><span class="err">}</span><span class="w"></span>
 <span class="err">}</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
-<h4 id="_9">二叉树最大深度<a class="headerlink" href="#_9" title="Permanent link">¶</a></h4>
+<h3 id="_9">二叉树最大深度<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
 <p>分治法的返回状态定义：<strong><code>子树的最大深度</code></strong></p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">maxDepth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
@@ -523,7 +519,7 @@
 <p>二叉搜索树基本性质
 - 定义：左子树都比根节点小，右子树都不小于根节点。左右子树也必须是BST。单节点树是BST。
 - BST的中序遍历是<strong><code>不降序列</code></strong></p>
-<h3 id="_12">二叉搜索树的最近公共祖先<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
+<h3 id="_12">二叉搜索树最近公共祖先<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">lowestCommonAncestor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="s1">'TreeNode'</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="s1">'TreeNode'</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="s1">'TreeNode'</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">'TreeNode'</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span> <span class="k">return</span> <span class="kc">None</span>
