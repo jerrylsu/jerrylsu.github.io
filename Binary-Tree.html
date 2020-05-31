@@ -623,16 +623,30 @@
         <span class="n">maxPathSum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">left</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">right</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">left</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">right</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">maxPathSum</span><span class="p">,</span> <span class="n">singlePathSum</span>
 </code></pre></div>
-<p>思路二：DFS，返回状态的定义：
-<strong><code>dfs(root)返回的是包括root这个结点的单一路径上的最大值。</code></strong> </p>
-<p>则可能的结果有：
-- left + right +root.val (左右子树和根构成路径为最大值）
-- max(left, right) + root.val(左或者右子树和根构成最大值）
-- root.val本身为最大值</p>
+<p>思路二：DFS，返回状态的定义：</p>
+<p><strong><code>dfs(root)返回的是包括root这个结点的单一路径上的最大值。</code></strong> </p>
+<p>则可能的结果有：</p>
+<ul>
+<li>
+<p>left + right +root.val (左右子树和根构成路径为最大值）</p>
+</li>
+<li>
+<p>max(left, right) + root.val(左或者右子树和根构成最大值）</p>
+</li>
+<li>
+<p>root.val本身为最大值</p>
+</li>
+</ul>
 <p>和全局变量res比较更新即可。</p>
-<p>需要注意的是dfs返回值，可能是
-- max(left, right) + root.val 某一条路径
-- root.val  只是该结点（下面都是负的了）</p>
+<p>需要注意的是dfs返回值，可能是</p>
+<ul>
+<li>
+<p>max(left, right) + root.val 某一条路径</p>
+</li>
+<li>
+<p>root.val  只是该结点（下面都是负的了）</p>
+</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">maxPathSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
