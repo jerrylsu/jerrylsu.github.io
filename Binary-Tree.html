@@ -522,9 +522,15 @@
         <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">leftDepth</span> <span class="o">-</span> <span class="n">rightDepth</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">leftDepth</span><span class="p">,</span> <span class="n">rightDepth</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 </code></pre></div>
 <h3 id="bst">二叉搜索树 BST<a class="headerlink" href="#bst" title="Permanent link">¶</a></h3>
-<p>二叉搜索树基本性质
-- 定义：左子树都比根节点小，右子树都不小于根节点。左右子树也必须是BST。单节点树是BST。
-- BST的中序遍历是<strong><code>不降序列</code></strong></p>
+<p>二叉搜索树基本性质</p>
+<ul>
+<li>
+<p>定义：左子树都比根节点小，右子树都不小于根节点。左右子树也必须是BST。单节点树是BST。</p>
+</li>
+<li>
+<p>BST的中序遍历是<strong><code>不降序列</code></strong></p>
+</li>
+</ul>
 <h3 id="_12">二叉搜索树最近公共祖先<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">lowestCommonAncestor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="s1">'TreeNode'</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="s1">'TreeNode'</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="s1">'TreeNode'</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">'TreeNode'</span><span class="p">:</span>
@@ -538,11 +544,21 @@
 </code></pre></div>
 <h3 id="_13">二叉树的最近公共祖先<a class="headerlink" href="#_13" title="Permanent link">¶</a></h3>
 <ol>
-<li>我们自底部遍历，一旦我们到达一个与两个节点之一匹配的节点，我们就将它传递给它的父节点。</li>
-<li>否则，在左右孩子中查找：</li>
-<li>如果左右孩子均返回一个节点，p和q存在，root就是LCA。</li>
-<li>如果只有其中一个孩子返回一个节点，意味着在左或右分支上找到p或q。</li>
-<li>如果左右孩子均没返回节点，则返回None。</li>
+<li>
+<p>我们自底部遍历，一旦我们到达一个与两个节点之一匹配的节点，我们就将它传递给它的父节点。</p>
+</li>
+<li>
+<p>否则，在左右孩子中查找：</p>
+</li>
+<li>
+<p>如果左右孩子均返回一个节点，p和q存在，root就是LCA。</p>
+</li>
+<li>
+<p>如果只有其中一个孩子返回一个节点，意味着在左或右分支上找到p或q。</p>
+</li>
+<li>
+<p>如果左右孩子均没返回节点，则返回None。</p>
+</li>
 </ol>
 <p>只有一个返回节点情况理解：假设在左孩子返回p，右孩子返回None。这意味着q位于节点p下面的某处，其中p被发现我们不需要一直搜索，因为在这种情况下，找到p的节点是LCA。</p>
 <p>分治法的返回状态定义：<strong><code>找到的 p节点 或 q节点</code></strong></p>
