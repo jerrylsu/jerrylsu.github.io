@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="Binary Tree"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Binary-Tree.html" />
-<meta property="og:description" content="分治算法¶ 分治法的重点在于问题的划分和返回状态的定义 遍历法 VS 分治法¶ 递归是实现方式，遍历法和分治法是可以用递归实现的算法思想 Result in parameter vs Result in return value，所以分治法一般不需要全局变量，可实现并行。 遍历法的结果要改参数，返回参数；分治法的结果直接返回，是个更好的接口，因为传入的参数最好不要改。 递归是自顶向下Top down VS 分治是自底向上Bottom up 递归 VS 非递归¶ 非递归其实是模拟递归用的Stack 为什么自己模拟的可以，调用计算机的就不行呢 ？ - 因为heap …" />
+<meta property="og:description" content="分治算法¶ 分治法的重点在于问题的划分和返回状态的定义 遍历法 VS 分治法¶ 递归是实现方式，遍历法和分治法是可以用递归实现的算法思想 Result in parameter vs Result in return value，所以分治法一般不需要全局变量，可实现并行。 遍历法的结果要改参数，返回参数；分治法的结果直接返回，是个更好的接口，因为传入的参数最好不要改。 递归是自顶向下Top down VS 分治是自底向上Bottom up 递归 VS 非递归¶ 非递归其实是模拟递归用的Stack 为什么自己模拟的可以，调用计算机的就不行呢 ？ 因为heap …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-04-15T09:18:10+08:00" />
 <meta name="twitter:title" content="Binary Tree">
-<meta name="twitter:description" content="分治算法¶ 分治法的重点在于问题的划分和返回状态的定义 遍历法 VS 分治法¶ 递归是实现方式，遍历法和分治法是可以用递归实现的算法思想 Result in parameter vs Result in return value，所以分治法一般不需要全局变量，可实现并行。 遍历法的结果要改参数，返回参数；分治法的结果直接返回，是个更好的接口，因为传入的参数最好不要改。 递归是自顶向下Top down VS 分治是自底向上Bottom up 递归 VS 非递归¶ 非递归其实是模拟递归用的Stack 为什么自己模拟的可以，调用计算机的就不行呢 ？ - 因为heap …">
+<meta name="twitter:description" content="分治算法¶ 分治法的重点在于问题的划分和返回状态的定义 遍历法 VS 分治法¶ 递归是实现方式，遍历法和分治法是可以用递归实现的算法思想 Result in parameter vs Result in return value，所以分治法一般不需要全局变量，可实现并行。 遍历法的结果要改参数，返回参数；分治法的结果直接返回，是个更好的接口，因为传入的参数最好不要改。 递归是自顶向下Top down VS 分治是自底向上Bottom up 递归 VS 非递归¶ 非递归其实是模拟递归用的Stack 为什么自己模拟的可以，调用计算机的就不行呢 ？ 因为heap …">
 
         <title>Binary Tree · Jerry Su&#39;s Blog
 </title>
@@ -120,9 +120,15 @@
 <ul>
 <li>非递归其实是模拟递归用的Stack</li>
 </ul>
-<p><strong>为什么自己模拟的可以，调用计算机的就不行呢 ？</strong>
-- 因为<code>heap memory ≈ memory size</code>，new出的stack在里面，不用担心栈溢出。
-- 而<code>stack memory ≈ process memory</code>是计算机分给每个程序的一个很小的独占的空间，所以递归的深度太深，容易栈溢出。</p>
+<p><strong>为什么自己模拟的可以，调用计算机的就不行呢 ？</strong></p>
+<ul>
+<li>
+<p>因为<code>heap memory ≈ memory size</code>，new出的stack在里面，不用担心栈溢出。</p>
+</li>
+<li>
+<p>而<code>stack memory ≈ process memory</code>是计算机分给每个程序的一个很小的独占的空间，所以递归的深度太深，容易栈溢出。</p>
+</li>
+</ul>
 <h3 id="_2">前序遍历<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
 <p>递归</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">preorderTraversal</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
