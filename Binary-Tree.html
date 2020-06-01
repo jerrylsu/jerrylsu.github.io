@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="Binary Tree"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Binary-Tree.html" />
-<meta property="og:description" content="分治算法¶ 分治法的重点在于问题的划分和返回状态的定义 遍历法 VS 分治法¶ 递归是实现方式，遍历法和分治法是可以用递归实现的算法思想 Result in parameter vs Result in return value，所以分治法一般不需要全局变量，可实现并行。 遍历法的结果要改参数，返回参数；分治法的结果直接返回，是个更好的接口，因为传入的参数最好不要改。 递归是自顶向下Top down VS 分治是自底向上Bottom up 递归 VS 非递归¶ 非递归其实是模拟递归用的Stack 为什么自己模拟的可以，调用计算机的就不行呢 ？ 因为heap …" />
+<meta property="og:description" content="二叉树结构定义¶ struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int val) : val(val), left(nullptr), right(nullptr) {} }; 分治算法¶ 分治法的重点在于问题的划分和返回状态的定义 遍历法 VS 分治法¶ 递归是实现方式，遍历法和分治法是可以用递归实现的算法思想 Result in parameter vs Result in return value，所以分治法一般不需要全局变量，可实现并行。 遍历法的结果要改参数，返回参数；分治法 …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-04-15T09:18:10+08:00" />
 <meta name="twitter:title" content="Binary Tree">
-<meta name="twitter:description" content="分治算法¶ 分治法的重点在于问题的划分和返回状态的定义 遍历法 VS 分治法¶ 递归是实现方式，遍历法和分治法是可以用递归实现的算法思想 Result in parameter vs Result in return value，所以分治法一般不需要全局变量，可实现并行。 遍历法的结果要改参数，返回参数；分治法的结果直接返回，是个更好的接口，因为传入的参数最好不要改。 递归是自顶向下Top down VS 分治是自底向上Bottom up 递归 VS 非递归¶ 非递归其实是模拟递归用的Stack 为什么自己模拟的可以，调用计算机的就不行呢 ？ 因为heap …">
+<meta name="twitter:description" content="二叉树结构定义¶ struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int val) : val(val), left(nullptr), right(nullptr) {} }; 分治算法¶ 分治法的重点在于问题的划分和返回状态的定义 遍历法 VS 分治法¶ 递归是实现方式，遍历法和分治法是可以用递归实现的算法思想 Result in parameter vs Result in return value，所以分治法一般不需要全局变量，可实现并行。 遍历法的结果要改参数，返回参数；分治法 …">
 
         <title>Binary Tree · Jerry Su&#39;s Blog
 </title>
@@ -80,22 +80,23 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#_1">分治算法</a></li>
+<li><a href="#_1">二叉树结构定义</a></li>
+<li><a href="#_2">分治算法</a></li>
 <li><a href="#vs">遍历法 VS 分治法</a></li>
 <li><a href="#vs_1">递归 VS 非递归</a></li>
-<li><a href="#_2">前序遍历</a></li>
-<li><a href="#_3">中序遍历</a></li>
-<li><a href="#_4">后序遍历</a></li>
-<li><a href="#_5">层序遍历</a></li>
-<li><a href="#_6">之字层序遍历</a></li>
-<li><a href="#_7">序列化和反序列化</a></li>
-<li><a href="#_8">前中序重构二叉树</a></li>
-<li><a href="#_9">二叉树最大深度</a></li>
-<li><a href="#_10">二叉树最小深度</a></li>
-<li><a href="#_11">平衡二叉树</a></li>
+<li><a href="#_3">前序遍历</a></li>
+<li><a href="#_4">中序遍历</a></li>
+<li><a href="#_5">后序遍历</a></li>
+<li><a href="#_6">层序遍历</a></li>
+<li><a href="#_7">之字层序遍历</a></li>
+<li><a href="#_8">序列化和反序列化</a></li>
+<li><a href="#_9">前中序重构二叉树</a></li>
+<li><a href="#_10">二叉树最大深度</a></li>
+<li><a href="#_11">二叉树最小深度</a></li>
+<li><a href="#_12">平衡二叉树</a></li>
 <li><a href="#bst">二叉搜索树 BST</a></li>
-<li><a href="#_12">二叉搜索树最近公共祖先</a></li>
-<li><a href="#_13">二叉树的最近公共祖先</a></li>
+<li><a href="#_13">二叉搜索树最近公共祖先</a></li>
+<li><a href="#_14">二叉树的最近公共祖先</a></li>
 <li><a href="#same-tree">Same Tree</a></li>
 <li><a href="#subtree-of-another-tree">Subtree of Another Tree</a></li>
 <li><a href="#binary-tree-maximum-path-sum">Binary Tree Maximum Path Sum</a></li>
@@ -106,7 +107,15 @@
     <div class="span8 article-content">
             
             
-<h3 id="_1">分治算法<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
+<h3 id="_1">二叉树结构定义<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">TreeNode</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">left</span><span class="p">;</span>
+    <span class="n">TreeNode</span><span class="o">*</span> <span class="n">right</span><span class="p">;</span>
+    <span class="n">TreeNode</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">val</span><span class="p">),</span> <span class="n">left</span><span class="p">(</span><span class="k">nullptr</span><span class="p">),</span> <span class="n">right</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="_2">分治算法<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
 <p><strong>分治法的重点在于<code>问题的划分</code>和<code>返回状态的定义</code></strong></p>
 <h3 id="vs">遍历法 VS 分治法<a class="headerlink" href="#vs" title="Permanent link">¶</a></h3>
 <ol>
@@ -129,7 +138,7 @@
 <p>而<code>stack memory ≈ process memory</code>是计算机分给每个程序的一个很小的独占的空间，所以递归的深度太深，容易栈溢出。</p>
 </li>
 </ul>
-<h3 id="_2">前序遍历<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
+<h3 id="_3">前序遍历<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
 <p>递归</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">preorderTraversal</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
     <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
@@ -181,7 +190,7 @@
             <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span>
 </code></pre></div>
-<h3 id="_3">中序遍历<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<h3 id="_4">中序遍历<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
 <p>递归</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">inorderTraversal</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
     <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
@@ -239,7 +248,7 @@
                 <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">right</span>
         <span class="k">return</span> <span class="n">res</span>
 </code></pre></div>
-<h3 id="_4">后序遍历<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<h3 id="_5">后序遍历<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
 <p>递归</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">postorderTraversal</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
     <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
@@ -275,7 +284,7 @@
 <p>非递归</p>
 <div class="highlight"><pre><span></span><code><span class="err">pass</span>
 </code></pre></div>
-<h3 id="_5">层序遍历<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<h3 id="_6">层序遍历<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
 <ul>
 <li>
 <p>使用队列数据结构：collections.deque</p>
@@ -333,7 +342,7 @@
     <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
-<h3 id="_6">之字层序遍历<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
+<h3 id="_7">之字层序遍历<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">zigzagLevelOrder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
@@ -354,7 +363,7 @@
             <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">res</span>
 </code></pre></div>
-<h3 id="_7">序列化和反序列化<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<h3 id="_8">序列化和反序列化<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
 <span class="k">class</span> <span class="nc">Codec</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
@@ -391,7 +400,7 @@
             <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">root</span>
 </code></pre></div>
-<h3 id="_8">前中序重构二叉树<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
+<h3 id="_9">前中序重构二叉树<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
 <p><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solution/cong-qian-xu-yu-zhong-xu-bian-li-xu-lie-gou-zao-9/">leetcode solution</a></p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="n">Solution</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
 <span class="k">public</span><span class="err">:</span><span class="w"></span>
@@ -450,7 +459,7 @@
 <span class="w">    </span><span class="err">}</span><span class="w"></span>
 <span class="err">}</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
-<h3 id="_9">二叉树最大深度<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
+<h3 id="_10">二叉树最大深度<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
 <p>分治法的返回状态定义：<strong><code>子树的最大深度</code></strong></p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">maxDepth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
@@ -468,7 +477,7 @@
         <span class="c1"># return result</span>
         <span class="k">return</span> <span class="n">res</span>
 </code></pre></div>
-<h3 id="_10">二叉树最小深度<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
+<h3 id="_11">二叉树最小深度<a class="headerlink" href="#_11" title="Permanent link">¶</a></h3>
 <p>分治法的返回状态定义：<strong><code>子树的最小深度</code></strong></p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">minDepth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -500,7 +509,7 @@
             <span class="c1"># return result</span>
             <span class="k">return</span> <span class="n">res</span>
 </code></pre></div>
-<h3 id="_11">平衡二叉树<a class="headerlink" href="#_11" title="Permanent link">¶</a></h3>
+<h3 id="_12">平衡二叉树<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
 <p>分治法的返回状态定义：<strong><code>子树的是否是平衡二叉树和子树的深度 (bool, int)</code></strong></p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">isBalanced</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -531,7 +540,7 @@
 <p>BST的中序遍历是<strong><code>不降序列</code></strong></p>
 </li>
 </ul>
-<h3 id="_12">二叉搜索树最近公共祖先<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
+<h3 id="_13">二叉搜索树最近公共祖先<a class="headerlink" href="#_13" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">lowestCommonAncestor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="s1">'TreeNode'</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="s1">'TreeNode'</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="s1">'TreeNode'</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">'TreeNode'</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span> <span class="k">return</span> <span class="kc">None</span>
@@ -542,7 +551,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">root</span>  <span class="c1"># 包含p或q就是root和p，q在root两边情况。</span>
 </code></pre></div>
-<h3 id="_13">二叉树的最近公共祖先<a class="headerlink" href="#_13" title="Permanent link">¶</a></h3>
+<h3 id="_14">二叉树的最近公共祖先<a class="headerlink" href="#_14" title="Permanent link">¶</a></h3>
 <ol>
 <li>
 <p>我们自底部遍历，一旦我们到达一个与两个节点之一匹配的节点，我们就将它传递给它的父节点。</p>
