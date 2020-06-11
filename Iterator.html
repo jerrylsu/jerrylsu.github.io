@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="Iterator"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Iterator.html" />
-<meta property="og:description" content="from collections import Iterable class Classmate(object): def __init__(self): self.names = list() def add(self, name): self.names.append(name) def __iter__(self): # 返回迭代器对象 return ClassIterator(self) class ClassIterator(object): def __init__(self, obj): self.obj = obj self.cur = 0 # 包含__iter__的对象成可迭代iterable def __iter__(self): pass # 包含__next__的对象成迭代器iterator def __next__(self …" />
+<meta property="og:description" content="from collections import Iterable class Classmate(object): def __init__(self): self.names = list() def add(self, name): self.names.append(name) def __iter__(self): # 返回迭代器对象 return ClassIterator(self) class ClassIterator(object): def __init__(self, obj): self.obj = obj self.cur = 0 # 包含__iter__的方法对象成可迭代iterable def __iter__(self): pass # 包含__next__的方法对象成迭代器iterator def __next__(self …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-06-11T12:19:28+08:00" />
 <meta name="twitter:title" content="Iterator">
-<meta name="twitter:description" content="from collections import Iterable class Classmate(object): def __init__(self): self.names = list() def add(self, name): self.names.append(name) def __iter__(self): # 返回迭代器对象 return ClassIterator(self) class ClassIterator(object): def __init__(self, obj): self.obj = obj self.cur = 0 # 包含__iter__的对象成可迭代iterable def __iter__(self): pass # 包含__next__的对象成迭代器iterator def __next__(self …">
+<meta name="twitter:description" content="from collections import Iterable class Classmate(object): def __init__(self): self.names = list() def add(self, name): self.names.append(name) def __iter__(self): # 返回迭代器对象 return ClassIterator(self) class ClassIterator(object): def __init__(self, obj): self.obj = obj self.cur = 0 # 包含__iter__的方法对象成可迭代iterable def __iter__(self): pass # 包含__next__的方法对象成迭代器iterator def __next__(self …">
 
         <title>Iterator · Jerry Su&#39;s Blog
 </title>
@@ -99,11 +99,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cur</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="c1"># 包含__iter__的对象成可迭代iterable</span>
+    <span class="c1"># 包含__iter__的方法对象成可迭代iterable</span>
     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
 
-    <span class="c1"># 包含__next__的对象成迭代器iterator</span>
+    <span class="c1"># 包含__next__的方法对象成迭代器iterator</span>
     <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cur</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">names</span><span class="p">):</span>
             <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cur</span><span class="p">]</span>
