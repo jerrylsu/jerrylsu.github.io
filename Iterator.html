@@ -82,6 +82,7 @@
 <ul>
 <li><a href="#iterator">Iterator</a></li>
 <li><a href="#generator">Generator</a></li>
+<li><a href="#coroutine">Coroutine</a></li>
 </ul>
 </div>
         </nav>
@@ -188,6 +189,8 @@
 <p>生成器是特殊的迭代器。含有yield关键字的函数，不再是函数而是生成器。调用时不再是函数调用而是创建生成器对象。</p>
 <p>yield关键字，将函数暂停，当下次访问时，接着yield后面继续执行。</p>
 <p>生成器两种启动方式：next(generator)和generator.send()，后者可以传参。</p>
+<p>生成器传参：generator.send('pass args')</p>
+<p>生成器return：在迭代结束抛出异常StopIterator时，返回return的内容。</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">cur</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
@@ -212,7 +215,7 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>结论</strong>：迭代器能节省内存空间，能实现循环；生成器能暂定类函数的运行，用send或者next继续执行。他们都是保存生成数据的代码。</p>
-<p>生成器的另一个重要应用：实现多任务。</p>
+<p>生成器的另一个重要应用协程：实现多任务。</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span>
 
 <span class="k">def</span> <span class="nf">task1</span><span class="p">():</span>
@@ -237,6 +240,9 @@
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
 </code></pre></div>
+<h3 id="coroutine">Coroutine<a class="headerlink" href="#coroutine" title="Permanent link">¶</a></h3>
+<p>采用同步的方式编写异步代码，线程的切换是操作系统执行的。单线程内的协程是程序员自己调度切换的。不需要锁的机制，函数的切换资源消耗更少，并发性更高。</p>
+<p>协程：可以暂停的函数（生成器），且可以向暂停处传参。python通过生成器实现协程。</p>
 
 
             
