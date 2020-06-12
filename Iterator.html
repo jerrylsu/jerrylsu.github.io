@@ -188,19 +188,34 @@
 <p>生成器是特殊的迭代器。含有yield关键字的函数，不再是函数而是生成器。调用时不再是函数调用而是创建生成器对象。</p>
 <p>yield关键字，将函数暂停，当下次访问时，接着yield后面继续执行。</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'---1---'</span><span class="p">)</span>
     <span class="n">cur</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
     <span class="k">while</span> <span class="n">cur</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'---2---'</span><span class="p">)</span>
         <span class="k">yield</span> <span class="n">a</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'---3---'</span><span class="p">)</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
         <span class="n">cur</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'---4---'</span><span class="p">)</span>
 
-<span class="c1"># 并非调用函数，而是创建生成器对象</span>
+<span class="c1"># 并非调用函数，而是创建生成器对象，使用next()函数执行生成器代码。</span>
 <span class="n">obj</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="c1"># next()函数传递的是迭代器，而生成器是一种特殊的迭代器</span>
 <span class="n">ret</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+
+<span class="n">ret</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>---1---
+---2---
+0
+---3---
+---4---
+---2---
+1
 </code></pre></div>
 
 
