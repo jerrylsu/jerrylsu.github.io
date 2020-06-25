@@ -85,7 +85,7 @@
 <li><a href="#pipes">Pipes |</a></li>
 <li><a href="#cat">cat</a></li>
 <li><a href="#chmod">chmod</a></li>
-<li><a href="#ps-process-status">ps (process status)</a></li>
+<li><a href="#ps">ps</a></li>
 <li><a href="#unzip">unzip</a></li>
 <li><a href="#tar">tar</a></li>
 <li><a href="#windows-rn-to-linux-n">windows '\r\n' to linux '\n'</a></li>
@@ -141,9 +141,11 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 <h2 id="chmod">chmod<a class="headerlink" href="#chmod" title="Permanent link">¶</a></h2>
 <p><code>$ chmod +x tarbackup.sh</code></p>
 <p><code>$ ./tarbackup.sh</code></p>
-<h2 id="ps-process-status">ps (process status)<a class="headerlink" href="#ps-process-status" title="Permanent link">¶</a></h2>
+<h2 id="ps">ps<a class="headerlink" href="#ps" title="Permanent link">¶</a></h2>
 <p><code>ps -aux</code> 显示所有包含其他使用者的行程</p>
 <p><code>ps -aux | grep ssh</code> 与<code>grep</code>结合，查找特定进程</p>
+<p><code>ps -ef | grep  PID , 找到其父进程，然后 kill -9 父进程ID</code></p>
+<p><a href="https://www.cnblogs.com/ahcc08/p/3707925.html">kill -9 pid</a></p>
 <h2 id="unzip">unzip<a class="headerlink" href="#unzip" title="Permanent link">¶</a></h2>
 <p><code>sudo apt-get install unzip</code></p>
 <p><code>unzip file.zip -d destination_folde</code></p>
