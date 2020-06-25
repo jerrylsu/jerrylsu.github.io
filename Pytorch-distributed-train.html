@@ -81,6 +81,7 @@
         <div class="toc">
 <ul>
 <li><a href="#_1">共享内存问题</a></li>
+<li><a href="#lamda">lamda对象不能序列化问题</a></li>
 </ul>
 </div>
         </nav>
@@ -90,10 +91,11 @@
             
 <h3 id="_1">共享内存问题<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
 <p>ERROR: Unexpected bus error encountered in worker. This might be caused by insufficient shared memory (shm).</p>
-<p><code>Please note that PyTorch uses shared memory to share data between processes, so if torch multiprocessing 
-is used (e.g. for multithreaded data loaders) the default shared memory segment size that container runs with 
-is not enough, and you should increase shared memory size either with --ipc=host or --shm-size command line 
-options to nvidia-docker run.</code></p>
+<div class="highlight"><pre><span></span><code><span class="err">Please note that PyTorch uses shared memory to share data between processes, so if torch multiprocessing </span>
+<span class="err">is used (e.g. for multithreaded data loaders) the default shared memory segment size that container runs with </span>
+<span class="err">is not enough, and you should increase shared memory size either with --ipc=host or --shm-size command line </span>
+<span class="err">options to nvidia-docker run.</span>
+</code></pre></div>
 <ol>
 <li>
 <p>修改当前Docker的shm-size。挂载点/dev/shm</p>
@@ -111,6 +113,41 @@ options to nvidia-docker run.</code></p>
 <span class="err">        collate_fn=dataset.collate_fn</span>
 <span class="err">    )</span>
 </code></pre></div>
+<h3 id="lamda">lamda对象不能序列化问题<a class="headerlink" href="#lamda" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><span class="err">-- Process 0 terminated with the following error:</span>
+<span class="err">Traceback (most recent call last):</span>
+<span class="err">  File "/root/anaconda3/envs/torch/lib/python3.7/site-packages/torch/multiprocessing/spawn.py", line 19, in _wrap</span>
+<span class="err">    fn(i, *args)</span>
+<span class="err">  File "/home/yckj2939/project/yckj_project/mhred/pytorch/train.py", line 107, in main_worker</span>
+<span class="err">    model.train(train_sampler, train_data_loader, eval_data_loader)</span>
+<span class="err">  File "/home/yckj2939/project/yckj_project/mhred/pytorch/utils/time_track.py", line 18, in timed</span>
+<span class="err">    result = method(*args, **kwargs)</span>
+<span class="err">  File "/home/yckj2939/project/yckj_project/mhred/pytorch/solver.py", line 160, in train</span>
+<span class="err">    for batch_i, (conversations, conversation_length, sentence_length, images, images_length) in enumerate(tqdm(train_data_loader, ncols=80)):</span>
+<span class="err">  File "/root/anaconda3/envs/torch/lib/python3.7/site-packages/tqdm/_tqdm.py", line 979, in __iter__</span>
+<span class="err">    for obj in iterable:</span>
+<span class="err">  File "/root/anaconda3/envs/torch/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 278, in __iter__</span>
+<span class="err">    return _MultiProcessingDataLoaderIter(self)</span>
+<span class="err">  File "/root/anaconda3/envs/torch/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 682, in __init__</span>
+<span class="err">    w.start()</span>
+<span class="err">  File "/root/anaconda3/envs/torch/lib/python3.7/multiprocessing/process.py", line 112, in start</span>
+<span class="err">    self._popen = self._Popen(self)</span>
+<span class="err">  File "/root/anaconda3/envs/torch/lib/python3.7/multiprocessing/context.py", line 223, in _Popen</span>
+<span class="err">    return _default_context.get_context().Process._Popen(process_obj)</span>
+<span class="err">  File "/root/anaconda3/envs/torch/lib/python3.7/multiprocessing/context.py", line 284, in _Popen</span>
+<span class="err">    return Popen(process_obj)</span>
+<span class="err">  File "/root/anaconda3/envs/torch/lib/python3.7/multiprocessing/popen_spawn_posix.py", line 32, in __init__</span>
+<span class="err">    super().__init__(process_obj)</span>
+<span class="err">  File "/root/anaconda3/envs/torch/lib/python3.7/multiprocessing/popen_fork.py", line 20, in __init__</span>
+<span class="err">    self._launch(process_obj)</span>
+<span class="err">  File "/root/anaconda3/envs/torch/lib/python3.7/multiprocessing/popen_spawn_posix.py", line 47, in _launch</span>
+<span class="err">    reduction.dump(process_obj, fp)</span>
+<span class="err">  File "/root/anaconda3/envs/torch/lib/python3.7/multiprocessing/reduction.py", line 60, in dump</span>
+<span class="err">    ForkingPickler(file, protocol).dump(obj)</span>
+<span class="c">AttributeError: Can't pickle local object 'Vocab.load.&lt;locals&gt;.&lt;lambda&gt;'</span>
+</code></pre></div>
+<p>pickle模块不能序列化lambda，需要自定义函数</p>
+<p><a href="http://luly.lamost.org/blog/python_multiprocessing.html">luly.lamost.org/blog/python_multiprocessing</a></p>
 
 
             
