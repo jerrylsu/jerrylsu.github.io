@@ -149,33 +149,24 @@
 </code></pre></div>
 <p>多进程数据加载Dataloader，Docker容器的共享内存/dev/shm不足</p>
 <ol>
-<li>
-<p>修改当前Docker的shm-size。挂载点/dev/shm</p>
-</li>
-<li>
-<p>docker ps -a</p>
-</li>
-<li>
-<p>docker inspect [container id] | grep Id</p>
-</li>
-<li>
-<p>systemctl stop docker</p>
-</li>
-<li>
-<p>cd [container directory]</p>
-</li>
-<li>
-<p>修改hostconfig.json和config.v2.json</p>
-</li>
-<li>
-<p>systemctl start docker</p>
-</li>
-<li>
-<p>docker start [container id]</p>
-</li>
-<li>
-<p>num_workers设置0</p>
-</li>
+<li>修改当前Docker的shm-size。挂载点/dev/shm</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="p">-</span> <span class="nf">docker</span> <span class="n">ps</span> <span class="o">-</span><span class="n">a</span>
+
+<span class="o">-</span> <span class="n">docker</span> <span class="n">inspect</span> <span class="p">[</span><span class="n">container</span> <span class="kt">id</span><span class="p">]</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">Id</span>
+
+<span class="o">-</span> <span class="n">systemctl</span> <span class="n">stop</span> <span class="n">docker</span>
+
+<span class="o">-</span> <span class="n">cd</span> <span class="p">[</span><span class="n">container</span> <span class="n">directory</span><span class="p">]</span>
+
+<span class="o">-</span> <span class="err">修改</span><span class="n">hostconfig</span><span class="p">.</span><span class="n">json和config</span><span class="p">.</span><span class="n">v2</span><span class="p">.</span><span class="n">json</span>
+
+<span class="o">-</span> <span class="n">systemctl</span> <span class="n">start</span> <span class="n">docker</span>
+
+<span class="o">-</span> <span class="n">docker</span> <span class="n">start</span> <span class="p">[</span><span class="n">container</span> <span class="kt">id</span><span class="p">]</span>
+</code></pre></div>
+<ol>
+<li>num_workers设置0</li>
 </ol>
 <div class="highlight"><pre><span></span><code><span class="err">dataloader = torch.utils.data.DataLoader(</span>
 <span class="err">        dataset,</span>
