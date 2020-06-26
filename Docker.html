@@ -143,10 +143,16 @@
 <h2 id="_3">添加已运行容器端口<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
 <ul>
 <li>
+<p>查看容器号 docker ps -a</p>
+</li>
+<li>
 <p>停止容器 docker stop</p>
 </li>
 <li>
 <p>停止docker服务(systemctl stop docker)</p>
+</li>
+<li>
+<p>查找容器目录 docker inspect [容器号ID] | grep Id</p>
 </li>
 <li>
 <p>修改这个容器的<code>/usr/local/docker/containers/...</code>hostconfig.json文件中的端口: 
