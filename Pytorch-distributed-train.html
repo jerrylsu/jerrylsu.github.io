@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="Pytorch distributed train"/>
 <meta property="og:url" content="https://www.jerrulsu.com/Pytorch-distributed-train.html" />
-<meta property="og:description" content="共享内存问题¶ Training Start! 0%| | 0/40937 [00:00&lt;?, ?it/s] ERROR: Unexpected bus error encountered in worker. This might be caused by insufficient shared memory (shm). Traceback (most recent call last): File &#34;/root/anaconda3/envs/torch/lib/python3.7/multiprocessing/queues.py&#34;, line 236, in _feed obj = _ForkingPickler.dumps(obj …" />
+<meta property="og:description" content="主卡线程暴涨¶ 异常： master 正常： ma def to_var(x, on_cpu=False, gpu_id=None): &#34;&#34;&#34;Tensor =&gt; Variable&#34;&#34;&#34; if torch.cuda.is_available() and not on_cpu: x = x.cuda(gpu_id, non_blocking=True) # x = Variable(x) return x def normal_kl_div(mu1, var1, mu2=to_var(torch.FloatTensor([0.0])), var2=to_var(torch.FloatTensor([1.0]))): one = to_var …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-06-25T06:24:18+08:00" />
 <meta name="twitter:title" content="Pytorch distributed train">
-<meta name="twitter:description" content="共享内存问题¶ Training Start! 0%| | 0/40937 [00:00&lt;?, ?it/s] ERROR: Unexpected bus error encountered in worker. This might be caused by insufficient shared memory (shm). Traceback (most recent call last): File &#34;/root/anaconda3/envs/torch/lib/python3.7/multiprocessing/queues.py&#34;, line 236, in _feed obj = _ForkingPickler.dumps(obj …">
+<meta name="twitter:description" content="主卡线程暴涨¶ 异常： master 正常： ma def to_var(x, on_cpu=False, gpu_id=None): &#34;&#34;&#34;Tensor =&gt; Variable&#34;&#34;&#34; if torch.cuda.is_available() and not on_cpu: x = x.cuda(gpu_id, non_blocking=True) # x = Variable(x) return x def normal_kl_div(mu1, var1, mu2=to_var(torch.FloatTensor([0.0])), var2=to_var(torch.FloatTensor([1.0]))): one = to_var …">
 
         <title>Pytorch distributed train · Jerry Su&#39;s Blog
 </title>
@@ -80,7 +80,8 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#_1">共享内存问题</a></li>
+<li><a href="#_1">主卡线程暴涨</a></li>
+<li><a href="#_2">共享内存问题</a></li>
 <li><a href="#lamda">lamda对象不能序列化问题</a></li>
 </ul>
 </div>
@@ -89,7 +90,33 @@
     <div class="span8 article-content">
             
             
-<h3 id="_1">共享内存问题<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
+<h3 id="_1">主卡线程暴涨<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
+<p>异常： </p>
+<p><a href="../images/Pytorch/bug.png">master</a></p>
+<p>正常：</p>
+<p><a href="../images/Pytorch/bug_fix.png">ma</a></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">to_var</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">on_cpu</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gpu_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">"""Tensor =&gt; Variable"""</span>
+    <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">on_cpu</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">cuda</span><span class="p">(</span><span class="n">gpu_id</span><span class="p">,</span> <span class="n">non_blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># x = Variable(x)</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="k">def</span> <span class="nf">normal_kl_div</span><span class="p">(</span><span class="n">mu1</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> 
+                  <span class="n">mu2</span><span class="o">=</span><span class="n">to_var</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([</span><span class="mf">0.0</span><span class="p">])),</span>
+                  <span class="n">var2</span><span class="o">=</span><span class="n">to_var</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]))):</span>
+    <span class="n">one</span> <span class="o">=</span> <span class="n">to_var</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">var2</span><span class="p">)</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">var1</span><span class="p">)</span>
+</code></pre></div>
+<p>多线程脚本导入时，函数参数总是执行to_var()。当线程num_workers越多，数据无效装入cuda就越多。</p>
+<p>修改</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">normal_kl_div</span><span class="p">(</span><span class="n">mu1</span><span class="p">,</span> <span class="n">var1</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">var2</span><span class="p">):</span>
+    <span class="n">mu2</span><span class="o">=</span><span class="n">to_var</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([</span><span class="mf">0.0</span><span class="p">]))</span>
+    <span class="n">var2</span><span class="o">=</span><span class="n">to_var</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]))</span>
+    <span class="n">one</span> <span class="o">=</span> <span class="n">to_var</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">var2</span><span class="p">)</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">var1</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_2">共享内存问题<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="nx">Training</span> <span class="nx">Start</span><span class="o">!</span>
   <span class="mi">0</span><span class="o">%|</span>                                                 <span class="o">|</span> <span class="mi">0</span><span class="o">/</span><span class="mi">40937</span> <span class="p">[</span><span class="mi">00</span><span class="o">:</span><span class="mi">00</span><span class="cp">&lt;?</span><span class="p">,</span> <span class="o">?</span><span class="nx">it</span><span class="o">/</span><span class="nx">s</span><span class="p">]</span>
 <span class="nx">ERROR</span><span class="o">:</span> <span class="nx">Unexpected</span> <span class="nx">bus</span> <span class="nx">error</span> <span class="nx">encountered</span> <span class="nx">in</span> <span class="nx">worker</span><span class="o">.</span> <span class="k">This</span> <span class="nx">might</span> <span class="nx">be</span> <span class="nx">caused</span> <span class="nx">by</span> <span class="nx">insufficient</span> <span class="nx">shared</span> <span class="nx">memory</span> <span class="p">(</span><span class="nx">shm</span><span class="p">)</span><span class="o">.</span>
