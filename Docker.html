@@ -87,10 +87,25 @@
 <li><a href="#_4">修改容器容量</a></li>
 <li><a href="#dockerroot">docker授权非root用户</a></li>
 <li><a href="#_5">容器内中文乱码</a></li>
-<li><a href="#dockerwebjupyter-notebook">服务器docker中启可远程web的jupyter notebook</a></li>
-<li><a href="#pycharm-docker">PyCharm + Docker炼丹炉</a></li>
-<li><a href="#_6">制作镜像并上传仓库</a></li>
-<li><a href="#docker-compose-dockerfile">docker-compose &amp;&amp; dockerfile</a></li>
+<li><a href="#dockernotebook">服务器docker中启可远程notebook</a></li>
+<li><a href="#binsh">!/bin/sh</a></li>
+<li><a href="#enter-docker">enter docker</a></li>
+<li><a href="#docker-container22">此操作将查看docker container中端口22，在远程服务器上端口的映射</a></li>
+<li><a href="#_6">输出结果如下所示</a></li>
+<li><a href="#ssh9380docker-container22">表明只要ssh链接远程服务器的9380端口，实际是链接docker container中的22端口</a></li>
+<li><a href="#passwdroot">可以进入容器，passwd命令可以修改容器root密码</a></li>
+<li><a href="#root">修改root密码</a></li>
+<li><a href="#open-ssh">安装open-ssh</a></li>
+<li><a href="#subsystem-sftp-usrlibexecopensshsftp-server">Subsystem  sftp  /usr/libexec/openssh/sftp-server</a></li>
+<li><a href="#docker-compose">docker-compose</a></li>
+<li><a href="#dockerfile">dockerfile</a></li>
+<li><a href="#create-a-non-root-user">create a non-root user</a></li>
+<li><a href="#install-dependencies">install dependencies</a></li>
+<li><a href="#see-httpspytorchorg-for-other-options-if-you-use-a-different-version-of-cuda">See https://pytorch.org/ for other options if you use a different version of CUDA</a></li>
+<li><a href="#install-detectron2">install detectron2</a></li>
+<li><a href="#this-will-build-detectron2-for-all-common-cuda-architectures-and-take-a-lot-more-time">This will build detectron2 for all common cuda architectures and take a lot more time,</a></li>
+<li><a href="#because-inside-docker-build-there-is-no-way-to-tell-which-architecture-will-be-used">because inside docker build, there is no way to tell which architecture will be used.</a></li>
+<li><a href="#set-a-fixed-model-cache-directory">Set a fixed model cache directory.</a></li>
 </ul>
 </div>
         </nav>
@@ -197,7 +212,7 @@
 <div class="highlight"><pre><span></span><code>$ vim /etc/profile
 $ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</span>C.UTF-8
 </code></pre></div>
-<h2 id="dockerwebjupyter-notebook">服务器docker中启可远程web的jupyter notebook<a class="headerlink" href="#dockerwebjupyter-notebook" title="Permanent link">¶</a></h2>
+<h2 id="dockernotebook">服务器docker中启可远程notebook<a class="headerlink" href="#dockernotebook" title="Permanent link">¶</a></h2>
 <ul>
 <li>启ubuntu容器，开出端口8888</li>
 </ul>
@@ -235,141 +250,199 @@ $ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</
 <div class="highlight"><pre><span></span><code><span class="err"># server_ip:port</span>
 <span class="err">10.235.3.43:8888</span>
 </code></pre></div>
-<h2 id="pycharm-docker">PyCharm + Docker炼丹炉<a class="headerlink" href="#pycharm-docker" title="Permanent link">¶</a></h2>
-<p>PyCharm Pro + Nvidia Docker</p>
-<ul>
-<li>
-<p>参照上文增加容器22端口，SFTP默认使用22端口。</p>
-</li>
-<li>
-<p>远程服务器参数查看</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><code>$ docker port &lt;your container name&gt; <span class="m">22</span>
-<span class="c1"># 此操作将查看docker container中端口22，在远程服务器上端口的映射</span>
-<span class="c1"># 输出结果如下所示</span>
-<span class="m">0</span>.0.0.0:9380
-<span class="c1"># 表明只要ssh链接远程服务器的9380端口，实际是链接docker container中的22端口</span>
+<p>容器内自动化脚本：
+```shell script</p>
+<h1 id="binsh">!/bin/sh<a class="headerlink" href="#binsh" title="Permanent link">¶</a></h1>
+<h1 id="enter-docker">enter docker<a class="headerlink" href="#enter-docker" title="Permanent link">¶</a></h1>
+<p>cd ~
+jupyter notebook --generate-config
+echo 'Please input jupyter notebook password'
+jupyter notebook password
+echo 'Password input success!'</p>
+<p>chmod 777 ~/.jupyter/jupyter_notebook_config.json
+PASSWORD=<span class="math">\((cat ~/.jupyter/jupyter_notebook_config.json | grep password | awk -F '"' '{print $4}')
+echo "c.NotebookApp.ip='*'" &gt;&gt; ~/.jupyter/jupyter_notebook_config.py
+echo "c.NotebookApp.password = '\)</span>PASSWORD'" &gt;&gt; ~/.jupyter/jupyter_notebook_config.py
+echo "c.NotebookApp.open_browser = False" &gt;&gt; ~/.jupyter/jupyter_notebook_config.py
+echo "c.NotebookApp.port = 8480" &gt;&gt; ~/.jupyter/jupyter_notebook_config.py
+echo "c.NotebookApp.notebook_dir = '/home'" &gt;&gt; ~/.jupyter/jupyter_notebook_config.py</p>
+<p>nohup jupyter notebook --ip=0.0.0.0 --no-browser --allow-root --port 8480 &gt; jupyter.log 2&gt;&amp;1 &amp;</p>
+<div class="highlight"><pre><span></span><code><span class="o">##</span> <span class="n">PyCharm</span> <span class="o">+</span> <span class="n">Docker炼丹炉</span>
 
-ssh root@&lt;服务器的ip地址&gt; -p <span class="m">9380</span>
-<span class="c1"># 可以进入容器，passwd命令可以修改容器root密码</span>
+<span class="n">PyCharm</span> <span class="n">Pro</span> <span class="o">+</span> <span class="n">Nvidia</span> <span class="n">Docker</span>
+
+<span class="o">-</span> <span class="err">参照上文增加容器</span><span class="mi">22</span><span class="err">端口，</span><span class="n">SFTP默认使用22端口</span><span class="err">。</span>
+
+<span class="o">-</span> <span class="err">远程服务器参数查看</span>
 </code></pre></div>
-<ul>
-<li>进入容器配置ssh服务</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="err">修改</span><span class="n">root密码</span>
-<span class="err">$</span> <span class="n">passwd</span>
-
-<span class="o">#</span> <span class="err">安装</span><span class="k">open</span><span class="o">-</span><span class="n">ssh</span>
-<span class="err">$</span> <span class="n">apt</span><span class="o">-</span><span class="k">get</span> <span class="k">update</span>
-<span class="err">$</span> <span class="n">apt</span><span class="o">-</span><span class="k">get</span> <span class="n">install</span> <span class="n">openssh</span><span class="o">-</span><span class="n">server</span>
-
-<span class="err">$</span> <span class="n">vim</span>  <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span>
-
-<span class="err">$</span> <span class="n">server</span> <span class="n">ssh</span> <span class="k">restart</span>
+<p>$ docker port <your container="" name=""> 22</your></p>
+<h1 id="docker-container22">此操作将查看docker container中端口22，在远程服务器上端口的映射<a class="headerlink" href="#docker-container22" title="Permanent link">¶</a></h1>
+<h1 id="_6">输出结果如下所示<a class="headerlink" href="#_6" title="Permanent link">¶</a></h1>
+<p>0.0.0.0:9380</p>
+<h1 id="ssh9380docker-container22">表明只要ssh链接远程服务器的9380端口，实际是链接docker container中的22端口<a class="headerlink" href="#ssh9380docker-container22" title="Permanent link">¶</a></h1>
+<p>ssh root@&lt;服务器的ip地址&gt; -p 9380</p>
+<h1 id="passwdroot">可以进入容器，passwd命令可以修改容器root密码<a class="headerlink" href="#passwdroot" title="Permanent link">¶</a></h1>
+<div class="highlight"><pre><span></span><code><span class="err">- 进入容器配置ssh服务</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config修改以下位置</span><span class="err">：</span>
-<span class="o">#</span> <span class="n">Subsystem</span>  <span class="n">sftp</span>  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">libexec</span><span class="o">/</span><span class="n">openssh</span><span class="o">/</span><span class="n">sftp</span><span class="o">-</span><span class="n">server</span>
-<span class="n">Subsystem</span>  <span class="n">sftp</span>  <span class="n">internal</span><span class="o">-</span><span class="n">sftp</span>
-
-<span class="n">PubkeyAuthentication</span> <span class="n">yes</span> 
-
-<span class="n">AuthorizedKeysFile</span> <span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">authorized_keys</span> <span class="o">#</span><span class="err">公钥文件路径（和上面生成的文件同）</span>
-
-<span class="n">PermitRootLogin</span> <span class="n">yes</span>
+<h1 id="root">修改root密码<a class="headerlink" href="#root" title="Permanent link">¶</a></h1>
+<p>$ passwd</p>
+<h1 id="open-ssh">安装open-ssh<a class="headerlink" href="#open-ssh" title="Permanent link">¶</a></h1>
+<p>$ apt-get update
+$ apt-get install openssh-server</p>
+<p>$ vim  /etc/ssh/sshd_config</p>
+<p>$ server ssh restart</p>
+<div class="highlight"><pre><span></span><code>
 </code></pre></div>
-<p>最常见的问题就是docker容器停了以后里面的SSH服务也会相应停止，记得去docker里重启一下ssh服务：</p>
-<p><code>$ service ssh restart</code></p>
-<p><a href="https://www.cnblogs.com/ruiyang-/p/10158658.html">https://www.cnblogs.com/ruiyang-/p/10158658.html</a></p>
-<h2 id="_6">制作镜像并上传仓库<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
-<ul>
-<li>
-<p>dockerhub上创建仓库<code>jerrysu666/cuda10.0</code></p>
-</li>
-<li>
-<p>终端登录：<code>docker log</code></p>
-</li>
-<li>
-<p>制作镜像：<code>docker commit containerId dockerUserName/repoName</code></p>
-</li>
-<li>
-<p>镜像打标签：<code>docker tag imageName dockerUserName/repoName[:tag]</code></p>
-</li>
-<li>
-<p>推送镜像： <code>docker push dockerUserName/repoNme[:tag]</code></p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">tag</span> <span class="k">local</span><span class="o">-</span><span class="n">image</span><span class="p">:</span><span class="n">tagname</span> <span class="k">new</span><span class="o">-</span><span class="n">repo</span><span class="p">:</span><span class="n">tagname</span>
-<span class="n">docker</span> <span class="n">push</span> <span class="k">new</span><span class="o">-</span><span class="n">repo</span><span class="p">:</span><span class="n">tagname</span>
+<p>/etc/ssh/sshd_config修改以下位置：</p>
+<h1 id="subsystem-sftp-usrlibexecopensshsftp-server">Subsystem  sftp  /usr/libexec/openssh/sftp-server<a class="headerlink" href="#subsystem-sftp-usrlibexecopensshsftp-server" title="Permanent link">¶</a></h1>
+<p>Subsystem  sftp  internal-sftp</p>
+<p>PubkeyAuthentication yes </p>
+<p>AuthorizedKeysFile .ssh/authorized_keys #公钥文件路径（和上面生成的文件同）</p>
+<p>PermitRootLogin yes</p>
+<div class="highlight"><pre><span></span><code><span class="err">最常见的问题就是</span><span class="n">docker容器停了以后里面的SSH服务也会相应停止</span><span class="err">，记得去</span><span class="n">docker里重启一下ssh服务</span><span class="err">：</span>
 
-<span class="n">docker</span> <span class="n">push</span> <span class="n">jerrysu666</span><span class="o">/</span><span class="n">cuda10</span><span class="p">.</span><span class="mi">0</span><span class="p">:</span><span class="n">tagname</span>
+<span class="o">`</span><span class="err">$</span> <span class="n">service</span> <span class="n">ssh</span> <span class="k">restart</span><span class="o">`</span>
+
+<span class="p">[</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">cnblogs</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">ruiyang</span><span class="o">-/</span><span class="n">p</span><span class="o">/</span><span class="mi">10158658</span><span class="p">.</span><span class="n">html</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">cnblogs</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">ruiyang</span><span class="o">-/</span><span class="n">p</span><span class="o">/</span><span class="mi">10158658</span><span class="p">.</span><span class="n">html</span><span class="p">)</span>
+
+<span class="o">##</span> <span class="err">制作镜像并上传仓库</span>
+
+<span class="o">-</span> <span class="n">dockerhub上创建仓库</span><span class="o">`</span><span class="n">jerrysu666</span><span class="o">/</span><span class="n">cuda10</span><span class="p">.</span><span class="mi">0</span><span class="o">`</span>
+
+<span class="o">-</span> <span class="err">终端登录：</span><span class="o">`</span><span class="n">docker</span> <span class="n">log</span><span class="o">`</span>
+
+<span class="o">-</span> <span class="err">制作镜像：</span><span class="o">`</span><span class="n">docker</span> <span class="k">commit</span> <span class="n">containerId</span> <span class="n">dockerUserName</span><span class="o">/</span><span class="n">repoName</span><span class="o">`</span>
+
+<span class="o">-</span> <span class="err">镜像打标签：</span><span class="o">`</span><span class="n">docker</span> <span class="n">tag</span> <span class="n">imageName</span> <span class="n">dockerUserName</span><span class="o">/</span><span class="n">repoName</span><span class="p">[:</span><span class="n">tag</span><span class="p">]</span><span class="o">`</span>
+
+<span class="o">-</span> <span class="err">推送镜像：</span> <span class="o">`</span><span class="n">docker</span> <span class="n">push</span> <span class="n">dockerUserName</span><span class="o">/</span><span class="n">repoNme</span><span class="p">[:</span><span class="n">tag</span><span class="p">]</span><span class="o">`</span>
 </code></pre></div>
-<h2 id="docker-compose-dockerfile">docker-compose &amp;&amp; dockerfile<a class="headerlink" href="#docker-compose-dockerfile" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code><span class="s s-Atom">#</span> <span class="s s-Atom">docker</span><span class="o">-</span><span class="s s-Atom">compose</span>
-<span class="nn">version</span><span class="p">:</span> <span class="s2">"2.3"</span>
-<span class="nn">services</span><span class="p">:</span>
-  <span class="s s-Atom">detectron2:</span>
-    <span class="nn">build</span><span class="p">:</span>
-      <span class="nn">context</span><span class="p">:</span> <span class="p">.</span>
-      <span class="nn">dockerfile</span><span class="p">:</span> <span class="nv">Dockerfile</span>
-      <span class="nn">args</span><span class="p">:</span>
-        <span class="nv">USER_ID</span><span class="s s-Atom">:</span> <span class="err">$</span><span class="p">{</span><span class="nv">USER_ID</span><span class="p">:-</span><span class="mi">1000</span><span class="p">}</span>
-    <span class="nn">runtime</span><span class="p">:</span> <span class="s s-Atom">nvidia</span>
-    <span class="s s-Atom">shm_size:</span> <span class="s2">"8gb"</span>
-    <span class="nn">ulimits</span><span class="p">:</span>
-      <span class="nn">memlock</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
-      <span class="nn">stack</span><span class="p">:</span> <span class="mi">67108864</span>
-    <span class="nn">ports</span><span class="p">:</span>
-      <span class="o">-</span> <span class="s2">"8170:8170"</span>
-      <span class="o">-</span> <span class="s2">"8270:8270"</span>
-      <span class="o">-</span> <span class="s2">"8370:8370"</span>
-      <span class="o">-</span> <span class="s2">"8470:8470"</span>
-      <span class="o">-</span> <span class="s2">"8570:22"</span>
-    <span class="nn">volumes</span><span class="p">:</span>
-      <span class="o">-</span> <span class="o">/</span><span class="nn">data</span><span class="p">:</span><span class="o">/</span><span class="s s-Atom">home</span>
-    <span class="nn">environment</span><span class="p">:</span>
-      <span class="o">-</span> <span class="nv">DISPLAY</span><span class="s s-Atom">=</span><span class="err">$</span><span class="nv">DISPLAY</span>
-      <span class="o">-</span> <span class="nv">NVIDIA_VISIBLE_DEVICES</span><span class="o">=</span><span class="s s-Atom">all</span>
+<p>docker tag local-image:tagname new-repo:tagname
+docker push new-repo:tagname</p>
+<p>docker push jerrysu666/cuda10.0:tagname</p>
+<div class="highlight"><pre><span></span><code><span class="err">## docker-compose &amp;&amp; dockerfile</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code># dockerfile
-
-FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
-
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update <span class="err">&amp;&amp;</span> apt-get install -y \
-        python3-opencv ca-certificates python3-dev git wget sudo <span class="err">&amp;&amp;</span> \
-  rm -rf /var/lib/apt/lists/*
-
-# create a non-root user
-ARG USER_ID=1000
-RUN useradd -m --no-log-init --system  --uid <span class="cp">${</span><span class="n">USER_ID</span><span class="cp">}</span> appuser -g sudo
+<h1 id="docker-compose">docker-compose<a class="headerlink" href="#docker-compose" title="Permanent link">¶</a></h1>
+<p>version: "2.3"
+services:
+  detectron2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER_ID: <span class="math">\({USER_ID:-1000}
+    runtime: nvidia
+    shm_size: "8gb"
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    ports:
+      - "8170:8170"
+      - "8270:8270"
+      - "8370:8370"
+      - "8470:8470"
+      - "8570:22"
+    volumes:
+      - /data:/home
+    environment:
+      - DISPLAY=\)</span>DISPLAY
+      - NVIDIA_VISIBLE_DEVICES=all</p>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<h1 id="dockerfile">dockerfile<a class="headerlink" href="#dockerfile" title="Permanent link">¶</a></h1>
+<p>FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04</p>
+<p>ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update &amp;&amp; apt-get install -y \
+        python3-opencv ca-certificates python3-dev git wget sudo &amp;&amp; \
+  rm -rf /var/lib/apt/lists/*</p>
+<h1 id="create-a-non-root-user">create a non-root user<a class="headerlink" href="#create-a-non-root-user" title="Permanent link">¶</a></h1>
+<p>ARG USER_ID=1000
+RUN useradd -m --no-log-init --system  --uid ${USER_ID} appuser -g sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' &gt;&gt; /etc/sudoers
 USER appuser
-WORKDIR /home/appuser
-
-ENV PATH="/home/appuser/.local/bin:<span class="cp">${</span><span class="n">PATH</span><span class="cp">}</span>"
-RUN wget https://bootstrap.pypa.io/get-pip.py <span class="err">&amp;&amp;</span> \
-        python3 get-pip.py --user <span class="err">&amp;&amp;</span> \
-        rm get-pip.py
-
-# install dependencies
-# See https://pytorch.org/ for other options if you use a different version of CUDA
-RUN pip install --user torch torchvision tensorboard cython -i https://pypi.doubanio.com/simple
-RUN pip install --user 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
-
-RUN pip install --user 'git+https://github.com/facebookresearch/fvcore'
-# install detectron2
-RUN git clone https://github.com/facebookresearch/detectron2 detectron2_repo
-ENV FORCE_CUDA="1"
-# This will build detectron2 for all common cuda architectures and take a lot more time,
-# because inside `docker build`, there is no way to tell which architecture will be used.
-ENV TORCH_CUDA_ARCH_LIST="Kepler;Kepler+Tesla;Maxwell;Maxwell+Tegra;Pascal;Volta;Turing"
-RUN pip install --user -e detectron2_repo
-
-# Set a fixed model cache directory.
-ENV FVCORE_CACHE="/tmp"
+WORKDIR /home/appuser</p>
+<p>ENV PATH="/home/appuser/.local/bin:${PATH}"
+RUN wget https://bootstrap.pypa.io/get-pip.py &amp;&amp; \
+        python3 get-pip.py --user &amp;&amp; \
+        rm get-pip.py</p>
+<h1 id="install-dependencies">install dependencies<a class="headerlink" href="#install-dependencies" title="Permanent link">¶</a></h1>
+<h1 id="see-httpspytorchorg-for-other-options-if-you-use-a-different-version-of-cuda">See https://pytorch.org/ for other options if you use a different version of CUDA<a class="headerlink" href="#see-httpspytorchorg-for-other-options-if-you-use-a-different-version-of-cuda" title="Permanent link">¶</a></h1>
+<p>RUN pip install --user torch torchvision tensorboard cython -i https://pypi.doubanio.com/simple
+RUN pip install --user 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'</p>
+<p>RUN pip install --user 'git+https://github.com/facebookresearch/fvcore'</p>
+<h1 id="install-detectron2">install detectron2<a class="headerlink" href="#install-detectron2" title="Permanent link">¶</a></h1>
+<p>RUN git clone https://github.com/facebookresearch/detectron2 detectron2_repo
+ENV FORCE_CUDA="1"</p>
+<h1 id="this-will-build-detectron2-for-all-common-cuda-architectures-and-take-a-lot-more-time">This will build detectron2 for all common cuda architectures and take a lot more time,<a class="headerlink" href="#this-will-build-detectron2-for-all-common-cuda-architectures-and-take-a-lot-more-time" title="Permanent link">¶</a></h1>
+<h1 id="because-inside-docker-build-there-is-no-way-to-tell-which-architecture-will-be-used">because inside <code>docker build</code>, there is no way to tell which architecture will be used.<a class="headerlink" href="#because-inside-docker-build-there-is-no-way-to-tell-which-architecture-will-be-used" title="Permanent link">¶</a></h1>
+<p>ENV TORCH_CUDA_ARCH_LIST="Kepler;Kepler+Tesla;Maxwell;Maxwell+Tegra;Pascal;Volta;Turing"
+RUN pip install --user -e detectron2_repo</p>
+<h1 id="set-a-fixed-model-cache-directory">Set a fixed model cache directory.<a class="headerlink" href="#set-a-fixed-model-cache-directory" title="Permanent link">¶</a></h1>
+<p>ENV FVCORE_CACHE="/tmp"
 WORKDIR /home/appuser/detectron2_repo
-</code></pre></div>
+```</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
 
 
             
