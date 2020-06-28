@@ -84,6 +84,7 @@
 <li><a href="#redirected-output-gtgt">Redirected output &amp;gt;&amp;gt;</a></li>
 <li><a href="#pipes">Pipes |</a></li>
 <li><a href="#cat">cat</a></li>
+<li><a href="#grep-awk">grep &amp; awk</a></li>
 <li><a href="#chmod">chmod</a></li>
 <li><a href="#ps">ps</a></li>
 <li><a href="#unzip">unzip</a></li>
@@ -138,6 +139,10 @@ https://bash.cyberciti.biz/guide/Standard_output</p>
 </ul>
 <p><code>$ cat oldfile &gt; newfile</code></p>
 <p>https://www.cyberciti.biz/faq/howto-use-cat-command-in-unix-linux-shell-script/</p>
+<h2 id="grep-awk">grep &amp; awk<a class="headerlink" href="#grep-awk" title="Permanent link">¶</a></h2>
+<p>grep 行处理  awk 列处理</p>
+<p><code>cat jupyter_notebook_config.json | grep  password | awk -F '"' '{print $4}'</code></p>
+<p><code>PWD=$(cat jupyter_notebook_config.json | grep  password | awk -F '"' '{print $4}')</code></p>
 <h2 id="chmod">chmod<a class="headerlink" href="#chmod" title="Permanent link">¶</a></h2>
 <p><code>$ chmod +x tarbackup.sh</code></p>
 <p><code>$ ./tarbackup.sh</code></p>
