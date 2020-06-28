@@ -228,6 +228,26 @@
 </code></pre></div>
 <p><a href="http://luly.lamost.org/blog/python_multiprocessing.html">luly.lamost.org/blog/python_multiprocessing</a></p>
 <h3 id="_3">加载分布式模型到单卡<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">RuntimeError</span><span class="o">:</span> <span class="n">Error</span><span class="o">(</span><span class="n">s</span><span class="o">)</span> <span class="k">in</span> <span class="n">loading</span> <span class="n">state_dict</span> <span class="k">for</span> <span class="n">MHRED</span><span class="o">:</span>
+<span class="n">Missing</span> <span class="n">key</span><span class="o">(</span><span class="n">s</span><span class="o">)</span> <span class="k">in</span> <span class="n">state_dict</span><span class="o">:</span> <span class="s2">"encoder.embedding.weight"</span><span class="o">,</span> <span class="o">...</span>
+<span class="n">Unexpected</span> <span class="n">key</span><span class="o">(</span><span class="n">s</span><span class="o">)</span> <span class="k">in</span> <span class="n">state_dict</span><span class="o">:</span> <span class="s2">"module.encoder.embedding.weight"</span><span class="o">,</span> <span class="o">...</span>
+</code></pre></div>
+<p>Distributed包装的模型在保存时，权值参数前面会带有module字符，然而自己在单卡环境下，没有用Distributed包装的模型权值参数不带module。</p>
+<p>方案一：保存模型时把module去掉</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">gpu_ids</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+  <span class="n">t</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s2">"model.pth"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">t</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s2">"model.pth"</span><span class="p">)</span>
+</code></pre></div>
+<p>方案二： 创建新的模型OrderedDict不包含module</p>
+<div class="highlight"><pre><span></span><code><span class="n">loc</span> <span class="o">=</span> <span class="s1">'cuda:</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">gpu</span><span class="p">)</span>
+<span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">checkpoint_path</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="n">loc</span><span class="p">)</span>
+<span class="n">checkpoint_new</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">checkpoint</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">[</span><span class="mi">7</span><span class="p">:]</span>  <span class="c1"># remove `module.`</span>
+    <span class="n">checkpoint_new</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint_new</span><span class="p">)</span>
+</code></pre></div>
 <blockquote>
 <p>when loading the module, you need to provide an appropriate map_location argument to prevent a process to step into others’ devices. If map_location is missing, torch.load will first load the module to CPU and then copy each parameter to where it was saved, which would result in all processes on the same machine using the same set of devices</p>
 </blockquote>
