@@ -216,12 +216,13 @@ $ <span class="nb">export</span> <span class="nv">LANG</span><span class="o">=</
 
 <span class="err">$</span><span class="p">:</span> <span class="n">jupyter</span> <span class="n">notebook</span> <span class="n">password</span>
 </code></pre></div>
-<p>生成密钥： <code>jupyter_notebook_config.josn</code></p>
+<p>生成密钥： <code>jupyter_notebook_config.json</code></p>
 <p>修改文件： <code>jupyter_notebook_config.py</code></p>
 <div class="highlight"><pre><span></span><code><span class="err">c.NotebookApp.ip='*'</span>
-<span class="err">c.NotebookApp.password = u'生成的密钥'</span>
+<span class="err">c.NotebookApp.password = u'生成的密钥' #  jupyter_notebook_config.json文件中的password字段</span>
 <span class="err">c.NotebookApp.open_browser = False</span>
-<span class="err">c.NotebookApp.port =8888 #可指定一个端口, 访问时使用该端口（虽然运行jupyter时可以直接指定端口）</span>
+<span class="err">c.NotebookApp.port = 8888 #可指定一个端口, 访问时使用该端口（虽然运行jupyter时可以直接指定端口）</span>
+<span class="err">c.NotebookApp.notebook_dir = '/home'  # 自定义启动目录</span>
 </code></pre></div>
 <p><a href="https://blog.csdn.net/qq_42001765/article/details/96144442">https://blog.csdn.net/qq_42001765/article/details/96144442</a></p>
 <ul>
