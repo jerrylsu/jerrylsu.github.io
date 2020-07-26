@@ -18,12 +18,12 @@
 
 <meta property="og:title" content="【NLP】Attention"/>
 <meta property="og:url" content="https://www.jerrulsu.com/【NLP】Attention.html" />
-<meta property="og:description" content="http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention context attention¶ Encoder and Decoder class Attention(nn.Module): def __init__(self, method, hidden_size): super(Attention, self).__init__() self.method = method self.hidden_size = hidden_size if self.method == &#39;general&#39;: self.attention = nn.Linear(self.hidden_size, self.hidden_size) elif self.method == &#39;concat&#39;: self.attention = nn.Linear(self …" />
+<meta property="og:description" content="http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention Context attention¶ Encoder and Decoder class Attention(nn.Module): def __init__(self, method, hidden_size): super(Attention, self).__init__() self.method = method self.hidden_size = hidden_size if self.method == &#39;general&#39;: self.attention = nn.Linear(self.hidden_size, self.hidden_size) elif self.method == &#39;concat&#39;: self.attention = nn.Linear(self …" />
 <meta property="og:site_name" content="Jerry Su&#39;s Blog" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-03-28T05:49:41+08:00" />
 <meta name="twitter:title" content="【NLP】Attention">
-<meta name="twitter:description" content="http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention context attention¶ Encoder and Decoder class Attention(nn.Module): def __init__(self, method, hidden_size): super(Attention, self).__init__() self.method = method self.hidden_size = hidden_size if self.method == &#39;general&#39;: self.attention = nn.Linear(self.hidden_size, self.hidden_size) elif self.method == &#39;concat&#39;: self.attention = nn.Linear(self …">
+<meta name="twitter:description" content="http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention Context attention¶ Encoder and Decoder class Attention(nn.Module): def __init__(self, method, hidden_size): super(Attention, self).__init__() self.method = method self.hidden_size = hidden_size if self.method == &#39;general&#39;: self.attention = nn.Linear(self.hidden_size, self.hidden_size) elif self.method == &#39;concat&#39;: self.attention = nn.Linear(self …">
 
         <title>【NLP】Attention · Jerry Su&#39;s Blog
 </title>
@@ -80,9 +80,9 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#context-attention">context attention</a></li>
-<li><a href="#self-attention">self attention</a></li>
-<li><a href="#masked-self-attention">masked self attention</a></li>
+<li><a href="#context-attention">Context attention</a></li>
+<li><a href="#self-attention">Self attention</a></li>
+<li><a href="#masked-self-attention">Masked self attention</a></li>
 </ul>
 </div>
         </nav>
@@ -91,7 +91,7 @@
             
             
 <p><a href="http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention">http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention</a></p>
-<h3 id="context-attention">context attention<a class="headerlink" href="#context-attention" title="Permanent link">¶</a></h3>
+<h3 id="context-attention">Context attention<a class="headerlink" href="#context-attention" title="Permanent link">¶</a></h3>
 <p>Encoder and Decoder</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Attention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">):</span>
@@ -137,9 +137,9 @@
 <span class="n">concat_input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">last_hidden</span><span class="p">,</span> <span class="n">context</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">concat_output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">concat_input</span><span class="p">))</span>
 </code></pre></div>
-<h3 id="self-attention">self attention<a class="headerlink" href="#self-attention" title="Permanent link">¶</a></h3>
+<h3 id="self-attention">Self attention<a class="headerlink" href="#self-attention" title="Permanent link">¶</a></h3>
 <p>Encoder or Decoder</p>
-<h3 id="masked-self-attention">masked self attention<a class="headerlink" href="#masked-self-attention" title="Permanent link">¶</a></h3>
+<h3 id="masked-self-attention">Masked self attention<a class="headerlink" href="#masked-self-attention" title="Permanent link">¶</a></h3>
 <p>Decoder </p>
 <p>padding masked &amp; sequence masked</p>
 <p><img alt="attention" src="../images/RASA/self_attention.png"/></p>
