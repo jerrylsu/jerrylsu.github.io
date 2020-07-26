@@ -5,42 +5,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/</loc>
-<lastmod>2020-07-23T02:37:56-00:00</lastmod>
+<lastmod>2020-07-26T11:04:38-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/tags.html</loc>
-<lastmod>2020-07-23T02:37:56-00:00</lastmod>
+<lastmod>2020-07-26T11:04:38-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/categories.html</loc>
-<lastmod>2020-07-23T02:37:56-00:00</lastmod>
+<lastmod>2020-07-26T11:04:38-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/authors.html</loc>
-<lastmod>2020-07-23T02:37:56-00:00</lastmod>
+<lastmod>2020-07-26T11:04:38-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/archives.html</loc>
-<lastmod>2020-07-23T02:37:56-00:00</lastmod>
+<lastmod>2020-07-26T11:04:38-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/search.html</loc>
-<lastmod>2020-07-23T02:37:56-00:00</lastmod>
+<lastmod>2020-07-26T11:04:38-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -55,6 +55,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.jerrulsu.com/pages/contact.html</loc>
 <lastmod>2019-05-04T15:04:40+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://www.jerrulsu.com/NLP-Resources.html</loc>
+<lastmod>2020-07-26T11:01:49+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -796,7 +803,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/category/nlp.html</loc>
-<lastmod>2020-07-11T11:04:54+08:06</lastmod>
+<lastmod>2020-07-26T11:01:49+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -886,6 +893,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://www.jerrulsu.com/tag/nlp.html</loc>
+<lastmod>2020-07-26T11:01:49+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://www.jerrulsu.com/tag/pytorch.html</loc>
 <lastmod>2020-07-22T09:01:13+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -894,13 +908,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/tag/deep-learning.html</loc>
-<lastmod>2020-07-11T11:04:54+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://www.jerrulsu.com/tag/nlp.html</loc>
 <lastmod>2020-07-11T11:04:54+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -1202,7 +1209,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/author/jerry-su.html</loc>
-<lastmod>2020-07-22T09:01:13+08:06</lastmod>
+<lastmod>2020-07-26T11:01:49+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
