@@ -5,42 +5,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://www.jerrulsu.com/</loc>
-<lastmod>2020-07-26T13:40:10-00:00</lastmod>
+<lastmod>2020-08-19T07:11:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/tags.html</loc>
-<lastmod>2020-07-26T13:40:10-00:00</lastmod>
+<lastmod>2020-08-19T07:11:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/categories.html</loc>
-<lastmod>2020-07-26T13:40:10-00:00</lastmod>
+<lastmod>2020-08-19T07:11:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/authors.html</loc>
-<lastmod>2020-07-26T13:40:10-00:00</lastmod>
+<lastmod>2020-08-19T07:11:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/archives.html</loc>
-<lastmod>2020-07-26T13:40:10-00:00</lastmod>
+<lastmod>2020-08-19T07:11:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://www.jerrulsu.com/search.html</loc>
-<lastmod>2020-07-26T13:40:10-00:00</lastmod>
+<lastmod>2020-08-19T07:11:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -650,13 +650,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.jerrulsu.com/C++.html</loc>
 <lastmod>2018-05-09T15:42:27+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://www.jerrulsu.com/ILB.html</loc>
-<lastmod>2018-03-06T11:50:03+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
