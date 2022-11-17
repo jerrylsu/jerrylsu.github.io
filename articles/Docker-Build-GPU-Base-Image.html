@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Docker-Build-GPU-Base-Image.html" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-09-04 09:26:47+07:00" />
+<meta property="article:published_time" content="2021-09-04 09:26:47+08:00" />
 <meta property="article:modified_time" content="" />
 <meta property="article:author" content="../author/jerry-su.html">
 <meta property="article:section" content="Tools" />
@@ -190,7 +190,7 @@ ga('send', 'pageview');
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://twitter.com/jerrylsu">
+                    <a class="nav-link" href="https://twitter.com/Jerrylsu666">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <title>Twitter</title>
                             <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z" fill="currentColor"></path>
@@ -279,7 +279,7 @@ ga('send', 'pageview');
 <p>./configure&nbsp;&#8212;prefix=/usr/local/python/python3</p>
 <p>make &amp;&amp; make&nbsp;install</p>
 <p>直接make &amp;&amp; make install会报错：zipimport.ZipImportError: can&#8217;t decompress data; zlib not&nbsp;available，先如下解决：</p>
-<p>vim Modules/Setup  # 把#zlib zlibmodule.c -I$(prefix)/include -L$(exec_prefix)/lib -lz&nbsp;注释去掉</p>
+<p>vim Modules/Setup  # 把#zlib zlibmodule.c -I<span class="math">\((prefix)/include -L\)</span>(exec_prefix)/lib -lz&nbsp;注释去掉</p>
 <p>cd /usr/local/Python-3.6.8/Modules/zlib &amp;&amp; ./configure &amp;&amp; make&nbsp;install</p>
 <p>cd&nbsp;/usr/local/Python-3.6.8</p>
 <h2 id="_1">设置软链接</h2>
@@ -305,6 +305,68 @@ ga('send', 'pageview');
 <p>docker export -o gpu_python3.tar&nbsp;8020a9753211(容器号)</p>
 <p>docker import gpu_python3.tar&nbsp;nvidia/cuda:1.9.0-cuda10.2-cudnn7-runtime-python3</p>
 <p>docker tag nvidia/cuda:1.9.0-cuda10.2-cudnn7-runtime-python3&nbsp;image:tag</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
         </div>
 
         <!-- Neighbors -->
@@ -335,7 +397,7 @@ ga('send', 'pageview');
         <hr>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    var disqus_shortname = 'vuquangtrong-github-io';
+    var disqus_shortname = 'jerrylsu-github-io';
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -380,7 +442,7 @@ ga('send', 'pageview');
     "@type": "BlogPosting",
     "name": "Docker Build GPU Base Image",
     "headline": "Docker Build GPU Base Image",
-    "datePublished": "2021-09-04 09:26:47+07:00",
+    "datePublished": "2021-09-04 09:26:47+08:00",
     "dateModified": "",
     "author": {
         "@type": "Person",

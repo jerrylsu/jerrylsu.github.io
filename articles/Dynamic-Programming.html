@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Dynamic-Programming.html" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-06-01 01:40:10+07:00" />
+<meta property="article:published_time" content="2019-06-01 01:40:10+08:00" />
 <meta property="article:modified_time" content="" />
 <meta property="article:author" content="../author/jerry-su.html">
 <meta property="article:section" content="Algorithms" />
@@ -191,7 +191,7 @@ ga('send', 'pageview');
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://twitter.com/jerrylsu">
+                    <a class="nav-link" href="https://twitter.com/Jerrylsu666">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <title>Twitter</title>
                             <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z" fill="currentColor"></path>
@@ -567,7 +567,7 @@ ga('send', 'pageview');
 <p>转移方程： </p>
 </li>
 </ul>
-<p>$$dp[i] = \begin{cases} nums[i], &amp;\ dp[i-1] \leq 0 &#92; dp[i-1] + nums[i], &amp;\ dp[i-1] &gt; 0&nbsp;\end{cases}$$</p>
+<div class="math">$$dp[i] = \begin{cases} nums[i], &amp;\ dp[i-1] \leq 0 \\\ dp[i-1] + nums[i], &amp;\ dp[i-1] &gt; 0 \end{cases}$$</div>
 <p>注：因为是连续子数组，所以dp[i]当前状态，只能由dp[i-1]状态推来。</p>
 <ul>
 <li>转移方程代码实现： dp[i] = max(dp[i-1] + nums[i],&nbsp;nums[i])</li>
@@ -580,9 +580,9 @@ ga('send', 'pageview');
 </ul>
 <p>若dp[i-1] &gt; 0： dp[i] = dp[i-1] +&nbsp;nums[i]</p>
 <ul>
-<li>nums[i]加上正dp[i-1]一定比自身大，取$dp[i-1] +&nbsp;nums[i]$</li>
+<li>nums[i]加上正dp[i-1]一定比自身大，取<span class="math">\(dp[i-1] +&nbsp;nums[i]\)</span></li>
 </ul>
-<p>由于dp[i]仅与dp的前一个状态有关，即在计算dp[i]时，$dp[i-2],dp[i-3]&#8230;,dp[0]$对于dp[i]没有影响，因此可以空间优化省去dp数组。</p>
+<p>由于dp[i]仅与dp的前一个状态有关，即在计算dp[i]时，<span class="math">\(dp[i-2],dp[i-3]...,dp[0]\)</span>对于dp[i]没有影响，因此可以空间优化省去dp数组。</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">maxSubArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span> 
         <span class="k">return</span>
@@ -688,13 +688,13 @@ ga('send', 'pageview');
 <p>状态的定义：&nbsp;dp[i]到金额i（类似于台阶）所需要的最少硬币数。</p>
 </li>
 <li>
-<p>转移方程： $dp[i]  = min(dp[i-coin_1],\ dp[i-coin_2],&#8230;,\&nbsp;dp[i-coin_n])$</p>
+<p>转移方程： <span class="math">\(dp[i]  = min(dp[i-coin_1],\ dp[i-coin_2],...,\&nbsp;dp[i-coin_n])\)</span></p>
 </li>
 <li>
 <p>初始状态：dp[0] = 0：面值为0需要0个硬币数; 若硬币面值有2， 5，&nbsp;7三种，则dp[1]是转移方程无法计算出的，所以也需要手工初始化，因为这里求最小所以将其初始化为无穷大float(&#8216;inf&#8217;)。</p>
 </li>
 </ul>
-<p>时间复杂度$O(M*N)$：&nbsp;M是待兑换的总金额，从1递推到M；N是可以兑换的硬币种类数，也是loop所有币种。</p>
+<p>时间复杂度<span class="math">\(O(M*N)\)</span>：&nbsp;M是待兑换的总金额，从1递推到M；N是可以兑换的硬币种类数，也是loop所有币种。</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">coinChange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coins</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)]</span> <span class="o">*</span> <span class="n">amount</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">amount</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
@@ -703,6 +703,69 @@ ga('send', 'pageview');
                 <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">coin</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># dp[i]迭代放置最小状态， 1表示加上一个面值硬币后的最少硬币数</span>
     <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
 </code></pre></div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
         </div>
 
         <!-- Neighbors -->
@@ -734,7 +797,7 @@ ga('send', 'pageview');
         <hr>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-    var disqus_shortname = 'vuquangtrong-github-io';
+    var disqus_shortname = 'jerrylsu-github-io';
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -779,7 +842,7 @@ ga('send', 'pageview');
     "@type": "BlogPosting",
     "name": "Dynamic Programming",
     "headline": "Dynamic Programming",
-    "datePublished": "2019-06-01 01:40:10+07:00",
+    "datePublished": "2019-06-01 01:40:10+08:00",
     "dateModified": "",
     "author": {
         "@type": "Person",
