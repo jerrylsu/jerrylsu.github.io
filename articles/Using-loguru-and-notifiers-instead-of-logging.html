@@ -26,7 +26,7 @@
 <meta property="article:author" content="../author/jerry-su.html">
 <meta property="article:section" content="Programming" />
 	<meta property="article:tag" content="Python" />
-	<meta property="og:image" content="../extra/jerry.jpg">
+	<meta property="og:image" content="../jerry.jpg">
 
         <!-- Site Claim -->
 
@@ -387,7 +387,7 @@ import&nbsp;notifiers</p>
         "name": "Jerry Su",
         "url": "../author/jerry-su.html"
     },
-    "image": "../extra/jerry.jpg",
+    "image": "../jerry.jpg",
     "url": "../articles/Using-loguru-and-notifiers-instead-of-logging.html",
     "description": "Configuring loguru Recording logging from loguru import logger import tempfile import notifiers Configuring loguru def email(file_path: str, to: list): with open(file_path, 'r') as file: msg = file.read() if not msg: return params = { "subject": 'Title', "from": "receivers@163.com", "to": to, "host": "smtp.163.com", } notifier = notifiers.get_notifier("email …"
 }
