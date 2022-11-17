@@ -217,6 +217,83 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Deploy-model-in-production.html">Deploy model in&nbsp;production</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Sep 23, 2020</span></span>
+                <p><div class="toc">
+<ul>
+<li><a href="#install-wsgi-using-code">Install wsgi using&nbsp;code</a></li>
+<li><a href="#install-wsgi-using-pip">Install wsgi using&nbsp;pip</a></li>
+<li><a href="#load-wsgi-module-in-ubuntu">Load wsgi module in&nbsp;Ubuntu</a></li>
+<li><a href="#how-do-i-use-a-conda-environment-with-mod_wsgi">How do I use a conda environment with&nbsp;mod_wsgi?</a></li>
+</ul>
+</div>
+<h3 id="install-wsgi-using-code">Install wsgi using&nbsp;code</h3>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/GrahamDumpleton/mod_wsgi
+
+apt-get install apache2-dev
+
+apt-get install python-dev
+
+cd mod_wsgi/
+
+./configure
+
+make
+
+make install
+</code></pre></div>
+
+<h3 id="install-wsgi-using-pip">Install wsgi using&nbsp;pip</h3>
+<p><code>apt-get …</code></p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~83 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Deploy-model-in-production.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/tools.html">tools</a>
+                            <a class="badge badge-info" href="../tag/tools.html">tools</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/NLP-Resources.html"><span class="caps">NLP</span>&nbsp;Resources</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 26, 2020</span></span>
+                <p><div class="toc">
+<ul>
+<li><a href="#paper">Paper</a></li>
+<li><a href="#project">Project</a></li>
+</ul>
+</div>
+<h3 id="paper">Paper</h3>
+<p><a href="https://nlp.stanford.edu/pubs/emnlp15_attn.pdf">Effective Approaches to Attention-based Neural Machine&nbsp;Translation</a></p>
+<p><a href="https://arxiv.org/abs/1706.03762">Attention is All You&nbsp;Need</a></p>
+<p><a href="https://arxiv.org/pdf/1910.13461.pdf"><span class="caps">BART</span>: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and&nbsp;Comprehension</a></p>
+<p><a href="https://arxiv.org/abs/1910.00486"><span class="caps">RASA</span>: Dialogue&nbsp;Transformers</a></p>
+<h3 id="project">Project</h3>
+<p><a href="https://huggingface.co/transformers">Transformers</a></p>
+<p><a href="https://github.com/microsoft/nlp-recipes">Microsoft <span class="caps">NLP</span> best practices: Best practices and examples on <span class="caps">NLP</span>.</a></p>
+<p><a href="https://rasa.com/docs"><span class="caps">RASA</span></a></p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~42 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/NLP-Resources.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="../tag/nlp.html">nlp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
                     <a href="../articles/Pytorch-Transformer.html">Pytorch&nbsp;Transformer</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 22, 2020</span></span>
@@ -473,73 +550,6 @@ ga('send', 'pageview');
                         <a class="badge badge-success" href="../category/algorithms.html">algorithms</a>
                             <a class="badge badge-info" href="../tag/algorithm.html">algorithm</a>
                             <a class="badge badge-info" href="../tag/sorting.html">sorting</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/C++.html">C++</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 09, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#1">1. 基于对象的程序设计</a><ul>
-<li><a href="#11">1.1&nbsp;不含指针成员的类</a></li>
-<li><a href="#12">1.2&nbsp;含有指针成员的类</a></li>
-<li><a href="#13-new">1.3&nbsp;new</a></li>
-<li><a href="#14-delete">1.4&nbsp;delete</a></li>
-<li><a href="#15-this">1.5&nbsp;this</a></li>
-<li><a href="#16-static">1.6&nbsp;static</a></li>
-<li><a href="#17">1.7&nbsp;单例模式</a></li>
-<li><a href="#18-class-template">1.8 …</a></li></ul></li></ul></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~741 words">Read in 3 mins</span>
-                            <span class="card-link"><a href="../articles/C++.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/c.html">c++</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/LinkedList.html">LinkedList</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 09, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">链表结点定义</a></li>
-<li><a href="#_2">链表基本操作</a><ul>
-<li><a href="#remove-duplicates-from-sorted-list">Remove Duplicates from Sorted&nbsp;List</a></li>
-<li><a href="#reverse-linked-list">Reverse Linked&nbsp;List</a></li>
-<li><a href="#merge-two-sorted-lists">Merge Two Sorted&nbsp;Lists</a></li>
-<li><a href="#merge-k-sorted-lists">Merge k Sorted&nbsp;Lists</a></li>
-<li><a href="#sort-list">Sort&nbsp;List</a></li>
-</ul>
-</li>
-<li><a href="#dummy">擅用Dummy节点</a><ul>
-<li><a href="#remove-duplicates-from-sorted-list-ii">Remove Duplicates from Sorted List <span class="caps">II</span></a></li>
-<li><a href="#partition-list">Partition&nbsp;List</a></li>
-</ul>
-</li>
-<li><a href="#_3">快慢指针</a></li>
-<li><a href="#_4">综合设计</a><ul>
-<li><a href="#lru-cache"><span class="caps">LRU …</span></a></li></ul></li></ul></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~797 words">Read in 4 mins</span>
-                            <span class="card-link"><a href="../articles/LinkedList.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/algorithms.html">algorithms</a>
-                            <a class="badge badge-info" href="../tag/algorithm.html">algorithm</a>
-                            <a class="badge badge-info" href="../tag/linked-list.html">linked list</a>
                     </div>
                 </div>
             </div>

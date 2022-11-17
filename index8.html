@@ -218,6 +218,89 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="./articles/Spark:-Shuffling-and-Partitioning.html">Spark: Shuffling and&nbsp;Partitioning</a>
+                </h5>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 11, 2019</span></span>
+                <p><div class="toc">
+<ul>
+<li><a href="#shuffling">Shuffling</a><ul>
+<li><a href="#orgapachesparkrddrddstring-int-shuffledrdd366">org.apache.spark.rdd.<span class="caps">RDD</span>[(String, Int)]=&nbsp;ShuffledRDD[366]</a></li>
+<li><a href="#grouping-and-reducing-example">Grouping and Reducing,&nbsp;Example</a></li>
+<li><a href="#reminder-latency">Reminder:&nbsp;Latency</a></li>
+<li><a href="#grouping-and-reducing-example-optimized">Grouping and Reducing, Example -&nbsp;Optimized</a></li>
+<li><a href="#groupbykey-and-reducebykey-running-times">groupByKey and reduceByKey Running&nbsp;Times</a></li>
+<li><a href="#shuffling_1">Shuffling</a></li>
+</ul>
+</li>
+<li><a href="#partitioning">Partitioning</a><ul>
+<li><a href="#partitions">Partitions</a></li>
+<li><a href="#hash-partitioning">Hash partitioning</a><ul>
+<li><a href="#hash-partitioning-example">Hash Partitioning:&nbsp;Example</a></li>
+</ul>
+</li>
+<li><a href="#range-partitioning">Range partitioning</a><ul>
+<li><a href="#range-partitioning-example">Range Partitioning:&nbsp;Example</a></li>
+</ul>
+</li>
+<li><a href="#partitioning-data">Partitioning Data</a><ul>
+<li><a href="#partitioning-data-partitionby">Partitioning Data:&nbsp;partitionBy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="shuffling">Shuffling</h1>
+<h2 id="orgapachesparkrddrddstring-int-shuffledrdd366">org.apache.spark.rdd.<span class="caps">RDD …</span></h2></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~524 words">Read in 3 mins</span>
+                            <span class="card-link"><a href="./articles/Spark:-Shuffling-and-Partitioning.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="./category/programming.html">programming</a>
+                            <a class="badge badge-info" href="./tag/spark.html">spark</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="./articles/Scala with Gradle in Intellij.html">Scala with Gradle in&nbsp;Intellij</a>
+                </h5>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 28, 2019</span></span>
+                <p><div class="toc">
+<ul></ul>
+</div>
+<ol>
+<li>
+<p>Create a directory (e.g., demo_proj) for your&nbsp;project.</p>
+</li>
+<li>
+<p>Run <code>gradle init --type scala-library</code> in terminal in the above&nbsp;directory.</p>
+</li>
+<li>
+<p>Import the directory as a Gradle project in&nbsp;IntelliJ.</p>
+</li>
+</ol>
+<p><a href="https://blog.csdn.net/wangdong5678999/article/details/70255451">IntelliJ如何导入Gradle项目</a><br>
+<a href="https://medium.com/@faizanahemad/apache-spark-setup-with-gradle-scala-and-intellij-2eeb9f30c02a">Apache Spark setup with Gradle, Scala and&nbsp;IntelliJ</a></p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~37 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Scala with Gradle in Intellij.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="./category/programming.html">programming</a>
+                            <a class="badge badge-info" href="./tag/scala.html">scala</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
                     <a href="./articles/Debugging-Spark-Application.html">Debugging Spark&nbsp;Application</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 26, 2019</span></span>
@@ -530,83 +613,6 @@ Spark RDD弹性分布式数据集
                     <div class=" float-right">
                         <a class="badge badge-success" href="./category/algorithms.html">algorithms</a>
                             <a class="badge badge-info" href="./tag/algorithm.html">algorithm</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Hexo-blog-sync-and-migration.html">Hexo blog sync and&nbsp;migration</a>
-                </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Oct 13, 2018</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#overview">Overview</a></li>
-<li><a href="#deploy-env-files-to-github">Deploy env files to&nbsp;github</a></li>
-<li><a href="#env-building-in-a-new-computer">Env building in a new&nbsp;computer</a></li>
-<li><a href="#sync-operation-on-two-computers">Sync operation on two&nbsp;computers</a></li>
-</ul>
-</div>
-<h2 id="overview">Overview</h2>
-<div class="highlight"><pre><span></span><code>HEXO
-├──.deploy_git/
-├──node_modules/
-├──public/
-├──scaffolds/
-├──source/
-├──themes/
-├──_config.yml
-├──.gitignore
-├──db.json
-├──debug.log
-└──package.json
-</code></pre></div>
-
-<p><code>.deploy_git</code> which same as <code>public/</code>:<code>hexo g -d</code> &#8212;-&gt; <code>username.github.io</code><br>
-<code>static files</code>: deploy github<br>
-<code>env …</code></p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~221 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/Hexo-blog-sync-and-migration.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="./category/tools.html">tools</a>
-                            <a class="badge badge-info" href="./tag/hexo.html">hexo</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Leetcode-Index.html">Leetcode&nbsp;Index</a>
-                </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Oct 08, 2018</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<p><font color=red>1. Two Sum</font><br>
-<a href="http://www.jerrulsu.com/2018/09/26/2-Add-Two-Numbers/"><strong><font color=green>2. Add Two Numbers</font></strong></a><br>
-<font color=red>4. Median of Two Sorted Arrays</font><br>
-<a href="http://www.jerrulsu.com/2018/10/06/5-Longest-Palindromic-Substring/"><strong><font color=green>5. Longest Palindromic Substring</font></strong></a><br>
-<a href="http://www.jerrulsu.com/2018/10/10/8-String-to-Integer-atoi/"><strong><font color=green>8. String to Integer (atoi)</font></strong></a><br>
-<font color=red>13. Roman to Integer</font><br>
-<font color=red>15. 3Sum</font><br>
-<a href="http://www.jerrulsu.com/2018/10/29/20-Valid-Parentheses/"><strong><font color=green>20. Valid Parentheses</font></strong></a><br>
-<a href="http://www.jerrulsu.com/2018/10/21/21-Merge-Two-Sorted-Lists/"><strong><font color=green>21. Merge Two Sorted Lists</font></strong></a><br>
-<a href="http://www.jerrulsu.com/2018/10/28/23-Merge-k-Sorted-Lists/"><strong><font color=green>23. Merge k Sorted Lists</font></strong></a><br>
-<font color=red>24. Swap Nodes in Pairs</font><br>
-<font color=red>25. Reverse Nodes in …</font></p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~436 words">Read in 2 mins</span>
-                            <span class="card-link"><a href="./articles/Leetcode-Index.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="./category/algorithms.html">algorithms</a>
-                            <a class="badge badge-info" href="./tag/leetcode.html">leetcode</a>
                     </div>
                 </div>
             </div>
