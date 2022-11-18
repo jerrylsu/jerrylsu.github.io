@@ -1,0 +1,564 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<head>
+
+        <!-- Required metadata tags -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- Default metadata -->
+    <meta name="author" content="Jerry Su" />
+    <meta name="description" content="Reason is the light and the light of life." />
+    <meta name="keywords" content="Linux">
+<meta property="og:site_name" content="JERRYLSU.NET" />
+<meta property="og:title" content="Linux" />
+<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="../articles/Linux.html" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-01-25 08:24:33+08:00" />
+<meta property="article:modified_time" content="" />
+<meta property="article:author" content="../author/jerry-su.html">
+<meta property="article:section" content="Tools" />
+	<meta property="article:tag" content="Linux" />
+	<meta property="og:image" content="../jerry.jpg">
+
+        <!-- Site Claim -->
+
+
+        <!-- Title -->
+        <title>
+    Linux &ndash; JERRYLSU.NET
+        </title>
+        
+        <!-- Icon -->
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon.ico" type="image/x-icon">
+
+        <!-- Search engine -->
+            <meta name="robots" content="" />
+
+        <!-- Feeds -->
+
+
+
+
+
+
+
+
+        <!-- Styles -->
+        <!--
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/css/bootstrap.min.css">
+        -->
+        <link rel="stylesheet" href="../theme/bootstrap/bootstrap.min.css">
+        <!--
+        <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
+        -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
+        <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
+        <!--
+        <link rel="stylesheet" href="../theme/extra/admonition.min.css">
+        -->
+        <link rel="stylesheet" href="../theme/style.css">
+
+        <!-- Google Analytics -->
+<script>
+(function(i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m) })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-42618265-2', 'auto');
+ga('send', 'pageview');
+</script>
+        <!-- Google Global Site Tag -->
+
+        <!-- Google Tag Manager -->
+
+        <!-- Google Adsense -->
+
+        <!-- Heap Analytic -->
+
+        <!-- Piwik Tracking -->
+
+        <!-- Matomo Tracking -->
+
+</head>
+
+<!-- Body -->
+<body class="d-flex flex-column" data-spy="scroll" data-target="#toc" data-offset="0" style="position: relative;">
+    <!-- Top anchor -->
+    <a href="#" id="backToTop" style="display: none; z-index: 1;" title="Back to top"><span></span></a>
+
+    <!-- Google tag manager -->
+
+    <!-- Navigation -->
+    <nav class="flex-shrink-0 navbar navbar-expand-md navbar-expand-lg navbar-dark bg-dark text-light shadow-sm">
+        <!-- Logo -->
+        <a class="navbar-brand" href="..">JERRYLSU.NET</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon small"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <!-- i18n subsites -->
+
+            <!-- Page links -->
+            <ul class="navbar-nav mr-auto text-center">
+                <li class="nav-item ">                           
+                    <a class="nav-link" href="..">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z" fill="currentColor"></path>
+                        </svg>
+                        Home <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../categories.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M16 6h-8v-6h8v6zm-8 12h-8v6h8v-6zm16 0h-8v6h8v-6zm-11-7v-3h-2v3h-8v5h2v-3h14v3h2v-5h-8z" fill="currentColor"></path>
+                        </svg>
+                        Categories
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../tags.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M10.605 0h-10.605v10.609l13.391 13.391 10.609-10.604-13.395-13.396zm-4.191 6.414c-.781.781-2.046.781-2.829.001-.781-.783-.781-2.048 0-2.829.782-.782 2.048-.781 2.829-.001.782.782.781 2.047 0 2.829z" fill="currentColor"></path>
+                        </svg>
+                        Tags
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../archives.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M1.8 9l-.8-4h22l-.8 4h-2.029l.39-2h-17.122l.414 2h-2.053zm18.575-6l.604-2h-17.979l.688 2h16.687zm3.625 8l-2 13h-20l-2-13h24zm-8 4c0-.552-.447-1-1-1h-6c-.553 0-1 .448-1 1s.447 1 1 1h6c.553 0 1-.448 1-1z" fill="currentColor"></path>
+                        </svg>
+                        Archives
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../pages/about.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z" fill="currentColor"></path>
+                        </svg>
+                        About
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Search form -->
+            <form class="form-inline text-center" action="../search.html">
+                <input class="form-control w-100 bg-dark text-light text-center border-0 p-2" type="text" name="q" pattern=".{3,}" title="At least 3 characters" required="" placeholder="Type here to search" aria-label="Search">
+            </form>
+
+            <!-- Social links -->
+            <ul class="navbar-nav text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://facebook.com/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Facebook</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Github</title>
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.linkedin.com/in/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Linkedin</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://twitter.com/Jerrylsu666">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Twitter</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Full page -->
+    <div class="flex-shrink-0 flex-grow-1">
+
+        <!-- Header -->
+        <header class="bg-dark text-light shadow-sm pt-3 pb-2">
+	<div class="container">
+		<h3 id="Linux">Linux</h3>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
+        <div class="row mx-auto mt-3">
+            <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
+                <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
+                <span class="card-link text-success">
+                    <span class="post-date" title="Post date">Jan 25, 2019</span>
+                    <span class="text-info modified-date" title="Updated date">
+                            Jan 25, 2019
+                    </span>
+                </span>
+                    <span class="card-link text-secondary" title="~625 words">3 mins</span>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
+                <a class="badge badge-success" href="../category/tools.html">tools</a>
+                    <a class="badge badge-info" href="../tag/linux.html">linux</a>
+            </div>
+        </div>
+	</div>
+        </header>
+
+        <!-- Main -->
+        <main class="py-3">
+                <div class="container">
+                    <!-- Sharing -->
+
+                    <!-- Content -->
+    <!-- 2 columns layout -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
+
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
+
+                <!-- Article -->
+                <h2 id="1-redirection-of-standard-output">1. Redirection of standard output <code>&gt;</code></h2>
+<p>The default standard output is the screen.<br>
+<code>&gt;</code> is output redirection symbol and syntax is:<br>
+<code>$ command &gt; output.file.name</code><br>&nbsp;https://bash.cyberciti.biz/guide/Standard_output</p>
+<h2 id="2-redirected-output">2. Redirected output <code>&gt;&gt;</code></h2>
+<p>Appending the output to the same file using <code>&gt;&gt;</code> operator.</p>
+<h2 id="3-pipes">3. Pipes <code>|</code></h2>
+<p>https://bash.cyberciti.biz/guide/Chapter_7:_Pipes_and_Filters</p>
+<h2 id="4-cat">4.&nbsp;cat</h2>
+<ul>
+<li><strong>Displaying The Contents of&nbsp;Files</strong></li>
+</ul>
+<p><code>$ cat filename</code></p>
+<p><code>$ cat file &gt; newfile</code></p>
+<p><a href="https://bash.cyberciti.biz/guide/Pipes">Use a pipe to filter data</a>:</p>
+<p><code>$ cat file | less</code></p>
+<ul>
+<li><strong>Concatenate&nbsp;files</strong></li>
+</ul>
+<p><code>$ cat file1 file2</code></p>
+<p><code>$ cat file1 file2 &gt;  newcombinedfile</code></p>
+<ul>
+<li><strong>Create new text&nbsp;files</strong></li>
+</ul>
+<p>note that if a file already exists, it will be&nbsp;overwritten. </p>
+<p><code>$ cat &gt; filename</code></p>
+<p><a href="https://bash.cyberciti.biz/guide/Appending_redirected_output">append the output to the same file</a> using <code>&gt;&gt;</code> operator:</p>
+<p><code>$ cat &gt;&gt; filename</code></p>
+<ul>
+<li><strong>Copy&nbsp;file</strong></li>
+</ul>
+<p><code>$ cat oldfile &gt; newfile</code></p>
+<p>https://www.cyberciti.biz/faq/howto-use-cat-command-in-unix-linux-shell-script/</p>
+<h2 id="5-grep-awk">5. grep <span class="amp">&amp;</span>&nbsp;awk</h2>
+<p>grep 行处理  awk&nbsp;列处理</p>
+<p><code>cat jupyter_notebook_config.json | grep  password | awk -F '"' '{print $4}'</code></p>
+<p><code>PWD=$(cat jupyter_notebook_config.json | grep  password | awk -F '"' '{print $4}')</code></p>
+<h2 id="6-chmod">6.&nbsp;chmod</h2>
+<p><code>$ chmod +x tarbackup.sh</code></p>
+<p><code>$ ./tarbackup.sh</code></p>
+<h2 id="7-ps">7.&nbsp;ps</h2>
+<p><code>ps -aux</code> 显示所有包含其他使用者的行程</p>
+<p><code>ps -aux | grep ssh</code> 与<code>grep</code>结合，查找特定进程</p>
+<p><code>ps -ef | grep  PID , 找到其父进程，然后 kill -9 父进程ID</code></p>
+<p><a href="https://www.cnblogs.com/ahcc08/p/3707925.html">kill -9&nbsp;pid</a></p>
+<h2 id="8-unzip">8.&nbsp;unzip</h2>
+<p><code>sudo apt-get install unzip</code></p>
+<p><code>unzip file.zip -d destination_folde</code></p>
+<p><a href="https://askubuntu.com/questions/86849/how-to-unzip-a-zip-file-from-the-terminal">unzip</a></p>
+<h2 id="9-tar">9.&nbsp;tar</h2>
+<p><code>tar -czvf ***.tar.gz directory</code></p>
+<p><code>tar -xzvf ***.tar.gz</code></p>
+<p><a href="https://www.cnblogs.com/52linux/archive/2012/03/04/2379738.html">https://www.cnblogs.com/52linux/archive/2012/03/04/2379738.html</a></p>
+<h2 id="10-windows-rn-to-linux-n">10. windows &#8216;\r\n&#8217; to linux&nbsp;&#8216;\n&#8217;</h2>
+<p><code>cat -A filename</code></p>
+<p><code>vim filename</code> &amp;&amp; <code>set ff=unix</code></p>
+<p><a href="https://superuser.com/questions/612435/cygwin-dos2unix-command-not-found/612440#612440">dos2unix&nbsp;tool</a></p>
+<h2 id="11-rsync">11.&nbsp;rsync</h2>
+<p>upload: <code>rsync -avh --progress --delete --exclude=analysis/ src_dir/ host:dest_dir</code></p>
+<p>download: <code>rsync -avh --progress host:dest_dir ./</code></p>
+<div class="highlight"><pre><span></span><code>-a, --archive     # 归档模式，表示以递归方式传输文件，并保持所有文件属性，等价于 -rlptgoD
+-r, --recursive   # 对子目录以递归模式处理
+-l, --links       # 保持符号链接文件
+-H, --hard-links  # 保持硬链接文件
+-p, --perms       # 保持文件权限
+-t, --times       # 保持文件时间信息
+-g, --group       # 保持文件属组信息
+-o, --owner       # 保持文件属主信息 (super-user only)
+-D                # 保持设备文件和特殊文件 (super-user only)
+
+-v, --verbose     # 详细输出模式
+-h, --human-readable # 输出文件大小使用易读的单位（如，K，M等）
+
+
+--exclude=PATTERN # 指定排除一个不需要传输的文件匹配模式 -exclude=&quot;*.iso&quot;, --exclude={&#39;file1.txt&#39;,&#39;dir1/*&#39;} 
+--exclude-from    # 指定一个本地文件，里面是需要排除的文件模式，每个模式一行。
+
+
+--delete 
+# 删除那些接收端还有而发送端已经不存在的文件。注意：如果--exclude传输排除的文件，--delete也不会删除接受端的这个文件。如果要删除，需要--delete-excluded指定。例如：rsync --delete exclude=&#39;.git&#39; 接受端不会因--delete而删除发射端排除在外没同步的.git文件，即保留接受端原有的.git文件; 除非指定--delete-excluded=&#39;.git&#39;，如rsync --delete exclude=&#39;.git&#39; --delete-excluded=&#39;.git&#39; 。
+
+
+
+--progress        # 在传输时显示传输过程
+
+-n参数或--dry-run参数模拟将要执行的操作，而并不真的执行。配合-v参数使用，可以看到哪些内容会被同步过去。
+</code></pre></div>
+
+<p><a href="http://www.ruanyifeng.com/blog/2020/08/rsync.html">http://www.ruanyifeng.com/blog/2020/08/rsync.html</a></p>
+<p><a href="https://download.samba.org/pub/rsync/rsync.html">https://download.samba.org/pub/rsync/rsync.html</a></p>
+<p><a href="https://rsync.samba.org/how-rsync-works.html">https://rsync.samba.org/how-rsync-works.html</a></p>
+<h2 id="12-ssh">12. <span class="caps">SSH</span></h2>
+<h3 id="ssh">SSH远程执行命令</h3>
+<p>远程执行命令： </p>
+<ul>
+<li>
+<p><code>ssh lsu1@xxx.xxx.xxx.xxx "df -h"</code></p>
+</li>
+<li>
+<p><code>ssh lsu1@xxx.xxx.xxx.xxx "df -h; ls"</code></p>
+</li>
+</ul>
+<p>远程执行本地脚本：</p>
+<ul>
+<li>
+<p><code>ssh lsu1@xxx.xxx.xxx.xxx &lt; test.sh</code></p>
+</li>
+<li>
+<p><code>ssh lsu1@xxx.xxx.xxx.xxx 'bash -s' &lt; test.sh helloworld</code>  #&nbsp;带参数</p>
+</li>
+</ul>
+<p>执行远程服务器上脚本：</p>
+<ul>
+<li><code>ssh lsu1@xxx.xxx.xxx.xxx "/home/lsu1/test.sh"</code>  #&nbsp;需要绝对路径</li>
+</ul>
+<h3 id="_1">无密钥登陆</h3>
+<p><span class="caps">SSH</span> Client :&nbsp;192.168.0.12</p>
+<p><span class="caps">SSH</span> Remote Host :&nbsp;192.168.0.11</p>
+<ol>
+<li>Create Authentication <span class="caps">SSH</span>-Kegen Keys on –&nbsp;192.168.0.12</li>
+</ol>
+<p><code>ssh-keygen -t rsa</code></p>
+<p><code>ssh-keygen -t rsa -b 4096 -m pem</code></p>
+<ol start="2">
+<li>Create .ssh Directory on –&nbsp;192.168.0.11</li>
+</ol>
+<p><code>ssh 192.168.0.11 mkdir -p .ssh</code></p>
+<ol start="3">
+<li>Upload Generated Public Keys to –&nbsp;192.168.0.11</li>
+</ol>
+<p><code>cat .ssh/id_rsa.pub | ssh 192.168.0.11 'cat &gt;&gt; .ssh/authorized_keys'</code></p>
+<p>best way: <code>ssh-copy-id -i ~/.ssh/id_rsa.pub lsu1@139.224.58.222</code></p>
+<ul>
+<li>Set Permissions on –&nbsp;192.168.0.11</li>
+</ul>
+<p><code>ssh 192.168.0.11 "chmod 700 .ssh; chmod 640 .ssh/authorized_keys"</code></p>
+<ul>
+<li>Set&nbsp;StrictModes</li>
+</ul>
+<p><code>sudo vim /etc/ssh/sshd_config</code> ===&gt; <code>StrictModes no</code></p>
+<p><code>sudo service ssh restart</code></p>
+<p><a href="https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps">https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps</a></p>
+<h3 id="auto-disconnect">Auto&nbsp;disconnect</h3>
+<div class="highlight"><pre><span></span><code>/etc/ssh/sshd_config
+
+ClientAliveInterval 60
+ClientAliveCountMax 3
+</code></pre></div>
+
+<p>restart&nbsp;sshd：</p>
+<p>Linux: <code>service sshd restart</code></p>
+<p><span class="caps">MAC</span>: service: command not&nbsp;found</p>
+<p><span class="caps">MAC</span>: <code>brew services start sshd</code></p>
+<h2 id="13-pip">13.&nbsp;pip</h2>
+<p><code>cd ~ &amp;&amp; mkdir .pip &amp;&amp; vim .pip/pip.conf</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">[global]</span><span class="w"></span>
+<span class="na">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://pypi.doubanio.com/simple/</span><span class="w"></span>
+<span class="na">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1000</span><span class="w"></span>
+<span class="k">[install]</span><span class="w"></span>
+<span class="na">use-mirrors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span><span class="w"></span>
+<span class="na">mirrors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://pypi.doubanio.com//</span><span class="w"></span>
+</code></pre></div>
+
+<h2 id="14">14.&nbsp;设置环境变量</h2>
+<ul>
+<li>Shell临时设置,&nbsp;终端关闭后失效</li>
+</ul>
+<p><code>export PATH=/cygdrive/c/Users/YCKJ2939/anaconda3:$PATH</code></p>
+<ul>
+<li>~/.bashrc永久设置，只对本用户可见</li>
+</ul>
+<p><code>echo 'export PATH=/cygdrive/c/Users/YCKJ2939/anaconda3:$PATH' &gt;&gt; ~/.bashrc</code></p>
+<p><code>source ~./bashrc</code></p>
+<ul>
+<li>/etc/profile永久设置，对所有用户可见</li>
+</ul>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps">How To Read and Set Environmental and Shell Variables on a Linux <span class="caps">VPS</span></a></p>
+<h2 id="15-lsof">15.&nbsp;lsof</h2>
+<p><code>lsof -i</code></p>
+<h2 id="16-siege">16.&nbsp;siege</h2>
+<p><a href="https://linux.die.net/man/1/siege">An <span class="caps">HTTP</span>/<span class="caps">HTTPS</span> stress&nbsp;tester</a></p>
+<p><code>siege http://localhost:8000/?q=pants -c10 -t10s</code></p>
+<h2 id="17-supervisor">17.&nbsp;supervisor</h2>
+<p><a href="http://supervisord.org/">Supervisor process control system for <span class="caps">UNIX</span></a></p>
+<h2 id="18-brew">18.&nbsp;brew</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/111014448"><span class="caps">MAC</span> install&nbsp;brew</a></p>
+<h2 id="19-iterm2-rzsz">19. iTerm2&nbsp;rzsz</h2>
+<p><a href="https://juejin.cn/post/6844904176707698695">https://juejin.cn/post/6844904176707698695</a></p>
+<h2 id="20-lsof">20.&nbsp;lsof</h2>
+<p>端口号占用情况<code>lsof -i:port</code></p>
+<h2 id="22-hostname">22.&nbsp;hostname</h2>
+<p><code>hostname -i</code></p>
+<h2 id="23-kill">23.&nbsp;kill</h2>
+<p><code>ps -ef|grep nginx|grep -v grep|cut -c 9-15|xargs kill -9</code></p>
+<p><a href="https://www.joshua317.com/article/36">https://www.joshua317.com/article/36</a></p>
+<h1 id="24-iterm2-powerline-oh-my-zsh">24. iTerm2 + powerline +&nbsp;oh-my-zsh</h1>
+<h1 id="25-iconv">25.&nbsp;iconv</h1>
+<p><code>iconv -c -f gbk -t utf8 file_name -o new_file_name</code></p>
+<h1 id="26-dev">26.&nbsp;/dev</h1>
+<div class="highlight"><pre><span></span><code><span class="n">lsu1</span><span class="err">@</span><span class="n">lsu1</span><span class="p">:</span><span class="o">~</span><span class="c1"># lsblk</span><span class="w"></span>
+<span class="n">NAME</span><span class="w">   </span><span class="n">MAJ</span><span class="p">:</span><span class="n">MIN</span><span class="w"> </span><span class="n">RM</span><span class="w"> </span><span class="n">SIZE</span><span class="w"> </span><span class="n">RO</span><span class="w"> </span><span class="n">TYPE</span><span class="w"> </span><span class="n">MOUNTPOINT</span><span class="w"></span>
+<span class="n">vda</span><span class="w">    </span><span class="mi">252</span><span class="p">:</span><span class="mi">0</span><span class="w">    </span><span class="mi">0</span><span class="w">  </span><span class="mi">40</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">disk</span><span class="w"></span>
+<span class="err">└─</span><span class="n">vda1</span><span class="w"> </span><span class="mi">252</span><span class="p">:</span><span class="mi">1</span><span class="w">    </span><span class="mi">0</span><span class="w">  </span><span class="mi">40</span><span class="n">G</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
+
+<span class="n">lsu1</span><span class="err">@</span><span class="n">lsu1</span><span class="p">:</span><span class="o">~</span><span class="c1"># df -h</span><span class="w"></span>
+<span class="n">Filesystem</span><span class="w">      </span><span class="n">Size</span><span class="w">  </span><span class="n">Used</span><span class="w"> </span><span class="n">Avail</span><span class="w"> </span><span class="n">Use</span><span class="o">%</span><span class="w"> </span><span class="n">Mounted</span><span class="w"> </span><span class="n">on</span><span class="w"></span>
+<span class="n">udev</span><span class="w">            </span><span class="mi">975</span><span class="n">M</span><span class="w">     </span><span class="mi">0</span><span class="w">  </span><span class="mi">975</span><span class="n">M</span><span class="w">   </span><span class="mi">0</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="w"></span>
+<span class="n">tmpfs</span><span class="w">           </span><span class="mi">200</span><span class="n">M</span><span class="w">  </span><span class="mf">6.5</span><span class="n">M</span><span class="w">  </span><span class="mi">193</span><span class="n">M</span><span class="w">   </span><span class="mi">4</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="n">run</span><span class="w"></span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vda1</span><span class="w">        </span><span class="mi">40</span><span class="n">G</span><span class="w">   </span><span class="mi">28</span><span class="n">G</span><span class="w">   </span><span class="mi">11</span><span class="n">G</span><span class="w">  </span><span class="mi">73</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
+<span class="n">tmpfs</span><span class="w">           </span><span class="mi">997</span><span class="n">M</span><span class="w">     </span><span class="mi">0</span><span class="w">  </span><span class="mi">997</span><span class="n">M</span><span class="w">   </span><span class="mi">0</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">shm</span><span class="w"></span>
+<span class="n">tmpfs</span><span class="w">           </span><span class="mf">5.0</span><span class="n">M</span><span class="w">     </span><span class="mi">0</span><span class="w">  </span><span class="mf">5.0</span><span class="n">M</span><span class="w">   </span><span class="mi">0</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">lock</span><span class="w"></span>
+<span class="n">tmpfs</span><span class="w">           </span><span class="mi">997</span><span class="n">M</span><span class="w">     </span><span class="mi">0</span><span class="w">  </span><span class="mi">997</span><span class="n">M</span><span class="w">   </span><span class="mi">0</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">fs</span><span class="o">/</span><span class="n">cgroup</span><span class="w"></span>
+<span class="n">overlay</span><span class="w">          </span><span class="mi">40</span><span class="n">G</span><span class="w">   </span><span class="mi">28</span><span class="n">G</span><span class="w">   </span><span class="mi">11</span><span class="n">G</span><span class="w">  </span><span class="mi">73</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">overlay2</span><span class="o">/</span><span class="mf">2263075e71</span><span class="n">fe3ecd347c2a33571546c607048e740de7da2eac72eec365c6b429</span><span class="o">/</span><span class="n">merged</span><span class="w"></span>
+<span class="n">tmpfs</span><span class="w">           </span><span class="mi">200</span><span class="n">M</span><span class="w">     </span><span class="mi">0</span><span class="w">  </span><span class="mi">200</span><span class="n">M</span><span class="w">   </span><span class="mi">0</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="mi">0</span><span class="w"></span>
+</code></pre></div>
+
+<p><code>lsblk</code>查看可用可设备，<code>df -h</code>块设备<code>vda1</code>块设备挂在到目录<code>/</code>，<code>mount</code>与<code>umount</code>挂在和卸载挂载点。</p>
+<p><code>mount /dev/nvme3n1 /data</code> 挂载<code>nvme3n1</code>硬盘到<code>/data</code>目录</p>
+<p><code>echo "/dev/nvme3n1 /data ext4 defaults 0 0" &gt;&gt; /etc/fstab</code> #&nbsp;保证重启生效</p>
+<h2 id="ln">ln</h2>
+<p><code>ln -s /home/data /data</code>:创建目录<code>/home/data</code>的软连接<code>/data</code><br>
+<code>rm -rf /data</code>：删除软连接，一定不能<code>rm -rf /data/</code>linux默认会不全<code>/</code>，这样删除会把<code>/home/data/</code>目标目录下的内容全部删除！！！</p>
+
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
+<div class="pagination">
+    <a class="w-50" href="../articles/Scala.html">
+&ll; Scala
+    </a>
+    <a class="w-50 text-right" href="../articles/Debugging-Spark-Application.html">
+        Debugging Spark&nbsp;Application &gg;    </a>
+</div>
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
+
+    <!-- Releated posts -->
+
+    <!-- Comments -->
+        <hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'jerrylsu-github-io';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                </div>
+        </main>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="flex-shrink-0 bg-dark text-light small py-1">
+        <div class="container text-center">
+            &copy; 2022 <a href="..">JERRYLSU.NET</a> by <a href="../pages/about.html">JERRY</a>. Powered by <a href="http://getpelican.com">Pelican</a>, <a href="http://python.org">Python</a>, <a href="https://getbootstrap.com">Bootstrap 4</a><br>
+            <!-- Do not remove below license sentence -->
+            License: <a href="https://spdx.org/licenses/CC-BY-4.0.html">CC-BY-4.0</a>, based on <a href="https://github.com/vuquangtrong/simplify-theme">Simplify Bootstrap Theme</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!--
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    -->
+    <script type="text/javascript" src="../theme/jquery/jquery-3.4.1.min.js"></script>
+    <!--
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/bootstrap.min.js"></script>
+    -->
+    <script type="text/javascript" src="../theme/bootstrap/bootstrap.min.js"></script>
+    <!--
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
+    -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
+    <script type="text/javascript" src="../theme/style.js"></script>
+
+    <!-- Sharing -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d9ffca0db80069e"></script>
+
+    <!-- JSON LD -->
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "name": "Linux",
+    "headline": "Linux",
+    "datePublished": "2019-01-25 08:24:33+08:00",
+    "dateModified": "",
+    "author": {
+        "@type": "Person",
+        "name": "Jerry Su",
+        "url": "../author/jerry-su.html"
+    },
+    "image": "../jerry.jpg",
+    "url": "../articles/Linux.html",
+    "description": "Reason is the light and the light of life."
+}
+</script>
+    <!-- Disqus count -->
+</body>
+
+</html>

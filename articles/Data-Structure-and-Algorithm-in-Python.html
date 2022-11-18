@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<head>
+
+        <!-- Required metadata tags -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- Default metadata -->
+    <meta name="author" content="Jerry Su" />
+    <meta name="description" content="Reason is the light and the light of life." />
+    <meta name="keywords" content="Algorithm">
+<meta property="og:site_name" content="JERRYLSU.NET" />
+<meta property="og:title" content="Data Structure and Algorithm in Python" />
+<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="../articles/Data-Structure-and-Algorithm-in-Python.html" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-11-17 11:42:33+08:00" />
+<meta property="article:modified_time" content="" />
+<meta property="article:author" content="../author/jerry-su.html">
+<meta property="article:section" content="Algorithms" />
+	<meta property="article:tag" content="Algorithm" />
+	<meta property="og:image" content="../jerry.jpg">
+
+        <!-- Site Claim -->
+
+
+        <!-- Title -->
+        <title>
+    Data Structure and Algorithm in Python &ndash; JERRYLSU.NET
+        </title>
+        
+        <!-- Icon -->
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon.ico" type="image/x-icon">
+
+        <!-- Search engine -->
+            <meta name="robots" content="" />
+
+        <!-- Feeds -->
+
+
+
+
+
+
+
+
+        <!-- Styles -->
+        <!--
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/css/bootstrap.min.css">
+        -->
+        <link rel="stylesheet" href="../theme/bootstrap/bootstrap.min.css">
+        <!--
+        <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
+        -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
+        <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
+        <!--
+        <link rel="stylesheet" href="../theme/extra/admonition.min.css">
+        -->
+        <link rel="stylesheet" href="../theme/style.css">
+
+        <!-- Google Analytics -->
+<script>
+(function(i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m) })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-42618265-2', 'auto');
+ga('send', 'pageview');
+</script>
+        <!-- Google Global Site Tag -->
+
+        <!-- Google Tag Manager -->
+
+        <!-- Google Adsense -->
+
+        <!-- Heap Analytic -->
+
+        <!-- Piwik Tracking -->
+
+        <!-- Matomo Tracking -->
+
+</head>
+
+<!-- Body -->
+<body class="d-flex flex-column" data-spy="scroll" data-target="#toc" data-offset="0" style="position: relative;">
+    <!-- Top anchor -->
+    <a href="#" id="backToTop" style="display: none; z-index: 1;" title="Back to top"><span></span></a>
+
+    <!-- Google tag manager -->
+
+    <!-- Navigation -->
+    <nav class="flex-shrink-0 navbar navbar-expand-md navbar-expand-lg navbar-dark bg-dark text-light shadow-sm">
+        <!-- Logo -->
+        <a class="navbar-brand" href="..">JERRYLSU.NET</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon small"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <!-- i18n subsites -->
+
+            <!-- Page links -->
+            <ul class="navbar-nav mr-auto text-center">
+                <li class="nav-item ">                           
+                    <a class="nav-link" href="..">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z" fill="currentColor"></path>
+                        </svg>
+                        Home <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../categories.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M16 6h-8v-6h8v6zm-8 12h-8v6h8v-6zm16 0h-8v6h8v-6zm-11-7v-3h-2v3h-8v5h2v-3h14v3h2v-5h-8z" fill="currentColor"></path>
+                        </svg>
+                        Categories
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../tags.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M10.605 0h-10.605v10.609l13.391 13.391 10.609-10.604-13.395-13.396zm-4.191 6.414c-.781.781-2.046.781-2.829.001-.781-.783-.781-2.048 0-2.829.782-.782 2.048-.781 2.829-.001.782.782.781 2.047 0 2.829z" fill="currentColor"></path>
+                        </svg>
+                        Tags
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../archives.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M1.8 9l-.8-4h22l-.8 4h-2.029l.39-2h-17.122l.414 2h-2.053zm18.575-6l.604-2h-17.979l.688 2h16.687zm3.625 8l-2 13h-20l-2-13h24zm-8 4c0-.552-.447-1-1-1h-6c-.553 0-1 .448-1 1s.447 1 1 1h6c.553 0 1-.448 1-1z" fill="currentColor"></path>
+                        </svg>
+                        Archives
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../pages/about.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z" fill="currentColor"></path>
+                        </svg>
+                        About
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Search form -->
+            <form class="form-inline text-center" action="../search.html">
+                <input class="form-control w-100 bg-dark text-light text-center border-0 p-2" type="text" name="q" pattern=".{3,}" title="At least 3 characters" required="" placeholder="Type here to search" aria-label="Search">
+            </form>
+
+            <!-- Social links -->
+            <ul class="navbar-nav text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://facebook.com/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Facebook</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Github</title>
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.linkedin.com/in/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Linkedin</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://twitter.com/Jerrylsu666">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Twitter</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Full page -->
+    <div class="flex-shrink-0 flex-grow-1">
+
+        <!-- Header -->
+        <header class="bg-dark text-light shadow-sm pt-3 pb-2">
+	<div class="container">
+		<h3 id="Data-Structure-and-Algorithm-in-Python">Data Structure and Algorithm in&nbsp;Python</h3>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
+        <div class="row mx-auto mt-3">
+            <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
+                <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
+                <span class="card-link text-success">
+                    <span class="post-date" title="Post date">Nov 17, 2018</span>
+                    <span class="text-info modified-date" title="Updated date">
+                            Nov 17, 2018
+                    </span>
+                </span>
+                    <span class="card-link text-secondary" title="~441 words">2 mins</span>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
+                <a class="badge badge-success" href="../category/algorithms.html">algorithms</a>
+                    <a class="badge badge-info" href="../tag/algorithm.html">algorithm</a>
+            </div>
+        </div>
+	</div>
+        </header>
+
+        <!-- Main -->
+        <main class="py-3">
+                <div class="container">
+                    <!-- Sharing -->
+
+                    <!-- Content -->
+    <!-- 2 columns layout -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
+
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
+
+                <!-- Article -->
+                <h2 id="sort">Sort</h2>
+<h3 id="quick-sort">Quick&nbsp;Sort</h3>
+<h4 id="_1">引例：荷兰国旗问题🇳🇱</h4>
+<h3 id="heap-sort">Heap&nbsp;Sort</h3>
+<p><a href="">https://docs.python.org/3/library/heapq.html#heapq.heapify</a></p>
+<p>时间复杂度O(N*logN)，额外空间复杂度O(1)。</p>
+<p><strong>堆结构非常重要</strong></p>
+<ol>
+<li>堆结构的<strong><code>heapInsert</code></strong>和<strong><code>heapify</code></strong></li>
+<li>堆结构的增大和减少</li>
+<li>如果只是建堆的过程，时间复杂度为O(N)</li>
+<li>优先级队列结构，就是堆结构</li>
+</ol>
+<h4 id="heap">Heap</h4>
+<h5 id="_2">堆的定义</h5>
+<p><strong><code>堆结构</code></strong>就是一个<strong><code>完全二叉树</code></strong>，数组的结构实现，通过约定下标规则。</p>
+<p>对于任意下标为<strong><code>i</code></strong>的结点，</p>
+<ul>
+<li>左孩子：<strong><code>2*i + 1</code></strong></li>
+<li>右孩子：<strong><code>2*i + 2</code></strong></li>
+<li>父节点：<strong><code>(i-1) // 2</code></strong></li>
+</ul>
+<p><strong><code>大根堆</code></strong>：在一棵完全二叉树中，任何一棵子树的最大值都是这棵子树的根，所形成的结构叫大根堆。小根堆类似。</p>
+<h5 id="_3">堆的特点与优势</h5>
+<ol>
+<li>大/小根堆有一个很重要的属性：它的最大/小元素始终是根节点<strong><code>heap[0]</code></strong>。</li>
+<li>堆的调整代价只和<strong><code>层数</code></strong>有关，所以<code>入堆</code>和<code>出堆</code>的代价只有<strong><code>O(lgN)</code></strong>。</li>
+</ol>
+<h4 id="_4">大根堆的实现</h4>
+<p>This implementation uses <strong><code>arrays</code></strong> for which <strong><code>heap[i] &gt; heap[2*i+1]</code></strong> and <strong><code>heap[i] &gt; heap[2*i+2]</code></strong> for all <strong><code>i</code></strong>, counting elements from&nbsp;zero. </p>
+<p>给定数组，都可根据约定<strong>视其为堆</strong>，但其不是大根堆，<strong>如何将数组调整为大根堆</strong>？</p>
+<h5 id="_5">建立大根堆</h5>
+<p><strong><code>heapInsert</code></strong>: 经历一个新结点加入一个已经调整好的堆中，同时往上调整的过程。调整停止条件：当加入结点值不大于其父节点时，<br>&nbsp;调整停止。</p>
+<p><strong>堆在数组上可伸缩</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">insertHeap</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="k">index</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">par_i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">index</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="n">par_i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">par_i</span><span class="o">]</span><span class="err">:</span><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">插入结点值比父结点大时</span><span class="err">，</span><span class="n">往上调整</span><span class="w"></span>
+<span class="w">        </span><span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">par_i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">par_i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">与父结点交换</span><span class="w"></span>
+<span class="w">        </span><span class="k">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">par_i</span><span class="w">                   </span><span class="err">#</span><span class="w"> </span><span class="n">插入结点来到父节点的位置</span><span class="w"></span>
+<span class="w">        </span><span class="n">par_i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">index</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+
+<span class="n">def</span><span class="w"> </span><span class="n">createHeap</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">arr</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">None</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">arr</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span><span class="err">:</span><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="n">依次将结点加入堆中</span><span class="err">，</span><span class="w"> </span><span class="n">最终将数组</span><span class="err">（</span><span class="n">堆</span><span class="err">）</span><span class="n">调整为大根堆</span><span class="w"></span>
+<span class="w">        </span><span class="n">insertHeap</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">arr</span><span class="w"></span>
+</code></pre></div>
+
+<p>时间复杂度分析：<strong><code>O(N)</code></strong></p>
+<p>当第<code>i</code>个结点加入堆中时，<code>0</code>~<code>i-1</code>已经调整为大根堆，其高度为<code>O(log(i-1))</code>，即调整代价为<code>O(log(i-1))</code>。(沿其父结点依次向上&gt;<br>&nbsp;比较调整)</p>
+<p>所以, <code>N</code>个结点的调整代价为：<code>O(lg1) + O(lg2) + ... + O(lgN)</code>收敛于<code>O(N)</code></p>
+<h5 id="_6">堆化</h5>
+<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">heapify</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="k">index</span><span class="p">,</span><span class="w"> </span><span class="n">heapSize</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="nf">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">左孩子未越界</span><span class="err">，</span><span class="n">在堆上</span><span class="err">，</span><span class="n">继续循环判断是否下沉</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="nf">left</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nl">heapSize</span><span class="p">:</span><span class="w">    </span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="mf">1.</span><span class="w"> </span><span class="n">求左右孩子最大的下标</span><span class="w"></span>
+<span class="w">        </span><span class="n">largest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nf">left</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">heapSize</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">left+1</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">left</span><span class="o">]</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nf">left</span><span class="w">   </span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="mf">2.</span><span class="w"> </span><span class="n">最大孩子和本结点最大的下标</span><span class="w"></span>
+<span class="w">        </span><span class="n">largest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">largest</span><span class="o">]</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">largest</span><span class="w">   </span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="mf">3.</span><span class="w"> </span><span class="n">如果最大的结点就是自身</span><span class="err">，</span><span class="n">heapify完成跳出</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">largest</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">index</span><span class="err">:</span><span class="w">       </span>
+<span class="w">            </span><span class="k">break</span><span class="w"></span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="mf">4.</span><span class="w"> </span><span class="n">否则</span><span class="err">，</span><span class="n">交换下沉</span><span class="w"></span>
+<span class="w">        </span><span class="n">arr</span><span class="o">[</span><span class="n">largest</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">index</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">largest</span><span class="o">]</span><span class="w"></span>
+<span class="w">        </span><span class="k">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">largest</span><span class="w"></span>
+<span class="w">        </span><span class="nf">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+</code></pre></div>
+
+<h5 id="_7">堆排序</h5>
+<p>堆大小：heapSize =&nbsp;len(arr)</p>
+<p>数组最后一个数下标：heapSize -=&nbsp;1</p>
+<ol>
+<li>把数组<code>arr</code>创建为大根堆</li>
+<li>堆顶<strong><code>arr[0]</code></strong>与数组最后一个数<strong><code>arr[heapSize]</code></strong>交换</li>
+<li>将堆的大小缩小<strong><code>heapSize -= 1</code></strong></li>
+<li><strong><code>0~heapSize</code></strong>做<strong><code>heapify</code></strong></li>
+<li>至<code>2</code>循环，直到堆大小减到0，数组有序</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">heapSort</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">createHeap</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">heapSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="n">heapSize</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">heapSize</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">        </span><span class="n">arr</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">heapSize</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">heapSize</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"></span>
+<span class="w">        </span><span class="n">heapify</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">heapSize</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<h2 id="bfs-dfs"><span class="caps">BFS</span> <span class="amp">&amp;</span> <span class="caps">DFS</span></h2>
+<h3 id="bfs"><span class="caps">BFS</span></h3>
+<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">bfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span><span class="w"> </span><span class="k">start</span><span class="p">,</span><span class="w"> </span><span class="k">end</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+<span class="w">    </span><span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="o">[</span><span class="n">start</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">visted</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="k">start</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="nl">queue</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">queue</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">标记已被访问</span><span class="w"></span>
+<span class="w">        </span><span class="n">visted</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">process</span><span class="p">(</span><span class="n">node</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="mf">1.</span><span class="w"> </span><span class="n">寻找后继结点</span><span class="w"> </span><span class="mf">2.</span><span class="w"> </span><span class="n">检查后继结点是否被访问</span><span class="w"></span>
+<span class="w">        </span><span class="n">nodes</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">generate_related_nodes</span><span class="p">(</span><span class="n">node</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">queue</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">process</span><span class="w"> </span><span class="k">work</span><span class="w"></span>
+<span class="w">    </span><span class="p">....</span><span class="w"></span>
+</code></pre></div>
+
+<h3 id="dfs"><span class="caps">DFS</span></h3>
+<div class="highlight"><pre><span></span><code>#<span class="w"> </span><span class="nv">Recursion</span><span class="w"></span>
+<span class="nv">visted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">set</span><span class="ss">()</span><span class="w"></span>
+<span class="nv">def</span><span class="w"> </span><span class="nv">dfs</span><span class="ss">(</span><span class="nv">node</span>,<span class="w"> </span><span class="nv">visted</span><span class="ss">)</span>:<span class="w"></span>
+<span class="w">    </span><span class="nv">visted</span>.<span class="nv">add</span><span class="ss">(</span><span class="nv">node</span><span class="ss">)</span><span class="w"></span>
+<span class="w">    </span>#<span class="w"> </span><span class="nv">process</span><span class="w"> </span><span class="nv">current</span><span class="w"> </span><span class="nv">node</span><span class="w"> </span><span class="nv">here</span><span class="w"></span>
+<span class="w">    </span>...<span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nv">next_node</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">node</span>.<span class="nv">children</span><span class="ss">()</span>:<span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nv">next_node</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">visted</span>:<span class="w"></span>
+<span class="w">            </span><span class="nv">dfs</span><span class="ss">(</span><span class="nv">next_node</span>,<span class="w"> </span><span class="nv">visted</span><span class="ss">)</span><span class="w"></span>
+
+#<span class="w"> </span><span class="nv">Non</span><span class="o">-</span><span class="nv">Recursion</span><span class="w"></span>
+<span class="nv">def</span><span class="w"> </span><span class="nv">dfs</span><span class="ss">(</span><span class="nv">tree</span><span class="ss">)</span>:<span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">tree</span>.<span class="nv">root</span>:<span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nv">None</span><span class="w"></span>
+<span class="w">    </span><span class="nv">visted</span>,<span class="w"> </span><span class="nv">stack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>[],<span class="w"> </span>[<span class="nv">tree</span>.<span class="nv">root</span>]<span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="nv">stack</span>:<span class="w"></span>
+<span class="w">        </span><span class="nv">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">stack</span>.<span class="nv">pop</span><span class="ss">()</span><span class="w"></span>
+<span class="w">        </span><span class="nv">visted</span>.<span class="nv">add</span><span class="ss">(</span><span class="nv">node</span><span class="ss">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="nv">process</span><span class="ss">(</span><span class="nv">node</span><span class="ss">)</span><span class="w"></span>
+<span class="w">        </span><span class="nv">nodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">generate_related_node</span><span class="ss">(</span><span class="nv">node</span><span class="ss">)</span><span class="w"></span>
+<span class="w">        </span><span class="nv">stack</span>.<span class="nv">push</span><span class="ss">(</span><span class="nv">nodes</span><span class="ss">)</span><span class="w"></span>
+<span class="w">    </span>#<span class="w"> </span><span class="nv">other</span><span class="w"> </span><span class="nv">processing</span><span class="w"> </span><span class="nv">work</span><span class="w"></span>
+<span class="w">    </span>...<span class="w"></span>
+</code></pre></div>
+
+<h2 id="recursion">Recursion</h2>
+<p><strong>用相同的方法解决规模不同的相同问题。</strong><br>
+相同的方法：函数<br>
+问题的规模： 函数参数控制<br>
+递归是一种特殊的循环，通过<strong>函数体</strong>循环。</p>
+<div class="highlight"><pre><span></span><code>factorial(6):
+6 * factorial(5)
+6 * (5 * factorial(4))
+6 * (5 * (4 * factorial(3)))
+6 * (5 * (4 * (3 * factorial(2))))
+6 * (5 * (4 * (3 * ( 2 * factorial(1)))))
+6 * (5 * (4 * (3 * ( 2 * 1))))
+6 * (5 * (4 * (3 * 2)))
+6 * (5 * (4 * 6))
+6 * (5 * 24)
+6 * 120
+720
+</code></pre></div>
+
+<ol>
+<li>把问题转化为规模缩小了的同类子问题</li>
+<li>有明确的不需要继续进行递归的条件（base&nbsp;case）</li>
+<li></li>
+</ol>
+<h3 id="template">Template</h3>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">recursion</span><span class="ss">(</span><span class="nv">level</span>,<span class="w"> </span><span class="nb">param1</span>,<span class="w"> </span><span class="nb">param2</span>,<span class="w"> </span>...<span class="ss">)</span>:<span class="w"></span>
+
+<span class="w">    </span>#<span class="w"> </span><span class="nv">recursion</span><span class="w"> </span><span class="nv">terminator</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">level</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">MAX_LEVEL</span>:<span class="w"></span>
+<span class="w">        </span><span class="nv">print_result</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"></span>
+
+<span class="w">    </span>#<span class="w"> </span><span class="nv">process</span><span class="w"> </span><span class="nv">logic</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">current</span><span class="w"> </span><span class="nv">level</span><span class="w"></span>
+<span class="w">    </span><span class="nv">process_data</span><span class="ss">(</span><span class="nv">level</span>,<span class="w"> </span><span class="nv">data</span>...<span class="ss">)</span><span class="w"></span>
+
+<span class="w">    </span>#<span class="w"> </span><span class="nv">drill</span><span class="w"> </span><span class="nv">down</span><span class="w"></span>
+<span class="w">    </span><span class="nv">self</span>.<span class="nv">recursion</span><span class="ss">(</span><span class="nv">level</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>,<span class="w"> </span><span class="nv">p1</span>,<span class="w"> </span><span class="nv">p2</span>,<span class="w"> </span>...<span class="ss">)</span><span class="w"></span>
+
+<span class="w">    </span>#<span class="w"> </span><span class="nv">reverse</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">current</span><span class="w"> </span><span class="nv">level</span><span class="w"> </span><span class="nv">status</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">needed</span><span class="w"></span>
+<span class="w">    </span><span class="nv">reverse_state</span><span class="ss">(</span><span class="nv">level</span><span class="ss">)</span><span class="w"></span>
+</code></pre></div>
+
+<h3 id="example">Example:</h3>
+<h2 id="divide-and-conquer">Divide and&nbsp;Conquer</h2>
+<p>递归的高阶算法应用：分治<br>
+<img alt="divide-and-conquer" src="images/Algorithm/divide-and-conquer1.jpg"></p>
+<h3 id="template_1">Template</h3>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">divide_conquer</span><span class="ss">(</span><span class="nv">problem</span>,<span class="w"> </span><span class="nb">param1</span>,<span class="w"> </span><span class="nb">param2</span>,<span class="w"> </span>...<span class="ss">)</span>:<span class="w"></span>
+
+<span class="w">    </span>#<span class="w"> </span><span class="nv">recursion</span><span class="w"> </span><span class="nv">terminator</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">problem</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">None</span>:<span class="w"></span>
+<span class="w">        </span><span class="nv">print_result</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"></span>
+
+<span class="w">    </span>#<span class="w"> </span><span class="nv">prepare</span><span class="w"> </span><span class="nv">data</span><span class="w"></span>
+<span class="w">    </span><span class="nv">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">prepare_data</span><span class="ss">(</span><span class="nv">problem</span><span class="ss">)</span><span class="w"></span>
+<span class="w">    </span><span class="nv">subproblem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">split_problem</span><span class="ss">(</span><span class="nv">problem</span>,<span class="w"> </span><span class="nv">data</span><span class="ss">)</span><span class="w"></span>
+
+<span class="w">    </span>#<span class="w"> </span><span class="nv">conquer</span><span class="w"> </span><span class="nv">subproblem</span><span class="w"></span>
+<span class="w">    </span><span class="nv">subresult1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">self</span>.<span class="nv">divide_conquer</span><span class="ss">(</span><span class="nv">problem</span>[<span class="mi">0</span>],<span class="w"> </span><span class="nv">p1</span>,<span class="w"> </span><span class="nv">p2</span>,<span class="w"> </span>...<span class="ss">)</span><span class="w"></span>
+<span class="w">    </span><span class="nv">subresult2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">self</span>.<span class="nv">divide_conquer</span><span class="ss">(</span><span class="nv">problem</span>[<span class="mi">1</span>],<span class="w"> </span><span class="nv">p1</span>,<span class="w"> </span><span class="nv">p2</span>,<span class="w"> </span>...<span class="ss">)</span><span class="w"></span>
+<span class="w">    </span><span class="nv">subresult3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">self</span>.<span class="nv">divide_conquer</span><span class="ss">(</span><span class="nv">problem</span>[<span class="mi">2</span>],<span class="w"> </span><span class="nv">p1</span>,<span class="w"> </span><span class="nv">p2</span>,<span class="w"> </span>...<span class="ss">)</span><span class="w"></span>
+<span class="w">    </span>...<span class="w"></span>
+
+<span class="w">    </span>#<span class="w"> </span><span class="nv">process</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">generate</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">final</span><span class="w"> </span><span class="nb">result</span><span class="w"></span>
+<span class="w">    </span><span class="nb">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">process_result</span><span class="ss">(</span><span class="nv">subresult1</span>,<span class="w"> </span><span class="nv">subresult2</span>,<span class="w"> </span><span class="nv">subresult3</span>,<span class="w"> </span>...<span class="ss">)</span><span class="w"></span>
+</code></pre></div>
+
+<h3 id="example_1">Example:</h3>
+<p><a href="https://github.com/jerrylsu/Algorithms/blob/master/Divide%20Conquer/23.%20Merge%20k%20Sorted%20Lists.ipynb">23. Merge k Sorted&nbsp;Lists</a></p>
+<h2 id="dynamic-programming">Dynamic&nbsp;Programming</h2>
+<p><strong>所有的动态规划都是由暴力递归优化而来</strong><br>
+动态规划是一种分阶段求解决策问题的数学思想。<br>
+ 三个重要的概念： <strong>状态</strong>（最优子结构）、<strong>递推方程</strong>、<strong>边界</strong>。 <br>
+动态规划利用<strong>自底向上的递推</strong>方式，实现时间和空间上的最优化。</p>
+<ol>
+<li>递归展开过程中存在重复状态，即重叠子问题</li>
+<li>重复状态无后效性：与到达这个状态的路径无关，即只要这个状态参数确定，则返回值确定。</li>
+</ol>
+<p>暴力递归到动态规划的解法：<br>
+1. 找出需要求解的<strong>状态位置</strong><br>
+2. 回到Base case中设置不被依赖的<strong>边界状态</strong><br>
+3. 分析<strong>普遍状态</strong>如何依赖</p>
+<h3 id="example_2">Example:</h3>
+<ol>
+<li>
+<p>One-dimensional <span class="caps">DP</span><br>
+<a href="https://github.com/jerrylsu/Algorithms/blob/master/Dynamic%20Programming/One-dimensional/70.%20Climbing%20Stairs.ipynb">70. Climbing&nbsp;Stairs</a></p>
+</li>
+<li>
+<p>Two-dimensional <span class="caps">DP</span><br>
+<a href="https://github.com/jerrylsu/Algorithms/blob/master/Dynamic%20Programming/Two-dimensional/64.%20Minimum%20Path%20Sum.ipynb">64. Minimum Path Sum</a><br>
+<a href="https://github.com/jerrylsu/Algorithms/blob/master/Dynamic%20Programming/Two-dimensional/120.%20Triangle.ipynb">120.&nbsp;Triangle</a></p>
+</li>
+</ol>
+<p>更新中&#8230;</p>
+
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
+<div class="pagination">
+    <a class="w-50" href="../articles/Hexo-blog-sync-and-migration.html">
+&ll; Hexo blog sync and&nbsp;migration
+    </a>
+    <a class="w-50 text-right" href="../articles/Information-Theory.html">
+        Information&nbsp;Theory &gg;    </a>
+</div>
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
+
+    <!-- Releated posts -->
+        <hr>
+        <div>
+            <h5>Related posts:</h5>
+            <ul>
+                <li><a href="../articles/Sliding-Window.html">Sliding&nbsp;Window</a></li>
+                <li><a href="../articles/Viterbi-Algorithm.html">Viterbi&nbsp;Algorithm</a></li>
+                <li><a href="../articles/HMM-Viterbi-Algorithm.html"><span class="caps">HMM</span> Viterbi&nbsp;Algorithm</a></li>
+                <li><a href="../articles/Conditional-Random-Field.html">ConditionalRandomField</a></li>
+                <li><a href="../articles/A_star_algorithm.html">A* Heuristic&nbsp;Algorithm</a></li>
+            </ul>
+        </div>
+
+    <!-- Comments -->
+        <hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'jerrylsu-github-io';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                </div>
+        </main>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="flex-shrink-0 bg-dark text-light small py-1">
+        <div class="container text-center">
+            &copy; 2022 <a href="..">JERRYLSU.NET</a> by <a href="../pages/about.html">JERRY</a>. Powered by <a href="http://getpelican.com">Pelican</a>, <a href="http://python.org">Python</a>, <a href="https://getbootstrap.com">Bootstrap 4</a><br>
+            <!-- Do not remove below license sentence -->
+            License: <a href="https://spdx.org/licenses/CC-BY-4.0.html">CC-BY-4.0</a>, based on <a href="https://github.com/vuquangtrong/simplify-theme">Simplify Bootstrap Theme</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!--
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    -->
+    <script type="text/javascript" src="../theme/jquery/jquery-3.4.1.min.js"></script>
+    <!--
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/bootstrap.min.js"></script>
+    -->
+    <script type="text/javascript" src="../theme/bootstrap/bootstrap.min.js"></script>
+    <!--
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
+    -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
+    <script type="text/javascript" src="../theme/style.js"></script>
+
+    <!-- Sharing -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d9ffca0db80069e"></script>
+
+    <!-- JSON LD -->
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "name": "Data Structure and Algorithm in Python",
+    "headline": "Data Structure and Algorithm in Python",
+    "datePublished": "2018-11-17 11:42:33+08:00",
+    "dateModified": "",
+    "author": {
+        "@type": "Person",
+        "name": "Jerry Su",
+        "url": "../author/jerry-su.html"
+    },
+    "image": "../jerry.jpg",
+    "url": "../articles/Data-Structure-and-Algorithm-in-Python.html",
+    "description": "Reason is the light and the light of life."
+}
+</script>
+    <!-- Disqus count -->
+</body>
+
+</html>
