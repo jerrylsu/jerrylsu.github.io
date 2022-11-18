@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="什么是闭包？ 如果自由变量值发生变化会怎样？ 如果闭包修改了自由变量的值会怎样？ 为什么需要闭包，有什么优势？ 什么是 …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Scala">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Closure" />
-<meta property="og:description" content="什么是闭包？ 如果自由变量值发生变化会怎样？ 如果闭包修改了自由变量的值会怎样？ 为什么需要闭包，有什么优势？ 什么是 …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Closure.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,15 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Closure">Closure</h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul>
-<li><a href="#_1">什么是闭包？</a></li>
-<li><a href="#_2">如果自由变量值发生变化会怎样？</a></li>
-<li><a href="#_3">如果闭包修改了自由变量的值会怎样？</a></li>
-<li><a href="#_4">为什么需要闭包，有什么优势？</a></li>
-</ul>
-</div>
-<h1 id="_1">什么是 …</h1></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -226,7 +219,7 @@ ga('send', 'pageview');
                             May 24, 2019
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~139 words">1 mins</span>
+                    <span class="card-link text-secondary" title="~135 words">1 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/programming.html">programming</a>
@@ -243,25 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul>
-<li><a href="#_1">什么是闭包？</a></li>
-<li><a href="#_2">如果自由变量值发生变化会怎样？</a></li>
-<li><a href="#_3">如果闭包修改了自由变量的值会怎样？</a></li>
-<li><a href="#_4">为什么需要闭包，有什么优势？</a></li>
-</ul>
-</div>
-<h1 id="_1">什么是闭包？</h1>
+                <!-- Article -->
+                <h1 id="_1">什么是闭包？</h1>
 <p>引用至少一个自由变量的函数称为闭包。</p>
 <p>闭包是一个函数，可纯函数或非纯函数，可有名字或匿名，但重要的是它是一个函数。 为何称其为闭包，它与函数最重要的区别是：<strong>引用自由变量</strong>。</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// p相对于getHike，是其自由变量。getHike函数没有局部变量和列表参数p。</span>
@@ -334,11 +318,10 @@ ga('send', 'pageview');
 <p>当我们从getHike返回它时，它带有e和p的状态。</p>
 <p>所以，f包含它的数据。<font color=red><strong>闭包就像面向对象世界里传递的一个对象！</strong></font></p>
 <p>它节省了大量复杂且不必要的代码，并简化了解决方案。</p>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Passing-a-function-as-an-argument:-Lambda-Function.html">
 &ll; Passing a function as an argument: Lambda&nbsp;Function
@@ -346,7 +329,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/Dynamic-Programming.html">
         Dynamic&nbsp;Programming &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -398,6 +395,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -419,7 +417,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Closure.html",
-    "description": "什么是闭包？ 如果自由变量值发生变化会怎样？ 如果闭包修改了自由变量的值会怎样？ 为什么需要闭包，有什么优势？ 什么是 …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="CV要解决的问题是什么？ K折交叉验证 Cross Validation CV要解决的问题是什么？ 当评价模型的不同设置（”hyperparameters(超参数)”）时， 由于在训练集上，通过调整参数设置使模型的性能达到了最佳状态；但在 …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Machine Learning">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Cross Validation-CV" />
-<meta property="og:description" content="CV要解决的问题是什么？ K折交叉验证 Cross Validation CV要解决的问题是什么？ 当评价模型的不同设置（”hyperparameters(超参数)”）时， 由于在训练集上，通过调整参数设置使模型的性能达到了最佳状态；但在 …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Cross-Validation-CV.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,15 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Cross-Validation-CV">Cross Validation-<span class="caps">CV</span></h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul>
-<li><a href="#cv">CV要解决的问题是什么？</a></li>
-<li><a href="#k">K折交叉验证</a></li>
-</ul>
-</div>
-<p><a href="https://sklearn.apachecn.org/docs/0.21.3/30.html">Cross&nbsp;Validation</a></p>
-<h2 id="cv">CV要解决的问题是什么？</h2>
-<p>当评价模型的不同设置（”hyperparameters(超参数)”）时， 由于在训练集上，通过调整参数设置使模型的性能达到了最佳状态；但在 …</p></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -226,7 +219,7 @@ ga('send', 'pageview');
                             Jan 18, 2020
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~21 words">1 mins</span>
+                    <span class="card-link text-secondary" title="~19 words">1 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/ml.html">ml</a>
@@ -243,33 +236,25 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul>
-<li><a href="#cv">CV要解决的问题是什么？</a></li>
-<li><a href="#k">K折交叉验证</a></li>
-</ul>
-</div>
-<p><a href="https://sklearn.apachecn.org/docs/0.21.3/30.html">Cross&nbsp;Validation</a></p>
+                <!-- Article -->
+                <p><a href="https://sklearn.apachecn.org/docs/0.21.3/30.html">Cross&nbsp;Validation</a></p>
 <h2 id="cv">CV要解决的问题是什么？</h2>
 <p>当评价模型的不同设置（”hyperparameters(超参数)”）时， 由于在训练集上，通过调整参数设置使模型的性能达到了最佳状态；但在测试集上 可能会出现过拟合的情况。 此时，测试集上的信息反馈足以颠覆训练好的模型，评估的指标不再有效反映出模型的泛化性能。 为了解决此类问题，还应该准备另一部分被称为 “validation set(验证集)” 的数据集，模型训练完成以后在验证集上对模型进行评估。&nbsp;当验证集上的评估实验比较成功时，在测试集上进行最后的评估。</p>
 <p>然而，通过将原始数据分为3个数据集合，我们就大大减少了可用于模型学习的样本数量， 并且得到的结果依赖于集合对（训练，验证）的随机选择。这个问题可以通过 交叉验证（<span class="caps">CV</span> ） j来解决。&nbsp;交叉验证仍需要测试集做最后的模型评估，但不再需要验证集。</p>
 <h2 id="k">K折交叉验证</h2>
 <p><img alt="k" src="images/grid_search_cross_validation.png"></p>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Docker.html">
 &ll; Docker
@@ -277,7 +262,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/【NLP】GlobalAveragePooling1D.html">
         【<span class="caps">NLP</span>】GlobalAveragePooling1D &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -329,6 +328,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -350,7 +350,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Cross-Validation-CV.html",
-    "description": "CV要解决的问题是什么？ K折交叉验证 Cross Validation CV要解决的问题是什么？ 当评价模型的不同设置（”hyperparameters(超参数)”）时， 由于在训练集上，通过调整参数设置使模型的性能达到了最佳状态；但在 …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

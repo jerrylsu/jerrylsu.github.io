@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="import smtplib from email.mime.text import MIMEText from email.mime.multipart import MIMEMultipart from email.mime.image import MIMEImage #设置登录及服务器信息 mail_host = &#39;smtp.163.com&#39; mail_user = &#39;jerrylsu&#39; mail_pass = input(&#39;输入授权码102：&#39;) # 授权码， 非密码 …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Python">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Python email" />
-<meta property="og:description" content="import smtplib from email.mime.text import MIMEText from email.mime.multipart import MIMEMultipart from email.mime.image import MIMEImage #设置登录及服务器信息 mail_host = &#39;smtp.163.com&#39; mail_user = &#39;jerrylsu&#39; mail_pass = input(&#39;输入授权码102：&#39;) # 授权码， 非密码 …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Python-email.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,18 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Python-email">Python&nbsp;email</h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul></ul>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">smtplib</span>
-<span class="kn">from</span> <span class="nn">email.mime.text</span> <span class="kn">import</span> <span class="n">MIMEText</span>
-<span class="kn">from</span> <span class="nn">email.mime.multipart</span> <span class="kn">import</span> <span class="n">MIMEMultipart</span>
-<span class="kn">from</span> <span class="nn">email.mime.image</span> <span class="kn">import</span> <span class="n">MIMEImage</span>
-
-<span class="c1">#设置登录及服务器信息</span>
-<span class="n">mail_host</span> <span class="o">=</span> <span class="s1">&#39;smtp.163.com&#39;</span>
-<span class="n">mail_user</span> <span class="o">=</span> <span class="s1">&#39;jerrylsu&#39;</span>
-<span class="n">mail_pass</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;输入授权码102：&#39;</span><span class="p">)</span>  <span class="c1"># 授权码， 非密码 …</span></code></pre></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -246,20 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul></ul>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">smtplib</span>
+                <!-- Article -->
+                <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">smtplib</span>
 <span class="kn">from</span> <span class="nn">email.mime.text</span> <span class="kn">import</span> <span class="n">MIMEText</span>
 <span class="kn">from</span> <span class="nn">email.mime.multipart</span> <span class="kn">import</span> <span class="n">MIMEMultipart</span>
 <span class="kn">from</span> <span class="nn">email.mime.image</span> <span class="kn">import</span> <span class="n">MIMEImage</span>
@@ -400,11 +386,10 @@ ga('send', 'pageview');
         <span class="c1"># 退出SMTP服务器</span>
         <span class="n">server</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Python-logging.html">
 &ll; Python&nbsp;logging
@@ -412,7 +397,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/Binary-Search.html">
         Binary&nbsp;Search &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -464,6 +463,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -485,7 +485,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Python-email.html",
-    "description": "import smtplib from email.mime.text import MIMEText from email.mime.multipart import MIMEMultipart from email.mime.image import MIMEImage #设置登录及服务器信息 mail_host = 'smtp.163.com' mail_user = 'jerrylsu' mail_pass = input('输入授权码102：') # 授权码， 非密码 …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

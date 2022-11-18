@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="Sort Quick Sort 引例：荷兰国旗问题🇳🇱 Heap Sort Heap 堆的定义 堆的特点与优势 大根堆的实现 建立大根堆 堆化 堆排序 BFS &amp; DFS BFS DFS Recursion Template Example: Divide and …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Algorithm">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Data Structure and Algorithm in Python" />
-<meta property="og:description" content="Sort Quick Sort 引例：荷兰国旗问题🇳🇱 Heap Sort Heap 堆的定义 堆的特点与优势 大根堆的实现 建立大根堆 堆化 堆排序 BFS &amp; DFS BFS DFS Recursion Template Example: Divide and …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Data-Structure-and-Algorithm-in-Python.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,40 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Data-Structure-and-Algorithm-in-Python">Data Structure and Algorithm in&nbsp;Python</h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul>
-<li><a href="#sort">Sort</a><ul>
-<li><a href="#quick-sort">Quick Sort</a><ul>
-<li><a href="#_1">引例：荷兰国旗问题🇳🇱</a></li>
-</ul>
-</li>
-<li><a href="#heap-sort">Heap Sort</a><ul>
-<li><a href="#heap">Heap</a><ul>
-<li><a href="#_2">堆的定义</a></li>
-<li><a href="#_3">堆的特点与优势</a></li>
-</ul>
-</li>
-<li><a href="#_4">大根堆的实现</a><ul>
-<li><a href="#_5">建立大根堆</a></li>
-<li><a href="#_6">堆化</a></li>
-<li><a href="#_7">堆排序</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#bfs-dfs"><span class="caps">BFS</span> <span class="amp">&amp;</span> <span class="caps">DFS</span></a><ul>
-<li><a href="#bfs"><span class="caps">BFS</span></a></li>
-<li><a href="#dfs"><span class="caps">DFS</span></a></li>
-</ul>
-</li>
-<li><a href="#recursion">Recursion</a><ul>
-<li><a href="#template">Template</a></li>
-<li><a href="#example">Example:</a></li>
-</ul>
-</li>
-<li><a href="#divide-and-conquer">Divide and …</a></li></ul></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -251,7 +219,7 @@ ga('send', 'pageview');
                             Nov 17, 2018
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~469 words">2 mins</span>
+                    <span class="card-link text-secondary" title="~441 words">2 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/algorithms.html">algorithms</a>
@@ -268,61 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul>
-<li><a href="#sort">Sort</a><ul>
-<li><a href="#quick-sort">Quick Sort</a><ul>
-<li><a href="#_1">引例：荷兰国旗问题🇳🇱</a></li>
-</ul>
-</li>
-<li><a href="#heap-sort">Heap Sort</a><ul>
-<li><a href="#heap">Heap</a><ul>
-<li><a href="#_2">堆的定义</a></li>
-<li><a href="#_3">堆的特点与优势</a></li>
-</ul>
-</li>
-<li><a href="#_4">大根堆的实现</a><ul>
-<li><a href="#_5">建立大根堆</a></li>
-<li><a href="#_6">堆化</a></li>
-<li><a href="#_7">堆排序</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#bfs-dfs"><span class="caps">BFS</span> <span class="amp">&amp;</span> <span class="caps">DFS</span></a><ul>
-<li><a href="#bfs"><span class="caps">BFS</span></a></li>
-<li><a href="#dfs"><span class="caps">DFS</span></a></li>
-</ul>
-</li>
-<li><a href="#recursion">Recursion</a><ul>
-<li><a href="#template">Template</a></li>
-<li><a href="#example">Example:</a></li>
-</ul>
-</li>
-<li><a href="#divide-and-conquer">Divide and Conquer</a><ul>
-<li><a href="#template_1">Template</a></li>
-<li><a href="#example_1">Example:</a></li>
-</ul>
-</li>
-<li><a href="#dynamic-programming">Dynamic Programming</a><ul>
-<li><a href="#example_2">Example:</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<h2 id="sort">Sort</h2>
+                <!-- Article -->
+                <h2 id="sort">Sort</h2>
 <h3 id="quick-sort">Quick&nbsp;Sort</h3>
 <h4 id="_1">引例：荷兰国旗问题🇳🇱</h4>
 <h3 id="heap-sort">Heap&nbsp;Sort</h3>
@@ -555,11 +478,10 @@ ga('send', 'pageview');
 </li>
 </ol>
 <p>更新中&#8230;</p>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Hexo-blog-sync-and-migration.html">
 &ll; Hexo blog sync and&nbsp;migration
@@ -567,7 +489,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/Information-Theory.html">
         Information&nbsp;Theory &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -619,6 +555,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -640,7 +577,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Data-Structure-and-Algorithm-in-Python.html",
-    "description": "Sort Quick Sort 引例：荷兰国旗问题🇳🇱 Heap Sort Heap 堆的定义 堆的特点与优势 大根堆的实现 建立大根堆 堆化 堆排序 BFS & DFS BFS DFS Recursion Template Example: Divide and …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

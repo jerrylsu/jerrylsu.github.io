@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="问题引入 残差与梯度下降的关系 问题引入 给定数据集\((x_1, y_1), (x_2, y_2),...,(x_n, y_n)\), 拟合一个模型\(F(x)\)。 \(F(x_1) = 1.4\)而\(y_1=1.3\) \(F(x_2) = 0.9\)而 …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Machine Learning, GBDT">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="GBDT" />
-<meta property="og:description" content="问题引入 残差与梯度下降的关系 问题引入 给定数据集\((x_1, y_1), (x_2, y_2),...,(x_n, y_n)\), 拟合一个模型\(F(x)\)。 \(F(x_1) = 1.4\)而\(y_1=1.3\) \(F(x_2) = 0.9\)而 …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/GBDT.html" />
 <meta property="og:type" content="article" />
@@ -61,6 +61,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -209,16 +210,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="GBDT"><span class="caps">GBDT</span></h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul>
-<li><a href="#_1">问题引入</a></li>
-<li><a href="#_2">残差与梯度下降的关系</a></li>
-</ul>
-</div>
-<h3 id="_1">问题引入</h3>
-<p>给定数据集<span class="math">\((x_1, y_1), (x_2, y_2),...,(x_n, y_n)\)</span>, 拟合一个模型<span class="math">\(F(x)\)</span>。</p>
-<p><span class="math">\(F(x_1) = 1.4\)</span>而<span class="math">\(y_1=1.3\)</span></p>
-<p><span class="math">\(F(x_2) = 0.9\)</span>而 …</p></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -228,7 +220,7 @@ ga('send', 'pageview');
                             Jun 08, 2019
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~76 words">1 mins</span>
+                    <span class="card-link text-secondary" title="~74 words">1 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/ml.html">ml</a>
@@ -246,23 +238,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul>
-<li><a href="#_1">问题引入</a></li>
-<li><a href="#_2">残差与梯度下降的关系</a></li>
-</ul>
-</div>
-<h3 id="_1">问题引入</h3>
+                <!-- Article -->
+                <h3 id="_1">问题引入</h3>
 <p>给定数据集<span class="math">\((x_1, y_1), (x_2, y_2),...,(x_n, y_n)\)</span>, 拟合一个模型<span class="math">\(F(x)\)</span>。</p>
 <p><span class="math">\(F(x_1) = 1.4\)</span>而<span class="math">\(y_1=1.3\)</span></p>
 <p><span class="math">\(F(x_2) = 0.9\)</span>而<span class="math">\(y_2=0.8\)</span></p>
@@ -354,11 +339,10 @@ ga('send', 'pageview');
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Dynamic-Programming.html">
 &ll; Dynamic&nbsp;Programming
@@ -366,7 +350,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/Breadth-First-Search.html">
         Breadth First&nbsp;Search &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -418,6 +416,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -439,7 +438,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/GBDT.html",
-    "description": "问题引入 残差与梯度下降的关系 问题引入 给定数据集\((x_1, y_1), (x_2, y_2),...,(x_n, y_n)\), 拟合一个模型\(F(x)\)。 \(F(x_1) = 1.4\)而\(y_1=1.3\) \(F(x_2) = 0.9\)而 …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

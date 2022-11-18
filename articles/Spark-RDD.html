@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="核心概念和抽象 RDD RDD Operations Basics Understanding closures Action RDD Persistence Resiliency 高级主题 Execution &amp; Scheduling Caching &amp; Persistence Shared Variables Broadcast Variables Accumulators References Spark RDD要点总结： Spark RDD弹性分布式数据集 1. RDD简介 - RDD的概述 - RDD的属性 2. RDD的创建方式 - 从文件系统中加载数 …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Spark">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Spark RDD" />
-<meta property="og:description" content="核心概念和抽象 RDD RDD Operations Basics Understanding closures Action RDD Persistence Resiliency 高级主题 Execution &amp; Scheduling Caching &amp; Persistence Shared Variables Broadcast Variables Accumulators References Spark RDD要点总结： Spark RDD弹性分布式数据集 1. RDD简介 - RDD的概述 - RDD的属性 2. RDD的创建方式 - 从文件系统中加载数 …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Spark-RDD.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,42 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Spark-RDD">Spark <span class="caps">RDD</span></h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul>
-<li><a href="#_1">核心概念和抽象</a><ul>
-<li><a href="#rdd"><span class="caps">RDD</span></a></li>
-<li><a href="#rdd-operations"><span class="caps">RDD</span> Operations</a><ul>
-<li><a href="#basics">Basics</a></li>
-<li><a href="#understanding-closures">Understanding&nbsp;closures</a></li>
-<li><a href="#action">Action</a></li>
-</ul>
-</li>
-<li><a href="#rdd-persistence"><span class="caps">RDD</span> Persistence</a><ul>
-<li><a href="#resiliency">Resiliency</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_2">高级主题</a><ul>
-<li><a href="#execution-scheduling">Execution <span class="amp">&amp;</span>&nbsp;Scheduling</a></li>
-<li><a href="#caching-persistence">Caching <span class="amp">&amp;</span>&nbsp;Persistence</a></li>
-<li><a href="#shared-variables">Shared Variables</a><ul>
-<li><a href="#broadcast-variables">Broadcast&nbsp;Variables</a></li>
-<li><a href="#accumulators">Accumulators</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#references">References</a></li>
-</ul>
-</div>
-<div class="highlight"><pre><span></span><code>Spark RDD要点总结：
-Spark RDD弹性分布式数据集
-1. RDD简介
-  - RDD的概述
-  - RDD的属性
-2. RDD的创建方式
-  - 从文件系统中加载数 …</code></pre></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -253,7 +219,7 @@ Spark RDD弹性分布式数据集
                             Jan 03, 2019
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~579 words">3 mins</span>
+                    <span class="card-link text-secondary" title="~557 words">3 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/programming.html">programming</a>
@@ -270,46 +236,16 @@ Spark RDD弹性分布式数据集
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul>
-<li><a href="#_1">核心概念和抽象</a><ul>
-<li><a href="#rdd"><span class="caps">RDD</span></a></li>
-<li><a href="#rdd-operations"><span class="caps">RDD</span> Operations</a><ul>
-<li><a href="#basics">Basics</a></li>
-<li><a href="#understanding-closures">Understanding&nbsp;closures</a></li>
-<li><a href="#action">Action</a></li>
-</ul>
-</li>
-<li><a href="#rdd-persistence"><span class="caps">RDD</span> Persistence</a><ul>
-<li><a href="#resiliency">Resiliency</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_2">高级主题</a><ul>
-<li><a href="#execution-scheduling">Execution <span class="amp">&amp;</span>&nbsp;Scheduling</a></li>
-<li><a href="#caching-persistence">Caching <span class="amp">&amp;</span>&nbsp;Persistence</a></li>
-<li><a href="#shared-variables">Shared Variables</a><ul>
-<li><a href="#broadcast-variables">Broadcast&nbsp;Variables</a></li>
-<li><a href="#accumulators">Accumulators</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#references">References</a></li>
-</ul>
-</div>
-<div class="highlight"><pre><span></span><code>Spark RDD要点总结：
+                <!-- Article -->
+                <div class="highlight"><pre><span></span><code>Spark RDD要点总结：
 Spark RDD弹性分布式数据集
 1. RDD简介
   - RDD的概述
@@ -520,11 +456,10 @@ Accumulator&lt;id=0, value=0&gt;
 [5] <a href="https://www.youtube.com/watch?v=7ooZ4S7Ay6Y">Advanced Apache Spark- Sameer Farooqui (Databricks)</a><br>
 [6] <a href="https://www.youtube.com/watch?v=dmL0N3qfSc8">A Deeper Understanding of Spark Internals - Aaron Davidson (Databricks)</a><br>
 [7] <a href="https://www.youtube.com/watch?v=49Hr5xZyTEA">Introduction to AmpLab Spark&nbsp;Internals</a></p>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Adaboost.html">
 &ll; Adaboost
@@ -532,7 +467,21 @@ Accumulator&lt;id=0, value=0&gt;
     <a class="w-50 text-right" href="../articles/Scala.html">
         Scala &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -584,6 +533,7 @@ Accumulator&lt;id=0, value=0&gt;
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -605,7 +555,7 @@ Accumulator&lt;id=0, value=0&gt;
     },
     "image": "../jerry.jpg",
     "url": "../articles/Spark-RDD.html",
-    "description": "核心概念和抽象 RDD RDD Operations Basics Understanding closures Action RDD Persistence Resiliency 高级主题 Execution & Scheduling Caching & Persistence Shared Variables Broadcast Variables Accumulators References Spark RDD要点总结： Spark RDD弹性分布式数据集 1. RDD简介 - RDD的概述 - RDD的属性 2. RDD的创建方式 - 从文件系统中加载数 …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="Training Inference import numpy as np import gym import random import time from IPython.display import clear_output &#34;&#34;&#34;Creating the Environment&#34;&#34;&#34; env = gym.make(&#34;FrozenLake-v0&#34;) &#34;&#34;&#34;Creating the Q-Table and initializing all the Q-Values to zero for each state-action pair.&#34;&#34;&#34; action_space_size = env.action_space.n state_space_size = env.observation_space.n q_table = np.zeros((state_space_size …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Reinforcement Learning">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="【RL】Q Learning" />
-<meta property="og:description" content="Training Inference import numpy as np import gym import random import time from IPython.display import clear_output &#34;&#34;&#34;Creating the Environment&#34;&#34;&#34; env = gym.make(&#34;FrozenLake-v0&#34;) &#34;&#34;&#34;Creating the Q-Table and initializing all the Q-Values to zero for each state-action pair.&#34;&#34;&#34; action_space_size = env.action_space.n state_space_size = env.observation_space.n q_table = np.zeros((state_space_size …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/【RL】Q-Learning.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,28 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="【RL】Q-Learning">【<span class="caps">RL</span>】Q&nbsp;Learning</h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul>
-<li><a href="#training">Training</a></li>
-<li><a href="#inference">Inference</a></li>
-</ul>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">gym</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">clear_output</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Creating the Environment&quot;&quot;&quot;</span>
-<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;FrozenLake-v0&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Creating the Q-Table and initializing all the Q-Values to zero for each state-action pair.&quot;&quot;&quot;</span>
-
-<span class="n">action_space_size</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span>
-<span class="n">state_space_size</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">n</span>
-<span class="n">q_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">state_space_size …</span></code></pre></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -239,7 +219,7 @@ ga('send', 'pageview');
                             May 06, 2020
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~444 words">2 mins</span>
+                    <span class="card-link text-secondary" title="~442 words">2 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/nlp.html">nlp</a>
@@ -256,23 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul>
-<li><a href="#training">Training</a></li>
-<li><a href="#inference">Inference</a></li>
-</ul>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+                <!-- Article -->
+                <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">gym</span>
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -450,11 +423,10 @@ FFFH
 HFF[41mG[0m
 Reached the goal!
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Algorithms.html">
 &ll; Algorithms
@@ -462,7 +434,21 @@ Reached the goal!
     <a class="w-50 text-right" href="../articles/LinkedList.html">
         LinkedList &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -512,6 +498,7 @@ Reached the goal!
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -533,7 +520,7 @@ Reached the goal!
     },
     "image": "../jerry.jpg",
     "url": "../articles/【RL】Q-Learning.html",
-    "description": "Training Inference import numpy as np import gym import random import time from IPython.display import clear_output """Creating the Environment""" env = gym.make("FrozenLake-v0") """Creating the Q-Table and initializing all the Q-Values to zero for each state-action pair.""" action_space_size = env.action_space.n state_space_size = env.observation_space.n q_table = np.zeros((state_space_size …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

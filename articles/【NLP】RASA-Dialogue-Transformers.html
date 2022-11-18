@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="Dialogue Transformers基于transformer架构的dialogue level的对话策略，其中自注意力机制关注多轮对话序列。RNN网络结构是在对整个对话序列进行编码，故而认为历史序列的每一轮对话turn均是相关的。尽管复杂LSTM结构对RNN进行了改进，可以对历史信息 …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Deep Learning, NLP, RASA, BERT">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="【NLP】RASA Dialogue Transformers" />
-<meta property="og:description" content="Dialogue Transformers基于transformer架构的dialogue level的对话策略，其中自注意力机制关注多轮对话序列。RNN网络结构是在对整个对话序列进行编码，故而认为历史序列的每一轮对话turn均是相关的。尽管复杂LSTM结构对RNN进行了改进，可以对历史信息 …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/【NLP】RASA-Dialogue-Transformers.html" />
 <meta property="og:type" content="article" />
@@ -63,6 +63,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -211,10 +212,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="【NLP】RASA-Dialogue-Transformers">【<span class="caps">NLP</span>】<span class="caps">RASA</span> Dialogue&nbsp;Transformers</h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul></ul>
-</div>
-<p><a href="https://arxiv.org/abs/1910.00486">Dialogue Transformers</a>基于transformer架构的dialogue&nbsp;level的对话策略，其中自注意力机制关注多轮对话序列。RNN网络结构是在对整个对话序列进行编码，故而认为历史序列的每一轮对话turn均是相关的。尽管复杂LSTM结构对RNN进行了改进，可以对历史信息 …</p></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -244,20 +242,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul></ul>
-</div>
-<p><a href="https://arxiv.org/abs/1910.00486">Dialogue Transformers</a>基于transformer架构的dialogue&nbsp;level的对话策略，其中自注意力机制关注多轮对话序列。RNN网络结构是在对整个对话序列进行编码，故而认为历史序列的每一轮对话turn均是相关的。尽管复杂LSTM结构对RNN进行了改进，可以对历史信息选择性遗忘，然后这需要有足够的训练数据。基于这些，在训练数据有限和多主题对话的场景（一组对话中会交叠多种对话片段）下，网络无法解决这些问题。而transformer结构会选取哪些轮参与当前轮对话状态的编码，自然而然的忽略无关和选取相关历史对话轮，有效克服了RNN结构的限制以LSTM对大训练数据的依赖。</p>
+                <!-- Article -->
+                <p><a href="https://arxiv.org/abs/1910.00486">Dialogue Transformers</a>基于transformer架构的dialogue&nbsp;level的对话策略，其中自注意力机制关注多轮对话序列。RNN网络结构是在对整个对话序列进行编码，故而认为历史序列的每一轮对话turn均是相关的。尽管复杂LSTM结构对RNN进行了改进，可以对历史信息选择性遗忘，然后这需要有足够的训练数据。基于这些，在训练数据有限和多主题对话的场景（一组对话中会交叠多种对话片段）下，网络无法解决这些问题。而transformer结构会选取哪些轮参与当前轮对话状态的编码，自然而然的忽略无关和选取相关历史对话轮，有效克服了RNN结构的限制以LSTM对大训练数据的依赖。</p>
 <p>基于自注意力机制的transformer结构，对开放域多主题的对话有明显的优势。在对编码的level上，NLP通常是基于单轮的token序列进行编码，而rasa的自注意力机制是对整个对话序列编码。</p>
 <p>e.g.</p>
 <div class="highlight"><pre><span></span><code>## Generated Story case-0-568983
@@ -285,11 +279,10 @@ Bot_features作为每一轮预测的输出特征，同样-1&nbsp;padding并最�
 <p>References:</p>
 <p><a href="https://arxiv.org/abs/1910.00486">https://arxiv.org/abs/1910.00486</a></p>
 <p><a href="https://github.com/jerrylsu/learning/tree/master/nlp/rasa/featurizers">https://github.com/jerrylsu/learning/tree/master/nlp/rasa/featurizers</a></p>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/RASA-Featurizer.html">
 &ll; 【<span class="caps">NLP</span>】<span class="caps">RASA</span>&nbsp;Featurizer
@@ -297,7 +290,21 @@ Bot_features作为每一轮预测的输出特征，同样-1&nbsp;padding并最�
     <a class="w-50 text-right" href="../articles/Deploy-my-blog-quickly.html">
         Deploy my blog&nbsp;quickly &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -349,6 +356,7 @@ Bot_features作为每一轮预测的输出特征，同样-1&nbsp;padding并最�
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -370,7 +378,7 @@ Bot_features作为每一轮预测的输出特征，同样-1&nbsp;padding并最�
     },
     "image": "../jerry.jpg",
     "url": "../articles/【NLP】RASA-Dialogue-Transformers.html",
-    "description": "Dialogue Transformers基于transformer架构的dialogue level的对话策略，其中自注意力机制关注多轮对话序列。RNN网络结构是在对整个对话序列进行编码，故而认为历史序列的每一轮对话turn均是相关的。尽管复杂LSTM结构对RNN进行了改进，可以对历史信息 …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

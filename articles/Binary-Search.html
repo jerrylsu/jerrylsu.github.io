@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="二分查找初级：二分模板 Classical Binary Search Find First and Last Position of Target ( lower &amp; upper Bound ) Search a 2D Matrix 总结 二分查找进阶：转化为二分问题 Find Minimum in Rotated Sorted Array Find Minimum …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Algorithm, Binary Search">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Binary Search" />
-<meta property="og:description" content="二分查找初级：二分模板 Classical Binary Search Find First and Last Position of Target ( lower &amp; upper Bound ) Search a 2D Matrix 总结 二分查找进阶：转化为二分问题 Find Minimum in Rotated Sorted Array Find Minimum …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Binary-Search.html" />
 <meta property="og:type" content="article" />
@@ -61,6 +61,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -209,18 +210,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Binary-Search">Binary&nbsp;Search</h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul>
-<li><a href="#_1">二分查找初级：二分模板</a><ul>
-<li><a href="#classical-binary-search">Classical Binary&nbsp;Search</a></li>
-<li><a href="#find-first-and-last-position-of-target-lower-upper-bound">Find First and Last Position of Target  ( lower <span class="amp">&amp;</span> upper Bound&nbsp;)</a></li>
-<li><a href="#search-a-2d-matrix">Search a 2D&nbsp;Matrix</a></li>
-<li><a href="#_2">总结</a></li>
-</ul>
-</li>
-<li><a href="#_3">二分查找进阶：转化为二分问题</a><ul>
-<li><a href="#find-minimum-in-rotated-sorted-array">Find Minimum in Rotated Sorted&nbsp;Array</a></li>
-<li><a href="#find-minimum-in-rotated-sorted-array-ii">Find Minimum …</a></li></ul></li></ul></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -230,7 +220,7 @@ ga('send', 'pageview');
                             Apr 08, 2019
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~897 words">4 mins</span>
+                    <span class="card-link text-secondary" title="~854 words">4 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/algorithms.html">algorithms</a>
@@ -248,38 +238,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul>
-<li><a href="#_1">二分查找初级：二分模板</a><ul>
-<li><a href="#classical-binary-search">Classical Binary&nbsp;Search</a></li>
-<li><a href="#find-first-and-last-position-of-target-lower-upper-bound">Find First and Last Position of Target  ( lower <span class="amp">&amp;</span> upper Bound&nbsp;)</a></li>
-<li><a href="#search-a-2d-matrix">Search a 2D&nbsp;Matrix</a></li>
-<li><a href="#_2">总结</a></li>
-</ul>
-</li>
-<li><a href="#_3">二分查找进阶：转化为二分问题</a><ul>
-<li><a href="#find-minimum-in-rotated-sorted-array">Find Minimum in Rotated Sorted&nbsp;Array</a></li>
-<li><a href="#find-minimum-in-rotated-sorted-array-ii">Find Minimum in Rotated Sorted Array <span class="caps">II</span></a></li>
-<li><a href="#search-in-rotated-sorted-array-ii">Search in Rotated Sorted Array <span class="caps">II</span></a></li>
-</ul>
-</li>
-<li><a href="#half">二分查找高阶：Half</a><ul>
-<li><a href="#find-peak-element">Find Peak&nbsp;Element</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<h2 id="_1">二分查找初级：二分模板</h2>
+                <!-- Article -->
+                <h2 id="_1">二分查找初级：二分模板</h2>
 <h3 id="classical-binary-search">Classical Binary&nbsp;Search</h3>
 <ul>
 <li>数组元素无重复</li>
@@ -538,11 +506,10 @@ ga('send', 'pageview');
                 <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
         <span class="k">return</span> <span class="n">left</span> <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="k">else</span> <span class="n">right</span> 
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Python-email.html">
 &ll; Python&nbsp;email
@@ -550,7 +517,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/Checking-DataFrame/Series-missing-values.html">
         Checking DataFrame/Series missing&nbsp;values &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -602,6 +583,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -623,7 +605,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Binary-Search.html",
-    "description": "二分查找初级：二分模板 Classical Binary Search Find First and Last Position of Target ( lower & upper Bound ) Search a 2D Matrix 总结 二分查找进阶：转化为二分问题 Find Minimum in Rotated Sorted Array Find Minimum …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

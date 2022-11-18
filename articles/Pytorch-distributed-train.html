@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="主卡线程暴涨 共享内存问题 lamda对象不能序列化问题 加载分布式模型到单卡 主卡线程暴涨 异常： 正常： def to_var(x, on_cpu=False, gpu_id=None): &#34;&#34;&#34;Tensor =&gt; Variable&#34;&#34;&#34; if torch.cuda.is_available() and not on_cpu: x …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Pytorch">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Pytorch distributed train" />
-<meta property="og:description" content="主卡线程暴涨 共享内存问题 lamda对象不能序列化问题 加载分布式模型到单卡 主卡线程暴涨 异常： 正常： def to_var(x, on_cpu=False, gpu_id=None): &#34;&#34;&#34;Tensor =&gt; Variable&#34;&#34;&#34; if torch.cuda.is_available() and not on_cpu: x …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Pytorch-distributed-train.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,23 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Pytorch-distributed-train">Pytorch distributed&nbsp;train</h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul>
-<li><a href="#_1">主卡线程暴涨</a></li>
-<li><a href="#_2">共享内存问题</a></li>
-<li><a href="#lamda">lamda对象不能序列化问题</a></li>
-<li><a href="#_3">加载分布式模型到单卡</a></li>
-</ul>
-</div>
-<h3 id="_1">主卡线程暴涨</h3>
-<p>异常： </p>
-<p><img alt="master" src="../images/Pytorch/bug.png"></p>
-<p>正常：</p>
-<p><img alt="ma" src="../images/Pytorch/bug_fix.png"></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">to_var</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">on_cpu</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gpu_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Tensor =&gt; Variable&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">on_cpu</span><span class="p">:</span>
-        <span class="n">x …</span></code></pre></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -234,7 +219,7 @@ ga('send', 'pageview');
                             Jun 25, 2020
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~515 words">3 mins</span>
+                    <span class="card-link text-secondary" title="~511 words">3 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/programming.html">programming</a>
@@ -251,25 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul>
-<li><a href="#_1">主卡线程暴涨</a></li>
-<li><a href="#_2">共享内存问题</a></li>
-<li><a href="#lamda">lamda对象不能序列化问题</a></li>
-<li><a href="#_3">加载分布式模型到单卡</a></li>
-</ul>
-</div>
-<h3 id="_1">主卡线程暴涨</h3>
+                <!-- Article -->
+                <h3 id="_1">主卡线程暴涨</h3>
 <p>异常： </p>
 <p><img alt="master" src="../images/Pytorch/bug.png"></p>
 <p>正常：</p>
@@ -442,11 +418,10 @@ ga('send', 'pageview');
 <p>when loading the module, you need to provide an appropriate map_location argument to prevent a process to step into others’ devices. If map_location is missing, torch.load will first load the module to <span class="caps">CPU</span> and then copy each parameter to where it was saved, which would result in all processes on the same machine using the same set of&nbsp;devices</p>
 </blockquote>
 <p><a href="https://pytorch.org/tutorials/intermediate/ddp_tutorial.html#save-and-load-checkpoints">https://pytorch.org/tutorials/intermediate/ddp_tutorial.html#save-and-load-checkpoints</a></p>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Iterator.html">
 &ll; Iterator
@@ -454,7 +429,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/【NLP】Teacher-Forcing.html">
         【<span class="caps">NLP</span>】Teacher&nbsp;Forcing &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -506,6 +495,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -527,7 +517,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Pytorch-distributed-train.html",
-    "description": "主卡线程暴涨 共享内存问题 lamda对象不能序列化问题 加载分布式模型到单卡 主卡线程暴涨 异常： 正常： def to_var(x, on_cpu=False, gpu_id=None): """Tensor => Variable""" if torch.cuda.is_available() and not on_cpu: x …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

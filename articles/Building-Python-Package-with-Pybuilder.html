@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="Building Python Package Building Python Package git + venv + pybuilder [1] virtualenv user guide [2] 廖雪峰-virtualenv [3] pybuilder tutorial [4] Managing Your Python Project with Git and PyBuilder [5] examples How to add non-python file into a distribution? [1] Install additional files [2] doc 使用project.install_file …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Python">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Building Python Package with Pybuilder" />
-<meta property="og:description" content="Building Python Package Building Python Package git + venv + pybuilder [1] virtualenv user guide [2] 廖雪峰-virtualenv [3] pybuilder tutorial [4] Managing Your Python Project with Git and PyBuilder [5] examples How to add non-python file into a distribution? [1] Install additional files [2] doc 使用project.install_file …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Building-Python-Package-with-Pybuilder.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,28 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Building-Python-Package-with-Pybuilder">Building Python Package with&nbsp;Pybuilder</h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul>
-<li><a href="#building-python-package">Building Python&nbsp;Package</a></li>
-</ul>
-</div>
-<h2 id="building-python-package">Building Python&nbsp;Package</h2>
-<ul>
-<li>
-<p><strong>git + venv + pybuilder</strong><br>
-[1] <a href="https://virtualenv.pypa.io/en/stable/userguide/">virtualenv user guide</a><br>
-[2] <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432712108300322c61f256c74803b43bfd65c6f8d0d0000">廖雪峰-virtualenv</a><br>
-[3] <a href="http://pybuilder.github.io/documentation/tutorial.html#.XD12pPkzaUk">pybuilder tutorial</a><br>
-[4] <a href="https://dev.to/awwsmm/managing-your-python-project-with-git-and-pybuilder-21if">Managing Your Python Project with Git and PyBuilder</a><br>
-[5] <a href="http://pybuilder.github.io/documentation/examples.html#.XD2LevkzaUk">examples</a></p>
-</li>
-<li>
-<p><strong>How to add non-python file into a distribution?</strong><br>
-[1] <a href="https://github.com/pybuilder/pybuilder/issues/364">Install additional files </a><br>
-[2] <a href="https://pybuilder.readthedocs.io/en/latest/customizing-the-build.html#installing-files">doc</a></p>
-</li>
-</ul>
-<p>使用<code>project.install_file …</code></p></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -239,7 +219,7 @@ ga('send', 'pageview');
                             Oct 03, 2018
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~63 words">1 mins</span>
+                    <span class="card-link text-secondary" title="~60 words">1 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/programming.html">programming</a>
@@ -256,22 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul>
-<li><a href="#building-python-package">Building Python&nbsp;Package</a></li>
-</ul>
-</div>
-<h2 id="building-python-package">Building Python&nbsp;Package</h2>
+                <!-- Article -->
+                <h2 id="building-python-package">Building Python&nbsp;Package</h2>
 <ul>
 <li>
 <p><strong>git + venv + pybuilder</strong><br>
@@ -298,11 +272,10 @@ ga('send', 'pageview');
 <span class="w">    </span><span class="n">project</span><span class="p">.</span><span class="n">set_property</span><span class="p">(</span><span class="ss">&quot;copy_resources_target&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;$dir_dist&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="n">project</span><span class="p">.</span><span class="n">install_file</span><span class="p">(</span><span class="ss">&quot;/etc/defaults&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;src/main/resources/my-config.yaml&quot;</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Git.html">
 &ll; Git
@@ -310,7 +283,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/Vim.html">
         Vim &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -362,6 +349,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -383,7 +371,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Building-Python-Package-with-Pybuilder.html",
-    "description": "Building Python Package Building Python Package git + venv + pybuilder [1] virtualenv user guide [2] 廖雪峰-virtualenv [3] pybuilder tutorial [4] Managing Your Python Project with Git and PyBuilder [5] examples How to add non-python file into a distribution? [1] Install additional files [2] doc 使用project.install_file …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

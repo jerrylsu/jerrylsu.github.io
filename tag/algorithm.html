@@ -307,25 +307,7 @@ ga('send', 'pageview');
                     <a href="../articles/A_star_algorithm.html">A* Heuristic&nbsp;Algorithm</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 20, 2020</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span><span class="c1">  // for sort</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sstream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span><span class="w"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="p">;</span><span class="w"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">istringstream</span><span class="p">;</span><span class="w"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">;</span><span class="w"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span><span class="w"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="p">;</span><span class="w"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">;</span><span class="w"></span>
-
-<span class="c1">// TODO: Add kStart and KFinish enumerators to the State enum.</span>
-<span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="w"> </span><span class="p">{</span><span class="n">kStart</span><span class="p">,</span><span class="w"> </span><span class="n">kFinish …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~581 words">Read in 3 mins</span>
@@ -345,28 +327,10 @@ ga('send', 'pageview');
                     <a href="../articles/Sort.html">Sort</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 19, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#quick-sort">Quick&nbsp;Sort</a></li>
-<li><a href="#merge-sort">Merge&nbsp;Sort</a></li>
-<li><a href="#heap-sort">Heap&nbsp;Sort</a></li>
-<li><a href="#topological-sort">Topological&nbsp;Sort</a></li>
-</ul>
-</div>
-<h3 id="quick-sort">Quick&nbsp;Sort</h3>
-<p>引例：荷兰国旗问题</p>
-<h3 id="merge-sort">Merge&nbsp;Sort</h3>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">ListNode</span><span class="o">*</span><span class="w"> </span><span class="n">sortList</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span><span class="w"> </span><span class="n">head</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">head</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">ListNode</span><span class="o">*</span><span class="w"> </span><span class="n">fast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">ListNode</span><span class="o">*</span><span class="w"> </span><span class="n">slow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">slow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">slow</span><span class="o">-&gt;</span><span class="n">next …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~382 words">Read in 2 mins</span>
+                            <span class="card-link text-secondary" title="~374 words">Read in 2 mins</span>
                             <span class="card-link"><a href="../articles/Sort.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
@@ -383,28 +347,10 @@ ga('send', 'pageview');
                     <a href="../articles/LinkedList.html">LinkedList</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 09, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">链表结点定义</a></li>
-<li><a href="#_2">链表基本操作</a><ul>
-<li><a href="#remove-duplicates-from-sorted-list">Remove Duplicates from Sorted&nbsp;List</a></li>
-<li><a href="#reverse-linked-list">Reverse Linked&nbsp;List</a></li>
-<li><a href="#merge-two-sorted-lists">Merge Two Sorted&nbsp;Lists</a></li>
-<li><a href="#merge-k-sorted-lists">Merge k Sorted&nbsp;Lists</a></li>
-<li><a href="#sort-list">Sort&nbsp;List</a></li>
-</ul>
-</li>
-<li><a href="#dummy">擅用Dummy节点</a><ul>
-<li><a href="#remove-duplicates-from-sorted-list-ii">Remove Duplicates from Sorted List <span class="caps">II</span></a></li>
-<li><a href="#partition-list">Partition&nbsp;List</a></li>
-</ul>
-</li>
-<li><a href="#_3">快慢指针</a></li>
-<li><a href="#_4">综合设计</a><ul>
-<li><a href="#lru-cache"><span class="caps">LRU …</span></a></li></ul></li></ul></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~797 words">Read in 4 mins</span>
+                            <span class="card-link text-secondary" title="~764 words">Read in 4 mins</span>
                             <span class="card-link"><a href="../articles/LinkedList.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
@@ -421,25 +367,10 @@ ga('send', 'pageview');
                     <a href="../articles/BackTracking.html">BackTracking</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 09, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#backtracking">BackTracking</a></li>
-<li><a href="#permutation-iii">Permutation I/<span class="caps">II</span></a></li>
-<li><a href="#subset">Subset</a></li>
-<li><a href="#combination">Combination</a></li>
-<li><a href="#n-queens">N&nbsp;Queens</a></li>
-<li><a href="#word-search">Word&nbsp;Search</a></li>
-</ul>
-</div>
-<p><a href="https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-xiang-jie-by-labuladong-2/">Ref.&nbsp;Backtracking</a></p>
-<h2 id="backtracking">BackTracking</h2>
-<p><strong>回溯算法：本质是N叉树的遍历问题</strong>，关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架：</p>
-<ul>
-<li>
-<p>路 …</p></li></ul></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~435 words">Read in 2 mins</span>
+                            <span class="card-link text-secondary" title="~426 words">Read in 2 mins</span>
                             <span class="card-link"><a href="../articles/BackTracking.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
@@ -456,30 +387,10 @@ ga('send', 'pageview');
                     <a href="../articles/Topological-Sorting.html">Topological&nbsp;Sorting</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jun 18, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#topological-sorting">Topological&nbsp;Sorting</a></li>
-</ul>
-</div>
-<h3 id="topological-sorting">Topological&nbsp;Sorting</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Definition for a Directed graph node</span>
-<span class="k">class</span> <span class="nc">DirectedGraphNode</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">neighbors</span> <span class="o">=</span> <span class="p">[]</span>
-
-
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @param graph: A list of Directed graph node</span>
-<span class="sd">    @return: A list of integer</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">topSort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
-        <span class="c1"># 1. 统计结点入度</span>
-        <span class="n">indegree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_indegree …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~100 words">Read in 1 mins</span>
+                            <span class="card-link text-secondary" title="~98 words">Read in 1 mins</span>
                             <span class="card-link"><a href="../articles/Topological-Sorting.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
@@ -497,26 +408,10 @@ ga('send', 'pageview');
                     <a href="../articles/Breadth-First-Search.html">Breadth First&nbsp;Search</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jun 16, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">概述</a><ul>
-<li><a href="#_2">宽搜要点</a></li>
-</ul>
-</li>
-<li><a href="#_3">二叉树上的宽搜</a><ul>
-<li><a href="#binary-tree-level-order-traversal">Binary Tree Level Order&nbsp;Traversal</a></li>
-<li><a href="#binary-tree-zigzag-level-order-traversal">Binary Tree Zigzag Level Order&nbsp;Traversal</a></li>
-<li><a href="#serialize-and-deserialize-binary-tree">Serialize and Deserialize Binary&nbsp;Tree</a></li>
-</ul>
-</li>
-<li><a href="#_4">图上的宽搜</a><ul>
-<li><a href="#_5">图的遍历</a></li>
-<li><a href="#_6">层级遍历</a></li>
-<li><a href="#_7">由点及面</a></li>
-<li><a href="#_8">拓扑排序 …</a></li></ul></li></ul></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~89 words">Read in 1 mins</span>
+                            <span class="card-link text-secondary" title="~64 words">Read in 1 mins</span>
                             <span class="card-link"><a href="../articles/Breadth-First-Search.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">

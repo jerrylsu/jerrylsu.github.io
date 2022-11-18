@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="(batch_size, height, width, channel) = (200, 32, 32, 256) 卷积核，用于提取特定特征，由卷积核决定。网络学习的参数也就是卷积核的参数，所以相比于全连接网 …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Deep Learning, CNN">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="CNN" />
-<meta property="og:description" content="(batch_size, height, width, channel) = (200, 32, 32, 256) 卷积核，用于提取特定特征，由卷积核决定。网络学习的参数也就是卷积核的参数，所以相比于全连接网 …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/CNN.html" />
 <meta property="og:type" content="article" />
@@ -61,6 +61,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -209,11 +210,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="CNN"><span class="caps">CNN</span></h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul></ul>
-</div>
-<p>(batch_size, height, width, channel) = (200, 32, 32,&nbsp;256)</p>
-<p>卷积核，用于提取特定特征，由卷积核决定。网络学习的参数也就是卷积核的参数，所以相比于全连接网 …</p></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -241,30 +238,25 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul></ul>
-</div>
-<p>(batch_size, height, width, channel) = (200, 32, 32,&nbsp;256)</p>
+                <!-- Article -->
+                <p>(batch_size, height, width, channel) = (200, 32, 32,&nbsp;256)</p>
 <p>卷积核，用于提取特定特征，由卷积核决定。网络学习的参数也就是卷积核的参数，所以相比于全连接网络大大减少了参数。滑动卷积核在图片上提取相应特征。</p>
 <p>通道数等于卷积核数，每个通道参数共享，负责特定特征提取。与RGB颜色三通道区别开来。</p>
 <p><a href="https://www.bilibili.com/video/av94519857?p=14">台大李宏毅</a></p>
 <p><a href="https://www.bilibili.com/video/av66646276?p=11">Why convolution ? Andrew&nbsp;Ng</a></p>
 <p><a href="https://aistudio.baidu.com/aistudio/projectdetail/121630"><span class="caps">CNN</span>&amp;TextCNN</a></p>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Deploy-my-blog-quickly.html">
 &ll; Deploy my blog&nbsp;quickly
@@ -272,7 +264,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/【NLP】RASA-Issues.html">
         【<span class="caps">NLP</span>】<span class="caps">RASA</span>&nbsp;Issues &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -324,6 +330,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -345,7 +352,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/CNN.html",
-    "description": "(batch_size, height, width, channel) = (200, 32, 32, 256) 卷积核，用于提取特定特征，由卷积核决定。网络学习的参数也就是卷积核的参数，所以相比于全连接网 …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

@@ -340,24 +340,7 @@ ga('send', 'pageview');
                     <a href="../articles/Pytorch-Transformer.html">Pytorch&nbsp;Transformer</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 22, 2020</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<p><a href="https://wmathor.com/index.php/archives/1455/">pytorch&nbsp;transformer</a></p>
-<p><a href="http://jalammar.github.io/illustrated-transformer/">illustrated&nbsp;transformer</a></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
-<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">TransformerEncoder</span><span class="p">,</span> <span class="n">TransformerEncoderLayer</span><span class="p">,</span> <span class="n">TransformerDecoder</span><span class="p">,</span> <span class="n">TransformerDecoderLayer</span>
-<span class="kn">from</span> <span class="nn">layers.encoder</span> <span class="kn">import</span> <span class="n">CustomEmbedding</span>
-<span class="kn">import</span> <span class="nn">layers</span>
-
-
-<span class="k">class</span> <span class="nc">PositionalEncoding</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Args:</span>
-<span class="sd">        d_model: the number of expected features in the input (required).</span>
-<span class="sd">        dropout: the dropout value (default=0.1 …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~385 words">Read in 2 mins</span>
@@ -376,10 +359,7 @@ ga('send', 'pageview');
                     <a href="../articles/Pytorch-contiguous.html">Pytorch&nbsp;contiguous</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 21, 2020</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<p><a href="https://zhuanlan.zhihu.com/p/64551412">Pytorch&nbsp;contiguous</a></p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~2 words">Read in 1 mins</span>
@@ -398,26 +378,10 @@ ga('send', 'pageview');
                     <a href="../articles/Pytorch-distributed-train.html">Pytorch distributed&nbsp;train</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jun 25, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">主卡线程暴涨</a></li>
-<li><a href="#_2">共享内存问题</a></li>
-<li><a href="#lamda">lamda对象不能序列化问题</a></li>
-<li><a href="#_3">加载分布式模型到单卡</a></li>
-</ul>
-</div>
-<h3 id="_1">主卡线程暴涨</h3>
-<p>异常： </p>
-<p><img alt="master" src="../images/Pytorch/bug.png"></p>
-<p>正常：</p>
-<p><img alt="ma" src="../images/Pytorch/bug_fix.png"></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">to_var</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">on_cpu</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gpu_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Tensor =&gt; Variable&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">on_cpu</span><span class="p">:</span>
-        <span class="n">x …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~515 words">Read in 3 mins</span>
+                            <span class="card-link text-secondary" title="~511 words">Read in 3 mins</span>
                             <span class="card-link"><a href="../articles/Pytorch-distributed-train.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">

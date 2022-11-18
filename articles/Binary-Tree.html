@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="二叉树结构定义 分治算法 遍历法 VS 分治法 递归 VS 非递归 前序遍历 中序遍历 后序遍历 层序遍历 之字层序遍历 序列化和 …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Algorithm, Binary Tree">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Binary Tree" />
-<meta property="og:description" content="二叉树结构定义 分治算法 遍历法 VS 分治法 递归 VS 非递归 前序遍历 中序遍历 后序遍历 层序遍历 之字层序遍历 序列化和 …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Binary-Tree.html" />
 <meta property="og:type" content="article" />
@@ -61,6 +61,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -209,18 +210,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Binary-Tree">Binary&nbsp;Tree</h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul>
-<li><a href="#_1">二叉树结构定义</a></li>
-<li><a href="#_2">分治算法</a></li>
-<li><a href="#vs">遍历法 <span class="caps">VS</span>&nbsp;分治法</a></li>
-<li><a href="#vs_1">递归 <span class="caps">VS</span>&nbsp;非递归</a></li>
-<li><a href="#_3">前序遍历</a></li>
-<li><a href="#_4">中序遍历</a></li>
-<li><a href="#_5">后序遍历</a></li>
-<li><a href="#_6">层序遍历</a></li>
-<li><a href="#_7">之字层序遍历</a></li>
-<li><a href="#_8">序列化和 …</a></li></ul></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -230,7 +220,7 @@ ga('send', 'pageview');
                             Apr 15, 2019
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~1082 words">5 mins</span>
+                    <span class="card-link text-secondary" title="~1049 words">5 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/algorithms.html">algorithms</a>
@@ -248,41 +238,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul>
-<li><a href="#_1">二叉树结构定义</a></li>
-<li><a href="#_2">分治算法</a></li>
-<li><a href="#vs">遍历法 <span class="caps">VS</span>&nbsp;分治法</a></li>
-<li><a href="#vs_1">递归 <span class="caps">VS</span>&nbsp;非递归</a></li>
-<li><a href="#_3">前序遍历</a></li>
-<li><a href="#_4">中序遍历</a></li>
-<li><a href="#_5">后序遍历</a></li>
-<li><a href="#_6">层序遍历</a></li>
-<li><a href="#_7">之字层序遍历</a></li>
-<li><a href="#_8">序列化和反序列化</a></li>
-<li><a href="#_9">前中序重构二叉树</a></li>
-<li><a href="#_10">二叉树最大深度</a></li>
-<li><a href="#_11">二叉树最小深度</a></li>
-<li><a href="#_12">平衡二叉树</a></li>
-<li><a href="#bst">二叉搜索树 <span class="caps">BST</span></a></li>
-<li><a href="#_13">二叉搜索树最近公共祖先</a></li>
-<li><a href="#_14">二叉树的最近公共祖先</a></li>
-<li><a href="#same-tree">Same&nbsp;Tree</a></li>
-<li><a href="#subtree-of-another-tree">Subtree of Another&nbsp;Tree</a></li>
-<li><a href="#binary-tree-maximum-path-sum">Binary Tree Maximum Path&nbsp;Sum</a></li>
-</ul>
-</div>
-<h3 id="_1">二叉树结构定义</h3>
+                <!-- Article -->
+                <h3 id="_1">二叉树结构定义</h3>
 <div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">TreeNode</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">TreeNode</span><span class="o">*</span><span class="w"> </span><span class="n">left</span><span class="p">;</span><span class="w"></span>
@@ -889,11 +854,10 @@ ga('send', 'pageview');
 
         <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span> <span class="o">+</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Auto-generated-subtitles-for-any-video.html">
 &ll; Auto-generated subtitles for any&nbsp;video
@@ -901,7 +865,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/Singleton-&-Companion-Object.html">
         Singleton <span class="amp">&amp;</span> Companion&nbsp;Object &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -953,6 +931,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -974,7 +953,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Binary-Tree.html",
-    "description": "二叉树结构定义 分治算法 遍历法 VS 分治法 递归 VS 非递归 前序遍历 中序遍历 后序遍历 层序遍历 之字层序遍历 序列化和 …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

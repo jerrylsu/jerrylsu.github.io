@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="https://docs.docker.com/engine/reference/commandline/docker/ 1.基础镜像选择 https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/user-guide.html 选择Nvidia cuda支持gpu：https://hub.docker.com/r/nvidia/cuda/tags?page=1&amp;ordering=last_updated&amp;name=10.0 runtime版：用于服务部署 …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Docker">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Docker Build GPU Base Image" />
-<meta property="og:description" content="https://docs.docker.com/engine/reference/commandline/docker/ 1.基础镜像选择 https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/user-guide.html 选择Nvidia cuda支持gpu：https://hub.docker.com/r/nvidia/cuda/tags?page=1&amp;ordering=last_updated&amp;name=10.0 runtime版：用于服务部署 …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Docker-Build-GPU-Base-Image.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,11 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Docker-Build-GPU-Base-Image">Docker Build <span class="caps">GPU</span> Base&nbsp;Image</h3>
-		<p style="font-size:larger;"><p><a href="https://docs.docker.com/engine/reference/commandline/docker/">https://docs.docker.com/engine/reference/commandline/docker/</a></p>
-<h2 id="1">1.基础镜像选择</h2>
-<p><a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/user-guide.html">https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/user-guide.html</a></p>
-<p>选择Nvidia cuda支持gpu：<a href="https://hub.docker.com/r/nvidia/cuda/tags?page=1&amp;ordering=last_updated&amp;name=10.0">https://hub.docker.com/r/nvidia/cuda/tags?page=1&amp;ordering=last_updated&amp;name=10.0</a></p>
-<p>runtime版：用于服务部署 …</p></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -239,17 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <p><a href="https://docs.docker.com/engine/reference/commandline/docker/">https://docs.docker.com/engine/reference/commandline/docker/</a></p>
+                <!-- Article -->
+                <p><a href="https://docs.docker.com/engine/reference/commandline/docker/">https://docs.docker.com/engine/reference/commandline/docker/</a></p>
 <h2 id="1">1.基础镜像选择</h2>
 <p><a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/user-guide.html">https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/user-guide.html</a></p>
 <p>选择Nvidia cuda支持gpu：<a href="https://hub.docker.com/r/nvidia/cuda/tags?page=1&amp;ordering=last_updated&amp;name=10.0">https://hub.docker.com/r/nvidia/cuda/tags?page=1&amp;ordering=last_updated&amp;name=10.0</a></p>
@@ -367,11 +363,10 @@ ga('send', 'pageview');
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Cross-Entropy.html">
 &ll; Cross&nbsp;Entropy
@@ -379,7 +374,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/Docker-export-commit.html">
         Docker export vs&nbsp;commit &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -430,6 +439,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -451,7 +461,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Docker-Build-GPU-Base-Image.html",
-    "description": "https://docs.docker.com/engine/reference/commandline/docker/ 1.基础镜像选择 https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/user-guide.html 选择Nvidia cuda支持gpu：https://hub.docker.com/r/nvidia/cuda/tags?page=1&ordering=last_updated&name=10.0 runtime版：用于服务部署 …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

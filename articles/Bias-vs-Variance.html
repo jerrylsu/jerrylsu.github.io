@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="方差与偏差 为什么RF的树深一般大于GBDT树的深度？ 方差与偏差 泛化误差分为：偏差和方差 偏差：指算法的期望预测值与真实值之间的偏差程度，反应的 …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Machine Learning">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Bias vs Variance" />
-<meta property="og:description" content="方差与偏差 为什么RF的树深一般大于GBDT树的深度？ 方差与偏差 泛化误差分为：偏差和方差 偏差：指算法的期望预测值与真实值之间的偏差程度，反应的 …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Bias-vs-Variance.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,15 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Bias-vs-Variance">Bias vs&nbsp;Variance</h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul>
-<li><a href="#_1">方差与偏差</a></li>
-<li><a href="#rfgbdt">为什么RF的树深一般大于GBDT树的深度？</a></li>
-</ul>
-</div>
-<h3 id="_1">方差与偏差</h3>
-<p>泛化误差分为：偏差和方差</p>
-<p>偏差：指算法的期望预测值与真实值之间的偏差程度，反应的 …</p></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -226,7 +219,7 @@ ga('send', 'pageview');
                             Jun 22, 2019
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~12 words">1 mins</span>
+                    <span class="card-link text-secondary" title="~10 words">1 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/ml.html">ml</a>
@@ -243,23 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul>
-<li><a href="#_1">方差与偏差</a></li>
-<li><a href="#rfgbdt">为什么RF的树深一般大于GBDT树的深度？</a></li>
-</ul>
-</div>
-<h3 id="_1">方差与偏差</h3>
+                <!-- Article -->
+                <h3 id="_1">方差与偏差</h3>
 <p>泛化误差分为：偏差和方差</p>
 <p>偏差：指算法的期望预测值与真实值之间的偏差程度，反应的是模型本身拟合能力。(单模型)</p>
 <p>方差：度量了同等大小数据集的变动导致学习性能的变化，刻画数据扰动所导致的影响。(多模型)</p>
@@ -269,11 +255,10 @@ ga('send', 'pageview');
 <h3 id="rfgbdt">为什么RF的树深一般大于GBDT树的深度？</h3>
 <p>对于Bagging算法，由于时并行的训练若干个弱学习器，他们之间相互独立，主要目的降低方差。所以为了平衡好方差与偏差，每一个弱学习器目标便是如何降低偏差，因而会采用复杂度高的模型作为弱学习器，例如深度较深甚至不剪枝的树，神经网络等。</p>
 <p>对于Boosting算法，训练的弱学习器都是在上一轮基础上更加的拟合数据，保证的是模型的偏差。所以为了平衡好方差与偏差，每一个弱学习器目标便是如何降低弱学习器之间的方差，因而会采用复杂度低的模型作为弱学习器，例如深度很浅的树。</p>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Topological-Sorting.html">
 &ll; Topological&nbsp;Sorting
@@ -281,7 +266,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/L1-and-L2-Regularization.html">
         L1 and L2&nbsp;Regularization &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -333,6 +332,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -354,7 +354,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Bias-vs-Variance.html",
-    "description": "方差与偏差 为什么RF的树深一般大于GBDT树的深度？ 方差与偏差 泛化误差分为：偏差和方差 偏差：指算法的期望预测值与真实值之间的偏差程度，反应的 …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

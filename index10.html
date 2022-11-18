@@ -221,26 +221,10 @@ ga('send', 'pageview');
                     <a href="./articles/Pytorch-distributed-train.html">Pytorch distributed&nbsp;train</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jun 25, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">主卡线程暴涨</a></li>
-<li><a href="#_2">共享内存问题</a></li>
-<li><a href="#lamda">lamda对象不能序列化问题</a></li>
-<li><a href="#_3">加载分布式模型到单卡</a></li>
-</ul>
-</div>
-<h3 id="_1">主卡线程暴涨</h3>
-<p>异常： </p>
-<p><img alt="master" src="../images/Pytorch/bug.png"></p>
-<p>正常：</p>
-<p><img alt="ma" src="../images/Pytorch/bug_fix.png"></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">to_var</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">on_cpu</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gpu_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Tensor =&gt; Variable&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">on_cpu</span><span class="p">:</span>
-        <span class="n">x …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~515 words">Read in 3 mins</span>
+                            <span class="card-link text-secondary" title="~511 words">Read in 3 mins</span>
                             <span class="card-link"><a href="./articles/Pytorch-distributed-train.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
@@ -256,21 +240,10 @@ ga('send', 'pageview');
                     <a href="./articles/Iterator.html">Iterator</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jun 11, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#iterator">Iterator</a></li>
-<li><a href="#generator">Generator</a></li>
-<li><a href="#coroutine">Coroutine</a></li>
-</ul>
-</div>
-<h3 id="iterator">Iterator</h3>
-<p><img alt="iterator" src="../images/python/iterator.png"></p>
-<p>iter():&nbsp;接收的是可迭代对象，返回的是迭代器。</p>
-<p>next():&nbsp;接收的是迭代器，调用的是迭代器对象中的next函数，返回数据元素。</p>
-<p>由于生 …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~237 words">Read in 1 mins</span>
+                            <span class="card-link text-secondary" title="~234 words">Read in 1 mins</span>
                             <span class="card-link"><a href="./articles/Iterator.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
@@ -286,30 +259,10 @@ ga('send', 'pageview');
                     <a href="./articles/reinforcement-learning.html">【<span class="caps">RL</span>】Reinforcement&nbsp;Learning</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 21, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">马尔可夫决策过程</a><ul>
-<li><a href="#mdp">MDP组件</a></li>
-<li><a href="#mdp_1">MDP符号表示</a></li>
-<li><a href="#_2">转换概率</a></li>
-</ul>
-</li>
-<li><a href="#_3">期望回报</a><ul>
-<li><a href="#_4">期望奖励</a></li>
-<li><a href="#_5">折扣期望奖励</a></li>
-</ul>
-</li>
-<li><a href="#_6">策略与值函数</a><ul>
-<li><a href="#_7">策略</a></li>
-<li><a href="#q">Q值函数</a></li>
-<li><a href="#_8">最优策略</a></li>
-<li><a href="#q_1">最优Q值函数</a></li>
-</ul>
-</li>
-<li><a href="#_9">贝尔曼最优方 …</a></li></ul></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~216 words">Read in 1 mins</span>
+                            <span class="card-link text-secondary" title="~203 words">Read in 1 mins</span>
                             <span class="card-link"><a href="./articles/reinforcement-learning.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
@@ -325,25 +278,7 @@ ga('send', 'pageview');
                     <a href="./articles/A_star_algorithm.html">A* Heuristic&nbsp;Algorithm</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 20, 2020</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span><span class="c1">  // for sort</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sstream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span><span class="w"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="p">;</span><span class="w"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">istringstream</span><span class="p">;</span><span class="w"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">;</span><span class="w"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span><span class="w"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="p">;</span><span class="w"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">;</span><span class="w"></span>
-
-<span class="c1">// TODO: Add kStart and KFinish enumerators to the State enum.</span>
-<span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="w"> </span><span class="p">{</span><span class="n">kStart</span><span class="p">,</span><span class="w"> </span><span class="n">kFinish …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~581 words">Read in 3 mins</span>
@@ -363,28 +298,10 @@ ga('send', 'pageview');
                     <a href="./articles/Sort.html">Sort</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 19, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#quick-sort">Quick&nbsp;Sort</a></li>
-<li><a href="#merge-sort">Merge&nbsp;Sort</a></li>
-<li><a href="#heap-sort">Heap&nbsp;Sort</a></li>
-<li><a href="#topological-sort">Topological&nbsp;Sort</a></li>
-</ul>
-</div>
-<h3 id="quick-sort">Quick&nbsp;Sort</h3>
-<p>引例：荷兰国旗问题</p>
-<h3 id="merge-sort">Merge&nbsp;Sort</h3>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">ListNode</span><span class="o">*</span><span class="w"> </span><span class="n">sortList</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span><span class="w"> </span><span class="n">head</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">head</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">ListNode</span><span class="o">*</span><span class="w"> </span><span class="n">fast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">ListNode</span><span class="o">*</span><span class="w"> </span><span class="n">slow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">slow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">slow</span><span class="o">-&gt;</span><span class="n">next …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~382 words">Read in 2 mins</span>
+                            <span class="card-link text-secondary" title="~374 words">Read in 2 mins</span>
                             <span class="card-link"><a href="./articles/Sort.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
@@ -401,20 +318,10 @@ ga('send', 'pageview');
                     <a href="./articles/C++.html">C++</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 09, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#1">1. 基于对象的程序设计</a><ul>
-<li><a href="#11">1.1&nbsp;不含指针成员的类</a></li>
-<li><a href="#12">1.2&nbsp;含有指针成员的类</a></li>
-<li><a href="#13-new">1.3&nbsp;new</a></li>
-<li><a href="#14-delete">1.4&nbsp;delete</a></li>
-<li><a href="#15-this">1.5&nbsp;this</a></li>
-<li><a href="#16-static">1.6&nbsp;static</a></li>
-<li><a href="#17">1.7&nbsp;单例模式</a></li>
-<li><a href="#18-class-template">1.8 …</a></li></ul></li></ul></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~741 words">Read in 3 mins</span>
+                            <span class="card-link text-secondary" title="~700 words">Read in 3 mins</span>
                             <span class="card-link"><a href="./articles/C++.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
@@ -430,28 +337,10 @@ ga('send', 'pageview');
                     <a href="./articles/LinkedList.html">LinkedList</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 09, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">链表结点定义</a></li>
-<li><a href="#_2">链表基本操作</a><ul>
-<li><a href="#remove-duplicates-from-sorted-list">Remove Duplicates from Sorted&nbsp;List</a></li>
-<li><a href="#reverse-linked-list">Reverse Linked&nbsp;List</a></li>
-<li><a href="#merge-two-sorted-lists">Merge Two Sorted&nbsp;Lists</a></li>
-<li><a href="#merge-k-sorted-lists">Merge k Sorted&nbsp;Lists</a></li>
-<li><a href="#sort-list">Sort&nbsp;List</a></li>
-</ul>
-</li>
-<li><a href="#dummy">擅用Dummy节点</a><ul>
-<li><a href="#remove-duplicates-from-sorted-list-ii">Remove Duplicates from Sorted List <span class="caps">II</span></a></li>
-<li><a href="#partition-list">Partition&nbsp;List</a></li>
-</ul>
-</li>
-<li><a href="#_3">快慢指针</a></li>
-<li><a href="#_4">综合设计</a><ul>
-<li><a href="#lru-cache"><span class="caps">LRU …</span></a></li></ul></li></ul></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~797 words">Read in 4 mins</span>
+                            <span class="card-link text-secondary" title="~764 words">Read in 4 mins</span>
                             <span class="card-link"><a href="./articles/LinkedList.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
@@ -468,31 +357,10 @@ ga('send', 'pageview');
                     <a href="./articles/【RL】Q-Learning.html">【<span class="caps">RL</span>】Q&nbsp;Learning</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 06, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#training">Training</a></li>
-<li><a href="#inference">Inference</a></li>
-</ul>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">gym</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">clear_output</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Creating the Environment&quot;&quot;&quot;</span>
-<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;FrozenLake-v0&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Creating the Q-Table and initializing all the Q-Values to zero for each state-action pair.&quot;&quot;&quot;</span>
-
-<span class="n">action_space_size</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span>
-<span class="n">state_space_size</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">n</span>
-<span class="n">q_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">state_space_size …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~444 words">Read in 2 mins</span>
+                            <span class="card-link text-secondary" title="~442 words">Read in 2 mins</span>
                             <span class="card-link"><a href="./articles/【RL】Q-Learning.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
@@ -508,37 +376,10 @@ ga('send', 'pageview');
                     <a href="./articles/Algorithms.html">Algorithms</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 28, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#linked-list">Linked List</a><ul>
-<li><a href="#206-reverse-linked-list">206. Reverse Linked&nbsp;List</a></li>
-<li><a href="#21-merge-two-sorted-lists">21. Merge Two Sorted&nbsp;Lists</a></li>
-<li><a href="#234-palindrome-linked-list">234. Palindrome Linked&nbsp;List</a></li>
-<li><a href="#19-remove-nth-node-from-end-of-list">19. Remove Nth Node From End of&nbsp;List</a></li>
-</ul>
-</li>
-<li><a href="#search">Search</a><ul>
-<li><a href="#dfs"><span class="caps">DFS</span></a><ul>
-<li><a href="#695-max-area-of-island">695. Max Area of&nbsp;Island</a></li>
-<li><a href="#547-number-of-provinces">547. Number of&nbsp;Provinces</a></li>
-<li><a href="#417-pacific-atlantic-water-flow">417. Pacific Atlantic Water&nbsp;Flow</a></li>
-</ul>
-</li>
-<li><a href="#backtracking">Backtracking</a><ul>
-<li><a href="#46-permutations">46.&nbsp;Permutations</a></li>
-<li><a href="#77-combinations">77.&nbsp;Combinations</a></li>
-<li><a href="#79-word-search">79. Word&nbsp;Search</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<h2 id="linked-list">Linked&nbsp;List</h2>
-<h4 id="206-reverse-linked-list">206 …</h4></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~845 words">Read in 4 mins</span>
+                            <span class="card-link text-secondary" title="~798 words">Read in 4 mins</span>
                             <span class="card-link"><a href="./articles/Algorithms.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
@@ -554,22 +395,10 @@ ga('send', 'pageview');
                     <a href="./articles/【RL】User-Simulator.html">【<span class="caps">RL</span>】User&nbsp;Simulator</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 13, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#user-simulator-background">User Simulator&nbsp;BackGround</a></li>
-<li><a href="#rule-based-simulator">Rule-Based&nbsp;Simulator</a></li>
-<li><a href="#design">Design</a></li>
-</ul>
-</div>
-<h2 id="user-simulator-background">User Simulator&nbsp;BackGround</h2>
-<p><strong>为什么需要用户模拟器？</strong></p>
-<p>监督学习方法缺陷：</p>
-<ol>
-<li>
-<p>需要收集大量实际的人机与人人的训练标注数据，昂贵 …</p></li></ol></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~135 words">Read in 1 mins</span>
+                            <span class="card-link text-secondary" title="~129 words">Read in 1 mins</span>
                             <span class="card-link"><a href="./articles/【RL】User-Simulator.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">

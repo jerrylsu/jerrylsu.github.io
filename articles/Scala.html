@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="前言 Functional Programming Part-1: Elements of Functional Programming Pure functions and Side effects Referential Transparency First Class Function &amp; Higher Order Functions Anonymous Functions Immutability Functions Functions Literals Syntax Where do we use function literals? Placeholder Syntax Higher Order Functions VarArgs, Named Arguments, Default Value Partially Applied Functions Part-2: Elements …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Scala">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Scala" />
-<meta property="og:description" content="前言 Functional Programming Part-1: Elements of Functional Programming Pure functions and Side effects Referential Transparency First Class Function &amp; Higher Order Functions Anonymous Functions Immutability Functions Functions Literals Syntax Where do we use function literals? Placeholder Syntax Higher Order Functions VarArgs, Named Arguments, Default Value Partially Applied Functions Part-2: Elements …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Scala.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,29 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Scala">Scala</h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul>
-<li><a href="#_1">前言</a></li>
-<li><a href="#functional-programming">Functional Programming</a><ul>
-<li><a href="#part-1-elements-of-functional-programming">Part-1: Elements of Functional Programming</a><ul>
-<li><a href="#pure-functions-and-side-effects">Pure functions and Side&nbsp;effects</a></li>
-<li><a href="#referential-transparency">Referential&nbsp;Transparency</a></li>
-<li><a href="#first-class-function-higher-order-functions">First Class Function <span class="amp">&amp;</span> Higher Order&nbsp;Functions</a></li>
-<li><a href="#anonymous-functions">Anonymous&nbsp;Functions</a></li>
-<li><a href="#immutability">Immutability</a></li>
-<li><a href="#functions">Functions</a></li>
-<li><a href="#functions-literals">Functions Literals</a><ul>
-<li><a href="#syntax">Syntax</a></li>
-<li><a href="#where-do-we-use-function-literals">Where do we use function&nbsp;literals?</a></li>
-</ul>
-</li>
-<li><a href="#placeholder-syntax">Placeholder&nbsp;Syntax</a></li>
-<li><a href="#higher-order-functions">Higher Order&nbsp;Functions</a></li>
-<li><a href="#varargs-named-arguments-default-value">VarArgs, Named Arguments, Default&nbsp;Value</a></li>
-<li><a href="#partially-applied-functions">Partially Applied&nbsp;Functions</a></li>
-</ul>
-</li>
-<li><a href="#part-2-elements-of-functional-programming">Part-2: Elements …</a></li></ul></li></ul></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -240,7 +219,7 @@ ga('send', 'pageview');
                             Jan 13, 2019
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~731 words">3 mins</span>
+                    <span class="card-link text-secondary" title="~669 words">3 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/programming.html">programming</a>
@@ -257,48 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul>
-<li><a href="#_1">前言</a></li>
-<li><a href="#functional-programming">Functional Programming</a><ul>
-<li><a href="#part-1-elements-of-functional-programming">Part-1: Elements of Functional Programming</a><ul>
-<li><a href="#pure-functions-and-side-effects">Pure functions and Side&nbsp;effects</a></li>
-<li><a href="#referential-transparency">Referential&nbsp;Transparency</a></li>
-<li><a href="#first-class-function-higher-order-functions">First Class Function <span class="amp">&amp;</span> Higher Order&nbsp;Functions</a></li>
-<li><a href="#anonymous-functions">Anonymous&nbsp;Functions</a></li>
-<li><a href="#immutability">Immutability</a></li>
-<li><a href="#functions">Functions</a></li>
-<li><a href="#functions-literals">Functions Literals</a><ul>
-<li><a href="#syntax">Syntax</a></li>
-<li><a href="#where-do-we-use-function-literals">Where do we use function&nbsp;literals?</a></li>
-</ul>
-</li>
-<li><a href="#placeholder-syntax">Placeholder&nbsp;Syntax</a></li>
-<li><a href="#higher-order-functions">Higher Order&nbsp;Functions</a></li>
-<li><a href="#varargs-named-arguments-default-value">VarArgs, Named Arguments, Default&nbsp;Value</a></li>
-<li><a href="#partially-applied-functions">Partially Applied&nbsp;Functions</a></li>
-</ul>
-</li>
-<li><a href="#part-2-elements-of-functional-programming">Part-2: Elements of Functional&nbsp;Programming</a></li>
-<li><a href="#strict-and-lazy-evaluations">Strict and Lazy&nbsp;Evaluations</a></li>
-<li><a href="#pattern-matching">Pattern&nbsp;Matching</a></li>
-<li><a href="#scala-closures">Scala&nbsp;Closures</a></li>
-</ul>
-</li>
-<li><a href="#scala-basics">Scala&nbsp;Basics</a></li>
-</ul>
-</div>
-<h2 id="_1">前言</h2>
+                <!-- Article -->
+                <h2 id="_1">前言</h2>
 <h2 id="functional-programming">Functional&nbsp;Programming</h2>
 <h3 id="part-1-elements-of-functional-programming">Part-1: Elements of Functional&nbsp;Programming</h3>
 <p>什么是函数式编程？(Functional Programming)<br>
@@ -582,11 +529,10 @@ data.map( (x:Int) =&gt; x + 10 )
 <h3 id="pattern-matching">Pattern&nbsp;Matching</h3>
 <h3 id="scala-closures">Scala&nbsp;Closures</h3>
 <h2 id="scala-basics">Scala&nbsp;Basics</h2>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Spark-RDD.html">
 &ll; Spark <span class="caps">RDD</span>
@@ -594,7 +540,21 @@ data.map( (x:Int) =&gt; x + 10 )
     <a class="w-50 text-right" href="../articles/Linux.html">
         Linux &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -646,6 +606,7 @@ data.map( (x:Int) =&gt; x + 10 )
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -667,7 +628,7 @@ data.map( (x:Int) =&gt; x + 10 )
     },
     "image": "../jerry.jpg",
     "url": "../articles/Scala.html",
-    "description": "前言 Functional Programming Part-1: Elements of Functional Programming Pure functions and Side effects Referential Transparency First Class Function & Higher Order Functions Anonymous Functions Immutability Functions Functions Literals Syntax Where do we use function literals? Placeholder Syntax Higher Order Functions VarArgs, Named Arguments, Default Value Partially Applied Functions Part-2: Elements …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->
