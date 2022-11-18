@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="How to Convert Characters, Tokens, and Words 1. Mapping char to token. from transformers import BigBirdTokenizerFast tokenizer = BigBirdTokenizerFast.from_pretrained(&#39;allenai/longformer-large-4096&#39;) Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained. text = &#34;Phones\n\nModern humans today are always on their …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="NLP">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Mapping chars and words to tokens" />
-<meta property="og:description" content="How to Convert Characters, Tokens, and Words 1. Mapping char to token. from transformers import BigBirdTokenizerFast tokenizer = BigBirdTokenizerFast.from_pretrained(&#39;allenai/longformer-large-4096&#39;) Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained. text = &#34;Phones\n\nModern humans today are always on their …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Mapping-Chars-and-Words-to-Tokens.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,16 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Mapping-Chars-and-Words-to-Tokens">Mapping chars and words to&nbsp;tokens</h3>
-		<p style="font-size:larger;"><p><a href="https://www.kaggle.com/c/feedback-prize-2021/discussion/298094">How to Convert Characters, Tokens, and&nbsp;Words</a></p>
-<h2 id="1-mapping-char-to-token">1. Mapping char to&nbsp;token.</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BigBirdTokenizerFast</span>
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BigBirdTokenizerFast</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;allenai/longformer-large-4096&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Phones</span><span class="se">\n\n</span><span class="s2">Modern humans today are always on their …</span></code></pre></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -244,17 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <p><a href="https://www.kaggle.com/c/feedback-prize-2021/discussion/298094">How to Convert Characters, Tokens, and&nbsp;Words</a></p>
+                <!-- Article -->
+                <p><a href="https://www.kaggle.com/c/feedback-prize-2021/discussion/298094">How to Convert Characters, Tokens, and&nbsp;Words</a></p>
 <h2 id="1-mapping-char-to-token">1. Mapping char to&nbsp;token.</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BigBirdTokenizerFast</span>
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BigBirdTokenizerFast</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;allenai/longformer-large-4096&#39;</span><span class="p">)</span>
@@ -481,11 +472,10 @@ word_ids: [None, 0, 1, 1, 2, 2, 3, 4, 5, 6, 7, 8, 8, None], len: 14
 
 <div class="highlight"><pre><span></span><code>
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Feedback-Prize-Evaluating-Student-Writing.html">
 &ll; Feedback prize evaluating student&nbsp;writing
@@ -493,7 +483,21 @@ word_ids: [None, 0, 1, 1, 2, 2, 3, 4, 5, 6, 7, 8, 8, None], len: 14
     <a class="w-50 text-right" href="../articles/Longformer-BigBird.html">
         Longformer&nbsp;BigBird &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -545,6 +549,7 @@ word_ids: [None, 0, 1, 1, 2, 2, 3, 4, 5, 6, 7, 8, 8, None], len: 14
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -566,7 +571,7 @@ word_ids: [None, 0, 1, 1, 2, 2, 3, 4, 5, 6, 7, 8, 8, None], len: 14
     },
     "image": "../jerry.jpg",
     "url": "../articles/Mapping-Chars-and-Words-to-Tokens.html",
-    "description": "How to Convert Characters, Tokens, and Words 1. Mapping char to token. from transformers import BigBirdTokenizerFast tokenizer = BigBirdTokenizerFast.from_pretrained('allenai/longformer-large-4096') Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained. text = "Phones\n\nModern humans today are always on their …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="https://www.cnblogs.com/zzliu/p/10809205.html import json dir(result) [&#39;__class__&#39;, &#39;__contains__&#39;, &#39;__delattr__&#39;, &#39;__delitem__&#39;, &#39;__dir__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;, &#39;__getitem__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;__init__&#39;, &#39;__init_subclass__&#39;, &#39;__iter__&#39;, &#39;__le__&#39;, &#39;__len__&#39;, &#39;__lt__&#39;, &#39;__ne__&#39;, &#39;__new__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__reversed__&#39;, &#39;__setattr__&#39;, &#39;__setitem__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;, &#39;clear&#39;, &#39;copy&#39;, &#39;fromkeys&#39;, &#39;get&#39;, &#39;items&#39;, &#39;keys&#39;, &#39;pop&#39;, &#39;popitem …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Python">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Python - setdefault" />
-<meta property="og:description" content="https://www.cnblogs.com/zzliu/p/10809205.html import json dir(result) [&#39;__class__&#39;, &#39;__contains__&#39;, &#39;__delattr__&#39;, &#39;__delitem__&#39;, &#39;__dir__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;, &#39;__getitem__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;__init__&#39;, &#39;__init_subclass__&#39;, &#39;__iter__&#39;, &#39;__le__&#39;, &#39;__len__&#39;, &#39;__lt__&#39;, &#39;__ne__&#39;, &#39;__new__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__reversed__&#39;, &#39;__setattr__&#39;, &#39;__setitem__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;, &#39;clear&#39;, &#39;copy&#39;, &#39;fromkeys&#39;, &#39;get&#39;, &#39;items&#39;, &#39;keys&#39;, &#39;pop&#39;, &#39;popitem …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Python-setdefault.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,51 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Python-setdefault">Python -&nbsp;setdefault</h3>
-		<p style="font-size:larger;"><p>https://www.cnblogs.com/zzliu/p/10809205.html</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="nb">dir</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>[&#39;__class__&#39;,
- &#39;__contains__&#39;,
- &#39;__delattr__&#39;,
- &#39;__delitem__&#39;,
- &#39;__dir__&#39;,
- &#39;__doc__&#39;,
- &#39;__eq__&#39;,
- &#39;__format__&#39;,
- &#39;__ge__&#39;,
- &#39;__getattribute__&#39;,
- &#39;__getitem__&#39;,
- &#39;__gt__&#39;,
- &#39;__hash__&#39;,
- &#39;__init__&#39;,
- &#39;__init_subclass__&#39;,
- &#39;__iter__&#39;,
- &#39;__le__&#39;,
- &#39;__len__&#39;,
- &#39;__lt__&#39;,
- &#39;__ne__&#39;,
- &#39;__new__&#39;,
- &#39;__reduce__&#39;,
- &#39;__reduce_ex__&#39;,
- &#39;__repr__&#39;,
- &#39;__reversed__&#39;,
- &#39;__setattr__&#39;,
- &#39;__setitem__&#39;,
- &#39;__sizeof__&#39;,
- &#39;__str__&#39;,
- &#39;__subclasshook__&#39;,
- &#39;clear&#39;,
- &#39;copy&#39;,
- &#39;fromkeys&#39;,
- &#39;get&#39;,
- &#39;items&#39;,
- &#39;keys&#39;,
- &#39;pop&#39;,
- &#39;popitem …</code></pre></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -279,17 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <p>https://www.cnblogs.com/zzliu/p/10809205.html</p>
+                <!-- Article -->
+                <p>https://www.cnblogs.com/zzliu/p/10809205.html</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
 </code></pre></div>
 
@@ -373,11 +329,10 @@ ga('send', 'pageview');
 
 <div class="highlight"><pre><span></span><code>&#39;{&quot;id&quot;: 1, &quot;label&quot;: {&quot;name&quot;: {&quot;把信&quot;: [[6, 7]], &quot;请银行&quot;: [[3, 5], [0, 2]]}, &quot;address&quot;: {&quot;个地&quot;: [[15, 16]]}}}&#39;
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/NLP-Unicode-Tokenizer-Mapping.html">
 &ll; <span class="caps">NLP</span> Unicode Tokenizer&nbsp;Mapping
@@ -385,7 +340,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/Cross-Entropy.html">
         Cross&nbsp;Entropy &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -437,6 +406,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -458,7 +428,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Python-setdefault.html",
-    "description": "https://www.cnblogs.com/zzliu/p/10809205.html import json dir(result) ['__class__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 'clear', 'copy', 'fromkeys', 'get', 'items', 'keys', 'pop', 'popitem …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

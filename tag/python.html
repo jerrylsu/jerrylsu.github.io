@@ -220,23 +220,7 @@ ga('send', 'pageview');
                     <a href="../articles/python-docx-using-lxml.html">Python docx using&nbsp;lxml</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Sep 25, 2022</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">docx</span>
-<span class="kn">import</span> <span class="nn">lxml</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># load docx file</span>
-<span class="n">docx_obj</span> <span class="o">=</span> <span class="n">docx</span><span class="o">.</span><span class="n">Document</span><span class="p">(</span><span class="s2">&quot;/var/www/blog/content/cache/template.docx&quot;</span><span class="p">)</span>
-<span class="n">paras</span> <span class="o">=</span> <span class="n">docx_obj</span><span class="o">.</span><span class="n">paragraphs</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># traverse all runs of the specified paragraph idx 6.</span>
-<span class="n">para</span> <span class="o">=</span> <span class="n">paras</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">run</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">para</span><span class="o">.</span><span class="n">runs</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;run </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">run</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>run 0: 专 …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~2187 words">Read in 9 mins</span>
@@ -257,21 +241,7 @@ ga('send', 'pageview');
                     <a href="../articles/Multiprocessing-in-FastAPI.html">Multiprocessing in&nbsp;FastAPI</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 28, 2022</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/async-endpoint&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">test_endpoint</span><span class="p">():</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span>
-        <span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span>
-                                                 <span class="n">subject_extract_check_process</span><span class="p">,</span>
-                                                  <span class="o">*</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">subject_check_rules</span><span class="p">,</span> <span class="n">docx_paras</span><span class="p">,</span> <span class="n">pdf_paras</span><span class="p">))</span>  <span class="c1"># wait result</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Subprocess execute fail: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">return</span> <span class="n">results</span>
-</code></pre></div>
-
-<p>https://stackoverflow.com/questions/63169865 …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~33 words">Read in 1 mins</span>
@@ -290,9 +260,7 @@ ga('send', 'pageview');
                     <a href="../articles/asyncio-get_event_loop-vs-get_running_loop.html">asyncio get_event_loop vs&nbsp;get_running_loop</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 28, 2022</span></span>
-                <p><p>Asyncio</p>
-<p><strong>asyncio.get_event_loop</strong> vs <strong>asyncio.get_running_loop</strong></p>
-<p>https://stackoverflow.com/questions/65206110/when-should-we-use-asyncio-get-running-loop-vs-asyncio-get-event-loop/69314701#69314701</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~5 words">Read in 1 mins</span>
@@ -311,11 +279,7 @@ ga('send', 'pageview');
                     <a href="../articles/FastAPI-for-CPU-Bound-Task.html">FastAPI for <span class="caps">CPU</span>-Bound&nbsp;Task</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 19, 2022</span></span>
-                <p><p>fastAPI</p>
-<p><strong>def</strong> vs <strong>async&nbsp;def</strong></p>
-<p>def:&nbsp;线程池，实现并发</p>
-<p>async def: 协程，事件循环器实现并发。不存在await操作，退化成串行请求requests&nbsp;sequentially。</p>
-<p>async def如何用在cpu-bound任务上？&nbsp;可以用户态适时asyncio.sleep …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~55 words">Read in 1 mins</span>
@@ -334,12 +298,7 @@ ga('send', 'pageview');
                     <a href="../articles/Base64-Encode-Decode.html">Base64-encode-decode</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 09, 2022</span></span>
-                <p><h2 id="python-encode-decode">python encode&nbsp;decode</h2>
-<p>是字节码bytes与字符串str之间的转换</p>
-<ul>
-<li>encode() 方法为字符串类型（str）提供的方法，用于将 str 类型转换成 bytes&nbsp;类型，这个过程也称为“编码”。</li>
-</ul>
-<p><code>str.encode([encoding="utf-8"][,errors="strict …</code></p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~122 words">Read in 1 mins</span>
@@ -358,24 +317,7 @@ ga('send', 'pageview');
                     <a href="../articles/Joblib-parallel.html">Joblib&nbsp;parallel</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 23, 2022</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">inference</span><span class="p">(</span><span class="n">node_id</span><span class="p">,</span> <span class="n">biz_code</span><span class="p">,</span> <span class="n">pool</span><span class="p">):</span>
-    <span class="n">df_to_detection</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">((</span><span class="n">node_id</span><span class="p">,</span> <span class="n">biz_code</span><span class="p">,</span> <span class="n">pool</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;node_id&quot;</span><span class="p">,</span> <span class="s2">&quot;biz_code&quot;</span><span class="p">,</span> <span class="s2">&quot;pool&quot;</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">df_to_detection</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">params</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;c_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;d_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;e_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;f_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="s2">&quot;g_pool&quot;</span><span class="p">)]</span>
-
-<span class="n">jobs_num</span> <span class="o">=</span> <span class="nb">len …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~322 words">Read in 2 mins</span>
@@ -394,36 +336,7 @@ ga('send', 'pageview');
                     <a href="../articles/Pandas-regex.html">Pandas-regex</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 02, 2021</span></span>
-                <p><h2 id="regex">Regex元字符</h2>
-<p>https://regex101.com/</p>
-<p>https://www.runoob.com/regexp/regexp-metachar.html</p>
-<h3 id="_1">定位符</h3>
-<p><strong>^</strong> : ^[^0-9][0-9]$&nbsp;第一个字符不能是数字</p>
-<p><strong>$</strong>&nbsp;: </p>
-<p><strong>\b</strong>&nbsp;: </p>
-<p><strong>\B</strong>&nbsp;:  </p>
-<h3 id="_2">特殊单字符</h3>
-<ul>
-<li>
-<p><strong>.</strong>&nbsp;:</p>
-</li>
-<li>
-<p><strong>\d</strong> :&nbsp;[0-9]</p>
-</li>
-<li>
-<p><strong>\w</strong> :&nbsp;[0-9a-zA-Z_]</p>
-</li>
-<li>
-<p><strong>\s</strong> : [\r\n\t\f\v&nbsp;]</p>
-</li>
-<li>
-<p><strong>\D</strong> :&nbsp;[^0-9]</p>
-</li>
-<li>
-<p><strong>\W</strong> :&nbsp;[^0-9a-zA-Z_]</p>
-</li>
-<li>
-<p><strong>\S</strong> : [^\r\n …</p></li></ul></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~57 words">Read in 1 mins</span>
@@ -443,23 +356,7 @@ ga('send', 'pageview');
                     <a href="../articles/Pandas-list-mapping.html">Pandas-list-mapping</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 01, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;合同有效期:  2021年9月至2022年9月&#39;</span>
-<span class="n">text</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>&#39;合同有效期:  2021年9月至2022年9月&#39;
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">runs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;3.&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;合同有效期:&#39;</span><span class="p">,</span> <span class="s1">&#39;  &#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;02&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;年&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="s1">&#39;月至2&#39;</span><span class="p">,</span> <span class="s1">&#39;02&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;年&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="s1">&#39;月&#39;</span><span class="p">]</span>
-<span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ll</span><span class="p">)</span>
-<span class="n">origin</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>&#39;3. 合同有效期:  2021年9月至2022年9月&#39;
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">runs_mapping</span><span class="p">(</span><span class="n">runs</span><span class="p">):</span>
-    <span class="n">mapping</span><span class="p">,</span> <span class="n">start …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~79 words">Read in 1 mins</span>
@@ -502,51 +399,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-setdefault.html">Python -&nbsp;setdefault</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Aug 26, 2021</span></span>
-                <p><p>https://www.cnblogs.com/zzliu/p/10809205.html</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="nb">dir</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>[&#39;__class__&#39;,
- &#39;__contains__&#39;,
- &#39;__delattr__&#39;,
- &#39;__delitem__&#39;,
- &#39;__dir__&#39;,
- &#39;__doc__&#39;,
- &#39;__eq__&#39;,
- &#39;__format__&#39;,
- &#39;__ge__&#39;,
- &#39;__getattribute__&#39;,
- &#39;__getitem__&#39;,
- &#39;__gt__&#39;,
- &#39;__hash__&#39;,
- &#39;__init__&#39;,
- &#39;__init_subclass__&#39;,
- &#39;__iter__&#39;,
- &#39;__le__&#39;,
- &#39;__len__&#39;,
- &#39;__lt__&#39;,
- &#39;__ne__&#39;,
- &#39;__new__&#39;,
- &#39;__reduce__&#39;,
- &#39;__reduce_ex__&#39;,
- &#39;__repr__&#39;,
- &#39;__reversed__&#39;,
- &#39;__setattr__&#39;,
- &#39;__setitem__&#39;,
- &#39;__sizeof__&#39;,
- &#39;__str__&#39;,
- &#39;__subclasshook__&#39;,
- &#39;clear&#39;,
- &#39;copy&#39;,
- &#39;fromkeys&#39;,
- &#39;get&#39;,
- &#39;items&#39;,
- &#39;keys&#39;,
- &#39;pop&#39;,
- &#39;popitem …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~124 words">Read in 1 mins</span>

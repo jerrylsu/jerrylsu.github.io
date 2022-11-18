@@ -220,23 +220,7 @@ ga('send', 'pageview');
                     <a href="../articles/BertForQuestionAnswering.html">BertForQuestionAnswering</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 14, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">input_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">attention_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">token_type_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">position_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">head_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">inputs_embeds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">start_positions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">end_positions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">output_attentions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">output_hidden_states</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">return_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        start_positions (:obj:`torch.LongTensor` of shape :obj:`(batch_size,)`, `optional`):</span>
-<span class="sd">            Labels for position (index) of the start of the labelled span for computing the token …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~205 words">Read in 1 mins</span>
@@ -256,17 +240,7 @@ ga('send', 'pageview');
                     <a href="../articles/pytorch-create-tensor.html">Pytorch-create-tensor</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 07, 2021</span></span>
-                <p><p><span class="caps">CLASS</span>&nbsp;torch.Tensor</p>
-<p>There are a few main ways to create a tensor, depending on your use&nbsp;case.</p>
-<ul>
-<li>
-<p>To create a tensor with pre-existing data, use&nbsp;torch.tensor().</p>
-</li>
-<li>
-<p>To create a tensor with specific size, use torch.* tensor creation ops (see <a href="https://pytorch.org/docs/stable/torch.html#tensor-creation-ops">Creation Ops</a>).</p>
-</li>
-<li>
-<p>To create a tensor with the same …</p></li></ul></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~137 words">Read in 1 mins</span>
@@ -286,15 +260,7 @@ ga('send', 'pageview');
                     <a href="../articles/batch padding.html">batch&nbsp;padding</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 07, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_collate_batch</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Collate `examples` into a batch, using the information in `tokenizer` for padding if necessary.&quot;&quot;&quot;</span>
-    <span class="c1"># Tensorize if necessary.</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">examples</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
-        <span class="n">examples</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">]</span>
-
-    <span class="c1"># Check if padding is necessary.</span>
-    <span class="n">length_of_first</span> <span class="o">=</span> <span class="n">examples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">are_tensors_same_length</span> <span class="o">=</span> <span class="nb">all …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~121 words">Read in 1 mins</span>
@@ -314,18 +280,7 @@ ga('send', 'pageview');
                     <a href="../articles/torch.rand/randn/randint.html">torch.rand/randn/randint</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 04, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
-</code></pre></div>
-
-<h2 id="torchrand-0-1">torch.rand&nbsp;0-1均匀分布</h2>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Docstring:</span>
-<span class="sd">rand(*size, *, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False) -&gt; Tensor</span>
-
-<span class="sd">Returns a tensor filled with random numbers from a uniform distribution</span>
-<span class="sd">on the interval :math:`[0, 1)`</span>
-
-<span class="sd">The shape of the tensor is defined by the variable argument :attr:`size …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~946 words">Read in 4 mins</span>
@@ -345,21 +300,7 @@ ga('send', 'pageview');
                     <a href="../articles/torch.nn.CrossEntropyLoss.html">torch.nn.CrossEntropyLoss</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 04, 2021</span></span>
-                <p><p><a href="https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html#torch.nn.CrossEntropyLoss">https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html#torch.nn.CrossEntropyLoss</a></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">CrossEntropyLoss</span>
-
-<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">MAX_SEQ_LENGTH</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">EMBEDDING_SIZE</span> <span class="o">=</span> <span class="n">VOCAB_SIZE</span> <span class="o">=</span> <span class="mi">5</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">input_ids</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">MAX_SEQ_LENGTH</span><span class="p">,</span> <span class="n">EMBEDDING_SIZE</span><span class="p">))</span>
-<span class="n">input_ids</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>tensor([[[-1.2207e-01,  9.4908e-01,  9.6387e-02,  1.4286e+00,  1.9476e+00],
-         [ 6.7663e-01,  8 …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~276 words">Read in 2 mins</span>
@@ -379,9 +320,7 @@ ga('send', 'pageview');
                     <a href="../articles/CategoricalCrossentropy VS SparseCategoricalCrossentropy.html">CategoricalCrossentropy <span class="caps">VS</span>&nbsp;SparseCategoricalCrossentropy</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 09, 2020</span></span>
-                <p><h2 id="sparsecategoricalcrossentropy">SparseCategoricalCrossentropy</h2>
-<p>Use this crossentropy loss function when there are two or more label classes. We expect labels to be provided in a <strong>one_hot</strong> representation. If you want to provide labels as <strong>integers</strong>, please use <strong>SparseCategoricalCrossentropy</strong> loss. There should be # classes floating point values per&nbsp;feature.</p>
-<p>https://www.tensorflow.org/api_docs …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~681 words">Read in 3 mins</span>
@@ -401,17 +340,7 @@ ga('send', 'pageview');
                     <a href="../articles/tf.not_equal/reduce_any/boolean_mask.html">tf.not_equal/reduce_any/boolean_mask</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 03, 2020</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">input_ids</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">101</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                         <span class="p">[</span><span class="mi">101</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
-<span class="n">input_ids</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>&lt;tf.Tensor: shape=(2, 8), dtype=int32, numpy=
-array([[101,   2,   4,   5, 102,   0,   0,   0],
-       [101,   8,   6,   2,   4, 102,   0 …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~160 words">Read in 1 mins</span>
@@ -431,31 +360,7 @@ array([[101,   2,   4,   5, 102,   0,   0,   0],
                     <a href="../articles/tf.broadcast_to.html">tf.broadcast_to</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 23, 2020</span></span>
-                <p><h2 id="broadcast">Broadcast</h2>
-<ul>
-<li>
-<p>expand_dims</p>
-</li>
-<li>
-<p>without copying data vs&nbsp;tf.tile</p>
-</li>
-<li>
-<p>tf.broadcast_to</p>
-</li>
-</ul>
-<h2 id="key-idea">Key&nbsp;idea</h2>
-<ul>
-<li>
-<p>如何a，b张量维度不一致，则插入1dim。小维度对齐</p>
-</li>
-<li>
-<p>expand&nbsp;1dim到相同dims</p>
-</li>
-</ul>
-<p>e.g.  a = [4, 32, 32,&nbsp;3]</p>
-<p>b = [3] -&gt; [1, 1, 1, 3] -&gt; [4, 32, 32,&nbsp;3]</p>
-<h1 id="tfbroadcast_to">tf.broadcast_to</h1>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~170 words">Read in 1 mins</span>
@@ -475,26 +380,7 @@ array([[101,   2,   4,   5, 102,   0,   0,   0],
                     <a href="../articles/tf.concat/split/stack.html">tf.concat/split/stack</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 23, 2020</span></span>
-                <p><h1 id="merge-and-split">Merge and&nbsp;Split</h1>
-<ul>
-<li>
-<p>tf.concat</p>
-</li>
-<li>
-<p>tf.split</p>
-</li>
-<li>
-<p>tf.stack</p>
-</li>
-<li>
-<p>tf.unstack</p>
-</li>
-</ul>
-<h1 id="1-tfconcat">1.&nbsp;tf.concat</h1>
-<p>原有维度concat，如果新维度concat，则stack</p>
-<ul>
-<li>
-<p>concat：拼接的维度可以不同，其他维度必须相同。 concat([3, 35, 8], [2 …</p></li></ul></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~163 words">Read in 1 mins</span>
@@ -514,35 +400,7 @@ array([[101,   2,   4,   5, 102,   0,   0,   0],
                     <a href="../articles/tf.transpose/expand_dims/squeeze.html">tf.transpose/expand_dims/squeeze</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 23, 2020</span></span>
-                <p><ul>
-<li>
-<p>shape,&nbsp;ndim</p>
-</li>
-<li>
-<p>reshape</p>
-</li>
-<li>
-<p>expand_dims/squeeze</p>
-</li>
-<li>
-<p>transpose</p>
-</li>
-<li>
-<p>broadcast_to</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-</code></pre></div>
-
-<p>view1-4不同的数据理解方式，不改变原有数据的content，并且数据全部使用。</p>
-<ul>
-<li>
-<p>view1: [b, 28,&nbsp;28]     </p>
-<p>图片包含行列信息</p>
-</li>
-<li>
-<p>view2: [b,&nbsp;28*28]</p>
-<p>图片的数据 …</p></li></ul></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~214 words">Read in 1 mins</span>

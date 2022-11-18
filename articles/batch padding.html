@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="def _collate_batch(examples, tokenizer): &#34;&#34;&#34;Collate `examples` into a batch, using the information in `tokenizer` for padding if necessary.&#34;&#34;&#34; # Tensorize if necessary. if isinstance(examples[0], (list, tuple)): examples = [torch.tensor(e, dtype=torch.long) for e in examples] # Check if padding is necessary. length_of_first = examples[0].size(0) are_tensors_same_length = all …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Deep Learning, Pytorch">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="batch padding" />
-<meta property="og:description" content="def _collate_batch(examples, tokenizer): &#34;&#34;&#34;Collate `examples` into a batch, using the information in `tokenizer` for padding if necessary.&#34;&#34;&#34; # Tensorize if necessary. if isinstance(examples[0], (list, tuple)): examples = [torch.tensor(e, dtype=torch.long) for e in examples] # Check if padding is necessary. length_of_first = examples[0].size(0) are_tensors_same_length = all …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/batch padding.html" />
 <meta property="og:type" content="article" />
@@ -61,6 +61,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -209,15 +210,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="batch padding">batch&nbsp;padding</h3>
-		<p style="font-size:larger;"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_collate_batch</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Collate `examples` into a batch, using the information in `tokenizer` for padding if necessary.&quot;&quot;&quot;</span>
-    <span class="c1"># Tensorize if necessary.</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">examples</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
-        <span class="n">examples</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">]</span>
-
-    <span class="c1"># Check if padding is necessary.</span>
-    <span class="n">length_of_first</span> <span class="o">=</span> <span class="n">examples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">are_tensors_same_length</span> <span class="o">=</span> <span class="nb">all …</span></code></pre></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -245,17 +238,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_collate_batch</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
+                <!-- Article -->
+                <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_collate_batch</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Collate `examples` into a batch, using the information in `tokenizer` for padding if necessary.&quot;&quot;&quot;</span>
     <span class="c1"># Tensorize if necessary.</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">examples</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
@@ -284,11 +276,10 @@ ga('send', 'pageview');
             <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">-</span><span class="n">example</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">example</span>
     <span class="k">return</span> <span class="n">result</span>
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Python-dataclasses.html">
 &ll; Python&nbsp;dataclasses
@@ -296,7 +287,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/pytorch-create-tensor.html">
         Pytorch-create-tensor &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -348,6 +353,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -369,7 +375,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/batch padding.html",
-    "description": "def _collate_batch(examples, tokenizer): """Collate `examples` into a batch, using the information in `tokenizer` for padding if necessary.""" # Tensorize if necessary. if isinstance(examples[0], (list, tuple)): examples = [torch.tensor(e, dtype=torch.long) for e in examples] # Check if padding is necessary. length_of_first = examples[0].size(0) are_tensors_same_length = all …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

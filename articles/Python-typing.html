@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="from typing import Union, Optional, Callable, Iterable, Mapping, Sequence, List, Tuple, Any https://docs.python.org/3/library/typing.html Any, Union, Tuple, List, Sequence, Mapping, Callable, TypeVar,Optional, Generic等的使用频率比较高，其中Union、Optional、Sequence、Mapping非常有用。 Union 即并集，所以Union[X, Y] 意思是要么 …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Python">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Python - typing" />
-<meta property="og:description" content="from typing import Union, Optional, Callable, Iterable, Mapping, Sequence, List, Tuple, Any https://docs.python.org/3/library/typing.html Any, Union, Tuple, List, Sequence, Mapping, Callable, TypeVar,Optional, Generic等的使用频率比较高，其中Union、Optional、Sequence、Mapping非常有用。 Union 即并集，所以Union[X, Y] 意思是要么 …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Python-typing.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,15 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Python-typing">Python -&nbsp;typing</h3>
-		<p style="font-size:larger;"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span>
-</code></pre></div>
-
-<p><a href="https://docs.python.org/3/library/typing.html">https://docs.python.org/3/library/typing.html</a></p>
-<p>Any, Union, Tuple, List, Sequence, Mapping, Callable, TypeVar,Optional,&nbsp;Generic等的使用频率比较高，其中Union、Optional、Sequence、Mapping非常有用。</p>
-<ul>
-<li>Union</li>
-</ul>
-<p>即并集，所以Union[X, Y]&nbsp;意思是要么 …</p></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -243,17 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span>
+                <!-- Article -->
+                <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span>
 </code></pre></div>
 
 <p><a href="https://docs.python.org/3/library/typing.html">https://docs.python.org/3/library/typing.html</a></p>
@@ -291,11 +283,10 @@ ga('send', 'pageview');
     <span class="o">*</span><span class="p">,</span> <span class="n">oidx</span><span class="p">:</span> <span class="n">Index</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">vidx</span><span class="p">:</span> <span class="n">Index</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
     <span class="k">pass</span>
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Google-Android.html">
 &ll; Google-android
@@ -303,7 +294,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/torch.nn.CrossEntropyLoss.html">
         torch.nn.CrossEntropyLoss &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -355,6 +360,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -376,7 +382,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Python-typing.html",
-    "description": "from typing import Union, Optional, Callable, Iterable, Mapping, Sequence, List, Tuple, Any https://docs.python.org/3/library/typing.html Any, Union, Tuple, List, Sequence, Mapping, Callable, TypeVar,Optional, Generic等的使用频率比较高，其中Union、Optional、Sequence、Mapping非常有用。 Union 即并集，所以Union[X, Y] 意思是要么 …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

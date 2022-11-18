@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="A comparison of Hidden Markov Models and Conditional Random Fields, two kinds of probabilistic graphical models. import torch from torch import nn # BMES四位序列标注法 PADDING = 0 B = 2 E = 3 S = 4 M = 5 START = 6 END = 7 LABEL_VOCAB = {0: &#39;&lt;pad&gt;&#39;, 1: &#39;&lt;unk&gt;&#39;, 2: &#39;B&#39;, 3: &#39;E&#39;, 4: &#39;S&#39;, 5: &#39;M …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Deep Learning, Pytorch, NLP, CRF, Algorithm">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="ConditionalRandomField" />
-<meta property="og:description" content="A comparison of Hidden Markov Models and Conditional Random Fields, two kinds of probabilistic graphical models. import torch from torch import nn # BMES四位序列标注法 PADDING = 0 B = 2 E = 3 S = 4 M = 5 START = 6 END = 7 LABEL_VOCAB = {0: &#39;&lt;pad&gt;&#39;, 1: &#39;&lt;unk&gt;&#39;, 2: &#39;B&#39;, 3: &#39;E&#39;, 4: &#39;S&#39;, 5: &#39;M …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Conditional-Random-Field.html" />
 <meta property="og:type" content="article" />
@@ -64,6 +64,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -212,21 +213,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Conditional-Random-Field">ConditionalRandomField</h3>
-		<p style="font-size:larger;"><p><a href="https://ben.bolte.cc/hmms-crfs">A comparison of Hidden Markov Models and Conditional Random Fields, two kinds of probabilistic graphical&nbsp;models.</a></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># BMES四位序列标注法</span>
-<span class="n">PADDING</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">B</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">E</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">S</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">M</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">START</span> <span class="o">=</span> <span class="mi">6</span>
-<span class="n">END</span> <span class="o">=</span> <span class="mi">7</span>
-
-<span class="n">LABEL_VOCAB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;&lt;pad&gt;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;&lt;unk&gt;&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;M …</span></code></pre></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -257,17 +244,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <p><a href="https://ben.bolte.cc/hmms-crfs">A comparison of Hidden Markov Models and Conditional Random Fields, two kinds of probabilistic graphical&nbsp;models.</a></p>
+                <!-- Article -->
+                <p><a href="https://ben.bolte.cc/hmms-crfs">A comparison of Hidden Markov Models and Conditional Random Fields, two kinds of probabilistic graphical&nbsp;models.</a></p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
 </code></pre></div>
@@ -736,11 +722,10 @@ tensor([[ 0.3130,  0.6805, -1.6291,  1.1787,  0.2590,  0.0393,  0.3733, -1.0978]
 
 <div class="highlight"><pre><span></span><code>
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/tensor.detach/torch.detach_/torch.data.html">
 &ll; tensor.detach/torch.detach_/torch.data
@@ -748,7 +733,21 @@ tensor([[ 0.3130,  0.6805, -1.6291,  1.1787,  0.2590,  0.0393,  0.3733, -1.0978]
     <a class="w-50 text-right" href="../articles/Pytorch-fancy-indexing.html">
         Pytorch fancy&nbsp;indexing &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -800,6 +799,7 @@ tensor([[ 0.3130,  0.6805, -1.6291,  1.1787,  0.2590,  0.0393,  0.3733, -1.0978]
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -821,7 +821,7 @@ tensor([[ 0.3130,  0.6805, -1.6291,  1.1787,  0.2590,  0.0393,  0.3733, -1.0978]
     },
     "image": "../jerry.jpg",
     "url": "../articles/Conditional-Random-Field.html",
-    "description": "A comparison of Hidden Markov Models and Conditional Random Fields, two kinds of probabilistic graphical models. import torch from torch import nn # BMES四位序列标注法 PADDING = 0 B = 2 E = 3 S = 4 M = 5 START = 6 END = 7 LABEL_VOCAB = {0: '<pad>', 1: '<unk>', 2: 'B', 3: 'E', 4: 'S', 5: 'M …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

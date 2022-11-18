@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="import docx import lxml import zipfile # load docx file docx_obj = docx.Document(&#34;/var/www/blog/content/cache/template.docx&#34;) paras = docx_obj.paragraphs # traverse all runs of the specified paragraph idx 6. para = paras[6] for idx, run in enumerate(para.runs): print(f&#34;run {idx}: {run.text}&#34;) run 0: 专 …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Python, Docx, lxml">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Python docx using lxml" />
-<meta property="og:description" content="import docx import lxml import zipfile # load docx file docx_obj = docx.Document(&#34;/var/www/blog/content/cache/template.docx&#34;) paras = docx_obj.paragraphs # traverse all runs of the specified paragraph idx 6. para = paras[6] for idx, run in enumerate(para.runs): print(f&#34;run {idx}: {run.text}&#34;) run 0: 专 …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/python-docx-using-lxml.html" />
 <meta property="og:type" content="article" />
@@ -62,6 +62,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -210,23 +211,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="python-docx-using-lxml">Python docx using&nbsp;lxml</h3>
-		<p style="font-size:larger;"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">docx</span>
-<span class="kn">import</span> <span class="nn">lxml</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># load docx file</span>
-<span class="n">docx_obj</span> <span class="o">=</span> <span class="n">docx</span><span class="o">.</span><span class="n">Document</span><span class="p">(</span><span class="s2">&quot;/var/www/blog/content/cache/template.docx&quot;</span><span class="p">)</span>
-<span class="n">paras</span> <span class="o">=</span> <span class="n">docx_obj</span><span class="o">.</span><span class="n">paragraphs</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># traverse all runs of the specified paragraph idx 6.</span>
-<span class="n">para</span> <span class="o">=</span> <span class="n">paras</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">run</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">para</span><span class="o">.</span><span class="n">runs</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;run </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">run</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>run 0: 专 …</code></pre></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -255,17 +240,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">docx</span>
+                <!-- Article -->
+                <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">docx</span>
 <span class="kn">import</span> <span class="nn">lxml</span>
 <span class="kn">import</span> <span class="nn">zipfile</span>
 </code></pre></div>
@@ -1453,11 +1437,10 @@ run 3: 编号_____________
   &lt;/w:body&gt;
 &lt;/w:document&gt;
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Multiprocessing-in-FastAPI.html">
 &ll; Multiprocessing in&nbsp;FastAPI
@@ -1465,7 +1448,21 @@ run 3: 编号_____________
     <a class="w-50 text-right" href="../articles/Paddle-Adversarial-Train.html">
         Paddle adversarial&nbsp;train &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -1517,6 +1514,7 @@ run 3: 编号_____________
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -1538,7 +1536,7 @@ run 3: 编号_____________
     },
     "image": "../jerry.jpg",
     "url": "../articles/python-docx-using-lxml.html",
-    "description": "import docx import lxml import zipfile # load docx file docx_obj = docx.Document("/var/www/blog/content/cache/template.docx") paras = docx_obj.paragraphs # traverse all runs of the specified paragraph idx 6. para = paras[6] for idx, run in enumerate(para.runs): print(f"run {idx}: {run.text}") run 0: 专 …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

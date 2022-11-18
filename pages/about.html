@@ -12,28 +12,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
         <!-- Default metadata -->
-    <meta name="author" content="Jerry Su" />
-    <meta name="description" content="Reason is the light and the light of life." />
-    <meta name="keywords" content="Paddle">
-<meta property="og:site_name" content="JERRYLSU.NET" />
-<meta property="og:title" content="Mac m1 install Paddle" />
-<meta property="og:description" content="Reason is the light and the light of life." />
-<meta property="og:locale" content="en_US" />
-<meta property="og:url" content="../articles/Mac m1 install Paddle.html" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-11-15 11:17:17+08:00" />
-<meta property="article:modified_time" content="" />
-<meta property="article:author" content="../author/jerry-su.html">
-<meta property="article:section" content="NLP" />
-	<meta property="article:tag" content="Paddle" />
-	<meta property="og:image" content="../jerry.jpg">
+            <meta name="author" content="JERRY" />
+            <meta name="description" content="" />
 
         <!-- Site Claim -->
 
 
         <!-- Title -->
         <title>
-    Mac m1 install Paddle &ndash; JERRYLSU.NET
+    <span class="caps">ABOUT</span> &ndash; JERRYLSU.NET
         </title>
         
         <!-- Icon -->
@@ -60,7 +47,6 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
-            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -149,7 +135,7 @@ ga('send', 'pageview');
                         Archives
                     </a>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item  active ">
                     <a class="nav-link" href="../pages/about.html">
                         <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
                             <path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z" fill="currentColor"></path>
@@ -207,26 +193,19 @@ ga('send', 'pageview');
 
         <!-- Header -->
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
-	<div class="container">
-		<h3 id="Mac m1 install Paddle">Mac m1 install&nbsp;Paddle</h3>
-		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
-        <div class="row mx-auto mt-3">
-            <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
-                <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
-                <span class="card-link text-success">
-                    <span class="post-date" title="Post date">Nov 15, 2021</span>
-                    <span class="text-info modified-date" title="Updated date">
-                            Nov 15, 2021
-                    </span>
-                </span>
-                    <span class="card-link text-secondary" title="~122 words">1 mins</span>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <h3 id="<span class="caps">ABOUT</span>" style="color: orange;"><span class="caps">ABOUT</span></h3>
+                    <p class="text-light">Post on: Jan 07, 2021</p>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
-                <a class="badge badge-success" href="../category/nlp.html">nlp</a>
-                    <a class="badge badge-info" href="../tag/paddle.html">paddle</a>
+            <div class="col-4 small" style="margin-top: 0.5rem;">
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
             </div>
         </div>
-	</div>
+    </div>
         </header>
 
         <!-- Main -->
@@ -235,96 +214,64 @@ ga('send', 'pageview');
                     <!-- Sharing -->
 
                     <!-- Content -->
-    <!-- 2 columns layout -->
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-10">
-
-                <!-- Sharing -->
-                    <div class="text-right mb-2 small" style="height: 26px">
-                        <div class="addthis_inline_share_toolbox"></div>
-                    </div>
-
-                <!-- Article -->
-                <p>Mac&nbsp;m1系统mini-conda,环境安装paddle问题？</p>
-<div class="highlight"><pre><span></span><code><span class="nv">conda</span><span class="w"> </span><span class="nv">activate</span><span class="w"> </span><span class="nv">paddle</span><span class="w"></span>
-<span class="nv">python</span><span class="w"> </span><span class="o">-</span><span class="nv">m</span><span class="w"> </span><span class="nv">pip</span><span class="w"> </span><span class="nv">install</span><span class="w"> </span><span class="nv">paddlepaddle</span><span class="w"> </span><span class="o">-</span><span class="nv">i</span><span class="w"> </span><span class="nv">https</span>:<span class="o">//</span><span class="nv">mirror</span>.<span class="nv">baidu</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">pypi</span><span class="o">/</span><span class="nv">simple</span><span class="w"></span>
-<span class="nv">Looking</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">indexes</span>:<span class="w"> </span><span class="nv">https</span>:<span class="o">//</span><span class="nv">mirror</span>.<span class="nv">baidu</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">pypi</span><span class="o">/</span><span class="nv">simple</span><span class="w"></span>
-<span class="nv">ERROR</span>:<span class="w"> </span><span class="nv">Could</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">find</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">satisfies</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">requirement</span><span class="w"> </span><span class="nv">paddlepaddle</span><span class="w"></span>
-<span class="nv">ERROR</span>:<span class="w"> </span><span class="nv">No</span><span class="w"> </span><span class="nv">matching</span><span class="w"> </span><span class="nv">distribution</span><span class="w"> </span><span class="nv">found</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">paddlepaddle</span><span class="w"></span>
-</code></pre></div>
-
-<p>https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/macos-pip.html</p>
-<p>https://github.com/PaddlePaddle/Paddle/issues/32377</p>
-<p>macOS 版本 10.x/11.x (64 bit)&nbsp;(不支持GPU版本)</p>
-<p>Python 版本 3.6/3.7/3.8/3.9 (64&nbsp;bit)</p>
-<p>pip 或 pip3 版本 20.2.2或更高版本 (64&nbsp;bit)</p>
-<div class="highlight"><pre><span></span><code><span class="n">CONDA_SUBDIR</span><span class="o">=</span><span class="n">osx</span><span class="o">-</span><span class="mi">64</span> <span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">paddle</span> <span class="n">python</span><span class="o">==</span><span class="mf">3.8.10</span> <span class="o">//</span> <span class="n">create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">environment</span> <span class="n">called</span> <span class="n">pd_rosetta</span> <span class="k">with</span> <span class="n">intel</span> <span class="n">packages</span><span class="o">.</span>
-<span class="n">conda</span> <span class="n">activate</span> <span class="n">paddle</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import platform;print(platform.machine())&quot;</span>  <span class="o">//</span> <span class="n">should</span> <span class="n">be</span> <span class="err">‘</span><span class="n">x86_64</span><span class="err">’</span> <span class="ow">not</span> <span class="err">‘</span><span class="n">arm64</span><span class="err">’</span>
-<span class="n">conda</span> <span class="n">env</span> <span class="n">config</span> <span class="nb">vars</span> <span class="nb">set</span> <span class="n">CONDA_SUBDIR</span><span class="o">=</span><span class="n">osx</span><span class="o">-</span><span class="mi">64</span> <span class="o">//</span> <span class="c1"># make sure that conda commands in this environment use intel packages</span>
-<span class="n">conda</span> <span class="n">deactivate</span>
-<span class="n">conda</span> <span class="n">activate</span> <span class="n">paddle</span>
-<span class="n">echo</span> <span class="s2">&quot;CONDA_SUBDIR: $CONDA_SUBDIR&quot;</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">paddlepaddle</span> <span class="o">-</span><span class="n">i</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">mirror</span><span class="o">.</span><span class="n">baidu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pypi</span><span class="o">/</span><span class="n">simple</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="o">//</span> <span class="n">enter</span> <span class="n">python</span> <span class="n">to</span> <span class="n">check</span> <span class="n">install</span> 
-<span class="n">python</span>
-<span class="kn">import</span> <span class="nn">paddle</span>
-<span class="n">paddle</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">run_check</span><span class="p">()</span>
-</code></pre></div>
-
-                <!-- Neighbors -->
-                    <br>
-                    <b>Read more:</b><br>
-<div class="pagination">
-    <a class="w-50" href="../articles/Pandas-regex.html">
-&ll; Pandas-regex
-    </a>
-    <a class="w-50 text-right" href="../articles/paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &paddle.tile.html">
-        paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape <span class="amp">&amp;</span>&nbsp;paddle.tile &gg;    </a>
-</div>
-                <!-- Google Adsense -->
-            </div>
-
-            <!-- Sidebar -->
-            <div class="col-md-2 d-none d-md-block small">
-                <div class="sticky-top">
-                    <!-- ToC -->
-                    <nav id="toc" data-toggle="toc" ></nav>
-
-                    <!-- Share post -->
-
-                    <!-- Google Adsense -->
+    <h3 id="jerry"><span class="caps">JERRY</span></h3>
+<ul>
+<li>
+<p><span class="caps">NLP</span>,&nbsp;Baidu</p>
+</li>
+<li>
+<p>Email:&nbsp;sa517301@mail.ustc.edu.cn</p>
+</li>
+<li>
+<p>Github: <a href="https://github.com/jerrylsu">github.com/jerrylsu</a></p>
+</li>
+</ul>
+<h3 id="projects"><span class="caps">PROJECTS</span></h3>
+<ul>
+<li>
+<p>Apr. 2022 - Apr. 2022, <strong><a href="https://github.com/jerrylsu/Kaggle-Feedback-Prize-Evaluating-Student-Writing">Feedback Prize - Evaluating Student&nbsp;Writing</a></strong></p>
+</li>
+<li>
+<p>Mar. 2021 - Apr. 2021, <strong><a href="https://github.com/jerrylsu/UtteranceRewriter">Utterance Rewriter with Transformer and Pointer&nbsp;Networker</a></strong></p>
+</li>
+<li>
+<p>Dec. 2020 - Feb. 2021, <strong><a href="https://github.com/jerrylsu/cmrc">Span-Extraction: Chinese Machine Reading&nbsp;Comprehension</a></strong></p>
+</li>
+<li>
+<p>Jan. 2021 - Feb. 2021, <strong><a href="https://github.com/jerrylsu/lm_pretrain">Pretrain Language Model for <span class="caps">BERT</span></a></strong></p>
+</li>
+<li>
+<p>Jan. 2021 - Apr. 2021, <strong><a href="https://github.com/jerrylsu/Novel-Molecular-Toxicity-Prediction-Model">Novel Molecular Toxicity&nbsp;Prediction</a></strong></p>
+</li>
+<li>
+<p>Jun. 2020 - Sep. 2020, <strong><a href="http://www.jerrylsu.net/articles/2020/nlp-JDMDC2020.html"><span class="caps">BAAI</span>-<span class="caps">JD</span> Multimodal Dialog&nbsp;Challenge</a></strong></p>
+</li>
+<li>
+<p>Oct. 2020 - Present, <strong><a href="https://github.com/jerrylsu/pyutils">Pyutils: Python pacakage that contains misc&nbsp;utils</a></strong></p>
+</li>
+<li>
+<p>Sep. 2018 - Present, <strong><a href="https://github.com/jerrylsu/blog">Jerry&#8217;s Technology Blog with&nbsp;Pelican</a></strong></p>
+</li>
+</ul>
+<h3 id="experience"><span class="caps">EXPERIENCE</span></h3>
+<ul>
+<li>
+<p>Jun. 2021 - Present, <strong>Baidu</strong>. Senior Algorithm&nbsp;Engineer</p>
+</li>
+<li>
+<p>Dec. 2019 - May. 2021, <strong>CloudWalk</strong>. Algorithm&nbsp;Engineer</p>
+</li>
+<li>
+<p>Sep. 2018 - Oct. 2019, <strong>eBay</strong>. Data Scientist Intern, advised by <a href="https://www.linkedin.com/in/ben-chuanlong-du-1239b221/">Ben</a></p>
+</li>
+<li>
+<p>Jul. 2018 - Aug. 2018, <strong>Tencent</strong>. Algorithm Engineer&nbsp;Intern</p>
+</li>
+<li>
+<p>May. 2017 - Jun. 2018, <strong><span class="caps">USTC</span></strong>. Research&nbsp;Assistant</p>
+</li>
+</ul>
                 </div>
-            </div>
-        </div>
-
-    <!-- Releated posts -->
-        <hr>
-        <div>
-            <h5>Related posts:</h5>
-            <ul>
-                <li><a href="../articles/Paddle-Adversarial-Train.html">Paddle adversarial&nbsp;train</a></li>
-                <li><a href="../articles/Longformer-Torch2Paddle.html">Longformer&nbsp;Torch2Paddle</a></li>
-                <li><a href="../articles/Paddle-nn-functional-unfold.html">Paddle.nn.functional.unfold</a></li>
-                <li><a href="../articles/Pytorch-View-vs-Reshape.html">Pytorch View vs&nbsp;Reshape</a></li>
-                <li><a href="../articles/pytorch.nn.functional.pad.html">pytorch.nn.functional.pad</a></li>
-            </ul>
-        </div>
-
-    <!-- Comments -->
-        <hr>
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'jerrylsu-github-io';
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                </div>
         </main>
 
     </div>
@@ -350,7 +297,6 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
-        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -360,19 +306,11 @@ ga('send', 'pageview');
 <script type="application/ld+json">
 {
     "@context": "http://schema.org",
-    "@type": "BlogPosting",
-    "name": "Mac m1 install Paddle",
-    "headline": "Mac m1 install Paddle",
-    "datePublished": "2021-11-15 11:17:17+08:00",
-    "dateModified": "",
-    "author": {
-        "@type": "Person",
-        "name": "Jerry Su",
-        "url": "../author/jerry-su.html"
-    },
+    "@type": "Blog",
+    "name": " JERRYLSU.NET ",
+    "url": "..",
     "image": "../jerry.jpg",
-    "url": "../articles/Mac m1 install Paddle.html",
-    "description": "Reason is the light and the light of life."
+    "description": ""
 }
 </script>
     <!-- Disqus count -->

@@ -220,28 +220,7 @@ ga('send', 'pageview');
                     <a href="../articles/NLP-Unicode-Tokenizer-Mapping.html"><span class="caps">NLP</span> Unicode Tokenizer&nbsp;Mapping</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Aug 20, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="c1"># https://github.com/huggingface/transformers/blob/master/src/transformers/tokenization_utils.py</span>
-<span class="c1"># tokenzier</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># http://www.unicode.org/reports/tr44/#GC_Values_Table</span>
-<span class="kn">import</span> <span class="nn">unicodedata</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">unicodedata</span><span class="o">.</span><span class="n">unidata_version</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>&#39;12.1.0&#39;
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># unicode类型枚举</span>
-<span class="c1"># https://www.fileformat.info/info/unicode/category/index.htm</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">unicodedata</span><span class="o">.</span><span class="n">category</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">unicodedata</span><span class="o">.</span><span class="n">category</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">unicodedata</span><span class="o">.</span><span class="n">category</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">unicodedata</span><span class="o">.</span><span class="n">category</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
-<span class="c1">#unicodedata.category …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~563 words">Read in 3 mins</span>
@@ -261,36 +240,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-Encode-Decode.html">Python Encode&nbsp;Decode</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Aug 05, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">base64</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-</code></pre></div>
-
-<ul>
-<li>
-<p>json.load：文件对象 =》&nbsp;python对象</p>
-</li>
-<li>
-<p>json.loads：json格式字符串 =》&nbsp;python对象</p>
-</li>
-<li>
-<p>json.dump：python对象 =》&nbsp;文件对象</p>
-</li>
-<li>
-<p>json.dumps：python对象 =》&nbsp;json格式字符串</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello Wold!&quot;</span><span class="p">},</span>
-    <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;6&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;sub_labels&quot;</span><span class="p">:{</span><span class="s2">&quot;4&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">]}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># python对象转字符串</span>
-<span class="n">json_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data_dict …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~117 words">Read in 1 mins</span>
@@ -309,8 +259,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-m.html">Python&nbsp;-m</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Aug 05, 2021</span></span>
-                <p><p>python -m http.server&nbsp;启动一个http服务器，用于文件共享</p>
-<p><a href="https://a7744hsc.github.io/python/2018/05/03/Run-python-script.html">https://a7744hsc.github.io/python/2018/05/03/Run-python-script.html</a></p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~5 words">Read in 1 mins</span>
@@ -329,10 +278,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-Coroutine.html">Python&nbsp;Coroutine</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 02, 2021</span></span>
-                <p><h3 id="yield"><strong>yield</strong>:&nbsp;产出和让步</h3>
-<p>在协程中yield通常出现在等号的右边 data =&nbsp;yield，可以产出值，也可以不产出。</p>
-<p>data = yield #&nbsp;yield关键字后没有表达式，表示没有产出值，即None</p>
-<p>协程从调用方通过.send(data)接收数据 …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~188 words">Read in 1 mins</span>
@@ -351,19 +297,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-Blinker.html">Python&nbsp;Blinker</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 22, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">blinker</span> <span class="kn">import</span> <span class="n">signal</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># 创建信号，单例模式</span>
-<span class="n">inited</span> <span class="o">=</span> <span class="n">signal</span><span class="p">(</span><span class="s1">&#39;inited&#39;</span><span class="p">)</span>
-<span class="n">inited</span> <span class="ow">is</span> <span class="n">signal</span><span class="p">(</span><span class="s1">&#39;inited&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>True
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># 订阅信号</span>
-<span class="c1"># 使用Signal.connect()方法注册一个函数，每当触发信号的时候，就会调用该 …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~62 words">Read in 1 mins</span>
@@ -382,20 +316,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-dataclasses.html">Python&nbsp;dataclasses</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 05, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">asdict</span><span class="p">,</span> <span class="n">astuple</span>
-<span class="kn">import</span> <span class="nn">dataclasses</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Any</span>
-</code></pre></div>
-
-<p><a href="https://zhuanlan.zhihu.com/p/34963159?utm_source=wechatMessage_article_bottom">why&nbsp;dataclasses</a></p>
-<p><a href="https://docs.python.org/zh-cn/3/library/dataclasses.html">https://docs.python.org/zh-cn/3/library/dataclasses.html</a></p>
-<ul>
-<li>field&nbsp;被定义为具有类型标注的类变量。</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="o">:</span><span class="w"></span>
-<span class="n">field</span><span class="o">(</span><span class="w"></span>
-<span class="w">    </span><span class="o">*,</span><span class="w"></span>
-<span class="w">    </span><span class="k">default</span><span class="o">=&lt;</span><span class="n">dataclasses</span><span class="o">.</span><span class="na">_MISSING_TYPE</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="mh">0x7f60fc21b7f0 …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~546 words">Read in 3 mins</span>
@@ -414,15 +335,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-typing.html">Python -&nbsp;typing</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 04, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span>
-</code></pre></div>
-
-<p><a href="https://docs.python.org/3/library/typing.html">https://docs.python.org/3/library/typing.html</a></p>
-<p>Any, Union, Tuple, List, Sequence, Mapping, Callable, TypeVar,Optional,&nbsp;Generic等的使用频率比较高，其中Union、Optional、Sequence、Mapping非常有用。</p>
-<ul>
-<li>Union</li>
-</ul>
-<p>即并集，所以Union[X, Y]&nbsp;意思是要么 …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~97 words">Read in 1 mins</span>
@@ -502,56 +415,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-os.html">Python -&nbsp;os</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 24, 2020</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="nb">dir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;__all__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__builtins__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__cached__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__doc__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__file__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__loader__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__name__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__package__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__spec__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;_get_sep&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;_joinrealpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;_varprog&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;_varprogb&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;abspath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;altsep&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;basename&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;commonpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;commonprefix&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;curdir&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;defpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;devnull&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;dirname&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;exists&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;expanduser&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;expandvars&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;extsep&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;genericpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;getatime&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;getctime&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;getmtime&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;getsize&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;isabs&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;isdir&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;isfile&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;islink&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;ismount&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;join&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;lexists&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;normcase&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;normpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;os&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;pardir&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;pathsep&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;realpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;relpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;samefile&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;sameopenfile …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~153 words">Read in 1 mins</span>

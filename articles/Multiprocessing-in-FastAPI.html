@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="@app.post(&#34;/async-endpoint&#34;) async def test_endpoint(): try: loop = asyncio.get_running_loop() with concurrent.futures.ProcessPoolExecutor(max_workers=1) as pool: results = await loop.run_in_executor(pool, subject_extract_check_process, *(args, subject_check_rules, docx_paras, pdf_paras)) # wait result except Exception as err: logger.error(f&#34;Subprocess execute fail: {str(err)}&#34;) results = [] return results https://stackoverflow.com/questions/63169865 …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Python">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Multiprocessing in FastAPI" />
-<meta property="og:description" content="@app.post(&#34;/async-endpoint&#34;) async def test_endpoint(): try: loop = asyncio.get_running_loop() with concurrent.futures.ProcessPoolExecutor(max_workers=1) as pool: results = await loop.run_in_executor(pool, subject_extract_check_process, *(args, subject_check_rules, docx_paras, pdf_paras)) # wait result except Exception as err: logger.error(f&#34;Subprocess execute fail: {str(err)}&#34;) results = [] return results https://stackoverflow.com/questions/63169865 …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Multiprocessing-in-FastAPI.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,21 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Multiprocessing-in-FastAPI">Multiprocessing in&nbsp;FastAPI</h3>
-		<p style="font-size:larger;"><div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/async-endpoint&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">test_endpoint</span><span class="p">():</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span>
-        <span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span>
-                                                 <span class="n">subject_extract_check_process</span><span class="p">,</span>
-                                                  <span class="o">*</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">subject_check_rules</span><span class="p">,</span> <span class="n">docx_paras</span><span class="p">,</span> <span class="n">pdf_paras</span><span class="p">))</span>  <span class="c1"># wait result</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Subprocess execute fail: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">return</span> <span class="n">results</span>
-</code></pre></div>
-
-<p>https://stackoverflow.com/questions/63169865 …</p></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -249,17 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/async-endpoint&quot;</span><span class="p">)</span>
+                <!-- Article -->
+                <div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/async-endpoint&quot;</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">test_endpoint</span><span class="p">():</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span>
@@ -274,11 +260,10 @@ ga('send', 'pageview');
 </code></pre></div>
 
 <p>https://stackoverflow.com/questions/63169865/how-to-do-multiprocessing-in-fastapi</p>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/asyncio-get_event_loop-vs-get_running_loop.html">
 &ll; asyncio get_event_loop vs&nbsp;get_running_loop
@@ -286,7 +271,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/python-docx-using-lxml.html">
         Python docx using&nbsp;lxml &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -338,6 +337,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -359,7 +359,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Multiprocessing-in-FastAPI.html",
-    "description": "@app.post("/async-endpoint") async def test_endpoint(): try: loop = asyncio.get_running_loop() with concurrent.futures.ProcessPoolExecutor(max_workers=1) as pool: results = await loop.run_in_executor(pool, subject_extract_check_process, *(args, subject_check_rules, docx_paras, pdf_paras)) # wait result except Exception as err: logger.error(f"Subprocess execute fail: {str(err)}") results = [] return results https://stackoverflow.com/questions/63169865 …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

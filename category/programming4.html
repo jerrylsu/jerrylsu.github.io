@@ -220,25 +220,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-Requests.html">Python&nbsp;Requests</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 20, 2020</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://www.jerrylsu.net/articles/2020/programming-Python-Decorator.html&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">r</span><span class="o">.</span><span class="n">encoding</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>&#39;ISO-8859-1&#39;
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">r</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf-8&#39;</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">r</span><span class="o">.</span><span class="n">text</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="s1">&#39;&lt;!DOCTYPE html&gt;</span><span class="se">\n</span><span class="s1">&lt;html lang=&quot;en&quot; prefix=&quot;og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml&quot;&gt;</span><span class="se">\n</span><span class="s1">&lt;head&gt;</span><span class="se">\n</span><span class="s1">    &lt;title&gt;Python Decorator - Jerrylsu.net&lt;/title&gt;</span><span class="se">\n …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~4195 words">Read in 17 mins</span>
@@ -257,15 +239,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-Decorator.html">Python&nbsp;Decorator</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 20, 2020</span></span>
-                <p><p>@lock vs @lock()  装饰器 vs&nbsp;装饰器工厂函数  </p>
-<p>相同</p>
-<ul>
-<li>均是导入时运行，返回值均是函数。</li>
-</ul>
-<p>不同</p>
-<ul>
-<li>
-<p>装饰器返回的是替代被装饰的函数，装饰器 …</p></li></ul></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~270 words">Read in 2 mins</span>
@@ -284,20 +258,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-built-in-Functions.html">Python Built-in&nbsp;Functions</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 18, 2020</span></span>
-                <p><p>https://docs.python.org/3/library/functions.html</p>
-<h2 id="getattr-hasattr-setattr-delattr">getattr / hasattr / setattr /&nbsp;delattr</h2>
-<p>getattr(object, name:&nbsp;str)</p>
-<p>hasattr(object, name:&nbsp;str)</p>
-<p>delattr(object, name:&nbsp;str)</p>
-<p>setattr(object, name: str,&nbsp;value)</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BertModel</span><span class="p">:</span>
-    <span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;bert&#39;</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span>
-
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~188 words">Read in 1 mins</span>
@@ -316,9 +277,7 @@ ga('send', 'pageview');
                     <a href="../articles/CategoricalCrossentropy VS SparseCategoricalCrossentropy.html">CategoricalCrossentropy <span class="caps">VS</span>&nbsp;SparseCategoricalCrossentropy</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 09, 2020</span></span>
-                <p><h2 id="sparsecategoricalcrossentropy">SparseCategoricalCrossentropy</h2>
-<p>Use this crossentropy loss function when there are two or more label classes. We expect labels to be provided in a <strong>one_hot</strong> representation. If you want to provide labels as <strong>integers</strong>, please use <strong>SparseCategoricalCrossentropy</strong> loss. There should be # classes floating point values per&nbsp;feature.</p>
-<p>https://www.tensorflow.org/api_docs …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~681 words">Read in 3 mins</span>
@@ -338,17 +297,7 @@ ga('send', 'pageview');
                     <a href="../articles/tf.not_equal/reduce_any/boolean_mask.html">tf.not_equal/reduce_any/boolean_mask</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 03, 2020</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">input_ids</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">101</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                         <span class="p">[</span><span class="mi">101</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
-<span class="n">input_ids</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>&lt;tf.Tensor: shape=(2, 8), dtype=int32, numpy=
-array([[101,   2,   4,   5, 102,   0,   0,   0],
-       [101,   8,   6,   2,   4, 102,   0 …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~160 words">Read in 1 mins</span>
@@ -368,27 +317,7 @@ array([[101,   2,   4,   5, 102,   0,   0,   0],
                     <a href="../articles/Python-list.index.html">Python -&nbsp;list.index</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 03, 2020</span></span>
-                <p><h2 id="1-return-first-index-of-value">1. Return first index of&nbsp;value</h2>
-<div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="o">:</span><span class="w"> </span><span class="n">text_tokens</span><span class="o">.</span><span class="na">index</span><span class="o">(</span><span class="n">value</span><span class="o">,</span><span class="w"> </span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="n">stop</span><span class="o">=</span><span class="mi">9223372036854775807</span><span class="o">,</span><span class="w"> </span><span class="o">/)</span><span class="w"></span>
-<span class="n">Docstring</span><span class="o">:</span><span class="w"></span>
-<span class="n">Return</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">value</span><span class="o">.</span><span class="w"></span>
-
-<span class="n">Raises</span><span class="w"> </span><span class="n">ValueError</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">present</span><span class="o">.</span><span class="w"></span>
-<span class="n">Type</span><span class="o">:</span><span class="w">      </span><span class="n">builtin_function_or_method</span><span class="w"></span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">text_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;jerry&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;hl&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;hl&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;annie&#39;</span><span class="p">]</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">start</span> <span class="o">=</span> <span class="n">text_tokens</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;&lt;hl&gt;&#39;</span><span class="p">)</span>
-<span class="n">start</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="mf">1</span><span class="w"></span>
-</code></pre></div>
-
-<h2 id="2-return-indexes-of-some-values">2. Return indexes of some&nbsp;values</h2>
-<div class="highlight"><pre><span></span><code><span class="n">end …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~122 words">Read in 1 mins</span>
@@ -407,31 +336,7 @@ array([[101,   2,   4,   5, 102,   0,   0,   0],
                     <a href="../articles/tf.broadcast_to.html">tf.broadcast_to</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 23, 2020</span></span>
-                <p><h2 id="broadcast">Broadcast</h2>
-<ul>
-<li>
-<p>expand_dims</p>
-</li>
-<li>
-<p>without copying data vs&nbsp;tf.tile</p>
-</li>
-<li>
-<p>tf.broadcast_to</p>
-</li>
-</ul>
-<h2 id="key-idea">Key&nbsp;idea</h2>
-<ul>
-<li>
-<p>如何a，b张量维度不一致，则插入1dim。小维度对齐</p>
-</li>
-<li>
-<p>expand&nbsp;1dim到相同dims</p>
-</li>
-</ul>
-<p>e.g.  a = [4, 32, 32,&nbsp;3]</p>
-<p>b = [3] -&gt; [1, 1, 1, 3] -&gt; [4, 32, 32,&nbsp;3]</p>
-<h1 id="tfbroadcast_to">tf.broadcast_to</h1>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~170 words">Read in 1 mins</span>
@@ -451,26 +356,7 @@ array([[101,   2,   4,   5, 102,   0,   0,   0],
                     <a href="../articles/tf.concat/split/stack.html">tf.concat/split/stack</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 23, 2020</span></span>
-                <p><h1 id="merge-and-split">Merge and&nbsp;Split</h1>
-<ul>
-<li>
-<p>tf.concat</p>
-</li>
-<li>
-<p>tf.split</p>
-</li>
-<li>
-<p>tf.stack</p>
-</li>
-<li>
-<p>tf.unstack</p>
-</li>
-</ul>
-<h1 id="1-tfconcat">1.&nbsp;tf.concat</h1>
-<p>原有维度concat，如果新维度concat，则stack</p>
-<ul>
-<li>
-<p>concat：拼接的维度可以不同，其他维度必须相同。 concat([3, 35, 8], [2 …</p></li></ul></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~163 words">Read in 1 mins</span>
@@ -490,35 +376,7 @@ array([[101,   2,   4,   5, 102,   0,   0,   0],
                     <a href="../articles/tf.transpose/expand_dims/squeeze.html">tf.transpose/expand_dims/squeeze</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 23, 2020</span></span>
-                <p><ul>
-<li>
-<p>shape,&nbsp;ndim</p>
-</li>
-<li>
-<p>reshape</p>
-</li>
-<li>
-<p>expand_dims/squeeze</p>
-</li>
-<li>
-<p>transpose</p>
-</li>
-<li>
-<p>broadcast_to</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-</code></pre></div>
-
-<p>view1-4不同的数据理解方式，不改变原有数据的content，并且数据全部使用。</p>
-<ul>
-<li>
-<p>view1: [b, 28,&nbsp;28]     </p>
-<p>图片包含行列信息</p>
-</li>
-<li>
-<p>view2: [b,&nbsp;28*28]</p>
-<p>图片的数据 …</p></li></ul></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~214 words">Read in 1 mins</span>
@@ -538,55 +396,7 @@ array([[101,   2,   4,   5, 102,   0,   0,   0],
                     <a href="../articles/tf.math.html">tf.math</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 23, 2020</span></span>
-                <p><ul>
-<li>
-<p>+, -, *,&nbsp;/</p>
-</li>
-<li>
-<p>**, pow,&nbsp;square</p>
-</li>
-<li>
-<p>sqrt</p>
-</li>
-<li>
-<p>//,&nbsp;%</p>
-</li>
-<li>
-<p>exp,&nbsp;log</p>
-</li>
-<li>
-<p>@,&nbsp;matmul</p>
-</li>
-<li>
-<p>linear&nbsp;layer</p>
-</li>
-</ul>
-<h3 id="element-wise">element-wise</h3>
-<ul>
-<li>+, -, *,&nbsp;/</li>
-</ul>
-<h3 id="matrix-wise">matrix-wise</h3>
-<ul>
-<li>@,&nbsp;matmul</li>
-</ul>
-<h3 id="dim-wise">dim-wise</h3>
-<ul>
-<li>reduce_mean/max/min/sum</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-</code></pre></div>
-
-<h2 id="1-element-wise">1.&nbsp;element-wise</h2>
-<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">fill</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="mf">2.</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">a</span><span class="p">,</span> <span class="n">b</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>(&lt;tf.Tensor: shape=(2, 2), dtype=float32, numpy=
- array([[1., 1.],
-        [1., 1.]], dtype=float32 …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~777 words">Read in 4 mins</span>

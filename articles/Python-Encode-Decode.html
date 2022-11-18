@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="import base64 import json import requests json.load：文件对象 =》 python对象 json.loads：json格式字符串 =》 python对象 json.dump：python对象 =》 文件对象 json.dumps：python对象 =》 json格式字符串 data_dict = { &#34;fields&#34;: {&#34;content&#34;: &#34;Hello Wold!&#34;}, &#34;config&#34;: { &#34;labels&#34;: [&#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;], &#34;sub_labels&#34;:{&#34;4&#34;: [&#34;1&#34;, &#34;2&#34;]} } } # python对象转字符串 json_str = json.dumps(data_dict …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Python">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Python Encode Decode" />
-<meta property="og:description" content="import base64 import json import requests json.load：文件对象 =》 python对象 json.loads：json格式字符串 =》 python对象 json.dump：python对象 =》 文件对象 json.dumps：python对象 =》 json格式字符串 data_dict = { &#34;fields&#34;: {&#34;content&#34;: &#34;Hello Wold!&#34;}, &#34;config&#34;: { &#34;labels&#34;: [&#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34;, &#34;5&#34;, &#34;6&#34;], &#34;sub_labels&#34;:{&#34;4&#34;: [&#34;1&#34;, &#34;2&#34;]} } } # python对象转字符串 json_str = json.dumps(data_dict …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Python-Encode-Decode.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,36 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Python-Encode-Decode">Python Encode&nbsp;Decode</h3>
-		<p style="font-size:larger;"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">base64</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-</code></pre></div>
-
-<ul>
-<li>
-<p>json.load：文件对象 =》&nbsp;python对象</p>
-</li>
-<li>
-<p>json.loads：json格式字符串 =》&nbsp;python对象</p>
-</li>
-<li>
-<p>json.dump：python对象 =》&nbsp;文件对象</p>
-</li>
-<li>
-<p>json.dumps：python对象 =》&nbsp;json格式字符串</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello Wold!&quot;</span><span class="p">},</span>
-    <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;6&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;sub_labels&quot;</span><span class="p">:{</span><span class="s2">&quot;4&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">]}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># python对象转字符串</span>
-<span class="n">json_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data_dict …</span></code></pre></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -264,17 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">base64</span>
+                <!-- Article -->
+                <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">base64</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 </code></pre></div>
@@ -341,11 +312,10 @@ ga('send', 'pageview');
  &#39;config&#39;: {&#39;labels&#39;: [&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;],
   &#39;sub_labels&#39;: {&#39;4&#39;: [&#39;1&#39;, &#39;2&#39;]}}}
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Python-m.html">
 &ll; Python&nbsp;-m
@@ -353,7 +323,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/Numpy-np.where.html">
         Numpy&nbsp;np.where &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -405,6 +389,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -426,7 +411,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Python-Encode-Decode.html",
-    "description": "import base64 import json import requests json.load：文件对象 =》 python对象 json.loads：json格式字符串 =》 python对象 json.dump：python对象 =》 文件对象 json.dumps：python对象 =》 json格式字符串 data_dict = { "fields": {"content": "Hello Wold!"}, "config": { "labels": ["1", "2", "3", "4", "5", "6"], "sub_labels":{"4": ["1", "2"]} } } # python对象转字符串 json_str = json.dumps(data_dict …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

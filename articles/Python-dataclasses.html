@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="from dataclasses import dataclass, field, asdict, astuple import dataclasses from typing import List, Optional, Union, Any why dataclasses https://docs.python.org/zh-cn/3/library/dataclasses.html field 被定义为具有类型标注的类变量。 Signature: field( *, default=&lt;dataclasses._MISSING_TYPE object at 0x7f60fc21b7f0 …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Python">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Python dataclasses" />
-<meta property="og:description" content="from dataclasses import dataclass, field, asdict, astuple import dataclasses from typing import List, Optional, Union, Any why dataclasses https://docs.python.org/zh-cn/3/library/dataclasses.html field 被定义为具有类型标注的类变量。 Signature: field( *, default=&lt;dataclasses._MISSING_TYPE object at 0x7f60fc21b7f0 …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Python-dataclasses.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,20 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Python-dataclasses">Python&nbsp;dataclasses</h3>
-		<p style="font-size:larger;"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">asdict</span><span class="p">,</span> <span class="n">astuple</span>
-<span class="kn">import</span> <span class="nn">dataclasses</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Any</span>
-</code></pre></div>
-
-<p><a href="https://zhuanlan.zhihu.com/p/34963159?utm_source=wechatMessage_article_bottom">why&nbsp;dataclasses</a></p>
-<p><a href="https://docs.python.org/zh-cn/3/library/dataclasses.html">https://docs.python.org/zh-cn/3/library/dataclasses.html</a></p>
-<ul>
-<li>field&nbsp;被定义为具有类型标注的类变量。</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="o">:</span><span class="w"></span>
-<span class="n">field</span><span class="o">(</span><span class="w"></span>
-<span class="w">    </span><span class="o">*,</span><span class="w"></span>
-<span class="w">    </span><span class="k">default</span><span class="o">=&lt;</span><span class="n">dataclasses</span><span class="o">.</span><span class="na">_MISSING_TYPE</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="mh">0x7f60fc21b7f0 …</span></code></pre></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -248,17 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">asdict</span><span class="p">,</span> <span class="n">astuple</span>
+                <!-- Article -->
+                <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">asdict</span><span class="p">,</span> <span class="n">astuple</span>
 <span class="kn">import</span> <span class="nn">dataclasses</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Any</span>
 </code></pre></div>
@@ -435,11 +422,10 @@ ga('send', 'pageview');
 
 <div class="highlight"><pre><span></span><code>
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/torch.rand/randn/randint.html">
 &ll; torch.rand/randn/randint
@@ -447,7 +433,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/batch padding.html">
         batch&nbsp;padding &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -499,6 +499,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -520,7 +521,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Python-dataclasses.html",
-    "description": "from dataclasses import dataclass, field, asdict, astuple import dataclasses from typing import List, Optional, Union, Any why dataclasses https://docs.python.org/zh-cn/3/library/dataclasses.html field 被定义为具有类型标注的类变量。 Signature: field( *, default=<dataclasses._MISSING_TYPE object at 0x7f60fc21b7f0 …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

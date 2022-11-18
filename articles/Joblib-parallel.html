@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="from joblib import Parallel, delayed import pandas as pd def inference(node_id, biz_code, pool): df_to_detection = pd.DataFrame((node_id, biz_code, pool), columns=[&#34;node_id&#34;, &#34;biz_code&#34;, &#34;pool&#34;]) return df_to_detection params = [(1, &#34;a&#34;, &#34;a_pool&#34;), (2, &#34;b&#34;, &#34;b_pool&#34;), (3, &#34;c&#34;, &#34;c_pool&#34;), (4, &#34;d&#34;, &#34;d_pool&#34;), (5, &#34;e&#34;, &#34;e_pool&#34;), (6, &#34;f&#34;, &#34;f_pool&#34;), (7, &#34;g&#34;, &#34;g_pool&#34;)] jobs_num = len …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Python">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Joblib parallel" />
-<meta property="og:description" content="from joblib import Parallel, delayed import pandas as pd def inference(node_id, biz_code, pool): df_to_detection = pd.DataFrame((node_id, biz_code, pool), columns=[&#34;node_id&#34;, &#34;biz_code&#34;, &#34;pool&#34;]) return df_to_detection params = [(1, &#34;a&#34;, &#34;a_pool&#34;), (2, &#34;b&#34;, &#34;b_pool&#34;), (3, &#34;c&#34;, &#34;c_pool&#34;), (4, &#34;d&#34;, &#34;d_pool&#34;), (5, &#34;e&#34;, &#34;e_pool&#34;), (6, &#34;f&#34;, &#34;f_pool&#34;), (7, &#34;g&#34;, &#34;g_pool&#34;)] jobs_num = len …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Joblib-parallel.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,24 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Joblib-parallel">Joblib&nbsp;parallel</h3>
-		<p style="font-size:larger;"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">inference</span><span class="p">(</span><span class="n">node_id</span><span class="p">,</span> <span class="n">biz_code</span><span class="p">,</span> <span class="n">pool</span><span class="p">):</span>
-    <span class="n">df_to_detection</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">((</span><span class="n">node_id</span><span class="p">,</span> <span class="n">biz_code</span><span class="p">,</span> <span class="n">pool</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;node_id&quot;</span><span class="p">,</span> <span class="s2">&quot;biz_code&quot;</span><span class="p">,</span> <span class="s2">&quot;pool&quot;</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">df_to_detection</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">params</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;c_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;d_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;e_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;f_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="s2">&quot;g_pool&quot;</span><span class="p">)]</span>
-
-<span class="n">jobs_num</span> <span class="o">=</span> <span class="nb">len …</span></code></pre></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -252,17 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+                <!-- Article -->
+                <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </code></pre></div>
 
@@ -364,11 +347,10 @@ ga('send', 'pageview');
 
 <div class="highlight"><pre><span></span><code>
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Creating-folds-properly.html">
 &ll; Creating folds&nbsp;properly
@@ -376,7 +358,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/Image-Tilt-Correction.html">
         Image tilt&nbsp;correction &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -428,6 +424,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -449,7 +446,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Joblib-parallel.html",
-    "description": "from joblib import Parallel, delayed import pandas as pd def inference(node_id, biz_code, pool): df_to_detection = pd.DataFrame((node_id, biz_code, pool), columns=["node_id", "biz_code", "pool"]) return df_to_detection params = [(1, "a", "a_pool"), (2, "b", "b_pool"), (3, "c", "c_pool"), (4, "d", "d_pool"), (5, "e", "e_pool"), (6, "f", "f_pool"), (7, "g", "g_pool")] jobs_num = len …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

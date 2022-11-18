@@ -220,11 +220,7 @@ ga('send', 'pageview');
                     <a href="../articles/tensor.detach/torch.detach_/torch.data.html">tensor.detach/torch.detach_/torch.data</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 18, 2021</span></span>
-                <p><p>https://pytorch.org/docs/stable/autograd.html#torch.Tensor.detach</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
-</code></pre></div>
-
-<p>当我们再训练网络的时候可能希望保持一部分的网络参数不变，只对其中一部分的参数进 …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~552 words">Read in 3 mins</span>
@@ -244,17 +240,7 @@ ga('send', 'pageview');
                     <a href="../articles/pytorch-create-tensor.html">Pytorch-create-tensor</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 07, 2021</span></span>
-                <p><p><span class="caps">CLASS</span>&nbsp;torch.Tensor</p>
-<p>There are a few main ways to create a tensor, depending on your use&nbsp;case.</p>
-<ul>
-<li>
-<p>To create a tensor with pre-existing data, use&nbsp;torch.tensor().</p>
-</li>
-<li>
-<p>To create a tensor with specific size, use torch.* tensor creation ops (see <a href="https://pytorch.org/docs/stable/torch.html#tensor-creation-ops">Creation Ops</a>).</p>
-</li>
-<li>
-<p>To create a tensor with the same …</p></li></ul></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~137 words">Read in 1 mins</span>
@@ -274,15 +260,7 @@ ga('send', 'pageview');
                     <a href="../articles/batch padding.html">batch&nbsp;padding</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 07, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_collate_batch</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Collate `examples` into a batch, using the information in `tokenizer` for padding if necessary.&quot;&quot;&quot;</span>
-    <span class="c1"># Tensorize if necessary.</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">examples</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
-        <span class="n">examples</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">]</span>
-
-    <span class="c1"># Check if padding is necessary.</span>
-    <span class="n">length_of_first</span> <span class="o">=</span> <span class="n">examples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">are_tensors_same_length</span> <span class="o">=</span> <span class="nb">all …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~121 words">Read in 1 mins</span>
@@ -302,20 +280,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-dataclasses.html">Python&nbsp;dataclasses</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 05, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">asdict</span><span class="p">,</span> <span class="n">astuple</span>
-<span class="kn">import</span> <span class="nn">dataclasses</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Any</span>
-</code></pre></div>
-
-<p><a href="https://zhuanlan.zhihu.com/p/34963159?utm_source=wechatMessage_article_bottom">why&nbsp;dataclasses</a></p>
-<p><a href="https://docs.python.org/zh-cn/3/library/dataclasses.html">https://docs.python.org/zh-cn/3/library/dataclasses.html</a></p>
-<ul>
-<li>field&nbsp;被定义为具有类型标注的类变量。</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="o">:</span><span class="w"></span>
-<span class="n">field</span><span class="o">(</span><span class="w"></span>
-<span class="w">    </span><span class="o">*,</span><span class="w"></span>
-<span class="w">    </span><span class="k">default</span><span class="o">=&lt;</span><span class="n">dataclasses</span><span class="o">.</span><span class="na">_MISSING_TYPE</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="mh">0x7f60fc21b7f0 …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~546 words">Read in 3 mins</span>
@@ -334,18 +299,7 @@ ga('send', 'pageview');
                     <a href="../articles/torch.rand/randn/randint.html">torch.rand/randn/randint</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 04, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
-</code></pre></div>
-
-<h2 id="torchrand-0-1">torch.rand&nbsp;0-1均匀分布</h2>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Docstring:</span>
-<span class="sd">rand(*size, *, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False) -&gt; Tensor</span>
-
-<span class="sd">Returns a tensor filled with random numbers from a uniform distribution</span>
-<span class="sd">on the interval :math:`[0, 1)`</span>
-
-<span class="sd">The shape of the tensor is defined by the variable argument :attr:`size …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~946 words">Read in 4 mins</span>
@@ -365,21 +319,7 @@ ga('send', 'pageview');
                     <a href="../articles/torch.nn.CrossEntropyLoss.html">torch.nn.CrossEntropyLoss</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 04, 2021</span></span>
-                <p><p><a href="https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html#torch.nn.CrossEntropyLoss">https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html#torch.nn.CrossEntropyLoss</a></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">CrossEntropyLoss</span>
-
-<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">MAX_SEQ_LENGTH</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">EMBEDDING_SIZE</span> <span class="o">=</span> <span class="n">VOCAB_SIZE</span> <span class="o">=</span> <span class="mi">5</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">input_ids</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">MAX_SEQ_LENGTH</span><span class="p">,</span> <span class="n">EMBEDDING_SIZE</span><span class="p">))</span>
-<span class="n">input_ids</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>tensor([[[-1.2207e-01,  9.4908e-01,  9.6387e-02,  1.4286e+00,  1.9476e+00],
-         [ 6.7663e-01,  8 …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~276 words">Read in 2 mins</span>
@@ -399,15 +339,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-typing.html">Python -&nbsp;typing</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 04, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span>
-</code></pre></div>
-
-<p><a href="https://docs.python.org/3/library/typing.html">https://docs.python.org/3/library/typing.html</a></p>
-<p>Any, Union, Tuple, List, Sequence, Mapping, Callable, TypeVar,Optional,&nbsp;Generic等的使用频率比较高，其中Union、Optional、Sequence、Mapping非常有用。</p>
-<ul>
-<li>Union</li>
-</ul>
-<p>即并集，所以Union[X, Y]&nbsp;意思是要么 …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~97 words">Read in 1 mins</span>
@@ -487,56 +419,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-os.html">Python -&nbsp;os</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 24, 2020</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="nb">dir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;__all__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__builtins__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__cached__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__doc__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__file__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__loader__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__name__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__package__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__spec__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;_get_sep&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;_joinrealpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;_varprog&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;_varprogb&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;abspath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;altsep&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;basename&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;commonpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;commonprefix&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;curdir&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;defpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;devnull&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;dirname&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;exists&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;expanduser&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;expandvars&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;extsep&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;genericpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;getatime&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;getctime&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;getmtime&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;getsize&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;isabs&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;isdir&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;isfile&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;islink&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;ismount&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;join&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;lexists&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;normcase&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;normpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;os&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;pardir&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;pathsep&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;realpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;relpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;samefile&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;sameopenfile …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~153 words">Read in 1 mins</span>

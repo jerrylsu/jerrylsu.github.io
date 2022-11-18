@@ -220,23 +220,7 @@ ga('send', 'pageview');
                     <a href="../articles/python-docx-using-lxml.html">Python docx using&nbsp;lxml</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Sep 25, 2022</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">docx</span>
-<span class="kn">import</span> <span class="nn">lxml</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># load docx file</span>
-<span class="n">docx_obj</span> <span class="o">=</span> <span class="n">docx</span><span class="o">.</span><span class="n">Document</span><span class="p">(</span><span class="s2">&quot;/var/www/blog/content/cache/template.docx&quot;</span><span class="p">)</span>
-<span class="n">paras</span> <span class="o">=</span> <span class="n">docx_obj</span><span class="o">.</span><span class="n">paragraphs</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># traverse all runs of the specified paragraph idx 6.</span>
-<span class="n">para</span> <span class="o">=</span> <span class="n">paras</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">run</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">para</span><span class="o">.</span><span class="n">runs</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;run </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">run</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>run 0: 专 …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~2187 words">Read in 9 mins</span>

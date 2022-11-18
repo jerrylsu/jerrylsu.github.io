@@ -221,22 +221,7 @@ ga('send', 'pageview');
                     <a href="./articles/Paddle-Adversarial-Train.html">Paddle adversarial&nbsp;train</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 03, 2022</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">paddle</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FGM</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Fast Gradient Method.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">module</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;module&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">model</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">=</span> <span class="n">eps</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">backup</span> <span class="o">=</span> <span class="p">{}</span>
-
-    <span class="k">def</span> <span class="nf">attack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">emb_name</span><span class="o">=</span><span class="s1">&#39;embedding&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;only attack embedding</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">param</span><span class="o">.</span><span class="n">stop_gradient</span> <span class="ow">and</span> <span class="n">emb_name …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~301 words">Read in 2 mins</span>
@@ -255,23 +240,7 @@ ga('send', 'pageview');
                     <a href="./articles/python-docx-using-lxml.html">Python docx using&nbsp;lxml</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Sep 25, 2022</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">docx</span>
-<span class="kn">import</span> <span class="nn">lxml</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># load docx file</span>
-<span class="n">docx_obj</span> <span class="o">=</span> <span class="n">docx</span><span class="o">.</span><span class="n">Document</span><span class="p">(</span><span class="s2">&quot;/var/www/blog/content/cache/template.docx&quot;</span><span class="p">)</span>
-<span class="n">paras</span> <span class="o">=</span> <span class="n">docx_obj</span><span class="o">.</span><span class="n">paragraphs</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># traverse all runs of the specified paragraph idx 6.</span>
-<span class="n">para</span> <span class="o">=</span> <span class="n">paras</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">run</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">para</span><span class="o">.</span><span class="n">runs</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;run </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">run</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>run 0: 专 …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~2187 words">Read in 9 mins</span>
@@ -292,21 +261,7 @@ ga('send', 'pageview');
                     <a href="./articles/Multiprocessing-in-FastAPI.html">Multiprocessing in&nbsp;FastAPI</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 28, 2022</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/async-endpoint&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">test_endpoint</span><span class="p">():</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span>
-        <span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span>
-                                                 <span class="n">subject_extract_check_process</span><span class="p">,</span>
-                                                  <span class="o">*</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">subject_check_rules</span><span class="p">,</span> <span class="n">docx_paras</span><span class="p">,</span> <span class="n">pdf_paras</span><span class="p">))</span>  <span class="c1"># wait result</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Subprocess execute fail: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">return</span> <span class="n">results</span>
-</code></pre></div>
-
-<p>https://stackoverflow.com/questions/63169865 …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~33 words">Read in 1 mins</span>
@@ -325,9 +280,7 @@ ga('send', 'pageview');
                     <a href="./articles/asyncio-get_event_loop-vs-get_running_loop.html">asyncio get_event_loop vs&nbsp;get_running_loop</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 28, 2022</span></span>
-                <p><p>Asyncio</p>
-<p><strong>asyncio.get_event_loop</strong> vs <strong>asyncio.get_running_loop</strong></p>
-<p>https://stackoverflow.com/questions/65206110/when-should-we-use-asyncio-get-running-loop-vs-asyncio-get-event-loop/69314701#69314701</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~5 words">Read in 1 mins</span>
@@ -346,11 +299,7 @@ ga('send', 'pageview');
                     <a href="./articles/FastAPI-for-CPU-Bound-Task.html">FastAPI for <span class="caps">CPU</span>-Bound&nbsp;Task</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 19, 2022</span></span>
-                <p><p>fastAPI</p>
-<p><strong>def</strong> vs <strong>async&nbsp;def</strong></p>
-<p>def:&nbsp;线程池，实现并发</p>
-<p>async def: 协程，事件循环器实现并发。不存在await操作，退化成串行请求requests&nbsp;sequentially。</p>
-<p>async def如何用在cpu-bound任务上？&nbsp;可以用户态适时asyncio.sleep …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~55 words">Read in 1 mins</span>
@@ -369,49 +318,7 @@ ga('send', 'pageview');
                     <a href="./articles/Longformer-Torch2Paddle.html">Longformer&nbsp;Torch2Paddle</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 10, 2022</span></span>
-                <p><p><a href="https://huggingface.co/Jerry666/paddlepaddle-longformer-base-4096/tree/main">PaddlePaddle-Longformer-model-base-4096</a></p>
-<table>
-<thead>
-<tr>
-<th align="left">PyTorch</th>
-<th align="left">Shape</th>
-<th align="left">Paddle</th>
-<th align="left">Shape</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">embeddings.word_embeddings.weight</td>
-<td align="left">[50265, 768]</td>
-<td align="left">embeddings.word_embeddings.weight</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">embeddings.position_embeddings.weight</td>
-<td align="left">[4098, 768]</td>
-<td align="left">embeddings.position_embeddings.weight</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">embeddings.token_type_embeddings.weight</td>
-<td align="left">[1, 768]</td>
-<td align="left">embeddings.token_type_embeddings.weight</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">embeddings.LayerNorm.weight</td>
-<td align="left">[768]</td>
-<td align="left">embeddings.layer_norm.weight</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">embeddings.LayerNorm.bias</td>
-<td align="left">[768]</td>
-<td align="left">embeddings.layer_norm.bias</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">encoder.layer.0.attention.self.query.weight …</td></tr></tbody></table></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~481 words">Read in 2 mins</span>
@@ -431,12 +338,7 @@ ga('send', 'pageview');
                     <a href="./articles/Base64-Encode-Decode.html">Base64-encode-decode</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 09, 2022</span></span>
-                <p><h2 id="python-encode-decode">python encode&nbsp;decode</h2>
-<p>是字节码bytes与字符串str之间的转换</p>
-<ul>
-<li>encode() 方法为字符串类型（str）提供的方法，用于将 str 类型转换成 bytes&nbsp;类型，这个过程也称为“编码”。</li>
-</ul>
-<p><code>str.encode([encoding="utf-8"][,errors="strict …</code></p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~122 words">Read in 1 mins</span>
@@ -455,17 +357,7 @@ ga('send', 'pageview');
                     <a href="./articles/Paddle-nn-functional-unfold.html">Paddle.nn.functional.unfold</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 07, 2022</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">paddle</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">paddle</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
-<span class="n">x</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>Tensor(shape=[2, 4, 5], dtype=float32, place=CPUPlace, stop_gradient=True,
-       [[[-0.88893539, -0.65730274,  0.51114833, -1.28526485,  0.58803898],
-         [ 0.44119874,  0.89113224, -1.09972370, -0.84613019,  0.27374327],
-         [-1.71595502,  0.37951231, -1.11798716,  0.01614391,  1.72096431 …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~135 words">Read in 1 mins</span>
@@ -484,10 +376,7 @@ ga('send', 'pageview');
                     <a href="./articles/Pytorch-stride-as_strided.html">Pytorch tensor.stride <span class="amp">&amp;</span>&nbsp;tensor.as_strided</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 04, 2022</span></span>
-                <p><h2 id="tensorstride">tensor.stride()</h2>
-<p>Stride is the jump necessary to go from one element to the next one in the specified dimension&nbsp;dim. </p>
-<p>一个元素到另一个元素，元素粒度</p>
-<p>任意维度上的步长，是其低维度乘积 …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~283 words">Read in 2 mins</span>
@@ -506,8 +395,7 @@ ga('send', 'pageview');
                     <a href="./articles/Pytorch-View-vs-Reshape.html">Pytorch View vs&nbsp;Reshape</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 03, 2022</span></span>
-                <p><p>torch.view has existed for a long time. It will return a tensor with the new shape. The returned tensor will share the underling data with the original tensor. See the <a href="https://pytorch.org/docs/master/tensors.html?highlight=view#torch.Tensor.view">documentation here</a>.</p>
-<p>On the other hand, it seems that torch.reshape <a href="https://github.com/pytorch/pytorch/pull/5575">has been introduced recently in version 0.4 …</a></p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~212 words">Read in 1 mins</span>

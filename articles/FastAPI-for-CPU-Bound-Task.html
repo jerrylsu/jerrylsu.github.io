@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="fastAPI def vs async def def: 线程池，实现并发 async def: 协程，事件循环器实现并发。不存在await操作，退化成串行请求requests sequentially。 async def如何用在cpu-bound任务上？ 可以用户态适时asyncio.sleep …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Python">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="FastAPI for CPU-Bound Task" />
-<meta property="og:description" content="fastAPI def vs async def def: 线程池，实现并发 async def: 协程，事件循环器实现并发。不存在await操作，退化成串行请求requests sequentially。 async def如何用在cpu-bound任务上？ 可以用户态适时asyncio.sleep …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/FastAPI-for-CPU-Bound-Task.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,11 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="FastAPI-for-CPU-Bound-Task">FastAPI for <span class="caps">CPU</span>-Bound&nbsp;Task</h3>
-		<p style="font-size:larger;"><p>fastAPI</p>
-<p><strong>def</strong> vs <strong>async&nbsp;def</strong></p>
-<p>def:&nbsp;线程池，实现并发</p>
-<p>async def: 协程，事件循环器实现并发。不存在await操作，退化成串行请求requests&nbsp;sequentially。</p>
-<p>async def如何用在cpu-bound任务上？&nbsp;可以用户态适时asyncio.sleep …</p></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -239,17 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <p>fastAPI</p>
+                <!-- Article -->
+                <p>fastAPI</p>
 <p><strong>def</strong> vs <strong>async&nbsp;def</strong></p>
 <p>def:&nbsp;线程池，实现并发</p>
 <p>async def: 协程，事件循环器实现并发。不存在await操作，退化成串行请求requests&nbsp;sequentially。</p>
@@ -259,11 +255,10 @@ ga('send', 'pageview');
 <p>When you declare a path operation function with normal def instead of async def, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the&nbsp;server).</p>
 </blockquote>
 <p>https://stackoverflow.com/questions/71516140/fastapi-runs-api-calls-in-serial-instead-of-parallel-fashion</p>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Longformer-Torch2Paddle.html">
 &ll; Longformer&nbsp;Torch2Paddle
@@ -271,7 +266,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/asyncio-get_event_loop-vs-get_running_loop.html">
         asyncio get_event_loop vs&nbsp;get_running_loop &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -323,6 +332,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -344,7 +354,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/FastAPI-for-CPU-Bound-Task.html",
-    "description": "fastAPI def vs async def def: 线程池，实现并发 async def: 协程，事件循环器实现并发。不存在await操作，退化成串行请求requests sequentially。 async def如何用在cpu-bound任务上？ 可以用户态适时asyncio.sleep …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

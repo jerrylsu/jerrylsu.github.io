@@ -220,19 +220,7 @@ ga('send', 'pageview');
                     <a href="../articles/pytorch.nn.functional.pad.html">pytorch.nn.functional.pad</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 02, 2022</span></span>
-                <p><h3 id="torch">torch</h3>
-<p><a href="https://pytorch.org/docs/stable/generated/torch.nn.functional.pad.html#torch.nn.functional.pad">torch.nn.functional.pad</a></p>
-<p>从输入input的最后一个维度向前padding</p>
-<p>输入input的<span class="math">\(\left\lfloor\frac{\text{len(pad)}}{2}\right\rfloor\)</span>个维度进行padding</p>
-<ul>
-<li>
-<p>如果只padding输入张量input的最后1个维度，pad的形式如：(padding_left,&nbsp;padding_right)</p>
-</li>
-<li>
-<p>如果只padding输入张量input的最后2个维度，pad的形式如：(padding_left, padding_right, padding_top,&nbsp;padding_bottom)</p>
-</li>
-<li>
-<p>如果只padding输入张量input的最后3个维度，pad的形式如：(padding_left, padding_right …</p></li></ul></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~389 words">Read in 2 mins</span>
@@ -252,18 +240,7 @@ ga('send', 'pageview');
                     <a href="../articles/Image-Tilt-Correction.html">Image tilt&nbsp;correction</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 24, 2022</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">cv2</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">math</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">rotate_image</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Rotates an image (angle in degrees) and expands image to avoid cropping</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># image shape has 3 dimensions</span>
-    <span class="n">image_center</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># getRotationMatrix2D needs coordinates in reverse …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~311 words">Read in 2 mins</span>
@@ -282,24 +259,7 @@ ga('send', 'pageview');
                     <a href="../articles/Joblib-parallel.html">Joblib&nbsp;parallel</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 23, 2022</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">inference</span><span class="p">(</span><span class="n">node_id</span><span class="p">,</span> <span class="n">biz_code</span><span class="p">,</span> <span class="n">pool</span><span class="p">):</span>
-    <span class="n">df_to_detection</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">((</span><span class="n">node_id</span><span class="p">,</span> <span class="n">biz_code</span><span class="p">,</span> <span class="n">pool</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;node_id&quot;</span><span class="p">,</span> <span class="s2">&quot;biz_code&quot;</span><span class="p">,</span> <span class="s2">&quot;pool&quot;</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">df_to_detection</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">params</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;c_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;d_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;e_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;f_pool&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="s2">&quot;g_pool&quot;</span><span class="p">)]</span>
-
-<span class="n">jobs_num</span> <span class="o">=</span> <span class="nb">len …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~322 words">Read in 2 mins</span>
@@ -318,14 +278,7 @@ ga('send', 'pageview');
                     <a href="../articles/Creating-folds-properly.html">Creating folds&nbsp;properly</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 27, 2022</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="n">iterative</span><span class="o">-</span><span class="n">stratification</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>[33mWARNING: Running pip as the &#39;root&#39; user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~1008 words">Read in 5 mins</span>
@@ -344,25 +297,7 @@ ga('send', 'pageview');
                     <a href="../articles/Longformer-BigBird.html">Longformer&nbsp;BigBird</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 22, 2022</span></span>
-                <p><h2 id="allenailongformer-large-4096">allenai/longformer-large-4096</h2>
-<p>epoch&nbsp;3</p>
-<p>with pretrained<br>
-Lead 0.7826552462526767<br>
-Position 0.6857142857142857<br>
-Claim 0.6016325707951224<br>
-Evidence 0.6062992125984252<br>
-Concluding Statement 0.7744827586206896<br>
-Counterclaim 0.5159301130524152<br>
-Rebuttal&nbsp;0.43537414965986393</p>
-<p>Overall&nbsp;0.6288697623847826</p>
-<h1 id="_1">========================================</h1>
-<p>epoch4</p>
-<p>witout pretrained<br>
-Lead 0.7926960257787325<br>
-Position 0.6743119266055045<br>
-Claim 0.5527019174898314<br>
-Evidence 0.6058080479229067<br>
-Concluding Statement 0.7251962883654532 …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~308 words">Read in 2 mins</span>
@@ -381,16 +316,7 @@ Concluding Statement 0.7251962883654532 …</p></p>
                     <a href="../articles/Mapping-Chars-and-Words-to-Tokens.html">Mapping chars and words to&nbsp;tokens</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 22, 2022</span></span>
-                <p><p><a href="https://www.kaggle.com/c/feedback-prize-2021/discussion/298094">How to Convert Characters, Tokens, and&nbsp;Words</a></p>
-<h2 id="1-mapping-char-to-token">1. Mapping char to&nbsp;token.</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BigBirdTokenizerFast</span>
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BigBirdTokenizerFast</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;allenai/longformer-large-4096&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Phones</span><span class="se">\n\n</span><span class="s2">Modern humans today are always on their …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~568 words">Read in 3 mins</span>
@@ -409,42 +335,7 @@ Concluding Statement 0.7251962883654532 …</p></p>
                     <a href="../articles/Feedback-Prize-Evaluating-Student-Writing.html">Feedback prize evaluating student&nbsp;writing</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 18, 2022</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">tqdm</span>
-</code></pre></div>
-
-<h2 id="eda"><span class="caps">EDA</span></h2>
-<p>https://www.kaggle.com/robikscube/student-writing-competition-twitch-stream?scriptVersionId=83303421</p>
-<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/root/.cache/data/train.csv&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</code></pre></div>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>discourse_id</th>
-      <th>discourse_start</th>
-      <th>discourse_end</th>
-      <th>discourse_text …</th></tr></thead></table></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~1538 words">Read in 7 mins</span>
@@ -463,19 +354,7 @@ Concluding Statement 0.7251962883654532 …</p></p>
                     <a href="../articles/Scipy-stats.html">Scipy&nbsp;stats</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 06, 2022</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-</code></pre></div>
-
-<h3 id="rvs">rvs随机变量</h3>
-<div class="highlight"><pre><span></span><code><span class="n">norm_rvs</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">norm_rvs</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>array([85.28104692, 58.00314417, 69.57475968, 94.81786398, 87.3511598 ,
-       30.4544424 , 69.00176835, 46.97285583, 47.93562296, 58 …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~305 words">Read in 2 mins</span>
@@ -496,9 +375,7 @@ Concluding Statement 0.7251962883654532 …</p></p>
                     <a href="../articles/Binomial-distribution.html">Binomial&nbsp;distribution</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 05, 2022</span></span>
-                <p><p>n次伯努利实验，样本相互独立，单次成功概率为p，服从参数为n和p的二项分布:</p>
-<div class="math">$$P\{ x= m\} =C_{n}^{m}p^{m}\left( 1-p\right) ^{n-m}   \ \ (其中，0&lt;p&lt;1,  m=0,1,...,n)$$</div>
-<p>累计概率分布函数 …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~614 words">Read in 3 mins</span>

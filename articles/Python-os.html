@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="dir(os.path) [&#39;__all__&#39;, &#39;__builtins__&#39;, &#39;__cached__&#39;, &#39;__doc__&#39;, &#39;__file__&#39;, &#39;__loader__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;__spec__&#39;, &#39;_get_sep&#39;, &#39;_joinrealpath&#39;, &#39;_varprog&#39;, &#39;_varprogb&#39;, &#39;abspath&#39;, &#39;altsep&#39;, &#39;basename&#39;, &#39;commonpath&#39;, &#39;commonprefix&#39;, &#39;curdir&#39;, &#39;defpath&#39;, &#39;devnull&#39;, &#39;dirname&#39;, &#39;exists&#39;, &#39;expanduser&#39;, &#39;expandvars&#39;, &#39;extsep&#39;, &#39;genericpath&#39;, &#39;getatime&#39;, &#39;getctime&#39;, &#39;getmtime&#39;, &#39;getsize&#39;, &#39;isabs&#39;, &#39;isdir&#39;, &#39;isfile&#39;, &#39;islink&#39;, &#39;ismount&#39;, &#39;join&#39;, &#39;lexists&#39;, &#39;normcase&#39;, &#39;normpath&#39;, &#39;os&#39;, &#39;pardir&#39;, &#39;pathsep&#39;, &#39;realpath&#39;, &#39;relpath&#39;, &#39;samefile&#39;, &#39;sameopenfile …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Python">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Python - os" />
-<meta property="og:description" content="dir(os.path) [&#39;__all__&#39;, &#39;__builtins__&#39;, &#39;__cached__&#39;, &#39;__doc__&#39;, &#39;__file__&#39;, &#39;__loader__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;__spec__&#39;, &#39;_get_sep&#39;, &#39;_joinrealpath&#39;, &#39;_varprog&#39;, &#39;_varprogb&#39;, &#39;abspath&#39;, &#39;altsep&#39;, &#39;basename&#39;, &#39;commonpath&#39;, &#39;commonprefix&#39;, &#39;curdir&#39;, &#39;defpath&#39;, &#39;devnull&#39;, &#39;dirname&#39;, &#39;exists&#39;, &#39;expanduser&#39;, &#39;expandvars&#39;, &#39;extsep&#39;, &#39;genericpath&#39;, &#39;getatime&#39;, &#39;getctime&#39;, &#39;getmtime&#39;, &#39;getsize&#39;, &#39;isabs&#39;, &#39;isdir&#39;, &#39;isfile&#39;, &#39;islink&#39;, &#39;ismount&#39;, &#39;join&#39;, &#39;lexists&#39;, &#39;normcase&#39;, &#39;normpath&#39;, &#39;os&#39;, &#39;pardir&#39;, &#39;pathsep&#39;, &#39;realpath&#39;, &#39;relpath&#39;, &#39;samefile&#39;, &#39;sameopenfile …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Python-os.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,56 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Python-os">Python -&nbsp;os</h3>
-		<p style="font-size:larger;"><div class="highlight"><pre><span></span><code><span class="nb">dir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;__all__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__builtins__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__cached__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__doc__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__file__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__loader__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__name__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__package__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;__spec__&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;_get_sep&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;_joinrealpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;_varprog&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;_varprogb&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;abspath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;altsep&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;basename&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;commonpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;commonprefix&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;curdir&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;defpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;devnull&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;dirname&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;exists&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;expanduser&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;expandvars&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;extsep&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;genericpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;getatime&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;getctime&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;getmtime&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;getsize&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;isabs&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;isdir&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;isfile&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;islink&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;ismount&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;join&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;lexists&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;normcase&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;normpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;os&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;pardir&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;pathsep&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;realpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;relpath&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;samefile&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w"> </span><span class="s1">&#39;sameopenfile …</span></code></pre></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -284,17 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="highlight"><pre><span></span><code><span class="nb">dir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+                <!-- Article -->
+                <div class="highlight"><pre><span></span><code><span class="nb">dir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 </code></pre></div>
 
 <div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;__all__&#39;</span><span class="p">,</span><span class="w"></span>
@@ -427,11 +378,10 @@ ga('send', 'pageview');
 <span class="p">[</span><span class="s1">&#39;.ipynb_checkpoints&#39;</span><span class="p">]</span><span class="w"></span>
 <span class="p">[</span><span class="s1">&#39;2019-04-12-Checking-DataFrame-Series-missing-values.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-01-04-torch.nn.CrossEntropyLoss.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-04-12-Using-loguru-and-notifiers-instead-of-logging.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-03-11-Spark-Shuffling-and-Partitioning.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-05-24-Closure.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-04-17-Case-Class-vs-Class.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-12-03-tf.not_equal-reduce_any-boolean_mask.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-12-09-loss.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-12-20-Python-Decorator.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-12-20-Python-Requests.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-02-22-Numpy-Indexing.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-07-22-Pytorch-Transformer.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-07-20-Spark.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-04-17-Singleton-Companion-Object.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-03-28-Python-logging.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-01-04-torch.rand-randn-randint.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-06-11-Iterator.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-06-25-Pytorch-distributed-train.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-09-16-Pymysql.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-01-13-Scala.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2018-10-03-Building-Python-Package.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-11-23-dim.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-03-04-scatter_nd.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-12-20-Python-dataclasses.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-04-26-Python-Object-and-Reference.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-10-01-Python-list-mapping.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-08-26-Python-setdefault.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-08-05-Python-Encode-Decode.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-01-03-Spark-RDD.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-08-05-Python-m.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-12-24-Python-typing.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-04-02-Python-Coroutine.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-12-24-Python-os.path.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-01-04-Pytorch-create-tendsor.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-04-13-Auto-generated-subtitles-for-any-video.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-07-17-Scala-Tips.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-07-16-Spark-Tips.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-03-22-Python-Blinker.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-05-23-Using-groupBy-on-multiple-columns.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-12-03-Python-list.index.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-12-30-Python-Iterable-Iterator.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-01-07-batch-padding.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-08-12-Numpy-np.where.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-02-28-Scala-with-Gradle-in-Intellij.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-01-18-torch-detach-detach_-data.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-12-31-Python-Generator.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-07-19-Spark-Partitions-with-Coalesce-and-Repartition.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-12-18-Python-Built-in-Functions.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-07-12-Collection.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-03-21-Spark-SQL-Join.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-01-04-Pytorch-tensor-indexing.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-05-23-Passing-a-function-as-an-argument-Lambda-Function.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2021-09-27-Pandas-to-csv.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-11-23-merge_split.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-02-26-Debugging-Spark-Application.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-11-23-tf.broadcast_to.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-07-21-Pytorch-contiguous.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-11-23-tf.math.ipynb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2020-05-09-C++.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-06-26-SQLite-Full-text-Search.md&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2019-03-28-Python-email.md&#39;</span><span class="p">]</span><span class="w"></span>
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Python-Requests.html">
 &ll; Python&nbsp;Requests
@@ -439,7 +389,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/Python-Iterable-Iterator.html">
         Python - Iterable vs&nbsp;Iterator &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -491,6 +455,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -512,7 +477,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Python-os.html",
-    "description": "dir(os.path) ['__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', '_get_sep', '_joinrealpath', '_varprog', '_varprogb', 'abspath', 'altsep', 'basename', 'commonpath', 'commonprefix', 'curdir', 'defpath', 'devnull', 'dirname', 'exists', 'expanduser', 'expandvars', 'extsep', 'genericpath', 'getatime', 'getctime', 'getmtime', 'getsize', 'isabs', 'isdir', 'isfile', 'islink', 'ismount', 'join', 'lexists', 'normcase', 'normpath', 'os', 'pardir', 'pathsep', 'realpath', 'relpath', 'samefile', 'sameopenfile …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

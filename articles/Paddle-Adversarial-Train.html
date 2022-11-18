@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="import paddle class FGM(object): &#34;&#34;&#34;Fast Gradient Method. &#34;&#34;&#34; def __init__(self, model, eps=1.): self.model = (model.module if hasattr(model, &#34;module&#34;) else model) self.eps = eps self.backup = {} def attack(self, emb_name=&#39;embedding&#39;): &#34;&#34;&#34;only attack embedding &#34;&#34;&#34; for name, param in self.model.named_parameters(): if not param.stop_gradient and emb_name …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Paddle">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Paddle adversarial train" />
-<meta property="og:description" content="import paddle class FGM(object): &#34;&#34;&#34;Fast Gradient Method. &#34;&#34;&#34; def __init__(self, model, eps=1.): self.model = (model.module if hasattr(model, &#34;module&#34;) else model) self.eps = eps self.backup = {} def attack(self, emb_name=&#39;embedding&#39;): &#34;&#34;&#34;only attack embedding &#34;&#34;&#34; for name, param in self.model.named_parameters(): if not param.stop_gradient and emb_name …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Paddle-Adversarial-Train.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,22 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Paddle-Adversarial-Train">Paddle adversarial&nbsp;train</h3>
-		<p style="font-size:larger;"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">paddle</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FGM</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Fast Gradient Method.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">module</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;module&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">model</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">=</span> <span class="n">eps</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">backup</span> <span class="o">=</span> <span class="p">{}</span>
-
-    <span class="k">def</span> <span class="nf">attack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">emb_name</span><span class="o">=</span><span class="s1">&#39;embedding&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;only attack embedding</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">param</span><span class="o">.</span><span class="n">stop_gradient</span> <span class="ow">and</span> <span class="n">emb_name …</span></code></pre></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -250,17 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">paddle</span>
+                <!-- Article -->
+                <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">paddle</span>
 </code></pre></div>
 
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FGM</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -382,17 +367,30 @@ ga('send', 'pageview');
     <span class="n">loss_adv</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">adv</span><span class="o">.</span><span class="n">restore</span><span class="p">()</span>
 </code></pre></div>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-100" href="../articles/python-docx-using-lxml.html">
 Python docx using&nbsp;lxml
     </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -444,6 +442,7 @@ Python docx using&nbsp;lxml
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -465,7 +464,7 @@ Python docx using&nbsp;lxml
     },
     "image": "../jerry.jpg",
     "url": "../articles/Paddle-Adversarial-Train.html",
-    "description": "import paddle class FGM(object): """Fast Gradient Method. """ def __init__(self, model, eps=1.): self.model = (model.module if hasattr(model, "module") else model) self.eps = eps self.backup = {} def attack(self, emb_name='embedding'): """only attack embedding """ for name, param in self.model.named_parameters(): if not param.stop_gradient and emb_name …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

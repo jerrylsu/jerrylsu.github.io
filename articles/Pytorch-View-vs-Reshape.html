@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="torch.view has existed for a long time. It will return a tensor with the new shape. The returned tensor will share the underling data with the original tensor. See the documentation here. On the other hand, it seems that torch.reshape has been introduced recently in version 0.4 …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="Pytorch, Paddle">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Pytorch View vs Reshape" />
-<meta property="og:description" content="torch.view has existed for a long time. It will return a tensor with the new shape. The returned tensor will share the underling data with the original tensor. See the documentation here. On the other hand, it seems that torch.reshape has been introduced recently in version 0.4 …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Pytorch-View-vs-Reshape.html" />
 <meta property="og:type" content="article" />
@@ -61,6 +61,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -209,8 +210,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Pytorch-View-vs-Reshape">Pytorch View vs&nbsp;Reshape</h3>
-		<p style="font-size:larger;"><p>torch.view has existed for a long time. It will return a tensor with the new shape. The returned tensor will share the underling data with the original tensor. See the <a href="https://pytorch.org/docs/master/tensors.html?highlight=view#torch.Tensor.view">documentation here</a>.</p>
-<p>On the other hand, it seems that torch.reshape <a href="https://github.com/pytorch/pytorch/pull/5575">has been introduced recently in version 0.4 …</a></p></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -238,17 +238,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <p>torch.view has existed for a long time. It will return a tensor with the new shape. The returned tensor will share the underling data with the original tensor. See the <a href="https://pytorch.org/docs/master/tensors.html?highlight=view#torch.Tensor.view">documentation here</a>.</p>
+                <!-- Article -->
+                <p>torch.view has existed for a long time. It will return a tensor with the new shape. The returned tensor will share the underling data with the original tensor. See the <a href="https://pytorch.org/docs/master/tensors.html?highlight=view#torch.Tensor.view">documentation here</a>.</p>
 <p>On the other hand, it seems that torch.reshape <a href="https://github.com/pytorch/pytorch/pull/5575">has been introduced recently in version 0.4</a>. According to the <a href="https://pytorch.org/docs/master/torch.html#torch.reshape">document</a>, this method&nbsp;will</p>
 <blockquote>
 <p>Returns a tensor with the same data and number of elements as input, but with the specified shape. When possible, the returned tensor will be a view of input. Otherwise, it will be a copy. Contiguous inputs and inputs with compatible strides can be reshaped without copying, but you should not depend on the copying vs. viewing&nbsp;behavior.</p>
@@ -261,11 +260,10 @@ ga('send', 'pageview');
 <p><a href="https://stackoverflow.com/questions/49643225/whats-the-difference-between-reshape-and-view-in-pytorch">whats-the-difference-between-reshape-and-view-in-pytorch</a></p>
 <p>torch的view()与reshape()方法都可以用来重塑tensor的shape，区别就是使用的条件不一样。view()方法只适用于满足连续性条件的tensor，并且该操作不会开辟新的内存空间，只是产生了对原存储空间的一个新别称和引用，返回值是视图。而reshape()方法的返回值既可以是视图，也可以是副本，当满足连续性条件时返回view，否则返回副本[ 此时等价于先调用contiguous()方法在使用view()&nbsp;]。因此当不确能否使用view时，可以使用reshape。如果只是想简单地重塑一个tensor的shape，那么就是用reshape，但是如果需要考虑内存的开销而且要确保重塑后的tensor与之前的tensor共享存储空间，那就使用view()。</p>
 <p>paddle不存在view方法</p>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/pytorch.nn.functional.pad.html">
 &ll; pytorch.nn.functional.pad
@@ -273,7 +271,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/Pytorch-stride-as_strided.html">
         Pytorch tensor.stride <span class="amp">&amp;</span>&nbsp;tensor.as_strided &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
         <hr>
@@ -325,6 +337,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -346,7 +359,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Pytorch-View-vs-Reshape.html",
-    "description": "torch.view has existed for a long time. It will return a tensor with the new shape. The returned tensor will share the underling data with the original tensor. See the documentation here. On the other hand, it seems that torch.reshape has been introduced recently in version 0.4 …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

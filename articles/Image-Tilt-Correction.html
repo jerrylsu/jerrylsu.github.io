@@ -13,11 +13,11 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="from matplotlib import pyplot as plt import cv2 import numpy as np import math def rotate_image(mat, angle): &#34;&#34;&#34; Rotates an image (angle in degrees) and expands image to avoid cropping &#34;&#34;&#34; height, width = mat.shape[:2] # image shape has 3 dimensions image_center = (width / 2, height / 2) # getRotationMatrix2D needs coordinates in reverse …" />
+    <meta name="description" content="Reason is the light and the light of life." />
     <meta name="keywords" content="CV">
 <meta property="og:site_name" content="JERRYLSU.NET" />
 <meta property="og:title" content="Image tilt correction" />
-<meta property="og:description" content="from matplotlib import pyplot as plt import cv2 import numpy as np import math def rotate_image(mat, angle): &#34;&#34;&#34; Rotates an image (angle in degrees) and expands image to avoid cropping &#34;&#34;&#34; height, width = mat.shape[:2] # image shape has 3 dimensions image_center = (width / 2, height / 2) # getRotationMatrix2D needs coordinates in reverse …" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="../articles/Image-Tilt-Correction.html" />
 <meta property="og:type" content="article" />
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -208,18 +209,7 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Image-Tilt-Correction">Image tilt&nbsp;correction</h3>
-		<p style="font-size:larger;"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">cv2</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">math</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">rotate_image</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Rotates an image (angle in degrees) and expands image to avoid cropping</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># image shape has 3 dimensions</span>
-    <span class="n">image_center</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># getRotationMatrix2D needs coordinates in reverse …</span></code></pre></div></p>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
@@ -246,17 +236,16 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
-            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
 
-        <!-- Share post -->
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
 
-        <!-- Article -->
-        <div>
-            <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+                <!-- Article -->
+                <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">math</span>
@@ -347,11 +336,10 @@ ga('send', 'pageview');
 <p><img alt="png" src="2022-04-24-image-tilt-correction_files/2022-04-24-image-tilt-correction_2_2.png"></p>
 <p><img alt="png" src="2022-04-24-image-tilt-correction_files/2022-04-24-image-tilt-correction_2_3.png"></p>
 <p><img alt="png" src="2022-04-24-image-tilt-correction_files/2022-04-24-image-tilt-correction_2_4.png"></p>
-        </div>
 
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
 <div class="pagination">
     <a class="w-50" href="../articles/Joblib-parallel.html">
 &ll; Joblib&nbsp;parallel
@@ -359,7 +347,21 @@ ga('send', 'pageview');
     <a class="w-50 text-right" href="../articles/pytorch.nn.functional.pad.html">
         pytorch.nn.functional.pad &gg;    </a>
 </div>
-        <!-- Google Adsense -->
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
 
     <!-- Releated posts -->
 
@@ -400,6 +402,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -421,7 +424,7 @@ ga('send', 'pageview');
     },
     "image": "../jerry.jpg",
     "url": "../articles/Image-Tilt-Correction.html",
-    "description": "from matplotlib import pyplot as plt import cv2 import numpy as np import math def rotate_image(mat, angle): """ Rotates an image (angle in degrees) and expands image to avoid cropping """ height, width = mat.shape[:2] # image shape has 3 dimensions image_center = (width / 2, height / 2) # getRotationMatrix2D needs coordinates in reverse …"
+    "description": "Reason is the light and the light of life."
 }
 </script>
     <!-- Disqus count -->

@@ -220,21 +220,7 @@ ga('send', 'pageview');
                     <a href="../articles/Hierarchical-Position-Embedding.html">Hierarchical Position&nbsp;Embedding</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 24, 2021</span></span>
-                <p><p>预训练模型&nbsp;预训练的三种embedding</p>
-<p>word_embedding: [vocab_size,&nbsp;hidden_size]</p>
-<p>position_embedding: [max_len,&nbsp;hidden_size]</p>
-<p>token_type_embedding: [token_type_size,&nbsp;hidden_size]</p>
-<p><img alt="embedding" src="../../../images/PaddlePaddle/embedding.png"></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">paddle</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">em</span> <span class="o">=</span> <span class="n">paddle</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
-<span class="n">em</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>Tensor(shape=[10, 8], dtype=float32, place=CPUPlace, stop_gradient=True,
-       [[-1.70151997,  0.41166085,  2.07669687,  0.45709962, -0.06186785,
-         -0 …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~158 words">Read in 1 mins</span>
@@ -253,24 +239,7 @@ ga('send', 'pageview');
                     <a href="../articles/Paddle-dtype.html">Paddle&nbsp;dtype</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 24, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">paddle</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">paddle</span><span class="o">.</span><span class="n">to_tensor</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">paddle</span><span class="o">.</span><span class="n">to_tensor</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">])</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">*</span> <span class="n">b</span>  <span class="c1"># int64 int * float = int ???</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>Tensor(shape=[4], dtype=int64, place=CPUPlace, stop_gradient=True,
-       [0, 0, 2, 2])
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">c</span> <span class="o">=</span> <span class="n">paddle</span><span class="o">.</span><span class="n">to_tensor</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">a …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~78 words">Read in 1 mins</span>
@@ -289,7 +258,7 @@ ga('send', 'pageview');
                     <a href="../articles/Tokenizer-offset-mapping.html">Tokenizer offerset&nbsp;mapping</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 23, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="n">offsets</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span> <span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">),</span> <span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">),</span> <span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">),</span> <span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">),</span> <span class="p">(</span><span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">29</span><span class="p">),</span> <span class="p">(</span><span class="mi">29 …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~419 words">Read in 2 mins</span>
@@ -310,9 +279,7 @@ ga('send', 'pageview');
                     <a href="../articles/paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &paddle.tile.html">paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape <span class="amp">&amp;</span>&nbsp;paddle.tile</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 16, 2021</span></span>
-                <p><p>https://pytorch.org/docs/stable/generated/torch.Tensor.repeat.html#torch.Tensor.repeat</p>
-<p>https://pytorch.org/docs/stable/generated/torch.repeat_interleave.html</p>
-<p>If the repeats is tensor([n1, n2, n3, …]), then the output will be tensor([0, 0, …, 1, 1, …, 2, 2, …, …]) where 0 appears n1 times, 1 appears n2 …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~443 words">Read in 2 mins</span>
@@ -333,15 +300,7 @@ ga('send', 'pageview');
                     <a href="../articles/Mac m1 install Paddle.html">Mac m1 install&nbsp;Paddle</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 15, 2021</span></span>
-                <p><p>Mac&nbsp;m1系统mini-conda,环境安装paddle问题？</p>
-<div class="highlight"><pre><span></span><code><span class="nv">conda</span><span class="w"> </span><span class="nv">activate</span><span class="w"> </span><span class="nv">paddle</span><span class="w"></span>
-<span class="nv">python</span><span class="w"> </span><span class="o">-</span><span class="nv">m</span><span class="w"> </span><span class="nv">pip</span><span class="w"> </span><span class="nv">install</span><span class="w"> </span><span class="nv">paddlepaddle</span><span class="w"> </span><span class="o">-</span><span class="nv">i</span><span class="w"> </span><span class="nv">https</span>:<span class="o">//</span><span class="nv">mirror</span>.<span class="nv">baidu</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">pypi</span><span class="o">/</span><span class="nv">simple</span><span class="w"></span>
-<span class="nv">Looking</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">indexes</span>:<span class="w"> </span><span class="nv">https</span>:<span class="o">//</span><span class="nv">mirror</span>.<span class="nv">baidu</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">pypi</span><span class="o">/</span><span class="nv">simple</span><span class="w"></span>
-<span class="nv">ERROR</span>:<span class="w"> </span><span class="nv">Could</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">find</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">satisfies</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">requirement</span><span class="w"> </span><span class="nv">paddlepaddle</span><span class="w"></span>
-<span class="nv">ERROR</span>:<span class="w"> </span><span class="nv">No</span><span class="w"> </span><span class="nv">matching</span><span class="w"> </span><span class="nv">distribution</span><span class="w"> </span><span class="nv">found</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">paddlepaddle</span><span class="w"></span>
-</code></pre></div>
-
-<p>https …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~122 words">Read in 1 mins</span>
@@ -360,26 +319,7 @@ ga('send', 'pageview');
                     <a href="../articles/Data-EDA.html">Data <span class="caps">EDA</span></a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Oct 01, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">ls</span> <span class="o">../../../</span><span class="n">cache</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>ArticlesGenerator-Readers  train.json  vocab.txt
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-white&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<h3 id="1-labels">1.&nbsp;labels</h3>
-<div class="highlight"><pre><span></span><code><span class="n">labels_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../../../cache/labels.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-<span class="n">label_dicts</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">labels_file</span><span class="p">:</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="n">json …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~12159 words">Read in 49 mins</span>
@@ -398,11 +338,7 @@ ga('send', 'pageview');
                     <a href="../articles/Bert-as-Service.html">Bert as&nbsp;Service</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Sep 23, 2021</span></span>
-                <p><p>git clone&nbsp;git@github.com:hanxiao/bert-as-service.git</p>
-<p>https://bert-as-service.readthedocs.io/en/latest/section/get-start.html#start-the-bert-service-in-a-docker-container</p>
-<p>docker build -t bert-as-service -f ./docker/Dockerfile&nbsp;.</p>
-<p>docker run &#8212;runtime nvidia -itd -p 8022:5555 -p 8021:5556 -v /bert-as-service/server/model/:/model -t bert-as-service 1&nbsp;128</p>
-<div class="highlight"><pre><span></span><code>usage: /usr/local/bin/bert-serving-start …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~92 words">Read in 1 mins</span>
@@ -421,21 +357,7 @@ ga('send', 'pageview');
                     <a href="../articles/Cross-Entropy.html">Cross&nbsp;Entropy</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Aug 26, 2021</span></span>
-                <p><p>理解几个概念：</p>
-<p><a href="https://www.bilibili.com/video/BV15V411W7VB?from=search&amp;seid=11935226210603570930">必看：交叉熵如何做损失函数？</a></p>
-<ul>
-<li>
-<p>信息</p>
-</li>
-<li>
-<p>信息量</p>
-</li>
-</ul>
-<p><span class="math">\(H\left( X\right) =-\log P\left(&nbsp;X\right)\)</span></p>
-<ul>
-<li>熵</li>
-</ul>
-<p><span class="math">\(Entropy\left( X\right) =-\sum ^{i}_{n=1}p\left( x_{i}\right) \log p\left …</span></p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~25 words">Read in 1 mins</span>
@@ -454,28 +376,7 @@ ga('send', 'pageview');
                     <a href="../articles/NLP-Unicode-Tokenizer-Mapping.html"><span class="caps">NLP</span> Unicode Tokenizer&nbsp;Mapping</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Aug 20, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="c1"># https://github.com/huggingface/transformers/blob/master/src/transformers/tokenization_utils.py</span>
-<span class="c1"># tokenzier</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># http://www.unicode.org/reports/tr44/#GC_Values_Table</span>
-<span class="kn">import</span> <span class="nn">unicodedata</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">unicodedata</span><span class="o">.</span><span class="n">unidata_version</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>&#39;12.1.0&#39;
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># unicode类型枚举</span>
-<span class="c1"># https://www.fileformat.info/info/unicode/category/index.htm</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">unicodedata</span><span class="o">.</span><span class="n">category</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">unicodedata</span><span class="o">.</span><span class="n">category</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">unicodedata</span><span class="o">.</span><span class="n">category</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">unicodedata</span><span class="o">.</span><span class="n">category</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
-<span class="c1">#unicodedata.category …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~563 words">Read in 3 mins</span>
@@ -495,11 +396,7 @@ ga('send', 'pageview');
                     <a href="../articles/Text-Generation.html">Text-Generation</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 26, 2021</span></span>
-                <p><h3 id="autoregressive-text-generation">Autoregressive Text&nbsp;Generation</h3>
-<p>自回归语言模型：<span class="math">\(p(y_1,y_2,…,y_n|x)=p(y_1|x)p(y_2|x,y_1)…p(y_n|x,y_1,…,y_{n−1})\)</span></p>
-<p>无法并行，推理速度慢。</p>
-<h3 id="non-autoregressive-text-generation">Non-autoregressive Text&nbsp;Generation</h3>
-<p>非自回归语言模型：<span class="math">\(p …</span></p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~14 words">Read in 1 mins</span>

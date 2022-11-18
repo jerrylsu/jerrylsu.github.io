@@ -244,51 +244,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-setdefault.html">Python -&nbsp;setdefault</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Aug 26, 2021</span></span>
-                <p><p>https://www.cnblogs.com/zzliu/p/10809205.html</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="nb">dir</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>[&#39;__class__&#39;,
- &#39;__contains__&#39;,
- &#39;__delattr__&#39;,
- &#39;__delitem__&#39;,
- &#39;__dir__&#39;,
- &#39;__doc__&#39;,
- &#39;__eq__&#39;,
- &#39;__format__&#39;,
- &#39;__ge__&#39;,
- &#39;__getattribute__&#39;,
- &#39;__getitem__&#39;,
- &#39;__gt__&#39;,
- &#39;__hash__&#39;,
- &#39;__init__&#39;,
- &#39;__init_subclass__&#39;,
- &#39;__iter__&#39;,
- &#39;__le__&#39;,
- &#39;__len__&#39;,
- &#39;__lt__&#39;,
- &#39;__ne__&#39;,
- &#39;__new__&#39;,
- &#39;__reduce__&#39;,
- &#39;__reduce_ex__&#39;,
- &#39;__repr__&#39;,
- &#39;__reversed__&#39;,
- &#39;__setattr__&#39;,
- &#39;__setitem__&#39;,
- &#39;__sizeof__&#39;,
- &#39;__str__&#39;,
- &#39;__subclasshook__&#39;,
- &#39;clear&#39;,
- &#39;copy&#39;,
- &#39;fromkeys&#39;,
- &#39;get&#39;,
- &#39;items&#39;,
- &#39;keys&#39;,
- &#39;pop&#39;,
- &#39;popitem …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~124 words">Read in 1 mins</span>
@@ -307,15 +263,7 @@ ga('send', 'pageview');
                     <a href="../articles/Numpy-np.where.html">Numpy&nbsp;np.where</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Aug 12, 2021</span></span>
-                <p><p>https://numpy.org/doc/stable/reference/generated/numpy.where.html?highlight=where#numpy.where<br>&nbsp;https://www.cnblogs.com/massquantity/p/8908859.html</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">scores</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="c1">#  随机生成[-1, 1]之间小数</span>
-<span class="n">scores</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>array([[[-0.9941625 …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~126 words">Read in 1 mins</span>
@@ -334,36 +282,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-Encode-Decode.html">Python Encode&nbsp;Decode</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Aug 05, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">base64</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-</code></pre></div>
-
-<ul>
-<li>
-<p>json.load：文件对象 =》&nbsp;python对象</p>
-</li>
-<li>
-<p>json.loads：json格式字符串 =》&nbsp;python对象</p>
-</li>
-<li>
-<p>json.dump：python对象 =》&nbsp;文件对象</p>
-</li>
-<li>
-<p>json.dumps：python对象 =》&nbsp;json格式字符串</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello Wold!&quot;</span><span class="p">},</span>
-    <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;6&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;sub_labels&quot;</span><span class="p">:{</span><span class="s2">&quot;4&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">]}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># python对象转字符串</span>
-<span class="n">json_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data_dict …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~117 words">Read in 1 mins</span>
@@ -382,8 +301,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-m.html">Python&nbsp;-m</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Aug 05, 2021</span></span>
-                <p><p>python -m http.server&nbsp;启动一个http服务器，用于文件共享</p>
-<p><a href="https://a7744hsc.github.io/python/2018/05/03/Run-python-script.html">https://a7744hsc.github.io/python/2018/05/03/Run-python-script.html</a></p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~5 words">Read in 1 mins</span>
@@ -402,10 +320,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-Coroutine.html">Python&nbsp;Coroutine</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 02, 2021</span></span>
-                <p><h3 id="yield"><strong>yield</strong>:&nbsp;产出和让步</h3>
-<p>在协程中yield通常出现在等号的右边 data =&nbsp;yield，可以产出值，也可以不产出。</p>
-<p>data = yield #&nbsp;yield关键字后没有表达式，表示没有产出值，即None</p>
-<p>协程从调用方通过.send(data)接收数据 …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~188 words">Read in 1 mins</span>
@@ -424,19 +339,7 @@ ga('send', 'pageview');
                     <a href="../articles/Python-Blinker.html">Python&nbsp;Blinker</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 22, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">blinker</span> <span class="kn">import</span> <span class="n">signal</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># 创建信号，单例模式</span>
-<span class="n">inited</span> <span class="o">=</span> <span class="n">signal</span><span class="p">(</span><span class="s1">&#39;inited&#39;</span><span class="p">)</span>
-<span class="n">inited</span> <span class="ow">is</span> <span class="n">signal</span><span class="p">(</span><span class="s1">&#39;inited&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>True
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># 订阅信号</span>
-<span class="c1"># 使用Signal.connect()方法注册一个函数，每当触发信号的时候，就会调用该 …</span></code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~62 words">Read in 1 mins</span>
@@ -455,20 +358,7 @@ ga('send', 'pageview');
                     <a href="../articles/scatter_nd.html">Scatter_nd</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 04, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>tf.scatter_nd(
-       indices,
-       updates,
-       shape,
-       name=None
-)
-</code></pre></div>
-
-<p>根据indices将updates散布到新的(初始为零)张量.</p>
-<p>根据索引对给定shape的零张量中的单个值或切片应用稀疏updates来创建新的张量.此运算符是tf.gather_nd运算符的反函数,它从给定的张量中提取值或切 …</p></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~697 words">Read in 3 mins</span>
@@ -520,25 +410,7 @@ ga('send', 'pageview');
                     <a href="../articles/Pytorch-fancy-indexing.html">Pytorch fancy&nbsp;indexing</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 07, 2021</span></span>
-                <p><p>花式索引</p>
-<p>组合索引</p>
-<p>与numpy索引方式几乎一致，参考numpy学习</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">x</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>torch.Size([1, 3, 4, 5])
-
-
-
-
-
-tensor([[[[ 2.2271,  2.0278, -0.5272,  1.4764, -0.6787],
-          [-0.7569, -0.8737,  0.0031,  0 …</code></pre></div></p>
+                <p>Reason is the light and the light of&nbsp;life.</p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~118 words">Read in 1 mins</span>
