@@ -217,47 +217,105 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Case-Class-vs-Class.html">Case Class vs&nbsp;Class</a>
+                    <a href="../articles/torch.lt/torch.gt/torch.le/torch.ge/torch.ne.html">torch.lt/torch.gt/torch.le/torch.ge/torch.ne</a>
                 </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 17, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">定义</a></li>
-<li><a href="#_2">比较</a></li>
-<li><a href="#pattern-matching">pattern&nbsp;matching</a></li>
-<li><a href="#_3">继承</a></li>
-<li><a href="#case-class">case&nbsp;class的代码实现</a></li>
-</ul>
-</div>
-<h2 id="_1">定义</h2>
-<ul>
-<li>class的定义:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BankAccount</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">deposit</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">):</span><span class="w"> </span><span class="nc">Unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">amount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">amount</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 14, 2021</span></span>
+                <p><p><a href="https://pytorch.org/docs/stable/torch.html#comparison-ops">https://pytorch.org/docs/stable/torch.html#comparison-ops</a></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
 </code></pre></div>
 
-<ul>
-<li>case&nbsp;class的定义:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">case</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Note</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="p">,</span><span class="w"> </span><span class="n">duration</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="p">,</span><span class="w"> </span><span class="n">octave</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 </code></pre></div>
 
-<ul>
-<li>创建<code>BankAccount</code>和<code>Note</code>的实例：</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="n">aliceAccount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nc">BankAccount</span><span class="p">()</span><span class="w"></span>
-<span class="kd">val …</span></code></pre></div></p>
+<div class="highlight"><pre><span></span><code>tensor([9, 0, 9, 2, 4])
+tensor([7, 8, 5, 3, 6])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">a</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>         <span class="c1"># &lt;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([False,  True, False,  True,  True])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">torch</span><span class="o">.</span><span class="n">le</span><span class="p">(</span><span class="n">a …</span></code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~289 words">Read in 2 mins</span>
-                            <span class="card-link"><a href="../articles/Case-Class-vs-Class.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~60 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/torch.lt/torch.gt/torch.le/torch.ge/torch.ne.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/pytorch.html">pytorch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/BertForQuestionAnswering.html">BertForQuestionAnswering</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 14, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">input_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">attention_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">token_type_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">position_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">head_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">inputs_embeds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">start_positions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">end_positions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">output_attentions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">output_hidden_states</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">return_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        start_positions (:obj:`torch.LongTensor` of shape :obj:`(batch_size,)`, `optional`):</span>
+<span class="sd">            Labels for position (index) of the start of the labelled span for computing the token …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~205 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/BertForQuestionAnswering.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/pytorch.html">pytorch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/pytorch-create-tensor.html">Pytorch-create-tensor</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 07, 2021</span></span>
+                <p><p><span class="caps">CLASS</span>&nbsp;torch.Tensor</p>
+<p>There are a few main ways to create a tensor, depending on your use&nbsp;case.</p>
+<ul>
+<li>
+<p>To create a tensor with pre-existing data, use&nbsp;torch.tensor().</p>
+</li>
+<li>
+<p>To create a tensor with specific size, use torch.* tensor creation ops (see <a href="https://pytorch.org/docs/stable/torch.html#tensor-creation-ops">Creation Ops</a>).</p>
+</li>
+<li>
+<p>To create a tensor with the same …</p></li></ul></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~137 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/pytorch-create-tensor.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/scala.html">scala</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/pytorch.html">pytorch</a>
                     </div>
                 </div>
             </div>
@@ -265,87 +323,184 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Singleton-&-Companion-Object.html">Singleton <span class="amp">&amp;</span> Companion&nbsp;Object</a>
+                    <a href="../articles/batch padding.html">batch&nbsp;padding</a>
                 </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 17, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#static-in-java">Static in&nbsp;Java</a></li>
-<li><a href="#singleton-object">Singleton&nbsp;object</a></li>
-<li><a href="#companion-object">Companion&nbsp;object</a></li>
-<li><a href="#notes-for-java-programmers">Notes for Java&nbsp;programmers</a></li>
-</ul>
-</div>
-<h2 id="static-in-java">Static in&nbsp;Java</h2>
-<p><a href="https://blog.csdn.net/fengyuzhengfan/article/details/38082999">Static in&nbsp;Java</a></p>
-<h2 id="singleton-object">Singleton&nbsp;object</h2>
-<p>单例对象是一种特殊的类，有且只有一个实例。和惰性变量一样，单例对象是 …</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~177 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Singleton-&-Companion-Object.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/scala.html">scala</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Binary-Tree.html">Binary&nbsp;Tree</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 15, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">二叉树结构定义</a></li>
-<li><a href="#_2">分治算法</a></li>
-<li><a href="#vs">遍历法 <span class="caps">VS</span>&nbsp;分治法</a></li>
-<li><a href="#vs_1">递归 <span class="caps">VS</span>&nbsp;非递归</a></li>
-<li><a href="#_3">前序遍历</a></li>
-<li><a href="#_4">中序遍历</a></li>
-<li><a href="#_5">后序遍历</a></li>
-<li><a href="#_6">层序遍历</a></li>
-<li><a href="#_7">之字层序遍历</a></li>
-<li><a href="#_8">序列化和 …</a></li></ul></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~1082 words">Read in 5 mins</span>
-                            <span class="card-link"><a href="../articles/Binary-Tree.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/algorithms.html">algorithms</a>
-                            <a class="badge badge-info" href="../tag/algorithm.html">algorithm</a>
-                            <a class="badge badge-info" href="../tag/binary-tree.html">binary tree</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Auto-generated-subtitles-for-any-video.html">Auto-generated subtitles for any&nbsp;video</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 13, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#autosub">Autosub</a></li>
-<li><a href="#install-ffmpeg">Install&nbsp;ffmpeg</a></li>
-<li><a href="#install-autosub">Install&nbsp;autosub</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-</div>
-<h2 id="autosub">Autosub</h2>
-<p><a href="https://github.com/agermanidis/autosub">Autosub</a> is a utility for automatic speech recognition and subtitle generation. It takes a video or an audio file as input, performs voice activity detection to find speech regions, makes parallel requests to Google Web Speech <span class="caps">API</span> to generate transcriptions for those regions …</p></p>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 07, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_collate_batch</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Collate `examples` into a batch, using the information in `tokenizer` for padding if necessary.&quot;&quot;&quot;</span>
+    <span class="c1"># Tensorize if necessary.</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">examples</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="n">examples</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">]</span>
+
+    <span class="c1"># Check if padding is necessary.</span>
+    <span class="n">length_of_first</span> <span class="o">=</span> <span class="n">examples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">are_tensors_same_length</span> <span class="o">=</span> <span class="nb">all …</span></code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
                             <span class="card-link text-secondary" title="~121 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Auto-generated-subtitles-for-any-video.html#disqus_thread"></a></span>
+                            <span class="card-link"><a href="../articles/batch padding.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/pytorch.html">pytorch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Python-dataclasses.html">Python&nbsp;dataclasses</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 05, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">asdict</span><span class="p">,</span> <span class="n">astuple</span>
+<span class="kn">import</span> <span class="nn">dataclasses</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Any</span>
+</code></pre></div>
+
+<p><a href="https://zhuanlan.zhihu.com/p/34963159?utm_source=wechatMessage_article_bottom">why&nbsp;dataclasses</a></p>
+<p><a href="https://docs.python.org/zh-cn/3/library/dataclasses.html">https://docs.python.org/zh-cn/3/library/dataclasses.html</a></p>
+<ul>
+<li>field&nbsp;被定义为具有类型标注的类变量。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="o">:</span><span class="w"></span>
+<span class="n">field</span><span class="o">(</span><span class="w"></span>
+<span class="w">    </span><span class="o">*,</span><span class="w"></span>
+<span class="w">    </span><span class="k">default</span><span class="o">=&lt;</span><span class="n">dataclasses</span><span class="o">.</span><span class="na">_MISSING_TYPE</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="mh">0x7f60fc21b7f0 …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~546 words">Read in 3 mins</span>
+                            <span class="card-link"><a href="../articles/Python-dataclasses.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/python.html">python</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/torch.rand/randn/randint.html">torch.rand/randn/randint</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 04, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+</code></pre></div>
+
+<h2 id="torchrand-0-1">torch.rand&nbsp;0-1均匀分布</h2>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Docstring:</span>
+<span class="sd">rand(*size, *, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False) -&gt; Tensor</span>
+
+<span class="sd">Returns a tensor filled with random numbers from a uniform distribution</span>
+<span class="sd">on the interval :math:`[0, 1)`</span>
+
+<span class="sd">The shape of the tensor is defined by the variable argument :attr:`size …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~946 words">Read in 4 mins</span>
+                            <span class="card-link"><a href="../articles/torch.rand/randn/randint.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/pytorch.html">pytorch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/torch.nn.CrossEntropyLoss.html">torch.nn.CrossEntropyLoss</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 04, 2021</span></span>
+                <p><p><a href="https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html#torch.nn.CrossEntropyLoss">https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html#torch.nn.CrossEntropyLoss</a></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">CrossEntropyLoss</span>
+
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">MAX_SEQ_LENGTH</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">EMBEDDING_SIZE</span> <span class="o">=</span> <span class="n">VOCAB_SIZE</span> <span class="o">=</span> <span class="mi">5</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">input_ids</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">MAX_SEQ_LENGTH</span><span class="p">,</span> <span class="n">EMBEDDING_SIZE</span><span class="p">))</span>
+<span class="n">input_ids</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[[-1.2207e-01,  9.4908e-01,  9.6387e-02,  1.4286e+00,  1.9476e+00],
+         [ 6.7663e-01,  8 …</code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~276 words">Read in 2 mins</span>
+                            <span class="card-link"><a href="../articles/torch.nn.CrossEntropyLoss.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/pytorch.html">pytorch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Python-typing.html">Python -&nbsp;typing</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 04, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span>
+</code></pre></div>
+
+<p><a href="https://docs.python.org/3/library/typing.html">https://docs.python.org/3/library/typing.html</a></p>
+<p>Any, Union, Tuple, List, Sequence, Mapping, Callable, TypeVar,Optional,&nbsp;Generic等的使用频率比较高，其中Union、Optional、Sequence、Mapping非常有用。</p>
+<ul>
+<li>Union</li>
+</ul>
+<p>即并集，所以Union[X, Y]&nbsp;意思是要么 …</p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~97 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Python-typing.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/python.html">python</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Google-Android.html">Google-android</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 02, 2021</span></span>
+                <p><div class="toc">
+<ul>
+<li><a href="#adb"><span class="caps">ADB</span></a></li>
+<li><a href="#go">Go谷歌安装器</a></li>
+<li><a href="#gms">GMS安装器</a></li>
+<li><a href="#_1">不建议采用以上一键安装</a></li>
+<li><a href="#_2">疑难问题</a></li>
+</ul>
+</div>
+<h2 id="adb"><span class="caps">ADB</span></h2>
+<div class="highlight"><pre><span></span><code>adb version
+
+adb devices
+
+查看所有应用列表：adb shell pm list packages
+查看系统应用列表：adb shell pm list packages -s …</code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~201 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Google-Android.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/tools.html">tools</a>
                             <a class="badge badge-info" href="../tag/tools.html">tools</a>
                     </div>
                 </div>
@@ -354,197 +509,23 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Using-loguru-and-notifiers-instead-of-logging.html">Using loguru and notifiers instead of&nbsp;logging</a>
+                    <a href="../articles/Python-Generator.html">Python -&nbsp;Generator</a>
                 </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 12, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#configuring-loguru">Configuring&nbsp;loguru</a></li>
-<li><a href="#recording-logging">Recording&nbsp;logging</a></li>
-</ul>
-</div>
-<p>from loguru import logger<br>
-import tempfile<br>
-import&nbsp;notifiers</p>
-<h2 id="configuring-loguru">Configuring&nbsp;loguru</h2>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">email</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">msg</span><span class="p">:</span> <span class="k">return</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;subject&quot;</span><span class="p">:</span> <span class="s1">&#39;Title&#39;</span><span class="p">,</span>
-        <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="s2">&quot;receivers@163.com&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="n">to</span><span class="p">,</span>
-        <span class="s2">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;smtp.163.com&quot;</span><span class="p">,</span>
-    <span class="p">}</span>
-    <span class="n">notifier</span> <span class="o">=</span> <span class="n">notifiers</span><span class="o">.</span><span class="n">get_notifier</span><span class="p">(</span><span class="s2">&quot;email …</span></code></pre></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~65 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Using-loguru-and-notifiers-instead-of-logging.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Checking-DataFrame/Series-missing-values.html">Checking DataFrame/Series missing&nbsp;values</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 12, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#checking-dataframe-missing-values">Checking DataFrame missing&nbsp;values</a></li>
-<li><a href="#checking-series-missing-values">Checking Series missing&nbsp;values</a></li>
-<li><a href="#has_missing-method">has_missing&nbsp;method</a></li>
-</ul>
-</div>
-<h2 id="checking-dataframe-missing-values">Checking DataFrame missing&nbsp;values</h2>
-<p><code>cols_missing = frame.columns[frame.isna().any()]</code><br>
-<img alt="asset_img missing_value" src="images/Checking-DataFrame-Series-missing-values/missing_value.jpg"></p>
-<h2 id="checking-series-missing-values">Checking Series missing&nbsp;values</h2>
-<p><code>series.isna().any()</code></p>
-<h2 id="has_missing-method">has_missing&nbsp;method</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">pandas.core.frame</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="kn">from</span> <span class="nn">pandas.core.series</span> <span class="kn">import</span> <span class="n">Series</span>
-<span class="kn">import …</span></code></pre></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~90 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Checking-DataFrame/Series-missing-values.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Binary-Search.html">Binary&nbsp;Search</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 08, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">二分查找初级：二分模板</a><ul>
-<li><a href="#classical-binary-search">Classical Binary&nbsp;Search</a></li>
-<li><a href="#find-first-and-last-position-of-target-lower-upper-bound">Find First and Last Position of Target  ( lower <span class="amp">&amp;</span> upper Bound&nbsp;)</a></li>
-<li><a href="#search-a-2d-matrix">Search a 2D&nbsp;Matrix</a></li>
-<li><a href="#_2">总结</a></li>
-</ul>
-</li>
-<li><a href="#_3">二分查找进阶：转化为二分问题</a><ul>
-<li><a href="#find-minimum-in-rotated-sorted-array">Find Minimum in Rotated Sorted&nbsp;Array</a></li>
-<li><a href="#find-minimum-in-rotated-sorted-array-ii">Find Minimum …</a></li></ul></li></ul></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~897 words">Read in 4 mins</span>
-                            <span class="card-link"><a href="../articles/Binary-Search.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/algorithms.html">algorithms</a>
-                            <a class="badge badge-info" href="../tag/algorithm.html">algorithm</a>
-                            <a class="badge badge-info" href="../tag/binary-search.html">binary search</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Python-email.html">Python&nbsp;email</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 28, 2019</span></span>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 30, 2020</span></span>
                 <p><div class="toc">
 <ul></ul>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">smtplib</span>
-<span class="kn">from</span> <span class="nn">email.mime.text</span> <span class="kn">import</span> <span class="n">MIMEText</span>
-<span class="kn">from</span> <span class="nn">email.mime.multipart</span> <span class="kn">import</span> <span class="n">MIMEMultipart</span>
-<span class="kn">from</span> <span class="nn">email.mime.image</span> <span class="kn">import</span> <span class="n">MIMEImage</span>
-
-<span class="c1">#设置登录及服务器信息</span>
-<span class="n">mail_host</span> <span class="o">=</span> <span class="s1">&#39;smtp.163.com&#39;</span>
-<span class="n">mail_user</span> <span class="o">=</span> <span class="s1">&#39;jerrylsu&#39;</span>
-<span class="n">mail_pass</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;输入授权码102：&#39;</span><span class="p">)</span>  <span class="c1"># 授权码， 非密码 …</span></code></pre></div></p>
+<p>函数体中存在yield关键字，即为生成器。调用生成器函数会返回一个生成器对象。即生成器函数就是生成器工厂。</p>
+<p>生成器是迭代器。</p>
+<div class="highlight"><pre><span></span><code><span class="k">def …</span></code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~232 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Python-email.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~105 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Python-Generator.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="../category/programming.html">programming</a>
                             <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Python-logging.html">Python&nbsp;logging</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 28, 2019</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<p><a href="https://juejin.im/post/5bc2bd3a5188255c94465d31">logging总结</a></p>
-<p>Logger：记录器，暴露函数给应用程序，基于日志记录器和过滤器级别决定哪些日志有效。</p>
-<p>Handler ：处理器,&nbsp;将(日志记录器产生的)日志 …</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~100 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Python-logging.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Spark SQL Join.html">Spark <span class="caps">SQL</span>&nbsp;Join</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 21, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#join-in-hive">Join in Hive</a><ul>
-<li><a href="#common-join">Common&nbsp;Join</a></li>
-<li><a href="#map-join">Map&nbsp;Join</a></li>
-<li><a href="#skewed-join">Skewed&nbsp;Join</a></li>
-<li><a href="#bucket-join">Bucket&nbsp;Join</a></li>
-</ul>
-</li>
-<li><a href="#join-in-spark-sql">Join in Spark <span class="caps">SQL</span></a><ul>
-<li><a href="#map-join_1">Map&nbsp;Join</a></li>
-<li><a href="#broadcast-map-join">Broadcast Map&nbsp;Join</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<h1 id="join-in-hive">Join in&nbsp;Hive</h1>
-<h2 id="common-join">Common&nbsp;Join</h2>
-<p>在Hive查询的性能调优期间，需要注意的一个方面是执行期间的join的类型。<br>
-Common Join是Hive中的默认join类型，也称为Shuffle Join …</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~296 words">Read in 2 mins</span>
-                            <span class="card-link"><a href="../articles/Spark SQL Join.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/spark.html">spark</a>
                     </div>
                 </div>
             </div>

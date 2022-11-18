@@ -217,26 +217,189 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Bias-vs-Variance.html">Bias vs&nbsp;Variance</a>
+                    <a href="../articles/Pointer-Networkers.html">Pointer&nbsp;Networkers</a>
                 </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jun 22, 2019</span></span>
-                <p><div class="toc">
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 25, 2021</span></span>
+                <p><h2 id="pointer-networkers">Pointer&nbsp;Networkers</h2>
+<p>A new neural architecture to learn the conditional probability of an output sequence with elements that are discrete tokens corresponding to positions in an input&nbsp;sequence.</p>
+<p>解码器可以输出依赖于输入的内容。</p>
 <ul>
-<li><a href="#_1">方差与偏差</a></li>
-<li><a href="#rfgbdt">为什么RF的树深一般大于GBDT树的深度？</a></li>
-</ul>
-</div>
-<h3 id="_1">方差与偏差</h3>
-<p>泛化误差分为：偏差和方差</p>
-<p>偏差：指算法的期望预测值与真实值之间的偏差程度，反应的 …</p></p>
+<li>
+<p><a href="https://arxiv.org/abs/1506.03134">Oriol Vinyals, Meire Fortunato, and Navdeep Jaitly …</a></p></li></ul></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~12 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Bias-vs-Variance.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~98 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Pointer-Networkers.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/nlp.html">nlp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Sliding-Window.html">Sliding&nbsp;Window</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 24, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+</code></pre></div>
+
+<h3 id="_1">滑动窗口均值</h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">meanSlidingWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;暴力解法O(N*K)</span>
+
+<span class="sd">        时间复杂度分析：由于每一个输入数组的元素，我们 …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~161 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Sliding-Window.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/algorithms.html">algorithms</a>
+                            <a class="badge badge-info" href="../tag/slidingwindow.html">slidingwindow</a>
+                            <a class="badge badge-info" href="../tag/algorithm.html">algorithm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Utterance-Rewriter.html">Utterance&nbsp;Rewriter</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 24, 2021</span></span>
+                <p><h2 id="utterance-rewriter">Utterance&nbsp;Rewriter</h2>
+<p>解决指代消解与信息省略问题</p>
+<ul>
+<li>
+<p><a href="https://arxiv.org/pdf/1906.07004.pdf">Hui Su, Xiaoyu Shen, Rongzhi Zhang, Fei Sun, Pengwei Hu, Cheng Niu, and Jie Zhou. 2019. Improving Multi-turn Dialogue Modelling with Utterance ReWriter.arXiv preprint arXiv:1906.07004&nbsp;(2019).</a></p>
+</li>
+<li>
+<p><a href="https://arxiv.org/pdf/2004.14652.pdf">Svitlana Vakulenko, Shayne Longpre, Zhucheng Tu …</a></p></li></ul></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~104 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Utterance-Rewriter.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/nlp.html">nlp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Numpy-Indexing.html">Numpy&nbsp;Indexing</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 22, 2021</span></span>
+                <p><div class="toc">
+<ul>
+<li><a href="#_1">索引数组</a></li>
+<li><a href="#_2">索引多维数组</a></li>
+<li><a href="#_3">布尔/掩码索引数组</a></li>
+<li><a href="#_4">索引数组结合切片</a></li>
+</ul>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</code></pre></div>
+
+<h2 id="_1">索引数组</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># 索引数组必须是整数类型。索引数组种 …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~194 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Numpy-Indexing.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/numpy.html">numpy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Viterbi-Algorithm.html">Viterbi&nbsp;Algorithm</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 22, 2021</span></span>
+                <p><h2 id="numpy">矩阵法numpy</h2>
+<p>注：转移矩阵和发射矩阵以列维度上形式表示概率分布的，即列维度axis=1上元素和为1。<strong>注意：把隐状态概率分布表示为向量后 …</strong></p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~660 words">Read in 3 mins</span>
+                            <span class="card-link"><a href="../articles/Viterbi-Algorithm.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/algorithms.html">algorithms</a>
+                            <a class="badge badge-info" href="../tag/viterbi.html">viterbi</a>
+                            <a class="badge badge-info" href="../tag/algorithm.html">algorithm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/HMM-Viterbi-Algorithm.html"><span class="caps">HMM</span> Viterbi&nbsp;Algorithm</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 18, 2021</span></span>
+                <p><h3 id="hmm"><span class="caps">HMM</span></h3>
+<p><img alt="hmm" src="../../../images/HMM/HMM.png"></p>
+<p>HMM的问题，就是求解X,Y的观测序列和隐含状态序列的联合概率。</p>
+<p><img alt="viterbi" src="../../../images/HMM/Viterbi.png"></p>
+<p><a href="https://zhuanlan.zhihu.com/p/265954764">基于viterbi算法HMM的NER实现</a></p>
+<p><a href="https://www.bilibili.com/video/BV1zJ411575b?t=1724">https://www.bilibili.com/video/BV1zJ411575b?t=1724</a></p>
+<h3 id="viterbi-algorithm">Viterbi Algorithm&nbsp;篱笆网络</h3>
+<p>篱笆网络有向图的特点是同一列节点有多个，并且和上一列 …</p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~46 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/HMM-Viterbi-Algorithm.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="../tag/viterbi.html">viterbi</a>
+                            <a class="badge badge-info" href="../tag/algorithm.html">algorithm</a>
+                            <a class="badge badge-info" href="../tag/hmm.html">hmm</a>
+                            <a class="badge badge-info" href="../tag/crf.html">crf</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Capsule-Networkers.html">Capsule&nbsp;Networkers</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 14, 2021</span></span>
+                <p><p><a href="https://papers.nips.cc/paper/2017/file/2cad8fa47bbef282badbb8de5374b894-Paper.pdf">Dynamic Routing Between&nbsp;Capsules</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/30970675">https://zhuanlan.zhihu.com/p/30970675</a></p>
+<p><a href="https://www.bilibili.com/video/BV1eW411Q7CE?from=search&amp;seid=7299769468991443060">https://www.bilibili.com/video/BV1eW411Q7CE?from=search&amp;seid=7299769468991443060</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/34336279">https://zhuanlan.zhihu.com/p/34336279</a></p>
+<p><a href="https://www.youtube.com/watch?v=sotRFRpEJFg">https://www.youtube.com/watch?v=sotRFRpEJFg</a></p>
+<p><a href="https://github.com/AlexHex7/CapsNet_pytorch">https://github.com/AlexHex7/CapsNet_pytorch</a></p>
+<p><a href="https://github.com/leftthomas/CapsNet">https://github.com/leftthomas/CapsNet</a></p>
+<p><a href="https://github.com/gram-ai/capsule-networks">https://github.com/gram-ai/capsule-networks</a></p>
+<p><a href="https://github.com/cedrickchee/capsule-net-pytorch">https://github …</a></p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~22 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Capsule-Networkers.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="../category/ml.html">ml</a>
-                            <a class="badge badge-info" href="../tag/machine-learning.html">machine learning</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
                     </div>
                 </div>
             </div>
@@ -244,198 +407,36 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Topological-Sorting.html">Topological&nbsp;Sorting</a>
+                    <a href="../articles/Pytorch-fancy-indexing.html">Pytorch fancy&nbsp;indexing</a>
                 </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jun 18, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#topological-sorting">Topological&nbsp;Sorting</a></li>
-</ul>
-</div>
-<h3 id="topological-sorting">Topological&nbsp;Sorting</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Definition for a Directed graph node</span>
-<span class="k">class</span> <span class="nc">DirectedGraphNode</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">neighbors</span> <span class="o">=</span> <span class="p">[]</span>
-
-
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    @param graph: A list of Directed graph node</span>
-<span class="sd">    @return: A list of integer</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">topSort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">):</span>
-        <span class="c1"># 1. 统计结点入度</span>
-        <span class="n">indegree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_indegree …</span></code></pre></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~100 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Topological-Sorting.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/algorithms.html">algorithms</a>
-                            <a class="badge badge-info" href="../tag/algorithm.html">algorithm</a>
-                            <a class="badge badge-info" href="../tag/breadth-first-search.html">breadth first search</a>
-                            <a class="badge badge-info" href="../tag/sorting.html">sorting</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Breadth-First-Search.html">Breadth First&nbsp;Search</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jun 16, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">概述</a><ul>
-<li><a href="#_2">宽搜要点</a></li>
-</ul>
-</li>
-<li><a href="#_3">二叉树上的宽搜</a><ul>
-<li><a href="#binary-tree-level-order-traversal">Binary Tree Level Order&nbsp;Traversal</a></li>
-<li><a href="#binary-tree-zigzag-level-order-traversal">Binary Tree Zigzag Level Order&nbsp;Traversal</a></li>
-<li><a href="#serialize-and-deserialize-binary-tree">Serialize and Deserialize Binary&nbsp;Tree</a></li>
-</ul>
-</li>
-<li><a href="#_4">图上的宽搜</a><ul>
-<li><a href="#_5">图的遍历</a></li>
-<li><a href="#_6">层级遍历</a></li>
-<li><a href="#_7">由点及面</a></li>
-<li><a href="#_8">拓扑排序 …</a></li></ul></li></ul></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~89 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Breadth-First-Search.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/algorithms.html">algorithms</a>
-                            <a class="badge badge-info" href="../tag/algorithm.html">algorithm</a>
-                            <a class="badge badge-info" href="../tag/breadth-first-search.html">breadth first search</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/GBDT.html"><span class="caps">GBDT</span></a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jun 08, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">问题引入</a></li>
-<li><a href="#_2">残差与梯度下降的关系</a></li>
-</ul>
-</div>
-<h3 id="_1">问题引入</h3>
-<p>给定数据集<span class="math">\((x_1, y_1), (x_2, y_2),...,(x_n, y_n)\)</span>, 拟合一个模型<span class="math">\(F(x)\)</span>。</p>
-<p><span class="math">\(F(x_1) = 1.4\)</span>而<span class="math">\(y_1=1.3\)</span></p>
-<p><span class="math">\(F(x_2) = 0.9\)</span>而 …</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~76 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/GBDT.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/ml.html">ml</a>
-                            <a class="badge badge-info" href="../tag/machine-learning.html">machine learning</a>
-                            <a class="badge badge-info" href="../tag/gbdt.html">gbdt</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Dynamic-Programming.html">Dynamic&nbsp;Programming</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jun 01, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">什么是动态规划</a></li>
-<li><a href="#_2">与递归三要素对比</a><ul>
-<li><a href="#triangle">Triangle</a></li>
-<li><a href="#minimum-path-sum">Minimum Path&nbsp;Sum</a></li>
-<li><a href="#maximal-square">Maximal&nbsp;Square</a></li>
-<li><a href="#longest-increasing-subsequence-lis">Longest Increasing Subsequence (<span class="caps">LIS</span>)</a></li>
-<li><a href="#longest-common-subsequence-lcs">Longest Common Subsequence (<span class="caps">LCS</span>)</a></li>
-<li><a href="#longest-palindromic-substring">Longest Palindromic&nbsp;Substring</a></li>
-<li><a href="#maximum-subarray">Maximum&nbsp;Subarray</a></li>
-<li><a href="#maximum-product-subarray">Maximum Product&nbsp;Subarray</a></li>
-<li><a href="#coin-change">Coin&nbsp;Change</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<h2 id="_1">什么是动态规划</h2>
-<p>动态规划 …</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~970 words">Read in 4 mins</span>
-                            <span class="card-link"><a href="../articles/Dynamic-Programming.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/algorithms.html">algorithms</a>
-                            <a class="badge badge-info" href="../tag/algorithm.html">algorithm</a>
-                            <a class="badge badge-info" href="../tag/dynamic-programming.html">dynamic programming</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Closure.html">Closure</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 24, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">什么是闭包？</a></li>
-<li><a href="#_2">如果自由变量值发生变化会怎样？</a></li>
-<li><a href="#_3">如果闭包修改了自由变量的值会怎样？</a></li>
-<li><a href="#_4">为什么需要闭包，有什么优势？</a></li>
-</ul>
-</div>
-<h1 id="_1">什么是 …</h1></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~139 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Closure.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/scala.html">scala</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Passing-a-function-as-an-argument:-Lambda-Function.html">Passing a function as an argument: Lambda&nbsp;Function</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 23, 2019</span></span>
-                <p><div class="highlight"><pre><span></span><code>f = lambda x: x * 2
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 07, 2021</span></span>
+                <p><p>花式索引</p>
+<p>组合索引</p>
+<p>与numpy索引方式几乎一致，参考numpy学习</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
 </code></pre></div>
 
-<p>is exactly the same thing&nbsp;as</p>
-<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">f</span><span class="ss">(</span><span class="nv">x</span><span class="ss">)</span>:<span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">x</span>
 </code></pre></div>
 
-<blockquote>
-<p>Lambdas are usually used to create small, anonymous functions. Actually, they are just a syntatic sugar to define functions. The lambda expression above is exactly the same as your function, only without a …</p></blockquote></p>
+<div class="highlight"><pre><span></span><code>torch.Size([1, 3, 4, 5])
+
+
+
+
+
+tensor([[[[ 2.2271,  2.0278, -0.5272,  1.4764, -0.6787],
+          [-0.7569, -0.8737,  0.0031,  0 …</code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~75 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Passing-a-function-as-an-argument:-Lambda-Function.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~118 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Pytorch-fancy-indexing.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
+                            <a class="badge badge-info" href="../tag/pytorch.html">pytorch</a>
                     </div>
                 </div>
             </div>
@@ -443,85 +444,60 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Using-groupBy-on-multiple-columns.html">Using groupBy on multiple&nbsp;columns</a>
+                    <a href="../articles/Conditional-Random-Field.html">ConditionalRandomField</a>
                 </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 23, 2019</span></span>
-                <p><p>Group By X means put all those with the same value for X in the one&nbsp;group.</p>
-<p>Group By X, Y means put all those with the same values for both X and Y in the one&nbsp;group.</p>
-<p>To illustrate using an example, let&#8217;s say we have the following …</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~209 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Using-groupBy-on-multiple-columns.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Python Object and Reference.html">Python Object and&nbsp;Reference</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 26, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">变量与对象</a></li>
-<li><a href="#python">Python一切皆对象</a></li>
-<li><a href="#_2">可变对象和不可变对象</a></li>
-<li><a href="#_3">深拷贝&nbsp;浅拷贝</a></li>
-</ul>
-</div>
-<p>C/C++中函数传递参数方式有：按值传递 和 按址传递。而在一切皆对象 …</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~100 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Python Object and Reference.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Cygwin.html">Cygwin</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 24, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#cygwin">Cygwin中安装软件</a></li>
-<li><a href="#pycahrmcygwin">Pycahrm中启Cygwin终端</a></li>
-<li><a href="#cygwinwindows-anaconda">Cygwin中使用windows&nbsp;anaconda</a></li>
-</ul>
-</div>
-<h2 id="cygwin">Cygwin中安装软件</h2>
-<div class="highlight"><pre><span></span><code><span class="c1">#download setup-x86_64.exe https://cygwin.com/setup-x86_64.exe</span><span class="w"></span>
-<span class="o">$</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="n">C</span><span class="p">:</span><span class="n">cygwin64</span><span class="w"></span>
-<span class="o">$</span><span class="w"> </span><span class="o">./</span><span class="n">setup</span><span class="o">-</span><span class="n">x86_64</span><span class="o">.</span><span class="n">exe</span><span class="w"> </span><span class="o">-</span><span class="n">q</span><span class="w"> </span><span class="o">-</span><span class="n">P</span><span class="w"> </span><span class="n">wget</span><span class="p">,</span><span class="w"> </span><span class="n">tar</span><span class="p">,</span><span class="w"> </span><span class="n">qawk</span><span class="p">,</span><span class="w"> </span><span class="n">bzip2</span><span class="p">,</span><span class="w"> </span><span class="n">subversion</span><span class="p">,</span><span class="w"> </span><span class="n">vim</span><span class="p">,</span><span class="w"> </span><span class="n">git</span><span class="w"></span>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 04, 2021</span></span>
+                <p><p><a href="https://ben.bolte.cc/hmms-crfs">A comparison of Hidden Markov Models and Conditional Random Fields, two kinds of probabilistic graphical&nbsp;models.</a></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code># git clone https://github.com/transcode-open/apt-cyg
-$ cd apt-cyg
-$ mv apt-cyg /usr/local/bin/
-$ apt-cyg --help
-$ cygcheck --help
-# modify mirror
-$ apt-cyg --mirror …</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># BMES四位序列标注法</span>
+<span class="n">PADDING</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">B</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">E</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">S</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">START</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">END</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="n">LABEL_VOCAB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;&lt;pad&gt;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;&lt;unk&gt;&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;M …</span></code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~421 words">Read in 2 mins</span>
-                            <span class="card-link"><a href="../articles/Cygwin.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~1233 words">Read in 5 mins</span>
+                            <span class="card-link"><a href="../articles/Conditional-Random-Field.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
-                        <a class="badge badge-success" href="../category/tools.html">tools</a>
-                            <a class="badge badge-info" href="../tag/cygwin.html">cygwin</a>
+                        <a class="badge badge-success" href="../category/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/pytorch.html">pytorch</a>
+                            <a class="badge badge-info" href="../tag/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="../tag/crf.html">crf</a>
+                            <a class="badge badge-info" href="../tag/algorithm.html">algorithm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/tensor.detach/torch.detach_/torch.data.html">tensor.detach/torch.detach_/torch.data</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 18, 2021</span></span>
+                <p><p>https://pytorch.org/docs/stable/autograd.html#torch.Tensor.detach</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+</code></pre></div>
+
+<p>当我们再训练网络的时候可能希望保持一部分的网络参数不变，只对其中一部分的参数进 …</p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~552 words">Read in 3 mins</span>
+                            <span class="card-link"><a href="../articles/tensor.detach/torch.detach_/torch.data.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/pytorch.html">pytorch</a>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<head>
+
+        <!-- Required metadata tags -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- Default metadata -->
+    <meta name="author" content="Jerry Su" />
+    <meta name="description" content="How to Convert Characters, Tokens, and Words 1. Mapping char to token. from transformers import BigBirdTokenizerFast tokenizer = BigBirdTokenizerFast.from_pretrained(&#39;allenai/longformer-large-4096&#39;) Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained. text = &#34;Phones\n\nModern humans today are always on their …" />
+    <meta name="keywords" content="NLP">
+<meta property="og:site_name" content="JERRYLSU.NET" />
+<meta property="og:title" content="Mapping chars and words to tokens" />
+<meta property="og:description" content="How to Convert Characters, Tokens, and Words 1. Mapping char to token. from transformers import BigBirdTokenizerFast tokenizer = BigBirdTokenizerFast.from_pretrained(&#39;allenai/longformer-large-4096&#39;) Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained. text = &#34;Phones\n\nModern humans today are always on their …" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="../articles/Mapping-Chars-and-Words-to-Tokens.html" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-22 11:17:17+08:00" />
+<meta property="article:modified_time" content="" />
+<meta property="article:author" content="../author/jerry-su.html">
+<meta property="article:section" content="NLP" />
+	<meta property="article:tag" content="NLP" />
+	<meta property="og:image" content="../jerry.jpg">
+
+        <!-- Site Claim -->
+
+
+        <!-- Title -->
+        <title>
+    Mapping chars and words to tokens &ndash; JERRYLSU.NET
+        </title>
+        
+        <!-- Icon -->
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon.ico" type="image/x-icon">
+
+        <!-- Search engine -->
+            <meta name="robots" content="" />
+
+        <!-- Feeds -->
+
+
+
+
+
+
+
+
+        <!-- Styles -->
+        <!--
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/css/bootstrap.min.css">
+        -->
+        <link rel="stylesheet" href="../theme/bootstrap/bootstrap.min.css">
+        <!--
+        <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
+        -->
+        <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
+        <!--
+        <link rel="stylesheet" href="../theme/extra/admonition.min.css">
+        -->
+        <link rel="stylesheet" href="../theme/style.css">
+
+        <!-- Google Analytics -->
+<script>
+(function(i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m) })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-42618265-2', 'auto');
+ga('send', 'pageview');
+</script>
+        <!-- Google Global Site Tag -->
+
+        <!-- Google Tag Manager -->
+
+        <!-- Google Adsense -->
+
+        <!-- Heap Analytic -->
+
+        <!-- Piwik Tracking -->
+
+        <!-- Matomo Tracking -->
+
+</head>
+
+<!-- Body -->
+<body class="d-flex flex-column" data-spy="scroll" data-target="#toc" data-offset="0" style="position: relative;">
+    <!-- Top anchor -->
+    <a href="#" id="backToTop" style="display: none; z-index: 1;" title="Back to top"><span></span></a>
+
+    <!-- Google tag manager -->
+
+    <!-- Navigation -->
+    <nav class="flex-shrink-0 navbar navbar-expand-md navbar-expand-lg navbar-dark bg-dark text-light shadow-sm">
+        <!-- Logo -->
+        <a class="navbar-brand" href="..">JERRYLSU.NET</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon small"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <!-- i18n subsites -->
+
+            <!-- Page links -->
+            <ul class="navbar-nav mr-auto text-center">
+                <li class="nav-item ">                           
+                    <a class="nav-link" href="..">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z" fill="currentColor"></path>
+                        </svg>
+                        Home <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../categories.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M16 6h-8v-6h8v6zm-8 12h-8v6h8v-6zm16 0h-8v6h8v-6zm-11-7v-3h-2v3h-8v5h2v-3h14v3h2v-5h-8z" fill="currentColor"></path>
+                        </svg>
+                        Categories
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../tags.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M10.605 0h-10.605v10.609l13.391 13.391 10.609-10.604-13.395-13.396zm-4.191 6.414c-.781.781-2.046.781-2.829.001-.781-.783-.781-2.048 0-2.829.782-.782 2.048-.781 2.829-.001.782.782.781 2.047 0 2.829z" fill="currentColor"></path>
+                        </svg>
+                        Tags
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../archives.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M1.8 9l-.8-4h22l-.8 4h-2.029l.39-2h-17.122l.414 2h-2.053zm18.575-6l.604-2h-17.979l.688 2h16.687zm3.625 8l-2 13h-20l-2-13h24zm-8 4c0-.552-.447-1-1-1h-6c-.553 0-1 .448-1 1s.447 1 1 1h6c.553 0 1-.448 1-1z" fill="currentColor"></path>
+                        </svg>
+                        Archives
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../pages/about.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z" fill="currentColor"></path>
+                        </svg>
+                        About
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Search form -->
+            <form class="form-inline text-center" action="../search.html">
+                <input class="form-control w-100 bg-dark text-light text-center border-0 p-2" type="text" name="q" pattern=".{3,}" title="At least 3 characters" required="" placeholder="Type here to search" aria-label="Search">
+            </form>
+
+            <!-- Social links -->
+            <ul class="navbar-nav text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://facebook.com/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Facebook</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Github</title>
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.linkedin.com/in/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Linkedin</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://twitter.com/Jerrylsu666">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Twitter</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Full page -->
+    <div class="flex-shrink-0 flex-grow-1">
+
+        <!-- Header -->
+        <header class="bg-dark text-light shadow-sm pt-3 pb-2">
+	<div class="container">
+		<h3 id="Mapping-Chars-and-Words-to-Tokens">Mapping chars and words to&nbsp;tokens</h3>
+		<p style="font-size:larger;"><p><a href="https://www.kaggle.com/c/feedback-prize-2021/discussion/298094">How to Convert Characters, Tokens, and&nbsp;Words</a></p>
+<h2 id="1-mapping-char-to-token">1. Mapping char to&nbsp;token.</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BigBirdTokenizerFast</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BigBirdTokenizerFast</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;allenai/longformer-large-4096&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Phones</span><span class="se">\n\n</span><span class="s2">Modern humans today are always on their …</span></code></pre></div></p>
+        <div class="row mx-auto mt-3">
+            <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
+                <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
+                <span class="card-link text-success">
+                    <span class="post-date" title="Post date">Feb 22, 2022</span>
+                    <span class="text-info modified-date" title="Updated date">
+                            Feb 22, 2022
+                    </span>
+                </span>
+                    <span class="card-link text-secondary" title="~568 words">3 mins</span>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
+                <a class="badge badge-success" href="../category/nlp.html">nlp</a>
+                    <a class="badge badge-info" href="../tag/nlp.html">nlp</a>
+            </div>
+        </div>
+	</div>
+        </header>
+
+        <!-- Main -->
+        <main class="py-3">
+                <div class="container">
+                    <!-- Sharing -->
+
+                    <!-- Content -->
+    <!-- 2 columns layout -->
+    <!-- single column layout -->
+        <!-- Sharing -->
+            <div class="text-right mb-2 small" style="height: 26px">
+                <div class="addthis_inline_share_toolbox"></div>
+            </div>
+
+        <!-- Share post -->
+
+        <!-- Article -->
+        <div>
+            <p><a href="https://www.kaggle.com/c/feedback-prize-2021/discussion/298094">How to Convert Characters, Tokens, and&nbsp;Words</a></p>
+<h2 id="1-mapping-char-to-token">1. Mapping char to&nbsp;token.</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BigBirdTokenizerFast</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BigBirdTokenizerFast</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;allenai/longformer-large-4096&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Phones</span><span class="se">\n\n</span><span class="s2">Modern humans today are always on their phone. &quot;</span>
+<span class="n">text_encoded</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">return_offsets_mapping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">input_ids</span> <span class="o">=</span> <span class="n">text_encoded</span><span class="p">[</span><span class="s1">&#39;input_ids&#39;</span><span class="p">]</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_ids_to_tokens</span><span class="p">(</span><span class="n">input_ids</span><span class="p">)</span>
+<span class="n">offset_mapping</span> <span class="o">=</span> <span class="n">text_encoded</span><span class="p">[</span><span class="s1">&#39;offset_mapping&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;input_ids:</span><span class="se">\t</span><span class="s2"> </span><span class="si">{</span><span class="n">input_ids</span><span class="si">}</span><span class="s2">, len: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">input_ids</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tokens:</span><span class="se">\t\t</span><span class="s2"> </span><span class="si">{</span><span class="n">tokens</span><span class="si">}</span><span class="s2">, len: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;offset_mapping:  </span><span class="si">{</span><span class="n">offset_mapping</span><span class="si">}</span><span class="s2">, len: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">offset_mapping</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">text</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>input_ids:   [0, 48083, 50118, 50118, 39631, 5868, 452, 32, 460, 15, 49, 1028, 4, 1437, 2], len: 15
+tokens:      [&#39;<span class="nt">&lt;s&gt;</span>&#39;, &#39;Phones&#39;, &#39;Ċ&#39;, &#39;Ċ&#39;, &#39;Modern&#39;, &#39;Ġhumans&#39;, &#39;Ġtoday&#39;, &#39;Ġare&#39;, &#39;Ġalways&#39;, &#39;Ġon&#39;, &#39;Ġtheir&#39;, &#39;Ġphone&#39;, &#39;.&#39;, &#39;Ġ&#39;, &#39;<span class="nt">&lt;/s&gt;</span>&#39;], len: 15
+offset_mapping:  [(0, 0), (0, 6), (6, 7), (7, 8), (8, 14), (15, 21), (22, 27), (28, 31), (32, 38), (39, 41), (42, 47), (48, 53), (53, 54), (55, 55), (0, 0)], len: 15
+
+
+
+
+
+&#39;Phones\n\nModern humans today are always on their phone. &#39;
+</code></pre></div>
+
+<p><strong>offset_mapping: tokens与offset_mapping意义对应，意义当前token在原文本中的start，end位置。 [start, end）左闭右开  &#8216;Phones&#8217;-&gt;start:0&nbsp;end:6</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">new_span</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">offset_mapping</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">new_span</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">new_span</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_span</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">new_span</span>         
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>[[],
+ [0, 6],
+ [6],
+ [7],
+ [8, 14],
+ [15, 21],
+ [22, 27],
+ [28, 31],
+ [32, 38],
+ [39, 41],
+ [42, 47],
+ [48, 53],
+ [53],
+ [],
+ []]
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">tokens_with_offset_mapping</span> <span class="o">=</span> <span class="p">[</span><span class="n">text</span><span class="p">[</span><span class="n">ele</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">ele</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">offset_mapping</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tokens_with_offset_mapping: </span><span class="si">{</span><span class="n">tokens_with_offset_mapping</span><span class="si">}</span><span class="s2">, len: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tokens_with_offset_mapping</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tokens_with_offset_mapping: [&#39;&#39;, &#39;Phones&#39;, &#39;\n&#39;, &#39;\n&#39;, &#39;Modern&#39;, &#39;humans&#39;, &#39;today&#39;, &#39;are&#39;, &#39;always&#39;, &#39;on&#39;, &#39;their&#39;, &#39;phone&#39;, &#39;.&#39;, &#39;&#39;, &#39;&#39;], len: 15
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Phones</span><span class="se">\n\n</span><span class="s2">Modern humans today are always on their phone. &quot;</span> 
+<span class="c1"># Modern为实体，则(8, 14)</span>
+</code></pre></div>
+
+<p><strong>j[-1]表示end，-1由于标注数据end是闭区间，offset_mapping返回的[start,&nbsp;end)end是开区间，-1与标注数据end对应</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">start_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">j</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">offset_mapping</span><span class="p">)</span> <span class="k">if</span> <span class="n">j</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}</span>
+<span class="n">end_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">j</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">offset_mapping</span><span class="p">)</span> <span class="k">if</span> <span class="n">j</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">start_mapping</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">end_mapping</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>{0: 1, 6: 2, 7: 3, 8: 4, 15: 5, 22: 6, 28: 7, 32: 8, 39: 9, 42: 10, 48: 11, 53: 12, 55: 13}
+{6: 1, 7: 2, 8: 3, 14: 4, 21: 5, 27: 6, 31: 7, 38: 8, 41: 9, 47: 10, 53: 11, 54: 12, 55: 13}
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># test &quot;Modern humans&quot;</span>
+<span class="n">char_start</span><span class="p">,</span> <span class="n">char_end</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">20</span>
+<span class="n">entity_label</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">char_start</span><span class="p">:</span><span class="n">char_end</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;entity_label: </span><span class="si">{</span><span class="n">entity_label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">token_start</span><span class="p">,</span> <span class="n">token_end</span> <span class="o">=</span> <span class="n">start_mapping</span><span class="p">[</span><span class="n">char_start</span><span class="p">],</span> <span class="n">end_mapping</span><span class="p">[</span><span class="n">char_end</span><span class="p">]</span>
+<span class="n">entity_token</span> <span class="o">=</span> <span class="n">tokens</span><span class="p">[</span><span class="n">token_start</span><span class="p">:</span><span class="n">token_end</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;entity_token; </span><span class="si">{</span><span class="n">entity_token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">entity_label</span><span class="o">:</span><span class="w"> </span><span class="n">Modern</span><span class="w"> </span><span class="n">human</span><span class="w"></span>
+<span class="n">entity_token</span><span class="o">;</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;Modern&#39;</span><span class="o">,</span><span class="w"> </span><span class="s1">&#39;Ġhumans&#39;</span><span class="o">]</span><span class="w"></span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+<h2 id="2mapping-words-to-tokens">2.Mapping words to&nbsp;tokens.</h2>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Phones</span><span class="se">\n\n</span><span class="s2">Modern. humans. today are always on their phone. &quot;</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;text split: </span><span class="si">{</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">encoding</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">is_split_into_words</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+<span class="n">input_ids</span> <span class="o">=</span> <span class="n">encoding</span><span class="p">[</span><span class="s1">&#39;input_ids&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;input_ids: </span><span class="si">{</span><span class="n">input_ids</span><span class="si">}</span><span class="s2">, len: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">input_ids</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_ids_to_tokens</span><span class="p">(</span><span class="n">input_ids</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;token: </span><span class="si">{</span><span class="n">tokens</span><span class="si">}</span><span class="s2">, len: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">word_ids</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">word_ids</span><span class="p">()</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;word_ids: </span><span class="si">{</span><span class="n">word_ids</span><span class="si">}</span><span class="s2">, len: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">word_ids</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>text split: [&#39;Phones&#39;, &#39;Modern.&#39;, &#39;humans.&#39;, &#39;today&#39;, &#39;are&#39;, &#39;always&#39;, &#39;on&#39;, &#39;their&#39;, &#39;phone.&#39;]
+input_ids: [0, 48083, 39631, 4, 44734, 4, 34375, 1322, 30035, 261, 25017, 17283, 4, 2], len: 14
+token: [&#39;<span class="nt">&lt;s&gt;</span>&#39;, &#39;Phones&#39;, &#39;Modern&#39;, &#39;.&#39;, &#39;humans&#39;, &#39;.&#39;, &#39;today&#39;, &#39;are&#39;, &#39;always&#39;, &#39;on&#39;, &#39;their&#39;, &#39;phone&#39;, &#39;.&#39;, &#39;<span class="nt">&lt;/s&gt;</span>&#39;], len: 14
+word_ids: [None, 0, 1, 1, 2, 2, 3, 4, 5, 6, 7, 8, 8, None], len: 14
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>[&#39;Phones&#39;, &#39;Modern.&#39;, &#39;humans.&#39;, &#39;today&#39;, &#39;are&#39;, &#39;always&#39;, &#39;on&#39;, &#39;their&#39;, &#39;phone.&#39;]
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">word_start</span><span class="p">,</span> <span class="n">word_end</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span>  <span class="c1"># [)</span>
+<span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="n">word_start</span><span class="p">:</span><span class="n">word_end</span><span class="p">]</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>[&#39;Modern.&#39;, &#39;humans.&#39;]
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">token_start</span> <span class="o">=</span> <span class="n">word_ids</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">word_start</span><span class="p">)</span>
+<span class="n">token_start</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="mf">2</span><span class="w"></span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">mapping_word_to_token</span><span class="p">(</span><span class="n">word_ids</span><span class="p">,</span> <span class="n">word_start</span><span class="p">,</span> <span class="n">word_end</span><span class="p">):</span>
+    <span class="n">token_start</span><span class="p">,</span> <span class="n">token_end</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">word_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">word_ids</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">word_id</span> <span class="o">==</span> <span class="n">word_start</span><span class="p">:</span>
+            <span class="n">token_start</span> <span class="o">=</span> <span class="n">idx</span>
+            <span class="k">break</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">word_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">word_ids</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">word_id</span> <span class="o">==</span> <span class="n">word_end</span><span class="p">:</span>
+            <span class="n">token_end</span> <span class="o">=</span> <span class="n">idx</span>
+    <span class="k">return</span> <span class="n">token_start</span><span class="p">,</span> <span class="n">token_end</span>
+
+<span class="n">mapping_word_to_token</span><span class="p">(</span><span class="n">word_ids</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>    
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>(2, 5)
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">mapping_token_to_word</span><span class="p">(</span><span class="n">word_ids</span><span class="p">,</span> <span class="n">token_start</span><span class="p">,</span> <span class="n">token_end</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">word_ids</span><span class="p">[</span><span class="n">token_start</span><span class="p">],</span> <span class="n">word_ids</span><span class="p">[</span><span class="n">token_end</span><span class="p">]</span>
+
+<span class="n">mapping_token_to_word</span><span class="p">(</span><span class="n">word_ids</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>(0, 2)
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">a</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>array([[[-2.19866978,  1.1447375 ,  0.92294878],
+        [ 0.25705591, -0.06175304, -0.41273075],
+        [ 1.17907811, -0.5812148 ,  0.64390744]],
+
+       [[ 0.14645867,  2.24804856, -1.49206082],
+        [ 0.59735229,  0.33992097,  2.49375344],
+        [-0.67786164, -0.52116344, -0.78938703]]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">b</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>array([[[-1.14554669, -1.05169601, -0.57564661],
+        [-0.66068856,  1.50527007,  1.06941421],
+        [-0.03592041, -1.13148369, -2.10340704]],
+
+       [[-0.61072201, -0.53944643,  0.62138492],
+        [ 1.06405361,  0.51542254,  0.3228443 ],
+        [-0.39662927, -2.01357541,  1.58483281]]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>array([[[-1.67210823,  0.04652075,  0.17365108],
+        [-0.20181632,  0.72175852,  0.32834173],
+        [ 0.57157885, -0.85634924, -0.7297498 ]],
+
+       [[-0.23213167,  0.85430107, -0.43533795],
+        [ 0.83070295,  0.42767175,  1.40829887],
+        [-0.53724545, -1.26736943,  0.39772289]]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+        </div>
+
+        <!-- Neighbors -->
+            <br>
+            <b>Read more:</b><br>
+<div class="pagination">
+    <a class="w-50" href="../articles/Feedback-Prize-Evaluating-Student-Writing.html">
+&ll; Feedback prize evaluating student&nbsp;writing
+    </a>
+    <a class="w-50 text-right" href="../articles/Longformer-BigBird.html">
+        Longformer&nbsp;BigBird &gg;    </a>
+</div>
+        <!-- Google Adsense -->
+
+    <!-- Releated posts -->
+        <hr>
+        <div>
+            <h5>Related posts:</h5>
+            <ul>
+                <li><a href="../articles/Creating-folds-properly.html">Creating folds&nbsp;properly</a></li>
+                <li><a href="../articles/Longformer-BigBird.html">Longformer&nbsp;BigBird</a></li>
+                <li><a href="../articles/Feedback-Prize-Evaluating-Student-Writing.html">Feedback prize evaluating student&nbsp;writing</a></li>
+                <li><a href="../articles/Tokenizer-offset-mapping.html">Tokenizer offerset&nbsp;mapping</a></li>
+                <li><a href="../articles/Data-EDA.html">Data <span class="caps">EDA</span></a></li>
+            </ul>
+        </div>
+
+    <!-- Comments -->
+        <hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'jerrylsu-github-io';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                </div>
+        </main>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="flex-shrink-0 bg-dark text-light small py-1">
+        <div class="container text-center">
+            &copy; 2022 <a href="..">JERRYLSU.NET</a> by <a href="../pages/about.html">JERRY</a>. Powered by <a href="http://getpelican.com">Pelican</a>, <a href="http://python.org">Python</a>, <a href="https://getbootstrap.com">Bootstrap 4</a><br>
+            <!-- Do not remove below license sentence -->
+            License: <a href="https://spdx.org/licenses/CC-BY-4.0.html">CC-BY-4.0</a>, based on <a href="https://github.com/vuquangtrong/simplify-theme">Simplify Bootstrap Theme</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!--
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    -->
+    <script type="text/javascript" src="../theme/jquery/jquery-3.4.1.min.js"></script>
+    <!--
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/bootstrap.min.js"></script>
+    -->
+    <script type="text/javascript" src="../theme/bootstrap/bootstrap.min.js"></script>
+    <!--
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
+    -->
+    <script type="text/javascript" src="../theme/style.js"></script>
+
+    <!-- Sharing -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d9ffca0db80069e"></script>
+
+    <!-- JSON LD -->
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "name": "Mapping chars and words to tokens",
+    "headline": "Mapping chars and words to tokens",
+    "datePublished": "2022-02-22 11:17:17+08:00",
+    "dateModified": "",
+    "author": {
+        "@type": "Person",
+        "name": "Jerry Su",
+        "url": "../author/jerry-su.html"
+    },
+    "image": "../jerry.jpg",
+    "url": "../articles/Mapping-Chars-and-Words-to-Tokens.html",
+    "description": "How to Convert Characters, Tokens, and Words 1. Mapping char to token. from transformers import BigBirdTokenizerFast tokenizer = BigBirdTokenizerFast.from_pretrained('allenai/longformer-large-4096') Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained. text = "Phones\n\nModern humans today are always on their …"
+}
+</script>
+    <!-- Disqus count -->
+</body>
+
+</html>

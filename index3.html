@@ -218,28 +218,188 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/C++.html">C++</a>
+                    <a href="./articles/Hierarchical-Position-Embedding.html">Hierarchical Position&nbsp;Embedding</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 09, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#1">1. 基于对象的程序设计</a><ul>
-<li><a href="#11">1.1&nbsp;不含指针成员的类</a></li>
-<li><a href="#12">1.2&nbsp;含有指针成员的类</a></li>
-<li><a href="#13-new">1.3&nbsp;new</a></li>
-<li><a href="#14-delete">1.4&nbsp;delete</a></li>
-<li><a href="#15-this">1.5&nbsp;this</a></li>
-<li><a href="#16-static">1.6&nbsp;static</a></li>
-<li><a href="#17">1.7&nbsp;单例模式</a></li>
-<li><a href="#18-class-template">1.8 …</a></li></ul></li></ul></div></p>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 24, 2021</span></span>
+                <p><p>预训练模型&nbsp;预训练的三种embedding</p>
+<p>word_embedding: [vocab_size,&nbsp;hidden_size]</p>
+<p>position_embedding: [max_len,&nbsp;hidden_size]</p>
+<p>token_type_embedding: [token_type_size,&nbsp;hidden_size]</p>
+<p><img alt="embedding" src="../../../images/PaddlePaddle/embedding.png"></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">paddle</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">em</span> <span class="o">=</span> <span class="n">paddle</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+<span class="n">em</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>Tensor(shape=[10, 8], dtype=float32, place=CPUPlace, stop_gradient=True,
+       [[-1.70151997,  0.41166085,  2.07669687,  0.45709962, -0.06186785,
+         -0 …</code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~741 words">Read in 3 mins</span>
-                            <span class="card-link"><a href="./articles/C++.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~158 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Hierarchical-Position-Embedding.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="./category/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="./tag/paddle.html">paddle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="./articles/Paddle-dtype.html">Paddle&nbsp;dtype</a>
+                </h5>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 24, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">paddle</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">paddle</span><span class="o">.</span><span class="n">to_tensor</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">paddle</span><span class="o">.</span><span class="n">to_tensor</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">])</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">*</span> <span class="n">b</span>  <span class="c1"># int64 int * float = int ???</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>Tensor(shape=[4], dtype=int64, place=CPUPlace, stop_gradient=True,
+       [0, 0, 2, 2])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">c</span> <span class="o">=</span> <span class="n">paddle</span><span class="o">.</span><span class="n">to_tensor</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">a …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~78 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Paddle-dtype.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="./category/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="./tag/paddle.html">paddle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="./articles/Tokenizer-offset-mapping.html">Tokenizer offerset&nbsp;mapping</a>
+                </h5>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 23, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="n">offsets</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span> <span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">),</span> <span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">),</span> <span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">),</span> <span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">),</span> <span class="p">(</span><span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">29</span><span class="p">),</span> <span class="p">(</span><span class="mi">29 …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~419 words">Read in 2 mins</span>
+                            <span class="card-link"><a href="./articles/Tokenizer-offset-mapping.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="./category/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="./tag/paddle.html">paddle</a>
+                            <a class="badge badge-info" href="./tag/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="./tag/pytorch.html">pytorch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="./articles/paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &paddle.tile.html">paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape <span class="amp">&amp;</span>&nbsp;paddle.tile</a>
+                </h5>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 16, 2021</span></span>
+                <p><p>https://pytorch.org/docs/stable/generated/torch.Tensor.repeat.html#torch.Tensor.repeat</p>
+<p>https://pytorch.org/docs/stable/generated/torch.repeat_interleave.html</p>
+<p>If the repeats is tensor([n1, n2, n3, …]), then the output will be tensor([0, 0, …, 1, 1, …, 2, 2, …, …]) where 0 appears n1 times, 1 appears n2 …</p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~443 words">Read in 2 mins</span>
+                            <span class="card-link"><a href="./articles/paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &paddle.tile.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="./category/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="./tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="./tag/pytorch.html">pytorch</a>
+                            <a class="badge badge-info" href="./tag/paddle.html">paddle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="./articles/Mac m1 install Paddle.html">Mac m1 install&nbsp;Paddle</a>
+                </h5>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 15, 2021</span></span>
+                <p><p>Mac&nbsp;m1系统mini-conda,环境安装paddle问题？</p>
+<div class="highlight"><pre><span></span><code><span class="nv">conda</span><span class="w"> </span><span class="nv">activate</span><span class="w"> </span><span class="nv">paddle</span><span class="w"></span>
+<span class="nv">python</span><span class="w"> </span><span class="o">-</span><span class="nv">m</span><span class="w"> </span><span class="nv">pip</span><span class="w"> </span><span class="nv">install</span><span class="w"> </span><span class="nv">paddlepaddle</span><span class="w"> </span><span class="o">-</span><span class="nv">i</span><span class="w"> </span><span class="nv">https</span>:<span class="o">//</span><span class="nv">mirror</span>.<span class="nv">baidu</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">pypi</span><span class="o">/</span><span class="nv">simple</span><span class="w"></span>
+<span class="nv">Looking</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">indexes</span>:<span class="w"> </span><span class="nv">https</span>:<span class="o">//</span><span class="nv">mirror</span>.<span class="nv">baidu</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">pypi</span><span class="o">/</span><span class="nv">simple</span><span class="w"></span>
+<span class="nv">ERROR</span>:<span class="w"> </span><span class="nv">Could</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">find</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">satisfies</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">requirement</span><span class="w"> </span><span class="nv">paddlepaddle</span><span class="w"></span>
+<span class="nv">ERROR</span>:<span class="w"> </span><span class="nv">No</span><span class="w"> </span><span class="nv">matching</span><span class="w"> </span><span class="nv">distribution</span><span class="w"> </span><span class="nv">found</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">paddlepaddle</span><span class="w"></span>
+</code></pre></div>
+
+<p>https …</p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~122 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Mac m1 install Paddle.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="./category/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="./tag/paddle.html">paddle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="./articles/Pandas-regex.html">Pandas-regex</a>
+                </h5>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 02, 2021</span></span>
+                <p><h2 id="regex">Regex元字符</h2>
+<p>https://regex101.com/</p>
+<p>https://www.runoob.com/regexp/regexp-metachar.html</p>
+<h3 id="_1">定位符</h3>
+<p><strong>^</strong> : ^[^0-9][0-9]$&nbsp;第一个字符不能是数字</p>
+<p><strong>$</strong>&nbsp;: </p>
+<p><strong>\b</strong>&nbsp;: </p>
+<p><strong>\B</strong>&nbsp;:  </p>
+<h3 id="_2">特殊单字符</h3>
+<ul>
+<li>
+<p><strong>.</strong>&nbsp;:</p>
+</li>
+<li>
+<p><strong>\d</strong> :&nbsp;[0-9]</p>
+</li>
+<li>
+<p><strong>\w</strong> :&nbsp;[0-9a-zA-Z_]</p>
+</li>
+<li>
+<p><strong>\s</strong> : [\r\n\t\f\v&nbsp;]</p>
+</li>
+<li>
+<p><strong>\D</strong> :&nbsp;[^0-9]</p>
+</li>
+<li>
+<p><strong>\W</strong> :&nbsp;[^0-9a-zA-Z_]</p>
+</li>
+<li>
+<p><strong>\S</strong> : [^\r\n …</p></li></ul></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~57 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Pandas-regex.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="./category/programming.html">programming</a>
-                            <a class="badge badge-info" href="./tag/c.html">c++</a>
+                            <a class="badge badge-info" href="./tag/python.html">python</a>
+                            <a class="badge badge-info" href="./tag/regex.html">regex</a>
                     </div>
                 </div>
             </div>
@@ -247,228 +407,34 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/LinkedList.html">LinkedList</a>
+                    <a href="./articles/Pandas-list-mapping.html">Pandas-list-mapping</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 09, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">链表结点定义</a></li>
-<li><a href="#_2">链表基本操作</a><ul>
-<li><a href="#remove-duplicates-from-sorted-list">Remove Duplicates from Sorted&nbsp;List</a></li>
-<li><a href="#reverse-linked-list">Reverse Linked&nbsp;List</a></li>
-<li><a href="#merge-two-sorted-lists">Merge Two Sorted&nbsp;Lists</a></li>
-<li><a href="#merge-k-sorted-lists">Merge k Sorted&nbsp;Lists</a></li>
-<li><a href="#sort-list">Sort&nbsp;List</a></li>
-</ul>
-</li>
-<li><a href="#dummy">擅用Dummy节点</a><ul>
-<li><a href="#remove-duplicates-from-sorted-list-ii">Remove Duplicates from Sorted List <span class="caps">II</span></a></li>
-<li><a href="#partition-list">Partition&nbsp;List</a></li>
-</ul>
-</li>
-<li><a href="#_3">快慢指针</a></li>
-<li><a href="#_4">综合设计</a><ul>
-<li><a href="#lru-cache"><span class="caps">LRU …</span></a></li></ul></li></ul></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~797 words">Read in 4 mins</span>
-                            <span class="card-link"><a href="./articles/LinkedList.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="./category/algorithms.html">algorithms</a>
-                            <a class="badge badge-info" href="./tag/algorithm.html">algorithm</a>
-                            <a class="badge badge-info" href="./tag/linked-list.html">linked list</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/【RL】Q-Learning.html">【<span class="caps">RL</span>】Q&nbsp;Learning</a>
-                </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 06, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#training">Training</a></li>
-<li><a href="#inference">Inference</a></li>
-</ul>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">gym</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">clear_output</span>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 01, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;合同有效期:  2021年9月至2022年9月&#39;</span>
+<span class="n">text</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Creating the Environment&quot;&quot;&quot;</span>
-<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;FrozenLake-v0&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>&#39;合同有效期:  2021年9月至2022年9月&#39;
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Creating the Q-Table and initializing all the Q-Values to zero for each state-action pair.&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="n">runs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;3.&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;合同有效期:&#39;</span><span class="p">,</span> <span class="s1">&#39;  &#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;02&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;年&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="s1">&#39;月至2&#39;</span><span class="p">,</span> <span class="s1">&#39;02&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;年&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="s1">&#39;月&#39;</span><span class="p">]</span>
+<span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ll</span><span class="p">)</span>
+<span class="n">origin</span>
+</code></pre></div>
 
-<span class="n">action_space_size</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span>
-<span class="n">state_space_size</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">n</span>
-<span class="n">q_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">state_space_size …</span></code></pre></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~444 words">Read in 2 mins</span>
-                            <span class="card-link"><a href="./articles/【RL】Q-Learning.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="./category/nlp.html">nlp</a>
-                            <a class="badge badge-info" href="./tag/reinforcement-learning.html">reinforcement learning</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Algorithms.html">Algorithms</a>
-                </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 28, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#linked-list">Linked List</a><ul>
-<li><a href="#206-reverse-linked-list">206. Reverse Linked&nbsp;List</a></li>
-<li><a href="#21-merge-two-sorted-lists">21. Merge Two Sorted&nbsp;Lists</a></li>
-<li><a href="#234-palindrome-linked-list">234. Palindrome Linked&nbsp;List</a></li>
-<li><a href="#19-remove-nth-node-from-end-of-list">19. Remove Nth Node From End of&nbsp;List</a></li>
-</ul>
-</li>
-<li><a href="#search">Search</a><ul>
-<li><a href="#dfs"><span class="caps">DFS</span></a><ul>
-<li><a href="#695-max-area-of-island">695. Max Area of&nbsp;Island</a></li>
-<li><a href="#547-number-of-provinces">547. Number of&nbsp;Provinces</a></li>
-<li><a href="#417-pacific-atlantic-water-flow">417. Pacific Atlantic Water&nbsp;Flow</a></li>
-</ul>
-</li>
-<li><a href="#backtracking">Backtracking</a><ul>
-<li><a href="#46-permutations">46.&nbsp;Permutations</a></li>
-<li><a href="#77-combinations">77.&nbsp;Combinations</a></li>
-<li><a href="#79-word-search">79. Word&nbsp;Search</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<h2 id="linked-list">Linked&nbsp;List</h2>
-<h4 id="206-reverse-linked-list">206 …</h4></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~845 words">Read in 4 mins</span>
-                            <span class="card-link"><a href="./articles/Algorithms.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="./category/algorithms.html">algorithms</a>
-                            <a class="badge badge-info" href="./tag/algorithms.html">algorithms</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/【RL】User-Simulator.html">【<span class="caps">RL</span>】User&nbsp;Simulator</a>
-                </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 13, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#user-simulator-background">User Simulator&nbsp;BackGround</a></li>
-<li><a href="#rule-based-simulator">Rule-Based&nbsp;Simulator</a></li>
-<li><a href="#design">Design</a></li>
-</ul>
-</div>
-<h2 id="user-simulator-background">User Simulator&nbsp;BackGround</h2>
-<p><strong>为什么需要用户模拟器？</strong></p>
-<p>监督学习方法缺陷：</p>
-<ol>
-<li>
-<p>需要收集大量实际的人机与人人的训练标注数据，昂贵 …</p></li></ol></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~135 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/【RL】User-Simulator.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="./category/nlp.html">nlp</a>
-                            <a class="badge badge-info" href="./tag/reinforcement-learning.html">reinforcement learning</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/BackTracking.html">BackTracking</a>
-                </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 09, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#backtracking">BackTracking</a></li>
-<li><a href="#permutation-iii">Permutation I/<span class="caps">II</span></a></li>
-<li><a href="#subset">Subset</a></li>
-<li><a href="#combination">Combination</a></li>
-<li><a href="#n-queens">N&nbsp;Queens</a></li>
-<li><a href="#word-search">Word&nbsp;Search</a></li>
-</ul>
-</div>
-<p><a href="https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-xiang-jie-by-labuladong-2/">Ref.&nbsp;Backtracking</a></p>
-<h2 id="backtracking">BackTracking</h2>
-<p><strong>回溯算法：本质是N叉树的遍历问题</strong>，关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架：</p>
-<ul>
-<li>
-<p>路 …</p></li></ul></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~435 words">Read in 2 mins</span>
-                            <span class="card-link"><a href="./articles/BackTracking.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="./category/algorithms.html">algorithms</a>
-                            <a class="badge badge-info" href="./tag/algorithm.html">algorithm</a>
-                            <a class="badge badge-info" href="./tag/backtracking.html">backtracking</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/NLP-Attention.html"><span class="caps">NLP</span>&nbsp;Attention</a>
-                </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 28, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#context-attention-lstm">Context attention - <span class="caps">LSTM</span></a></li>
-<li><a href="#self-attention">Self&nbsp;attention</a></li>
-<li><a href="#masked-self-attention">Masked self&nbsp;attention</a></li>
-<li><a href="#self-attention-cross-attention-transformer">Self Attention Cross Attention -&nbsp;Transformer</a></li>
-</ul>
-</div>
-<p><a href="http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention">http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention</a></p>
-<h3 id="context-attention-lstm">Context attention - <span class="caps">LSTM</span></h3>
-<p>Encoder and&nbsp;Decoder</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Attention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Attention</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">hidden_size</span>
+<div class="highlight"><pre><span></span><code>&#39;3. 合同有效期:  2021年9月至2022年9月&#39;
+</code></pre></div>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;general&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">attention</span> <span class="o">=</span> <span class="n">nn …</span></code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">runs_mapping</span><span class="p">(</span><span class="n">runs</span><span class="p">):</span>
+    <span class="n">mapping</span><span class="p">,</span> <span class="n">start …</span></code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~565 words">Read in 3 mins</span>
-                            <span class="card-link"><a href="./articles/NLP-Attention.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~79 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Pandas-list-mapping.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
-                        <a class="badge badge-success" href="./category/nlp.html">nlp</a>
-                            <a class="badge badge-info" href="./tag/deep-learning.html">deep learning</a>
-                            <a class="badge badge-info" href="./tag/nlp.html">nlp</a>
-                            <a class="badge badge-info" href="./tag/attention.html">attention</a>
+                        <a class="badge badge-success" href="./category/programming.html">programming</a>
+                            <a class="badge badge-info" href="./tag/python.html">python</a>
                     </div>
                 </div>
             </div>
@@ -476,23 +442,37 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/【NLP】BERT.html">【<span class="caps">NLP</span>】<span class="caps">BERT</span></a>
+                    <a href="./articles/Data-EDA.html">Data <span class="caps">EDA</span></a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 28, 2020</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<p><a href="http://jalammar.github.io/a-visual-guide-to-using-bert-for-the-first-time/">http://jalammar.github.io/a-visual-guide-to-using-bert-for-the-first-time</a></p></p>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Oct 01, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">ls</span> <span class="o">../../../</span><span class="n">cache</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>ArticlesGenerator-Readers  train.json  vocab.txt
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-white&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="1-labels">1.&nbsp;labels</h3>
+<div class="highlight"><pre><span></span><code><span class="n">labels_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../../../cache/labels.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">label_dicts</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">labels_file</span><span class="p">:</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">json …</span></code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~1 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/【NLP】BERT.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~12159 words">Read in 49 mins</span>
+                            <span class="card-link"><a href="./articles/Data-EDA.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="./category/nlp.html">nlp</a>
-                            <a class="badge badge-info" href="./tag/deep-learning.html">deep learning</a>
                             <a class="badge badge-info" href="./tag/nlp.html">nlp</a>
-                            <a class="badge badge-info" href="./tag/bert.html">bert</a>
                     </div>
                 </div>
             </div>
@@ -500,34 +480,34 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/【NLP】ELMo.html">【<span class="caps">NLP</span>】ELMo</a>
+                    <a href="./articles/Pandas-to-csv.html">Pandas-to-csv</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 24, 2020</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<p>ELMo: Embeddings from Language models, BiLSTM vector concat，weighed hidden layers&nbsp;stacked</p>
-<ul>
-<li>
-<p>与GloVe embedding最大区别，引入了上下文，contextualized word-embeddings (<span class="caps">BERT</span>,&nbsp;ELMo)</p>
-</li>
-<li>
-<p>ELMo不会为每个单词使用固定的embedding向量，而是会在为每个单词分配embedding之前先查看整个句子(上下文)。</p>
-</li>
-</ul>
-<p><img alt="elmo1" src="../images/ELMo/elmo1.png"></p>
-<p><img alt="elmo2" src="../images/ELMo/elmo2.png"></p>
-<p><a href="http://jalammar.github.io/illustrated-bert">http://jalammar.github.io/illustrated-bert</a></p></p>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Sep 27, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">,</span> <span class="s1">&#39;answer&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">questions</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../../cache/finance_question.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="n">answers</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../../cache/finance_answer.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">qa_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">question</span><span class="p">,</span> <span class="n">answer</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">questions</span><span class="p">,</span> <span class="n">answers</span><span class="p">):</span>
+    <span class="n">question</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">question</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">answer</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="n">qa_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">question</span><span class="p">,</span> <span class="n">answer …</span></code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~18 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/【NLP】ELMo.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~57 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Pandas-to-csv.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
-                        <a class="badge badge-success" href="./category/nlp.html">nlp</a>
-                            <a class="badge badge-info" href="./tag/deep-learning.html">deep learning</a>
-                            <a class="badge badge-info" href="./tag/nlp.html">nlp</a>
-                            <a class="badge badge-info" href="./tag/elmo.html">elmo</a>
+                        <a class="badge badge-success" href="./category/programming.html">programming</a>
+                            <a class="badge badge-info" href="./tag/pandas.html">pandas</a>
                     </div>
                 </div>
             </div>
@@ -535,32 +515,22 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/【RL】Policy-Gradient.html">【<span class="caps">RL</span>】Policy&nbsp;Gradient</a>
+                    <a href="./articles/Bert-as-Service.html">Bert as&nbsp;Service</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 12, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#1-reinforcement-learning">1. Reinforcement&nbsp;Learning</a></li>
-<li><a href="#2-deep-learning">2. Deep&nbsp;Learning</a></li>
-</ul>
-</div>
-<h2 id="1-reinforcement-learning">1. Reinforcement&nbsp;Learning</h2>
-<ul>
-<li>
-<p><strong>Actor(Policy)</strong></p>
-<p>Neural Network as Actor (Deep). vs lookup Table(Q&nbsp;Learning).</p>
-</li>
-</ul>
-<p><strong>使用神经网络作为Actor比查表的优势？</strong></p>
-<div class="highlight"><pre><span></span><code>查表无法穷举输入，e.g.图像画面或者语言输入 …</code></pre></div></p>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Sep 23, 2021</span></span>
+                <p><p>git clone&nbsp;git@github.com:hanxiao/bert-as-service.git</p>
+<p>https://bert-as-service.readthedocs.io/en/latest/section/get-start.html#start-the-bert-service-in-a-docker-container</p>
+<p>docker build -t bert-as-service -f ./docker/Dockerfile&nbsp;.</p>
+<p>docker run &#8212;runtime nvidia -itd -p 8022:5555 -p 8021:5556 -v /bert-as-service/server/model/:/model -t bert-as-service 1&nbsp;128</p>
+<div class="highlight"><pre><span></span><code>usage: /usr/local/bin/bert-serving-start …</code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~38 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/【RL】Policy-Gradient.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~92 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Bert-as-Service.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="./category/nlp.html">nlp</a>
-                            <a class="badge badge-info" href="./tag/reinforcement-learning.html">reinforcement learning</a>
+                            <a class="badge badge-info" href="./tag/nlp.html">nlp</a>
                     </div>
                 </div>
             </div>

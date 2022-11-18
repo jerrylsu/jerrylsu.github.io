@@ -217,6 +217,264 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/python-docx-using-lxml.html">Python docx using&nbsp;lxml</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Sep 25, 2022</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">docx</span>
+<span class="kn">import</span> <span class="nn">lxml</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># load docx file</span>
+<span class="n">docx_obj</span> <span class="o">=</span> <span class="n">docx</span><span class="o">.</span><span class="n">Document</span><span class="p">(</span><span class="s2">&quot;/var/www/blog/content/cache/template.docx&quot;</span><span class="p">)</span>
+<span class="n">paras</span> <span class="o">=</span> <span class="n">docx_obj</span><span class="o">.</span><span class="n">paragraphs</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># traverse all runs of the specified paragraph idx 6.</span>
+<span class="n">para</span> <span class="o">=</span> <span class="n">paras</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">run</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">para</span><span class="o">.</span><span class="n">runs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;run </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">run</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>run 0: 专 …</code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~2187 words">Read in 9 mins</span>
+                            <span class="card-link"><a href="../articles/python-docx-using-lxml.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/python.html">python</a>
+                            <a class="badge badge-info" href="../tag/docx.html">docx</a>
+                            <a class="badge badge-info" href="../tag/lxml.html">lxml</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Multiprocessing-in-FastAPI.html">Multiprocessing in&nbsp;FastAPI</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 28, 2022</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/async-endpoint&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">test_endpoint</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span>
+                                                 <span class="n">subject_extract_check_process</span><span class="p">,</span>
+                                                  <span class="o">*</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">subject_check_rules</span><span class="p">,</span> <span class="n">docx_paras</span><span class="p">,</span> <span class="n">pdf_paras</span><span class="p">))</span>  <span class="c1"># wait result</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Subprocess execute fail: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>
+
+<p>https://stackoverflow.com/questions/63169865 …</p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~33 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Multiprocessing-in-FastAPI.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/python.html">python</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/asyncio-get_event_loop-vs-get_running_loop.html">asyncio get_event_loop vs&nbsp;get_running_loop</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 28, 2022</span></span>
+                <p><p>Asyncio</p>
+<p><strong>asyncio.get_event_loop</strong> vs <strong>asyncio.get_running_loop</strong></p>
+<p>https://stackoverflow.com/questions/65206110/when-should-we-use-asyncio-get-running-loop-vs-asyncio-get-event-loop/69314701#69314701</p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~5 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/asyncio-get_event_loop-vs-get_running_loop.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/python.html">python</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/FastAPI-for-CPU-Bound-Task.html">FastAPI for <span class="caps">CPU</span>-Bound&nbsp;Task</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 19, 2022</span></span>
+                <p><p>fastAPI</p>
+<p><strong>def</strong> vs <strong>async&nbsp;def</strong></p>
+<p>def:&nbsp;线程池，实现并发</p>
+<p>async def: 协程，事件循环器实现并发。不存在await操作，退化成串行请求requests&nbsp;sequentially。</p>
+<p>async def如何用在cpu-bound任务上？&nbsp;可以用户态适时asyncio.sleep …</p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~55 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/FastAPI-for-CPU-Bound-Task.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/python.html">python</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Base64-Encode-Decode.html">Base64-encode-decode</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 09, 2022</span></span>
+                <p><h2 id="python-encode-decode">python encode&nbsp;decode</h2>
+<p>是字节码bytes与字符串str之间的转换</p>
+<ul>
+<li>encode() 方法为字符串类型（str）提供的方法，用于将 str 类型转换成 bytes&nbsp;类型，这个过程也称为“编码”。</li>
+</ul>
+<p><code>str.encode([encoding="utf-8"][,errors="strict …</code></p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~122 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Base64-Encode-Decode.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/python.html">python</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Joblib-parallel.html">Joblib&nbsp;parallel</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 23, 2022</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">inference</span><span class="p">(</span><span class="n">node_id</span><span class="p">,</span> <span class="n">biz_code</span><span class="p">,</span> <span class="n">pool</span><span class="p">):</span>
+    <span class="n">df_to_detection</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">((</span><span class="n">node_id</span><span class="p">,</span> <span class="n">biz_code</span><span class="p">,</span> <span class="n">pool</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;node_id&quot;</span><span class="p">,</span> <span class="s2">&quot;biz_code&quot;</span><span class="p">,</span> <span class="s2">&quot;pool&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">df_to_detection</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">params</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a_pool&quot;</span><span class="p">),</span>
+          <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b_pool&quot;</span><span class="p">),</span>
+          <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;c_pool&quot;</span><span class="p">),</span>
+          <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;d_pool&quot;</span><span class="p">),</span>
+          <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;e_pool&quot;</span><span class="p">),</span>
+          <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;f_pool&quot;</span><span class="p">),</span>
+          <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="s2">&quot;g_pool&quot;</span><span class="p">)]</span>
+
+<span class="n">jobs_num</span> <span class="o">=</span> <span class="nb">len …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~322 words">Read in 2 mins</span>
+                            <span class="card-link"><a href="../articles/Joblib-parallel.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/python.html">python</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Pandas-regex.html">Pandas-regex</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 02, 2021</span></span>
+                <p><h2 id="regex">Regex元字符</h2>
+<p>https://regex101.com/</p>
+<p>https://www.runoob.com/regexp/regexp-metachar.html</p>
+<h3 id="_1">定位符</h3>
+<p><strong>^</strong> : ^[^0-9][0-9]$&nbsp;第一个字符不能是数字</p>
+<p><strong>$</strong>&nbsp;: </p>
+<p><strong>\b</strong>&nbsp;: </p>
+<p><strong>\B</strong>&nbsp;:  </p>
+<h3 id="_2">特殊单字符</h3>
+<ul>
+<li>
+<p><strong>.</strong>&nbsp;:</p>
+</li>
+<li>
+<p><strong>\d</strong> :&nbsp;[0-9]</p>
+</li>
+<li>
+<p><strong>\w</strong> :&nbsp;[0-9a-zA-Z_]</p>
+</li>
+<li>
+<p><strong>\s</strong> : [\r\n\t\f\v&nbsp;]</p>
+</li>
+<li>
+<p><strong>\D</strong> :&nbsp;[^0-9]</p>
+</li>
+<li>
+<p><strong>\W</strong> :&nbsp;[^0-9a-zA-Z_]</p>
+</li>
+<li>
+<p><strong>\S</strong> : [^\r\n …</p></li></ul></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~57 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Pandas-regex.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/python.html">python</a>
+                            <a class="badge badge-info" href="../tag/regex.html">regex</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Pandas-list-mapping.html">Pandas-list-mapping</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 01, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;合同有效期:  2021年9月至2022年9月&#39;</span>
+<span class="n">text</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>&#39;合同有效期:  2021年9月至2022年9月&#39;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">runs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;3.&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;合同有效期:&#39;</span><span class="p">,</span> <span class="s1">&#39;  &#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;02&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;年&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="s1">&#39;月至2&#39;</span><span class="p">,</span> <span class="s1">&#39;02&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;年&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="s1">&#39;月&#39;</span><span class="p">]</span>
+<span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ll</span><span class="p">)</span>
+<span class="n">origin</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>&#39;3. 合同有效期:  2021年9月至2022年9月&#39;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">runs_mapping</span><span class="p">(</span><span class="n">runs</span><span class="p">):</span>
+    <span class="n">mapping</span><span class="p">,</span> <span class="n">start …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~79 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Pandas-list-mapping.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/python.html">python</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
                     <a href="../articles/Docker-Python-Mysql.html">Docker Python&nbsp;Mysql</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Sep 16, 2021</span></span>
@@ -241,270 +499,58 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Iterator.html">Iterator</a>
+                    <a href="../articles/Python-setdefault.html">Python -&nbsp;setdefault</a>
                 </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jun 11, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#iterator">Iterator</a></li>
-<li><a href="#generator">Generator</a></li>
-<li><a href="#coroutine">Coroutine</a></li>
-</ul>
-</div>
-<h3 id="iterator">Iterator</h3>
-<p><img alt="iterator" src="../images/python/iterator.png"></p>
-<p>iter():&nbsp;接收的是可迭代对象，返回的是迭代器。</p>
-<p>next():&nbsp;接收的是迭代器，调用的是迭代器对象中的next函数，返回数据元素。</p>
-<p>由于生 …</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~237 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Iterator.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/SQLite-Full-text-Search.html">SQLite Full-text&nbsp;Search</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jun 26, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#sqlite-full-text-search">Sqlite Full-text&nbsp;Search</a></li>
-<li><a href="#_1"></a></li>
-</ul>
-</div>
-<h3 id="sqlite-full-text-search">Sqlite Full-text&nbsp;Search</h3>
-<p>理解虚表</p>
-<p>理解全文本查找</p>
-<p><a href="https://www.sqlite.org/fts5.html">https://www.sqlite.org/fts5.html</a></p>
-<p><a href="http://www.sqlitetutorial.net/sqlite-full-text-search">http://www.sqlitetutorial.net/sqlite-full-text-search</a></p>
-<h3 id="_1"></h3>
-<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">_is_to_exec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sha1</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Check whether the query has been run in the past.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">sql</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">                SELECT DISTINCT</span>
-<span class="s1">                    sha1</span>
-<span class="s1">                FROM</span>
-<span class="s1">                    queries</span>
-<span class="s1">                WHERE …</span></code></pre></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~158 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/SQLite-Full-text-Search.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/sql.html">sql</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Passing-a-function-as-an-argument:-Lambda-Function.html">Passing a function as an argument: Lambda&nbsp;Function</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 23, 2019</span></span>
-                <p><div class="highlight"><pre><span></span><code>f = lambda x: x * 2
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Aug 26, 2021</span></span>
+                <p><p>https://www.cnblogs.com/zzliu/p/10809205.html</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
 </code></pre></div>
 
-<p>is exactly the same thing&nbsp;as</p>
-<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">f</span><span class="ss">(</span><span class="nv">x</span><span class="ss">)</span>:<span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nb">dir</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
 
-<blockquote>
-<p>Lambdas are usually used to create small, anonymous functions. Actually, they are just a syntatic sugar to define functions. The lambda expression above is exactly the same as your function, only without a …</p></blockquote></p>
+<div class="highlight"><pre><span></span><code>[&#39;__class__&#39;,
+ &#39;__contains__&#39;,
+ &#39;__delattr__&#39;,
+ &#39;__delitem__&#39;,
+ &#39;__dir__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__eq__&#39;,
+ &#39;__format__&#39;,
+ &#39;__ge__&#39;,
+ &#39;__getattribute__&#39;,
+ &#39;__getitem__&#39;,
+ &#39;__gt__&#39;,
+ &#39;__hash__&#39;,
+ &#39;__init__&#39;,
+ &#39;__init_subclass__&#39;,
+ &#39;__iter__&#39;,
+ &#39;__le__&#39;,
+ &#39;__len__&#39;,
+ &#39;__lt__&#39;,
+ &#39;__ne__&#39;,
+ &#39;__new__&#39;,
+ &#39;__reduce__&#39;,
+ &#39;__reduce_ex__&#39;,
+ &#39;__repr__&#39;,
+ &#39;__reversed__&#39;,
+ &#39;__setattr__&#39;,
+ &#39;__setitem__&#39;,
+ &#39;__sizeof__&#39;,
+ &#39;__str__&#39;,
+ &#39;__subclasshook__&#39;,
+ &#39;clear&#39;,
+ &#39;copy&#39;,
+ &#39;fromkeys&#39;,
+ &#39;get&#39;,
+ &#39;items&#39;,
+ &#39;keys&#39;,
+ &#39;pop&#39;,
+ &#39;popitem …</code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~75 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Passing-a-function-as-an-argument:-Lambda-Function.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Using-groupBy-on-multiple-columns.html">Using groupBy on multiple&nbsp;columns</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 23, 2019</span></span>
-                <p><p>Group By X means put all those with the same value for X in the one&nbsp;group.</p>
-<p>Group By X, Y means put all those with the same values for both X and Y in the one&nbsp;group.</p>
-<p>To illustrate using an example, let&#8217;s say we have the following …</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~209 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Using-groupBy-on-multiple-columns.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Python Object and Reference.html">Python Object and&nbsp;Reference</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 26, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">变量与对象</a></li>
-<li><a href="#python">Python一切皆对象</a></li>
-<li><a href="#_2">可变对象和不可变对象</a></li>
-<li><a href="#_3">深拷贝&nbsp;浅拷贝</a></li>
-</ul>
-</div>
-<p>C/C++中函数传递参数方式有：按值传递 和 按址传递。而在一切皆对象 …</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~100 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Python Object and Reference.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Using-loguru-and-notifiers-instead-of-logging.html">Using loguru and notifiers instead of&nbsp;logging</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 12, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#configuring-loguru">Configuring&nbsp;loguru</a></li>
-<li><a href="#recording-logging">Recording&nbsp;logging</a></li>
-</ul>
-</div>
-<p>from loguru import logger<br>
-import tempfile<br>
-import&nbsp;notifiers</p>
-<h2 id="configuring-loguru">Configuring&nbsp;loguru</h2>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">email</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">msg</span><span class="p">:</span> <span class="k">return</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;subject&quot;</span><span class="p">:</span> <span class="s1">&#39;Title&#39;</span><span class="p">,</span>
-        <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="s2">&quot;receivers@163.com&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="n">to</span><span class="p">,</span>
-        <span class="s2">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;smtp.163.com&quot;</span><span class="p">,</span>
-    <span class="p">}</span>
-    <span class="n">notifier</span> <span class="o">=</span> <span class="n">notifiers</span><span class="o">.</span><span class="n">get_notifier</span><span class="p">(</span><span class="s2">&quot;email …</span></code></pre></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~65 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Using-loguru-and-notifiers-instead-of-logging.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Checking-DataFrame/Series-missing-values.html">Checking DataFrame/Series missing&nbsp;values</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 12, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#checking-dataframe-missing-values">Checking DataFrame missing&nbsp;values</a></li>
-<li><a href="#checking-series-missing-values">Checking Series missing&nbsp;values</a></li>
-<li><a href="#has_missing-method">has_missing&nbsp;method</a></li>
-</ul>
-</div>
-<h2 id="checking-dataframe-missing-values">Checking DataFrame missing&nbsp;values</h2>
-<p><code>cols_missing = frame.columns[frame.isna().any()]</code><br>
-<img alt="asset_img missing_value" src="images/Checking-DataFrame-Series-missing-values/missing_value.jpg"></p>
-<h2 id="checking-series-missing-values">Checking Series missing&nbsp;values</h2>
-<p><code>series.isna().any()</code></p>
-<h2 id="has_missing-method">has_missing&nbsp;method</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">pandas.core.frame</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="kn">from</span> <span class="nn">pandas.core.series</span> <span class="kn">import</span> <span class="n">Series</span>
-<span class="kn">import …</span></code></pre></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~90 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Checking-DataFrame/Series-missing-values.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Python-email.html">Python&nbsp;email</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 28, 2019</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">smtplib</span>
-<span class="kn">from</span> <span class="nn">email.mime.text</span> <span class="kn">import</span> <span class="n">MIMEText</span>
-<span class="kn">from</span> <span class="nn">email.mime.multipart</span> <span class="kn">import</span> <span class="n">MIMEMultipart</span>
-<span class="kn">from</span> <span class="nn">email.mime.image</span> <span class="kn">import</span> <span class="n">MIMEImage</span>
-
-<span class="c1">#设置登录及服务器信息</span>
-<span class="n">mail_host</span> <span class="o">=</span> <span class="s1">&#39;smtp.163.com&#39;</span>
-<span class="n">mail_user</span> <span class="o">=</span> <span class="s1">&#39;jerrylsu&#39;</span>
-<span class="n">mail_pass</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;输入授权码102：&#39;</span><span class="p">)</span>  <span class="c1"># 授权码， 非密码 …</span></code></pre></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~232 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Python-email.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Python-logging.html">Python&nbsp;logging</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 28, 2019</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<p><a href="https://juejin.im/post/5bc2bd3a5188255c94465d31">logging总结</a></p>
-<p>Logger：记录器，暴露函数给应用程序，基于日志记录器和过滤器级别决定哪些日志有效。</p>
-<p>Handler ：处理器,&nbsp;将(日志记录器产生的)日志 …</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~100 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Python-logging.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~124 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Python-setdefault.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="../category/programming.html">programming</a>

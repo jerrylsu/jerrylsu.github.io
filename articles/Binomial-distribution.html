@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<head>
+
+        <!-- Required metadata tags -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- Default metadata -->
+    <meta name="author" content="Jerry Su" />
+    <meta name="description" content="n次伯努利实验，样本相互独立，单次成功概率为p，服从参数为n和p的二项分布: $$P\{ x= m\} =C_{n}^{m}p^{m}\left( 1-p\right) ^{n-m} \ \ (其中，0&lt;p&lt;1, m=0,1,...,n)$$ 累计概率分布函数 …" />
+    <meta name="keywords" content="Machine Learning, Statistics">
+<meta property="og:site_name" content="JERRYLSU.NET" />
+<meta property="og:title" content="Binomial distribution" />
+<meta property="og:description" content="n次伯努利实验，样本相互独立，单次成功概率为p，服从参数为n和p的二项分布: $$P\{ x= m\} =C_{n}^{m}p^{m}\left( 1-p\right) ^{n-m} \ \ (其中，0&lt;p&lt;1, m=0,1,...,n)$$ 累计概率分布函数 …" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="../articles/Binomial-distribution.html" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-05 10:17:17+08:00" />
+<meta property="article:modified_time" content="" />
+<meta property="article:author" content="../author/jerry-su.html">
+<meta property="article:section" content="ML" />
+	<meta property="article:tag" content="Machine Learning" />
+	<meta property="article:tag" content="Statistics" />
+	<meta property="og:image" content="../jerry.jpg">
+
+        <!-- Site Claim -->
+
+
+        <!-- Title -->
+        <title>
+    Binomial distribution &ndash; JERRYLSU.NET
+        </title>
+        
+        <!-- Icon -->
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon.ico" type="image/x-icon">
+
+        <!-- Search engine -->
+            <meta name="robots" content="" />
+
+        <!-- Feeds -->
+
+
+
+
+
+
+
+
+        <!-- Styles -->
+        <!--
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/css/bootstrap.min.css">
+        -->
+        <link rel="stylesheet" href="../theme/bootstrap/bootstrap.min.css">
+        <!--
+        <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
+        -->
+        <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
+        <!--
+        <link rel="stylesheet" href="../theme/extra/admonition.min.css">
+        -->
+        <link rel="stylesheet" href="../theme/style.css">
+
+        <!-- Google Analytics -->
+<script>
+(function(i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m) })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-42618265-2', 'auto');
+ga('send', 'pageview');
+</script>
+        <!-- Google Global Site Tag -->
+
+        <!-- Google Tag Manager -->
+
+        <!-- Google Adsense -->
+
+        <!-- Heap Analytic -->
+
+        <!-- Piwik Tracking -->
+
+        <!-- Matomo Tracking -->
+
+</head>
+
+<!-- Body -->
+<body class="d-flex flex-column" data-spy="scroll" data-target="#toc" data-offset="0" style="position: relative;">
+    <!-- Top anchor -->
+    <a href="#" id="backToTop" style="display: none; z-index: 1;" title="Back to top"><span></span></a>
+
+    <!-- Google tag manager -->
+
+    <!-- Navigation -->
+    <nav class="flex-shrink-0 navbar navbar-expand-md navbar-expand-lg navbar-dark bg-dark text-light shadow-sm">
+        <!-- Logo -->
+        <a class="navbar-brand" href="..">JERRYLSU.NET</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon small"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <!-- i18n subsites -->
+
+            <!-- Page links -->
+            <ul class="navbar-nav mr-auto text-center">
+                <li class="nav-item ">                           
+                    <a class="nav-link" href="..">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z" fill="currentColor"></path>
+                        </svg>
+                        Home <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../categories.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M16 6h-8v-6h8v6zm-8 12h-8v6h8v-6zm16 0h-8v6h8v-6zm-11-7v-3h-2v3h-8v5h2v-3h14v3h2v-5h-8z" fill="currentColor"></path>
+                        </svg>
+                        Categories
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../tags.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M10.605 0h-10.605v10.609l13.391 13.391 10.609-10.604-13.395-13.396zm-4.191 6.414c-.781.781-2.046.781-2.829.001-.781-.783-.781-2.048 0-2.829.782-.782 2.048-.781 2.829-.001.782.782.781 2.047 0 2.829z" fill="currentColor"></path>
+                        </svg>
+                        Tags
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../archives.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M1.8 9l-.8-4h22l-.8 4h-2.029l.39-2h-17.122l.414 2h-2.053zm18.575-6l.604-2h-17.979l.688 2h16.687zm3.625 8l-2 13h-20l-2-13h24zm-8 4c0-.552-.447-1-1-1h-6c-.553 0-1 .448-1 1s.447 1 1 1h6c.553 0 1-.448 1-1z" fill="currentColor"></path>
+                        </svg>
+                        Archives
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../pages/about.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z" fill="currentColor"></path>
+                        </svg>
+                        About
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Search form -->
+            <form class="form-inline text-center" action="../search.html">
+                <input class="form-control w-100 bg-dark text-light text-center border-0 p-2" type="text" name="q" pattern=".{3,}" title="At least 3 characters" required="" placeholder="Type here to search" aria-label="Search">
+            </form>
+
+            <!-- Social links -->
+            <ul class="navbar-nav text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://facebook.com/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Facebook</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Github</title>
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.linkedin.com/in/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Linkedin</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://twitter.com/Jerrylsu666">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Twitter</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Full page -->
+    <div class="flex-shrink-0 flex-grow-1">
+
+        <!-- Header -->
+        <header class="bg-dark text-light shadow-sm pt-3 pb-2">
+	<div class="container">
+		<h3 id="Binomial-distribution">Binomial&nbsp;distribution</h3>
+		<p style="font-size:larger;"><p>n次伯努利实验，样本相互独立，单次成功概率为p，服从参数为n和p的二项分布:</p>
+<div class="math">$$P\{ x= m\} =C_{n}^{m}p^{m}\left( 1-p\right) ^{n-m}   \ \ (其中，0&lt;p&lt;1,  m=0,1,...,n)$$</div>
+<p>累计概率分布函数 …</p></p>
+        <div class="row mx-auto mt-3">
+            <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
+                <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
+                <span class="card-link text-success">
+                    <span class="post-date" title="Post date">Jan 05, 2022</span>
+                    <span class="text-info modified-date" title="Updated date">
+                            Jan 05, 2022
+                    </span>
+                </span>
+                    <span class="card-link text-secondary" title="~614 words">3 mins</span>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
+                <a class="badge badge-success" href="../category/ml.html">ml</a>
+                    <a class="badge badge-info" href="../tag/machine-learning.html">machine learning</a>
+                    <a class="badge badge-info" href="../tag/statistics.html">statistics</a>
+            </div>
+        </div>
+	</div>
+        </header>
+
+        <!-- Main -->
+        <main class="py-3">
+                <div class="container">
+                    <!-- Sharing -->
+
+                    <!-- Content -->
+    <!-- 2 columns layout -->
+    <!-- single column layout -->
+        <!-- Sharing -->
+            <div class="text-right mb-2 small" style="height: 26px">
+                <div class="addthis_inline_share_toolbox"></div>
+            </div>
+
+        <!-- Share post -->
+
+        <!-- Article -->
+        <div>
+            <p>n次伯努利实验，样本相互独立，单次成功概率为p，服从参数为n和p的二项分布:</p>
+<div class="math">$$P\{ x= m\} =C_{n}^{m}p^{m}\left( 1-p\right) ^{n-m}   \ \ (其中，0&lt;p&lt;1,  m=0,1,...,n)$$</div>
+<p>累计概率分布函数：</p>
+<div class="math">$$F\left( m\right) =P\{ X \leq m\} =\sum ^{m}_{i=0}C_{n}^{i}p^{i}\left( 1-p\right) ^{n-i}$$</div>
+<p>二项分布的两种逼近：泊松分布 和&nbsp;标准正态分布(拉普拉斯中心极限定理)</p>
+<ul>
+<li>
+<p>当n很大，p较小（稀有事件，一般小于0.1），即np=<span class="math">\(\lambda\)</span>较小，近似逼近泊松分布</p>
+</li>
+<li>
+<p>当n很大，p较大，即np也很大，近似逼近标准正态分布   <span class="math">\(Z=\dfrac{X-np}{\sqrt{np\left( 1-p\right) }}\)</span> ，<span class="math">\(X=\sum ^{n}_{i=0}x_{i}\)</span> 对于二项分布，<span class="math">\(x_{i}\)</span>为所有事件和，即成功次数。</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">abnormality</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="n">total</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">cdf</span><span class="p">((</span><span class="n">total</span> <span class="o">-</span> <span class="n">loss</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">abnormality</span> <span class="o">=</span> <span class="p">((</span><span class="n">total</span> <span class="o">-</span> <span class="n">loss</span><span class="p">)</span> <span class="o">-</span> <span class="n">total</span> <span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">total</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">))</span>
+</code></pre></div>
+
+<p>在计算二项分布的分布函数<span class="math">\(F_{m}\)</span>时，由于需要多次计算<span class="math">\(C_{n}^{i}\)</span>，对cpu计算资源消耗过大，故采用拉普拉斯中心极限定理或泊分布近似计算。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="err">?</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">31mSignature</span><span class="o">:</span><span class="err">[</span><span class="n">0m</span><span class="w">       </span><span class="err">[</span><span class="n">0mstats</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="p">.</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="n">0mbinom</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="p">(</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="o">*</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="n">0margs</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="p">,</span><span class="err">[</span><span class="n">0m</span><span class="w"> </span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="o">**</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="n">0mkwds</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="p">)</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="n">0m</span><span class="w"></span>
+<span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">31mType</span><span class="o">:</span><span class="err">[</span><span class="n">0m</span><span class="w">            </span><span class="n">binom_gen</span><span class="w"></span>
+<span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">31mString</span><span class="w"> </span><span class="n">form</span><span class="o">:</span><span class="err">[</span><span class="n">0m</span><span class="w">     </span><span class="o">&lt;</span><span class="n">scipy</span><span class="p">.</span><span class="n">stats</span><span class="p">.</span><span class="n">_discrete_distns</span><span class="p">.</span><span class="n">binom_gen</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="mh">0x7fc9b026c8b0</span><span class="o">&gt;</span><span class="w"></span>
+<span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">31mFile</span><span class="o">:</span><span class="err">[</span><span class="n">0m</span><span class="w">            </span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">blog</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">stats</span><span class="o">/</span><span class="n">_discrete_distns</span><span class="p">.</span><span class="n">py</span><span class="w"></span>
+<span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">31mDocstring</span><span class="o">:</span><span class="err">[</span><span class="n">0m</span><span class="w">      </span>
+<span class="n">A</span><span class="w"> </span><span class="n">binomial</span><span class="w"> </span><span class="n">discrete</span><span class="w"> </span><span class="k">random</span><span class="w"> </span><span class="n">variable</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">As</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">instance</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">`rv_discrete`</span><span class="w"> </span><span class="n">class</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`binom`</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="n">inherits</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">it</span><span class="w"></span>
+<span class="n">a</span><span class="w"> </span><span class="n">collection</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">generic</span><span class="w"> </span><span class="n">methods</span><span class="w"> </span><span class="p">(</span><span class="n">see</span><span class="w"> </span><span class="n">below</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">full</span><span class="w"> </span><span class="k">list</span><span class="p">),</span><span class="w"></span>
+<span class="k">and</span><span class="w"> </span><span class="n">completes</span><span class="w"> </span><span class="n">them</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">details</span><span class="w"> </span><span class="k">specific</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">particular</span><span class="w"> </span><span class="n">distribution</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">Methods</span><span class="w"></span>
+<span class="o">-------</span><span class="w"></span>
+<span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">random_state</span><span class="o">=</span><span class="k">None</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">Random</span><span class="w"> </span><span class="n">variates</span><span class="p">.</span><span class="w"></span>
+<span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Probability</span><span class="w"> </span><span class="n">mass</span><span class="w"> </span><span class="k">function</span><span class="p">.</span><span class="w"></span>
+<span class="n">logpmf</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Log</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">probability</span><span class="w"> </span><span class="n">mass</span><span class="w"> </span><span class="k">function</span><span class="p">.</span><span class="w"></span>
+<span class="n">cdf</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Cumulative</span><span class="w"> </span><span class="n">distribution</span><span class="w"> </span><span class="k">function</span><span class="p">.</span><span class="w"></span>
+<span class="n">logcdf</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Log</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">cumulative</span><span class="w"> </span><span class="n">distribution</span><span class="w"> </span><span class="k">function</span><span class="p">.</span><span class="w"></span>
+<span class="n">sf</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Survival</span><span class="w"> </span><span class="k">function</span><span class="w">  </span><span class="p">(</span><span class="n">also</span><span class="w"> </span><span class="n">defined</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cdf</span><span class="n n-Quoted">``</span><span class="p">,</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n n-Quoted">`sf`</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">sometimes</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="n">accurate</span><span class="p">).</span><span class="w"></span>
+<span class="n">logsf</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Log</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">survival</span><span class="w"> </span><span class="k">function</span><span class="p">.</span><span class="w"></span>
+<span class="n">ppf</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Percent</span><span class="w"> </span><span class="kt">point</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="p">(</span><span class="n">inverse</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">cdf</span><span class="n n-Quoted">``</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="n">percentiles</span><span class="p">).</span><span class="w"></span>
+<span class="n">isf</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Inverse</span><span class="w"> </span><span class="n">survival</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="p">(</span><span class="n">inverse</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">sf</span><span class="n n-Quoted">``</span><span class="p">).</span><span class="w"></span>
+<span class="n">stats</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mv&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Mean</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">),</span><span class="w"> </span><span class="nf">variance</span><span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">skew</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">),</span><span class="w"> </span><span class="k">and</span><span class="o">/</span><span class="k">or</span><span class="w"> </span><span class="n">kurtosis</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">).</span><span class="w"></span>
+<span class="n">entropy</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="n">Differential</span><span class="p">)</span><span class="w"> </span><span class="n">entropy</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">RV</span><span class="p">.</span><span class="w"></span>
+<span class="n">expect</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">),</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">lb</span><span class="o">=</span><span class="k">None</span><span class="p">,</span><span class="w"> </span><span class="n">ub</span><span class="o">=</span><span class="k">None</span><span class="p">,</span><span class="w"> </span><span class="n">conditional</span><span class="o">=</span><span class="no">False</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Expected</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="p">(</span><span class="k">of</span><span class="w"> </span><span class="k">one</span><span class="w"> </span><span class="n">argument</span><span class="p">)</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="k">respect</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">distribution</span><span class="p">.</span><span class="w"></span>
+<span class="n">median</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Median</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">distribution</span><span class="p">.</span><span class="w"></span>
+<span class="n">mean</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Mean</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">distribution</span><span class="p">.</span><span class="w"></span>
+<span class="n">var</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Variance</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">distribution</span><span class="p">.</span><span class="w"></span>
+<span class="nf">std</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Standard</span><span class="w"> </span><span class="n">deviation</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">distribution</span><span class="p">.</span><span class="w"></span>
+<span class="k">interval</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">Endpoints</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">contains</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="n">percent</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">distribution</span><span class="w"></span>
+
+<span class="n">Notes</span><span class="w"></span>
+<span class="o">-----</span><span class="w"></span>
+<span class="n">The</span><span class="w"> </span><span class="n">probability</span><span class="w"> </span><span class="n">mass</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n n-Quoted">`binom`</span><span class="w"> </span><span class="k">is</span><span class="o">:</span><span class="w"></span>
+
+<span class="p">..</span><span class="w"> </span><span class="n">math</span><span class="o">::</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">f</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">\</span><span class="n">binom</span><span class="err">{</span><span class="n">n</span><span class="err">}{</span><span class="n">k</span><span class="err">}</span><span class="w"> </span><span class="n">p</span><span class="o">^</span><span class="n">k</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">^</span><span class="err">{</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="err">}</span><span class="w"></span>
+
+<span class="k">for</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">k</span><span class="n n-Quoted">``</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="err">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,...,</span><span class="w"> </span><span class="n">n</span><span class="err">}</span><span class="n n-Quoted">``</span><span class="p">.</span><span class="w"></span>
+
+<span class="n n-Quoted">`binom`</span><span class="w"> </span><span class="n">takes</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">n</span><span class="n n-Quoted">``</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">p</span><span class="n n-Quoted">``</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="n">parameters</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">The</span><span class="w"> </span><span class="n">probability</span><span class="w"> </span><span class="n">mass</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">above</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">defined</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="s2">&quot;standardized&quot;</span><span class="w"> </span><span class="n">form</span><span class="p">.</span><span class="w"></span>
+<span class="k">To</span><span class="w"> </span><span class="n">shift</span><span class="w"> </span><span class="n">distribution</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">loc</span><span class="n n-Quoted">``</span><span class="w"> </span><span class="n">parameter</span><span class="p">.</span><span class="w"></span>
+<span class="n">Specifically</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">binom</span><span class="p">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">loc</span><span class="p">)</span><span class="n n-Quoted">``</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">identically</span><span class="w"></span>
+<span class="n">equivalent</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">binom</span><span class="p">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">loc</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="n n-Quoted">``</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">Examples</span><span class="w"></span>
+<span class="o">--------</span><span class="w"></span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">scipy</span><span class="p">.</span><span class="n">stats</span><span class="w"> </span><span class="k">import</span><span class="w"> </span><span class="n">binom</span><span class="w"></span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="k">import</span><span class="w"> </span><span class="n">matplotlib</span><span class="p">.</span><span class="n">pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">plt</span><span class="w"></span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">fig</span><span class="p">,</span><span class="w"> </span><span class="n">ax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">Calculate</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">few</span><span class="w"> </span><span class="k">first</span><span class="w"> </span><span class="n">moments</span><span class="o">:</span><span class="w"></span>
+
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.4</span><span class="w"></span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span><span class="w"> </span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">skew</span><span class="p">,</span><span class="w"> </span><span class="n">kurt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">binom</span><span class="p">.</span><span class="n">stats</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">Display</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">probability</span><span class="w"> </span><span class="n">mass</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="p">(</span><span class="n n-Quoted">``</span><span class="n">pmf</span><span class="n n-Quoted">``</span><span class="p">)</span><span class="o">:</span><span class="w"></span>
+
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="n">binom</span><span class="p">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">),</span><span class="w"></span>
+<span class="p">...</span><span class="w">               </span><span class="n">binom</span><span class="p">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">))</span><span class="w"></span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">binom</span><span class="p">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;bo&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ms</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;binom pmf&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">ax</span><span class="p">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">binom</span><span class="p">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">),</span><span class="w"> </span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">Alternatively</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">distribution</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">called</span><span class="w"> </span><span class="p">(</span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">function</span><span class="p">)</span><span class="w"></span>
+<span class="k">to</span><span class="w"> </span><span class="n">fix</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">location</span><span class="p">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="k">returns</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="s2">&quot;frozen&quot;</span><span class="w"> </span><span class="n">RV</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="n">holding</span><span class="w"></span>
+<span class="n">the</span><span class="w"> </span><span class="n">given</span><span class="w"> </span><span class="n">parameters</span><span class="w"> </span><span class="kt">fixed</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">Freeze</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">distribution</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">frozen</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">pmf</span><span class="n n-Quoted">``</span><span class="o">:</span><span class="w"></span>
+
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">binom</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"></span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">ax</span><span class="p">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">rv</span><span class="p">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="p">...</span><span class="w">         </span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;frozen pmf&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">ax</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">frameon</span><span class="o">=</span><span class="no">False</span><span class="p">)</span><span class="w"></span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">plt</span><span class="p">.</span><span class="k">show</span><span class="p">()</span><span class="w"></span>
+
+<span class="k">Check</span><span class="w"> </span><span class="n">accuracy</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">cdf</span><span class="n n-Quoted">``</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">ppf</span><span class="n n-Quoted">``</span><span class="o">:</span><span class="w"></span>
+
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">binom</span><span class="p">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"></span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">binom</span><span class="p">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">))</span><span class="w"></span>
+<span class="no">True</span><span class="w"></span>
+
+<span class="n">Generate</span><span class="w"> </span><span class="k">random</span><span class="w"> </span><span class="n">numbers</span><span class="o">:</span><span class="w"></span>
+
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">binom</span><span class="p">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="w"></span>
+<span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">31mClass</span><span class="w"> </span><span class="n">docstring</span><span class="o">:</span><span class="err">[</span><span class="n">0m</span><span class="w"></span>
+<span class="n">A</span><span class="w"> </span><span class="n">binomial</span><span class="w"> </span><span class="n">discrete</span><span class="w"> </span><span class="k">random</span><span class="w"> </span><span class="n">variable</span><span class="p">.</span><span class="w"></span>
+
+<span class="o">%</span><span class="p">(</span><span class="n">before_notes</span><span class="p">)</span><span class="n">s</span><span class="w"></span>
+
+<span class="n">Notes</span><span class="w"></span>
+<span class="o">-----</span><span class="w"></span>
+<span class="n">The</span><span class="w"> </span><span class="n">probability</span><span class="w"> </span><span class="n">mass</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n n-Quoted">`binom`</span><span class="w"> </span><span class="k">is</span><span class="o">:</span><span class="w"></span>
+
+<span class="p">..</span><span class="w"> </span><span class="n">math</span><span class="o">::</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">f</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">\</span><span class="n">binom</span><span class="err">{</span><span class="n">n</span><span class="err">}{</span><span class="n">k</span><span class="err">}</span><span class="w"> </span><span class="n">p</span><span class="o">^</span><span class="n">k</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">^</span><span class="err">{</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="err">}</span><span class="w"></span>
+
+<span class="k">for</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">k</span><span class="n n-Quoted">``</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="err">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,...,</span><span class="w"> </span><span class="n">n</span><span class="err">}</span><span class="n n-Quoted">``</span><span class="p">.</span><span class="w"></span>
+
+<span class="n n-Quoted">`binom`</span><span class="w"> </span><span class="n">takes</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">n</span><span class="n n-Quoted">``</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">p</span><span class="n n-Quoted">``</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="n">parameters</span><span class="p">.</span><span class="w"></span>
+
+<span class="o">%</span><span class="p">(</span><span class="n">after_notes</span><span class="p">)</span><span class="n">s</span><span class="w"></span>
+
+<span class="o">%</span><span class="p">(</span><span class="n">example</span><span class="p">)</span><span class="n">s</span><span class="w"></span>
+<span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">31mCall</span><span class="w"> </span><span class="n">docstring</span><span class="o">:</span><span class="err">[</span><span class="n">0m</span><span class="w"> </span>
+<span class="n">Freeze</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">distribution</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">given</span><span class="w"> </span><span class="n">arguments</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">Parameters</span><span class="w"></span>
+<span class="o">----------</span><span class="w"></span>
+<span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="n">arg3</span><span class="p">,...</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">array_like</span><span class="w"></span>
+<span class="w">    </span><span class="n">The</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="n">parameter</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">distribution</span><span class="p">.</span><span class="w">  </span><span class="n">Should</span><span class="w"> </span><span class="n">include</span><span class="w"> </span><span class="k">all</span><span class="w"></span>
+<span class="w">    </span><span class="n">the</span><span class="w"> </span><span class="n">non</span><span class="o">-</span><span class="k">optional</span><span class="w"> </span><span class="n">arguments</span><span class="p">,</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">include</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">loc</span><span class="n n-Quoted">``</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n n-Quoted">``</span><span class="n">scale</span><span class="n n-Quoted">``</span><span class="p">.</span><span class="w"></span>
+
+<span class="k">Returns</span><span class="w"></span>
+<span class="o">-------</span><span class="w"></span>
+<span class="n">rv_frozen</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">rv_frozen</span><span class="w"> </span><span class="k">instance</span><span class="w"></span>
+<span class="w">    </span><span class="n">The</span><span class="w"> </span><span class="n">frozen</span><span class="w"> </span><span class="n">distribution</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">ppf</span><span class="err">?</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">31mSignature</span><span class="o">:</span><span class="err">[</span><span class="n">0m</span><span class="w"> </span><span class="err">[</span><span class="n">0mstats</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="p">.</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="n">0mbinom</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="p">.</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="n">0mppf</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="p">(</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="n">0mq</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="p">,</span><span class="err">[</span><span class="n">0m</span><span class="w"> </span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="o">*</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="n">0margs</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="p">,</span><span class="err">[</span><span class="n">0m</span><span class="w"> </span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="o">**</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="n">0mkwds</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="p">)</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">34m</span><span class="err">[</span><span class="n">0m</span><span class="err">[</span><span class="n">0m</span><span class="w"></span>
+<span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">31mDocstring</span><span class="o">:</span><span class="err">[</span><span class="n">0m</span><span class="w"></span>
+<span class="n">Percent</span><span class="w"> </span><span class="kt">point</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="p">(</span><span class="n">inverse</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n n-Quoted">`cdf`</span><span class="p">)</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">given</span><span class="w"> </span><span class="n">RV</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">Parameters</span><span class="w"></span>
+<span class="o">----------</span><span class="w"></span>
+<span class="n">q</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">array_like</span><span class="w"></span>
+<span class="w">    </span><span class="n">Lower</span><span class="w"> </span><span class="n">tail</span><span class="w"> </span><span class="n">probability</span><span class="p">.</span><span class="w"></span>
+<span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="n">arg3</span><span class="p">,...</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">array_like</span><span class="w"></span>
+<span class="w">    </span><span class="n">The</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="n">parameter</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">distribution</span><span class="w"> </span><span class="p">(</span><span class="n">see</span><span class="w"> </span><span class="n">docstring</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
+<span class="w">    </span><span class="k">instance</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="n">information</span><span class="p">).</span><span class="w"></span>
+<span class="n">loc</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">array_like</span><span class="p">,</span><span class="w"> </span><span class="k">optional</span><span class="w"></span>
+<span class="w">    </span><span class="n">Location</span><span class="w"> </span><span class="n">parameter</span><span class="w"> </span><span class="p">(</span><span class="k">default</span><span class="o">=</span><span class="mi">0</span><span class="p">).</span><span class="w"></span>
+
+<span class="k">Returns</span><span class="w"></span>
+<span class="o">-------</span><span class="w"></span>
+<span class="n">k</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">array_like</span><span class="w"></span>
+<span class="w">    </span><span class="n">Quantile</span><span class="w"> </span><span class="n">corresponding</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">lower</span><span class="w"> </span><span class="n">tail</span><span class="w"> </span><span class="n">probability</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="w"></span>
+<span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">31mFile</span><span class="o">:</span><span class="err">[</span><span class="n">0m</span><span class="w">      </span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">blog</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">stats</span><span class="o">/</span><span class="n">_distn_infrastructure</span><span class="p">.</span><span class="n">py</span><span class="w"></span>
+<span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">31mType</span><span class="o">:</span><span class="err">[</span><span class="n">0m</span><span class="w">      </span><span class="n">method</span><span class="w"></span>
+</code></pre></div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+        </div>
+
+        <!-- Neighbors -->
+            <br>
+            <b>Read more:</b><br>
+<div class="pagination">
+    <a class="w-50" href="../articles/Numpy-[None, ...].html">
+&ll; Numpy [None,&nbsp;&#8230;]
+    </a>
+    <a class="w-50 text-right" href="../articles/Scipy-stats.html">
+        Scipy&nbsp;stats &gg;    </a>
+</div>
+        <!-- Google Adsense -->
+
+    <!-- Releated posts -->
+        <hr>
+        <div>
+            <h5>Related posts:</h5>
+            <ul>
+                <li><a href="../articles/Scipy-stats.html">Scipy&nbsp;stats</a></li>
+                <li><a href="../articles/Faiss.html">Faiss</a></li>
+                <li><a href="../articles/Cross-Validation-CV.html">Cross Validation-<span class="caps">CV</span></a></li>
+                <li><a href="../articles/Logistic-Regression.html">Logistic&nbsp;Regression</a></li>
+                <li><a href="../articles/Automated-Feature-Engineering:-Featuretools.html">Automated Feature Engineering:&nbsp;Featuretools</a></li>
+            </ul>
+        </div>
+
+    <!-- Comments -->
+        <hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'jerrylsu-github-io';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                </div>
+        </main>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="flex-shrink-0 bg-dark text-light small py-1">
+        <div class="container text-center">
+            &copy; 2022 <a href="..">JERRYLSU.NET</a> by <a href="../pages/about.html">JERRY</a>. Powered by <a href="http://getpelican.com">Pelican</a>, <a href="http://python.org">Python</a>, <a href="https://getbootstrap.com">Bootstrap 4</a><br>
+            <!-- Do not remove below license sentence -->
+            License: <a href="https://spdx.org/licenses/CC-BY-4.0.html">CC-BY-4.0</a>, based on <a href="https://github.com/vuquangtrong/simplify-theme">Simplify Bootstrap Theme</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!--
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    -->
+    <script type="text/javascript" src="../theme/jquery/jquery-3.4.1.min.js"></script>
+    <!--
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/bootstrap.min.js"></script>
+    -->
+    <script type="text/javascript" src="../theme/bootstrap/bootstrap.min.js"></script>
+    <!--
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
+    -->
+    <script type="text/javascript" src="../theme/style.js"></script>
+
+    <!-- Sharing -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d9ffca0db80069e"></script>
+
+    <!-- JSON LD -->
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "name": "Binomial distribution",
+    "headline": "Binomial distribution",
+    "datePublished": "2022-01-05 10:17:17+08:00",
+    "dateModified": "",
+    "author": {
+        "@type": "Person",
+        "name": "Jerry Su",
+        "url": "../author/jerry-su.html"
+    },
+    "image": "../jerry.jpg",
+    "url": "../articles/Binomial-distribution.html",
+    "description": "n次伯努利实验，样本相互独立，单次成功概率为p，服从参数为n和p的二项分布: $$P\{ x= m\} =C_{n}^{m}p^{m}\left( 1-p\right) ^{n-m} \ \ (其中，0<p<1, m=0,1,...,n)$$ 累计概率分布函数 …"
+}
+</script>
+    <!-- Disqus count -->
+</body>
+
+</html>

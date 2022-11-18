@@ -217,246 +217,23 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Checking-DataFrame/Series-missing-values.html">Checking DataFrame/Series missing&nbsp;values</a>
+                    <a href="../articles/tensor.detach/torch.detach_/torch.data.html">tensor.detach/torch.detach_/torch.data</a>
                 </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 12, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#checking-dataframe-missing-values">Checking DataFrame missing&nbsp;values</a></li>
-<li><a href="#checking-series-missing-values">Checking Series missing&nbsp;values</a></li>
-<li><a href="#has_missing-method">has_missing&nbsp;method</a></li>
-</ul>
-</div>
-<h2 id="checking-dataframe-missing-values">Checking DataFrame missing&nbsp;values</h2>
-<p><code>cols_missing = frame.columns[frame.isna().any()]</code><br>
-<img alt="asset_img missing_value" src="images/Checking-DataFrame-Series-missing-values/missing_value.jpg"></p>
-<h2 id="checking-series-missing-values">Checking Series missing&nbsp;values</h2>
-<p><code>series.isna().any()</code></p>
-<h2 id="has_missing-method">has_missing&nbsp;method</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">pandas.core.frame</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="kn">from</span> <span class="nn">pandas.core.series</span> <span class="kn">import</span> <span class="n">Series</span>
-<span class="kn">import …</span></code></pre></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~90 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Checking-DataFrame/Series-missing-values.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Python-email.html">Python&nbsp;email</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 28, 2019</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">smtplib</span>
-<span class="kn">from</span> <span class="nn">email.mime.text</span> <span class="kn">import</span> <span class="n">MIMEText</span>
-<span class="kn">from</span> <span class="nn">email.mime.multipart</span> <span class="kn">import</span> <span class="n">MIMEMultipart</span>
-<span class="kn">from</span> <span class="nn">email.mime.image</span> <span class="kn">import</span> <span class="n">MIMEImage</span>
-
-<span class="c1">#设置登录及服务器信息</span>
-<span class="n">mail_host</span> <span class="o">=</span> <span class="s1">&#39;smtp.163.com&#39;</span>
-<span class="n">mail_user</span> <span class="o">=</span> <span class="s1">&#39;jerrylsu&#39;</span>
-<span class="n">mail_pass</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;输入授权码102：&#39;</span><span class="p">)</span>  <span class="c1"># 授权码， 非密码 …</span></code></pre></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~232 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Python-email.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Python-logging.html">Python&nbsp;logging</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 28, 2019</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<p><a href="https://juejin.im/post/5bc2bd3a5188255c94465d31">logging总结</a></p>
-<p>Logger：记录器，暴露函数给应用程序，基于日志记录器和过滤器级别决定哪些日志有效。</p>
-<p>Handler ：处理器,&nbsp;将(日志记录器产生的)日志 …</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~100 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Python-logging.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/python.html">python</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Spark SQL Join.html">Spark <span class="caps">SQL</span>&nbsp;Join</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 21, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#join-in-hive">Join in Hive</a><ul>
-<li><a href="#common-join">Common&nbsp;Join</a></li>
-<li><a href="#map-join">Map&nbsp;Join</a></li>
-<li><a href="#skewed-join">Skewed&nbsp;Join</a></li>
-<li><a href="#bucket-join">Bucket&nbsp;Join</a></li>
-</ul>
-</li>
-<li><a href="#join-in-spark-sql">Join in Spark <span class="caps">SQL</span></a><ul>
-<li><a href="#map-join_1">Map&nbsp;Join</a></li>
-<li><a href="#broadcast-map-join">Broadcast Map&nbsp;Join</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<h1 id="join-in-hive">Join in&nbsp;Hive</h1>
-<h2 id="common-join">Common&nbsp;Join</h2>
-<p>在Hive查询的性能调优期间，需要注意的一个方面是执行期间的join的类型。<br>
-Common Join是Hive中的默认join类型，也称为Shuffle Join …</p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~296 words">Read in 2 mins</span>
-                            <span class="card-link"><a href="../articles/Spark SQL Join.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/spark.html">spark</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Spark:-Shuffling-and-Partitioning.html">Spark: Shuffling and&nbsp;Partitioning</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 11, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#shuffling">Shuffling</a><ul>
-<li><a href="#orgapachesparkrddrddstring-int-shuffledrdd366">org.apache.spark.rdd.<span class="caps">RDD</span>[(String, Int)]=&nbsp;ShuffledRDD[366]</a></li>
-<li><a href="#grouping-and-reducing-example">Grouping and Reducing,&nbsp;Example</a></li>
-<li><a href="#reminder-latency">Reminder:&nbsp;Latency</a></li>
-<li><a href="#grouping-and-reducing-example-optimized">Grouping and Reducing, Example -&nbsp;Optimized</a></li>
-<li><a href="#groupbykey-and-reducebykey-running-times">groupByKey and reduceByKey Running&nbsp;Times</a></li>
-<li><a href="#shuffling_1">Shuffling</a></li>
-</ul>
-</li>
-<li><a href="#partitioning">Partitioning</a><ul>
-<li><a href="#partitions">Partitions</a></li>
-<li><a href="#hash-partitioning">Hash partitioning</a><ul>
-<li><a href="#hash-partitioning-example">Hash Partitioning:&nbsp;Example</a></li>
-</ul>
-</li>
-<li><a href="#range-partitioning">Range partitioning</a><ul>
-<li><a href="#range-partitioning-example">Range Partitioning:&nbsp;Example</a></li>
-</ul>
-</li>
-<li><a href="#partitioning-data">Partitioning Data</a><ul>
-<li><a href="#partitioning-data-partitionby">Partitioning Data:&nbsp;partitionBy</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<h1 id="shuffling">Shuffling</h1>
-<h2 id="orgapachesparkrddrddstring-int-shuffledrdd366">org.apache.spark.rdd.<span class="caps">RDD …</span></h2></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~524 words">Read in 3 mins</span>
-                            <span class="card-link"><a href="../articles/Spark:-Shuffling-and-Partitioning.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/spark.html">spark</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Scala with Gradle in Intellij.html">Scala with Gradle in&nbsp;Intellij</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 28, 2019</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<ol>
-<li>
-<p>Create a directory (e.g., demo_proj) for your&nbsp;project.</p>
-</li>
-<li>
-<p>Run <code>gradle init --type scala-library</code> in terminal in the above&nbsp;directory.</p>
-</li>
-<li>
-<p>Import the directory as a Gradle project in&nbsp;IntelliJ.</p>
-</li>
-</ol>
-<p><a href="https://blog.csdn.net/wangdong5678999/article/details/70255451">IntelliJ如何导入Gradle项目</a><br>
-<a href="https://medium.com/@faizanahemad/apache-spark-setup-with-gradle-scala-and-intellij-2eeb9f30c02a">Apache Spark setup with Gradle, Scala and&nbsp;IntelliJ</a></p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~37 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Scala with Gradle in Intellij.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/scala.html">scala</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Debugging-Spark-Application.html">Debugging Spark&nbsp;Application</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 26, 2019</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<div class="highlight"><pre><span></span><code>select
-    *
-from
-    table1 as A
-join
-    table as B
-on
-    A.item_id = B.item_id
-where
-    A.id in (1139426, 1139436)
-    and A.date &gt;= &#39;2018-12-01&#39;
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 18, 2021</span></span>
+                <p><p>https://pytorch.org/docs/stable/autograd.html#torch.Tensor.detach</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
 </code></pre></div>
 
-<p><code>yarn logs -applicationId &lt;app ID&gt; &gt; output_file</code></p>
-<div class="highlight"><pre><span></span><code><span class="mi">2019</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">21</span><span class="w"> </span><span class="mi">19</span><span class="o">:</span><span class="mi">23</span><span class="o">:</span><span class="mi">41</span><span class="w"> </span><span class="k">ERROR</span><span class="w"> </span><span class="n">ApplicationMaster</span><span class="o">:</span><span class="mi">91</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">User</span><span class="w"> </span><span class="n">class</span><span class="w"> </span><span class="n">threw</span><span class="w"> </span><span class="n">exception</span><span class="o">:</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="n">apache</span><span class="p">.</span><span class="n">spark</span><span class="p">.</span><span class="k">sql</span><span class="p">.</span><span class="n">AnalysisException</span><span class="o">:</span><span class="w"> </span><span class="k">Found</span><span class="w"> </span><span class="k">duplicate …</span></code></pre></div></p>
+<p>当我们再训练网络的时候可能希望保持一部分的网络参数不变，只对其中一部分的参数进 …</p></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~47 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Debugging-Spark-Application.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~552 words">Read in 3 mins</span>
+                            <span class="card-link"><a href="../articles/tensor.detach/torch.detach_/torch.data.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/spark.html">spark</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/pytorch.html">pytorch</a>
                     </div>
                 </div>
             </div>
@@ -464,130 +241,306 @@ where
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Scala.html">Scala</a>
+                    <a href="../articles/pytorch-create-tensor.html">Pytorch-create-tensor</a>
                 </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 13, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">前言</a></li>
-<li><a href="#functional-programming">Functional Programming</a><ul>
-<li><a href="#part-1-elements-of-functional-programming">Part-1: Elements of Functional Programming</a><ul>
-<li><a href="#pure-functions-and-side-effects">Pure functions and Side&nbsp;effects</a></li>
-<li><a href="#referential-transparency">Referential&nbsp;Transparency</a></li>
-<li><a href="#first-class-function-higher-order-functions">First Class Function <span class="amp">&amp;</span> Higher Order&nbsp;Functions</a></li>
-<li><a href="#anonymous-functions">Anonymous&nbsp;Functions</a></li>
-<li><a href="#immutability">Immutability</a></li>
-<li><a href="#functions">Functions</a></li>
-<li><a href="#functions-literals">Functions Literals</a><ul>
-<li><a href="#syntax">Syntax</a></li>
-<li><a href="#where-do-we-use-function-literals">Where do we use function&nbsp;literals?</a></li>
-</ul>
-</li>
-<li><a href="#placeholder-syntax">Placeholder&nbsp;Syntax</a></li>
-<li><a href="#higher-order-functions">Higher Order&nbsp;Functions</a></li>
-<li><a href="#varargs-named-arguments-default-value">VarArgs, Named Arguments, Default&nbsp;Value</a></li>
-<li><a href="#partially-applied-functions">Partially Applied&nbsp;Functions</a></li>
-</ul>
-</li>
-<li><a href="#part-2-elements-of-functional-programming">Part-2: Elements …</a></li></ul></li></ul></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~731 words">Read in 3 mins</span>
-                            <span class="card-link"><a href="../articles/Scala.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/scala.html">scala</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Spark-RDD.html">Spark <span class="caps">RDD</span></a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 03, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">核心概念和抽象</a><ul>
-<li><a href="#rdd"><span class="caps">RDD</span></a></li>
-<li><a href="#rdd-operations"><span class="caps">RDD</span> Operations</a><ul>
-<li><a href="#basics">Basics</a></li>
-<li><a href="#understanding-closures">Understanding&nbsp;closures</a></li>
-<li><a href="#action">Action</a></li>
-</ul>
-</li>
-<li><a href="#rdd-persistence"><span class="caps">RDD</span> Persistence</a><ul>
-<li><a href="#resiliency">Resiliency</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_2">高级主题</a><ul>
-<li><a href="#execution-scheduling">Execution <span class="amp">&amp;</span>&nbsp;Scheduling</a></li>
-<li><a href="#caching-persistence">Caching <span class="amp">&amp;</span>&nbsp;Persistence</a></li>
-<li><a href="#shared-variables">Shared Variables</a><ul>
-<li><a href="#broadcast-variables">Broadcast&nbsp;Variables</a></li>
-<li><a href="#accumulators">Accumulators</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#references">References</a></li>
-</ul>
-</div>
-<div class="highlight"><pre><span></span><code>Spark RDD要点总结：
-Spark RDD弹性分布式数据集
-1. RDD简介
-  - RDD的概述
-  - RDD的属性
-2. RDD的创建方式
-  - 从文件系统中加载数 …</code></pre></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~579 words">Read in 3 mins</span>
-                            <span class="card-link"><a href="../articles/Spark-RDD.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/spark.html">spark</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Building-Python-Package-with-Pybuilder.html">Building Python Package with&nbsp;Pybuilder</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Oct 03, 2018</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#building-python-package">Building Python&nbsp;Package</a></li>
-</ul>
-</div>
-<h2 id="building-python-package">Building Python&nbsp;Package</h2>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 07, 2021</span></span>
+                <p><p><span class="caps">CLASS</span>&nbsp;torch.Tensor</p>
+<p>There are a few main ways to create a tensor, depending on your use&nbsp;case.</p>
 <ul>
 <li>
-<p><strong>git + venv + pybuilder</strong><br>
-[1] <a href="https://virtualenv.pypa.io/en/stable/userguide/">virtualenv user guide</a><br>
-[2] <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432712108300322c61f256c74803b43bfd65c6f8d0d0000">廖雪峰-virtualenv</a><br>
-[3] <a href="http://pybuilder.github.io/documentation/tutorial.html#.XD12pPkzaUk">pybuilder tutorial</a><br>
-[4] <a href="https://dev.to/awwsmm/managing-your-python-project-with-git-and-pybuilder-21if">Managing Your Python Project with Git and PyBuilder</a><br>
-[5] <a href="http://pybuilder.github.io/documentation/examples.html#.XD2LevkzaUk">examples</a></p>
+<p>To create a tensor with pre-existing data, use&nbsp;torch.tensor().</p>
 </li>
 <li>
-<p><strong>How to add non-python file into a distribution?</strong><br>
-[1] <a href="https://github.com/pybuilder/pybuilder/issues/364">Install additional files </a><br>
-[2] <a href="https://pybuilder.readthedocs.io/en/latest/customizing-the-build.html#installing-files">doc</a></p>
+<p>To create a tensor with specific size, use torch.* tensor creation ops (see <a href="https://pytorch.org/docs/stable/torch.html#tensor-creation-ops">Creation Ops</a>).</p>
 </li>
-</ul>
-<p>使用<code>project.install_file …</code></p></p>
+<li>
+<p>To create a tensor with the same …</p></li></ul></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~63 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Building-Python-Package-with-Pybuilder.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~137 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/pytorch-create-tensor.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/pytorch.html">pytorch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/batch padding.html">batch&nbsp;padding</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 07, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_collate_batch</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Collate `examples` into a batch, using the information in `tokenizer` for padding if necessary.&quot;&quot;&quot;</span>
+    <span class="c1"># Tensorize if necessary.</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">examples</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="n">examples</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">]</span>
+
+    <span class="c1"># Check if padding is necessary.</span>
+    <span class="n">length_of_first</span> <span class="o">=</span> <span class="n">examples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">are_tensors_same_length</span> <span class="o">=</span> <span class="nb">all …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~121 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/batch padding.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/pytorch.html">pytorch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Python-dataclasses.html">Python&nbsp;dataclasses</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 05, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">asdict</span><span class="p">,</span> <span class="n">astuple</span>
+<span class="kn">import</span> <span class="nn">dataclasses</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Any</span>
+</code></pre></div>
+
+<p><a href="https://zhuanlan.zhihu.com/p/34963159?utm_source=wechatMessage_article_bottom">why&nbsp;dataclasses</a></p>
+<p><a href="https://docs.python.org/zh-cn/3/library/dataclasses.html">https://docs.python.org/zh-cn/3/library/dataclasses.html</a></p>
+<ul>
+<li>field&nbsp;被定义为具有类型标注的类变量。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="o">:</span><span class="w"></span>
+<span class="n">field</span><span class="o">(</span><span class="w"></span>
+<span class="w">    </span><span class="o">*,</span><span class="w"></span>
+<span class="w">    </span><span class="k">default</span><span class="o">=&lt;</span><span class="n">dataclasses</span><span class="o">.</span><span class="na">_MISSING_TYPE</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="mh">0x7f60fc21b7f0 …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~546 words">Read in 3 mins</span>
+                            <span class="card-link"><a href="../articles/Python-dataclasses.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/python.html">python</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/torch.rand/randn/randint.html">torch.rand/randn/randint</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 04, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+</code></pre></div>
+
+<h2 id="torchrand-0-1">torch.rand&nbsp;0-1均匀分布</h2>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Docstring:</span>
+<span class="sd">rand(*size, *, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False) -&gt; Tensor</span>
+
+<span class="sd">Returns a tensor filled with random numbers from a uniform distribution</span>
+<span class="sd">on the interval :math:`[0, 1)`</span>
+
+<span class="sd">The shape of the tensor is defined by the variable argument :attr:`size …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~946 words">Read in 4 mins</span>
+                            <span class="card-link"><a href="../articles/torch.rand/randn/randint.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/pytorch.html">pytorch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/torch.nn.CrossEntropyLoss.html">torch.nn.CrossEntropyLoss</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 04, 2021</span></span>
+                <p><p><a href="https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html#torch.nn.CrossEntropyLoss">https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html#torch.nn.CrossEntropyLoss</a></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">CrossEntropyLoss</span>
+
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">MAX_SEQ_LENGTH</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">EMBEDDING_SIZE</span> <span class="o">=</span> <span class="n">VOCAB_SIZE</span> <span class="o">=</span> <span class="mi">5</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">input_ids</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">MAX_SEQ_LENGTH</span><span class="p">,</span> <span class="n">EMBEDDING_SIZE</span><span class="p">))</span>
+<span class="n">input_ids</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[[-1.2207e-01,  9.4908e-01,  9.6387e-02,  1.4286e+00,  1.9476e+00],
+         [ 6.7663e-01,  8 …</code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~276 words">Read in 2 mins</span>
+                            <span class="card-link"><a href="../articles/torch.nn.CrossEntropyLoss.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="../tag/pytorch.html">pytorch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Python-typing.html">Python -&nbsp;typing</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 04, 2021</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span>
+</code></pre></div>
+
+<p><a href="https://docs.python.org/3/library/typing.html">https://docs.python.org/3/library/typing.html</a></p>
+<p>Any, Union, Tuple, List, Sequence, Mapping, Callable, TypeVar,Optional,&nbsp;Generic等的使用频率比较高，其中Union、Optional、Sequence、Mapping非常有用。</p>
+<ul>
+<li>Union</li>
+</ul>
+<p>即并集，所以Union[X, Y]&nbsp;意思是要么 …</p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~97 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Python-typing.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/python.html">python</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Python-Generator.html">Python -&nbsp;Generator</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 30, 2020</span></span>
+                <p><div class="toc">
+<ul></ul>
+</div>
+<p>函数体中存在yield关键字，即为生成器。调用生成器函数会返回一个生成器对象。即生成器函数就是生成器工厂。</p>
+<p>生成器是迭代器。</p>
+<div class="highlight"><pre><span></span><code><span class="k">def …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~105 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Python-Generator.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/python.html">python</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Python-Iterable-Iterator.html">Python - Iterable vs&nbsp;Iterator</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 30, 2020</span></span>
+                <p><div class="toc">
+<ul>
+<li><a href="#1-iterable">1.&nbsp;Iterable</a></li>
+<li><a href="#2-iterator">2.&nbsp;Iterator</a></li>
+<li><a href="#3">3.&nbsp;一个典型的迭代器</a></li>
+<li><a href="#4-pythonic">4.&nbsp;更Pythonic的实现方式</a></li>
+</ul>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Iterable</span>
+</code></pre></div>
+
+<p>鸭子类型，通过协议实现</p>
+<h2 id="1-iterable">1.&nbsp;Iterable</h2>
+<p>可迭代协议:&nbsp;__iter__()</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">class</span> <span class="nc">Sentence1</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~351 words">Read in 2 mins</span>
+                            <span class="card-link"><a href="../articles/Python-Iterable-Iterator.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/programming.html">programming</a>
+                            <a class="badge badge-info" href="../tag/python.html">python</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Python-os.html">Python -&nbsp;os</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 24, 2020</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="nb">dir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;__all__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__builtins__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__cached__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__doc__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__file__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__loader__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__name__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__package__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__spec__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;_get_sep&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;_joinrealpath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;_varprog&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;_varprogb&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;abspath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;altsep&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;basename&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;commonpath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;commonprefix&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;curdir&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;defpath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;devnull&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;dirname&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;exists&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;expanduser&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;expandvars&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;extsep&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;genericpath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;getatime&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;getctime&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;getmtime&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;getsize&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;isabs&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;isdir&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;isfile&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;islink&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;ismount&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;join&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;lexists&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;normcase&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;normpath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;os&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;pardir&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;pathsep&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;realpath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;relpath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;samefile&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;sameopenfile …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~153 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Python-os.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="../category/programming.html">programming</a>
@@ -599,7 +552,10 @@ Spark RDD弹性分布式数据集
 
     <!-- Pagination -->
 <div class="pagination px-2">
-    <a class="w-100 text-right" href="../category/programming2.html">
+    <a class="w-50" href="../category/programming4.html">
+        &ll; Older Posts
+    </a>
+    <a class="w-50 text-right" href="../category/programming2.html">
         Newer Posts &gg;
     </a>
 </div>

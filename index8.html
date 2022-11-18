@@ -218,118 +218,36 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Spark:-Shuffling-and-Partitioning.html">Spark: Shuffling and&nbsp;Partitioning</a>
+                    <a href="./articles/Python-Iterable-Iterator.html">Python - Iterable vs&nbsp;Iterator</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 11, 2019</span></span>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 30, 2020</span></span>
                 <p><div class="toc">
 <ul>
-<li><a href="#shuffling">Shuffling</a><ul>
-<li><a href="#orgapachesparkrddrddstring-int-shuffledrdd366">org.apache.spark.rdd.<span class="caps">RDD</span>[(String, Int)]=&nbsp;ShuffledRDD[366]</a></li>
-<li><a href="#grouping-and-reducing-example">Grouping and Reducing,&nbsp;Example</a></li>
-<li><a href="#reminder-latency">Reminder:&nbsp;Latency</a></li>
-<li><a href="#grouping-and-reducing-example-optimized">Grouping and Reducing, Example -&nbsp;Optimized</a></li>
-<li><a href="#groupbykey-and-reducebykey-running-times">groupByKey and reduceByKey Running&nbsp;Times</a></li>
-<li><a href="#shuffling_1">Shuffling</a></li>
-</ul>
-</li>
-<li><a href="#partitioning">Partitioning</a><ul>
-<li><a href="#partitions">Partitions</a></li>
-<li><a href="#hash-partitioning">Hash partitioning</a><ul>
-<li><a href="#hash-partitioning-example">Hash Partitioning:&nbsp;Example</a></li>
-</ul>
-</li>
-<li><a href="#range-partitioning">Range partitioning</a><ul>
-<li><a href="#range-partitioning-example">Range Partitioning:&nbsp;Example</a></li>
-</ul>
-</li>
-<li><a href="#partitioning-data">Partitioning Data</a><ul>
-<li><a href="#partitioning-data-partitionby">Partitioning Data:&nbsp;partitionBy</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="#1-iterable">1.&nbsp;Iterable</a></li>
+<li><a href="#2-iterator">2.&nbsp;Iterator</a></li>
+<li><a href="#3">3.&nbsp;一个典型的迭代器</a></li>
+<li><a href="#4-pythonic">4.&nbsp;更Pythonic的实现方式</a></li>
 </ul>
 </div>
-<h1 id="shuffling">Shuffling</h1>
-<h2 id="orgapachesparkrddrddstring-int-shuffledrdd366">org.apache.spark.rdd.<span class="caps">RDD …</span></h2></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~524 words">Read in 3 mins</span>
-                            <span class="card-link"><a href="./articles/Spark:-Shuffling-and-Partitioning.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="./category/programming.html">programming</a>
-                            <a class="badge badge-info" href="./tag/spark.html">spark</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Scala with Gradle in Intellij.html">Scala with Gradle in&nbsp;Intellij</a>
-                </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 28, 2019</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<ol>
-<li>
-<p>Create a directory (e.g., demo_proj) for your&nbsp;project.</p>
-</li>
-<li>
-<p>Run <code>gradle init --type scala-library</code> in terminal in the above&nbsp;directory.</p>
-</li>
-<li>
-<p>Import the directory as a Gradle project in&nbsp;IntelliJ.</p>
-</li>
-</ol>
-<p><a href="https://blog.csdn.net/wangdong5678999/article/details/70255451">IntelliJ如何导入Gradle项目</a><br>
-<a href="https://medium.com/@faizanahemad/apache-spark-setup-with-gradle-scala-and-intellij-2eeb9f30c02a">Apache Spark setup with Gradle, Scala and&nbsp;IntelliJ</a></p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~37 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/Scala with Gradle in Intellij.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="./category/programming.html">programming</a>
-                            <a class="badge badge-info" href="./tag/scala.html">scala</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Debugging-Spark-Application.html">Debugging Spark&nbsp;Application</a>
-                </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 26, 2019</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<div class="highlight"><pre><span></span><code>select
-    *
-from
-    table1 as A
-join
-    table as B
-on
-    A.item_id = B.item_id
-where
-    A.id in (1139426, 1139436)
-    and A.date &gt;= &#39;2018-12-01&#39;
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Iterable</span>
 </code></pre></div>
 
-<p><code>yarn logs -applicationId &lt;app ID&gt; &gt; output_file</code></p>
-<div class="highlight"><pre><span></span><code><span class="mi">2019</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">21</span><span class="w"> </span><span class="mi">19</span><span class="o">:</span><span class="mi">23</span><span class="o">:</span><span class="mi">41</span><span class="w"> </span><span class="k">ERROR</span><span class="w"> </span><span class="n">ApplicationMaster</span><span class="o">:</span><span class="mi">91</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">User</span><span class="w"> </span><span class="n">class</span><span class="w"> </span><span class="n">threw</span><span class="w"> </span><span class="n">exception</span><span class="o">:</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="n">apache</span><span class="p">.</span><span class="n">spark</span><span class="p">.</span><span class="k">sql</span><span class="p">.</span><span class="n">AnalysisException</span><span class="o">:</span><span class="w"> </span><span class="k">Found</span><span class="w"> </span><span class="k">duplicate …</span></code></pre></div></p>
+<p>鸭子类型，通过协议实现</p>
+<h2 id="1-iterable">1.&nbsp;Iterable</h2>
+<p>可迭代协议:&nbsp;__iter__()</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">class</span> <span class="nc">Sentence1</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text …</span></code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~47 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/Debugging-Spark-Application.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~351 words">Read in 2 mins</span>
+                            <span class="card-link"><a href="./articles/Python-Iterable-Iterator.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="./category/programming.html">programming</a>
-                            <a class="badge badge-info" href="./tag/spark.html">spark</a>
+                            <a class="badge badge-info" href="./tag/python.html">python</a>
                     </div>
                 </div>
             </div>
@@ -337,79 +255,67 @@ where
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Linux.html">Linux</a>
+                    <a href="./articles/Python-os.html">Python -&nbsp;os</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 25, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#1-redirection-of-standard-output">1. Redirection of standard output&nbsp;&gt;</a></li>
-<li><a href="#2-redirected-output">2. Redirected output&nbsp;&gt;&gt;</a></li>
-<li><a href="#3-pipes">3. Pipes&nbsp;|</a></li>
-<li><a href="#4-cat">4.&nbsp;cat</a></li>
-<li><a href="#5-grep-awk">5. grep <span class="amp">&amp;</span>&nbsp;awk</a></li>
-<li><a href="#6-chmod">6.&nbsp;chmod</a></li>
-<li><a href="#7-ps">7.&nbsp;ps</a></li>
-<li><a href="#8-unzip">8.&nbsp;unzip</a></li>
-<li><a href="#9-tar">9.&nbsp;tar</a></li>
-<li><a href="#10-windows-rn-to-linux-n">10. windows &#8216;\r\n&#8217; to linux&nbsp;&#8216;\n&#8217;</a></li>
-<li><a href="#11-rsync">11.&nbsp;rsync</a></li>
-<li><a href="#12-ssh">12. <span class="caps">SSH</span></a><ul>
-<li><a href="#ssh">SSH远程执行命令</a></li>
-<li><a href="#_1">无密钥登陆</a></li>
-<li><a href="#auto-disconnect">Auto&nbsp;disconnect</a></li>
-</ul>
-</li>
-<li><a href="#13-pip">13.&nbsp;pip</a></li>
-<li><a href="#14">14.&nbsp;设置环境变 …</a></li></ul></div></p>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 24, 2020</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="nb">dir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;__all__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__builtins__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__cached__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__doc__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__file__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__loader__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__name__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__package__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;__spec__&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;_get_sep&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;_joinrealpath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;_varprog&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;_varprogb&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;abspath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;altsep&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;basename&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;commonpath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;commonprefix&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;curdir&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;defpath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;devnull&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;dirname&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;exists&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;expanduser&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;expandvars&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;extsep&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;genericpath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;getatime&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;getctime&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;getmtime&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;getsize&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;isabs&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;isdir&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;isfile&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;islink&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;ismount&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;join&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;lexists&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;normcase&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;normpath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;os&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;pardir&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;pathsep&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;realpath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;relpath&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;samefile&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w"> </span><span class="s1">&#39;sameopenfile …</span></code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~694 words">Read in 3 mins</span>
-                            <span class="card-link"><a href="./articles/Linux.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="./category/tools.html">tools</a>
-                            <a class="badge badge-info" href="./tag/linux.html">linux</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Scala.html">Scala</a>
-                </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 13, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">前言</a></li>
-<li><a href="#functional-programming">Functional Programming</a><ul>
-<li><a href="#part-1-elements-of-functional-programming">Part-1: Elements of Functional Programming</a><ul>
-<li><a href="#pure-functions-and-side-effects">Pure functions and Side&nbsp;effects</a></li>
-<li><a href="#referential-transparency">Referential&nbsp;Transparency</a></li>
-<li><a href="#first-class-function-higher-order-functions">First Class Function <span class="amp">&amp;</span> Higher Order&nbsp;Functions</a></li>
-<li><a href="#anonymous-functions">Anonymous&nbsp;Functions</a></li>
-<li><a href="#immutability">Immutability</a></li>
-<li><a href="#functions">Functions</a></li>
-<li><a href="#functions-literals">Functions Literals</a><ul>
-<li><a href="#syntax">Syntax</a></li>
-<li><a href="#where-do-we-use-function-literals">Where do we use function&nbsp;literals?</a></li>
-</ul>
-</li>
-<li><a href="#placeholder-syntax">Placeholder&nbsp;Syntax</a></li>
-<li><a href="#higher-order-functions">Higher Order&nbsp;Functions</a></li>
-<li><a href="#varargs-named-arguments-default-value">VarArgs, Named Arguments, Default&nbsp;Value</a></li>
-<li><a href="#partially-applied-functions">Partially Applied&nbsp;Functions</a></li>
-</ul>
-</li>
-<li><a href="#part-2-elements-of-functional-programming">Part-2: Elements …</a></li></ul></li></ul></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~731 words">Read in 3 mins</span>
-                            <span class="card-link"><a href="./articles/Scala.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~153 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Python-os.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="./category/programming.html">programming</a>
-                            <a class="badge badge-info" href="./tag/scala.html">scala</a>
+                            <a class="badge badge-info" href="./tag/python.html">python</a>
                     </div>
                 </div>
             </div>
@@ -417,53 +323,36 @@ where
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Spark-RDD.html">Spark <span class="caps">RDD</span></a>
+                    <a href="./articles/Python-Requests.html">Python&nbsp;Requests</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 03, 2019</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#_1">核心概念和抽象</a><ul>
-<li><a href="#rdd"><span class="caps">RDD</span></a></li>
-<li><a href="#rdd-operations"><span class="caps">RDD</span> Operations</a><ul>
-<li><a href="#basics">Basics</a></li>
-<li><a href="#understanding-closures">Understanding&nbsp;closures</a></li>
-<li><a href="#action">Action</a></li>
-</ul>
-</li>
-<li><a href="#rdd-persistence"><span class="caps">RDD</span> Persistence</a><ul>
-<li><a href="#resiliency">Resiliency</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_2">高级主题</a><ul>
-<li><a href="#execution-scheduling">Execution <span class="amp">&amp;</span>&nbsp;Scheduling</a></li>
-<li><a href="#caching-persistence">Caching <span class="amp">&amp;</span>&nbsp;Persistence</a></li>
-<li><a href="#shared-variables">Shared Variables</a><ul>
-<li><a href="#broadcast-variables">Broadcast&nbsp;Variables</a></li>
-<li><a href="#accumulators">Accumulators</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#references">References</a></li>
-</ul>
-</div>
-<div class="highlight"><pre><span></span><code>Spark RDD要点总结：
-Spark RDD弹性分布式数据集
-1. RDD简介
-  - RDD的概述
-  - RDD的属性
-2. RDD的创建方式
-  - 从文件系统中加载数 …</code></pre></div></p>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 20, 2020</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://www.jerrylsu.net/articles/2020/programming-Python-Decorator.html&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">r</span><span class="o">.</span><span class="n">encoding</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>&#39;ISO-8859-1&#39;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">r</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf-8&#39;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">r</span><span class="o">.</span><span class="n">text</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;&lt;!DOCTYPE html&gt;</span><span class="se">\n</span><span class="s1">&lt;html lang=&quot;en&quot; prefix=&quot;og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml&quot;&gt;</span><span class="se">\n</span><span class="s1">&lt;head&gt;</span><span class="se">\n</span><span class="s1">    &lt;title&gt;Python Decorator - Jerrylsu.net&lt;/title&gt;</span><span class="se">\n …</span></code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~579 words">Read in 3 mins</span>
-                            <span class="card-link"><a href="./articles/Spark-RDD.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~4195 words">Read in 17 mins</span>
+                            <span class="card-link"><a href="./articles/Python-Requests.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="./category/programming.html">programming</a>
-                            <a class="badge badge-info" href="./tag/spark.html">spark</a>
+                            <a class="badge badge-info" href="./tag/python.html">python</a>
                     </div>
                 </div>
             </div>
@@ -471,31 +360,26 @@ Spark RDD弹性分布式数据集
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Adaboost.html">Adaboost</a>
+                    <a href="./articles/Python-Decorator.html">Python&nbsp;Decorator</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 05, 2018</span></span>
-                <p><div class="toc">
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 20, 2020</span></span>
+                <p><p>@lock vs @lock()  装饰器 vs&nbsp;装饰器工厂函数  </p>
+<p>相同</p>
 <ul>
-<li><a href="#boosting">Boosting</a></li>
-<li><a href="#adaboost">AdaBoost算法</a></li>
-<li><a href="#adaboost_1">AdaBoost缺点</a></li>
-<li><a href="#_1">算法原理</a></li>
-<li><a href="#adaboost_2">AdaBoost重点</a></li>
-<li><a href="#_2">引用</a></li>
+<li>均是导入时运行，返回值均是函数。</li>
 </ul>
-</div>
-<p><a href="https://www.jerrulsu.com/CART.html">引：理解CART分类回归树</a></p>
-<h3 id="boosting">Boosting</h3>
-<p><strong>Boosting</strong> , short for Adaptive Boosting, is a <a href="https://en.wikipedia.org/wiki/Ensemble_learning" title="Ensemble learning">machine learning ensemble</a> <a href="https://en.wikipedia.org/wiki/Meta-algorithm" title="Meta-algorithm">meta-algorithm</a> for primarily reducing <a href="https://en.wikipedia.org/wiki/Supervised_learning#Bias-variance_tradeoff" title="Supervised learning">bias</a>, and also variance in supervised learning, and a family of machine learning algorithms that convert weak learners to strong&nbsp;ones …</p></p>
+<p>不同</p>
+<ul>
+<li>
+<p>装饰器返回的是替代被装饰的函数，装饰器 …</p></li></ul></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~104 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/Adaboost.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~270 words">Read in 2 mins</span>
+                            <span class="card-link"><a href="./articles/Python-Decorator.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
-                        <a class="badge badge-success" href="./category/ml.html">ml</a>
-                            <a class="badge badge-info" href="./tag/machine-learning.html">machine learning</a>
-                            <a class="badge badge-info" href="./tag/adaboost.html">adaboost</a>
+                        <a class="badge badge-success" href="./category/programming.html">programming</a>
+                            <a class="badge badge-info" href="./tag/python.html">python</a>
                     </div>
                 </div>
             </div>
@@ -503,29 +387,31 @@ Spark RDD弹性分布式数据集
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/CART.html"><span class="caps">CART</span></a>
+                    <a href="./articles/Python-built-in-Functions.html">Python Built-in&nbsp;Functions</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 04, 2018</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#id3"><span class="caps">ID3</span></a></li>
-<li><a href="#cart"><span class="caps">CART</span></a></li>
-<li><a href="#cart_1">CART算法</a></li>
-</ul>
-</div>
-<blockquote>
-<p>引子：一些机器学习算法（如线性回归）创建的模型需要拟合所有的样本数据。<br>
-问题：<br>
-1：数据特征众多且其间关系繁杂 …</p></blockquote></p>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 18, 2020</span></span>
+                <p><p>https://docs.python.org/3/library/functions.html</p>
+<h2 id="getattr-hasattr-setattr-delattr">getattr / hasattr / setattr /&nbsp;delattr</h2>
+<p>getattr(object, name:&nbsp;str)</p>
+<p>hasattr(object, name:&nbsp;str)</p>
+<p>delattr(object, name:&nbsp;str)</p>
+<p>setattr(object, name: str,&nbsp;value)</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BertModel</span><span class="p">:</span>
+    <span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;bert&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y …</span></code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~94 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/CART.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~188 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Python-built-in-Functions.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
-                        <a class="badge badge-success" href="./category/ml.html">ml</a>
-                            <a class="badge badge-info" href="./tag/machine-learning.html">machine learning</a>
-                            <a class="badge badge-info" href="./tag/cart.html">cart</a>
+                        <a class="badge badge-success" href="./category/programming.html">programming</a>
+                            <a class="badge badge-info" href="./tag/python.html">python</a>
                     </div>
                 </div>
             </div>
@@ -533,34 +419,21 @@ Spark RDD弹性分布式数据集
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Information-Theory.html">Information&nbsp;Theory</a>
+                    <a href="./articles/CategoricalCrossentropy VS SparseCategoricalCrossentropy.html">CategoricalCrossentropy <span class="caps">VS</span>&nbsp;SparseCategoricalCrossentropy</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 03, 2018</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#information-theory">Information Theory</a><ul>
-<li><a href="#x">信息\(X\)</a></li>
-<li><a href="#hx">信息量\(H(X)\)</a></li>
-<li><a href="#information-entropy">Information&nbsp;Entropy</a></li>
-<li><a href="#_1">信息熵的计算</a></li>
-<li><a href="#information-gain">Information&nbsp;Gain</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<h2 id="information-theory">Information&nbsp;Theory</h2>
-<h3 id="x">信息<span class="math">\(X\)</span></h3>
-<ul>
-<li><strong>信息<span class="math">\(X\)</span>即信源</strong><span class="math">\(X\)</span>：表示一段信息，如文本、语音等等。</li>
-<li><strong>信源的不确 …</strong></li></ul></p>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 09, 2020</span></span>
+                <p><h2 id="sparsecategoricalcrossentropy">SparseCategoricalCrossentropy</h2>
+<p>Use this crossentropy loss function when there are two or more label classes. We expect labels to be provided in a <strong>one_hot</strong> representation. If you want to provide labels as <strong>integers</strong>, please use <strong>SparseCategoricalCrossentropy</strong> loss. There should be # classes floating point values per&nbsp;feature.</p>
+<p>https://www.tensorflow.org/api_docs …</p></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~205 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/Information-Theory.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~681 words">Read in 3 mins</span>
+                            <span class="card-link"><a href="./articles/CategoricalCrossentropy VS SparseCategoricalCrossentropy.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
-                        <a class="badge badge-success" href="./category/ml.html">ml</a>
-                            <a class="badge badge-info" href="./tag/machine-learning.html">machine learning</a>
+                        <a class="badge badge-success" href="./category/programming.html">programming</a>
+                            <a class="badge badge-info" href="./tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="./tag/tensorflow.html">tensorflow</a>
                     </div>
                 </div>
             </div>
@@ -568,51 +441,151 @@ Spark RDD弹性分布式数据集
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Data-Structure-and-Algorithm-in-Python.html">Data Structure and Algorithm in&nbsp;Python</a>
+                    <a href="./articles/tf.not_equal/reduce_any/boolean_mask.html">tf.not_equal/reduce_any/boolean_mask</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 17, 2018</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#sort">Sort</a><ul>
-<li><a href="#quick-sort">Quick Sort</a><ul>
-<li><a href="#_1">引例：荷兰国旗问题🇳🇱</a></li>
-</ul>
-</li>
-<li><a href="#heap-sort">Heap Sort</a><ul>
-<li><a href="#heap">Heap</a><ul>
-<li><a href="#_2">堆的定义</a></li>
-<li><a href="#_3">堆的特点与优势</a></li>
-</ul>
-</li>
-<li><a href="#_4">大根堆的实现</a><ul>
-<li><a href="#_5">建立大根堆</a></li>
-<li><a href="#_6">堆化</a></li>
-<li><a href="#_7">堆排序</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#bfs-dfs"><span class="caps">BFS</span> <span class="amp">&amp;</span> <span class="caps">DFS</span></a><ul>
-<li><a href="#bfs"><span class="caps">BFS</span></a></li>
-<li><a href="#dfs"><span class="caps">DFS</span></a></li>
-</ul>
-</li>
-<li><a href="#recursion">Recursion</a><ul>
-<li><a href="#template">Template</a></li>
-<li><a href="#example">Example:</a></li>
-</ul>
-</li>
-<li><a href="#divide-and-conquer">Divide and …</a></li></ul></div></p>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 03, 2020</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">input_ids</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">101</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                         <span class="p">[</span><span class="mi">101</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<span class="n">input_ids</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>&lt;tf.Tensor: shape=(2, 8), dtype=int32, numpy=
+array([[101,   2,   4,   5, 102,   0,   0,   0],
+       [101,   8,   6,   2,   4, 102,   0 …</code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~469 words">Read in 2 mins</span>
-                            <span class="card-link"><a href="./articles/Data-Structure-and-Algorithm-in-Python.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~160 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/tf.not_equal/reduce_any/boolean_mask.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
-                        <a class="badge badge-success" href="./category/algorithms.html">algorithms</a>
-                            <a class="badge badge-info" href="./tag/algorithm.html">algorithm</a>
+                        <a class="badge badge-success" href="./category/programming.html">programming</a>
+                            <a class="badge badge-info" href="./tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="./tag/tensorflow.html">tensorflow</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="./articles/Python-list.index.html">Python -&nbsp;list.index</a>
+                </h5>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 03, 2020</span></span>
+                <p><h2 id="1-return-first-index-of-value">1. Return first index of&nbsp;value</h2>
+<div class="highlight"><pre><span></span><code><span class="n">Signature</span><span class="o">:</span><span class="w"> </span><span class="n">text_tokens</span><span class="o">.</span><span class="na">index</span><span class="o">(</span><span class="n">value</span><span class="o">,</span><span class="w"> </span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="n">stop</span><span class="o">=</span><span class="mi">9223372036854775807</span><span class="o">,</span><span class="w"> </span><span class="o">/)</span><span class="w"></span>
+<span class="n">Docstring</span><span class="o">:</span><span class="w"></span>
+<span class="n">Return</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">value</span><span class="o">.</span><span class="w"></span>
+
+<span class="n">Raises</span><span class="w"> </span><span class="n">ValueError</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">present</span><span class="o">.</span><span class="w"></span>
+<span class="n">Type</span><span class="o">:</span><span class="w">      </span><span class="n">builtin_function_or_method</span><span class="w"></span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">text_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;jerry&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;hl&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;hl&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;annie&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">start</span> <span class="o">=</span> <span class="n">text_tokens</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;&lt;hl&gt;&#39;</span><span class="p">)</span>
+<span class="n">start</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="mf">1</span><span class="w"></span>
+</code></pre></div>
+
+<h2 id="2-return-indexes-of-some-values">2. Return indexes of some&nbsp;values</h2>
+<div class="highlight"><pre><span></span><code><span class="n">end …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~122 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Python-list.index.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="./category/programming.html">programming</a>
+                            <a class="badge badge-info" href="./tag/python.html">python</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="./articles/tf.broadcast_to.html">tf.broadcast_to</a>
+                </h5>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 23, 2020</span></span>
+                <p><h2 id="broadcast">Broadcast</h2>
+<ul>
+<li>
+<p>expand_dims</p>
+</li>
+<li>
+<p>without copying data vs&nbsp;tf.tile</p>
+</li>
+<li>
+<p>tf.broadcast_to</p>
+</li>
+</ul>
+<h2 id="key-idea">Key&nbsp;idea</h2>
+<ul>
+<li>
+<p>如何a，b张量维度不一致，则插入1dim。小维度对齐</p>
+</li>
+<li>
+<p>expand&nbsp;1dim到相同dims</p>
+</li>
+</ul>
+<p>e.g.  a = [4, 32, 32,&nbsp;3]</p>
+<p>b = [3] -&gt; [1, 1, 1, 3] -&gt; [4, 32, 32,&nbsp;3]</p>
+<h1 id="tfbroadcast_to">tf.broadcast_to</h1>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf …</span></code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~170 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/tf.broadcast_to.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="./category/programming.html">programming</a>
+                            <a class="badge badge-info" href="./tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="./tag/tensorflow.html">tensorflow</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="./articles/tf.concat/split/stack.html">tf.concat/split/stack</a>
+                </h5>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 23, 2020</span></span>
+                <p><h1 id="merge-and-split">Merge and&nbsp;Split</h1>
+<ul>
+<li>
+<p>tf.concat</p>
+</li>
+<li>
+<p>tf.split</p>
+</li>
+<li>
+<p>tf.stack</p>
+</li>
+<li>
+<p>tf.unstack</p>
+</li>
+</ul>
+<h1 id="1-tfconcat">1.&nbsp;tf.concat</h1>
+<p>原有维度concat，如果新维度concat，则stack</p>
+<ul>
+<li>
+<p>concat：拼接的维度可以不同，其他维度必须相同。 concat([3, 35, 8], [2 …</p></li></ul></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~163 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/tf.concat/split/stack.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="./category/programming.html">programming</a>
+                            <a class="badge badge-info" href="./tag/deep-learning.html">deep learning</a>
+                            <a class="badge badge-info" href="./tag/tensorflow.html">tensorflow</a>
                     </div>
                 </div>
             </div>

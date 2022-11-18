@@ -218,22 +218,102 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Docker-Python-Mysql.html">Docker Python&nbsp;Mysql</a>
+                    <a href="./articles/Paddle-Adversarial-Train.html">Paddle adversarial&nbsp;train</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Sep 16, 2021</span></span>
-                <p><p><code>docker pull mysql:5.7</code></p>
-<p><code>docker run -itd -p 8070:3306 -v /hadoop-data/work/sl/project/mysql/data:/var/lib/mysql -v /hadoop-data/work/sl/project/mysql/conf.d:/etc/mysql/conf.d --name=qa_mysql -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7</code></p>
-<p><code>mysql -h host_ip -P port -u root -p123456</code></p>
-<div class="highlight"><pre><span></span><code><span class="k">show …</span></code></pre></div></p>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 03, 2022</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">paddle</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FGM</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Fast Gradient Method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">module</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;module&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">=</span> <span class="n">eps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">backup</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">attack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">emb_name</span><span class="o">=</span><span class="s1">&#39;embedding&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;only attack embedding</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">param</span><span class="o">.</span><span class="n">stop_gradient</span> <span class="ow">and</span> <span class="n">emb_name …</span></code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~130 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/Docker-Python-Mysql.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~301 words">Read in 2 mins</span>
+                            <span class="card-link"><a href="./articles/Paddle-Adversarial-Train.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="./category/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="./tag/paddle.html">paddle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="./articles/python-docx-using-lxml.html">Python docx using&nbsp;lxml</a>
+                </h5>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Sep 25, 2022</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">docx</span>
+<span class="kn">import</span> <span class="nn">lxml</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># load docx file</span>
+<span class="n">docx_obj</span> <span class="o">=</span> <span class="n">docx</span><span class="o">.</span><span class="n">Document</span><span class="p">(</span><span class="s2">&quot;/var/www/blog/content/cache/template.docx&quot;</span><span class="p">)</span>
+<span class="n">paras</span> <span class="o">=</span> <span class="n">docx_obj</span><span class="o">.</span><span class="n">paragraphs</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># traverse all runs of the specified paragraph idx 6.</span>
+<span class="n">para</span> <span class="o">=</span> <span class="n">paras</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">run</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">para</span><span class="o">.</span><span class="n">runs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;run </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">run</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>run 0: 专 …</code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~2187 words">Read in 9 mins</span>
+                            <span class="card-link"><a href="./articles/python-docx-using-lxml.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="./category/programming.html">programming</a>
-                            <a class="badge badge-info" href="./tag/docker.html">docker</a>
-                            <a class="badge badge-info" href="./tag/mysql.html">mysql</a>
+                            <a class="badge badge-info" href="./tag/python.html">python</a>
+                            <a class="badge badge-info" href="./tag/docx.html">docx</a>
+                            <a class="badge badge-info" href="./tag/lxml.html">lxml</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="./articles/Multiprocessing-in-FastAPI.html">Multiprocessing in&nbsp;FastAPI</a>
+                </h5>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 28, 2022</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/async-endpoint&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">test_endpoint</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span>
+                                                 <span class="n">subject_extract_check_process</span><span class="p">,</span>
+                                                  <span class="o">*</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">subject_check_rules</span><span class="p">,</span> <span class="n">docx_paras</span><span class="p">,</span> <span class="n">pdf_paras</span><span class="p">))</span>  <span class="c1"># wait result</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Subprocess execute fail: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>
+
+<p>https://stackoverflow.com/questions/63169865 …</p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~33 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Multiprocessing-in-FastAPI.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="./category/programming.html">programming</a>
                             <a class="badge badge-info" href="./tag/python.html">python</a>
                     </div>
                 </div>
@@ -242,26 +322,20 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Docker-build.html">Docker&nbsp;build</a>
+                    <a href="./articles/asyncio-get_event_loop-vs-get_running_loop.html">asyncio get_event_loop vs&nbsp;get_running_loop</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Sep 04, 2021</span></span>
-                <p><p>问题描述：</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">docker</span><span class="w"> </span><span class="n">build</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="n">image_name</span><span class="p">:</span><span class="n">v1</span><span class="w"> </span><span class="o">.</span><span class="w"></span>
-<span class="n">Sending</span><span class="w"> </span><span class="n">build</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">Docker</span><span class="w"> </span><span class="n">daemon</span><span class="w">  </span><span class="mf">2.229</span><span class="n">MB</span><span class="w"></span>
-<span class="n">Step</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">FROM</span><span class="w"> </span><span class="n">nvidia</span><span class="o">/</span><span class="n">cuda</span><span class="p">:</span><span class="mf">10.0</span><span class="o">-</span><span class="n">cudnn7</span><span class="o">-</span><span class="n">runtime</span><span class="o">-</span><span class="n">centos7</span><span class="w"></span>
-<span class="w"> </span><span class="o">---&gt;</span><span class="w"> </span><span class="n">Running</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="mi">7</span><span class="n">d171c998c6a</span><span class="w"></span>
-<span class="n">Removing</span><span class="w"> </span><span class="n">intermediate</span><span class="w"> </span><span class="n">container</span><span class="w"> </span><span class="mi">7</span><span class="n">d171c998c6a</span><span class="w"></span>
-<span class="w"> </span><span class="o">---&gt;</span><span class="w"> </span><span class="mi">494</span><span class="n">b7b9cbb47</span><span class="w"></span>
-<span class="n">Step</span><span class="w"> </span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">RUN</span><span class="w"> </span><span class="n">yum</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">vim</span><span class="w"></span>
-<span class="w"> </span><span class="o">---&gt;</span><span class="w"> </span><span class="n">Running</span><span class="w"> </span><span class="ow">in …</span></code></pre></div></p>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 28, 2022</span></span>
+                <p><p>Asyncio</p>
+<p><strong>asyncio.get_event_loop</strong> vs <strong>asyncio.get_running_loop</strong></p>
+<p>https://stackoverflow.com/questions/65206110/when-should-we-use-asyncio-get-running-loop-vs-asyncio-get-event-loop/69314701#69314701</p></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~129 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/Docker-build.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~5 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/asyncio-get_event_loop-vs-get_running_loop.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
-                        <a class="badge badge-success" href="./category/tools.html">tools</a>
-                            <a class="badge badge-info" href="./tag/docker.html">docker</a>
+                        <a class="badge badge-success" href="./category/programming.html">programming</a>
+                            <a class="badge badge-info" href="./tag/python.html">python</a>
                     </div>
                 </div>
             </div>
@@ -269,20 +343,22 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Docker-export-commit.html">Docker export vs&nbsp;commit</a>
+                    <a href="./articles/FastAPI-for-CPU-Bound-Task.html">FastAPI for <span class="caps">CPU</span>-Bound&nbsp;Task</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Sep 04, 2021</span></span>
-                <p><p>问题描述：</p>
-<div class="highlight"><pre><span></span><code><span class="mi">2021</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">04</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mf">08.686281</span><span class="p">:</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="n">tensorflow</span><span class="o">/</span><span class="n">stream_executor</span><span class="o">/</span><span class="n">platform</span><span class="o">/</span><span class="n">default</span><span class="o">/</span><span class="n">dso_loader</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">53</span><span class="p">]</span><span class="w"> </span><span class="n">Could</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">dlopen</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="s1">&#39;libcuda.so.1&#39;</span><span class="p">;</span><span class="w"> </span><span class="n">dlerror</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libcuda</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">too</span><span class="w"> </span><span class="n">short</span><span class="w"></span>
-<span class="mi">2021</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">04</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mf">08.686315</span><span class="p">:</span><span class="w"> </span><span class="n">E</span><span class="w"> </span><span class="n">tensorflow</span><span class="o">/</span><span class="n">stream_executor</span><span class="o">/</span><span class="n">cuda</span><span class="o">/</span><span class="n">cuda_driver</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">318</span><span class="p">]</span><span class="w"> </span><span class="n">failed</span><span class="w"> </span><span class="n">call …</span></code></pre></div></p>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jul 19, 2022</span></span>
+                <p><p>fastAPI</p>
+<p><strong>def</strong> vs <strong>async&nbsp;def</strong></p>
+<p>def:&nbsp;线程池，实现并发</p>
+<p>async def: 协程，事件循环器实现并发。不存在await操作，退化成串行请求requests&nbsp;sequentially。</p>
+<p>async def如何用在cpu-bound任务上？&nbsp;可以用户态适时asyncio.sleep …</p></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~121 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/Docker-export-commit.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~55 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/FastAPI-for-CPU-Bound-Task.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
-                        <a class="badge badge-success" href="./category/tools.html">tools</a>
-                            <a class="badge badge-info" href="./tag/docker.html">docker</a>
+                        <a class="badge badge-success" href="./category/programming.html">programming</a>
+                            <a class="badge badge-info" href="./tag/python.html">python</a>
                     </div>
                 </div>
             </div>
@@ -290,22 +366,61 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Docker-Build-GPU-Base-Image.html">Docker Build <span class="caps">GPU</span> Base&nbsp;Image</a>
+                    <a href="./articles/Longformer-Torch2Paddle.html">Longformer&nbsp;Torch2Paddle</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Sep 04, 2021</span></span>
-                <p><p><a href="https://docs.docker.com/engine/reference/commandline/docker/">https://docs.docker.com/engine/reference/commandline/docker/</a></p>
-<h2 id="1">1.基础镜像选择</h2>
-<p><a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/user-guide.html">https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/user-guide.html</a></p>
-<p>选择Nvidia cuda支持gpu：<a href="https://hub.docker.com/r/nvidia/cuda/tags?page=1&amp;ordering=last_updated&amp;name=10.0">https://hub.docker.com/r/nvidia/cuda/tags?page=1&amp;ordering=last_updated&amp;name=10.0</a></p>
-<p>runtime版：用于服务部署 …</p></p>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 10, 2022</span></span>
+                <p><p><a href="https://huggingface.co/Jerry666/paddlepaddle-longformer-base-4096/tree/main">PaddlePaddle-Longformer-model-base-4096</a></p>
+<table>
+<thead>
+<tr>
+<th align="left">PyTorch</th>
+<th align="left">Shape</th>
+<th align="left">Paddle</th>
+<th align="left">Shape</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">embeddings.word_embeddings.weight</td>
+<td align="left">[50265, 768]</td>
+<td align="left">embeddings.word_embeddings.weight</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">embeddings.position_embeddings.weight</td>
+<td align="left">[4098, 768]</td>
+<td align="left">embeddings.position_embeddings.weight</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">embeddings.token_type_embeddings.weight</td>
+<td align="left">[1, 768]</td>
+<td align="left">embeddings.token_type_embeddings.weight</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">embeddings.LayerNorm.weight</td>
+<td align="left">[768]</td>
+<td align="left">embeddings.layer_norm.weight</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">embeddings.LayerNorm.bias</td>
+<td align="left">[768]</td>
+<td align="left">embeddings.layer_norm.bias</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">encoder.layer.0.attention.self.query.weight …</td></tr></tbody></table></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~165 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/Docker-Build-GPU-Base-Image.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~481 words">Read in 2 mins</span>
+                            <span class="card-link"><a href="./articles/Longformer-Torch2Paddle.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
-                        <a class="badge badge-success" href="./category/tools.html">tools</a>
-                            <a class="badge badge-info" href="./tag/docker.html">docker</a>
+                        <a class="badge badge-success" href="./category/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="./tag/paddle.html">paddle</a>
+                            <a class="badge badge-info" href="./tag/pytorch.html">pytorch</a>
                     </div>
                 </div>
             </div>
@@ -313,107 +428,52 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Sliding-Window.html">Sliding&nbsp;Window</a>
+                    <a href="./articles/Base64-Encode-Decode.html">Base64-encode-decode</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 24, 2021</span></span>
-                <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 09, 2022</span></span>
+                <p><h2 id="python-encode-decode">python encode&nbsp;decode</h2>
+<p>是字节码bytes与字符串str之间的转换</p>
+<ul>
+<li>encode() 方法为字符串类型（str）提供的方法，用于将 str 类型转换成 bytes&nbsp;类型，这个过程也称为“编码”。</li>
+</ul>
+<p><code>str.encode([encoding="utf-8"][,errors="strict …</code></p></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~122 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Base64-Encode-Decode.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="./category/programming.html">programming</a>
+                            <a class="badge badge-info" href="./tag/python.html">python</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="./articles/Paddle-nn-functional-unfold.html">Paddle.nn.functional.unfold</a>
+                </h5>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 07, 2022</span></span>
+                <p><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">paddle</span>
 </code></pre></div>
 
-<h3 id="_1">滑动窗口均值</h3>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">meanSlidingWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;暴力解法O(N*K)</span>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">paddle</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">x</span>
+</code></pre></div>
 
-<span class="sd">        时间复杂度分析：由于每一个输入数组的元素，我们 …</span></code></pre></div></p>
+<div class="highlight"><pre><span></span><code>Tensor(shape=[2, 4, 5], dtype=float32, place=CPUPlace, stop_gradient=True,
+       [[[-0.88893539, -0.65730274,  0.51114833, -1.28526485,  0.58803898],
+         [ 0.44119874,  0.89113224, -1.09972370, -0.84613019,  0.27374327],
+         [-1.71595502,  0.37951231, -1.11798716,  0.01614391,  1.72096431 …</code></pre></div></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~161 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/Sliding-Window.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="./category/algorithms.html">algorithms</a>
-                            <a class="badge badge-info" href="./tag/slidingwindow.html">slidingwindow</a>
-                            <a class="badge badge-info" href="./tag/algorithm.html">algorithm</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Viterbi-Algorithm.html">Viterbi&nbsp;Algorithm</a>
-                </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Feb 22, 2021</span></span>
-                <p><h2 id="numpy">矩阵法numpy</h2>
-<p>注：转移矩阵和发射矩阵以列维度上形式表示概率分布的，即列维度axis=1上元素和为1。<strong>注意：把隐状态概率分布表示为向量后 …</strong></p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~660 words">Read in 3 mins</span>
-                            <span class="card-link"><a href="./articles/Viterbi-Algorithm.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="./category/algorithms.html">algorithms</a>
-                            <a class="badge badge-info" href="./tag/viterbi.html">viterbi</a>
-                            <a class="badge badge-info" href="./tag/algorithm.html">algorithm</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Google-Android.html">Google-android</a>
-                </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 02, 2021</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#adb"><span class="caps">ADB</span></a></li>
-<li><a href="#go">Go谷歌安装器</a></li>
-<li><a href="#gms">GMS安装器</a></li>
-<li><a href="#_1">不建议采用以上一键安装</a></li>
-<li><a href="#_2">疑难问题</a></li>
-</ul>
-</div>
-<h2 id="adb"><span class="caps">ADB</span></h2>
-<div class="highlight"><pre><span></span><code>adb version
-
-adb devices
-
-查看所有应用列表：adb shell pm list packages
-查看系统应用列表：adb shell pm list packages -s …</code></pre></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~201 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/Google-Android.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="./category/tools.html">tools</a>
-                            <a class="badge badge-info" href="./tag/tools.html">tools</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Convert-pytorch-model-to-tensorflow2.html">Convert pytorch checkpoint to&nbsp;tensorflow2</a>
-                </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 19, 2020</span></span>
-                <p><p><a href="https://github.com/huggingface/transformers/issues/6124">https://github.com/huggingface/transformers/issues/6124</a></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">TFBertModel</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">TFBertModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;./rubert-base-cased-pt&quot;</span><span class="p">,</span> <span class="n">from_pt</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;./rubert-base-cased&quot;</span><span class="p">)</span> <span class="c1"># this adds a TF model file (tf_model.h5) to your directory</span>
-</code></pre></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~19 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/Convert-pytorch-model-to-tensorflow2.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~135 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Paddle-nn-functional-unfold.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="./category/nlp.html">nlp</a>
-                            <a class="badge badge-info" href="./tag/deep-learning.html">deep learning</a>
-                            <a class="badge badge-info" href="./tag/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="./tag/paddle.html">paddle</a>
                     </div>
                 </div>
             </div>
@@ -421,28 +481,21 @@ adb devices
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/CMRC-Metric.html"><span class="caps">CMRC</span>&nbsp;Metric</a>
+                    <a href="./articles/Pytorch-stride-as_strided.html">Pytorch tensor.stride <span class="amp">&amp;</span>&nbsp;tensor.as_strided</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 19, 2020</span></span>
-                <p><h2 id="f1">F1</h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># find longest common string</span>
-<span class="k">def</span> <span class="nf">find_lcs</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
-    <span class="n">mmax</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)):</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">)):</span>
-            <span class="k">if</span> <span class="n">s1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">s2</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
-                <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j …</span></code></pre></div></p>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 04, 2022</span></span>
+                <p><h2 id="tensorstride">tensor.stride()</h2>
+<p>Stride is the jump necessary to go from one element to the next one in the specified dimension&nbsp;dim. </p>
+<p>一个元素到另一个元素，元素粒度</p>
+<p>任意维度上的步长，是其低维度乘积 …</p></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~144 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/CMRC-Metric.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~283 words">Read in 2 mins</span>
+                            <span class="card-link"><a href="./articles/Pytorch-stride-as_strided.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="./category/nlp.html">nlp</a>
-                            <a class="badge badge-info" href="./tag/deep-learning.html">deep learning</a>
-                            <a class="badge badge-info" href="./tag/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="./tag/pytorch.html">pytorch</a>
                     </div>
                 </div>
             </div>
@@ -450,39 +503,20 @@ adb devices
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/JDMDC2020.html"><span class="caps">JDMDC2020</span></a>
+                    <a href="./articles/Pytorch-View-vs-Reshape.html">Pytorch View vs&nbsp;Reshape</a>
                 </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 03, 2020</span></span>
-                <p><div class="toc">
-<ul>
-<li><a href="#2020jdmdc2020">2020京东多模态对话JDMDC2020第二名解决方案</a><ul>
-<li><a href="#_1">数据工作</a><ul>
-<li><a href="#_2">数据集探索</a></li>
-<li><a href="#_3">数据预处理</a></li>
-<li><a href="#_4">训练数据构造</a></li>
-<li><a href="#_5">融合多模态与知识库</a></li>
-</ul>
-</li>
-<li><a href="#_6">技术方案</a><ul>
-<li><a href="#mhred">基线模型MHRED</a></li>
-<li><a href="#vlgpt">最佳模型VLGPT</a></li>
-</ul>
-</li>
-<li><a href="#_7">总结与引用</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<h1 id="2020jdmdc2020">2020京东多模态对话JDMDC2020第二名解决方案 …</h1></p>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 03, 2022</span></span>
+                <p><p>torch.view has existed for a long time. It will return a tensor with the new shape. The returned tensor will share the underling data with the original tensor. See the <a href="https://pytorch.org/docs/master/tensors.html?highlight=view#torch.Tensor.view">documentation here</a>.</p>
+<p>On the other hand, it seems that torch.reshape <a href="https://github.com/pytorch/pytorch/pull/5575">has been introduced recently in version 0.4 …</a></p></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~260 words">Read in 2 mins</span>
-                            <span class="card-link"><a href="./articles/JDMDC2020.html#disqus_thread"></a></span>
+                            <span class="card-link text-secondary" title="~212 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Pytorch-View-vs-Reshape.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
                         <a class="badge badge-success" href="./category/nlp.html">nlp</a>
-                            <a class="badge badge-info" href="./tag/deep-learning.html">deep learning</a>
-                            <a class="badge badge-info" href="./tag/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="./tag/pytorch.html">pytorch</a>
+                            <a class="badge badge-info" href="./tag/paddle.html">paddle</a>
                     </div>
                 </div>
             </div>

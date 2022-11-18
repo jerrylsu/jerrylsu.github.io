@@ -217,6 +217,192 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Deploy-my-blog-quickly.html">Deploy my blog&nbsp;quickly</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Mar 08, 2020</span></span>
+                <p><div class="toc">
+<ul>
+<li><a href="#1-clone-blog">1. Clone&nbsp;Blog</a></li>
+<li><a href="#2-create-virtual-environment">2. Create virtual&nbsp;environment</a></li>
+<li><a href="#3-install-themes-plugins">3. Install themes <span class="amp">&amp;</span> plugins</a><ul>
+<li><a href="#download-and-install-theme-elegant">download and install theme&nbsp;elegant</a></li>
+<li><a href="#download-pelican-plugins">download pelican&nbsp;plugins</a></li>
+</ul>
+</li>
+<li><a href="#4-deploy-blog">4. Deploy&nbsp;Blog</a></li>
+</ul>
+</div>
+<h3 id="1-clone-blog">1. Clone&nbsp;Blog</h3>
+<p><code>$ git clone git@github.com:jerrylsu/blog.git</code></p>
+<h3 id="2-create-virtual-environment">2. Create virtual&nbsp;environment</h3>
+<div class="highlight"><pre><span></span><code>$ conda create -n blog <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.6.8
+
+$ conda activate blog
+
+$ pip install …</code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~139 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Deploy-my-blog-quickly.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/tools.html">tools</a>
+                            <a class="badge badge-info" href="../tag/blog.html">blog</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Docker.html">Docker</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 23, 2019</span></span>
+                <p><div class="toc">
+<ul>
+<li><a href="#nvidia-dockergpu">nvidia-docker多用户共享GPU服务器环境搭建</a></li>
+<li><a href="#_1">创建容器</a></li>
+<li><a href="#_2">进入容器</a></li>
+<li><a href="#_3">添加已运行容器端口</a></li>
+<li><a href="#_4">修改容器容量</a></li>
+<li><a href="#dockerroot">docker授权非root用户</a></li>
+<li><a href="#_5">容器内中文乱码</a></li>
+<li><a href="#dockernotebook">服务器docker中启可远程notebook</a></li>
+<li><a href="#pycharm-docker">PyCharm +&nbsp;Docker炼丹炉</a></li>
+<li><a href="#_6">制作镜像并上传仓库</a></li>
+<li><a href="#docker-compose-dockerfile">docker-compose &amp;&amp;&nbsp;dockerfile</a></li>
+</ul>
+</div>
+<h2 id="nvidia-dockergpu">nvidia-docker多用户共享GPU服务器环境搭建 …</h2></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~611 words">Read in 3 mins</span>
+                            <span class="card-link"><a href="../articles/Docker.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/tools.html">tools</a>
+                            <a class="badge badge-info" href="../tag/docker.html">docker</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Conda.html">Conda</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 22, 2019</span></span>
+                <p><div class="toc">
+<ul>
+<li><a href="#anaconda3">anaconda3多用户共享安装</a></li>
+<li><a href="#conda">创建conda虚拟环境</a></li>
+<li><a href="#notebookconda">在Notebook中切换conda虚拟环境</a></li>
+</ul>
+</div>
+<h2 id="anaconda3">anaconda3多用户共享安装</h2>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">bash</span><span class="w"> </span><span class="n">Anaconda</span><span class="o">-</span><span class="n">latest</span><span class="o">-</span><span class="n">Linux</span><span class="o">-</span><span class="n">x86_64</span><span class="o">.</span><span class="n">sh</span><span class="w"></span>
+
+<span class="o">&gt;</span><span class="w"> </span><span class="err">在</span><span class="n">linux下安装第三方多用户使用的共享软件一般都按在</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="w"> </span><span class="err">目录</span><span class="w"></span>
+
+<span class="o">&gt;</span><span class="w"> </span><span class="err">配置</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">profile</span><span class="w"> </span><span class="err">文件，在该文件最后加入</span><span class="k">export</span><span class="w"> </span><span class="n">PATH</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="o">$</span><span class="n">PATH</span><span class="w"></span>
+
+<span class="o">&gt;</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">profile</span><span class="w"></span>
+</code></pre></div>
+
+<h2 id="conda">创建conda虚拟环境</h2>
+<div class="highlight"><pre><span></span><code>  &gt; conda info --envs …</code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~119 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="../articles/Conda.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/tools.html">tools</a>
+                            <a class="badge badge-info" href="../tag/conda.html">conda</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Cygwin.html">Cygwin</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Apr 24, 2019</span></span>
+                <p><div class="toc">
+<ul>
+<li><a href="#cygwin">Cygwin中安装软件</a></li>
+<li><a href="#pycahrmcygwin">Pycahrm中启Cygwin终端</a></li>
+<li><a href="#cygwinwindows-anaconda">Cygwin中使用windows&nbsp;anaconda</a></li>
+</ul>
+</div>
+<h2 id="cygwin">Cygwin中安装软件</h2>
+<div class="highlight"><pre><span></span><code><span class="c1">#download setup-x86_64.exe https://cygwin.com/setup-x86_64.exe</span><span class="w"></span>
+<span class="o">$</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="n">C</span><span class="p">:</span><span class="n">cygwin64</span><span class="w"></span>
+<span class="o">$</span><span class="w"> </span><span class="o">./</span><span class="n">setup</span><span class="o">-</span><span class="n">x86_64</span><span class="o">.</span><span class="n">exe</span><span class="w"> </span><span class="o">-</span><span class="n">q</span><span class="w"> </span><span class="o">-</span><span class="n">P</span><span class="w"> </span><span class="n">wget</span><span class="p">,</span><span class="w"> </span><span class="n">tar</span><span class="p">,</span><span class="w"> </span><span class="n">qawk</span><span class="p">,</span><span class="w"> </span><span class="n">bzip2</span><span class="p">,</span><span class="w"> </span><span class="n">subversion</span><span class="p">,</span><span class="w"> </span><span class="n">vim</span><span class="p">,</span><span class="w"> </span><span class="n">git</span><span class="w"></span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code># git clone https://github.com/transcode-open/apt-cyg
+$ cd apt-cyg
+$ mv apt-cyg /usr/local/bin/
+$ apt-cyg --help
+$ cygcheck --help
+# modify mirror
+$ apt-cyg --mirror …</code></pre></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~421 words">Read in 2 mins</span>
+                            <span class="card-link"><a href="../articles/Cygwin.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/tools.html">tools</a>
+                            <a class="badge badge-info" href="../tag/cygwin.html">cygwin</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="../articles/Linux.html">Linux</a>
+                </h5>
+                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 25, 2019</span></span>
+                <p><div class="toc">
+<ul>
+<li><a href="#1-redirection-of-standard-output">1. Redirection of standard output&nbsp;&gt;</a></li>
+<li><a href="#2-redirected-output">2. Redirected output&nbsp;&gt;&gt;</a></li>
+<li><a href="#3-pipes">3. Pipes&nbsp;|</a></li>
+<li><a href="#4-cat">4.&nbsp;cat</a></li>
+<li><a href="#5-grep-awk">5. grep <span class="amp">&amp;</span>&nbsp;awk</a></li>
+<li><a href="#6-chmod">6.&nbsp;chmod</a></li>
+<li><a href="#7-ps">7.&nbsp;ps</a></li>
+<li><a href="#8-unzip">8.&nbsp;unzip</a></li>
+<li><a href="#9-tar">9.&nbsp;tar</a></li>
+<li><a href="#10-windows-rn-to-linux-n">10. windows &#8216;\r\n&#8217; to linux&nbsp;&#8216;\n&#8217;</a></li>
+<li><a href="#11-rsync">11.&nbsp;rsync</a></li>
+<li><a href="#12-ssh">12. <span class="caps">SSH</span></a><ul>
+<li><a href="#ssh">SSH远程执行命令</a></li>
+<li><a href="#_1">无密钥登陆</a></li>
+<li><a href="#auto-disconnect">Auto&nbsp;disconnect</a></li>
+</ul>
+</li>
+<li><a href="#13-pip">13.&nbsp;pip</a></li>
+<li><a href="#14">14.&nbsp;设置环境变 …</a></li></ul></div></p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~694 words">Read in 3 mins</span>
+                            <span class="card-link"><a href="../articles/Linux.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="../category/tools.html">tools</a>
+                            <a class="badge badge-info" href="../tag/linux.html">linux</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
                     <a href="../articles/Hexo-blog-sync-and-migration.html">Hexo blog sync and&nbsp;migration</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Oct 13, 2018</span></span>
