@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<head>
+
+        <!-- Required metadata tags -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- Default metadata -->
+    <meta name="author" content="Jerry Su" />
+    <meta name="description" content="Reason is the light and the light of life." />
+    <meta name="keywords" content="Git">
+<meta property="og:site_name" content="JERRYLSU.NET" />
+<meta property="og:title" content="Git" />
+<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="../articles/Git.html" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-10-03 11:23:36+08:00" />
+<meta property="article:modified_time" content="" />
+<meta property="article:author" content="../author/jerry-su.html">
+<meta property="article:section" content="Tools" />
+	<meta property="article:tag" content="Git" />
+	<meta property="og:image" content="../jerry.jpg">
+
+        <!-- Site Claim -->
+
+
+        <!-- Title -->
+        <title>
+    Git &ndash; JERRYLSU.NET
+        </title>
+        
+        <!-- Icon -->
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon.ico" type="image/x-icon">
+
+        <!-- Search engine -->
+            <meta name="robots" content="" />
+
+        <!-- Feeds -->
+
+
+
+
+
+
+
+
+        <!-- Styles -->
+        <!--
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/css/bootstrap.min.css">
+        -->
+        <link rel="stylesheet" href="../theme/bootstrap/bootstrap.min.css">
+        <!--
+        <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
+        -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
+        <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
+        <!--
+        <link rel="stylesheet" href="../theme/extra/admonition.min.css">
+        -->
+        <link rel="stylesheet" href="../theme/style.css">
+
+        <!-- Google Analytics -->
+<script>
+(function(i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m) })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-42618265-2', 'auto');
+ga('send', 'pageview');
+</script>
+        <!-- Google Global Site Tag -->
+
+        <!-- Google Tag Manager -->
+
+        <!-- Google Adsense -->
+
+        <!-- Heap Analytic -->
+
+        <!-- Piwik Tracking -->
+
+        <!-- Matomo Tracking -->
+
+</head>
+
+<!-- Body -->
+<body class="d-flex flex-column" data-spy="scroll" data-target="#toc" data-offset="0" style="position: relative;">
+    <!-- Top anchor -->
+    <a href="#" id="backToTop" style="display: none; z-index: 1;" title="Back to top"><span></span></a>
+
+    <!-- Google tag manager -->
+
+    <!-- Navigation -->
+    <nav class="flex-shrink-0 navbar navbar-expand-md navbar-expand-lg navbar-dark bg-dark text-light shadow-sm">
+        <!-- Logo -->
+        <a class="navbar-brand" href="..">JERRYLSU</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon small"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <!-- i18n subsites -->
+
+            <!-- Page links -->
+            <ul class="navbar-nav mr-auto text-center">
+                <li class="nav-item ">                           
+                    <a class="nav-link" href="..">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z" fill="currentColor"></path>
+                        </svg>
+                        Home <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../categories.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M16 6h-8v-6h8v6zm-8 12h-8v6h8v-6zm16 0h-8v6h8v-6zm-11-7v-3h-2v3h-8v5h2v-3h14v3h2v-5h-8z" fill="currentColor"></path>
+                        </svg>
+                        Categories
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../tags.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M10.605 0h-10.605v10.609l13.391 13.391 10.609-10.604-13.395-13.396zm-4.191 6.414c-.781.781-2.046.781-2.829.001-.781-.783-.781-2.048 0-2.829.782-.782 2.048-.781 2.829-.001.782.782.781 2.047 0 2.829z" fill="currentColor"></path>
+                        </svg>
+                        Tags
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../archives.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M1.8 9l-.8-4h22l-.8 4h-2.029l.39-2h-17.122l.414 2h-2.053zm18.575-6l.604-2h-17.979l.688 2h16.687zm3.625 8l-2 13h-20l-2-13h24zm-8 4c0-.552-.447-1-1-1h-6c-.553 0-1 .448-1 1s.447 1 1 1h6c.553 0 1-.448 1-1z" fill="currentColor"></path>
+                        </svg>
+                        Archives
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../pages/about.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z" fill="currentColor"></path>
+                        </svg>
+                        About
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Search form -->
+            <form class="form-inline text-center" action="../search.html">
+                <input class="form-control w-100 bg-dark text-light text-center border-0 p-2" type="text" name="q" pattern=".{3,}" title="At least 3 characters" required="" placeholder="Type here to search" aria-label="Search">
+            </form>
+
+            <!-- Social links -->
+            <ul class="navbar-nav text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://facebook.com/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Facebook</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Github</title>
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.linkedin.com/in/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Linkedin</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://twitter.com/Jerrylsu666">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Twitter</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Full page -->
+    <div class="flex-shrink-0 flex-grow-1">
+
+        <!-- Header -->
+        <header class="bg-dark text-light shadow-sm pt-3 pb-2">
+	<div class="container">
+		<h3 id="Git">Git</h3>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
+        <div class="row mx-auto mt-3">
+            <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
+                <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
+                <span class="card-link text-success">
+                    <span class="post-date" title="Post date">Oct 03, 2018</span>
+                    <span class="text-info modified-date" title="Updated date">
+                            Oct 03, 2018
+                    </span>
+                </span>
+                    <span class="card-link text-secondary" title="~266 words">2 mins</span>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
+                <a class="badge badge-success" href="../category/tools.html">tools</a>
+                    <a class="badge badge-info" href="../tag/git.html">git</a>
+            </div>
+        </div>
+	</div>
+        </header>
+
+        <!-- Main -->
+        <main class="py-3">
+                <div class="container">
+                    <!-- Sharing -->
+
+                    <!-- Content -->
+    <!-- 2 columns layout -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
+
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
+
+                <!-- Article -->
+                <p><a href="https://learngitbranching.js.org/?locale=zh_CN">可视化Learn Git&nbsp;Branching</a></p>
+<h2 id="1">1.&nbsp;仓库管理</h2>
+<h3 id="create-repository">Create&nbsp;Repository</h3>
+<p><code>$ mkdir myrepo</code></p>
+<p><code>$ cd myrepo</code> </p>
+<p><code>$ git init</code></p>
+<p>Initialized empty Git repository in&nbsp;/Users/jerrylsu/myrepo/.git/</p>
+<h3 id="add-file-to-local-repository">Add File to Local&nbsp;Repository</h3>
+<p><code>$ git status</code></p>
+<p><code>$ git diff filename</code></p>
+<p>Check working directory status, and view changes made to the&nbsp;filemname.</p>
+<p><code>$ git add filename</code></p>
+<p><code>$ git commit -m "write commend"</code></p>
+<p><code>$ git commit --amend</code>  修改最后一次提交，避免新开一个commit提交到history！</p>
+<h3 id="associated-remote-repogithub">Associated Remote&nbsp;Repo(GitHub)</h3>
+<p><code>$ git remote add origin [SSH address]</code></p>
+<p>Note : <strong>origin</strong> is an alias for the remote repository&nbsp;address. </p>
+<h3 id="push-github-repository">Push GitHub&nbsp;Repository</h3>
+<p><code>$ git push origin branch_name</code></p>
+<p>Now, we can push the latest changes to our local branch to the remote GitHub repository, which is associated&nbsp;above!</p>
+<h2 id="2">2.&nbsp;分支管理</h2>
+<h3 id="_1">创建分支</h3>
+<p><code>git branch branch_name</code></p>
+<h3 id="_2">切换分支</h3>
+<p><code>git checkout branch_name</code></p>
+<h3 id="_3">创建并切换分支</h3>
+<p><code>git checkout -b branch_name</code></p>
+<h3 id="_4">查看所有本地分支</h3>
+<p><code>$ git branch</code></p>
+<h3 id="_5">合并分支</h3>
+<p>将其他分支branch_name合并到当前分支</p>
+<p><code>git merge branch_name</code></p>
+<p>将当前分支合并到其他分支branch_name,线性的串接到分支branch_name后</p>
+<p><code>git rebase branch_name</code></p>
+<h3 id="_6">删除本地分支</h3>
+<p><code>git branch -d branch_name</code></p>
+<h3 id="_7">删除远程分支</h3>
+<p><code>git branch -r -d origin/branch_name</code></p>
+<p><code>git push origin:branch_name</code> ???</p>
+<h3 id="_8">远程新建分支</h3>
+<p>将本地分支推送到远程不存在的分支，实现远程分支新建</p>
+<p><code>git push origin local_branch:remote_branch</code></p>
+<h3 id="remove-filesdir-from-git-repo">Remove files/dir from git&nbsp;repo</h3>
+<p><code>$ git rm --cached file.txt</code></p>
+<p><code>$ git rm -r --cached dir</code></p>
+<p><code>$ git commit -m "remove file.txt"</code></p>
+<p>And to push changes to remote&nbsp;repo</p>
+<p><code>$ git push origin branch_name</code>  </p>
+<h3 id="_9">拉取远程分支</h3>
+<ul>
+<li>
+<p>先拉远程master分支：<code>git clone ...</code></p>
+</li>
+<li>
+<p>拉取远程分支： <code>git fetch origin remote_branch_name:local_branch_name</code></p>
+</li>
+<li>
+<p>查看拉取到本地的分支：<code>git checkout local_branch_name</code></p>
+</li>
+</ul>
+<h2 id="3">3.&nbsp;在提交树上的移动</h2>
+<p><span class="caps">HEAD</span> 总是指向当前分支上最近一次提交记录。大多数修改提交树的 Git 命令都是从改变 <span class="caps">HEAD</span>&nbsp;的指向开始的。</p>
+<p><span class="caps">HEAD</span> 通常情况下是指向分支名的。在你提交时，改变了分支的状态，这一变化通过 <span class="caps">HEAD</span>&nbsp;变得可见。</p>
+<h3 id="head">分离HEAD指针</h3>
+<p>可以用切换分支的命令来切换到特定一次的提交，提交名是哈希值commit_hash。</p>
+<p><code>git checkout commit_hash(fed2)</code> HEAD分离并指向这个特定的提交</p>
+<p><code>git log</code>获取提交的哈希值，例如fed2da64c0efc5293610bdd892f82a58e8cbc5d8，如果可以唯一标识，取前缀即可fed2。</p>
+<h3 id="_10">相对引用</h3>
+<p>相对引用更方便,使用相对引用可以从一个易于记忆的地方（比如 bugFix 分支或 <span class="caps">HEAD</span>）开始计算</p>
+<ul>
+<li>
+<p>使用 <code>^</code> 后退1个提交记录，如<code>git checkout main^</code> 或 <code>git checkout main^^</code>，HEAD指向main分支的父节点和父父节点</p>
+</li>
+<li>
+<p>使用 <code>~&lt;num&gt;</code> 后退num步提交记录，如 <code>~3</code>。<code>~</code>不接数字等价于<code>^</code></p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git checkout fed2    # 分离HEAD指向fed2这次提交
+
+git checkout HEAD^   # HEAD上移
+
+git checkout HEAD^   # HEAD继续上移
+</code></pre></div>
+
+<h3 id="_11">强制修改分支位置</h3>
+<p><code>git branch -f main HEAD^3/commit_hash</code></p>
+<h2 id="5">5.&nbsp;撤销变更</h2>
+<p><code>git reset commit_hash</code></p>
+<h2 id="6">6.&nbsp;整理提交分支</h2>
+<p>将commit_hash1与commit_hash2两次提交串接到当前分支下，当前分支指针移动到串接头部commit_hash2。类似于<code>git rebase</code></p>
+<p><code>git cherry-pick commit_hash1 commit_hash2</code></p>
+<h2 id="4-commit">4.&nbsp;恢复本地commit提交</h2>
+<ul>
+<li>
+<p>获取commit id： <code>git log</code></p>
+</li>
+<li>
+<p>恢复本地commit提交： <code>git reset --hard commit_id</code></p>
+</li>
+</ul>
+<p><a href="https://mp.weixin.qq.com/s/VdeQpFCL3GGsfOKrIRW6Hw">git常用</a></p>
+
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
+<div class="pagination">
+    <a class="w-50" href="../articles/Keeping-a-fork-synced-with-the-origin-repo.html">
+&ll; Keeping a fork synced with the origin&nbsp;repo
+    </a>
+    <a class="w-50 text-right" href="../articles/Building-Python-Package-with-Pybuilder.html">
+        Building Python Package with&nbsp;Pybuilder &gg;    </a>
+</div>
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
+
+    <!-- Releated posts -->
+        <hr>
+        <div>
+            <h5>Related posts:</h5>
+            <ul>
+                <li><a href="../articles/Git-LFS-Bandwidth-Issue.html">Git <span class="caps">LFS</span> Bandwidth&nbsp;Issue</a></li>
+                <li><a href="../articles/Keeping-a-fork-synced-with-the-origin-repo.html">Keeping a fork synced with the origin&nbsp;repo</a></li>
+            </ul>
+        </div>
+
+    <!-- Comments -->
+        <hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'jerrylsu-github-io';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                </div>
+        </main>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="flex-shrink-0 bg-dark text-light small py-1">
+        <div class="container text-center">
+            &copy; 2022 <a href="..">JERRYLSU.NET</a> by <a href="../pages/about.html">JERRY</a>. Powered by <a href="http://getpelican.com">Pelican</a>, <a href="http://python.org">Python</a>, <a href="https://getbootstrap.com">Bootstrap 4</a><br>
+            <!-- Do not remove below license sentence -->
+            License: <a href="https://spdx.org/licenses/CC-BY-4.0.html">CC-BY-4.0</a>, based on <a href="https://github.com/vuquangtrong/simplify-theme">Simplify Bootstrap Theme</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!--
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    -->
+    <script type="text/javascript" src="../theme/jquery/jquery-3.4.1.min.js"></script>
+    <!--
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/bootstrap.min.js"></script>
+    -->
+    <script type="text/javascript" src="../theme/bootstrap/bootstrap.min.js"></script>
+    <!--
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
+    -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
+    <script type="text/javascript" src="../theme/style.js"></script>
+
+    <!-- Sharing -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d9ffca0db80069e"></script>
+
+    <!-- JSON LD -->
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "name": "Git",
+    "headline": "Git",
+    "datePublished": "2018-10-03 11:23:36+08:00",
+    "dateModified": "",
+    "author": {
+        "@type": "Person",
+        "name": "Jerry Su",
+        "url": "../author/jerry-su.html"
+    },
+    "image": "../jerry.jpg",
+    "url": "../articles/Git.html",
+    "description": "Reason is the light and the light of life."
+}
+</script>
+    <!-- Disqus count -->
+</body>
+
+</html>
