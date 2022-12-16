@@ -5,7 +5,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/</loc>
-<lastmod>2022-11-22T20:08:10-00:00</lastmod>
+<lastmod>2022-12-16T20:51:30-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -13,6 +13,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://www.jerrylsu.net/pages/about.html</loc>
 <lastmod>2022-04-07T20:00:00+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.jerrylsu.net/articles/Brackets-Matching.html</loc>
+<lastmod>2022-12-16T10:17:17+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1146,7 +1153,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/category/algorithms.html</loc>
-<lastmod>2021-02-24T10:17:17+08:06</lastmod>
+<lastmod>2022-12-16T10:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1182,6 +1189,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://www.jerrylsu.net/category/tools.html</loc>
 <lastmod>2021-09-04T20:26:47+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.jerrylsu.net/tag/algorithm.html</loc>
+<lastmod>2022-12-16T10:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1356,13 +1370,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/tag/slidingwindow.html</loc>
-<lastmod>2021-02-24T10:17:17+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://www.jerrylsu.net/tag/algorithm.html</loc>
 <lastmod>2021-02-24T10:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -1615,7 +1622,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/author/jerry-su.html</loc>
-<lastmod>2022-11-03T11:17:17+08:06</lastmod>
+<lastmod>2022-12-16T10:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

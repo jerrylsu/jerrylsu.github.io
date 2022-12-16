@@ -218,6 +218,26 @@ ga('send', 'pageview');
         <div class="card mb-2 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title" style="margin-bottom: 0;">
+                    <a href="./articles/Pytorch-View-vs-Reshape.html">Pytorch View vs&nbsp;Reshape</a>
+                </h5>
+                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 03, 2022</span></span>
+                <p>Reason is the light and the light of&nbsp;life.</p>
+                <div class="flex-row mx-auto mt-3 small">
+                    <div class="float-left">
+                            <span class="card-link text-secondary" title="~212 words">Read in 1 mins</span>
+                            <span class="card-link"><a href="./articles/Pytorch-View-vs-Reshape.html#disqus_thread"></a></span>
+                    </div>
+                    <div class=" float-right">
+                        <a class="badge badge-success" href="./category/nlp.html">nlp</a>
+                            <a class="badge badge-info" href="./tag/pytorch.html">pytorch</a>
+                            <a class="badge badge-info" href="./tag/paddle.html">paddle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 0;">
                     <a href="./articles/pytorch.nn.functional.pad.html">pytorch.nn.functional.pad</a>
                 </h5>
                 <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">May 02, 2022</span></span>
@@ -386,55 +406,6 @@ ga('send', 'pageview');
                         <a class="badge badge-success" href="./category/ml.html">ml</a>
                             <a class="badge badge-info" href="./tag/machine-learning.html">machine learning</a>
                             <a class="badge badge-info" href="./tag/statistics.html">statistics</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="./articles/Numpy-[None, ...].html">Numpy [None,&nbsp;&#8230;]</a>
-                </h5>
-                <span class="small">by <a href="./author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Nov 26, 2021</span></span>
-                <p><div class="toc">
-<ul></ul>
-</div>
-<p><code>None</code>在对应位置增加一个维度(类似于<code>unsqueeze(axis=)</code>)</p>
-<p><code>...</code>等价于<code>[:,:,:]</code></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">arr</span><span class="o">.</span><span class="n">shape</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>(5, 10)
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">arr</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>(1, 5, 10)
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">arr</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>(5, 10, 1)
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">arr</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">shape</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>(5 …</code></pre></div></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~81 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="./articles/Numpy-[None, ...].html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="./category/programming.html">programming</a>
-                            <a class="badge badge-info" href="./tag/numpy.html">numpy</a>
                     </div>
                 </div>
             </div>
