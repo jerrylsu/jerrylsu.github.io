@@ -209,8 +209,8 @@ ga('send', 'pageview');
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
 		<h3 id="Rust-in-JupyerLab">Rust in&nbsp;JupyterLab</h3>
-		<p style="font-size:larger;"><h2 id="1-install-jupyterlab">1. Install&nbsp;JupyterLab</h2>
-<h2 id="2-install-rust">2. Install&nbsp;Rust</h2>
+		<p style="font-size:larger;"><h4 id="1-install-jupyterlab">1. Install&nbsp;JupyterLab</h4>
+<h4 id="2-install-rust">2. Install&nbsp;Rust</h4>
 <ul>
 <li>
 <p><code>curl https://sh.rustup.rs -sSf | sh</code></p>
@@ -222,7 +222,7 @@ ga('send', 'pageview');
 <p><code>export PATH="$HOME/.cargo/bin:$PATH"</code></p>
 </li>
 </ul>
-<h2 id="3-install-evcxr-jupyter-kernel">3. Install Evcxr Jupyter&nbsp;Kernel</h2>
+<h4 id="3-install-evcxr-jupyter-kernel">3. Install Evcxr Jupyter&nbsp;Kernel</h4>
 <ul>
 <li>
 <p><code>cargo install evcxr_jupyter</code></p>
@@ -231,7 +231,7 @@ ga('send', 'pageview');
 <p><code>evcxr_jupyter --install</code></p>
 </li>
 </ul>
-<h2 id="reference">Reference</h2>
+<h4 id="reference">Reference</h4>
 <p>https://github.com/google/evcxr/blob/main/evcxr_jupyter/<span class="caps">README</span>.md</p>
 <p>https://datacrayon.com/posts/programming/rust-notebooks …</p></p>
         <div class="row mx-auto mt-3">
@@ -243,7 +243,7 @@ ga('send', 'pageview');
                             Dec 20, 2022
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~27 words">1 mins</span>
+                    <span class="card-link text-secondary" title="~53 words">1 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/programming.html">programming</a>
@@ -269,8 +269,8 @@ ga('send', 'pageview');
                     </div>
 
                 <!-- Article -->
-                <h2 id="1-install-jupyterlab">1. Install&nbsp;JupyterLab</h2>
-<h2 id="2-install-rust">2. Install&nbsp;Rust</h2>
+                <h4 id="1-install-jupyterlab">1. Install&nbsp;JupyterLab</h4>
+<h4 id="2-install-rust">2. Install&nbsp;Rust</h4>
 <ul>
 <li>
 <p><code>curl https://sh.rustup.rs -sSf | sh</code></p>
@@ -282,7 +282,7 @@ ga('send', 'pageview');
 <p><code>export PATH="$HOME/.cargo/bin:$PATH"</code></p>
 </li>
 </ul>
-<h2 id="3-install-evcxr-jupyter-kernel">3. Install Evcxr Jupyter&nbsp;Kernel</h2>
+<h4 id="3-install-evcxr-jupyter-kernel">3. Install Evcxr Jupyter&nbsp;Kernel</h4>
 <ul>
 <li>
 <p><code>cargo install evcxr_jupyter</code></p>
@@ -291,9 +291,16 @@ ga('send', 'pageview');
 <p><code>evcxr_jupyter --install</code></p>
 </li>
 </ul>
-<h2 id="reference">Reference</h2>
+<h4 id="reference">Reference</h4>
 <p>https://github.com/google/evcxr/blob/main/evcxr_jupyter/<span class="caps">README</span>.md</p>
 <p>https://datacrayon.com/posts/programming/rust-notebooks/setup-anaconda-jupyter-and-rust/</p>
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">jupyter</span> <span class="n">nbconvert</span> <span class="o">--</span><span class="n">to</span> <span class="n">markdown</span> <span class="mi">2022</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="n">Rust</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">JupyterLab</span><span class="o">.</span><span class="n">ipynb</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">WARNING</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Config</span><span class="w"> </span><span class="k">option</span><span class="w"> </span><span class="err">`</span><span class="n">kernel_spec_manager_class</span><span class="err">`</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">recognized</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="err">`</span><span class="n">NbConvertApp</span><span class="err">`</span><span class="p">.</span><span class="w"></span>
+<span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">Converting</span><span class="w"> </span><span class="n">notebook</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="n">Rust</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">JupyterLab</span><span class="p">.</span><span class="n">ipynb</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">markdown</span><span class="w"></span>
+<span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">Writing</span><span class="w"> </span><span class="mi">656</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="n">Rust</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">JupyterLab</span><span class="p">.</span><span class="n">md</span><span class="w"></span>
+</code></pre></div>
 
                 <!-- Neighbors -->
                     <br>
