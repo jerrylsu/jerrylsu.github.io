@@ -12,21 +12,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
         <!-- Default metadata -->
-    <meta name="author" content="JERRY" />
-    <meta name="description" content="" />
+    <meta name="author" content="Jerry Su" />
+    <meta name="description" content="闭包：可以捕获周围作用域中变量的匿名函数。 可以保存在一个变量中。 可以作为参数传递给其他函数。 不同于函数，闭包允 …" />
+    <meta name="keywords" content="Rust">
 <meta property="og:site_name" content="JERRYLSU" />
-<meta property="og:type" content="blog" />
-<meta property="og:title" content="JERRYLSU" />
-<meta property="og:description" content="" />
+<meta property="og:title" content="Rust closure" />
+<meta property="og:description" content="闭包：可以捕获周围作用域中变量的匿名函数。 可以保存在一个变量中。 可以作为参数传递给其他函数。 不同于函数，闭包允 …" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:url" content=".." />
-<meta property="og:image" content="../jerry.jpg">
+<meta property="og:url" content="../articles/Rust-closure.html" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-01-05 14:17:17+08:00" />
+<meta property="article:modified_time" content="" />
+<meta property="article:author" content="../author/jerry-su.html">
+<meta property="article:section" content="Programming" />
+	<meta property="article:tag" content="Rust" />
+	<meta property="og:image" content="../jerry.jpg">
+
         <!-- Site Claim -->
 
 
         <!-- Title -->
         <title>
-JERRYLSU - Rust tag        </title>
+    Rust closure &ndash; JERRYLSU
+        </title>
         
         <!-- Icon -->
         <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
@@ -52,6 +60,7 @@ JERRYLSU - Rust tag        </title>
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -198,29 +207,9 @@ ga('send', 'pageview');
 
         <!-- Header -->
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
-    <div class="container">
-        <h1 id="JERRYLSU">JERRYLSU</h1>
-        <p style="font-size: larger; color: orange;"></p>
-    </div>
-        </header>
-
-        <!-- Main -->
-        <main class="py-3">
-                <div class="container">
-                    <!-- Sharing -->
-                        <div class="text-right mb-2 small" style="height: 26px">
-                            <div class="addthis_inline_share_toolbox"></div>
-                        </div>
-
-                    <!-- Content -->
-    <!-- List of article -->
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Rust-closure.html">Rust&nbsp;closure</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 05, 2023</span></span>
-                <p><p>闭包：可以捕获周围作用域中变量的<strong>匿名函数</strong>。</p>
+	<div class="container">
+		<h3 id="Rust-closure">Rust&nbsp;closure</h3>
+		<p style="font-size:larger;"><p>闭包：可以捕获周围作用域中变量的<strong>匿名函数</strong>。</p>
 <ul>
 <li>
 <p>可以保存在一个变量中。</p>
@@ -230,107 +219,128 @@ ga('send', 'pageview');
 </li>
 <li>
 <p>不同于函数，闭包允 …</p></li></ul></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~28 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Rust-closure.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/rust.html">rust</a>
-                    </div>
-                </div>
+        <div class="row mx-auto mt-3">
+            <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
+                <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
+                <span class="card-link text-success">
+                    <span class="post-date" title="Post date">Jan 05, 2023</span>
+                    <span class="text-info modified-date" title="Updated date">
+                            Jan 05, 2023
+                    </span>
+                </span>
+                    <span class="card-link text-secondary" title="~28 words">1 mins</span>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
+                <a class="badge badge-success" href="../category/programming.html">programming</a>
+                    <a class="badge badge-info" href="../tag/rust.html">rust</a>
             </div>
         </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Rust-[]-&[]-vec![].html">Rust [] vs &[] vs&nbsp;vec![]</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 05, 2023</span></span>
-                <p><p><a href="https://stackoverflow.com/questions/57848114/what-are-the-differences-between-and-vec">What are the differences between [], &amp;[], and&nbsp;vec![]?</a></p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~7 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Rust-[]-&[]-vec![].html#disqus_thread"></a></span>
+	</div>
+        </header>
+
+        <!-- Main -->
+        <main class="py-3">
+                <div class="container">
+                    <!-- Sharing -->
+
+                    <!-- Content -->
+    <!-- 2 columns layout -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
+
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
                     </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/rust.html">rust</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Rust-self-&self-&mut-self.html">Rust self vs &self vs &mut&nbsp;self</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 05, 2023</span></span>
-                <p><ul>
-<li>
-<p><strong>self</strong>: (self: Self) Having a method that takes ownership of the instance by using just self as the first parameter is rare; this technique is usually used when the method transforms self into something else and you want to prevent the caller from using the original instance after the&nbsp;transformation …</p></li></ul></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~108 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Rust-self-&self-&mut-self.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/rust.html">rust</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-2 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title" style="margin-bottom: 0;">
-                    <a href="../articles/Rust-in-JupyerLab.html">Rust in&nbsp;JupyterLab</a>
-                </h5>
-                <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Dec 20, 2022</span></span>
-                <p><h6 id="1install-jupyterlab">1.Install&nbsp;JupyterLab</h6>
-<h6 id="2install-rust">2.Install&nbsp;Rust</h6>
+
+                <!-- Article -->
+                <p>闭包：可以捕获周围作用域中变量的<strong>匿名函数</strong>。</p>
 <ul>
 <li>
-<p><code>curl https://sh.rustup.rs -sSf | sh</code></p>
+<p>可以保存在一个变量中。</p>
 </li>
 <li>
-<p><code>source $HOME/.cargo/env</code></p>
+<p>可以作为参数传递给其他函数。</p>
 </li>
 <li>
-<p><code>export PATH="$HOME/.cargo/bin:$PATH"</code></p>
+<p>不同于函数，闭包允许捕获周围作用域中的变量。</p>
+</li>
+<li>
+<p>调用方式与函数调用相同，输入和返回类型可以省略。</p>
+</li>
+<li>
+<p>声明时使用 || 替代 ()&nbsp;将输入参数括起来。</p>
+</li>
+<li>
+<p>函数体定界符（{}）对于单个表达式是可选的，其他情况必须加上。</p>
 </li>
 </ul>
-<h6 id="3install-evcxr-jupyter-kernel">3.Install Evcxr Jupyter&nbsp;Kernel</h6>
-<ul>
-<li>
-<p><code>cargo install evcxr_jupyter</code></p>
-</li>
-<li>
-<p><code>evcxr_jupyter --install</code></p>
-</li>
-</ul>
-<h6 id="4reference">4.Reference</h6>
-<p><a href="https://github.com/google/evcxr/blob/main/evcxr_jupyter/README.md">https://github.com/google/evcxr/blob/main/evcxr_jupyter/<span class="caps">README</span>.md</a></p>
-<p><a href="https://datacrayon.com/posts/programming/rust-notebooks/setup-anaconda-jupyter-and-rust/">https://datacrayon.com/posts/programming …</a></p></p>
-                <div class="flex-row mx-auto mt-3 small">
-                    <div class="float-left">
-                            <span class="card-link text-secondary" title="~24 words">Read in 1 mins</span>
-                            <span class="card-link"><a href="../articles/Rust-in-JupyerLab.html#disqus_thread"></a></span>
-                    </div>
-                    <div class=" float-right">
-                        <a class="badge badge-success" href="../category/programming.html">programming</a>
-                            <a class="badge badge-info" href="../tag/rust.html">rust</a>
-                    </div>
+<div class="highlight"><pre><span></span><code><span class="k">fn</span> <span class="nf">test_closure</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">MAX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">closure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">|</span><span class="n">i</span>: <span class="kt">u32</span><span class="o">|</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">MAX</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;x: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">closure</span><span class="p">(</span><span class="n">x</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">test_closure</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">x</span><span class="o">:</span><span class="w"> </span><span class="mi">1001</span><span class="w"></span>
+
+
+
+
+
+<span class="o">()</span><span class="w"></span>
+</code></pre></div>
+
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
+<div class="pagination">
+    <a class="w-100" href="../articles/Rust-[]-&[]-vec![].html">
+Rust [] vs &[] vs&nbsp;vec![]
+    </a>
+</div>
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
                 </div>
             </div>
         </div>
 
-    <!-- Pagination -->
-<div class="pagination px-2">
-</div>
-    <!-- Google Adsense -->
-                </div>
+    <!-- Releated posts -->
+        <hr>
+        <div>
+            <h5>Related posts:</h5>
+            <ul>
+                <li><a href="../articles/Rust-[]-&[]-vec![].html">Rust [] vs &[] vs&nbsp;vec![]</a></li>
+                <li><a href="../articles/Rust-self-&self-&mut-self.html">Rust self vs &self vs &mut&nbsp;self</a></li>
+                <li><a href="../articles/Rust-in-JupyerLab.html">Rust in&nbsp;JupyterLab</a></li>
+            </ul>
+        </div>
+
+    <!-- Comments -->
+        <hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'jerrylsu-github-io';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                </div>
         </main>
 
     </div>
@@ -356,6 +366,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -365,14 +376,22 @@ ga('send', 'pageview');
 <script type="application/ld+json">
 {
     "@context": "http://schema.org",
-    "@type": "Blog",
-    "name": " JERRYLSU ",
-    "url": "..",
+    "@type": "BlogPosting",
+    "name": "Rust closure",
+    "headline": "Rust closure",
+    "datePublished": "2023-01-05 14:17:17+08:00",
+    "dateModified": "",
+    "author": {
+        "@type": "Person",
+        "name": "Jerry Su",
+        "url": "../author/jerry-su.html"
+    },
     "image": "../jerry.jpg",
-    "description": ""
+    "url": "../articles/Rust-closure.html",
+    "description": "闭包：可以捕获周围作用域中变量的匿名函数。 可以保存在一个变量中。 可以作为参数传递给其他函数。 不同于函数，闭包允 …"
 }
 </script>
     <!-- Disqus count -->
-<script id="dsq-count-scr" src="//jerrylsu-github-io.disqus.com/count.js" async="async"></script></body>
+</body>
 
 </html>
