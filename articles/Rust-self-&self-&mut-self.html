@@ -12,15 +12,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
         <!-- Default metadata -->
-            <meta name="author" content="JERRY" />
-            <meta name="description" content="" />
+    <meta name="author" content="Jerry Su" />
+    <meta name="description" content="self: (self: Self) Having a method that takes ownership of the instance by using just self as the first parameter is rare; this technique is usually used when the method transforms self into something else and you want to prevent the caller from using the original instance after the transformation …" />
+    <meta name="keywords" content="Rust">
+<meta property="og:site_name" content="JERRYLSU" />
+<meta property="og:title" content="Rust self vs &amp;self vs &amp;mut self" />
+<meta property="og:description" content="self: (self: Self) Having a method that takes ownership of the instance by using just self as the first parameter is rare; this technique is usually used when the method transforms self into something else and you want to prevent the caller from using the original instance after the transformation …" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="../articles/Rust-self-&self-&mut-self.html" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-01-05 10:17:17+08:00" />
+<meta property="article:modified_time" content="" />
+<meta property="article:author" content="../author/jerry-su.html">
+<meta property="article:section" content="Programming" />
+	<meta property="article:tag" content="Rust" />
+	<meta property="og:image" content="../jerry.jpg">
 
         <!-- Site Claim -->
 
 
         <!-- Title -->
         <title>
-    About &ndash; JERRYLSU
+    Rust self vs &amp;self vs &amp;mut self &ndash; JERRYLSU
         </title>
         
         <!-- Icon -->
@@ -47,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -135,7 +149,7 @@ ga('send', 'pageview');
                         Archives
                     </a>
                 </li>
-                <li class="nav-item  active ">
+                <li class="nav-item ">
                     <a class="nav-link" href="../pages/about.html">
                         <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
                             <path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z" fill="currentColor"></path>
@@ -193,19 +207,28 @@ ga('send', 'pageview');
 
         <!-- Header -->
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
-    <div class="container">
-        <div class="row">
-            <div class="col-8">
-                <h3 id="About" style="color: orange;">About</h3>
-                    <p class="text-light">Last updated: Apr 07, 2022</p>
+	<div class="container">
+		<h3 id="Rust-self-&self-&mut-self">Rust self vs &self vs &mut&nbsp;self</h3>
+		<p style="font-size:larger;"><ul>
+<li>
+<p><strong>self</strong>: (self: Self) Having a method that takes ownership of the instance by using just self as the first parameter is rare; this technique is usually used when the method transforms self into something else and you want to prevent the caller from using the original instance after the&nbsp;transformation …</p></li></ul></p>
+        <div class="row mx-auto mt-3">
+            <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
+                <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
+                <span class="card-link text-success">
+                    <span class="post-date" title="Post date">Jan 05, 2023</span>
+                    <span class="text-info modified-date" title="Updated date">
+                            Jan 05, 2023
+                    </span>
+                </span>
+                    <span class="card-link text-secondary" title="~108 words">1 mins</span>
             </div>
-            <div class="col-4 small" style="margin-top: 0.5rem;">
-                    <div class="text-right mb-2 small" style="height: 26px">
-                        <div class="addthis_inline_share_toolbox"></div>
-                    </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
+                <a class="badge badge-success" href="../category/programming.html">programming</a>
+                    <a class="badge badge-info" href="../tag/rust.html">rust</a>
             </div>
         </div>
-    </div>
+	</div>
         </header>
 
         <!-- Main -->
@@ -214,64 +237,74 @@ ga('send', 'pageview');
                     <!-- Sharing -->
 
                     <!-- Content -->
-    <h4 id="jerry">Jerry</h4>
-<ul>
+    <!-- 2 columns layout -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
+
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
+
+                <!-- Article -->
+                <ul>
 <li>
-<p><span class="caps">NLP</span>,&nbsp;Baidu</p>
+<p><strong>self</strong>: (self: Self) Having a method that takes ownership of the instance by using just self as the first parameter is rare; this technique is usually used when the method transforms self into something else and you want to prevent the caller from using the original instance after the&nbsp;transformation.</p>
 </li>
 <li>
-<p>Email:&nbsp;sa517301@mail.ustc.edu.cn</p>
+<p><strong>&amp;self</strong>: (self: &amp;Self) We don’t want to take ownership, and we just want to read the data in the struct, not write to&nbsp;it.</p>
 </li>
 <li>
-<p>Github: <a href="https://github.com/jerrylsu">github.com/jerrylsu</a></p>
-</li>
-</ul>
-<h4 id="projects"><span class="caps">PROJECTS</span></h4>
-<ul>
-<li>
-<p>Apr. 2022 - Apr. 2022, <strong><a href="https://github.com/jerrylsu/Kaggle-Feedback-Prize-Evaluating-Student-Writing">Feedback Prize - Evaluating Student&nbsp;Writing</a></strong></p>
-</li>
-<li>
-<p>Mar. 2021 - Apr. 2021, <strong><a href="https://github.com/jerrylsu/UtteranceRewriter">Utterance Rewriter with Transformer and Pointer&nbsp;Networker</a></strong></p>
-</li>
-<li>
-<p>Dec. 2020 - Feb. 2021, <strong><a href="https://github.com/jerrylsu/cmrc">Span-Extraction: Chinese Machine Reading&nbsp;Comprehension</a></strong></p>
-</li>
-<li>
-<p>Jan. 2021 - Feb. 2021, <strong><a href="https://github.com/jerrylsu/lm_pretrain">Pretrain Language Model for <span class="caps">BERT</span></a></strong></p>
-</li>
-<li>
-<p>Jan. 2021 - Apr. 2021, <strong><a href="https://github.com/jerrylsu/Novel-Molecular-Toxicity-Prediction-Model">Novel Molecular Toxicity&nbsp;Prediction</a></strong></p>
-</li>
-<li>
-<p>Jun. 2020 - Sep. 2020, <strong><a href="http://www.jerrylsu.net/articles/2020/nlp-JDMDC2020.html"><span class="caps">BAAI</span>-<span class="caps">JD</span> Multimodal Dialog&nbsp;Challenge</a></strong></p>
-</li>
-<li>
-<p>Oct. 2020 - Present, <strong><a href="https://github.com/jerrylsu/autotools">autotools: This is a Python pacakage that contains automation&nbsp;tools.</a></strong></p>
-</li>
-<li>
-<p>Sep. 2018 - Present, <strong><a href="https://github.com/jerrylsu/blog">Jerry&#8217;s Technology Blog with&nbsp;Pelican</a></strong></p>
+<p><strong>&amp;mut self</strong>: (self: &amp;mut Self) If we wanted to change the instance that we’ve called the method on as part of what the method does, we’d use &amp;mut self as the first&nbsp;parameter.</p>
 </li>
 </ul>
-<h4 id="experience"><span class="caps">EXPERIENCE</span></h4>
-<ul>
-<li>
-<p>Jun. 2021 - Present, <strong>Baidu</strong>. Senior Algorithm&nbsp;Engineer</p>
-</li>
-<li>
-<p>Dec. 2019 - May. 2021, <strong>CloudWalk</strong>. Algorithm&nbsp;Engineer</p>
-</li>
-<li>
-<p>Sep. 2018 - Oct. 2019, <strong>eBay</strong>. Data Scientist Intern, advised by <a href="https://www.linkedin.com/in/ben-chuanlong-du-1239b221/">Ben</a></p>
-</li>
-<li>
-<p>Jul. 2018 - Aug. 2018, <strong>Tencent</strong>. Algorithm Engineer&nbsp;Intern</p>
-</li>
-<li>
-<p>May. 2017 - Jun. 2018, <strong><span class="caps">USTC</span></strong>. Research&nbsp;Assistant</p>
-</li>
-</ul>
+<p>https://stackoverflow.com/questions/59018413/when-to-use-self-self-mut-self-in-methods</p>
+
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
+<div class="pagination">
+    <a class="w-100" href="../articles/Rust-in-JupyerLab.html">
+Rust in&nbsp;JupyterLab
+    </a>
+</div>
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
                 </div>
+            </div>
+        </div>
+
+    <!-- Releated posts -->
+        <hr>
+        <div>
+            <h5>Related posts:</h5>
+            <ul>
+                <li><a href="../articles/Rust-in-JupyerLab.html">Rust in&nbsp;JupyterLab</a></li>
+            </ul>
+        </div>
+
+    <!-- Comments -->
+        <hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'jerrylsu-github-io';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                </div>
         </main>
 
     </div>
@@ -297,6 +330,7 @@ ga('send', 'pageview');
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -306,11 +340,19 @@ ga('send', 'pageview');
 <script type="application/ld+json">
 {
     "@context": "http://schema.org",
-    "@type": "Blog",
-    "name": " JERRYLSU ",
-    "url": "..",
+    "@type": "BlogPosting",
+    "name": "Rust self vs &self vs &mut self",
+    "headline": "Rust self vs &self vs &mut self",
+    "datePublished": "2023-01-05 10:17:17+08:00",
+    "dateModified": "",
+    "author": {
+        "@type": "Person",
+        "name": "Jerry Su",
+        "url": "../author/jerry-su.html"
+    },
     "image": "../jerry.jpg",
-    "description": ""
+    "url": "../articles/Rust-self-&self-&mut-self.html",
+    "description": "self: (self: Self) Having a method that takes ownership of the instance by using just self as the first parameter is rare; this technique is usually used when the method transforms self into something else and you want to prevent the caller from using the original instance after the transformation …"
 }
 </script>
     <!-- Disqus count -->
