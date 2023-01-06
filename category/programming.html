@@ -220,19 +220,19 @@ ga('send', 'pageview');
                     <a href="../articles/Rust-closure.html">Rust&nbsp;closure</a>
                 </h5>
                 <span class="small">by <a href="../author/jerry-su.html">Jerry Su</a>, post on <span class="text-success">Jan 05, 2023</span></span>
-                <p><p>闭包：可以捕获周围作用域中变量的<strong>匿名函数</strong>。</p>
+                <p><p>闭包：可以捕获其所在作用域中变量的<strong>匿名函数</strong>。</p>
+<div class="highlight"><pre><span></span><code><span class="k">fn</span>  <span class="nf">add_one_v1</span><span class="w">   </span><span class="p">(</span><span class="n">x</span>: <span class="kt">u32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">u32</span> <span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="kd">let</span><span class="w"> </span><span class="n">add_one_v2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">|</span><span class="n">x</span>: <span class="kt">u32</span><span class="o">|</span><span class="w"> </span>-&gt; <span class="kt">u32</span> <span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="kd">let</span><span class="w"> </span><span class="n">add_one_v3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">|</span><span class="n">x</span><span class="o">|</span><span class="w">             </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="kd">let</span><span class="w"> </span><span class="n">add_one_v4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">|</span><span class="n">x</span><span class="o">|</span><span class="w">               </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+
 <ul>
 <li>
-<p>可以保存在一个变量中。</p>
-</li>
-<li>
-<p>可以作为参数传递给其他函数。</p>
-</li>
-<li>
-<p>不同于函数，闭包允 …</p></li></ul></p>
+<p>调用方式与函 …</p></li></ul></p>
                 <div class="flex-row mx-auto mt-3 small">
                     <div class="float-left">
-                            <span class="card-link text-secondary" title="~28 words">Read in 1 mins</span>
+                            <span class="card-link text-secondary" title="~54 words">Read in 1 mins</span>
                             <span class="card-link"><a href="../articles/Rust-closure.html#disqus_thread"></a></span>
                     </div>
                     <div class=" float-right">
