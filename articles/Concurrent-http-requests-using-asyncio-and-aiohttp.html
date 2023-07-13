@@ -13,15 +13,15 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="函数体中存在yield关键字，即为生成器。调用生成器函数会返回一个生成器对象。即生成器函数就是生成器工厂。 生成器是迭代器。 def …" />
+    <meta name="description" content="import aiohttp import asyncio from typing import Dict async def async_post_request(url: str, data: Dict) -&gt; Dict: &#34;&#34;&#34;async post. &#34;&#34;&#34; async with aiohttp.ClientSession() as session: async with session.post(url, json=data) as resp: response = await resp.json() return response model_url_dict={ &#34;scene1&#34;: &#34;http://0.0.0.0:8781/classify/utcx&#34;, &#34;scene2 …" />
     <meta name="keywords" content="Python">
 <meta property="og:site_name" content="JERRYLSU" />
-<meta property="og:title" content="Python - Generator" />
-<meta property="og:description" content="函数体中存在yield关键字，即为生成器。调用生成器函数会返回一个生成器对象。即生成器函数就是生成器工厂。 生成器是迭代器。 def …" />
+<meta property="og:title" content="Concurrent http requests using asyncio and aiohttp" />
+<meta property="og:description" content="import aiohttp import asyncio from typing import Dict async def async_post_request(url: str, data: Dict) -&gt; Dict: &#34;&#34;&#34;async post. &#34;&#34;&#34; async with aiohttp.ClientSession() as session: async with session.post(url, json=data) as resp: response = await resp.json() return response model_url_dict={ &#34;scene1&#34;: &#34;http://0.0.0.0:8781/classify/utcx&#34;, &#34;scene2 …" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:url" content="../articles/Python-Generator.html" />
+<meta property="og:url" content="../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-12-30 10:17:17+08:00" />
+<meta property="article:published_time" content="2023-07-13 10:17:17+08:00" />
 <meta property="article:modified_time" content="" />
 <meta property="article:author" content="../author/jerry-su.html">
 <meta property="article:section" content="Programming" />
@@ -33,7 +33,7 @@
 
         <!-- Title -->
         <title>
-    Python - Generator &ndash; JERRYLSU
+    Concurrent http requests using asyncio and aiohttp &ndash; JERRYLSU
         </title>
         
         <!-- Icon -->
@@ -60,6 +60,7 @@
         <!--
         <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
         -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
         <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
         <!--
         <link rel="stylesheet" href="../theme/extra/admonition.min.css">
@@ -207,23 +208,34 @@ ga('send', 'pageview');
         <!-- Header -->
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
-		<h3 id="Python-Generator">Python -&nbsp;Generator</h3>
-		<p style="font-size:larger;"><div class="toc">
-<ul></ul>
-</div>
-<p>函数体中存在yield关键字，即为生成器。调用生成器函数会返回一个生成器对象。即生成器函数就是生成器工厂。</p>
-<p>生成器是迭代器。</p>
-<div class="highlight"><pre><span></span><code><span class="k">def …</span></code></pre></div></p>
+		<h3 id="Concurrent-http-requests-using-asyncio-and-aiohttp">Concurrent http requests using asyncio and&nbsp;aiohttp</h3>
+		<p style="font-size:larger;"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">aiohttp</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">async_post_request</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;async post.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">ClientSession</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span> <span class="k">as</span> <span class="n">resp</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">response</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">model_url_dict</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;scene1&quot;</span><span class="p">:</span> <span class="s2">&quot;http://0.0.0.0:8781/classify/utcx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scene2 …</span></code></pre></div></p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
                 <span class="card-link text-success">
-                    <span class="post-date" title="Post date">Dec 30, 2020</span>
+                    <span class="post-date" title="Post date">Jul 13, 2023</span>
                     <span class="text-info modified-date" title="Updated date">
-                            Dec 30, 2020
+                            Jul 13, 2023
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~105 words">1 mins</span>
+                    <span class="card-link text-secondary" title="~104 words">1 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/programming.html">programming</a>
@@ -240,164 +252,101 @@ ga('send', 'pageview');
 
                     <!-- Content -->
     <!-- 2 columns layout -->
-    <!-- single column layout -->
-        <!-- Sharing -->
-            <div class="text-right mb-2 small" style="height: 26px">
-                <div class="addthis_inline_share_toolbox"></div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
+
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
+
+                <!-- Article -->
+                <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">aiohttp</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">async_post_request</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;async post.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">ClientSession</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span> <span class="k">as</span> <span class="n">resp</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">response</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">model_url_dict</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;scene1&quot;</span><span class="p">:</span> <span class="s2">&quot;http://0.0.0.0:8781/classify/utcx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scene2&quot;</span><span class="p">:</span> <span class="s2">&quot;http://0.0.0.0:8782/classify/utcx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scene3&quot;</span><span class="p">:</span> <span class="s2">&quot;http://0.0.0.0:8783/classify/utcx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scene4&quot;</span><span class="p">:</span> <span class="s2">&quot;http://0.0.0.0:8784/classify/utcx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scene5&quot;</span><span class="p">:</span> <span class="s2">&quot;http://0.0.0.0:8785/classify/utcx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;scene6&quot;</span><span class="p">:</span> <span class="s2">&quot;http://0.0.0.0:8786/classify/utcx&quot;</span><span class="p">}</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;serial_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;texts&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">],</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">scene_list</span> <span class="o">=</span> <span class="n">model_url_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">task_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">scene_name</span> <span class="ow">in</span> <span class="n">scene_list</span><span class="p">:</span>
+    <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">async_post_request</span><span class="p">(</span><span class="n">model_url_dict</span><span class="p">[</span><span class="n">scene_name</span><span class="p">],</span> <span class="n">data</span><span class="p">))</span>
+    <span class="n">task_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+<span class="n">done</span><span class="p">,</span> <span class="n">pending</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">task_list</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">done_task</span> <span class="ow">in</span> <span class="n">done</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">done_task</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">jupyter</span> <span class="n">nbconvert</span> <span class="o">--</span><span class="n">to</span> <span class="n">markdown</span> <span class="mi">2023</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">13</span><span class="o">-</span><span class="n">Concurrent</span><span class="o">-</span><span class="n">http</span><span class="o">-</span><span class="n">requests</span><span class="o">-</span><span class="n">using</span><span class="o">-</span><span class="n">asyncio</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">aiohttp</span><span class="o">.</span><span class="n">ipynb</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">WARNING</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Config</span><span class="w"> </span><span class="k">option</span><span class="w"> </span><span class="err">`</span><span class="n">kernel_spec_manager_class</span><span class="err">`</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">recognized</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="err">`</span><span class="n">NbConvertApp</span><span class="err">`</span><span class="p">.</span><span class="w"></span>
+<span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">Converting</span><span class="w"> </span><span class="n">notebook</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="n">Rust</span><span class="o">-</span><span class="n">self</span><span class="o">-&amp;</span><span class="n">self</span><span class="o">-&amp;</span><span class="n">mut</span><span class="o">-</span><span class="n">self</span><span class="p">.</span><span class="n">ipynb</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">markdown</span><span class="w"></span>
+<span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">Writing</span><span class="w"> </span><span class="mi">1210</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="n">Rust</span><span class="o">-</span><span class="n">self</span><span class="o">-&amp;</span><span class="n">self</span><span class="o">-&amp;</span><span class="n">mut</span><span class="o">-</span><span class="n">self</span><span class="p">.</span><span class="n">md</span><span class="w"></span>
+</code></pre></div>
+
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
+<div class="pagination">
+    <a class="w-100" href="../articles/Self-Instruct.html">
+<span class="caps">SELF</span>-<span class="caps">INSTRUCT</span>: Aligning Language Model with Self Generated&nbsp;Instructions
+    </a>
+</div>
+                <!-- Google Adsense -->
             </div>
 
-        <!-- Share post -->
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
 
-        <!-- Article -->
-        <div>
-            <div class="toc">
-<ul></ul>
-</div>
-<p>函数体中存在yield关键字，即为生成器。调用生成器函数会返回一个生成器对象。即生成器函数就是生成器工厂。</p>
-<p>生成器是迭代器。</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">gen_123</span><span class="p">():</span>
-    <span class="k">yield</span> <span class="mi">1</span>
-    <span class="k">yield</span> <span class="mi">2</span>
-    <span class="k">yield</span> <span class="mi">3</span>
-</code></pre></div>
+                    <!-- Share post -->
 
-<div class="highlight"><pre><span></span><code><span class="n">gen_123</span> <span class="c1"># 是函数对象</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>&lt;function __main__.gen_123()&gt;
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">gen_123</span><span class="p">()</span> <span class="c1"># 调用函数，返回生成器</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>&lt;generator object gen_123 at 0x7eff859539e0&gt;
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># 生成器也是迭代器</span>
-
-<span class="n">g</span> <span class="o">=</span> <span class="n">gen_123</span><span class="p">()</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">g</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="mf">1</span><span class="w"></span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="mf">2</span><span class="w"></span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="mf">3</span><span class="w"></span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="nb">---------------------------------------------------------------------------</span><span class="c"></span>
-
-<span class="c">StopIteration                             Traceback (most recent call last)</span>
-
-<span class="nv">&lt;</span><span class="c">ipython</span><span class="nb">-</span><span class="c">input</span><span class="nb">-</span><span class="c">13</span><span class="nb">-</span><span class="c">e734f8aca5ac</span><span class="nv">&gt;</span><span class="c"> in </span><span class="nv">&lt;</span><span class="c">module</span><span class="nv">&gt;</span><span class="c"></span>
-<span class="nb">----</span><span class="nv">&gt;</span><span class="c"> 1 next(g)</span>
-
-
-<span class="c">StopIteration:</span>
-</code></pre></div>
-
-<p>生成器函数会返回一个生成器对象，该对象包装生成器函数的函数体。当next()迭代时，生成器函数会执行到下一个yield语句，返回yield语句的表达式作为<strong>产出值</strong>，并在当前函数体位置<strong>暂停</strong>。当函数体执行完毕，最终return返回时会抛出StopIteration异常。</p>
-<p><strong>生成器函数定义体中的return语句会触发生成器对象抛出StopIteration异常</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
-
-<span class="k">class</span> <span class="nc">Sentence</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">text</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">words</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;\w+&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-        <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">words</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="n">word</span>
-        <span class="k">return</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">s</span> <span class="o">=</span> <span class="n">Sentence</span><span class="p">(</span><span class="s2">&quot;hello world!&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="nb">iter</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1"># 就是一个生成器，也是一个迭代器，__iter__()返回迭代器，则可next()访问。</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>&lt;generator object Sentence.__iter__ at 0x7eff856f42e0&gt;
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="n">iterator1</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="nb">next</span><span class="p">(</span><span class="n">iterator1</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>&#39;hello&#39;
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="nb">next</span><span class="p">(</span><span class="n">iterator1</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>&#39;world&#39;
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="nb">next</span><span class="p">(</span><span class="n">iterator1</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="nb">---------------------------------------------------------------------------</span><span class="c"></span>
-
-<span class="c">StopIteration                             Traceback (most recent call last)</span>
-
-<span class="nv">&lt;</span><span class="c">ipython</span><span class="nb">-</span><span class="c">input</span><span class="nb">-</span><span class="c">30</span><span class="nb">-</span><span class="c">0680f5ec8ce3</span><span class="nv">&gt;</span><span class="c"> in </span><span class="nv">&lt;</span><span class="c">module</span><span class="nv">&gt;</span><span class="c"></span>
-<span class="nb">----</span><span class="nv">&gt;</span><span class="c"> 1 next(iterator1)</span>
-
-
-<span class="c">StopIteration:</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>hello
-world
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>
-</code></pre></div>
+                    <!-- Google Adsense -->
+                </div>
+            </div>
         </div>
-
-        <!-- Neighbors -->
-            <br>
-            <b>Read more:</b><br>
-<div class="pagination">
-    <a class="w-50" href="../articles/Python-Iterable-Iterator.html">
-&ll; Python - Iterable vs&nbsp;Iterator
-    </a>
-    <a class="w-50 text-right" href="../articles/Google-Android.html">
-        Google-android &gg;    </a>
-</div>
-        <!-- Google Adsense -->
 
     <!-- Releated posts -->
         <hr>
         <div>
             <h5>Related posts:</h5>
             <ul>
-                <li><a href="../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html">Concurrent http requests using asyncio and&nbsp;aiohttp</a></li>
                 <li><a href="../articles/python-docx-using-lxml.html">Python docx using&nbsp;lxml</a></li>
                 <li><a href="../articles/Multiprocessing-in-FastAPI.html">Multiprocessing in&nbsp;FastAPI</a></li>
                 <li><a href="../articles/asyncio-get_event_loop-vs-get_running_loop.html">asyncio get_event_loop vs&nbsp;get_running_loop</a></li>
                 <li><a href="../articles/FastAPI-for-CPU-Bound-Task.html">FastAPI for <span class="caps">CPU</span>-Bound&nbsp;Task</a></li>
+                <li><a href="../articles/Base64-Encode-Decode.html">Base64-encode-decode</a></li>
             </ul>
         </div>
 
@@ -438,6 +387,7 @@ world
     <!--
     <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
     -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
     <script type="text/javascript" src="../theme/style.js"></script>
 
     <!-- Sharing -->
@@ -448,9 +398,9 @@ world
 {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
-    "name": "Python - Generator",
-    "headline": "Python - Generator",
-    "datePublished": "2020-12-30 10:17:17+08:00",
+    "name": "Concurrent http requests using asyncio and aiohttp",
+    "headline": "Concurrent http requests using asyncio and aiohttp",
+    "datePublished": "2023-07-13 10:17:17+08:00",
     "dateModified": "",
     "author": {
         "@type": "Person",
@@ -458,8 +408,8 @@ world
         "url": "../author/jerry-su.html"
     },
     "image": "../jerry.jpg",
-    "url": "../articles/Python-Generator.html",
-    "description": "函数体中存在yield关键字，即为生成器。调用生成器函数会返回一个生成器对象。即生成器函数就是生成器工厂。 生成器是迭代器。 def …"
+    "url": "../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html",
+    "description": "import aiohttp import asyncio from typing import Dict async def async_post_request(url: str, data: Dict) -> Dict: """async post. """ async with aiohttp.ClientSession() as session: async with session.post(url, json=data) as resp: response = await resp.json() return response model_url_dict={ "scene1": "http://0.0.0.0:8781/classify/utcx", "scene2 …"
 }
 </script>
     <!-- Disqus count -->
