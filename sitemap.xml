@@ -5,13 +5,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/</loc>
-<lastmod>2023-07-22T19:57:42-00:00</lastmod>
+<lastmod>2023-07-22T20:03:54-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.jerrylsu.net/pages/about.html</loc>
+<lastmod>2023-07-22T20:00:00+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.jerrylsu.net/pages/life.html</loc>
 <lastmod>2023-07-22T20:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
