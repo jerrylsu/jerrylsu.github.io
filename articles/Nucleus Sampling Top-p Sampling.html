@@ -223,7 +223,7 @@ ga('send', 'pageview');
                             Feb 20, 2024
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~98 words">1 mins</span>
+                    <span class="card-link text-secondary" title="~611 words">3 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/nlp.html">nlp</a>
@@ -323,15 +323,84 @@ ga('send', 'pageview');
 </ul>
 <p>因此，为了确保累积概率超过0.6，我们需要选择单词A、B、C作为考虑的词汇范围。</p>
 <p>通过这种方式，核采样算法确保在生成下一个单词时，考虑了概率分布中最重要的部分，同时保持了一定程度的随机性和多样性。</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">TopPLogitsWarper</span><span class="p">(</span><span class="n">LogitsWarper</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    [`LogitsWarper`] that performs top-p, i.e. restricting to top tokens summing to prob_cut_off &lt;= prob_cut_off.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        top_p (`float`):</span>
+<span class="sd">            If set to &lt; 1, only the smallest set of most probable tokens with probabilities that add up to `top_p` or</span>
+<span class="sd">            higher are kept for generation.</span>
+<span class="sd">        filter_value (`float`, *optional*, defaults to `-float(&quot;Inf&quot;)`):</span>
+<span class="sd">            All filtered values will be set to this float value.</span>
+<span class="sd">        min_tokens_to_keep (`int`, *optional*, defaults to 1):</span>
+<span class="sd">            Minimum number of tokens that cannot be filtered.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    ```python</span>
+<span class="sd">    &gt;&gt;&gt; from transformers import AutoTokenizer, AutoModelForCausalLM, set_seed</span>
+
+<span class="sd">    &gt;&gt;&gt; set_seed(0)</span>
+<span class="sd">    &gt;&gt;&gt; model = AutoModelForCausalLM.from_pretrained(&quot;gpt2&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; tokenizer = AutoTokenizer.from_pretrained(&quot;gpt2&quot;)</span>
+
+<span class="sd">    &gt;&gt;&gt; text = &quot;It is probably one of the most important things for parents to teach children about patience and acceptance. In this way, we as a society can ensure&quot;</span>
+<span class="sd">    &gt;&gt;&gt; inputs = tokenizer(text, return_tensors=&quot;pt&quot;)</span>
+
+<span class="sd">    &gt;&gt;&gt; # Generate sequences without top_p sampling</span>
+<span class="sd">    &gt;&gt;&gt; # We see that the answer tends to have a lot of repeated tokens and phrases</span>
+<span class="sd">    &gt;&gt;&gt; outputs = model.generate(**inputs, max_length=55)</span>
+<span class="sd">    &gt;&gt;&gt; print(tokenizer.batch_decode(outputs, skip_special_tokens=True)[0])</span>
+<span class="sd">    &#39;It is probably one of the most important things for parents to teach children about patience and acceptance. In this way, we as a society can ensure that our children are not taught to be impatient or to be afraid of the future.\n\nThe first step is to teach them&#39;</span>
+
+<span class="sd">    &gt;&gt;&gt; # Generate sequences with top_p sampling: set `do_sample=True` to use top_p sampling with `top_p` arugment</span>
+<span class="sd">    &gt;&gt;&gt; # We already see that the answer has less repetitive tokens and is more diverse</span>
+<span class="sd">    &gt;&gt;&gt; outputs = model.generate(**inputs, max_length=55, do_sample=True, top_p=0.25)</span>
+<span class="sd">    &gt;&gt;&gt; print(tokenizer.batch_decode(outputs, skip_special_tokens=True)[0])</span>
+<span class="sd">    &#39;It is probably one of the most important things for parents to teach children about patience and acceptance. In this way, we as a society can ensure that children learn to be more accepting of others and to be more tolerant of others.\n\nWe can also teach children to be&#39;</span>
+
+<span class="sd">    &gt;&gt;&gt; # Generate sequences with top_p sampling with a larger top_p value</span>
+<span class="sd">    &gt;&gt;&gt; # We see that as we increase the top_p value, less probable tokens also get selected during text generation, making the answer more diverse</span>
+<span class="sd">    &gt;&gt;&gt; # Pro Tip: In practice, we tend to use top_p values between 0.9 and 1.0!</span>
+<span class="sd">    &gt;&gt;&gt; outputs = model.generate(**inputs, max_length=55, do_sample=True, top_p=0.95)</span>
+<span class="sd">    &gt;&gt;&gt; print(tokenizer.batch_decode(outputs, skip_special_tokens=True)[0])</span>
+<span class="sd">    &#39;It is probably one of the most important things for parents to teach children about patience and acceptance. In this way, we as a society can ensure we have the best learning environment, so that we can teach to learn and not just take advantage of the environment.\n\nThe&#39;</span>
+<span class="sd">    ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">top_p</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">filter_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;Inf&quot;</span><span class="p">),</span> <span class="n">min_tokens_to_keep</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">top_p</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">top_p</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">top_p</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">top_p</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;`top_p` has to be a float &gt; 0 and &lt; 1, but is </span><span class="si">{</span><span class="n">top_p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">min_tokens_to_keep</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">min_tokens_to_keep</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;`min_tokens_to_keep` has to be a positive integer, but is </span><span class="si">{</span><span class="n">min_tokens_to_keep</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">top_p</span> <span class="o">=</span> <span class="n">top_p</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filter_value</span> <span class="o">=</span> <span class="n">filter_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_tokens_to_keep</span> <span class="o">=</span> <span class="n">min_tokens_to_keep</span>
+
+    <span class="nd">@add_start_docstrings</span><span class="p">(</span><span class="n">LOGITS_PROCESSOR_INPUTS_DOCSTRING</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_ids</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">,</span> <span class="n">scores</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">:</span>
+        <span class="n">sorted_logits</span><span class="p">,</span> <span class="n">sorted_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">cumulative_probs</span> <span class="o">=</span> <span class="n">sorted_logits</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Remove tokens with cumulative top_p above the threshold (token with 0 are kept)</span>
+        <span class="n">sorted_indices_to_remove</span> <span class="o">=</span> <span class="n">cumulative_probs</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_p</span><span class="p">)</span>
+        <span class="c1"># Keep at least min_tokens_to_keep</span>
+        <span class="n">sorted_indices_to_remove</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">min_tokens_to_keep</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># scatter sorted tensors to original indexing</span>
+        <span class="n">indices_to_remove</span> <span class="o">=</span> <span class="n">sorted_indices_to_remove</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sorted_indices</span><span class="p">,</span> <span class="n">sorted_indices_to_remove</span><span class="p">)</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">indices_to_remove</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">scores</span>
+</code></pre></div>
+
 <div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">jupyter</span> <span class="n">nbconvert</span> <span class="o">--</span><span class="n">to</span> <span class="n">markdown</span> <span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="n">Top</span><span class="o">-</span><span class="n">p</span><span class="o">-</span><span class="n">Sampling</span><span class="o">.</span><span class="n">ipynb</span>
 </code></pre></div>
 
 <div class="highlight"><pre><span></span><code><span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">WARNING</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Config</span><span class="w"> </span><span class="k">option</span><span class="w"> </span><span class="err">`</span><span class="n">kernel_spec_manager_class</span><span class="err">`</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">recognized</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="err">`</span><span class="n">NbConvertApp</span><span class="err">`</span><span class="p">.</span><span class="w"></span>
 <span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">Converting</span><span class="w"> </span><span class="n">notebook</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="k">Top</span><span class="o">-</span><span class="n">p</span><span class="o">-</span><span class="n">Sampling</span><span class="p">.</span><span class="n">ipynb</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">markdown</span><span class="w"></span>
-<span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">Writing</span><span class="w"> </span><span class="mi">2399</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="k">Top</span><span class="o">-</span><span class="n">p</span><span class="o">-</span><span class="n">Sampling</span><span class="p">.</span><span class="n">md</span><span class="w"></span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>
+<span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">Writing</span><span class="w"> </span><span class="mi">2370</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="k">Top</span><span class="o">-</span><span class="n">p</span><span class="o">-</span><span class="n">Sampling</span><span class="p">.</span><span class="n">md</span><span class="w"></span>
 </code></pre></div>
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
