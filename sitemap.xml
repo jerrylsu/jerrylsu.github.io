@@ -5,7 +5,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/</loc>
-<lastmod>2023-09-18T12:58:43-00:00</lastmod>
+<lastmod>2024-02-20T15:27:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -18,8 +18,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://www.jerrylsu.net/pages/algorithms.html</loc>
-<lastmod>2020-05-04T15:04:40+08:00</lastmod>
+<loc>http://www.jerrylsu.net/articles/nucleus-samplingtop-p-sampling.html</loc>
+<lastmod>2024-02-20T11:17:17+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.jerrylsu.net/articles/Vary.html</loc>
+<lastmod>2024-01-04T11:17:17+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1223,7 +1230,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/category/nlp.html</loc>
-<lastmod>2023-04-29T11:17:17+08:06</lastmod>
+<lastmod>2024-02-20T11:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1243,22 +1250,22 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://www.jerrylsu.net/tag/python.html</loc>
-<lastmod>2023-07-13T10:17:17+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://www.jerrylsu.net/tag/lm.html</loc>
-<lastmod>2023-04-29T11:17:17+08:06</lastmod>
+<loc>http://www.jerrylsu.net/tag/llm.html</loc>
+<lastmod>2024-02-20T11:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.jerrylsu.net/tag/nlp.html</loc>
-<lastmod>2023-04-29T11:17:17+08:06</lastmod>
+<lastmod>2024-02-20T11:17:17+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.jerrylsu.net/tag/python.html</loc>
+<lastmod>2023-07-13T10:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1685,7 +1692,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/author/jerry-su.html</loc>
-<lastmod>2023-07-13T10:17:17+08:06</lastmod>
+<lastmod>2024-02-20T11:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

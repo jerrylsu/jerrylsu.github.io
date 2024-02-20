@@ -13,19 +13,20 @@
 
         <!-- Default metadata -->
     <meta name="author" content="Jerry Su" />
-    <meta name="description" content="Reason is the light and the light of life." />
-    <meta name="keywords" content="Git">
+    <meta name="description" content="1. 温度调节（Temperature Scaling） 为了调整概率分布的“锐利度”，可以引入一个温度参数（Temperature）。温度较高时，概率分布变得更加平坦，增加了低概 …" />
+    <meta name="keywords" content="LLM, NLP">
 <meta property="og:site_name" content="JERRYLSU" />
-<meta property="og:title" content="Git" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:title" content="Nucleus Sampling，Top-p Sampling" />
+<meta property="og:description" content="1. 温度调节（Temperature Scaling） 为了调整概率分布的“锐利度”，可以引入一个温度参数（Temperature）。温度较高时，概率分布变得更加平坦，增加了低概 …" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:url" content="../articles/Git.html" />
+<meta property="og:url" content="../articles/nucleus-samplingtop-p-sampling.html" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-10-03 11:23:36+08:00" />
+<meta property="article:published_time" content="2024-02-20 11:17:17+08:00" />
 <meta property="article:modified_time" content="" />
 <meta property="article:author" content="../author/jerry-su.html">
-<meta property="article:section" content="Tools" />
-	<meta property="article:tag" content="Git" />
+<meta property="article:section" content="NLP" />
+	<meta property="article:tag" content="LLM" />
+	<meta property="article:tag" content="NLP" />
 	<meta property="og:image" content="../jerry.jpg">
 
         <!-- Site Claim -->
@@ -33,7 +34,7 @@
 
         <!-- Title -->
         <title>
-    Git &ndash; JERRYLSU
+    Nucleus Sampling，Top-p Sampling &ndash; JERRYLSU
         </title>
         
         <!-- Icon -->
@@ -208,22 +209,26 @@ ga('send', 'pageview');
         <!-- Header -->
         <header class="bg-dark text-light shadow-sm pt-3 pb-2">
 	<div class="container">
-		<h3 id="Git">Git</h3>
-		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
+		<h3 id="nucleus-samplingtop-p-sampling">Nucleus Sampling，Top-p&nbsp;Sampling</h3>
+		<p style="font-size:larger;"><h3 id="1-temperature-scaling">1. 温度调节（Temperature&nbsp;Scaling）</h3>
+<ul>
+<li>
+<p>为了调整概率分布的“锐利度”，可以引入一个温度参数（Temperature）。温度较高时，概率分布变得更加平坦，增加了低概 …</p></li></ul></p>
         <div class="row mx-auto mt-3">
             <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
                 <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
                 <span class="card-link text-success">
-                    <span class="post-date" title="Post date">Oct 03, 2018</span>
+                    <span class="post-date" title="Post date">Feb 20, 2024</span>
                     <span class="text-info modified-date" title="Updated date">
-                            Oct 03, 2018
+                            Feb 20, 2024
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~266 words">2 mins</span>
+                    <span class="card-link text-secondary" title="~81 words">1 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
-                <a class="badge badge-success" href="../category/tools.html">tools</a>
-                    <a class="badge badge-info" href="../tag/git.html">git</a>
+                <a class="badge badge-success" href="../category/nlp.html">nlp</a>
+                    <a class="badge badge-info" href="../tag/llm.html">llm</a>
+                    <a class="badge badge-info" href="../tag/nlp.html">nlp</a>
             </div>
         </div>
 	</div>
@@ -245,117 +250,149 @@ ga('send', 'pageview');
                     </div>
 
                 <!-- Article -->
-                <p><a href="https://learngitbranching.js.org/?locale=zh_CN">可视化Learn Git&nbsp;Branching</a></p>
-<h2 id="1">1.&nbsp;仓库管理</h2>
-<h3 id="create-repository">Create&nbsp;Repository</h3>
-<p><code>$ mkdir myrepo</code></p>
-<p><code>$ cd myrepo</code> </p>
-<p><code>$ git init</code></p>
-<p>Initialized empty Git repository in&nbsp;/Users/jerrylsu/myrepo/.git/</p>
-<h3 id="add-file-to-local-repository">Add File to Local&nbsp;Repository</h3>
-<p><code>$ git status</code></p>
-<p><code>$ git diff filename</code></p>
-<p>Check working directory status, and view changes made to the&nbsp;filemname.</p>
-<p><code>$ git add filename</code></p>
-<p><code>$ git commit -m "write commend"</code></p>
-<p><code>$ git commit --amend</code>  修改最后一次提交，避免新开一个commit提交到history！</p>
-<h3 id="associated-remote-repogithub">Associated Remote&nbsp;Repo(GitHub)</h3>
-<p><code>$ git remote add origin [SSH address]</code></p>
-<p>Note : <strong>origin</strong> is an alias for the remote repository&nbsp;address. </p>
-<h3 id="push-github-repository">Push GitHub&nbsp;Repository</h3>
-<p><code>$ git push origin branch_name</code></p>
-<p>Now, we can push the latest changes to our local branch to the remote GitHub repository, which is associated&nbsp;above!</p>
-<h2 id="2">2.&nbsp;分支管理</h2>
-<h3 id="_1">创建分支</h3>
-<p><code>git branch branch_name</code></p>
-<h3 id="_2">切换分支</h3>
-<p><code>git checkout branch_name</code></p>
-<h3 id="_3">创建并切换分支</h3>
-<p><code>git checkout -b branch_name</code></p>
-<h3 id="_4">查看所有本地分支</h3>
-<p><code>$ git branch</code></p>
-<h3 id="_5">合并分支</h3>
-<p>将其他分支branch_name合并到当前分支</p>
-<p><code>git merge branch_name</code></p>
-<p>将当前分支合并到其他分支branch_name,线性的串接到分支branch_name后</p>
-<p><code>git rebase branch_name</code></p>
-<h3 id="_6">删除本地分支</h3>
-<p><code>git branch -d branch_name</code></p>
-<h3 id="_7">删除远程分支</h3>
-<p><code>git branch -r -d origin/branch_name</code></p>
-<p><code>git push origin:branch_name</code> ???</p>
-<h3 id="_8">远程新建分支</h3>
-<p>将本地分支推送到远程不存在的分支，实现远程分支新建</p>
-<p><code>git push origin local_branch:remote_branch</code></p>
-<h3 id="remove-filesdir-from-git-repo">Remove files/dir from git&nbsp;repo</h3>
-<p><code>$ git rm --cached file.txt</code></p>
-<p><code>$ git rm -r --cached dir</code></p>
-<p><code>$ git commit -m "remove file.txt"</code></p>
-<p>And to push changes to remote&nbsp;repo</p>
-<p><code>$ git push origin branch_name</code>  </p>
-<h3 id="_9">拉取远程分支</h3>
+                <h3 id="1-temperature-scaling">1. 温度调节（Temperature&nbsp;Scaling）</h3>
 <ul>
 <li>
-<p>先拉远程master分支：<code>git clone ...</code></p>
+<p>为了调整概率分布的“锐利度”，可以引入一个温度参数（Temperature）。温度较高时，概率分布变得更加平坦，增加了低概率单词被选中的机会；温度较低时，概率分布变得更尖锐，高概率单词被选中的机会增加。</p>
 </li>
 <li>
-<p>拉取远程分支： <code>git fetch origin remote_branch_name:local_branch_name</code></p>
-</li>
-<li>
-<p>查看拉取到本地的分支：<code>git checkout local_branch_name</code></p>
+<p>温度调节是通过将概率分布中的每个概率值除以温度参数，然后对结果应用softmax函数来实现的。</p>
 </li>
 </ul>
-<h2 id="3">3.&nbsp;在提交树上的移动</h2>
-<p><span class="caps">HEAD</span> 总是指向当前分支上最近一次提交记录。大多数修改提交树的 Git 命令都是从改变 <span class="caps">HEAD</span>&nbsp;的指向开始的。</p>
-<p><span class="caps">HEAD</span> 通常情况下是指向分支名的。在你提交时，改变了分支的状态，这一变化通过 <span class="caps">HEAD</span>&nbsp;变得可见。</p>
-<h3 id="head">分离HEAD指针</h3>
-<p>可以用切换分支的命令来切换到特定一次的提交，提交名是哈希值commit_hash。</p>
-<p><code>git checkout commit_hash(fed2)</code> HEAD分离并指向这个特定的提交</p>
-<p><code>git log</code>获取提交的哈希值，例如fed2da64c0efc5293610bdd892f82a58e8cbc5d8，如果可以唯一标识，取前缀即可fed2。</p>
-<h3 id="_10">相对引用</h3>
-<p>相对引用更方便,使用相对引用可以从一个易于记忆的地方（比如 bugFix 分支或 <span class="caps">HEAD</span>）开始计算</p>
+<h3 id="2-nucleus-samplingtop-p-sampling">2. 核采样（Nucleus Sampling，Top-p&nbsp;Sampling）</h3>
 <ul>
 <li>
-<p>使用 <code>^</code> 后退1个提交记录，如<code>git checkout main^</code> 或 <code>git checkout main^^</code>，HEAD指向main分支的父节点和父父节点</p>
+<p>核采样是一种更高级的采样策略，它选择累积概率超过某个阈值p的最小单词集。这允许模型动态调整采样的单词数量，基于当前上下文的不确定性。</p>
 </li>
 <li>
-<p>使用 <code>~&lt;num&gt;</code> 后退num步提交记录，如 <code>~3</code>。<code>~</code>不接数字等价于<code>^</code></p>
+<p>与Top-K采样相比，核采样可以自适应地调整考虑的词汇范围，避免过多地限制或放宽选择。</p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code>git checkout fed2    # 分离HEAD指向fed2这次提交
-
-git checkout HEAD^   # HEAD上移
-
-git checkout HEAD^   # HEAD继续上移
+<p><strong>核采样原理</strong></p>
+<ul>
+<li>核采样的关键思想是从词汇分布中选择一个词汇子集，使得这个子集中词汇的累积概率接近但不超过一个预先定义的阈值p（0 &lt; p &lt;&nbsp;1）。这个子集被称为“核”（nucleus），只有这个核中的词汇会被考虑用于下一步的随机采样。这样，生成的文本既不会过于随机（因为避免了极低概率词的干扰），也不会过于确定性（因为没有限制为前K个最高概率的词）。</li>
+</ul>
+<h3 id="3">3.&nbsp;累计概率</h3>
+<p>累积概率的计算是在处理概率分布时的一个关键步骤，尤其是在执行如核采样（Top-p&nbsp;Sampling）这样的任务时。累积概率为我们提供了一个方式，来确定随机事件发生的概率范围。在核采样中，它帮助我们决定哪些词汇（单词）的集合应该被考虑进来，以确保这个集合覆盖了预定比例(p)的概率总和。这里是累积概率计算的具体步骤：</p>
+<ul>
+<li>
+<p>步骤1：获取概率分布<br>&nbsp;首先，你需要有一个概率分布，这通常是模型对下一个单词的预测概率。假设我们有一个词汇表，模型为每个可能的下一个单词提供了一个概率。</p>
+</li>
+<li>
+<p>步骤2：排序<br>&nbsp;将概率分布按照概率值从高到低进行排序。这样，最高概率的单词会放在列表的最前面。</p>
+</li>
+<li>
+<p>步骤3：计算累积概率<br>&nbsp;接下来，计算排序后的概率列表的累积概率。累积概率是指从列表的开始到当前位置的所有概率值的总和。对于列表中的第(i)个单词，其累积概率可以表示为：</p>
+</li>
+</ul>
+<p><span class="math">\(CumulativeProbability(i) = \sum_{k=1}^{i}&nbsp;Probability(k)\)</span></p>
+<p>其中，(Probability(k))是第(k)个单词的概率。</p>
+<ul>
+<li>步骤4：确定阈值(p)的覆盖<br>&nbsp;确定满足累积概率小于或等于阈值(p)的最大集合。也就是说，你需要找到一个最小的(i)，使得：</li>
+</ul>
+<p><span class="math">\(CumulativeProbability(i) \geq&nbsp;p\)</span></p>
+<p>这意味着，从排序后的列表中取出前(i)个单词，这些单词的累积概率总和将至少覆盖阈值(p)指定的概率质量。</p>
+<ul>
+<li>
+<p>示例<br>&nbsp;假设我们的模型预测下一个单词的概率分布如下（已排序）：</p>
+</li>
+<li>
+<p>单词A：0.3</p>
+</li>
+<li>单词B：0.2</li>
+<li>单词C：0.15</li>
+<li>单词D：0.1</li>
+<li>单词E及之后的其他单词：小于0.1的概率</li>
+</ul>
+<p>如果我们设置阈值(p=0.6)，那么：</p>
+<ul>
+<li>累积到单词A：0.3</li>
+<li>累积到单词B：0.5 (0.3 +&nbsp;0.2)</li>
+<li>累积到单词C：0.65 (0.3 + 0.2 +&nbsp;0.15)</li>
+</ul>
+<p>因此，为了确保累积概率超过0.6，我们需要选择单词A、B、C作为考虑的词汇范围。</p>
+<p>通过这种方式，核采样算法确保在生成下一个单词时，考虑了概率分布中最重要的部分，同时保持了一定程度的随机性和多样性。</p>
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">jupyter</span> <span class="n">nbconvert</span> <span class="o">--</span><span class="n">to</span> <span class="n">markdown</span> <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="n">Vary</span><span class="o">.</span><span class="n">ipynb</span>
 </code></pre></div>
 
-<h3 id="_11">强制修改分支位置</h3>
-<p><code>git branch -f main HEAD^3/commit_hash</code></p>
-<h2 id="5">5.&nbsp;撤销变更</h2>
-<p><code>git reset commit_hash</code></p>
-<h2 id="6">6.&nbsp;整理提交分支</h2>
-<p>将commit_hash1与commit_hash2两次提交串接到当前分支下，当前分支指针移动到串接头部commit_hash2。类似于<code>git rebase</code></p>
-<p><code>git cherry-pick commit_hash1 commit_hash2</code></p>
-<h2 id="4-commit">4.&nbsp;恢复本地commit提交</h2>
-<ul>
-<li>
-<p>获取commit id： <code>git log</code></p>
-</li>
-<li>
-<p>恢复本地commit提交： <code>git reset --hard commit_id</code></p>
-</li>
-</ul>
-<p><a href="https://mp.weixin.qq.com/s/VdeQpFCL3GGsfOKrIRW6Hw">git常用</a></p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">WARNING</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Config</span><span class="w"> </span><span class="k">option</span><span class="w"> </span><span class="err">`</span><span class="n">kernel_spec_manager_class</span><span class="err">`</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">recognized</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="err">`</span><span class="n">NbConvertApp</span><span class="err">`</span><span class="p">.</span><span class="w"></span>
+<span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">Converting</span><span class="w"> </span><span class="n">notebook</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="n">Vary</span><span class="p">.</span><span class="n">ipynb</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">markdown</span><span class="w"></span>
+<span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">Writing</span><span class="w"> </span><span class="mi">10547</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="n">Vary</span><span class="p">.</span><span class="n">md</span><span class="w"></span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
 
                 <!-- Neighbors -->
                     <br>
                     <b>Read more:</b><br>
 <div class="pagination">
-    <a class="w-50" href="../articles/Keeping-a-fork-synced-with-the-origin-repo.html">
-&ll; Keeping a fork synced with the origin&nbsp;repo
+    <a class="w-100" href="../articles/Vary.html">
+
     </a>
-    <a class="w-50 text-right" href="../articles/Building-Python-Package-with-Pybuilder.html">
-        Building Python Package with&nbsp;Pybuilder &gg;    </a>
 </div>
                 <!-- Google Adsense -->
             </div>
@@ -378,8 +415,11 @@ git checkout HEAD^   # HEAD继续上移
         <div>
             <h5>Related posts:</h5>
             <ul>
-                <li><a href="../articles/Git-LFS-Bandwidth-Issue.html">Git <span class="caps">LFS</span> Bandwidth&nbsp;Issue</a></li>
-                <li><a href="../articles/Keeping-a-fork-synced-with-the-origin-repo.html">Keeping a fork synced with the origin&nbsp;repo</a></li>
+                <li><a href="../articles/Vary.html"></a></li>
+                <li><a href="../articles/Self-Instruct.html"><span class="caps">SELF</span>-<span class="caps">INSTRUCT</span>: Aligning Language Model with Self Generated&nbsp;Instructions</a></li>
+                <li><a href="../articles/Creating-folds-properly.html">Creating folds&nbsp;properly</a></li>
+                <li><a href="../articles/Longformer-BigBird.html">Longformer&nbsp;BigBird</a></li>
+                <li><a href="../articles/Mapping-Chars-and-Words-to-Tokens.html">Mapping chars and words to&nbsp;tokens</a></li>
             </ul>
         </div>
 
@@ -431,9 +471,9 @@ git checkout HEAD^   # HEAD继续上移
 {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
-    "name": "Git",
-    "headline": "Git",
-    "datePublished": "2018-10-03 11:23:36+08:00",
+    "name": "Nucleus Sampling，Top-p Sampling",
+    "headline": "Nucleus Sampling，Top-p Sampling",
+    "datePublished": "2024-02-20 11:17:17+08:00",
     "dateModified": "",
     "author": {
         "@type": "Person",
@@ -441,8 +481,8 @@ git checkout HEAD^   # HEAD继续上移
         "url": "../author/jerry-su.html"
     },
     "image": "../jerry.jpg",
-    "url": "../articles/Git.html",
-    "description": "Reason is the light and the light of life."
+    "url": "../articles/nucleus-samplingtop-p-sampling.html",
+    "description": "1. 温度调节（Temperature Scaling） 为了调整概率分布的“锐利度”，可以引入一个温度参数（Temperature）。温度较高时，概率分布变得更加平坦，增加了低概 …"
 }
 </script>
     <!-- Disqus count -->
