@@ -223,7 +223,7 @@ ga('send', 'pageview');
                             Feb 20, 2024
                     </span>
                 </span>
-                    <span class="card-link text-secondary" title="~611 words">3 mins</span>
+                    <span class="card-link text-secondary" title="~610 words">3 mins</span>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
                 <a class="badge badge-success" href="../category/nlp.html">nlp</a>
@@ -262,7 +262,6 @@ ga('send', 'pageview');
 <p>调整后的概率计算公式为：</p>
 <p><span class="math">\(P'(w_i) = \frac{e^{\frac{\log(P(w_i))}{T}}}{\sum_{j}&nbsp;e^{\frac{\log(P(w_j))}{T}}}\)</span></p>
 <p>其中，<span class="math">\(P(w_i)\)</span>是单词<span class="math">\(w_i\)</span>的原始概率，<span class="math">\(P'(w_i)\)</span>是调整温度后的概率，<span class="math">\(T\)</span>是温度参数。</p>
-<h3 id="_1">温度影响</h3>
 <ul>
 <li><strong>高温度</strong> <span class="math">\(T &gt; 1\)</span>：使概率分布更加平坦（即使低概率的单词也有更高的被选中机会）。这导致文本生成更加多样化和不可预测，但也可能增加生成文本中出现不相关或非连贯内容的风险。</li>
 <li><strong>低温度</strong> <span class="math">\(T &lt; 1\)</span>：使概率分布更加尖锐，即增加高概率单词被选中的机会，同时降低低概率单词的影响。这导致生成的文本更加确定、连贯，但可能降低文本的多样性和创新性。</li>
@@ -400,7 +399,10 @@ ga('send', 'pageview');
 
 <div class="highlight"><pre><span></span><code><span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">WARNING</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Config</span><span class="w"> </span><span class="k">option</span><span class="w"> </span><span class="err">`</span><span class="n">kernel_spec_manager_class</span><span class="err">`</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">recognized</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="err">`</span><span class="n">NbConvertApp</span><span class="err">`</span><span class="p">.</span><span class="w"></span>
 <span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">Converting</span><span class="w"> </span><span class="n">notebook</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="k">Top</span><span class="o">-</span><span class="n">p</span><span class="o">-</span><span class="n">Sampling</span><span class="p">.</span><span class="n">ipynb</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">markdown</span><span class="w"></span>
-<span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">Writing</span><span class="w"> </span><span class="mi">2370</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="k">Top</span><span class="o">-</span><span class="n">p</span><span class="o">-</span><span class="n">Sampling</span><span class="p">.</span><span class="n">md</span><span class="w"></span>
+<span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">Writing</span><span class="w"> </span><span class="mi">6822</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="k">Top</span><span class="o">-</span><span class="n">p</span><span class="o">-</span><span class="n">Sampling</span><span class="p">.</span><span class="n">md</span><span class="w"></span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>
 </code></pre></div>
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
