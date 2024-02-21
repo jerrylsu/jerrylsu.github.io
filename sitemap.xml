@@ -5,7 +5,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/</loc>
-<lastmod>2024-02-21T14:54:51-00:00</lastmod>
+<lastmod>2024-02-21T14:59:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1264,15 +1264,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://www.jerrylsu.net/tag/nlp.html</loc>
-<lastmod>2024-02-20T11:17:17+08:06</lastmod>
+<loc>http://www.jerrylsu.net/tag/python.html</loc>
+<lastmod>2023-07-13T10:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://www.jerrylsu.net/tag/python.html</loc>
-<lastmod>2023-07-13T10:17:17+08:06</lastmod>
+<loc>http://www.jerrylsu.net/tag/nlp.html</loc>
+<lastmod>2023-04-29T11:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
