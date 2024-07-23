@@ -1,0 +1,734 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<head>
+
+        <!-- Required metadata tags -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- Default metadata -->
+    <meta name="author" content="Jerry Su" />
+    <meta name="description" content="Reason is the light and the light of life." />
+    <meta name="keywords" content="Apache2, Server">
+<meta property="og:site_name" content="JERRYLSU" />
+<meta property="og:title" content="Apache2 Deploy Multi-sites" />
+<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="../articles/Apache2 Deploy Multi-sites.html" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-23 13:17:17+08:00" />
+<meta property="article:modified_time" content="" />
+<meta property="article:author" content="../author/jerry-su.html">
+<meta property="article:section" content="Tools" />
+	<meta property="article:tag" content="Apache2" />
+	<meta property="article:tag" content="Server" />
+	<meta property="og:image" content="../jerry.jpg">
+
+        <!-- Site Claim -->
+
+
+        <!-- Title -->
+        <title>
+    Apache2 Deploy Multi-sites &ndash; JERRYLSU
+        </title>
+        
+        <!-- Icon -->
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon.ico" type="image/x-icon">
+
+        <!-- Search engine -->
+            <meta name="robots" content="" />
+
+        <!-- Feeds -->
+
+
+
+
+
+
+
+
+        <!-- Styles -->
+        <!--
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/css/bootstrap.min.css">
+        -->
+        <link rel="stylesheet" href="../theme/bootstrap/bootstrap.min.css">
+        <!--
+        <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
+        -->
+            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
+        <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
+        <!--
+        <link rel="stylesheet" href="../theme/extra/admonition.min.css">
+        -->
+        <link rel="stylesheet" href="../theme/style.css">
+
+        <!-- Google Analytics -->
+<script>
+(function(i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m) })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-42618265-2', 'auto');
+ga('send', 'pageview');
+</script>
+        <!-- Google Global Site Tag -->
+
+        <!-- Google Tag Manager -->
+
+        <!-- Google Adsense -->
+
+        <!-- Heap Analytic -->
+
+        <!-- Piwik Tracking -->
+
+        <!-- Matomo Tracking -->
+
+</head>
+
+<!-- Body -->
+<body class="d-flex flex-column" data-spy="scroll" data-target="#toc" data-offset="0" style="position: relative;">
+    <!-- Top anchor -->
+    <a href="#" id="backToTop" style="display: none; z-index: 1;" title="Back to top"><span></span></a>
+
+    <!-- Google tag manager -->
+
+    <!-- Navigation -->
+    <nav class="flex-shrink-0 navbar navbar-expand-md navbar-expand-lg navbar-dark bg-dark text-light shadow-sm">
+        <!-- Logo -->
+        <a class="navbar-brand" href="..">JERRYLSU.NET</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon small"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <!-- i18n subsites -->
+
+            <!-- Page links -->
+            <ul class="navbar-nav mr-auto text-center">
+                <li class="nav-item ">                           
+                    <a class="nav-link" href="..">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z" fill="currentColor"></path>
+                        </svg>
+                        Home <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../categories.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M16 6h-8v-6h8v6zm-8 12h-8v6h8v-6zm16 0h-8v6h8v-6zm-11-7v-3h-2v3h-8v5h2v-3h14v3h2v-5h-8z" fill="currentColor"></path>
+                        </svg>
+                        Categories
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../tags.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M10.605 0h-10.605v10.609l13.391 13.391 10.609-10.604-13.395-13.396zm-4.191 6.414c-.781.781-2.046.781-2.829.001-.781-.783-.781-2.048 0-2.829.782-.782 2.048-.781 2.829-.001.782.782.781 2.047 0 2.829z" fill="currentColor"></path>
+                        </svg>
+                        Tags
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../archives.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M1.8 9l-.8-4h22l-.8 4h-2.029l.39-2h-17.122l.414 2h-2.053zm18.575-6l.604-2h-17.979l.688 2h16.687zm3.625 8l-2 13h-20l-2-13h24zm-8 4c0-.552-.447-1-1-1h-6c-.553 0-1 .448-1 1s.447 1 1 1h6c.553 0 1-.448 1-1z" fill="currentColor"></path>
+                        </svg>
+                        Archives
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../pages/about.html">
+                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                            <path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z" fill="currentColor"></path>
+                        </svg>
+                        About
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Search form -->
+            <form class="form-inline text-center" action="../search.html">
+                <input class="form-control w-100 bg-dark text-light text-center border-0 p-2" type="text" name="q" pattern=".{3,}" title="At least 3 characters" required="" placeholder="Type here to search" aria-label="Search">
+            </form>
+
+            <!-- Social links -->
+            <ul class="navbar-nav text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Facebook</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Github</title>
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.linkedin.com/in/jerrylsu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Linkedin</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://twitter.com/Jerrylsu666">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <title>Twitter</title>
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Full page -->
+    <div class="flex-shrink-0 flex-grow-1">
+
+        <!-- Header -->
+        <header class="bg-dark text-light shadow-sm pt-3 pb-2">
+	<div class="container">
+		<h3 id="Apache2 Deploy Multi-sites">Apache2 Deploy&nbsp;Multi-sites</h3>
+		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
+        <div class="row mx-auto mt-3">
+            <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
+                <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
+                <span class="card-link text-success">
+                    <span class="post-date" title="Post date">Mar 23, 2021</span>
+                    <span class="text-info modified-date" title="Updated date">
+                            Mar 23, 2021
+                    </span>
+                </span>
+                    <span class="card-link text-secondary" title="~1300 words">6 mins</span>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
+                <a class="badge badge-success" href="../category/tools.html">tools</a>
+                    <a class="badge badge-info" href="../tag/apache2.html">apache2</a>
+                    <a class="badge badge-info" href="../tag/server.html">server</a>
+            </div>
+        </div>
+	</div>
+        </header>
+
+        <!-- Main -->
+        <main class="py-3">
+                <div class="container">
+                    <!-- Sharing -->
+
+                    <!-- Content -->
+    <!-- 2 columns layout -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10">
+
+                <!-- Sharing -->
+                    <div class="text-right mb-2 small" style="height: 26px">
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
+
+                <!-- Article -->
+                <p><a href="https://github.com/posativ/isso/issues/718">I submit the&nbsp;issue</a></p>
+<h2 id="1-isso-as-systemd-service">1. Isso as systemd&nbsp;service</h2>
+<p>Switch back to your privileged(root) user and create new service&nbsp;file.</p>
+<p><code>vim /etc/systemd/system/isso.service</code><br>
+Paste the following in&nbsp;it.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Isso Commenting Server</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+<span class="na">User</span><span class="o">=</span><span class="s">isso</span>
+<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/home/isso</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/home/isso/.local/bin/isso -c /home/isso/isso.conf</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">on-failure</span>
+<span class="na">RestartSec</span><span class="o">=</span><span class="s">5</span>
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</code></pre></div>
+
+<p>Enable and start the&nbsp;service.</p>
+<p><code>systemctl enable isso</code></p>
+<p><code>systemctl start isso</code></p>
+<p>Check the&nbsp;status.</p>
+<p><code>systemctl status isso</code></p>
+<ul>
+<li>
+<p>apache2&nbsp;Multi-sites</p>
+</li>
+<li>
+<p>阿里云二级域名</p>
+</li>
+<li>
+<p>Apach2 as reverse&nbsp;proxy</p>
+</li>
+</ul>
+<h4 id="11">1.1&nbsp;新增站点配置文件</h4>
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">ls</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">apache2</span><span class="o">.</span><span class="n">conf</span><span class="w">    </span><span class="n">core</span><span class="w">     </span><span class="n">mods</span><span class="o">-</span><span class="n">available</span><span class="w">  </span><span class="n">sites</span><span class="o">-</span><span class="n">available</span>
+<span class="n">conf</span><span class="o">-</span><span class="n">available</span><span class="w">  </span><span class="n">envvars</span><span class="w">  </span><span class="n">mods</span><span class="o">-</span><span class="n">enabled</span><span class="w">    </span><span class="n">sites</span><span class="o">-</span><span class="n">enabled</span>
+<span class="n">conf</span><span class="o">-</span><span class="n">enabled</span><span class="w">    </span><span class="n">magic</span><span class="w">    </span><span class="n">ports</span><span class="o">.</span><span class="n">conf</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">apache2</span><span class="o">.</span><span class="n">conf</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c"># This is the main Apache server configuration file.  It contains the</span>
+<span class="c"># configuration directives that give the server its instructions.</span>
+<span class="c"># See http://httpd.apache.org/docs/2.4/ for detailed information about</span>
+<span class="c"># the directives and /usr/share/doc/apache2/README.Debian about Debian specific</span>
+<span class="c"># hints.</span>
+<span class="c">#</span>
+<span class="c">#</span>
+<span class="c"># Summary of how the Apache 2 configuration works in Debian:</span>
+<span class="c"># The Apache 2 web server configuration in Debian is quite different to</span>
+<span class="c"># upstream&#39;s suggested way to configure the web server. This is because Debian&#39;s</span>
+<span class="c"># default Apache2 installation attempts to make adding and removing modules,</span>
+<span class="c"># virtual hosts, and extra configuration directives as flexible as possible, in</span>
+<span class="c"># order to make automating the changes and administering the server as easy as</span>
+<span class="c"># possible.</span>
+
+<span class="c"># It is split into several files forming the configuration hierarchy outlined</span>
+<span class="c"># below, all located in the /etc/apache2/ directory:</span>
+<span class="c">#</span>
+<span class="c">#   /etc/apache2/</span>
+<span class="c">#   |-- apache2.conf</span>
+<span class="c">#   |   `--  ports.conf</span>
+<span class="c">#   |-- mods-enabled</span>
+<span class="c">#   |   |-- *.load</span>
+<span class="c">#   |   `-- *.conf</span>
+<span class="c">#   |-- conf-enabled</span>
+<span class="c">#   |   `-- *.conf</span>
+<span class="c">#   `-- sites-enabled</span>
+<span class="c">#       `-- *.conf</span>
+<span class="c">#</span>
+<span class="c">#</span>
+<span class="c"># * apache2.conf is the main configuration file (this file). It puts the pieces</span>
+<span class="c">#   together by including all remaining configuration files when starting up the</span>
+<span class="c">#   web server.</span>
+<span class="c">#</span>
+<span class="c"># * ports.conf is always included from the main configuration file. It is</span>
+<span class="c">#   supposed to determine listening ports for incoming connections which can be</span>
+<span class="c">#   customized anytime.</span>
+<span class="c">#</span>
+<span class="c"># * Configuration files in the mods-enabled/, conf-enabled/ and sites-enabled/</span>
+<span class="c">#   directories contain particular configuration snippets which manage modules,</span>
+<span class="c">#   global configuration fragments, or virtual host configurations,</span>
+<span class="c">#   respectively.</span>
+<span class="c">#</span>
+<span class="c">#   They are activated by symlinking available configuration files from their</span>
+<span class="c">#   respective *-available/ counterparts. These should be managed by using our</span>
+<span class="c">#   helpers a2enmod/a2dismod, a2ensite/a2dissite and a2enconf/a2disconf. See</span>
+<span class="c">#   their respective man pages for detailed information.</span>
+<span class="c">#</span>
+<span class="c"># * The binary is called apache2. Due to the use of environment variables, in</span>
+<span class="c">#   the default configuration, apache2 needs to be started/stopped with</span>
+<span class="c">#   /etc/init.d/apache2 or apache2ctl. Calling /usr/bin/apache2 directly will not</span>
+<span class="c">#   work with the default configuration.</span>
+
+
+<span class="c"># Global configuration</span>
+<span class="c">#</span>
+
+<span class="c">#</span>
+<span class="c"># ServerRoot: The top of the directory tree under which the server&#39;s</span>
+<span class="c"># configuration, error, and log files are kept.</span>
+<span class="c">#</span>
+<span class="c"># NOTE!  If you intend to place this on an NFS (or otherwise network)</span>
+<span class="c"># mounted filesystem then please read the Mutex documentation (available</span>
+<span class="c"># at &lt;URL:http://httpd.apache.org/docs/2.4/mod/core.html#mutex&gt;);</span>
+<span class="c"># you will save yourself a lot of trouble.</span>
+<span class="c">#</span>
+<span class="c"># Do NOT add a slash at the end of the directory path.</span>
+<span class="c">#</span>
+<span class="c">#ServerRoot &quot;/etc/apache2&quot;</span>
+
+<span class="c">#</span>
+<span class="c"># The accept serialization lock file MUST BE STORED ON A LOCAL DISK.</span>
+<span class="c">#</span>
+<span class="c">#Mutex file:${APACHE_LOCK_DIR} default</span>
+
+<span class="c">#</span>
+<span class="c"># The directory where shm and other runtime files will be stored.</span>
+<span class="c">#</span>
+
+<span class="nb">DefaultRuntimeDir</span><span class="w"> </span>${APACHE_RUN_DIR}
+
+<span class="c">#</span>
+<span class="c"># PidFile: The file in which the server should record its process</span>
+<span class="c"># identification number when it starts.</span>
+<span class="c"># This needs to be set in /etc/apache2/envvars</span>
+<span class="c">#</span>
+<span class="nb">PidFile</span><span class="w"> </span>${APACHE_PID_FILE}
+
+<span class="c">#</span>
+<span class="c"># Timeout: The number of seconds before receives and sends time out.</span>
+<span class="c">#</span>
+<span class="nb">Timeout</span><span class="w"> </span><span class="m">300</span>
+
+<span class="c">#</span>
+<span class="c"># KeepAlive: Whether or not to allow persistent connections (more than</span>
+<span class="c"># one request per connection). Set to &quot;Off&quot; to deactivate.</span>
+<span class="c">#</span>
+<span class="nb">KeepAlive</span><span class="w"> </span><span class="k">On</span>
+
+<span class="c">#</span>
+<span class="c"># MaxKeepAliveRequests: The maximum number of requests to allow</span>
+<span class="c"># during a persistent connection. Set to 0 to allow an unlimited amount.</span>
+<span class="c"># We recommend you leave this number high, for maximum performance.</span>
+<span class="c">#</span>
+<span class="nb">MaxKeepAliveRequests</span><span class="w"> </span><span class="m">100</span>
+
+<span class="c">#</span>
+<span class="c"># KeepAliveTimeout: Number of seconds to wait for the next request from the</span>
+<span class="c"># same client on the same connection.</span>
+<span class="c">#</span>
+<span class="nb">KeepAliveTimeout</span><span class="w"> </span><span class="m">5</span>
+
+
+<span class="c"># These need to be set in /etc/apache2/envvars</span>
+<span class="nb">User</span><span class="w"> </span>${APACHE_RUN_USER}
+<span class="nb">Group</span><span class="w"> </span>${APACHE_RUN_GROUP}
+
+<span class="c">#</span>
+<span class="c"># HostnameLookups: Log the names of clients or just their IP addresses</span>
+<span class="c"># e.g., www.apache.org (on) or 204.62.129.132 (off).</span>
+<span class="c"># The default is off because it&#39;d be overall better for the net if people</span>
+<span class="c"># had to knowingly turn this feature on, since enabling it means that</span>
+<span class="c"># each client request will result in AT LEAST one lookup request to the</span>
+<span class="c"># nameserver.</span>
+<span class="c">#</span>
+<span class="nb">HostnameLookups</span><span class="w"> </span><span class="k">Off</span>
+
+<span class="c"># ErrorLog: The location of the error log file.</span>
+<span class="c"># If you do not specify an ErrorLog directive within a &lt;VirtualHost&gt;</span>
+<span class="c"># container, error messages relating to that virtual host will be</span>
+<span class="c"># logged here.  If you *do* define an error logfile for a &lt;VirtualHost&gt;</span>
+<span class="c"># container, that host&#39;s errors will be logged there and not here.</span>
+<span class="c">#</span>
+<span class="nb">ErrorLog</span><span class="w"> </span>${APACHE_LOG_DIR}/error.log
+
+<span class="c">#</span>
+<span class="c"># LogLevel: Control the severity of messages logged to the error_log.</span>
+<span class="c"># Available values: trace8, ..., trace1, debug, info, notice, warn,</span>
+<span class="c"># error, crit, alert, emerg.</span>
+<span class="c"># It is also possible to configure the log level for particular modules, e.g.</span>
+<span class="c"># &quot;LogLevel info ssl:warn&quot;</span>
+<span class="c">#</span>
+<span class="nb">LogLevel</span><span class="w"> </span><span class="k">warn</span>
+
+<span class="c"># Include module configuration:</span>
+<span class="nb">IncludeOptional</span><span class="w"> </span>mods-enabled/*.load
+<span class="nb">IncludeOptional</span><span class="w"> </span>mods-enabled/*.conf
+
+<span class="c"># Include list of ports to listen on</span>
+<span class="nb">Include</span><span class="w"> </span>ports.conf
+
+
+<span class="c"># Sets the default security model of the Apache2 HTTPD server. It does</span>
+<span class="c"># not allow access to the root filesystem outside of /usr/share and /var/www.</span>
+<span class="c"># The former is used by web applications packaged in Debian,</span>
+<span class="c"># the latter may be used for local directories served by the web server. If</span>
+<span class="c"># your system is serving content from a sub-directory in /srv you must allow</span>
+<span class="c"># access here, or in any related virtual host.</span>
+<span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">Options</span><span class="w"> </span>FollowSymLinks
+<span class="w">    </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">None</span>
+<span class="w">    </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>denied
+<span class="nt">&lt;/Directory&gt;</span>
+
+<span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/usr/share</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">None</span>
+<span class="w">    </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
+<span class="nt">&lt;/Directory&gt;</span>
+
+<span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/www/</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">Options</span><span class="w"> </span>Indexes<span class="w"> </span>FollowSymLinks
+<span class="w">    </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">None</span>
+<span class="w">    </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
+<span class="nt">&lt;/Directory&gt;</span>
+
+<span class="c">#&lt;Directory /srv/&gt;</span>
+<span class="c">#   Options Indexes FollowSymLinks</span>
+<span class="c">#   AllowOverride None</span>
+<span class="c">#   Require all granted</span>
+<span class="c">#&lt;/Directory&gt;</span>
+
+
+
+
+<span class="c"># AccessFileName: The name of the file to look for in each directory</span>
+<span class="c"># for additional configuration directives.  See also the AllowOverride</span>
+<span class="c"># directive.</span>
+<span class="c">#</span>
+<span class="nb">AccessFileName</span><span class="w"> </span>.htaccess
+
+<span class="c">#</span>
+<span class="c"># The following lines prevent .htaccess and .htpasswd files from being</span>
+<span class="c"># viewed by Web clients.</span>
+<span class="c">#</span>
+<span class="nt">&lt;FilesMatch</span><span class="w"> </span><span class="s">&quot;^\.ht&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>denied
+<span class="nt">&lt;/FilesMatch&gt;</span>
+
+
+<span class="c">#</span>
+<span class="c"># The following directives define some format nicknames for use with</span>
+<span class="c"># a CustomLog directive.</span>
+<span class="c">#</span>
+<span class="c"># These deviate from the Common Log Format definitions in that they use %O</span>
+<span class="c"># (the actual bytes sent including headers) instead of %b (the size of the</span>
+<span class="c"># requested file), because the latter makes it impossible to detect partial</span>
+<span class="c"># requests.</span>
+<span class="c">#</span>
+<span class="c"># Note that the use of %{X-Forwarded-For}i instead of %h is not recommended.</span>
+<span class="c"># Use mod_remoteip instead.</span>
+<span class="c">#</span>
+<span class="nb">LogFormat</span><span class="w"> </span><span class="s2">&quot;%v:%p %h %l %u %t \&quot;%r\&quot; %&gt;s %O \&quot;%{Referer}i\&quot; \&quot;%{User-Agent}i\&quot;&quot;</span><span class="w"> </span>vhost_combined
+<span class="nb">LogFormat</span><span class="w"> </span><span class="s2">&quot;%h %l %u %t \&quot;%r\&quot; %&gt;s %O \&quot;%{Referer}i\&quot; \&quot;%{User-Agent}i\&quot;&quot;</span><span class="w"> </span>combined
+<span class="nb">LogFormat</span><span class="w"> </span><span class="s2">&quot;%h %l %u %t \&quot;%r\&quot; %&gt;s %O&quot;</span><span class="w"> </span>common
+<span class="nb">LogFormat</span><span class="w"> </span><span class="s2">&quot;%{Referer}i -&gt; %U&quot;</span><span class="w"> </span>referer
+<span class="nb">LogFormat</span><span class="w"> </span><span class="s2">&quot;%{User-agent}i&quot;</span><span class="w"> </span>agent
+
+<span class="c"># Include of directories ignores editors&#39; and dpkg&#39;s backup files,</span>
+<span class="c"># see README.Debian for details.</span>
+
+<span class="c"># Include generic snippets of statements</span>
+<span class="nb">IncludeOptional</span><span class="w"> </span>conf-enabled/*.conf
+
+<span class="c"># Include the virtual host configurations:</span>
+<span class="nb">IncludeOptional</span><span class="w"> </span>sites-enabled/*.conf
+
+<span class="c"># vim: syntax=apache ts=4 sw=4 sts=4 sr noet</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="gh">#</span> Include the virtual host configurations:
+
+IncludeOptional sites-enabled/*.conf
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1">#  blog.conf -&gt; ../sites-available/blog.conf配置的软链接，指向真实的配置</span>
+<span class="err">!</span><span class="n">ls</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">enabled</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>blog.conf
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># 新建站点的配置文件，comments_blog.conf</span>
+<span class="err">!</span><span class="n">ls</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>blog.conf  comments_blog.conf  default-ssl.conf
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">comments_blog</span><span class="o">.</span><span class="n">conf</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:80</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="c"># The ServerName directive sets the request scheme, hostname and port that</span>
+<span class="w">    </span><span class="c"># the server uses to identify itself. This is used when creating</span>
+<span class="w">    </span><span class="c"># redirection URLs. In the context of virtual hosts, the ServerName</span>
+<span class="w">    </span><span class="c"># specifies what hostname must appear in the request&#39;s Host: header to</span>
+<span class="w">    </span><span class="c"># match this virtual host. For the default virtual host (this file) this</span>
+<span class="w">    </span><span class="c"># value is not decisive as it is used as a last resort host regardless.</span>
+<span class="w">    </span><span class="c"># However, you must set it for any further virtual host explicitly.</span>
+<span class="w">    </span><span class="c">#ServerName www.example.com</span>
+
+<span class="w">    </span><span class="nb">ServerAdmin</span><span class="w"> </span>webmaster@localhost
+<span class="w">    </span><span class="nb">ServerName</span><span class="w"> </span>http://www.comments.jerrylsu.net
+<span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www/blog/isso</span>
+
+<span class="w">  </span><span class="c"># off表示开启反向代理，on表示开`启正向代理</span>
+<span class="w">  </span><span class="nb">ProxyRequests</span><span class="w"> </span><span class="k">Off</span>
+<span class="w">  </span><span class="c"># 将这个虚拟主机跳转到本机的8180端口</span>
+<span class="w">  </span><span class="c"># Proxy for Isso commenting</span>
+<span class="w">  </span><span class="nb">ProxyPass</span><span class="w"> </span>/<span class="w"> </span>http://localhost:8180/
+<span class="w">  </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>/<span class="w"> </span>http://localhost:8180/
+<span class="w">  </span><span class="nt">&lt;Proxy</span><span class="w"> </span><span class="s">*</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nb">Order</span><span class="w"> </span>Deny,Allow
+<span class="w">          </span><span class="nb">Allow</span><span class="w"> </span>from<span class="w"> </span><span class="k">all</span>
+<span class="w">  </span><span class="nt">&lt;/Proxy&gt;</span>
+<span class="w">    </span><span class="c"># Available loglevels: trace8, ..., trace1, debug, info, notice, warn,</span>
+<span class="w">    </span><span class="c"># error, crit, alert, emerg.</span>
+<span class="w">    </span><span class="c"># It is also possible to configure the loglevel for particular</span>
+<span class="w">    </span><span class="c"># modules, e.g.</span>
+<span class="w">    </span><span class="c">#LogLevel info ssl:warn</span>
+
+<span class="w">    </span><span class="nb">ErrorLog</span><span class="w"> </span>${APACHE_LOG_DIR}/error.log
+<span class="w">    </span><span class="nb">CustomLog</span><span class="w"> </span>${APACHE_LOG_DIR}/access.log<span class="w"> </span>combined
+
+<span class="w">    </span><span class="c"># For most configuration files from conf-available/, which are</span>
+<span class="w">    </span><span class="c"># enabled or disabled at a global level, it is possible to</span>
+<span class="w">    </span><span class="c"># include a line for only one particular virtual host. For example the</span>
+<span class="w">    </span><span class="c"># following line enables the CGI configuration for this host only</span>
+<span class="w">    </span><span class="c"># after it has been globally disabled with &quot;a2disconf&quot;.</span>
+<span class="w">    </span><span class="c">#Include conf-available/serve-cgi-bin.conf</span>
+<span class="nt">&lt;/VirtualHost&gt;</span>
+
+<span class="c"># vim: syntax=apache ts=4 sw=4 sts=4 sr noet</span>
+</code></pre></div>
+
+<h4 id="12">1.2&nbsp;建立软链接</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># 为comments_blog.conf站点建立软链接</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">cd /etc/apache2/sites-enabled</span>
+
+<span class="sd">#建立对应的软链接</span>
+<span class="sd">sudo ln -s /etc/apache2/sites-available/comments_blog.conf /etc/apache2/sites-enabled/comments_blog.conf</span>
+
+<span class="sd">-&gt; a2ensite comments_blog.conf</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="err">!</span><span class="n">ls</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">enabled</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>blog.conf  comments_blog.conf
+</code></pre></div>
+
+<h4 id="13-etchosts">1.3&nbsp;修改/etc/hosts</h4>
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">hosts</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="mf">127.0.0.1</span><span class="w">   </span><span class="n">localhost</span>
+<span class="p">::</span><span class="mf">1</span><span class="w"> </span><span class="n">localhost</span><span class="w"> </span><span class="n">ip6</span><span class="o">-</span><span class="n">localhost</span><span class="w"> </span><span class="n">ip6</span><span class="o">-</span><span class="n">loopback</span>
+<span class="n">fe00</span><span class="p">::</span><span class="mf">0</span><span class="w"> </span><span class="n">ip6</span><span class="o">-</span><span class="n">localnet</span>
+<span class="n">ff00</span><span class="p">::</span><span class="mf">0</span><span class="w"> </span><span class="n">ip6</span><span class="o">-</span><span class="n">mcastprefix</span>
+<span class="n">ff02</span><span class="p">::</span><span class="mf">1</span><span class="w"> </span><span class="n">ip6</span><span class="o">-</span><span class="n">allnodes</span>
+<span class="n">ff02</span><span class="p">::</span><span class="mf">2</span><span class="w"> </span><span class="n">ip6</span><span class="o">-</span><span class="n">allrouters</span>
+<span class="mf">172.17.0.2</span><span class="w">  </span><span class="n">e7cac75317f0</span>
+</code></pre></div>
+
+<h4 id="14-apache2">1.4&nbsp;重启Apache2</h4>
+<p>service apache2&nbsp;restart</p>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+<p><a href="https://hackriculture.fr/isso-commentaires-auto-heberges-pour-pelican-et-autres-sites-statiques.html">https://hackriculture.fr/isso-commentaires-auto-heberges-pour-pelican-et-autres-sites-statiques.html</a></p>
+<p><a href="https://therandombits.com/2018/12/how-to-add-isso-comments-to-your-site/">https://therandombits.com/2018/12/how-to-add-isso-comments-to-your-site/</a></p>
+<p><a href="http://www.linuxidc.com/Linux/2017-05/143590.htm">http://www.linuxidc.com/Linux/2017-05/143590.htm</a></p>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+                <!-- Neighbors -->
+                    <br>
+                    <b>Read more:</b><br>
+<div class="pagination">
+    <a class="w-50" href="../articles/Python-Blinker.html">
+&ll; Python&nbsp;Blinker
+    </a>
+    <a class="w-50 text-right" href="../articles/Isso-Comment-Server.html">
+        Isso-Comment-Server &gg;    </a>
+</div>
+                <!-- Google Adsense -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-2 d-none d-md-block small">
+                <div class="sticky-top">
+                    <!-- ToC -->
+                    <nav id="toc" data-toggle="toc" ></nav>
+
+                    <!-- Share post -->
+
+                    <!-- Google Adsense -->
+                </div>
+            </div>
+        </div>
+
+    <!-- Releated posts -->
+        <hr>
+        <div>
+            <h5>Related posts:</h5>
+            <ul>
+                <li><a href="../articles/Apache2 MacOS.html">Apache2&nbsp;MacOS</a></li>
+            </ul>
+        </div>
+
+    <!-- Comments -->
+        <hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'jerrylsu-github-io';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                </div>
+        </main>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="flex-shrink-0 bg-dark text-light small py-1">
+        <div class="container text-center">
+            &copy; 2024 <a href="..">JERRYLSU</a> by <a href="../pages/about.html">JERRY</a>. Powered by <a href="http://getpelican.com">Pelican</a>, <a href="http://python.org">Python</a>, <a href="https://getbootstrap.com">Bootstrap 4</a><br>
+            <!-- Do not remove below license sentence -->
+            License: <a href="https://spdx.org/licenses/CC-BY-4.0.html">CC-BY-4.0</a>, based on <a href="https://github.com/vuquangtrong/simplify-theme">Simplify Bootstrap Theme</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!--
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    -->
+    <script type="text/javascript" src="../theme/jquery/jquery-3.4.1.min.js"></script>
+    <!--
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/bootstrap.min.js"></script>
+    -->
+    <script type="text/javascript" src="../theme/bootstrap/bootstrap.min.js"></script>
+    <!--
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
+    -->
+        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
+    <script type="text/javascript" src="../theme/style.js"></script>
+
+    <!-- Sharing -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d9ffca0db80069e"></script>
+
+    <!-- JSON LD -->
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "name": "Apache2 Deploy Multi-sites",
+    "headline": "Apache2 Deploy Multi-sites",
+    "datePublished": "2021-03-23 13:17:17+08:00",
+    "dateModified": "",
+    "author": {
+        "@type": "Person",
+        "name": "Jerry Su",
+        "url": "../author/jerry-su.html"
+    },
+    "image": "../jerry.jpg",
+    "url": "../articles/Apache2 Deploy Multi-sites.html",
+    "description": "Reason is the light and the light of life."
+}
+</script>
+    <!-- Disqus count -->
+</body>
+
+</html>
