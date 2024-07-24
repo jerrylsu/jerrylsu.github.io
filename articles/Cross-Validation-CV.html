@@ -1,359 +1,293 @@
-
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../theme/css/custom.css" media="screen">
 
-<!-- Head -->
-<head>
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 
-        <!-- Required metadata tags -->
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="HandheldFriendly" content="True" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="author" content="Jerry Su" />
 
-        <!-- Default metadata -->
-    <meta name="author" content="Jerry Su" />
-    <meta name="description" content="Reason is the light and the light of life." />
-    <meta name="keywords" content="Machine Learning">
-<meta property="og:site_name" content="JERRYLSU" />
-<meta property="og:title" content="Cross Validation-CV" />
-<meta property="og:description" content="Reason is the light and the light of life." />
-<meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Machine Learning, ML, " />
+
+<meta property="og:title" content="Cross Validation-CV "/>
 <meta property="og:url" content="../articles/Cross-Validation-CV.html" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-01-18 19:43:25+08:00" />
-<meta property="article:modified_time" content="" />
-<meta property="article:author" content="../author/jerry-su.html">
-<meta property="article:section" content="ML" />
-	<meta property="article:tag" content="Machine Learning" />
-	<meta property="og:image" content="../jerry.jpg">
+<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:site_name" content="JERRYLSU" />
+<meta property="og:article:author" content="Jerry Su" />
+<meta property="og:article:published_time" content="2020-01-18T19:43:25+08:00" />
+<meta name="twitter:title" content="Cross Validation-CV ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <!-- Site Claim -->
-
-
-        <!-- Title -->
-        <title>
-    Cross Validation-CV &ndash; JERRYLSU
-        </title>
-        
-        <!-- Icon -->
-        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-        <link rel="icon" href="../favicon.ico" type="image/x-icon">
-
-        <!-- Search engine -->
-            <meta name="robots" content="" />
-
-        <!-- Feeds -->
+        <title>Cross Validation-CV  · JERRYLSU
+</title>
 
 
 
-
-
-
-
-
-        <!-- Styles -->
-        <!--
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/css/bootstrap.min.css">
-        -->
-        <link rel="stylesheet" href="../theme/bootstrap/bootstrap.min.css">
-        <!--
-        <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css">
-        -->
-            <link rel="stylesheet" href="../theme/extra/bootstrap-toc.min.css">
-        <link rel="stylesheet" href="../theme/pygment/friendly.min.css">
-        <!--
-        <link rel="stylesheet" href="../theme/extra/admonition.min.css">
-        -->
-        <link rel="stylesheet" href="../theme/style.css">
-
-        <!-- Google Analytics -->
-<script>
-(function(i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date();
-    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m) })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-ga('create', 'UA-42618265-2', 'auto');
-ga('send', 'pageview');
-</script>
-        <!-- Google Global Site Tag -->
-
-        <!-- Google Tag Manager -->
-
-        <!-- Google Adsense -->
-
-        <!-- Heap Analytic -->
-
-        <!-- Piwik Tracking -->
-
-        <!-- Matomo Tracking -->
-
-</head>
-
-<!-- Body -->
-<body class="d-flex flex-column" data-spy="scroll" data-target="#toc" data-offset="0" style="position: relative;">
-    <!-- Top anchor -->
-    <a href="#" id="backToTop" style="display: none; z-index: 1;" title="Back to top"><span></span></a>
-
-    <!-- Google tag manager -->
-
-    <!-- Navigation -->
-    <nav class="flex-shrink-0 navbar navbar-expand-md navbar-expand-lg navbar-dark bg-dark text-light shadow-sm">
-        <!-- Logo -->
-        <a class="navbar-brand" href="..">JERRYLSU.NET</a>
-
-        <!-- Collapse button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon small"></span>
-        </button>
-
-        <!-- Collapsible content -->
-        <div class="collapse navbar-collapse" id="navbarMenu">
-
-            <!-- i18n subsites -->
-
-            <!-- Page links -->
-            <ul class="navbar-nav mr-auto text-center">
-                <li class="nav-item ">                           
-                    <a class="nav-link" href="..">
-                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
-                            <path d="M21 13v10h-6v-6h-6v6h-6v-10h-3l12-12 12 12h-3zm-1-5.907v-5.093h-3v2.093l3 3z" fill="currentColor"></path>
-                        </svg>
-                        Home <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="../categories.html">
-                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
-                            <path d="M16 6h-8v-6h8v6zm-8 12h-8v6h8v-6zm16 0h-8v6h8v-6zm-11-7v-3h-2v3h-8v5h2v-3h14v3h2v-5h-8z" fill="currentColor"></path>
-                        </svg>
-                        Categories
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="../tags.html">
-                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
-                            <path d="M10.605 0h-10.605v10.609l13.391 13.391 10.609-10.604-13.395-13.396zm-4.191 6.414c-.781.781-2.046.781-2.829.001-.781-.783-.781-2.048 0-2.829.782-.782 2.048-.781 2.829-.001.782.782.781 2.047 0 2.829z" fill="currentColor"></path>
-                        </svg>
-                        Tags
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="../archives.html">
-                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
-                            <path d="M1.8 9l-.8-4h22l-.8 4h-2.029l.39-2h-17.122l.414 2h-2.053zm18.575-6l.604-2h-17.979l.688 2h16.687zm3.625 8l-2 13h-20l-2-13h24zm-8 4c0-.552-.447-1-1-1h-6c-.553 0-1 .448-1 1s.447 1 1 1h6c.553 0 1-.448 1-1z" fill="currentColor"></path>
-                        </svg>
-                        Archives
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="../pages/about.html">
-                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
-                            <path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z" fill="currentColor"></path>
-                        </svg>
-                        About
-                    </a>
-                </li>
-            </ul>
-
-            <!-- Search form -->
-            <form class="form-inline text-center" action="../search.html">
-                <input class="form-control w-100 bg-dark text-light text-center border-0 p-2" type="text" name="q" pattern=".{3,}" title="At least 3 characters" required="" placeholder="Type here to search" aria-label="Search">
-            </form>
-
-            <!-- Social links -->
-            <ul class="navbar-nav text-center">
-                <li class="nav-item">
-                    <a class="nav-link" href="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <title>Facebook</title>
-                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z" fill="currentColor"></path>
-                        </svg>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/jerrylsu">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <title>Github</title>
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" fill="currentColor"></path>
-                        </svg>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.linkedin.com/in/jerrylsu">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <title>Linkedin</title>
-                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z" fill="currentColor"></path>
-                        </svg>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://twitter.com/Jerrylsu666">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <title>Twitter</title>
-                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z" fill="currentColor"></path>
-                        </svg>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Full page -->
-    <div class="flex-shrink-0 flex-grow-1">
-
-        <!-- Header -->
-        <header class="bg-dark text-light shadow-sm pt-3 pb-2">
-	<div class="container">
-		<h3 id="Cross-Validation-CV">Cross Validation-<span class="caps">CV</span></h3>
-		<p style="font-size:larger;">Reason is the light and the light of&nbsp;life.</p>
-        <div class="row mx-auto mt-3">
-            <div class="col-xs-12 col-sm-12 col-md-6 text-left" style="padding: 0">
-                <a href="../author/jerry-su.html" class="card-link">Jerry Su</a>
-                <span class="card-link text-success">
-                    <span class="post-date" title="Post date">Jan 18, 2020</span>
-                    <span class="text-info modified-date" title="Updated date">
-                            Jan 18, 2020
-                    </span>
-                </span>
-                    <span class="card-link text-secondary" title="~19 words">1 mins</span>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 text-right" style="padding: 0">
-                <a class="badge badge-success" href="../category/ml.html">ml</a>
-                    <a class="badge badge-info" href="../tag/machine-learning.html">machine learning</a>
-            </div>
-        </div>
-	</div>
-        </header>
-
-        <!-- Main -->
-        <main class="py-3">
-                <div class="container">
-                    <!-- Sharing -->
-
-                    <!-- Content -->
-    <!-- 2 columns layout -->
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-10">
-
-                <!-- Sharing -->
-                    <div class="text-right mb-2 small" style="height: 26px">
-                        <div class="addthis_inline_share_toolbox"></div>
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../"><span class=site-name>JERRYLSU</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../pages/about.html">About</a></li>
+                                <li ><a href="../categories.html">Categories</a></li>
+                                <li ><a href="../tags.html">Tags</a></li>
+                                <li ><a href="../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../articles/Cross-Validation-CV.html">
+                Cross Validation-<span class="caps">CV</span>
+            </a>
+        </h1>
+    </header>
+</div>
 
-                <!-- Article -->
-                <p><a href="https://sklearn.apachecn.org/docs/0.21.3/30.html">Cross&nbsp;Validation</a></p>
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        show
+        </nav>
+    </div>
+    <div class="span8 article-content">
+            
+            <p><a href="https://sklearn.apachecn.org/docs/0.21.3/30.html">Cross&nbsp;Validation</a></p>
 <h2 id="cv">CV要解决的问题是什么？</h2>
 <p>当评价模型的不同设置（”hyperparameters(超参数)”）时， 由于在训练集上，通过调整参数设置使模型的性能达到了最佳状态；但在测试集上 可能会出现过拟合的情况。 此时，测试集上的信息反馈足以颠覆训练好的模型，评估的指标不再有效反映出模型的泛化性能。 为了解决此类问题，还应该准备另一部分被称为 “validation set(验证集)” 的数据集，模型训练完成以后在验证集上对模型进行评估。&nbsp;当验证集上的评估实验比较成功时，在测试集上进行最后的评估。</p>
 <p>然而，通过将原始数据分为3个数据集合，我们就大大减少了可用于模型学习的样本数量， 并且得到的结果依赖于集合对（训练，验证）的随机选择。这个问题可以通过 交叉验证（<span class="caps">CV</span> ） j来解决。&nbsp;交叉验证仍需要测试集做最后的模型评估，但不再需要验证集。</p>
 <h2 id="k">K折交叉验证</h2>
 <p><img alt="k" src="images/grid_search_cross_validation.png"></p>
 
-                <!-- Neighbors -->
-                    <br>
-                    <b>Read more:</b><br>
-<div class="pagination">
-    <a class="w-50" href="../articles/Docker.html">
-&ll; Docker
+
+             
+ 
+                <p id="post-share-links">
+    Share on:
+      <a href="https://twitter.com/intent/tweet?text=Cross%20Validation-CV&url=http%3A//www.jerrylsu.net/articles/Cross-Validation-CV.html&hashtags=machine-learning" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Cross-Validation-CV.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Cross%20Validation-CV&amp;body=http%3A//www.jerrylsu.net/articles/Cross-Validation-CV.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+
+            
+            
+
+
+
+
+
+
+
+            <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="../articles/Automated-Feature-Engineering:-Featuretools.html" title="Automated Feature Engineering: Featuretools">Automated Feature Engineering: Featuretools</a></li>
+<li><a href="../articles/Logistic-Regression.html" title="Logistic Regression">Logistic Regression</a></li>
+<li><a href="../articles/Faiss.html" title="Faiss">Faiss</a></li>
+<li><a href="../articles/Binomial-distribution.html" title="Binomial distribution">Binomial distribution</a></li>
+<li><a href="../articles/Scipy-stats.html" title="Scipy stats">Scipy stats</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="../articles/Docker.html" title="Previous: Docker">Docker</a></li>
+                <li class="next-article"><a href="../articles/【NLP】GlobalAveragePooling1D.html" title="Next: 【NLP】GlobalAveragePooling1D">【NLP】GlobalAveragePooling1D</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2020-01-18T19:43:25+08:00">Jan 18, 2020</time>
+            <h4>Category</h4>
+            <a class="category-link" href="../categories.html#ml-ref">ML</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="../tags.html#machine-learning-ref">Machine Learning
+                    <span class="superscript">13</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="mailto:[email protected]" title="sa517301@mail.ustc.edu.cn" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Mail" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#328cff"/><path d="m250 186c-46 0-69 35-69 74 0 44 29 72 68 72 43 0 73-32 73-75 0-44-34-71-72-71zm-1-37c30 0 57 13 77 33 0-22 35-22 35 1v150c-1 10 10 16 16 9 25-25 54-128-14-187-64-56-149-47-195-15-48 33-79 107-49 175 33 76 126 99 182 76 28-12 41 26 12 39-45 19-168 17-225-82-38-68-36-185 67-248 78-46 182-33 244 32 66 69 62 197-2 246-28 23-71 1-71-32v-11c-20 20-47 32-77 32-57 0-108-51-108-108 0-58 51-110 108-110" fill="#fff"/></svg>
     </a>
-    <a class="w-50 text-right" href="../articles/【NLP】GlobalAveragePooling1D.html">
-        【<span class="caps">NLP</span>】GlobalAveragePooling1D &gg;    </a>
+    <a href="https://github.com/jerrylsu" title="Jerry Github" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@jerrysu780" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="YouTube" role="img" viewBox="0 0 512 512" fill="#ed1d24"><rect width="512" height="512" rx="15%"/><path d="m427 169c-4-15-17-27-32-31-34-9-239-10-278 0-15 4-28 16-32 31-9 38-10 135 0 174 4 15 17 27 32 31 36 10 241 10 278 0 15-4 28-16 32-31 9-36 9-137 0-174" fill="#fff"/><path d="m220 203v106l93-53"/></svg>
+    </a>
+    <a href="https://twitter.com/Jerrylsu666" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Twitter" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1da1f3"/><path fill="#fff" d="M437 152a72 72 0 0 1-40 12 72 72 0 0 0 32-40 72 72 0 0 1-45 17 72 72 0 0 0-122 65 200 200 0 0 1-145-74 72 72 0 0 0 22 94 72 72 0 0 1-32-7 72 72 0 0 0 56 69 72 72 0 0 1-32 1 72 72 0 0 0 67 50 200 200 0 0 1-105 29 200 200 0 0 0 309-179 200 200 0 0 0 35-37"/></svg>
+    </a>
+    <a href="http://www.jerrylsu.net/feeds/all.atom.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
 </div>
-                <!-- Google Adsense -->
-            </div>
+            
 
-            <!-- Sidebar -->
-            <div class="col-md-2 d-none d-md-block small">
-                <div class="sticky-top">
-                    <!-- ToC -->
-                    <nav id="toc" data-toggle="toc" ></nav>
 
-                    <!-- Share post -->
 
-                    <!-- Google Adsense -->
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-    <!-- Releated posts -->
-        <hr>
-        <div>
-            <h5>Related posts:</h5>
-            <ul>
-                <li><a href="../articles/Scipy-stats.html">Scipy&nbsp;stats</a></li>
-                <li><a href="../articles/Binomial-distribution.html">Binomial&nbsp;distribution</a></li>
-                <li><a href="../articles/Faiss.html">Faiss</a></li>
-                <li><a href="../articles/Logistic-Regression.html">Logistic&nbsp;Regression</a></li>
-                <li><a href="../articles/Automated-Feature-Engineering:-Featuretools.html">Automated Feature Engineering:&nbsp;Featuretools</a></li>
-            </ul>
-        </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
 
-    <!-- Comments -->
-        <hr>
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'jerrylsu-github-io';
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                </div>
-        </main>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
 
     </div>
 
-    <!-- Footer -->
-    <footer class="flex-shrink-0 bg-dark text-light small py-1">
-        <div class="container text-center">
-            &copy; 2024 <a href="..">JERRYLSU</a> by <a href="../pages/about.html">JERRY</a>. Powered by <a href="http://getpelican.com">Pelican</a>, <a href="http://python.org">Python</a>, <a href="https://getbootstrap.com">Bootstrap 4</a><br>
-            <!-- Do not remove below license sentence -->
-            License: <a href="https://spdx.org/licenses/CC-BY-4.0.html">CC-BY-4.0</a>, based on <a href="https://github.com/vuquangtrong/simplify-theme">Simplify Bootstrap Theme</a>
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
         </div>
-    </footer>
+<footer>
 
-    <!-- Scripts -->
-    <!--
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-    -->
-    <script type="text/javascript" src="../theme/jquery/jquery-3.4.1.min.js"></script>
-    <!--
-    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/bootstrap.min.js"></script>
-    -->
-    <script type="text/javascript" src="../theme/bootstrap/bootstrap.min.js"></script>
-    <!--
-    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
-    -->
-        <script type="text/javascript" src="../theme/extra/bootstrap-toc.min.js"></script>
-    <script type="text/javascript" src="../theme/style.js"></script>
 
-    <!-- Sharing -->
-        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d9ffca0db80069e"></script>
 
-    <!-- JSON LD -->
-<script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "@type": "BlogPosting",
-    "name": "Cross Validation-CV",
-    "headline": "Cross Validation-CV",
-    "datePublished": "2020-01-18 19:43:25+08:00",
-    "dateModified": "",
-    "author": {
-        "@type": "Person",
-        "name": "Jerry Su",
-        "url": "../author/jerry-su.html"
-    },
-    "image": "../jerry.jpg",
-    "url": "../articles/Cross-Validation-CV.html",
-    "description": "Reason is the light and the light of life."
-}
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
 </script>
-    <!-- Disqus count -->
-</body>
 
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
 </html>
