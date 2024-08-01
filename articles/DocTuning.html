@@ -15,18 +15,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Deep Learning, NLP, Projects, " />
+<meta name="keywords" content="Project, NLP, Projects, " />
 
-<meta property="og:title" content="JDMDC2020 "/>
-<meta property="og:url" content="../articles/JDMDC2020.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:title" content="DocTuning "/>
+<meta property="og:url" content="../articles/DocTuning.html" />
+<meta property="og:description" content="DocTuning A Few-shot Modeling Platform for Natural Language Processing. Home Task Train Eval" />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2020-11-03T08:55:27+08:00" />
-<meta name="twitter:title" content="JDMDC2020 ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta property="og:article:published_time" content="2024-05-06T11:17:17+08:00" />
+<meta name="twitter:title" content="DocTuning ">
+<meta name="twitter:description" content="DocTuning A Few-shot Modeling Platform for Natural Language Processing. Home Task Train Eval">
 
-        <title>JDMDC2020  · JERRYLSU
+        <title>DocTuning  · JERRYLSU
 </title>
 
 
@@ -67,8 +67,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="../articles/JDMDC2020.html">
-                <span class="caps">JDMDC2020</span>
+            <a href="../articles/DocTuning.html">
+                DocTuning
             </a>
         </h1>
     </header>
@@ -83,110 +83,25 @@
     </div>
     <div class="span8 article-content">
             
-            <h1 id="2020jdmdc2020">2020京东多模态对话JDMDC2020第二名解决方案</h1>
-<p><span class="caps">CCL2020</span>: <a href="http://cips-cl.org/static/CCL2020/evaluation-result.html">中国计算语言学大会（<span class="caps">CCL</span>&nbsp;2020）技术评测结果</a></p>
-<p><span class="caps">JDMDC2020</span> <span class="caps">RANK</span>：<a href="https://jddc.jd.com/rank">https://jddc.jd.com/rank</a></p>
-<p>Code: <a href="https://github.com/jerrylsu/JDMDC2020-Solution-2nd"><span class="caps">JDMDC2020</span>-Solution-2nd</a></p>
-<p>Hibot团队成绩：初赛第三，决赛第二</p>
-<p>Hibot队员：林克，茸茸，阿布，杰瑞</p>
-<p><img alt="rank" src="../images/JDMDC/jd.jpg"></p>
-<h2 id="_1">数据工作</h2>
-<h3 id="_2">数据集探索</h3>
-<p>数据分为五个字段：会话ID, 店铺类别， 商品ID， 对话文本（包含图片ID），&nbsp;对话角色。通过商品ID与图片ID，来引用商品知识库数据和图片模态数据。</p>
-<p><img alt="data_eda1" src="../images/JDMDC/data_eda1.jpg"></p>
-<p>统计原始会话（连续QQAA未合并）轮数长度以及单句文本长度（按字）。</p>
-<p><img alt="data_eda2" src="../images/JDMDC/data_eda2.jpg"></p>
-<h3 id="_3">数据预处理</h3>
-<p><img alt="data_preprocess" src="../images/JDMDC/data_preprocess.jpg"></p>
-<h3 id="_4">训练数据构造</h3>
-<p><img alt="training_data1" src="../images/JDMDC/training_data1.jpg"></p>
-<p><img alt="training_data2" src="../images/JDMDC/training_data2.jpg"></p>
-<h3 id="_5">融合多模态与知识库</h3>
-<p><img alt="data_fusion" src="../images/JDMDC/data_fusion.jpg"></p>
-<h2 id="_6">技术方案</h2>
-<h3 id="mhred">基线模型MHRED</h3>
-<p>官方提供基线生成模型MHRED：https://github.com/jd-aig/nlp_baai/tree/master/jddc2020_baseline/mhred/pytorch</p>
-<p>基线模型MHRED复现BLEU分为：3.3853，在基线的基础上，我们加入了注意力机制BLEU提分到：5.6237。</p>
-<p><img alt="mhred" src="../images/JDMDC/baseline_mhred.jpg"></p>
-<h3 id="vlgpt">最佳模型VLGPT</h3>
-<p><img alt="vlgpt" src="../images/JDMDC/best_vlgpt.jpg"></p>
-<h2 id="_7">总结与引用</h2>
-<p><strong>What did&nbsp;work</strong></p>
-<ol>
-<li>
-<p>去除上下文为空的数据</p>
-</li>
-<li>
-<p>去除无意义回复，例如好的，嗯嗯，哦&#8230; </p>
-</li>
-<li>
-<p>根据数据集自定义字典，OOV问题</p>
-</li>
-<li>
-<p>带掩码的Loss，masked answer&nbsp;labels</p>
-</li>
-<li>
-<p>增加token type&nbsp;embedding区分角色</p>
-</li>
-<li>
-<p>Base基础GPT模型</p>
-</li>
-<li>
-<p>各种注意力机制Self-Attention, Context-Attention, Masked&nbsp;SeLf-Attention[5][12] </p>
-</li>
-</ol>
-<p><strong>What didn&#8217;t&nbsp;work</strong></p>
-<ol>
-<li>
-<p>删除通用模板回复</p>
-</li>
-<li>
-<p>Label Smoothing提升微弱&nbsp;[13]</p>
-</li>
-<li>
-<p>多头任务学习DoubleHead <span class="caps">GPT</span>(生成任务+是否为下一句)&nbsp;[14]</p>
-</li>
-<li>
-<p>BERT中文wiki预训练模型&nbsp;[15]</p>
-</li>
-<li>
-<p>GPT中文wiki[16]与清华开源预训练模型&nbsp;[17][18]</p>
-</li>
-<li>
-<p>Medium中型GPT模型</p>
-</li>
-<li>
-<p>最大互信息Maximum Mutual Information(<span class="caps">MMI</span>)&nbsp;[19]</p>
-</li>
-</ol>
-<p>[1] Kishore Papineni, Salim Roukos, et al. <span class="caps">BLEU</span>: a Method for Automatic Evaluation of Machine&nbsp;Translation </p>
-<p>[2] Boxing Chen, Colin Cherry et al. A Systematic Comparison of Smoothing Techniques for Sentence-Level <span class="caps">BLEU</span></p>
-<p>[3] Amrita Saha, Mitesh Khapra, et al. Towards Building Large Scale Multimodal Domain-Aware Conversation&nbsp;Systems</p>
-<p>[4] Minh-Thang Luong, Hieu Pham, et al. Effective Approaches to Attention-based Neural Machine&nbsp;Translation</p>
-<p>[5] Ashish Vaswani, Noam Shazeer,  et al. Attention Is All You&nbsp;Need</p>
-<p>[6] Jacob Devlin, Ming-Wei Chang, et al. <span class="caps">BERT</span>: Pre-training of Deep Bidirectional Transformers for Language&nbsp;Understanding</p>
-<p>[7] Alec Radford, Karthik Narasimhan, et al. Improving Language Understanding by Generative&nbsp;Pre-Training </p>
-<p>[8] Alec Radford, Jeffrey Wu,  et al. Language Models are Unsupervised Multitask&nbsp;Learners </p>
-<p>[9] https://huggingface.co -&nbsp;transformers</p>
-<p>[10] Thomas Wolf, Victor Sanh, et al. TransferTransfo: A Transfer Learning Approach for Neural Network Based Conversational&nbsp;Agents</p>
-<p>[11]&nbsp;https://github.com/huggingface/transfer-learning-conv-ai</p>
-<p>[12]&nbsp;https://jalammar.github.io/illustrated-transformer</p>
-<p>[13] Rafael Müller, Simon Kornblith, st al. when does label smoothing&nbsp;help?</p>
-<p>[14]&nbsp;https://huggingface.co/transformers/model_doc/gpt2.html#gpt2doubleheadsmodel</p>
-<p>[15]&nbsp;https://huggingface.co/bert-base-chinese</p>
-<p>[16] https://github.com/qingkongzhiqian/<span class="caps">GPT2</span>-Summary</p>
-<p>[17]&nbsp;https://cloud.tsinghua.edu.cn/f/4dfb8c6c22ae47fbbe98</p>
-<p>[18] Yida Wang, Pei Ke, et al. A Large-Scale Chinese Short-Text Conversation&nbsp;Dataset</p>
-<p>[19] Yizhe Zhang, Siqi Sun,  et al. DialoGPT:Large-Scale Generative Pre-training for Conversational Response&nbsp;Generation</p>
+            <h1 id="doctuning"><strong>DocTuning</strong></h1>
+<p>A Few-shot Modeling Platform for Natural Language&nbsp;Processing.</p>
+<h2 id="home">Home</h2>
+<p><img alt="bar" src="../images/DocTuning/1.jpg"></p>
+<h2 id="task">Task</h2>
+<p><img alt="line" src="../images/DocTuning/2.jpg"></p>
+<h2 id="train">Train</h2>
+<p><img alt="line" src="../images/DocTuning/3.jpg"></p>
+<h2 id="eval">Eval</h2>
+<p><img alt="line" src="../images/DocTuning/4.jpg"></p>
 
 
              
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=JDMDC2020&url=http%3A//www.jerrylsu.net/articles/JDMDC2020.html&hashtags=deep-learning,nlp" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
- ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/JDMDC2020.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=JDMDC2020&amp;body=http%3A//www.jerrylsu.net/articles/JDMDC2020.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+      <a href="https://twitter.com/intent/tweet?text=DocTuning&url=http%3A//www.jerrylsu.net/articles/DocTuning.html&hashtags=project,nlp" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/DocTuning.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=DocTuning&amp;body=http%3A//www.jerrylsu.net/articles/DocTuning.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -207,7 +122,7 @@
                 <a class="accordion-toggle disqus-comment-count comment-count collapsed"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   href="../articles/JDMDC2020.html#comment_thread"
+                   href="../articles/DocTuning.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -218,7 +133,7 @@
 
 
 
-                        <div class="commentbox" id="../articles/JDMDC2020.html"></div>
+                        <div class="commentbox" id="../articles/DocTuning.html"></div>
 <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
 <script>
     commentBox("True", {
@@ -242,35 +157,35 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Conditional-Random-Field.html" title="ConditionalRandomField">ConditionalRandomField</a></li>
-<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
-<li><a href="../articles/Utterance-Rewriter.html" title="Utterance Rewriter">Utterance Rewriter</a></li>
-<li><a href="../articles/Pointer-Networkers.html" title="Pointer Networkers">Pointer Networkers</a></li>
-<li><a href="../articles/Text-Generation.html" title="Text-Generation">Text-Generation</a></li>
+<li><a href="../articles/JD-Multimodal-Dialogue-Challenge.html" title="2020 JD Multimodal Dialogue Challenge">2020 JD Multimodal Dialogue Challenge</a></li>
+<li><a href="../articles/Creating-folds-properly.html" title="Creating folds properly">Creating folds properly</a></li>
+<li><a href="../articles/Ernie4Paddle.html" title="Ernie4paddle">Ernie4paddle</a></li>
+<li><a href="../articles/Self-Instruct.html" title="SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions">SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions</a></li>
+<li><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Deploy-model-in-production.html" title="Previous: Deploy model in production">Deploy model in production</a></li>
-                <li class="next-article"><a href="../articles/CMRC-Metric.html" title="Next: CMRC Metric">CMRC Metric</a> »</li>
+                <li class="previous-article">« <a href="../articles/Nucleus Sampling Top-p Sampling.html" title="Previous: Nucleus Sampling Top-p Sampling">Nucleus Sampling Top-p Sampling</a></li>
+                <li class="next-article"><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Next: Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a> »</li>
             </ul>
             </nav>
             </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2020-11-03T08:55:27+08:00">Nov 03, 2020</time>
+            <time itemprop="dateCreated" datetime="2024-05-06T11:17:17+08:00">May 06, 2024</time>
             <h4>Category</h4>
             <a class="category-link" href="../categories.html#projects-ref">Projects</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="../tags.html#deep-learning-ref">Deep Learning
-                    <span class="superscript">34</span>
-</a></li>
                 <li><a href="../tags.html#nlp-ref">NLP
-                    <span class="superscript">29</span>
+                    <span class="superscript">31</span>
+</a></li>
+                <li><a href="../tags.html#project-ref">Project
+                    <span class="superscript">4</span>
 </a></li>
             </ul>
 <h4>Contact</h4>

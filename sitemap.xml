@@ -5,7 +5,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/</loc>
-<lastmod>2024-08-01T15:24:35-00:00</lastmod>
+<lastmod>2024-08-01T16:03:58-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -13,6 +13,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://www.jerrylsu.net/articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html</loc>
 <lastmod>2024-06-15T11:17:17+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.jerrylsu.net/articles/DocTuning.html</loc>
+<lastmod>2024-05-06T11:17:17+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -90,6 +97,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://www.jerrylsu.net/articles/python-docx-using-lxml.html</loc>
 <lastmod>2022-09-25T10:17:17+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.jerrylsu.net/articles/Ernie4Paddle.html</loc>
+<lastmod>2022-08-22T11:17:17+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -662,7 +676,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://www.jerrylsu.net/articles/JDMDC2020.html</loc>
+<loc>http://www.jerrylsu.net/articles/JD-Multimodal-Dialogue-Challenge.html</loc>
 <lastmod>2020-11-03T08:55:27+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -1238,6 +1252,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://www.jerrylsu.net/category/tools.html</loc>
 <lastmod>2021-09-04T20:26:47+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.jerrylsu.net/tag/project.html</loc>
+<lastmod>2024-06-15T11:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
