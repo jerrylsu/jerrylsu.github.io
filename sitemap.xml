@@ -5,7 +5,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/</loc>
-<lastmod>2024-08-01T14:33:24-00:00</lastmod>
+<lastmod>2024-08-01T14:42:55-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -146,13 +146,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://www.jerrylsu.net/articles/pytorch.nn.functional.pad.html</loc>
 <lastmod>2022-05-02T11:17:17+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://www.jerrylsu.net/articles/Image-Tilt-Correction.html</loc>
-<lastmod>2022-04-24T11:17:17+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1208,13 +1201,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://www.jerrylsu.net/category/cv.html</loc>
-<lastmod>2022-04-24T11:17:17+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>http://www.jerrylsu.net/category/ml.html</loc>
 <lastmod>2022-01-06T10:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -1301,13 +1287,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://www.jerrylsu.net/tag/pytorch.html</loc>
 <lastmod>2022-05-10T11:17:17+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://www.jerrylsu.net/tag/cv.html</loc>
-<lastmod>2022-04-24T11:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
