@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="Jerry Su" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Viterbi, Algorithm, Algorithms, " />
+
+<meta property="og:title" content="Viterbi Algorithm "/>
+<meta property="og:url" content="../articles/Viterbi-Algorithm.html" />
+<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:site_name" content="JERRYLSU" />
+<meta property="og:article:author" content="Jerry Su" />
+<meta property="og:article:published_time" content="2021-02-22T10:17:17+08:00" />
+<meta name="twitter:title" content="Viterbi Algorithm ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
+
+        <title>Viterbi Algorithm  · JERRYLSU
+</title>
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../"><span class=site-name>JERRYLSU</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../categories.html">Categories</a></li>
+                                <li ><a href="../tags.html">Tags</a></li>
+                                <li ><a href="../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../articles/Viterbi-Algorithm.html">
+                Viterbi&nbsp;Algorithm
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        show
+        </nav>
+    </div>
+    <div class="span8 article-content">
+            
+            <h2 id="numpy">矩阵法numpy</h2>
+<p>注：转移矩阵和发射矩阵以列维度上形式表示概率分布的，即列维度axis=1上元素和为1。<strong>注意：把隐状态概率分布表示为向量后，向量乘以状态转移矩阵的结果为新的隐状态。</strong>&nbsp;同理，对发射矩阵做向量矩阵乘法会得到新的观测状态。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">score_prev</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+         <span class="n">emission_probs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+         <span class="n">transition_probs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+         <span class="n">observed_state</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;运行维特比算法一个时间步。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        score_prev: probability distribution with shape (num_hidden),</span>
+<span class="sd">            the previous score</span>
+<span class="sd">        emission_probs: the emission probability matrix (num_hidden,</span>
+<span class="sd">            num_observed)</span>
+<span class="sd">        transition_probs: the transition probability matrix, with</span>
+<span class="sd">            shape (num_hidden, num_hidden)</span>
+<span class="sd">        observed_state: the observed state at the current step</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        - the score for the next step</span>
+<span class="sd">        - the maximizing previous state, before the current state, as an int array with shape (num_hidden)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pre_max</span> <span class="o">=</span> <span class="n">score_prev</span> <span class="o">*</span> <span class="n">transition_probs</span><span class="o">.</span><span class="n">T</span>                             <span class="c1"># 乘以各个隐状态转移概率下的分数值（矩阵乘法并非点积，向量广播成矩阵后对应元素相乘）</span>
+    <span class="n">max_prev_states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">pre_max</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>                          <span class="c1"># 来自前一时间步的哪个隐状态。即对应前一时间步隐状态位置</span>
+    <span class="n">max_vals</span> <span class="o">=</span> <span class="n">pre_max</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">max_prev_states</span><span class="p">)),</span> <span class="n">max_prev_states</span><span class="p">]</span>  <span class="c1"># 根据最大值索引取出最大值</span>
+    <span class="n">score_new</span> <span class="o">=</span> <span class="n">max_vals</span> <span class="o">*</span> <span class="n">emission_probs</span><span class="p">[:,</span> <span class="n">observed_state</span><span class="p">]</span>                 <span class="c1"># 发射概率列向量：该观测状态对应的隐状态列</span>
+
+    <span class="k">return</span> <span class="n">score_new</span><span class="p">,</span> <span class="n">max_prev_states</span>
+
+<span class="k">def</span> <span class="nf">viterbi</span><span class="p">(</span><span class="n">emission_probs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+            <span class="n">transition_probs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span>
+            <span class="n">start_probs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+            <span class="n">observed_states</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;运行维特比算法获得最有可能的状态序列。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        emission_probs:</span>
+<span class="sd">        transition_probs:</span>
+<span class="sd">        start_probs:</span>
+<span class="sd">        observed_states:</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        - 最有可能的状态序列。</span>
+<span class="sd">        - 状态和观测序列的联合概率值。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 运行正向传递，存储最有可能的先前状态。</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">start_probs</span> <span class="o">*</span> <span class="n">emission_probs</span><span class="p">[:,</span> <span class="n">observed_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>  <span class="c1"># 第一个时间步的最优解向量（隐含状态向量维度）</span>
+    <span class="n">all_pre_states</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">observed_state</span> <span class="ow">in</span> <span class="n">observed_states</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">score</span><span class="p">,</span> <span class="n">prevs</span> <span class="o">=</span> <span class="n">step</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">emission_probs</span><span class="p">,</span> <span class="n">transition_probs</span><span class="p">,</span> <span class="n">observed_state</span><span class="p">)</span>
+        <span class="n">all_pre_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prevs</span><span class="p">)</span>
+
+    <span class="c1"># 回溯</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>            <span class="c1"># 最后一个时间步最大分数出现的位置，该值表示来自前一个时间步的第几个状态</span>
+    <span class="n">sequence_score</span> <span class="o">=</span> <span class="n">score</span><span class="p">[</span><span class="n">state</span><span class="p">]</span>       <span class="c1"># 获取最大分数，即累计最大分数，最大隐状态序列</span>
+    <span class="n">sequence_state</span> <span class="o">=</span> <span class="p">[</span><span class="n">state</span><span class="p">]</span>            <span class="c1"># 最后一个时间步的最优隐状态加入结果序列</span>
+    <span class="k">for</span> <span class="n">pre_states</span> <span class="ow">in</span> <span class="n">all_pre_states</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">pre_states</span><span class="p">[</span><span class="n">state</span><span class="p">]</span>       <span class="c1"># 回溯获取前一个最优隐状态位置</span>
+        <span class="n">sequence_state</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>    <span class="c1"># 加入结果序列</span>
+    <span class="k">return</span> <span class="n">sequence_state</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sequence_score</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">num_hidden_states</span> <span class="o">=</span> <span class="mi">3</span>     <span class="c1"># vocab_size</span>
+<span class="n">num_observed_states</span> <span class="o">=</span> <span class="mi">2</span>   <span class="c1"># vocab_size</span>
+<span class="n">num_time_steps</span> <span class="o">=</span> <span class="mi">4</span>        <span class="c1"># sequence_length</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># 初始化转移概率矩阵</span>
+<span class="n">transition_probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+<span class="p">])</span>
+<span class="k">assert</span> <span class="n">transition_probs</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">num_hidden_states</span><span class="p">,</span> <span class="n">num_hidden_states</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">transition_probs</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">==</span> <span class="mf">1.0</span>
+
+<span class="c1"># 初始化发射概率矩阵 （行 -&gt; 隐含状态：0，1，2，列 -&gt; 观测状态：0，1）</span>
+<span class="n">emission_probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>    
+<span class="p">])</span>
+<span class="k">assert</span> <span class="n">emission_probs</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">num_hidden_states</span><span class="p">,</span> <span class="n">num_observed_states</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">emission_probs</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">==</span> <span class="mf">1.0</span>
+
+<span class="c1"># 初始隐状态概率</span>
+<span class="n">init_hidden_state_probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">init_hidden_state_probs</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">num_hidden_states</span><span class="p">,)</span>
+
+<span class="c1"># 定义观测序列</span>
+<span class="n">observed_states</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">observed_states</span><span class="p">)</span> <span class="o">==</span> <span class="n">num_time_steps</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">max_seq</span><span class="p">,</span> <span class="n">seq_prob</span> <span class="o">=</span> <span class="n">viterbi</span><span class="p">(</span>
+    <span class="n">emission_probs</span><span class="p">,</span>
+    <span class="n">transition_probs</span><span class="p">,</span>
+    <span class="n">init_hidden_state_probs</span><span class="p">,</span>
+    <span class="n">observed_states</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">max_seq</span><span class="p">,</span> <span class="n">seq_prob</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>([2, 0, 2, 0], 0.0212625)
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">init_hidden_state_probs</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>array([0.1, 0.3, 0.6])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">emission_probs</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>array([[0.1, 0.9],
+       [0.3, 0.7],
+       [0.5, 0.5]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">score</span> <span class="o">=</span> <span class="n">init_hidden_state_probs</span> <span class="o">*</span> <span class="n">emission_probs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">score</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>array([0.01, 0.09, 0.3 ])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">transition_probs</span><span class="o">.</span><span class="n">T</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>array([[0.1, 0.1, 0.5],
+       [0.2, 0.1, 0.4],
+       [0.7, 0.8, 0.1]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">pre_max</span> <span class="o">=</span> <span class="n">score</span> <span class="o">*</span> <span class="n">transition_probs</span><span class="o">.</span><span class="n">T</span>
+<span class="n">pre_max</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>array([[0.001, 0.009, 0.15 ],
+       [0.002, 0.009, 0.12 ],
+       [0.007, 0.072, 0.03 ]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">max_prev_states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">pre_max</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">max_prev_states</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>array([2, 2, 1])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">max_prev_states</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>array([0, 1, 2])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">pre_max</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">max_prev_states</span><span class="p">)),</span> <span class="n">max_prev_states</span><span class="p">]</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>array([0.15 , 0.12 , 0.072])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">step</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">emission_probs</span><span class="p">,</span> <span class="n">transition_probs</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>(array([0.135, 0.084, 0.036]), array([2, 2, 1]))
+</code></pre></div>
+
+<h2 id="pytorch">矩阵法pytorch</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># shape: (1, 5, 3)</span>
+<span class="n">logits</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">transisition_probs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">batch_size</span><span class="p">,</span> <span class="n">max_len</span><span class="p">,</span> <span class="n">n_tags</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="n">seq_len</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">long</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">seq_len</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([3])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">logits</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">flip_mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>torch.Size([5, 1, 3])
+torch.Size([5, 1])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">vpath</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vpath</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">vscore</span> <span class="o">=</span> <span class="n">logits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># 初始化</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vscore</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>torch.Size([5, 1, 3])
+tensor([[0.3556, 0.4721, 0.6929]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">end_transition_prob</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">end_transition_prob</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[[0., 0., 0.]]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">viterbi_decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logits</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">unpad</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;给定一个特征矩阵以及转移分数矩阵，计算出最佳的路径以及对应的分数</span>
+
+<span class="sd">        :param torch.FloatTensor logits: batch_size x max_len x num_tags，特征矩阵。</span>
+<span class="sd">        :param torch.ByteTensor mask: batch_size x max_len, 为0的位置认为是pad；如果为None，则认为没有padding。</span>
+<span class="sd">        :param bool unpad: 是否将结果删去padding。False, 返回的是batch_size x max_len的tensor; True，返回的是</span>
+<span class="sd">            List[List[int]], 内部的List[int]为每个sequence的label，已经除去pad部分，即每个List[int]的长度是这</span>
+<span class="sd">            个sample的有效长度。</span>
+<span class="sd">        :return: 返回 (paths, scores)。</span>
+<span class="sd">                    paths: 是解码后的路径, 其值参照unpad参数.</span>
+<span class="sd">                    scores: torch.FloatTensor, size为(batch_size,), 对应每个最优路径的分数。</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">batch_size</span><span class="p">,</span> <span class="n">max_len</span><span class="p">,</span> <span class="n">n_tags</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="n">seq_len</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">long</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># L, B, H</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># L, B</span>
+        <span class="n">flip_mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># dp</span>
+        <span class="n">vpath</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">((</span><span class="n">max_len</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">n_tags</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>  <span class="c1"># torch.zeros_like(logits, dtype=torch.int)</span>
+        <span class="n">vscore</span> <span class="o">=</span> <span class="n">logits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># bsz x n_tags         # 初始化</span>
+        <span class="n">transitions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constrain</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+        <span class="n">transitions</span><span class="p">[:</span><span class="n">n_tags</span><span class="p">,</span> <span class="p">:</span><span class="n">n_tags</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trans_m</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">include_start_end_trans</span><span class="p">:</span>
+            <span class="n">transitions</span><span class="p">[</span><span class="n">n_tags</span><span class="p">,</span> <span class="p">:</span><span class="n">n_tags</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_scores</span><span class="o">.</span><span class="n">data</span>
+            <span class="n">transitions</span><span class="p">[:</span><span class="n">n_tags</span><span class="p">,</span> <span class="n">n_tags</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_scores</span><span class="o">.</span><span class="n">data</span>
+
+        <span class="n">vscore</span> <span class="o">+=</span> <span class="n">transitions</span><span class="p">[</span><span class="n">n_tags</span><span class="p">,</span> <span class="p">:</span><span class="n">n_tags</span><span class="p">]</span>   <span class="c1"># add all 0</span>
+
+        <span class="n">trans_score</span> <span class="o">=</span> <span class="n">transitions</span><span class="p">[:</span><span class="n">n_tags</span><span class="p">,</span> <span class="p">:</span><span class="n">n_tags</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_tags</span><span class="p">,</span> <span class="n">n_tags</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># 转移概率矩阵</span>
+        <span class="n">end_trans_score</span> <span class="o">=</span> <span class="n">transitions</span><span class="p">[:</span><span class="n">n_tags</span><span class="p">,</span> <span class="n">n_tags</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_tags</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># bsz, 1, n_tags</span>
+
+        <span class="c1"># 针对长度为1的句子, 长度非1的句子则作为初始值</span>
+        <span class="n">vscore</span> <span class="o">+=</span> <span class="n">transitions</span><span class="p">[:</span><span class="n">n_tags</span><span class="p">,</span> <span class="n">n_tags</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_tags</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">seq_len</span><span class="o">.</span><span class="n">ne</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_len</span><span class="p">):</span>
+            <span class="n">prev_score</span> <span class="o">=</span> <span class="n">vscore</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">n_tags</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">cur_score</span> <span class="o">=</span> <span class="n">logits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_tags</span><span class="p">)</span> <span class="o">+</span> <span class="n">trans_score</span>    <span class="c1"># emission_prob: logits (1,1,8) + (1,8,8)</span>
+            <span class="n">score</span> <span class="o">=</span> <span class="n">prev_score</span> <span class="o">+</span> <span class="n">cur_score</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">flip_mask</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># bsz x n_tag x n_tag</span>
+            <span class="c1"># 需要考虑当前位置是该序列的最后一个</span>
+            <span class="n">score</span> <span class="o">+=</span> <span class="n">end_trans_score</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">seq_len</span><span class="o">.</span><span class="n">ne</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+            <span class="n">best_score</span><span class="p">,</span> <span class="n">best_dst</span> <span class="o">=</span> <span class="n">score</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">vpath</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">best_dst</span>
+            <span class="c1"># 由于最终是通过last_tags回溯，需要保持每个位置的vscore情况</span>
+            <span class="n">vscore</span> <span class="o">=</span> <span class="n">best_score</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">flip_mask</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">vscore</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">mask</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># 上面masked_fill均是解决mask为0情况</span>
+
+        <span class="c1"># backtrace</span>
+        <span class="n">batch_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">logits</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">seq_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">logits</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">lens</span> <span class="o">=</span> <span class="p">(</span><span class="n">seq_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># idxes [L, B], batched idx from seq_len-1 to 0</span>
+        <span class="n">idxes</span> <span class="o">=</span> <span class="p">(</span><span class="n">lens</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">seq_idx</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">%</span> <span class="n">max_len</span>
+
+        <span class="n">ans</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">new_empty</span><span class="p">((</span><span class="n">max_len</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+        <span class="n">ans_score</span><span class="p">,</span> <span class="n">last_tags</span> <span class="o">=</span> <span class="n">vscore</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 最优路径分数，和最后一个时间步的最优隐状态</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">idxes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">batch_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">last_tags</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">last_tags</span> <span class="o">=</span> <span class="n">vpath</span><span class="p">[</span><span class="n">idxes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="n">last_tags</span><span class="p">]</span>
+            <span class="n">ans</span><span class="p">[</span><span class="n">idxes</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">batch_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">last_tags</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="n">ans</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">unpad</span><span class="p">:</span>
+            <span class="n">paths</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">max_len</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lens</span><span class="p">):</span>
+                <span class="n">paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="p">:</span><span class="n">max_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">paths</span> <span class="o">=</span> <span class="n">ans</span>
+        <span class="k">return</span> <span class="n">paths</span><span class="p">,</span> <span class="n">ans_scor</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+<h2 id="_1">迭代法</h2>
+<div class="highlight"><pre><span></span><code><span class="n">pre_max</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>array([[0.001, 0.002, 0.007, 0.009, 0.009, 0.072, 0.15 , 0.12 , 0.03 ]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">pre_max</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">a</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>array([[0.001, 0.002, 0.007],
+       [0.009, 0.009, 0.072],
+       [0.15 , 0.12 , 0.03 ]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">99</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">b</span> <span class="o">=</span> <span class="n">pre_max</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">b</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>array([[0.001, 0.002, 0.007],
+       [0.009, 0.009, 0.072],
+       [0.15 , 0.12 , 0.03 ]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">a</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">a</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">b</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>array([[0.001, 0.002, 0.007, 0.009, 0.009, 0.072, 0.15 , 0.12 , 0.03 ]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">jupyter</span> <span class="n">nbconvert</span> <span class="o">--</span><span class="n">to</span> <span class="n">markdown</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">22</span><span class="o">-</span><span class="n">Viterbi</span><span class="o">-</span><span class="n">Algorithm</span><span class="o">.</span><span class="n">ipynb</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">Converting</span><span class="w"> </span><span class="n">notebook</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">22</span><span class="o">-</span><span class="n">Viterbi</span><span class="o">-</span><span class="n">Algorithm</span><span class="p">.</span><span class="n">ipynb</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">markdown</span>
+<span class="o">[</span><span class="n">NbConvertApp</span><span class="o">]</span><span class="w"> </span><span class="n">Writing</span><span class="w"> </span><span class="mi">9793</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">22</span><span class="o">-</span><span class="n">Viterbi</span><span class="o">-</span><span class="n">Algorithm</span><span class="p">.</span><span class="n">md</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+
+             
+ 
+                <p id="post-share-links">
+    Share on:
+      <a href="https://twitter.com/intent/tweet?text=Viterbi%C2%A0Algorithm&url=http%3A//www.jerrylsu.net/articles/Viterbi-Algorithm.html&hashtags=viterbi,algorithm" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Viterbi-Algorithm.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Viterbi%C2%A0Algorithm&amp;body=http%3A//www.jerrylsu.net/articles/Viterbi-Algorithm.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   href="../articles/Viterbi-Algorithm.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+
+
+
+                        <div class="commentbox" id="../articles/Viterbi-Algorithm.html"></div>
+<script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+<script>
+    commentBox("True", {
+        onCommentCount(count) {
+            const ele = document.querySelector("#comment-accordion-toggle")
+            if (ele && count > 0) {
+                ele.innerText = `${count} Comment${count > 1 ? 's' : ''}`
+            }
+        }
+    });
+</script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="../articles/A_star_algorithm.html" title="A* Heuristic Algorithm">A* Heuristic Algorithm</a></li>
+<li><a href="../articles/Conditional-Random-Field.html" title="ConditionalRandomField">ConditionalRandomField</a></li>
+<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
+<li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
+<li><a href="../articles/Brackets-Matching.html" title="Brackets Matching">Brackets Matching</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="../articles/HMM-Viterbi-Algorithm.html" title="Previous: HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
+                <li class="next-article"><a href="../articles/Numpy-Indexing.html" title="Next: Numpy Indexing">Numpy Indexing</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2021-02-22T10:17:17+08:00">Feb 22, 2021</time>
+            <h4>Category</h4>
+            <a class="category-link" href="../categories.html#algorithms-ref">Algorithms</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="../tags.html#algorithm-ref">Algorithm
+                    <span class="superscript">16</span>
+</a></li>
+                <li><a href="../tags.html#viterbi-ref">Viterbi
+                    <span class="superscript">2</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="mailto:[email protected]" title="sa517301@mail.ustc.edu.cn" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Mail" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#328cff"/><path d="m250 186c-46 0-69 35-69 74 0 44 29 72 68 72 43 0 73-32 73-75 0-44-34-71-72-71zm-1-37c30 0 57 13 77 33 0-22 35-22 35 1v150c-1 10 10 16 16 9 25-25 54-128-14-187-64-56-149-47-195-15-48 33-79 107-49 175 33 76 126 99 182 76 28-12 41 26 12 39-45 19-168 17-225-82-38-68-36-185 67-248 78-46 182-33 244 32 66 69 62 197-2 246-28 23-71 1-71-32v-11c-20 20-47 32-77 32-57 0-108-51-108-108 0-58 51-110 108-110" fill="#fff"/></svg>
+    </a>
+    <a href="https://github.com/jerrylsu" title="Jerry Github" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@jerrysu780" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="YouTube" role="img" viewBox="0 0 512 512" fill="#ed1d24"><rect width="512" height="512" rx="15%"/><path d="m427 169c-4-15-17-27-32-31-34-9-239-10-278 0-15 4-28 16-32 31-9 38-10 135 0 174 4 15 17 27 32 31 36 10 241 10 278 0 15-4 28-16 32-31 9-36 9-137 0-174" fill="#fff"/><path d="m220 203v106l93-53"/></svg>
+    </a>
+    <a href="https://twitter.com/Jerrylsu666" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Twitter" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1da1f3"/><path fill="#fff" d="M437 152a72 72 0 0 1-40 12 72 72 0 0 0 32-40 72 72 0 0 1-45 17 72 72 0 0 0-122 65 200 200 0 0 1-145-74 72 72 0 0 0 22 94 72 72 0 0 1-32-7 72 72 0 0 0 56 69 72 72 0 0 1-32 1 72 72 0 0 0 67 50 200 200 0 0 1-105 29 200 200 0 0 0 309-179 200 200 0 0 0 35-37"/></svg>
+    </a>
+    <a href="http://www.jerrylsu.net/feeds/all.atom.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>
