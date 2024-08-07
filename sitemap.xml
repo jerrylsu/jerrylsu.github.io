@@ -5,7 +5,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/</loc>
-<lastmod>2024-08-06T14:56:31-00:00</lastmod>
+<lastmod>2024-08-07T15:39:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -109,7 +109,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://www.jerrylsu.net/articles/Global-Pointer.html</loc>
+<loc>http://www.jerrylsu.net/articles/Global-Pointer-Multi-Head-Attention-without-Value-Operation.html</loc>
 <lastmod>2022-08-22T11:17:17+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
