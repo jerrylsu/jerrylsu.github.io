@@ -123,6 +123,53 @@
 <p><strong>Multi-Head Attention without Value Operation</strong></p>
 <p><img alt="GP" src="../images/GlobalPointer/GP.jpg"/></p>
 <h2 id="loss">Loss</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># !/usr/bin/env python3</span>
+<span class="c1"># -*- coding: UTF-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1">################################################################################</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) All Rights Reserved</span>
+<span class="c1">#</span>
+<span class="c1">################################################################################</span>
+<span class="sd">"""</span>
+<span class="sd">Multi Cross Entropy Loss.</span>
+<span class="sd">"""</span>
+<span class="kn">import</span> <span class="nn">paddle</span>
+<span class="kn">import</span> <span class="nn">paddle.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">paddle.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'MultiCrossEntropyLoss'</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">MultiCrossEntropyLoss</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Multi Cross Entropy Loss implementation.</span>
+<span class="sd">    """</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MultiCrossEntropyLoss</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Args:</span>
+<span class="sd">            pred: the predict logits.(batch_size, entity_type_num, seq_len, seq_len)</span>
+<span class="sd">            label: the label logits.(batch_size, entity_type_num, seq_len, seq_len)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Tensor: Returns tensor `loss`, the multi cross entropy loss of predict and label.</span>
+<span class="sd">        """</span>
+        <span class="n">batch_size</span><span class="p">,</span> <span class="n">entity_type_num</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">label</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">batch_size</span> <span class="o">*</span> <span class="n">entity_type_num</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">batch_size</span> <span class="o">*</span> <span class="n">entity_type_num</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+        <span class="n">pred</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">label</span><span class="p">)</span> <span class="o">*</span> <span class="n">pred</span>  <span class="c1"># -1 -&gt; pos classes, 1 -&gt; neg classes</span>
+        <span class="n">pred_neg</span> <span class="o">=</span> <span class="n">pred</span> <span class="o">-</span> <span class="n">label</span> <span class="o">*</span> <span class="mf">1e12</span>  <span class="c1"># mask the pred outputs of pos classes</span>
+        <span class="n">pred_pos</span> <span class="o">=</span> <span class="n">pred</span> <span class="o">-</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">label</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e12</span>  <span class="c1"># mask the pred outputs of neg classes</span>
+        <span class="n">zeros</span> <span class="o">=</span> <span class="n">paddle</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="mi">1</span><span class="p">],</span> <span class="p">)</span>
+        <span class="n">pred_neg</span> <span class="o">=</span> <span class="n">paddle</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pred_neg</span><span class="p">,</span> <span class="n">zeros</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">pred_pos</span> <span class="o">=</span> <span class="n">paddle</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pred_pos</span><span class="p">,</span> <span class="n">zeros</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">neg_loss</span> <span class="o">=</span> <span class="n">paddle</span><span class="o">.</span><span class="n">logsumexp</span><span class="p">(</span><span class="n">pred_neg</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">pos_loss</span> <span class="o">=</span> <span class="n">paddle</span><span class="o">.</span><span class="n">logsumexp</span><span class="p">(</span><span class="n">pred_pos</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">neg_loss</span> <span class="o">+</span> <span class="n">pos_loss</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</code></pre></div>
 <h2 id="gp4paddle">GP4Paddle</h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># !/usr/bin/env python3</span>
 <span class="c1"># -*- coding: UTF-8 -*-</span>
