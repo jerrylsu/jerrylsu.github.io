@@ -5,7 +5,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/</loc>
-<lastmod>2024-08-16T15:57:17-00:00</lastmod>
+<lastmod>2024-08-16T16:04:43-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1194,13 +1194,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://www.jerrylsu.net/articles/Leetcode-Index.html</loc>
-<lastmod>2018-10-08T22:34:28+08:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>http://www.jerrylsu.net/articles/Vim.html</loc>
 <lastmod>2018-10-04T11:23:36+08:00</lastmod>
 <changefreq>monthly</changefreq>
@@ -1686,13 +1679,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://www.jerrylsu.net/tag/hexo.html</loc>
 <lastmod>2018-10-13T20:05:48+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://www.jerrylsu.net/tag/leetcode.html</loc>
-<lastmod>2018-10-08T22:34:28+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
