@@ -15,18 +15,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Algorithm, BackTracking, Algorithms, " />
+<meta name="keywords" content="Algorithm, Backtracking, Algorithms, " />
 
-<meta property="og:title" content="BackTracking "/>
-<meta property="og:url" content="../articles/BackTracking.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:title" content="Backtracking "/>
+<meta property="og:url" content="../articles/Backtracking.html" />
+<meta property="og:description" content="Reason is the light and the light of life.=" />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-04-09T10:12:16+08:00" />
-<meta name="twitter:title" content="BackTracking ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="Backtracking ">
+<meta name="twitter:description" content="Reason is the light and the light of life.=">
 
-        <title>BackTracking  · JERRYLSU
+        <title>Backtracking  · JERRYLSU
 </title>
 
 
@@ -67,8 +67,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="../articles/BackTracking.html">
-                BackTracking
+            <a href="../articles/Backtracking.html">
+                Backtracking
             </a>
         </h1>
     </header>
@@ -78,12 +78,25 @@
     <div class="span2 table-of-content">
         <nav>
         <h4>Contents</h4>
-        show
+        <div class="toc">
+<ul>
+<li><a href="#backtracking">BackTracking</a></li>
+<li><a href="#permutation">排列Permutation</a></li>
+<li><a href="#combination">组合Combination</a></li>
+<li><a href="#subset">子集Subset</a></li>
+<li><a href="#_1">分割</a></li>
+<li><a href="#permutation-iii">Permutation I/<span class="caps">II</span></a></li>
+<li><a href="#subset_1">Subset</a></li>
+<li><a href="#combination_1">Combination</a></li>
+<li><a href="#n-queens">N Queens</a></li>
+<li><a href="#word-search">Word Search</a></li>
+</ul>
+</div>
         </nav>
     </div>
     <div class="span8 article-content">
             
-            <p><a href="https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-xiang-jie-by-labuladong-2/">Ref.&nbsp;Backtracking</a></p>
+            
 <h2 id="backtracking">BackTracking</h2>
 <p><strong>回溯算法：本质是N叉树的遍历问题</strong>，关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架：</p>
 <ul>
@@ -108,8 +121,21 @@
 <span class="w">        </span><span class="nv">dfs</span><span class="ss">(</span>路径,<span class="w"> </span>选择列表<span class="ss">)</span>
 <span class="w">        </span>撤销选择
 </code></pre></div>
-
 <p>写dfs函数时，需要维护走过的<strong>路径</strong>和当前可以做的<strong>选择列表</strong>，当触发<strong>结束条件</strong>时，将<strong>路径</strong>记入结果集。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">backtracking</span><span class="ss">(</span>参数<span class="ss">)</span><span class="w"> </span>{
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>满足结束条件:
+<span class="w">        </span>存放结果
+<span class="w">        </span><span class="k">return</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span>选择<span class="w"> </span><span class="nv">in</span><span class="w"> </span>本层集合中元素（树中节点孩子的数量就是集合的大小）:
+<span class="w">        </span>处理节点
+<span class="w">        </span><span class="nv">backtracking</span><span class="ss">(</span>路径，选择列表<span class="ss">)</span><span class="w"> </span>#<span class="w"> </span>递归
+<span class="w">        </span>回溯，撤销处理结果
+</code></pre></div>
+<h2 id="permutation">排列Permutation</h2>
+<h2 id="combination">组合Combination</h2>
+<h2 id="subset">子集Subset</h2>
+<h2 id="_1">分割</h2>
 <h2 id="permutation-iii">Permutation I/<span class="caps">II</span></h2>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;string&gt;</span>
 <span class="cp">#include</span><span class="cpf">&lt;vector&gt;</span>
@@ -157,10 +183,9 @@
 <span class="w">        </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
-
-<h2 id="subset">Subset</h2>
-<h2 id="combination">Combination</h2>
-<h2 id="n-queens">N&nbsp;Queens</h2>
+<h2 id="subset_1">Subset</h2>
+<h2 id="combination_1">Combination</h2>
+<h2 id="n-queens">N Queens</h2>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
 <span class="cm">/* In this problem, we can go row by row, and in each position, we need to check</span>
 <span class="cm">*  if the column, the 45° diagonal and the 135° diagonal had a queen before.</span>
@@ -170,7 +195,7 @@
 <span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">solveNQueens</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
-<span class="w">        </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nQueens</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;.&#39;</span><span class="p">));</span>
+<span class="w">        </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nQueens</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="sc">'.'</span><span class="p">));</span>
 <span class="w">        </span><span class="n">solveNQueens</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="n">nQueens</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
@@ -184,32 +209,31 @@
 <span class="w">        </span><span class="p">}</span>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">col</span><span class="p">)</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isValid</span><span class="p">(</span><span class="n">nQueens</span><span class="p">,</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">nQueens</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;Q&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="n">nQueens</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'Q'</span><span class="p">;</span>
 <span class="w">                </span><span class="n">solveNQueens</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="n">nQueens</span><span class="p">,</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
-<span class="w">                </span><span class="n">nQueens</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;.&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="n">nQueens</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'.'</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isValid</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">nQueens</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">//check if the column had a queen before.</span>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">row</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nQueens</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;Q&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nQueens</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">col</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">'Q'</span><span class="p">)</span>
 <span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1">//check if the 45° diagonal had a queen before.</span>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="o">--</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="o">--</span><span class="n">j</span><span class="p">)</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nQueens</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;Q&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nQueens</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">'Q'</span><span class="p">)</span>
 <span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1">//check if the 135° diagonal had a queen before.</span>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">--</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nQueens</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;Q&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nQueens</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">'Q'</span><span class="p">)</span>
 <span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
-
-<h2 id="word-search">Word&nbsp;Search</h2>
+<h2 id="word-search">Word Search</h2>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;vector&gt;</span>
 <span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span>
 
@@ -280,9 +304,9 @@
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=BackTracking&url=http%3A//www.jerrylsu.net/articles/BackTracking.html&hashtags=algorithm,backtracking" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
- ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/BackTracking.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=BackTracking&amp;body=http%3A//www.jerrylsu.net/articles/BackTracking.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+      <a href="https://twitter.com/intent/tweet?text=Backtracking&url=http%3A//www.jerrylsu.net/articles/Backtracking.html&hashtags=algorithm,backtracking" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Backtracking.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Backtracking&amp;body=http%3A//www.jerrylsu.net/articles/Backtracking.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -303,7 +327,7 @@
                 <a class="accordion-toggle disqus-comment-count comment-count collapsed"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   href="../articles/BackTracking.html#comment_thread"
+                   href="../articles/Backtracking.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -314,7 +338,7 @@
 
 
 
-                        <div class="commentbox" id="../articles/BackTracking.html"></div>
+                        <div class="commentbox" id="../articles/Backtracking.html"></div>
 <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
 <script>
     commentBox("True", {
@@ -365,7 +389,7 @@
                 <li><a href="../tags.html#algorithm-ref">Algorithm
                     <span class="superscript">16</span>
 </a></li>
-                <li><a href="../tags.html#backtracking-ref">BackTracking
+                <li><a href="../tags.html#backtracking-ref">Backtracking
                     <span class="superscript">1</span>
 </a></li>
             </ul>
