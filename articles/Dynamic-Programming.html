@@ -78,15 +78,32 @@
     <div class="span2 table-of-content">
         <nav>
         <h4>Contents</h4>
-        show
+        <div class="toc">
+<ul>
+<li><a href="#_1">什么是动态规划</a></li>
+<li><a href="#_2">与递归三要素对比</a><ul>
+<li><a href="#triangle">Triangle</a></li>
+<li><a href="#minimum-path-sum">Minimum Path Sum</a></li>
+<li><a href="#maximal-square">Maximal Square</a></li>
+<li><a href="#longest-increasing-subsequence-lis">Longest Increasing Subsequence (<span class="caps">LIS</span>)</a></li>
+<li><a href="#longest-common-subsequence-lcs">Longest Common Subsequence (<span class="caps">LCS</span>)</a></li>
+<li><a href="#longest-palindromic-substring">Longest Palindromic Substring</a></li>
+<li><a href="#maximum-subarray">Maximum Subarray</a></li>
+<li><a href="#maximum-product-subarray">Maximum Product Subarray</a></li>
+<li><a href="#coin-change">Coin Change</a></li>
+</ul>
+</li>
+</ul>
+</div>
         </nav>
     </div>
     <div class="span8 article-content">
             
-            <h2 id="_1">什么是动态规划</h2>
-<p>动态规划是一种最优化方法，一般的表现形式是求最值。因而求解动态规划的核心问题便是穷举，穷举所有结果获取最优值。类似于回溯问题，暴力穷举所有可能的结果，但穷举的效率极其低下。针对于动态规划这类问题，均有一个共同的特点就是存在<strong>重叠子问题</strong>，利用这个特性采用DP&nbsp;Table备忘表的技巧优化穷举，避免重复计算。（引出自顶向下法递归法）</p>
+            
+<h2 id="_1">什么是动态规划</h2>
+<p>动态规划是一种最优化方法，一般的表现形式是求最值。因而求解动态规划的核心问题便是穷举，穷举所有结果获取最优值。类似于回溯问题，暴力穷举所有可能的结果，但穷举的效率极其低下。针对于动态规划这类问题，均有一个共同的特点就是存在<strong>重叠子问题</strong>，利用这个特性采用DP Table备忘表的技巧优化穷举，避免重复计算。（引出自顶向下法递归法）</p>
 <p>然而，对于动态规划的问题千变万化，虽然核心思想是穷举求最值，但是在实际实践中穷举所有可能的结果并未易事。所以引出动态规划问题的另外两个特性：<strong><a href="https://labuladong.gitbook.io/algo/dong-tai-gui-hua-xi-lie/zui-you-zi-jie-gou">最优子结构</a></strong>和<strong>状态转移方程</strong>来帮助正确穷举。最优子结构即通过子问题的最优解推出原问题的最优解（重复子问题无后效性），状态的定义和状态的转移方程就显得尤为重要。（引出自底向上递推法）</p>
-<p><strong>思维框架：明确状态 -&gt; 定义dp数组的含义 -&gt; 明确选择 -&gt; 明确base&nbsp;case</strong></p>
+<p><strong>思维框架：明确状态 -&gt; 定义dp数组的含义 -&gt; 明确选择 -&gt; 明确base case</strong></p>
 <p><strong>总结：</strong></p>
 <p>动态规划问题具备的三要素：<strong>重叠子问题，最优子结构，状态转移方程</strong></p>
 <p>动态规划问题的两种解法：</p>
@@ -110,7 +127,7 @@
 <li>状态的初始化</li>
 </ol>
 <ul>
-<li>最小状态是什么，即递归中的base&nbsp;case起点。</li>
+<li>最小状态是什么，即递归中的base case起点。</li>
 <li>以及转移方程推算不出的需要手工计算的状态。</li>
 </ul>
 <ol start="4">
@@ -149,8 +166,7 @@
                 <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">triangle</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
     <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </code></pre></div>
-
-<h3 id="minimum-path-sum">Minimum Path&nbsp;Sum</h3>
+<h3 id="minimum-path-sum">Minimum Path Sum</h3>
 <div class="highlight"><pre><span></span><code><span class="n">Python</span>
 
 <span class="k">def</span> <span class="nf">minPathSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
@@ -177,7 +193,6 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </code></pre></div>
-
 <div class="highlight"><pre><span></span><code><span class="n">C</span><span class="o">++</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">{</span>
@@ -206,32 +221,30 @@
 <span class="w">        </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
-
-<h3 id="maximal-square">Maximal&nbsp;Square</h3>
-<p>状态定义：dp[i][j]表示以坐标为 i, j&nbsp;的这个点，作为正方形的右下角，可以扩展的最大边长</p>
-<p>转移方程：dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) +&nbsp;1</p>
-<p>取最小的是因为加上(i,&nbsp;j)这一点一定时正方形。画图理解</p>
+<h3 id="maximal-square">Maximal Square</h3>
+<p>状态定义：dp[i][j]表示以坐标为 i, j 的这个点，作为正方形的右下角，可以扩展的最大边长</p>
+<p>转移方程：dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1</p>
+<p>取最小的是因为加上(i, j)这一点一定时正方形。画图理解</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">maximalSquare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">matrix</span><span class="p">:</span>
             <span class="k">return</span> <span class="mi">0</span>
         <span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">int</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">col</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row</span><span class="p">)]</span>
-        <span class="n">res</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dp</span><span class="p">)</span>    <span class="c1"># 初值，特列[[&#39;1&#39;]]</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dp</span><span class="p">)</span>    <span class="c1"># 初值，特列[['1']]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">row</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>     <span class="c1"># 注意勿丢</span>
+                <span class="k">if</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'1'</span><span class="p">:</span>     <span class="c1"># 注意勿丢</span>
                     <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span>
                     <span class="n">res</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
                 <span class="k">else</span><span class="p">:</span>
                         <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">return</span> <span class="n">res</span><span class="o">**</span><span class="mi">2</span>
 </code></pre></div>
-
 <h3 id="longest-increasing-subsequence-lis">Longest Increasing Subsequence (<span class="caps">LIS</span>)</h3>
 <p>状态的定义：dp[i]是以第i个元素结尾的最大上升序列的长度</p>
-<p>本题特殊在于：当前状态dp[i]并非由前一个状态dp[i-1]直接推来，而是由前dp[0] ~&nbsp;dp[i-1]状态中中最大的推来。如下：</p>
-<p>dp[j]是前一个状态， j属于0 ~&nbsp;i-1中最大的状态</p>
+<p>本题特殊在于：当前状态dp[i]并非由前一个状态dp[i-1]直接推来，而是由前dp[0] ~ dp[i-1]状态中中最大的推来。如下：</p>
+<p>dp[j]是前一个状态， j属于0 ~ i-1中最大的状态</p>
 <div class="highlight"><pre><span></span><code><span class="n">Python</span>
 
 <span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
@@ -247,7 +260,6 @@
 
         <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
 </code></pre></div>
-
 <div class="highlight"><pre><span></span><code><span class="n">C</span><span class="o">++</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">{</span>
@@ -271,16 +283,15 @@
 <span class="w">        </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
-
 <h3 id="longest-common-subsequence-lcs">Longest Common Subsequence (<span class="caps">LCS</span>)</h3>
-<p>状态的定义： dp[i][j]是子串string1[0 ~ i]与字串string[0 ~&nbsp;j]的最长公共字串的长度。</p>
-<p>递推方程：<strong>若求原问题dp[i][j]，从子问题dp[i-1][j-1]或者max(dp[i-1][j],&nbsp;dp[i][j-1])递推而来。</strong></p>
+<p>状态的定义： dp[i][j]是子串string1[0 ~ i]与字串string[0 ~ j]的最长公共字串的长度。</p>
+<p>递推方程：<strong>若求原问题dp[i][j]，从子问题dp[i-1][j-1]或者max(dp[i-1][j], dp[i][j-1])递推而来。</strong></p>
 <ul>
 <li>
-<p>当string1[i] == string2[j]时，原问题dp[i][j] = dp[i-1][j-1] + 1，即string1[0 ~ i-1]与字串string[0 ~&nbsp;j-1]的最长公共字串的长度加1</p>
+<p>当string1[i] == string2[j]时，原问题dp[i][j] = dp[i-1][j-1] + 1，即string1[0 ~ i-1]与字串string[0 ~ j-1]的最长公共字串的长度加1</p>
 </li>
 <li>
-<p>当string1[i] != string2[j]时，则必须求解dp[i-1][j]和dp[i][j-1]两个子问题并取最大的结果，原问题dp[i][j] = max(dp[i-1][j], dp[i][j-1])，即子串string1[0 ~ i-1]与string[0 ~ j]的LCS与子串string1[0 ~ i]与string[0 ~&nbsp;j-1]的LCS中最大的LCS。</p>
+<p>当string1[i] != string2[j]时，则必须求解dp[i-1][j]和dp[i][j-1]两个子问题并取最大的结果，原问题dp[i][j] = max(dp[i-1][j], dp[i][j-1])，即子串string1[0 ~ i-1]与string[0 ~ j]的LCS与子串string1[0 ~ i]与string[0 ~ j-1]的LCS中最大的LCS。</p>
 </li>
 </ul>
 <p>边界初始化技巧：字符串前增加一个空字符#。</p>
@@ -313,11 +324,10 @@
 <span class="w">        </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
-
-<h3 id="longest-palindromic-substring">Longest Palindromic&nbsp;Substring</h3>
+<h3 id="longest-palindromic-substring">Longest Palindromic Substring</h3>
 <p>状态定义：dp[i][j]是字符串s[i:j]是否为回文子串。</p>
-<p>base case：1. 单个字母dp[i][i] 2.&nbsp;相邻字母dp[i][i+1]</p>
-<p>dp数组遍历方式：遍历所有可能字串长度len （子串长度len +&nbsp;开始位置start）方式</p>
+<p>base case：1. 单个字母dp[i][i] 2. 相邻字母dp[i][i+1]</p>
+<p>dp数组遍历方式：遍历所有可能字串长度len （子串长度len + 开始位置start）方式</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">{</span>
 <span class="w">    </span><span class="k">public</span><span class="o">:</span>
 <span class="w">        </span><span class="n">string</span><span class="w"> </span><span class="n">longestPalindrome</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">s</span><span class="p">){</span>
@@ -358,11 +368,10 @@
 <span class="w">        </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
-
-<h3 id="maximum-subarray">Maximum&nbsp;Subarray</h3>
+<h3 id="maximum-subarray">Maximum Subarray</h3>
 <ul>
 <li>
-<p>状态定义：&nbsp;dp[i]表示以nums[i]元素结尾（包含nums[i]）最大子数组的和</p>
+<p>状态定义： dp[i]表示以nums[i]元素结尾（包含nums[i]）最大子数组的和</p>
 </li>
 <li>
 <p>转移方程： </p>
@@ -371,17 +380,17 @@
 <div class="math">$$dp[i] = \begin{cases} nums[i], &amp;\ dp[i-1] \leq 0 \\\ dp[i-1] + nums[i], &amp;\ dp[i-1] &gt; 0 \end{cases}$$</div>
 <p>注：因为是连续子数组，所以dp[i]当前状态，只能由dp[i-1]状态推来。</p>
 <ul>
-<li>转移方程代码实现： dp[i] = max(dp[i-1] + nums[i],&nbsp;nums[i])</li>
+<li>转移方程代码实现： dp[i] = max(dp[i-1] + nums[i], nums[i])</li>
 </ul>
 <p><strong>分析：</strong></p>
 <p>当以第i-1元素结尾的子数组中所有数字的和小于0时，如果把这个负数与第i个元素累加，得到的结果比nums[i]本身还小，所以dp[i]就是nums[i]本身。</p>
-<p>若dp[i-1] &lt; 0：dp[i] =&nbsp;nums[i]</p>
+<p>若dp[i-1] &lt; 0：dp[i] = nums[i]</p>
 <ul>
 <li>nums[i]加上负dp[i-1]一定比自身小，取nums[i]</li>
 </ul>
-<p>若dp[i-1] &gt; 0： dp[i] = dp[i-1] +&nbsp;nums[i]</p>
+<p>若dp[i-1] &gt; 0： dp[i] = dp[i-1] + nums[i]</p>
 <ul>
-<li>nums[i]加上正dp[i-1]一定比自身大，取<span class="math">\(dp[i-1] +&nbsp;nums[i]\)</span></li>
+<li>nums[i]加上正dp[i-1]一定比自身大，取<span class="math">\(dp[i-1] + nums[i]\)</span></li>
 </ul>
 <p>由于dp[i]仅与dp的前一个状态有关，即在计算dp[i]时，<span class="math">\(dp[i-2],dp[i-3]...,dp[0]\)</span>对于dp[i]没有影响，因此可以空间优化省去dp数组。</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">maxSubArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
@@ -403,7 +412,6 @@
         <span class="n">res</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">res</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span>
 </code></pre></div>
-
 <div class="highlight"><pre><span></span><code><span class="n">C</span><span class="o">++</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
@@ -424,8 +432,7 @@
 
 <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nums</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">-3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span><span class="w">  </span><span class="c1">// dp = [2, 6, 5, 12 ,15, 1,2 ,13] </span>
 </code></pre></div>
-
-<h3 id="maximum-product-subarray">Maximum Product&nbsp;Subarray</h3>
+<h3 id="maximum-product-subarray">Maximum Product Subarray</h3>
 <ul>
 <li>dp状态：</li>
 </ul>
@@ -433,13 +440,11 @@
 <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nf">max</span>
 <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nf">min</span>
 </code></pre></div>
-
 <ul>
 <li>dp初始状态：</li>
 </ul>
 <div class="highlight"><pre><span></span><code>dp[0][0], dp[0][1] = nums[0], nums[0]
 </code></pre></div>
-
 <ul>
 <li>dp状态转移方程：</li>
 </ul>
@@ -465,7 +470,6 @@
 <div class="highlight"><pre><span></span><code><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">dp</span><span class="o">[</span><span class="n">i - 1</span><span class="o">][</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">i - 1</span><span class="o">][</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span>
 <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">dp</span><span class="o">[</span><span class="n">i - 1</span><span class="o">][</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">i - 1</span><span class="o">][</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span>
 </code></pre></div>
-
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">maxProduct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span> <span class="k">return</span>
     <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
@@ -477,34 +481,32 @@
         <span class="n">res</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">res</span>
 </code></pre></div>
-
-<h3 id="coin-change">Coin&nbsp;Change</h3>
+<h3 id="coin-change">Coin Change</h3>
 <blockquote>
-<p><strong>分析:</strong> 有多少种面值的硬币，前一个状态dp[i - coin]就有多少种。 i表示当前的要计算的总额，i -&nbsp;coin表示去掉添加上来的硬币面值剩下总额。</p>
+<p><strong>分析:</strong> 有多少种面值的硬币，前一个状态dp[i - coin]就有多少种。 i表示当前的要计算的总额，i - coin表示去掉添加上来的硬币面值剩下总额。</p>
 <p>所以需要遍历减去各种面值而得到的前一个状态，找到最小值，即最小硬币数。</p>
-<p>dp[i - coin]是前一个状态,有多少面值的硬币前一个状态就有多少种， 遍历所有的前一个状态取值最小的那个状态 +&nbsp;1个硬币数（加上当前面值）。</p>
+<p>dp[i - coin]是前一个状态,有多少面值的硬币前一个状态就有多少种， 遍历所有的前一个状态取值最小的那个状态 + 1个硬币数（加上当前面值）。</p>
 </blockquote>
 <ul>
 <li>
-<p>状态的定义：&nbsp;dp[i]到金额i（类似于台阶）所需要的最少硬币数。</p>
+<p>状态的定义： dp[i]到金额i（类似于台阶）所需要的最少硬币数。</p>
 </li>
 <li>
-<p>转移方程： <span class="math">\(dp[i]  = min(dp[i-coin_1],\ dp[i-coin_2],...,\&nbsp;dp[i-coin_n])\)</span></p>
+<p>转移方程： <span class="math">\(dp[i]  = min(dp[i-coin_1],\ dp[i-coin_2],...,\ dp[i-coin_n])\)</span></p>
 </li>
 <li>
-<p>初始状态：dp[0] = 0：面值为0需要0个硬币数; 若硬币面值有2， 5，&nbsp;7三种，则dp[1]是转移方程无法计算出的，所以也需要手工初始化，因为这里求最小所以将其初始化为无穷大float(&#8216;inf&#8217;)。</p>
+<p>初始状态：dp[0] = 0：面值为0需要0个硬币数; 若硬币面值有2， 5， 7三种，则dp[1]是转移方程无法计算出的，所以也需要手工初始化，因为这里求最小所以将其初始化为无穷大float(‘inf’)。</p>
 </li>
 </ul>
-<p>时间复杂度<span class="math">\(O(M*N)\)</span>：&nbsp;M是待兑换的总金额，从1递推到M；N是可以兑换的硬币种类数，也是loop所有币种。</p>
+<p>时间复杂度<span class="math">\(O(M*N)\)</span>： M是待兑换的总金额，从1递推到M；N是可以兑换的硬币种类数，也是loop所有币种。</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">coinChange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coins</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)]</span> <span class="o">*</span> <span class="n">amount</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">)]</span> <span class="o">*</span> <span class="n">amount</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">amount</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">coin</span> <span class="ow">in</span> <span class="n">coins</span><span class="p">:</span>                            <span class="c1"># 遍历前一个状态</span>
             <span class="k">if</span> <span class="n">coin</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">:</span>                             <span class="c1"># 硬币的面值需要小于i，即当前总amount</span>
                 <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">coin</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># dp[i]迭代放置最小状态， 1表示加上一个面值硬币后的最少硬币数</span>
-    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
 </code></pre></div>
-
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
