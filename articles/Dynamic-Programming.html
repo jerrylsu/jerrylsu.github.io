@@ -91,6 +91,7 @@
 <li><a href="#maximum-subarray">Maximum Subarray</a></li>
 <li><a href="#maximum-product-subarray">Maximum Product Subarray</a></li>
 <li><a href="#coin-change">Coin Change</a></li>
+<li><a href="#minimum-path-cost-in-a-grid">Minimum Path Cost in a Grid</a></li>
 </ul>
 </li>
 </ul>
@@ -506,6 +507,9 @@
             <span class="k">if</span> <span class="n">coin</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">:</span>                             <span class="c1"># 硬币的面值需要小于i，即当前总amount</span>
                 <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">coin</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># dp[i]迭代放置最小状态， 1表示加上一个面值硬币后的最少硬币数</span>
     <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div>
+<h3 id="minimum-path-cost-in-a-grid">Minimum Path Cost in a Grid</h3>
+<div class="highlight"><pre><span></span><code>
 </code></pre></div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
