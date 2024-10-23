@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="Jerry Su" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="LLM, NLP, NLP, " />
+
+<meta property="og:title" content="GGUF Model "/>
+<meta property="og:url" content="../articles/GGUF-Model.html" />
+<meta property="og:description" content="1.介绍 GGUF 是一种文件格式，用于存储用于 GGML 推理的模型和基于 GGML 的执行器。 GGUF 是一种二进制格式，旨在快速加载和保存模 …" />
+<meta property="og:site_name" content="JERRYLSU" />
+<meta property="og:article:author" content="Jerry Su" />
+<meta property="og:article:published_time" content="2024-10-21T11:17:17+08:00" />
+<meta name="twitter:title" content="GGUF Model ">
+<meta name="twitter:description" content="1.介绍 GGUF 是一种文件格式，用于存储用于 GGML 推理的模型和基于 GGML 的执行器。 GGUF 是一种二进制格式，旨在快速加载和保存模 …">
+
+        <title>GGUF Model  · JERRYLSU
+</title>
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../"><span class=site-name>JERRYLSU</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../categories.html">Categories</a></li>
+                                <li ><a href="../tags.html">Tags</a></li>
+                                <li ><a href="../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../articles/GGUF-Model.html">
+                <span class="caps">GGUF</span>&nbsp;Model
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#1">1.介绍</a></li>
+<li><a href="#2">2.准备工作</a></li>
+<li><a href="#3">3.定义模型架构</a></li>
+<li><a href="#4">4.定义张量布局</a></li>
+<li><a href="#5">5.张量映射</a></li>
+<li><a href="#6">6.模型参数转换</a></li>
+<li><a href="#7">7.实现</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+            
+            
+<h2 id="1">1.介绍</h2>
+<p><span class="caps">GGUF</span> 是一种文件格式，用于存储用于 <span class="caps">GGML</span> 推理的模型和基于 <span class="caps">GGML</span> 的执行器。 <span class="caps">GGUF</span> 是一种二进制格式，旨在快速加载和保存模型并易于阅读。传统上，模型是使用 PyTorch 或其他框架开发的，然后转换为 <span class="caps">GGUF</span> 以在 <span class="caps">GGML</span> 中使用。</p>
+<p><img alt="gguf" src="../images/gguf.png"/></p>
+<h2 id="2">2.准备工作</h2>
+<p>基于生成式多模态文字识别模型GOT_OCR2.0示例。首先枚举GOT_OCR2.0模型全部权重键值对，获取模型网络结构命名。方法如下：</p>
+<div class="highlight"><pre><span></span><code><span class="n">got_model</span> <span class="o">=</span> <span class="n">GOTQwenForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="n">tensors</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">got_model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">tensors</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">   -&gt;   </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Tensor count: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tensors</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">embed_tokens</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">151860</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.0</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">q_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.0</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">q_proj</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.0</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">k_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.0</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">k_proj</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.0</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">v_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.0</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">v_proj</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.0</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">o_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.0</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">gate_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">2816</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.0</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">up_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">2816</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.0</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">down_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">2816</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.0</span><span class="o">.</span><span class="n">input_layernorm</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.0</span><span class="o">.</span><span class="n">post_attention_layernorm</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.1</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">q_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.1</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">q_proj</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.1</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">k_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.1</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">k_proj</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.1</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">v_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.1</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">v_proj</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.1</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">o_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.1</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">gate_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">2816</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.1</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">up_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">2816</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.1</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">down_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">2816</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.1</span><span class="o">.</span><span class="n">input_layernorm</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.1</span><span class="o">.</span><span class="n">post_attention_layernorm</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="o">......</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.23</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">q_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.23</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">q_proj</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.23</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">k_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.23</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">k_proj</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.23</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">v_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.23</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">v_proj</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.23</span><span class="o">.</span><span class="n">self_attn</span><span class="o">.</span><span class="n">o_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.23</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">gate_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">2816</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.23</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">up_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">2816</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.23</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">down_proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">2816</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.23</span><span class="o">.</span><span class="n">input_layernorm</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="mf">.23</span><span class="o">.</span><span class="n">post_attention_layernorm</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+<span class="n">lm_head</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">151860</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">pos_embed</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">patch_embed</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">patch_embed</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.0</span><span class="o">.</span><span class="n">norm1</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.0</span><span class="o">.</span><span class="n">norm1</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.0</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">rel_pos_h</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">27</span><span class="p">,</span> <span class="mi">64</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.0</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">rel_pos_w</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">27</span><span class="p">,</span> <span class="mi">64</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.0</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">qkv</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">2304</span><span class="p">,</span> <span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.0</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">qkv</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">2304</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.0</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">,</span> <span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.0</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.0</span><span class="o">.</span><span class="n">norm2</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.0</span><span class="o">.</span><span class="n">norm2</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.0</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">lin1</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">3072</span><span class="p">,</span> <span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.0</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">lin1</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">3072</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.0</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">lin2</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">,</span> <span class="mi">3072</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.0</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">lin2</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">]</span>
+<span class="o">......</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.11</span><span class="o">.</span><span class="n">norm1</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.11</span><span class="o">.</span><span class="n">norm1</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.11</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">rel_pos_h</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">127</span><span class="p">,</span> <span class="mi">64</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.11</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">rel_pos_w</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">127</span><span class="p">,</span> <span class="mi">64</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.11</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">qkv</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">2304</span><span class="p">,</span> <span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.11</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">qkv</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">2304</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.11</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">,</span> <span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.11</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.11</span><span class="o">.</span><span class="n">norm2</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.11</span><span class="o">.</span><span class="n">norm2</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.11</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">lin1</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">3072</span><span class="p">,</span> <span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.11</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">lin1</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">3072</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.11</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">lin2</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">,</span> <span class="mi">3072</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">blocks</span><span class="mf">.11</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">lin2</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">768</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">neck</span><span class="mf">.0</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">768</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">neck</span><span class="mf">.1</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">256</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">neck</span><span class="mf">.1</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">256</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">neck</span><span class="mf">.2</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">neck</span><span class="mf">.3</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">256</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">neck</span><span class="mf">.3</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">256</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">net_2</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">vision_tower_high</span><span class="o">.</span><span class="n">net_3</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">mm_projector_vary</span><span class="o">.</span><span class="n">weight</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">mm_projector_vary</span><span class="o">.</span><span class="n">bias</span>   <span class="o">-&gt;</span>   <span class="p">[</span><span class="mi">1024</span><span class="p">]</span>
+
+<span class="n">Tensor</span> <span class="n">count</span><span class="p">:</span> <span class="mi">472</span>
+</code></pre></div>
+<h2 id="3">3.定义模型架构</h2>
+<p>在转换脚本convert_hf_to_gguf.py中定义模型类，继承自Model父类。</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Model</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s2">"GOTQwenForCausalLM"</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">GOTOCR2Model</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">model_arch</span> <span class="o">=</span> <span class="n">gguf</span><span class="o">.</span><span class="n">MODEL_ARCH</span><span class="o">.</span><span class="n">GOT_OCR2</span>
+
+    <span class="k">def</span> <span class="nf">set_vocab</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_vocab_sentencepiece</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_vocab_qwen</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="4">4.定义张量布局</h2>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">MODEL_ARCH</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="n">GOT_OCR2</span>     <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+
+
+<span class="n">MODEL_ARCH_NAMES</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">MODEL_ARCH</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="o">...</span>
+    <span class="n">MODEL_ARCH</span><span class="o">.</span><span class="n">GROK</span><span class="p">:</span>           <span class="s2">"grok"</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="k">class</span> <span class="nc">MODEL_TENSOR</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">TOKEN_EMBD</span>           <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">OUTPUT</span>               <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">OUTPUT_NORM</span>          <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">ATTN_NORM</span>            <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">ATTN_Q</span>               <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">ATTN_K</span>               <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">ATTN_OUT</span>             <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">FFN_NORM</span>             <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">FFN_GATE</span>             <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">FFN_DOWN</span>             <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">FFN_UP</span>               <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">VIS_ATTN_QKV</span>         <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">VIS_ATTN_PROJ</span>        <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">VIS_ATTN_REL_POS_H</span>   <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">VIS_ATTN_REL_POS_W</span>   <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">VIS_MLP_LIN1</span>         <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">VIS_MLP_LIN2</span>         <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">VIS_NORM1</span>            <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">VIS_NORM2</span>            <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">VIS_NECK</span>             <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">VIS_NET</span>              <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">VIS_PATCH_EMBD_PROJ</span>  <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">VIS_POS_EMBD</span>         <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">MM_PROJ</span>              <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+
+
+<span class="n">MODEL_TENSORS</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">MODEL_ARCH</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">MODEL_TENSOR</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="n">MODEL_ARCH</span><span class="o">.</span><span class="n">GOT_OCR2</span><span class="p">:</span> <span class="p">[</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">TOKEN_EMBD</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">OUTPUT_NORM</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_NORM</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_Q</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_K</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_V</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_OUT</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">FFN_NORM</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">FFN_GATE</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">FFN_DOWN</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">FFN_UP</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_ATTN_QKV</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_ATTN_PROJ</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_ATTN_REL_POS_H</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_ATTN_REL_POS_W</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_MLP_LIN1</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_MLP_LIN2</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_NORM1</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_NORM2</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_NECK</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_NET</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_PATCH_EMBD_PROJ</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_POS_EMBD</span><span class="p">,</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">MM_PROJ</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+
+<span class="n">TENSOR_NAMES</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">MODEL_TENSOR</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">TOKEN_EMBD</span><span class="p">:</span>                <span class="s2">"token_embd"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">OUTPUT_NORM</span><span class="p">:</span>               <span class="s2">"output_norm"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">:</span>                    <span class="s2">"output"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_NORM</span><span class="p">:</span>                 <span class="s2">"blk.</span><span class="si">{bid}</span><span class="s2">.attn_norm"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_Q</span><span class="p">:</span>                    <span class="s2">"blk.</span><span class="si">{bid}</span><span class="s2">.attn_q"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_K</span><span class="p">:</span>                    <span class="s2">"blk.</span><span class="si">{bid}</span><span class="s2">.attn_k"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_V</span><span class="p">:</span>                    <span class="s2">"blk.</span><span class="si">{bid}</span><span class="s2">.attn_v"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_OUT</span><span class="p">:</span>                  <span class="s2">"blk.</span><span class="si">{bid}</span><span class="s2">.attn_output"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">FFN_NORM</span><span class="p">:</span>                  <span class="s2">"blk.</span><span class="si">{bid}</span><span class="s2">.ffn_norm"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">FFN_GATE</span><span class="p">:</span>                  <span class="s2">"blk.</span><span class="si">{bid}</span><span class="s2">.ffn_gate"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">FFN_DOWN</span><span class="p">:</span>                  <span class="s2">"blk.</span><span class="si">{bid}</span><span class="s2">.ffn_down"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">FFN_UP</span><span class="p">:</span>                    <span class="s2">"blk.</span><span class="si">{bid}</span><span class="s2">.ffn_up"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_ATTN_QKV</span><span class="p">:</span>              <span class="s2">"vis.blk.</span><span class="si">{bid}</span><span class="s2">.attn.qkv"</span><span class="p">,</span>   <span class="c1"># standardize tensor name in GGUF</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_ATTN_PROJ</span><span class="p">:</span>             <span class="s2">"vis.blk.</span><span class="si">{bid}</span><span class="s2">.attn.proj"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_ATTN_REL_POS_H</span><span class="p">:</span>        <span class="s2">"vis.blk.</span><span class="si">{bid}</span><span class="s2">.attn.rel_pos_h"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_ATTN_REL_POS_W</span><span class="p">:</span>        <span class="s2">"vis.blk.</span><span class="si">{bid}</span><span class="s2">.attn.rel_pos_w"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_MLP_LIN1</span><span class="p">:</span>              <span class="s2">"vis.blk.</span><span class="si">{bid}</span><span class="s2">.mlp.lin1"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_MLP_LIN2</span><span class="p">:</span>              <span class="s2">"vis.blk.</span><span class="si">{bid}</span><span class="s2">.mlp.lin2"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_NORM1</span><span class="p">:</span>                 <span class="s2">"vis.blk.</span><span class="si">{bid}</span><span class="s2">.norm1"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_NORM2</span><span class="p">:</span>                 <span class="s2">"vis.blk.</span><span class="si">{bid}</span><span class="s2">.norm2"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_NECK</span><span class="p">:</span>                  <span class="s2">"vis.neck.</span><span class="si">{bid}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_NET</span><span class="p">:</span>                   <span class="s2">"vis.net_</span><span class="si">{bid}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_PATCH_EMBD_PROJ</span><span class="p">:</span>       <span class="s2">"vis_patch_embd.proj"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_POS_EMBD</span><span class="p">:</span>              <span class="s2">"vis_pos_embd"</span><span class="p">,</span>
+    <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">MM_PROJ</span><span class="p">:</span>                   <span class="s2">"mm_proj"</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="5">5.张量映射</h2>
+<p>将原始张量名称映射到 <span class="caps">GGUF</span> 中的标准化等效名称。作为一般规则，在向 <span class="caps">GGUF</span> 添加新的张量名称之前，请确保等效命名尚不存在。找到等效的 <span class="caps">GGUF</span> 张量名称后，将其添加到tensor_mapping.py 文件中。如果张量名称是重复层/块的一部分，则关键字 bid 替换。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">.constants</span> <span class="kn">import</span> <span class="n">MODEL_ARCH</span><span class="p">,</span> <span class="n">MODEL_TENSOR</span><span class="p">,</span> <span class="n">MODEL_TENSORS</span><span class="p">,</span> <span class="n">TENSOR_NAMES</span>
+
+<span class="k">class</span> <span class="nc">TensorNameMap</span><span class="p">:</span>
+    <span class="n">mappings_cfg</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">MODEL_TENSOR</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="c1"># Vision tower</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">MM_PROJ</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.mm_projector_vary"</span><span class="p">,</span>  <span class="c1"># got</span>
+        <span class="p">),</span>
+
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_PATCH_EMBD_PROJ</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.vision_tower_high.patch_embed.proj"</span><span class="p">,</span>   <span class="c1"># got</span>
+        <span class="p">),</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_POS_EMBD</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.vision_tower_high.pos_embed"</span><span class="p">,</span>    <span class="c1"># got</span>
+        <span class="p">),</span>
+
+        <span class="c1"># Token embeddings</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">TOKEN_EMBD</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.embed_tokens"</span><span class="p">,</span>                        <span class="c1"># llama-hf nemotron olmoe got</span>
+        <span class="p">),</span>
+
+        <span class="c1"># Output</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"lm_head"</span><span class="p">,</span>                   <span class="c1"># gpt2 mpt falcon llama-hf baichuan qwen mamba dbrx jais nemotron exaone olmoe got</span>
+        <span class="p">),</span>
+
+        <span class="c1"># Output norm</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">OUTPUT_NORM</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.norm"</span><span class="p">,</span>                              <span class="c1"># llama-hf baichuan internlm2 olmoe got</span>
+        <span class="p">),</span>
+
+    <span class="n">block_mappings_cfg</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">MODEL_TENSOR</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="c1"># Attention norm</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_NORM</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.layers.</span><span class="si">{bid}</span><span class="s2">.input_layernorm"</span><span class="p">,</span>                   <span class="c1"># llama-hf nemotron olmoe got</span>
+        <span class="p">),</span>
+
+        <span class="c1"># Attention query</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_Q</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.layers.</span><span class="si">{bid}</span><span class="s2">.self_attn.q_proj"</span><span class="p">,</span>                       <span class="c1"># llama-hf nemotron olmoe got</span>
+        <span class="p">),</span>
+
+        <span class="c1"># Attention key</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_K</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.layers.</span><span class="si">{bid}</span><span class="s2">.self_attn.k_proj"</span><span class="p">,</span>                     <span class="c1"># llama-hf nemotron olmoe got</span>
+        <span class="p">),</span>
+
+        <span class="c1"># Attention value</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_V</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.layers.</span><span class="si">{bid}</span><span class="s2">.self_attn.v_proj"</span><span class="p">,</span>                       <span class="c1"># llama-hf nemotron olmoe got</span>
+        <span class="p">),</span>
+
+        <span class="c1"># Attention output</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_OUT</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.layers.</span><span class="si">{bid}</span><span class="s2">.self_attn.o_proj"</span><span class="p">,</span>                          <span class="c1"># llama-hf nemotron olmoe got</span>
+        <span class="p">),</span>
+
+        <span class="c1"># Attention output norm</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">ATTN_OUT_NORM</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"encoder.layer.</span><span class="si">{bid}</span><span class="s2">.attention.output.LayerNorm"</span><span class="p">,</span>  <span class="c1"># bert</span>
+            <span class="s2">"encoder.layers.</span><span class="si">{bid}</span><span class="s2">.norm1"</span><span class="p">,</span>                      <span class="c1"># nomic-bert</span>
+            <span class="s2">"transformer.decoder_layer.</span><span class="si">{bid}</span><span class="s2">.rms_norm_1"</span><span class="p">,</span>      <span class="c1"># Grok</span>
+            <span class="s2">"transformer.blocks.</span><span class="si">{bid}</span><span class="s2">.norm_attn_norm.norm_2"</span><span class="p">,</span>  <span class="c1"># dbrx</span>
+        <span class="p">),</span>
+
+        <span class="c1"># Feed-forward norm</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">FFN_NORM</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.layers.</span><span class="si">{bid}</span><span class="s2">.post_attention_layernorm"</span><span class="p">,</span>                   <span class="c1"># llama-hf nemotron olmoe got</span>
+        <span class="p">),</span>
+
+        <span class="c1"># Feed-forward up</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">FFN_UP</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.layers.</span><span class="si">{bid}</span><span class="s2">.mlp.up_proj"</span><span class="p">,</span>                         <span class="c1"># llama-hf refact nemotron got</span>
+        <span class="p">),</span>
+
+        <span class="c1"># Feed-forward gate</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">FFN_GATE</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.layers.</span><span class="si">{bid}</span><span class="s2">.mlp.gate_proj"</span><span class="p">,</span>           <span class="c1"># llama-hf refact got</span>
+        <span class="p">),</span>
+
+        <span class="c1"># Feed-forward down</span>
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">FFN_DOWN</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.layers.</span><span class="si">{bid}</span><span class="s2">.mlp.down_proj"</span><span class="p">,</span>                       <span class="c1"># llama-hf nemotron got</span>
+        <span class="p">),</span>
+
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_ATTN_QKV</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.vision_tower_high.blocks.</span><span class="si">{bid}</span><span class="s2">.attn.qkv"</span><span class="p">,</span>  <span class="c1"># got</span>
+        <span class="p">),</span>
+
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_ATTN_PROJ</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.vision_tower_high.blocks.</span><span class="si">{bid}</span><span class="s2">.attn.proj"</span><span class="p">,</span>  <span class="c1"># got</span>
+        <span class="p">),</span>
+
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_ATTN_REL_POS_H</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.vision_tower_high.blocks.</span><span class="si">{bid}</span><span class="s2">.attn.rel_pos_h"</span><span class="p">,</span>  <span class="c1"># got</span>
+        <span class="p">),</span>
+
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_ATTN_REL_POS_W</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.vision_tower_high.blocks.</span><span class="si">{bid}</span><span class="s2">.attn.rel_pos_w"</span><span class="p">,</span>  <span class="c1"># got</span>
+        <span class="p">),</span>
+
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_MLP_LIN1</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.vision_tower_high.blocks.</span><span class="si">{bid}</span><span class="s2">.mlp.lin1"</span><span class="p">,</span>  <span class="c1"># got</span>
+        <span class="p">),</span>
+
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_MLP_LIN2</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.vision_tower_high.blocks.</span><span class="si">{bid}</span><span class="s2">.mlp.lin2"</span><span class="p">,</span>  <span class="c1"># got</span>
+        <span class="p">),</span>
+
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_NORM1</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.vision_tower_high.blocks.</span><span class="si">{bid}</span><span class="s2">.norm1"</span><span class="p">,</span>  <span class="c1"># got</span>
+        <span class="p">),</span>
+
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_NORM2</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.vision_tower_high.blocks.</span><span class="si">{bid}</span><span class="s2">.norm2"</span><span class="p">,</span>  <span class="c1"># got</span>
+        <span class="p">),</span>
+
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_NECK</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">"model.vision_tower_high.neck.</span><span class="si">{bid}</span><span class="s2">"</span><span class="p">,</span>  <span class="c1"># got</span>
+        <span class="p">),</span>
+
+        <span class="n">MODEL_TENSOR</span><span class="o">.</span><span class="n">VIS_NET</span><span class="p">:</span> <span class="p">(</span>                 
+            <span class="s2">"model.vision_tower_high.net_</span><span class="si">{bid}</span><span class="s2">"</span><span class="p">,</span>  <span class="c1"># got</span>
+        <span class="p">),</span>  
+    <span class="p">}</span>
+</code></pre></div>
+<p>基于模型的配置，tokenizer,，代码和张量布局，可能需要覆盖重写一下类方法：</p>
+<ul>
+<li>Model.set_gguf_parameters</li>
+<li>Model.set_vocab</li>
+<li>Model.write_tensors</li>
+</ul>
+<p>具体在第3章定义模型架构中实现。</p>
+<p><strong>注意：</strong>张量名称必须以 .weight 后缀结尾， quantize量化工具会默认处理权重。</p>
+<h2 id="6">6.模型参数转换</h2>
+<p><code>python convert_hf_to_gguf.py --outtype bf16 --model ~/GOT-OCR2_0 --outfile ~/output/GOT-OCR2_0-GGUF</code></p>
+<h2 id="7">7.实现</h2>
+<p>https://github.com/jerrylsu/gguf-py</p>
+
+
+             
+ 
+                <p id="post-share-links">
+    Share on:
+      <a href="https://twitter.com/intent/tweet?text=GGUF%C2%A0Model&url=http%3A//www.jerrylsu.net/articles/GGUF-Model.html&hashtags=llm,nlp" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/GGUF-Model.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=GGUF%C2%A0Model&amp;body=http%3A//www.jerrylsu.net/articles/GGUF-Model.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   href="../articles/GGUF-Model.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+
+
+
+                        <div class="commentbox" id="../articles/GGUF-Model.html"></div>
+<script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+<script>
+    commentBox("True", {
+        onCommentCount(count) {
+            const ele = document.querySelector("#comment-accordion-toggle")
+            if (ele && count > 0) {
+                ele.innerText = `${count} Comment${count > 1 ? 's' : ''}`
+            }
+        }
+    });
+</script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="../articles/Self-Instruct.html" title="SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions">SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions</a></li>
+<li><a href="../articles/Contrastive-Language-Image-Pretraining.html" title="Contrastive Language-Image Pretraining">Contrastive Language-Image Pretraining</a></li>
+<li><a href="../articles/Nucleus Sampling Top-p Sampling.html" title="Nucleus Sampling Top-p Sampling">Nucleus Sampling Top-p Sampling</a></li>
+<li><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a></li>
+<li><a href="../articles/MinHash-Document-level-Deduplication.html" title="MinHash: Document-level Deduplication">MinHash: Document-level Deduplication</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="../articles/MinHash-Document-level-Deduplication.html" title="Previous: MinHash: Document-level Deduplication">MinHash: Document-level Deduplication</a></li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2024-10-21T11:17:17+08:00">Oct 21, 2024</time>
+            <h4>Category</h4>
+            <a class="category-link" href="../categories.html#nlp-ref">NLP</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="../tags.html#llm-ref">LLM
+                    <span class="superscript">6</span>
+</a></li>
+                <li><a href="../tags.html#nlp-ref">NLP
+                    <span class="superscript">34</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="mailto:[email protected]" title="sa517301@mail.ustc.edu.cn" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Mail" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#328cff"/><path d="m250 186c-46 0-69 35-69 74 0 44 29 72 68 72 43 0 73-32 73-75 0-44-34-71-72-71zm-1-37c30 0 57 13 77 33 0-22 35-22 35 1v150c-1 10 10 16 16 9 25-25 54-128-14-187-64-56-149-47-195-15-48 33-79 107-49 175 33 76 126 99 182 76 28-12 41 26 12 39-45 19-168 17-225-82-38-68-36-185 67-248 78-46 182-33 244 32 66 69 62 197-2 246-28 23-71 1-71-32v-11c-20 20-47 32-77 32-57 0-108-51-108-108 0-58 51-110 108-110" fill="#fff"/></svg>
+    </a>
+    <a href="https://github.com/jerrylsu" title="Jerry Github" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@jerrysu780" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="YouTube" role="img" viewBox="0 0 512 512" fill="#ed1d24"><rect width="512" height="512" rx="15%"/><path d="m427 169c-4-15-17-27-32-31-34-9-239-10-278 0-15 4-28 16-32 31-9 38-10 135 0 174 4 15 17 27 32 31 36 10 241 10 278 0 15-4 28-16 32-31 9-36 9-137 0-174" fill="#fff"/><path d="m220 203v106l93-53"/></svg>
+    </a>
+    <a href="https://twitter.com/Jerrylsu666" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Twitter" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1da1f3"/><path fill="#fff" d="M437 152a72 72 0 0 1-40 12 72 72 0 0 0 32-40 72 72 0 0 1-45 17 72 72 0 0 0-122 65 200 200 0 0 1-145-74 72 72 0 0 0 22 94 72 72 0 0 1-32-7 72 72 0 0 0 56 69 72 72 0 0 1-32 1 72 72 0 0 0 67 50 200 200 0 0 1-105 29 200 200 0 0 0 309-179 200 200 0 0 0 35-37"/></svg>
+    </a>
+    <a href="http://www.jerrylsu.net/feeds/all.atom.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>
