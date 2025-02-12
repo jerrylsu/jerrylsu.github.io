@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="Jerry Su" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Deep Learning, Pytorch, NLP, CRF, Algorithm, NLP, " />
+
+<meta property="og:title" content="ConditionalRandomField "/>
+<meta property="og:url" content="../articles/Conditional-Random-Field.html" />
+<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:site_name" content="JERRYLSU" />
+<meta property="og:article:author" content="Jerry Su" />
+<meta property="og:article:published_time" content="2021-02-04T10:17:17+08:00" />
+<meta name="twitter:title" content="ConditionalRandomField ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
+
+        <title>ConditionalRandomField  · JERRYLSU
+</title>
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../"><span class=site-name>JERRYLSU</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../categories.html">Categories</a></li>
+                                <li ><a href="../tags.html">Tags</a></li>
+                                <li ><a href="../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../articles/Conditional-Random-Field.html">
+                ConditionalRandomField
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        show
+        </nav>
+    </div>
+    <div class="span8 article-content">
+            
+            <p><a href="https://ben.bolte.cc/hmms-crfs">A comparison of Hidden Markov Models and Conditional Random Fields, two kinds of probabilistic graphical models.</a></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># BMES四位序列标注法</span>
+<span class="n">PADDING</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">B</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">E</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">S</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">START</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">END</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="n">LABEL_VOCAB</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;&lt;pad&gt;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;&lt;unk&gt;&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;M&#39;</span><span class="p">}</span>
+
+<span class="n">NUM_TAGS</span> <span class="o">=</span> <span class="mi">8</span>
+</code></pre></div>
+
+<h2 id="11-initialize-input">1.1 Initialize Input</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># batch_size x max_len x num_tags : (2, 9, 6)</span>
+
+<span class="n">logits</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">NUM_TAGS</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;logits:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">logits</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">tags</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tags:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">tags</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mask:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">mask</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">logits</span><span class="o">:</span>
+<span class="w"> </span><span class="n">tensor</span><span class="o">([[[-</span><span class="mf">1.4452</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.9019</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">9.7182</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.5851</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.3361</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">1.4078</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">5.9501</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.1116</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[-</span><span class="mf">1.2016</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">5.7204</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.7459</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.2101</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.5633</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">1.5958</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">7.4246</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.2454</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[-</span><span class="mf">1.5298</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">7.3708</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">3.7166</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">2.4409</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">7.6002</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">1.1487</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">3.5016</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.7178</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[</span><span class="w"> </span><span class="mf">5.3908</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.7665</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">8.4331</span><span class="n">e</span><span class="o">-</span><span class="mi">02</span><span class="o">,</span><span class="w">  </span><span class="mf">1.2331</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">6.3707</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span>
+<span class="w">           </span><span class="mf">3.2750</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">9.5666</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.0764</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[-</span><span class="mf">2.0275</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">4.7478</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.4096</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">3.4847</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.4107</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">6.7662</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.1356</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">8.8798</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[-</span><span class="mf">5.2993</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">8.7384</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">7.1909</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">9.0088</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.0477</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span>
+<span class="w">           </span><span class="mf">5.7400</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">8.9259</span><span class="n">e</span><span class="o">-</span><span class="mi">02</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">9.4986</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[</span><span class="w"> </span><span class="mf">5.1900</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.3026</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.7043</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.8520</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.4247</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span>
+<span class="w">           </span><span class="mf">5.4460</span><span class="n">e</span><span class="o">-</span><span class="mi">02</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">6.3961</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.3025</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[</span><span class="w"> </span><span class="mf">1.2510</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">2.2883</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">3.4238</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">7.5308</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">2.5237</span><span class="n">e</span><span class="o">-</span><span class="mi">03</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">3.4200</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.2455</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.0249</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[</span><span class="w"> </span><span class="mf">4.8784</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.5034</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.6049</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">5.3555</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">2.2210</span><span class="n">e</span><span class="o">-</span><span class="mi">03</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">5.5209</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">2.6669</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.2266</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">]],</span>
+
+<span class="w">        </span><span class="o">[[</span><span class="w"> </span><span class="mf">4.8289</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">8.0970</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.6692</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.0974</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">2.5424</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span>
+<span class="w">           </span><span class="mf">1.4737</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">7.8376</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.4346</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[-</span><span class="mf">2.6347</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.5178</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">1.5867</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">7.5319</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.9615</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span>
+<span class="w">           </span><span class="mf">6.0084</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">5.5508</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.8708</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[</span><span class="w"> </span><span class="mf">2.3153</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.7178</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">6.4674</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.1492</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">7.9638</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span>
+<span class="w">           </span><span class="mf">5.4677</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.6118</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">2.1595</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[</span><span class="w"> </span><span class="mf">1.6032</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">1.0249</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.1967</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">7.7639</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.0185</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">9.3879</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.4424</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">1.3888</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[-</span><span class="mf">1.0615</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">4.5697</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.2877</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.3390</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.9707</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">5.8355</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.2570</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.1907</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[-</span><span class="mf">6.4982</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.6911</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">3.0681</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">5.5137</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">6.9925</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span>
+<span class="w">           </span><span class="mf">1.9890</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">4.8145</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">5.3715</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[</span><span class="w"> </span><span class="mf">5.2184</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">5.8037</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">8.7149</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.0938</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">4.8395</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">2.0589</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.3386</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">7.5332</span><span class="n">e</span><span class="o">-</span><span class="mi">02</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[</span><span class="w"> </span><span class="mf">3.7932</span><span class="n">e</span><span class="o">-</span><span class="mi">02</span><span class="o">,</span><span class="w">  </span><span class="mf">1.3092</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">5.4694</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.6446</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.7779</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">6.6966</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">8.4106</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">9.3973</span><span class="n">e</span><span class="o">-</span><span class="mi">02</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[</span><span class="w"> </span><span class="mf">6.5991</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">6.3159</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.3538</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.7384</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">8.5952</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">3.7105</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.3350</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.1770</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">]],</span>
+
+<span class="w">        </span><span class="o">[[-</span><span class="mf">5.1107</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">7.3291</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">8.8863</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">8.5765</span><span class="n">e</span><span class="o">-</span><span class="mi">02</span><span class="o">,</span><span class="w">  </span><span class="mf">2.0189</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">6.3774</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.1234</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.0721</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[-</span><span class="mf">1.7006</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.5931</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.1782</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.6335</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.4209</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span>
+<span class="w">           </span><span class="mf">4.8150</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.1860</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">7.5185</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[-</span><span class="mf">1.4374</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">1.0826</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">2.8144</span><span class="n">e</span><span class="o">-</span><span class="mi">02</span><span class="o">,</span><span class="w">  </span><span class="mf">6.7766</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.9165</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span>
+<span class="w">           </span><span class="mf">1.2558</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.2113</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">5.0190</span><span class="n">e</span><span class="o">-</span><span class="mi">02</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[</span><span class="w"> </span><span class="mf">3.9188</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.5474</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.5797</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">6.2201</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">3.8201</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">2.2004</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.2397</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">1.3466</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[-</span><span class="mf">1.6803</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">1.5669</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">5.5389</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">8.0821</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.8370</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">2.8107</span><span class="n">e</span><span class="o">-</span><span class="mi">02</span><span class="o">,</span><span class="w">  </span><span class="mf">8.2856</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">7.0409</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[</span><span class="w"> </span><span class="mf">1.3986</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.1884</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">4.2444</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.3998</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">7.3532</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">9.4360</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.4932</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.2199</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[</span><span class="w"> </span><span class="mf">2.2620</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">3.7655</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">3.5929</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.8760</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.0527</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span>
+<span class="w">           </span><span class="mf">1.6695</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">2.2314</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">2.8254</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[</span><span class="w"> </span><span class="mf">1.6245</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">7.8641</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.4010</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">7.4482</span><span class="n">e</span><span class="o">-</span><span class="mi">02</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.4197</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">1.3425</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">8.8786</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">9.7691</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">],</span>
+<span class="w">         </span><span class="o">[</span><span class="w"> </span><span class="mf">3.7015</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">1.5858</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">4.2269</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w">  </span><span class="mf">2.0528</span><span class="n">e</span><span class="o">+</span><span class="mi">00</span><span class="o">,</span><span class="w">  </span><span class="mf">3.1429</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span>
+<span class="w">          </span><span class="o">-</span><span class="mf">8.5222</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">5.5130</span><span class="n">e</span><span class="o">-</span><span class="mi">01</span><span class="o">,</span><span class="w"> </span><span class="o">-</span><span class="mf">9.6802</span><span class="n">e</span><span class="o">-</span><span class="mi">02</span><span class="o">]]])</span>
+
+<span class="n">tags</span><span class="o">:</span>
+<span class="w"> </span><span class="n">tensor</span><span class="o">([[</span><span class="mi">6</span><span class="o">,</span><span class="w"> </span><span class="mi">4</span><span class="o">,</span><span class="w"> </span><span class="mi">2</span><span class="o">,</span><span class="w"> </span><span class="mi">5</span><span class="o">,</span><span class="w"> </span><span class="mi">5</span><span class="o">,</span><span class="w"> </span><span class="mi">3</span><span class="o">,</span><span class="w"> </span><span class="mi">4</span><span class="o">,</span><span class="w"> </span><span class="mi">7</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="o">],</span>
+<span class="w">        </span><span class="o">[</span><span class="mi">6</span><span class="o">,</span><span class="w"> </span><span class="mi">4</span><span class="o">,</span><span class="w"> </span><span class="mi">2</span><span class="o">,</span><span class="w"> </span><span class="mi">3</span><span class="o">,</span><span class="w"> </span><span class="mi">4</span><span class="o">,</span><span class="w"> </span><span class="mi">4</span><span class="o">,</span><span class="w"> </span><span class="mi">7</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="o">],</span>
+<span class="w">        </span><span class="o">[</span><span class="mi">6</span><span class="o">,</span><span class="w"> </span><span class="mi">2</span><span class="o">,</span><span class="w"> </span><span class="mi">5</span><span class="o">,</span><span class="w"> </span><span class="mi">3</span><span class="o">,</span><span class="w"> </span><span class="mi">4</span><span class="o">,</span><span class="w"> </span><span class="mi">7</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="o">]])</span>
+
+<span class="n">mask</span><span class="o">:</span>
+<span class="w"> </span><span class="n">tensor</span><span class="o">([[</span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="o">],</span>
+<span class="w">        </span><span class="o">[</span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="o">],</span>
+<span class="w">        </span><span class="o">[</span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">1</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="mi">0</span><span class="o">]])</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">logits</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">tags</span> <span class="o">=</span> <span class="n">tags</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">trans_matrix</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">NUM_TAGS</span><span class="p">,</span> <span class="n">NUM_TAGS</span><span class="p">))</span>
+<span class="n">trans_matrix</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>Parameter containing:
+tensor([[ 0.3130,  0.6805, -1.6291,  1.1787,  0.2590,  0.0393,  0.3733, -1.0978],
+        [ 0.0257, -0.7165,  0.1774, -0.4137, -0.9312,  1.1543, -1.7091,  0.1694],
+        [-0.5890, -1.3841, -0.7339,  1.5916, -0.6873, -1.2056,  1.3192,  0.1930],
+        [-1.0862, -0.3838,  0.3116, -1.0895, -0.5821, -1.2720,  0.2369,  0.5035],
+        [-1.1792,  0.2191, -0.5459,  1.8000, -0.0737,  1.6784, -0.8590, -0.3808],
+        [-0.1573, -1.7135, -0.2278,  1.8250, -0.4302,  2.0009, -1.1343,  0.4233],
+        [-0.3599, -0.0824, -0.4446,  0.4188, -0.7154, -0.1829,  0.0595, -1.1767],
+        [-1.2007,  2.5477,  0.0693, -0.9544, -0.8122,  0.1949, -0.0823,  0.3554]],
+       requires_grad=True)
+</code></pre></div>
+
+<h2 id="2-compute-the-score-for-the-gold-path">2. Compute the score for the gold path.</h2>
+<div class="highlight"><pre><span></span><code><span class="n">seq_len</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;seq_len: </span><span class="si">{</span><span class="n">seq_len</span><span class="si">}</span><span class="se">\n</span><span class="s2">batch_size: </span><span class="si">{</span><span class="n">batch_size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">seq_len</span><span class="o">:</span><span class="w"> </span><span class="mi">9</span>
+<span class="n">batch_size</span><span class="o">:</span><span class="w"> </span><span class="mi">3</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">batch_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+<span class="n">batch_idx</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([0, 1, 2])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">seq_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">seq_len</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+<span class="n">seq_idx</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
+</code></pre></div>
+
+<h3 id="21-transition-probability-score">2.1 transition probability score</h3>
+<div class="highlight"><pre><span></span><code><span class="n">mask</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 0.],
+        [1., 0., 0.],
+        [0., 0., 0.]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">mask</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[ True,  True,  True],
+        [ True,  True,  True],
+        [ True,  True,  True],
+        [ True,  True,  True],
+        [ True,  True,  True],
+        [ True,  True,  True],
+        [ True,  True, False],
+        [ True, False, False],
+        [False, False, False]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">flip_mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">flip_mask</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[False, False, False],
+        [False, False, False],
+        [False, False, False],
+        [False, False, False],
+        [False, False, False],
+        [False, False, False],
+        [False, False,  True],
+        [False,  True,  True],
+        [ True,  True,  True]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">tags</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[6, 6, 6],
+        [4, 4, 2],
+        [2, 2, 5],
+        [5, 3, 3],
+        [5, 4, 4],
+        [3, 4, 7],
+        [4, 7, 0],
+        [7, 0, 0],
+        [0, 0, 0]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">tags</span><span class="p">[:</span> <span class="n">seq_len</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[6, 6, 6],
+        [4, 4, 2],
+        [2, 2, 5],
+        [5, 3, 3],
+        [5, 4, 4],
+        [3, 4, 7],
+        [4, 7, 0],
+        [7, 0, 0]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">tags</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[4, 4, 2],
+        [2, 2, 5],
+        [5, 3, 3],
+        [5, 4, 4],
+        [3, 4, 7],
+        [4, 7, 0],
+        [7, 0, 0],
+        [0, 0, 0]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">trans_matrix</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>Parameter containing:
+tensor([[ 0.3130,  0.6805, -1.6291,  1.1787,  0.2590,  0.0393,  0.3733, -1.0978],
+        [ 0.0257, -0.7165,  0.1774, -0.4137, -0.9312,  1.1543, -1.7091,  0.1694],
+        [-0.5890, -1.3841, -0.7339,  1.5916, -0.6873, -1.2056,  1.3192,  0.1930],
+        [-1.0862, -0.3838,  0.3116, -1.0895, -0.5821, -1.2720,  0.2369,  0.5035],
+        [-1.1792,  0.2191, -0.5459,  1.8000, -0.0737,  1.6784, -0.8590, -0.3808],
+        [-0.1573, -1.7135, -0.2278,  1.8250, -0.4302,  2.0009, -1.1343,  0.4233],
+        [-0.3599, -0.0824, -0.4446,  0.4188, -0.7154, -0.1829,  0.0595, -1.1767],
+        [-1.2007,  2.5477,  0.0693, -0.9544, -0.8122,  0.1949, -0.0823,  0.3554]],
+       requires_grad=True)
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">tags</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[6, 6, 6],
+        [4, 4, 2],
+        [2, 2, 5],
+        [5, 3, 3],
+        [5, 4, 4],
+        [3, 4, 7],
+        [4, 7, 0],
+        [7, 0, 0],
+        [0, 0, 0]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">trans_score</span> <span class="o">=</span> <span class="n">trans_matrix</span><span class="p">[</span><span class="n">tags</span><span class="p">[:</span><span class="n">seq_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">tags</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>    <span class="c1"># tensor的二维索引</span>
+<span class="n">trans_score</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[-0.7154, -0.7154, -0.4446],
+        [-0.5459, -0.5459, -1.2056],
+        [-1.2056,  1.5916,  1.8250],
+        [ 2.0009, -0.5821, -0.5821],
+        [ 1.8250, -0.0737, -0.3808],
+        [-0.5821, -0.3808, -1.2007],
+        [-0.3808, -1.2007,  0.3130],
+        [-1.2007,  0.3130,  0.3130]], grad_fn=&lt;IndexBackward&gt;)
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">flip_mask</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[False, False, False],
+        [False, False, False],
+        [False, False, False],
+        [False, False, False],
+        [False, False, False],
+        [False, False, False],
+        [False, False,  True],
+        [False,  True,  True],
+        [ True,  True,  True]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">flip_mask</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[False, False, False],
+        [False, False, False],
+        [False, False, False],
+        [False, False, False],
+        [False, False, False],
+        [False, False,  True],
+        [False,  True,  True],
+        [ True,  True,  True]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># 最终计算的转移矩阵！！！</span>
+<span class="n">trans_score</span> <span class="o">=</span> <span class="n">trans_score</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">flip_mask</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">trans_score</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[-0.7154, -0.7154, -0.4446],
+        [-0.5459, -0.5459, -1.2056],
+        [-1.2056,  1.5916,  1.8250],
+        [ 2.0009, -0.5821, -0.5821],
+        [ 1.8250, -0.0737, -0.3808],
+        [-0.5821, -0.3808,  0.0000],
+        [-0.3808,  0.0000,  0.0000],
+        [ 0.0000,  0.0000,  0.0000]], grad_fn=&lt;MaskedFillBackward0&gt;)
+</code></pre></div>
+
+<h3 id="22-emission-probability-score">2.2 emission probability score</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># emit_score = logits[seq_idx.view(-1, 1), batch_idx.view(1, -1), tags].masked_fill(flip_mask, 0)</span>
+<span class="c1"># emit_score</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">logits</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>torch.Size([9, 3, 8])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">seq_idx</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">seq_idx</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>torch.Size([9])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">seq_idx</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[0],
+        [1],
+        [2],
+        [3],
+        [4],
+        [5],
+        [6],
+        [7],
+        [8]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">batch_idx</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([0, 1, 2])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">batch_idx</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>torch.Size([3])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">batch_idx</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[0, 1, 2]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">tags</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[6, 6, 6],
+        [4, 4, 2],
+        [2, 2, 5],
+        [5, 3, 3],
+        [5, 4, 4],
+        [3, 4, 7],
+        [4, 7, 0],
+        [7, 0, 0],
+        [0, 0, 0]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">logits</span><span class="p">[</span><span class="n">seq_idx</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">batch_idx</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">tags</span><span class="p">]</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[ 0.5950,  0.7838,  0.1123],
+        [-1.5633, -0.2962,  1.1782],
+        [ 0.3717, -0.6467,  0.1256],
+        [ 0.3275,  0.7764,  0.6220],
+        [-0.6766, -1.9707,  1.8370],
+        [-0.9009, -0.6992, -1.2199],
+        [-1.4247,  0.0753,  0.2262],
+        [-1.0249,  0.0379,  1.6245],
+        [ 0.4878,  0.6599,  0.3702]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">logits</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>tensor([[[-1.4452e-01, -1.9019e-01,  9.7182e-01, -1.5851e+00, -1.3361e+00,
+          -1.4078e+00,  5.9501e-01,  1.1116e+00],
+         [ 4.8289e-01,  8.0970e-01, -2.6692e-01, -1.0974e+00,  2.5424e-01,
+           1.4737e-01,  7.8376e-01, -1.4346e+00],
+         [-5.1107e-01, -7.3291e-01,  8.8863e-01,  8.5765e-02,  2.0189e-01,
+          -6.3774e-01,  1.1234e-01,  1.0721e+00]],
+
+        [[-1.2016e+00,  5.7204e-01, -1.7459e-01, -1.2101e+00, -1.5633e+00,
+          -1.5958e+00,  7.4246e-01, -2.2454e-01],
+         [-2.6347e-01, -1.5178e+00,  1.5867e+00,  7.5319e-01, -2.9615e-01,
+           6.0084e-01, -5.5508e-01, -1.8708e-01],
+         [-1.7006e-01, -2.5931e-01,  1.1782e+00, -2.6335e-01,  1.4209e+00,
+           4.8150e-01,  1.1860e+00,  7.5185e-01]],
+
+        [[-1.5298e-01,  7.3708e-01,  3.7166e-01,  2.4409e-01, -7.6002e-01,
+          -1.1487e+00, -3.5016e-01,  1.7178e-01],
+         [ 2.3153e+00, -1.7178e-01, -6.4674e-01,  1.1492e+00,  7.9638e-01,
+           5.4677e-01,  1.6118e-01,  2.1595e-01],
+         [-1.4374e+00,  1.0826e+00,  2.8144e-02,  6.7766e-01, -1.9165e-01,
+           1.2558e-01,  1.2113e+00,  5.0190e-02]],
+
+        [[ 5.3908e-01,  1.7665e-01,  8.4331e-02,  1.2331e+00, -6.3707e-01,
+           3.2750e-01, -9.5666e-01, -1.0764e+00],
+         [ 1.6032e+00,  1.0249e+00, -1.1967e+00,  7.7639e-01,  1.0185e+00,
+          -9.3879e-01, -1.4424e+00,  1.3888e+00],
+         [ 3.9188e-01,  1.5474e+00, -1.5797e+00,  6.2201e-01, -3.8201e-01,
+          -2.2004e+00, -1.2397e+00,  1.3466e+00]],
+
+        [[-2.0275e-01, -4.7478e-01, -2.4096e-01,  3.4847e-01,  1.4107e+00,
+          -6.7662e-01,  1.1356e+00, -8.8798e-01],
+         [-1.0615e-01,  4.5697e-01,  1.2877e-01,  1.3390e+00, -1.9707e+00,
+          -5.8355e-01, -2.2570e+00, -1.1907e+00],
+         [-1.6803e+00,  1.5669e+00,  5.5389e-01, -8.0821e-01,  1.8370e+00,
+          -2.8107e-02,  8.2856e-01,  7.0409e-01]],
+
+        [[-5.2993e-01, -8.7384e-01, -7.1909e-01, -9.0088e-01, -1.0477e+00,
+           5.7400e-01, -8.9259e-02, -9.4986e-01],
+         [-6.4982e-01,  1.6911e-01, -3.0681e-01, -5.5137e-01, -6.9925e-01,
+           1.9890e-01,  4.8145e-01,  5.3715e-01],
+         [ 1.3986e+00, -1.1884e+00,  4.2444e-01,  1.3998e+00, -7.3532e-01,
+          -9.4360e-01, -1.4932e-01, -1.2199e+00]],
+
+        [[ 5.1900e-01, -1.3026e+00, -1.7043e+00, -2.8520e-01, -1.4247e+00,
+           5.4460e-02, -6.3961e-01,  1.3025e-01],
+         [ 5.2184e-01,  5.8037e-01,  8.7149e-01, -2.0938e+00, -4.8395e-01,
+          -2.0589e+00, -2.3386e+00,  7.5332e-02],
+         [ 2.2620e-01, -3.7655e-01, -3.5929e-01, -1.8760e+00, -2.0527e+00,
+           1.6695e-01,  2.2314e-01,  2.8254e-01]],
+
+        [[ 1.2510e+00,  2.2883e-01,  3.4238e-01, -7.5308e-01,  2.5237e-03,
+          -3.4200e-01, -2.2455e-01, -1.0249e+00],
+         [ 3.7932e-02,  1.3092e+00, -5.4694e-01,  1.6446e-01, -1.7779e+00,
+          -6.6966e-01, -8.4106e-01,  9.3973e-02],
+         [ 1.6245e+00,  7.8641e-01,  1.4010e+00, -7.4482e-02, -1.4197e+00,
+          -1.3425e+00, -8.8786e-01,  9.7691e-01]],
+
+        [[ 4.8784e-01, -1.5034e+00, -1.6049e-01,  5.3555e-01,  2.2210e-03,
+          -5.5209e-01,  2.6669e-01, -1.2266e-01],
+         [ 6.5991e-01,  6.3159e-01,  1.3538e+00, -2.7384e-01,  8.5952e-01,
+          -3.7105e-01, -1.3350e-01, -2.1770e+00],
+         [ 3.7015e-01,  1.5858e+00, -4.2269e-01,  2.0528e+00,  3.1429e-01,
+          -8.5222e-01, -5.5130e-01, -9.6802e-02]]])
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+
+             
+ 
+                <p id="post-share-links">
+    Share on:
+      <a href="https://twitter.com/intent/tweet?text=ConditionalRandomField&url=http%3A//www.jerrylsu.net/articles/Conditional-Random-Field.html&hashtags=deep-learning,pytorch,nlp,crf,algorithm" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Conditional-Random-Field.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=ConditionalRandomField&amp;body=http%3A//www.jerrylsu.net/articles/Conditional-Random-Field.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   href="../articles/Conditional-Random-Field.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+
+
+
+                        <div class="commentbox" id="../articles/Conditional-Random-Field.html"></div>
+<script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+<script>
+    commentBox("True", {
+        onCommentCount(count) {
+            const ele = document.querySelector("#comment-accordion-toggle")
+            if (ele && count > 0) {
+                ele.innerText = `${count} Comment${count > 1 ? 's' : ''}`
+            }
+        }
+    });
+</script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
+<li><a href="../articles/Pointer-Networkers.html" title="Pointer Networkers">Pointer Networkers</a></li>
+<li><a href="../articles/scatter_nd.html" title="Scatter_nd">Scatter_nd</a></li>
+<li><a href="../articles/Text-Generation.html" title="Text-Generation">Text-Generation</a></li>
+<li><a href="../articles/paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &paddle.tile.html" title="paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &amp; paddle.tile">paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape & paddle.tile</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="../articles/tensor.detach/torch.detach_/torch.data.html" title="Previous: tensor.detach/torch.detach_/torch.data">tensor.detach/torch.detach_/torch.data</a></li>
+                <li class="next-article"><a href="../articles/Pytorch-fancy-indexing.html" title="Next: Pytorch fancy indexing">Pytorch fancy indexing</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2021-02-04T10:17:17+08:00">Feb 04, 2021</time>
+            <h4>Category</h4>
+            <a class="category-link" href="../categories.html#nlp-ref">NLP</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="../tags.html#algorithm-ref">Algorithm
+                    <span class="superscript">17</span>
+</a></li>
+                <li><a href="../tags.html#crf-ref">CRF
+                    <span class="superscript">2</span>
+</a></li>
+                <li><a href="../tags.html#deep-learning-ref">Deep Learning
+                    <span class="superscript">33</span>
+</a></li>
+                <li><a href="../tags.html#nlp-ref">NLP
+                    <span class="superscript">34</span>
+</a></li>
+                <li><a href="../tags.html#pytorch-ref">Pytorch
+                    <span class="superscript">19</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="mailto:[email protected]" title="sa517301@mail.ustc.edu.cn" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Mail" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#328cff"/><path d="m250 186c-46 0-69 35-69 74 0 44 29 72 68 72 43 0 73-32 73-75 0-44-34-71-72-71zm-1-37c30 0 57 13 77 33 0-22 35-22 35 1v150c-1 10 10 16 16 9 25-25 54-128-14-187-64-56-149-47-195-15-48 33-79 107-49 175 33 76 126 99 182 76 28-12 41 26 12 39-45 19-168 17-225-82-38-68-36-185 67-248 78-46 182-33 244 32 66 69 62 197-2 246-28 23-71 1-71-32v-11c-20 20-47 32-77 32-57 0-108-51-108-108 0-58 51-110 108-110" fill="#fff"/></svg>
+    </a>
+    <a href="https://github.com/jerrylsu" title="Jerry Github" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@jerrysu780" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="YouTube" role="img" viewBox="0 0 512 512" fill="#ed1d24"><rect width="512" height="512" rx="15%"/><path d="m427 169c-4-15-17-27-32-31-34-9-239-10-278 0-15 4-28 16-32 31-9 38-10 135 0 174 4 15 17 27 32 31 36 10 241 10 278 0 15-4 28-16 32-31 9-36 9-137 0-174" fill="#fff"/><path d="m220 203v106l93-53"/></svg>
+    </a>
+    <a href="https://twitter.com/Jerrylsu666" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Twitter" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1da1f3"/><path fill="#fff" d="M437 152a72 72 0 0 1-40 12 72 72 0 0 0 32-40 72 72 0 0 1-45 17 72 72 0 0 0-122 65 200 200 0 0 1-145-74 72 72 0 0 0 22 94 72 72 0 0 1-32-7 72 72 0 0 0 56 69 72 72 0 0 1-32 1 72 72 0 0 0 67 50 200 200 0 0 1-105 29 200 200 0 0 0 309-179 200 200 0 0 0 35-37"/></svg>
+    </a>
+    <a href="http://www.jerrylsu.net/feeds/all.atom.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+        <!-- 在这里添加 CommentBox 评论框代码 -->
+        <div class="commentbox"></div>
+        <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script> 
+        <script>commentBox('5717141856714752-proj')</script>
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>

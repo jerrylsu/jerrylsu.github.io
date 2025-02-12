@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="Jerry Su" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Scala, Programming, " />
+
+<meta property="og:title" content="Scala "/>
+<meta property="og:url" content="../articles/Scala.html" />
+<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:site_name" content="JERRYLSU" />
+<meta property="og:article:author" content="Jerry Su" />
+<meta property="og:article:published_time" content="2019-01-13T03:00:30+08:00" />
+<meta name="twitter:title" content="Scala ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
+
+        <title>Scala  · JERRYLSU
+</title>
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../"><span class=site-name>JERRYLSU</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../categories.html">Categories</a></li>
+                                <li ><a href="../tags.html">Tags</a></li>
+                                <li ><a href="../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../articles/Scala.html">
+                Scala
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        show
+        </nav>
+    </div>
+    <div class="span8 article-content">
+            
+            <h2 id="_1">前言</h2>
+<h2 id="functional-programming">Functional Programming</h2>
+<h3 id="part-1-elements-of-functional-programming">Part-1: Elements of Functional Programming</h3>
+<p>什么是函数式编程？(Functional Programming)<br>
+函数式编程是一种仅使用纯函数(pure functions)和不可变值(immutable values)编写软件应用程序的方法。<br>
+为什么需要函数式编程？<br>
+1. Pure functions and Side effects<br>
+2. Referential Transparency<br>
+3. First Class Functions &amp; Higher Order Functions<br>
+4. Anonymous Functions<br>
+5. Immutability<br>
+6. Recursion &amp; Tail Recursion<br>
+7. Statements<br>
+8. Strict and Non-Strict (Lazy) evaluation<br>
+9. Pattern Matching<br>
+10. Closures</p>
+<h4 id="pure-functions-and-side-effects">Pure functions and Side effects</h4>
+<p><strong>什么是纯函数？</strong><br>
+首先，什么是函数？<br>
+A function relates an input to an output. It is like a machine that has an input and output. And the output is related somehow to the input.<br>
+There are three main part:<br>
+- The input<br>
+- The relationship<br>
+- The output</p>
+<div class="highlight"><pre><span></span><code>Math.sqrt(4.0)
+sqrt就是relationship
+</code></pre></div>
+
+<ol>
+<li>The Input solely determines the output. 无论在哪里或者多少次调用这个函数，只要输入参数相同，就会得到相同的输出。</li>
+<li>The function doestn't change its input.</li>
+<li>The function doest't do anything else except computing the output.<br>
+这个函数不会从文件或者终端读取任何数据，也不会在终端打印或向文件写任何数据。也不会读写任何全局变量或者函数以外的任何。实际上，它不会有IO操作。纯函数类似于专用机器，获取输入，计算输出并返回，没有其他工作。<br>
+如果它做了任何影响外界或外界可见的事情，我们称之为<strong>函数的副作用(Side effect)</strong>。副作用就像做主要目的以外的事情.<br>
+如果函数没有副作用，它就是纯函数。</li>
+</ol>
+<p><strong>如何验证函数是纯函数？</strong><br>
+检测函数的<strong>引用透明性 (Referential Transparency)</strong></p>
+<h4 id="referential-transparency">Referential Transparency</h4>
+<p><strong>什么是函数的引用透明性？</strong><br>
+如果我们可以用相同的值替换它而不改变程序的行为，则称函数是引用透明性。<br>
+即，只要输入相同，总能得到相同的返回值。<br>
+e.g. 1:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">Replace</span><span class="w"> </span><span class="nv">Math</span>.<span class="nv">sqrt</span><span class="ss">(</span><span class="mi">4</span>.<span class="mi">0</span><span class="ss">)</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="mi">2</span>.<span class="mi">0</span>
+#<span class="w"> </span><span class="nv">Can</span><span class="w"> </span><span class="nv">you</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nv">this</span><span class="w"> </span>?
+#<span class="w"> </span><span class="nv">Yes</span>.<span class="w"> </span><span class="nv">Because</span><span class="w"> </span><span class="nv">Math</span>.<span class="nv">sqrt</span><span class="ss">(</span><span class="mi">4</span>.<span class="mi">0</span><span class="ss">)</span><span class="w"> </span><span class="nv">will</span><span class="w"> </span><span class="nv">always</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">2</span>.<span class="mi">0</span><span class="w"> </span><span class="nv">as</span><span class="w"> </span><span class="nv">long</span><span class="w"> </span><span class="nv">as</span><span class="w"> </span><span class="nv">input</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="mi">4</span>.<span class="mi">0</span>.<span class="w"> </span><span class="nv">So</span><span class="w"> </span><span class="nv">sqrt</span>是纯函数。
+</code></pre></div>
+
+<p>e.g. 2:</p>
+<div class="highlight"><pre><span></span><code><span class="o">//</span><span class="w"> </span><span class="err">全局变量</span>
+<span class="k">var</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+<span class="n">def</span><span class="w"> </span><span class="n">rt</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="n">Int</span><span class="p">):</span><span class="n">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">g</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">g</span>
+<span class="p">}</span>
+
+<span class="n">val</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span>
+<span class="n">val</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span>
+</code></pre></div>
+
+<p>函数rt不是纯函数，因为：<br>
+- 不满足第一条：依赖于全局变量g，输出不是仅仅依赖于输入参数。<br>
+- 不满足第三条：修改了外部变量，所以是有副作用的。</p>
+<p>至此，理解了<strong>纯函数</strong>，<strong>副作用</strong>，<strong>引用透明性</strong>。</p>
+<p><strong>总结：</strong><br>
+纯函数遵循一下三条规则:<br>
+1. 输出只依赖于输入参数值<br>
+2. 函数不会修改输入参数值<br>
+3. 函数没有副作用<br>
+- 如果为相同的参数提供相同的值，则该函数是引用透明的.<br>
+- 检测函数的引用透明性来判断函数是否为纯函数。</p>
+<p><strong>为什么需要纯函数？</strong><br>
+1. 安全的编程方式。纯函数对于代码重用是small, precise, simple, safe and easy.<br>
+2. 可组合或者模块化。<br>
+3. 容易测试 only asserting return value<br>
+4. 可记忆的。caching确定函数，即函数是纯函数，可以缓存输出later use。<br>
+5. <strong>惰性 lazy</strong>。</p>
+<h4 id="first-class-function-higher-order-functions">First Class Function &amp; Higher Order Functions</h4>
+<p><strong>什么是一级函数？</strong><br>
+把函数当做值，即一级函数。<br>
+1. 可以赋值给变量<br>
+2. 可以作为参数，传递给其他函数<br>
+3. 可以作为返回值，从其他函数返回</p>
+<p>在Scala中所有函数都是一级函数，一级公民。</p>
+<p><strong>什么是高阶函数？</strong><br>
+至少满足一点，即高阶函数：<br>
+1. 将一个或多个函数作为参数<br>
+2. 返回一个函数作为结果</p>
+<h4 id="anonymous-functions">Anonymous Functions</h4>
+<p><strong>什么是匿名函数？</strong></p>
+<div class="highlight"><pre><span></span><code>标准函数：def double(i:Int):Int = {return i <span class="gs">* 2}</span>
+<span class="gs">匿名函数：(i:Int) =&gt; {i *</span> 2} :Int
+function literal syntax 函数文本
+</code></pre></div>
+
+<p><strong>匿名函数如何调用？</strong><br>
+赋值变量：<br>
+<code>val d = (i:Int) =&gt; {i * 2} :Int</code><br>
+通过变量调用：<br>
+<code>d(3)</code><br>
+<strong>匿名函数的目的是什么？</strong><br>
+内联函数，只使用一次的函数，提供名字是没有意义的。<br>
+e.g. 创建函数返回另一个函数：a little tricky</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 返回值省略</span>
+<span class="n">def</span><span class="w"> </span><span class="n">getOps</span><span class="p">(</span><span class="n">c</span><span class="p">:</span><span class="n">Int</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="n">Int</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// your code here</span>
+<span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="n">doubler</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">Int</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">}</span>
+<span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="n">tripler</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">Int</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">doubler</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="n">tripler</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="immutability">Immutability</h4>
+<p><strong>什么是不变性？</strong><br>
+Immutability = program using constants</p>
+<p>优点：<br>
+1. 有助于采用数学方法和构建纯函数。<br>
+2. 有助于避免各种问题，如不可变对象是线程安全的，易于并发编程。</p>
+<p>How can we program without a variable?<br>
+方法一：</p>
+<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">iFactorial</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="n">Int</span><span class="p">):</span><span class="n">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+<span class="w">        </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span>
+<span class="w">        </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">f</span>
+<span class="p">}</span>
+
+<span class="n">iFactorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="o">=</span><span class="mi">120</span>
+</code></pre></div>
+
+<ul>
+<li>iFactorial函数是纯函数吗？</li>
+<li>可以不用变量实现iFactorial函数吗？<br>
+递归。迭代转递归 convert loops to recursion and avoid mutation</li>
+</ul>
+<div class="highlight"><pre><span></span><code>def iFactorial(n:Int):Int = {
+    if (n &lt;= 0)
+        return 1
+    else
+        return n * iFactorial(n - 1)
+}
+</code></pre></div>
+
+<p>方法二：<br>
+<img alt="Immutability" src="images/Scala/Immutability.jpg"></p>
+<p>可变性可能有其明显的优势.</p>
+<h4 id="functions">Functions</h4>
+<ul>
+<li><code>;</code>是可选的。一行多条语句时，可以用<code>;</code>间隔</li>
+<li><code>return</code>关键字是可选的。函数总是返回最后一次执行表达式的值</li>
+<li>单行函数体的花括号<code>{</code> <code>}</code>是可选的</li>
+<li>返回值类型是可选的，只要编译器可以推断返回值类型</li>
+<li>不要忘记函数体前的<code>=</code></li>
+<li>无参函数<code>(</code> <code>)</code>是可选的</li>
+</ul>
+<p>A simple example:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">def</span><span class="w"> </span><span class="nt">myMax</span><span class="o">(</span><span class="nt">x</span><span class="p">:</span><span class="nd">Int</span><span class="o">,</span><span class="w"> </span><span class="nt">y</span><span class="p">:</span><span class="nd">Int</span><span class="o">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">if</span><span class="w"> </span><span class="err">(x</span><span class="w"> </span><span class="err">&gt;</span><span class="w"> </span><span class="err">y)</span>
+<span class="w">        </span><span class="err">return</span><span class="w"> </span><span class="err">x</span><span class="p">;</span>
+<span class="w">    </span><span class="err">else</span>
+<span class="w">        </span><span class="err">return</span><span class="w"> </span><span class="err">y</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ol>
+<li>省略<code>;</code>和<code>return</code>：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">myMax</span><span class="ss">(</span><span class="nv">x</span>:<span class="nv">Int</span>,<span class="w"> </span><span class="nv">y</span>:<span class="nv">Int</span><span class="ss">)</span><span class="w"> </span>:<span class="w"> </span><span class="nv">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>{
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">y</span><span class="ss">)</span>
+<span class="w">        </span><span class="nv">x</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="nv">y</span>
+}
+</code></pre></div>
+
+<ol start="2">
+<li>一行函数体：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">myMax</span><span class="ss">(</span><span class="nv">x</span>:<span class="nv">Int</span>,<span class="w"> </span><span class="nv">y</span>:<span class="nv">Int</span><span class="ss">)</span><span class="w"> </span>:<span class="w"> </span><span class="nv">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>{
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">y</span><span class="ss">)</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nv">y</span>
+}
+</code></pre></div>
+
+<ol start="3">
+<li>单行函数体的花括号<code>{</code> <code>}</code>是可选的：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">myMax</span><span class="ss">(</span><span class="nv">x</span>:<span class="nv">Int</span>,<span class="w"> </span><span class="nv">y</span>:<span class="nv">Int</span><span class="ss">)</span><span class="w"> </span>:<span class="w"> </span><span class="nv">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">y</span><span class="ss">)</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nv">y</span>
+</code></pre></div>
+
+<ol start="4">
+<li>返回值类型是可选的：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">myMax</span><span class="ss">(</span><span class="nv">x</span>:<span class="nv">Int</span>,<span class="w"> </span><span class="nv">y</span>:<span class="nv">Int</span><span class="ss">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">y</span><span class="ss">)</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nv">y</span>
+</code></pre></div>
+
+<p>这种单行<code>functions</code>和<code>methods</code>在Scala中常见。同样Scala中多行函数也很常见，但是函数体需要一对花括号<code>{</code> <code>}</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">myMax</span><span class="ss">(</span><span class="nv">x</span>:<span class="nv">Int</span>,<span class="w"> </span><span class="nv">y</span>:<span class="nv">Int</span><span class="ss">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>{<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">y</span><span class="ss">)</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nv">y</span><span class="w"> </span>}
+</code></pre></div>
+
+<ol start="5">
+<li>无参函数<code>(</code> <code>)</code>是可选的：</li>
+</ol>
+<p>保留<code>(</code> <code>)</code>：当函数有副作用时使用</p>
+<div class="highlight"><pre><span></span><code>def hWorld() = println(&quot;Hello World!&quot;)
+val h = hWorld()
+val h = hWorld
+</code></pre></div>
+
+<p>省略<code>(</code> <code>)</code>：当函数没有副作用时使用，即纯函数不使用<code>(</code> <code>)</code></p>
+<div class="highlight"><pre><span></span><code>def hWorld = println(&quot;Hello World!&quot;)
+val h = hWorld
+</code></pre></div>
+
+<p>惯例：无参函数没有<code>(</code> <code>)</code>表明副作用</p>
+<h4 id="functions-literals">Functions Literals</h4>
+<h5 id="syntax">Syntax</h5>
+<p>不同的名字，相同的意义：<br>
+- Anonymous functions<br>
+- Function literals<br>
+- Lambda expression</p>
+<p>我比较倾向于Function literals，因为函数式编程的基本思想之一是函数被当作<code>first class citizens</code>, 可以象操作<code>values</code>一样操作它：<br>
+1. 可以赋值给变量<br>
+2. 可以作为参数，传递给其他函数<br>
+3. 可以作为返回值，从高阶函数返回</p>
+<p>可以用<code>literal</code>创建<code>values</code>：</p>
+<div class="highlight"><pre><span></span><code>val<span class="w"> </span>s<span class="w"> </span>=<span class="w"> </span>&quot;Hello<span class="w"> </span>World!&quot;<span class="w">                                  </span>//<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>string<span class="w"> </span>value<span class="w"> </span>using<span class="w"> </span>a<span class="w"> </span>string<span class="w"> </span>literal
+val<span class="w"> </span>l<span class="w"> </span>=<span class="w"> </span>5<span class="w">  </span>|<span class="w">  </span>val<span class="w"> </span>l:Long<span class="w"> </span>=<span class="w"> </span>5<span class="w">   </span>|<span class="w">   </span>val<span class="w"> </span>l<span class="w"> </span>=<span class="w"> </span>5:Long<span class="w">       </span>//<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>integer<span class="w"> </span>value<span class="w"> </span>using<span class="w"> </span>a<span class="w"> </span>integer<span class="w"> </span>literal
+</code></pre></div>
+
+<p><strong>Can we create a function value using a literal?</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">parameterName</span><span class="o">:</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">function</span><span class="w"> </span><span class="n">body</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="n">expr</span><span class="p">]</span>
+<span class="p">}</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="k">return</span><span class="w"> </span><span class="n">type</span><span class="p">]</span>
+</code></pre></div>
+
+<ol>
+<li>无函数名</li>
+<li><code>=</code>变成<code>=&gt;</code></li>
+<li>返回值类型移到末尾</li>
+</ol>
+<div class="highlight"><pre><span></span><code>val f = (x:Int) =&gt; { x + 5 }
+val f = (x:Int) =&gt; { x + 5 }:Int
+</code></pre></div>
+
+<p>如果把返回值类型移到前面，必须包含输入类型和返回类型。不推荐这种写法，Scala会自动推断：</p>
+<div class="highlight"><pre><span></span><code>//<span class="w"> </span>also<span class="w"> </span>like
+val<span class="w"> </span>l:Long<span class="w"> </span>=<span class="w"> </span>5
+val<span class="w"> </span>f:Int=&gt;<span class="w"> </span>Int<span class="w"> </span>=<span class="w"> </span>(x:Int)<span class="w"> </span>=&gt;<span class="w"> </span>{<span class="w"> </span>x<span class="w"> </span>+<span class="w"> </span>5<span class="w"> </span>}
+</code></pre></div>
+
+<p>e.g.<br>
+创建一个函数值接收一个整型和一个字符串，连接后返回一个字符串。<code>myFun(5, "-")</code>返回<code>-5-</code></p>
+<div class="highlight"><pre><span></span><code>val<span class="w"> </span>myFun:(Int,<span class="w"> </span>String)=&gt;String<span class="w"> </span>=<span class="w"> </span>(x:Int,<span class="w"> </span>s:Sring)<span class="w"> </span>=&gt;<span class="w"> </span>{<span class="w"> </span>s<span class="w"> </span>+<span class="w"> </span>x<span class="w"> </span>+<span class="w"> </span>s<span class="w"> </span>}:String
+
+val<span class="w"> </span>myFun<span class="w"> </span>=<span class="w"> </span>(x:Int,<span class="w"> </span>s:Sring)<span class="w"> </span>=&gt;<span class="w"> </span>{<span class="w"> </span>s<span class="w"> </span>+<span class="w"> </span>x<span class="w"> </span>+<span class="w"> </span>s<span class="w"> </span>}<span class="w">    </span>//<span class="w"> </span>推荐写法
+</code></pre></div>
+
+<h5 id="where-do-we-use-function-literals">Where do we use function literals?</h5>
+<ul>
+<li>Pass it to a higher order functions</li>
+<li>Return it from higher order functions</li>
+</ul>
+<p>e.g.</p>
+<div class="highlight"><pre><span></span><code>val data= List(-250, 57, 54, -33, 43)
+data.map( (x:Int) =&gt; x + 10 )
+&gt;&gt;&gt; [[-240, 67, 64, -23, 53]]
+</code></pre></div>
+
+<p>当只有一个参数时，参数类型和<code>(</code> <code>)</code>可省略：</p>
+<div class="highlight"><pre><span></span><code>data.map( x =&gt; x + 10 )
+</code></pre></div>
+
+<h4 id="placeholder-syntax">Placeholder Syntax</h4>
+<h4 id="higher-order-functions">Higher Order Functions</h4>
+<h4 id="varargs-named-arguments-default-value">VarArgs, Named Arguments, Default Value</h4>
+<h4 id="partially-applied-functions">Partially Applied Functions</h4>
+<h3 id="part-2-elements-of-functional-programming">Part-2: Elements of Functional Programming</h3>
+<h3 id="strict-and-lazy-evaluations">Strict and Lazy Evaluations</h3>
+<h3 id="pattern-matching">Pattern Matching</h3>
+<h3 id="scala-closures">Scala Closures</h3>
+<h2 id="scala-basics">Scala Basics</h2>
+
+
+             
+ 
+                <p id="post-share-links">
+    Share on:
+      <a href="https://twitter.com/intent/tweet?text=Scala&url=http%3A//www.jerrylsu.net/articles/Scala.html&hashtags=scala" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Scala.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Scala&amp;body=http%3A//www.jerrylsu.net/articles/Scala.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   href="../articles/Scala.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+
+
+
+                        <div class="commentbox" id="../articles/Scala.html"></div>
+<script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+<script>
+    commentBox("True", {
+        onCommentCount(count) {
+            const ele = document.querySelector("#comment-accordion-toggle")
+            if (ele && count > 0) {
+                ele.innerText = `${count} Comment${count > 1 ? 's' : ''}`
+            }
+        }
+    });
+</script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="../articles/Singleton-&-Companion-Object.html" title="Singleton &amp; Companion Object">Singleton & Companion Object</a></li>
+<li><a href="../articles/Case-Class-vs-Class.html" title="Case Class vs Class">Case Class vs Class</a></li>
+<li><a href="../articles/Closure.html" title="Closure">Closure</a></li>
+<li><a href="../articles/Scala-Collection.html" title="Scala Collection">Scala Collection</a></li>
+<li><a href="../articles/Scala-Tips.html" title="Scala Tips">Scala Tips</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="../articles/Spark-RDD.html" title="Previous: Spark RDD">Spark RDD</a></li>
+                <li class="next-article"><a href="../articles/Linux.html" title="Next: Linux">Linux</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2019-01-13T03:00:30+08:00">Jan 13, 2019</time>
+            <h4>Category</h4>
+            <a class="category-link" href="../categories.html#programming-ref">Programming</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="../tags.html#scala-ref">Scala
+                    <span class="superscript">7</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="mailto:[email protected]" title="sa517301@mail.ustc.edu.cn" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Mail" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#328cff"/><path d="m250 186c-46 0-69 35-69 74 0 44 29 72 68 72 43 0 73-32 73-75 0-44-34-71-72-71zm-1-37c30 0 57 13 77 33 0-22 35-22 35 1v150c-1 10 10 16 16 9 25-25 54-128-14-187-64-56-149-47-195-15-48 33-79 107-49 175 33 76 126 99 182 76 28-12 41 26 12 39-45 19-168 17-225-82-38-68-36-185 67-248 78-46 182-33 244 32 66 69 62 197-2 246-28 23-71 1-71-32v-11c-20 20-47 32-77 32-57 0-108-51-108-108 0-58 51-110 108-110" fill="#fff"/></svg>
+    </a>
+    <a href="https://github.com/jerrylsu" title="Jerry Github" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@jerrysu780" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="YouTube" role="img" viewBox="0 0 512 512" fill="#ed1d24"><rect width="512" height="512" rx="15%"/><path d="m427 169c-4-15-17-27-32-31-34-9-239-10-278 0-15 4-28 16-32 31-9 38-10 135 0 174 4 15 17 27 32 31 36 10 241 10 278 0 15-4 28-16 32-31 9-36 9-137 0-174" fill="#fff"/><path d="m220 203v106l93-53"/></svg>
+    </a>
+    <a href="https://twitter.com/Jerrylsu666" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Twitter" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1da1f3"/><path fill="#fff" d="M437 152a72 72 0 0 1-40 12 72 72 0 0 0 32-40 72 72 0 0 1-45 17 72 72 0 0 0-122 65 200 200 0 0 1-145-74 72 72 0 0 0 22 94 72 72 0 0 1-32-7 72 72 0 0 0 56 69 72 72 0 0 1-32 1 72 72 0 0 0 67 50 200 200 0 0 1-105 29 200 200 0 0 0 309-179 200 200 0 0 0 35-37"/></svg>
+    </a>
+    <a href="http://www.jerrylsu.net/feeds/all.atom.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+        <!-- 在这里添加 CommentBox 评论框代码 -->
+        <div class="commentbox"></div>
+        <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script> 
+        <script>commentBox('5717141856714752-proj')</script>
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>

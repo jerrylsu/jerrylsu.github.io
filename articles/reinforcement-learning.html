@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../theme/css/elegant.prod.9e9d5ce754.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="../theme/css/custom.css" media="screen">
+
+        <link rel="dns-prefetch" href="//fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+        <meta name="author" content="Jerry Su" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="Reinforcement Learning, NLP, " />
+
+<meta property="og:title" content="【RL】Reinforcement Learning "/>
+<meta property="og:url" content="../articles/reinforcement-learning.html" />
+<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:site_name" content="JERRYLSU" />
+<meta property="og:article:author" content="Jerry Su" />
+<meta property="og:article:published_time" content="2020-05-21T07:20:38+08:00" />
+<meta name="twitter:title" content="【RL】Reinforcement Learning ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
+
+        <title>【RL】Reinforcement Learning  · JERRYLSU
+</title>
+
+
+
+    </head>
+    <body>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="../"><span class=site-name>JERRYLSU</span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       ..
+                                    >Home</a>
+                                </li>
+                                <li ><a href="../categories.html">Categories</a></li>
+                                <li ><a href="../tags.html">Tags</a></li>
+                                <li ><a href="../archives.html">Archives</a></li>
+                                <li><form class="navbar-search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+        <h1>
+            <a href="../articles/reinforcement-learning.html">
+                【RL】Reinforcement Learning
+            </a>
+        </h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        show
+        </nav>
+    </div>
+    <div class="span8 article-content">
+            
+            <h2 id="_1">马尔可夫决策过程</h2>
+<p>构建强化学习问题：马尔可夫决策过程 Markov Decision Processes (MDPs) </p>
+<h3 id="mdp">MDP组件</h3>
+<p>马尔可夫决策过程为我们提供了一种形式化顺序决策的方法。 这种形式化是构建通过强化学习解决的问题的基础。</p>
+<p>在马尔可夫决策过程中，智能体$Agent$与其所在的环境进行交互。这些交互随着时间的流逝依次发生。 在每个时间步$t$中，$Agent$都会获得环境状态$s_t$的编码。给定$s_t$，$Agent$将选择要采取的行动$a_t$。 然后，环境通过$a_t$将更新新的状态$s_{t+1}$，并且由于先前的操作，$Agent$会获得奖励$r_{t+1}$。</p>
+<p>一个马尔可夫决策过程的组建包括：</p>
+<ul>
+<li>Agent</li>
+<li>Environment</li>
+<li>State</li>
+<li>Action</li>
+<li>Reward</li>
+</ul>
+<p>从给定状态$State$中选择动作$Action$，过渡到新状态并获得奖励$Reward$的过程是一遍又一遍地依次进行的，这创建的一系列成为轨迹$Trajectory$，该轨迹显示状态，动作和奖励的顺序。</p>
+<p>在此过程中，$Agent$的目标是最大限度地提高在给定这些状态下采取的这些行动所获得的奖励总额。 这意味着$Agent$不仅希望最大化即时奖励，还希望<strong>最大化其随着时间的推移所获得的累积奖励</strong>。</p>
+<h3 id="mdp_1">MDP符号表示</h3>
+<p><img alt="mdp" src="../images/RL/MDP-diagram.png"></p>
+<p>在一个马尔可夫决策过程中，有一个状态集合$S$，动作集合$A$，奖励集合$R$，且这些集合的元素是有限的。</p>
+<ol>
+<li>
+<p>在每一个时间步$t = 0, 1, 2, ...$, $Agent$接收环境的状态$S_t \in S$，基于当前状态$S_t$，$Agent$选择一个动作$A_t \in A$。形成一个state-action对($S_t, A_t$)。</p>
+</li>
+<li>
+<p>时间推移到下一个时间步$t + 1$，环境受到$Agent$选择的动作$A_t$影响，将状态从$S_t$转为$S_{t+1} \in S$，此时Agent获得一个数值奖励$R_{t+1} \in R$，该奖励是关于Agent从状态$S_t$选择动作$A_t$的奖励。即奖励函数：$f(S_t, A_t) = R_{t+1}$</p>
+</li>
+</ol>
+<p>$Trajectory: S_0, A_0, R_1, S_1, A_1, R_2, S_2, A_2, R_3, ...$</p>
+<h3 id="_2">转换概率</h3>
+<p>因为集合$S$和$R$是有限集，随机变量$S_t$和$R_t$具有明确定义的概率分布，即</p>
+<p>\begin{equation<em>} p\left( s^{\prime },r\mid s,a\right) =\Pr \left{ S_{t}=s^{\prime },R_{t}=r\mid S_{t-1}=s,A_{t-1}=a\right} \text{.} \end{equation</em>}</p>
+<h2 id="_3">期望回报</h2>
+<h3 id="_4">期望奖励</h3>
+<p>在一个MDP过程中，是什么驱动强化学习智能体？<strong>期望回报 Expected Return</strong></p>
+<p><strong>在一个MDP过程中，智能体的目标是最大化它的期望奖励Reward</strong>。数学表示方式：</p>
+<p>定义在在$t$时刻所获得的期望奖励$G$是： \begin{equation<em>} G_{t}=R_{t+1}+R_{t+2}+R_{t+3}+\cdots +R_{T}\text{,} \end{equation</em>}  $T$是最后一个时间步。</p>
+<p><strong>期望奖励的概念非常重要，因为这是智能体的目标就是最大化期望奖励。期望奖励是推动智能体做出决策的动力。</strong></p>
+<h3 id="_5">折扣期望奖励</h3>
+<p><strong>在一个MDP过程中，智能体的目标是最大化它的期望折扣奖励Reward</strong></p>
+<p>折扣率$\gamma$，取值0~1之间，是折扣将来奖励的比率。  \begin{eqnarray<em>} G_{t} &amp;=&amp;R_{t+1}+\gamma R_{t+2}+\gamma ^{2}R_{t+3}+\cdots \ &amp;=&amp;\sum_{k=0}^{\infty }\gamma ^{k}R_{t+k+1}\text{.} \end{eqnarray</em>}</p>
+<p>折扣奖励的定义使智能体更关心即时奖励而不是未来奖励，因为未来奖励将得到更大的折扣。因此，尽管智能体确实考虑了预期在将来获得的奖励，但当智能体做出关于采取特定动作的决定时，越直接的奖励就具有更大的影响力。</p>
+<p><span style="color: red; "> \begin{eqnarray<em>} G_{t} &amp;=&amp;R_{t+1}+\gamma R_{t+2}+\gamma ^{2}R_{t+3}+\gamma ^{3}R_{t+4}+\cdots \ &amp;=&amp;R_{t+1}+\gamma \left( R_{t+2}+\gamma R_{t+3}+\gamma ^{2}R_{t+4}+\cdots \right) \ &amp;=&amp;R_{t+1}+\gamma G_{t+1} \end{eqnarray</em>}</span></p>
+<h2 id="_6">策略与值函数</h2>
+<h3 id="_7">策略</h3>
+<p>策略：给定一个状态，智能体选择任意一个动作的概率是多少。</p>
+<p>策略用符号$\pi$表示，$\pi(a|s)$：在$t$时刻，$\pi$策略下，给定状态$s$选择动作$a$的概率是$\pi(a|s)$。$\pi$是动作$a$的概率分布。</p>
+<h3 id="q">Q值函数</h3>
+<p>Value Functions, which generally give us an idea of how good some given state-action pair is for an agent in terms of expected reward. </p>
+<p>值函数：智能体选择某一个状态有多好。从reward的角度看就是，在给定一个状态选择一个动作可能增加或者减少reward。</p>
+<p>动作值函数：$q_\pi$表示基于策略$\pi$的动作值函数。即<strong>在给定一个状态，基于策略$\pi$选择一个动作后，给定的值，这个值用来评价选择该动作有多好。值用期望奖励定义</strong></p>
+<p>$q_\pi$称Q值函数，Q: quality</p>
+<p>\begin{eqnarray<em>} q_{\pi }\left( s,a\right) &amp;=&amp;E_{\pi }\left[ G_{t}\mid S_{t}=s,A_{t}=a \rule[-0.05in]{0in}{0.2in}\right] \ &amp;=&amp;E_{\pi }\left[ \sum_{k=0}^{\infty }\gamma ^{k}R_{t+k+1}\mid S_{t}=s,A_{t}=a\right] \text{.} \end{eqnarray</em>}</p>
+<h3 id="_8">最优策略</h3>
+<p>什么是最优策略？ </p>
+<p>\begin{equation<em>}\pi \geq \pi^\prime \text{ if and only if } q_{π}(s, a) \geq q_{π^\prime}(s, a) \text{ for all } s\in\boldsymbol{S}\text{.} \end{equation</em>}</p>
+<p>对于所有状态$s$，当且仅当基于策略$\pi$的值函数均大于其他所有策略$\pi^\prime$的值函数时，这个策略$\pi$就是最优测策略。</p>
+<h3 id="q_1">最优Q值函数</h3>
+<p>相似的，<strong>最优策略有一个最优动作值函数，即最优Q值函数，$q_*$表示。</strong></p>
+<p>\begin{equation<em>} q_{\ast }\left( s,a\right) =\max_{\pi }q_{\pi }\left( s,a\right) \end{equation</em>}</p>
+<p>$q_*$表示对于给定状态动作对，该策略比任何其他策略更能获得最大期望奖励。</p>
+<h2 id="_9">贝尔曼最优方程</h2>
+<p>$q_*$最优Q值函数的基本属性，满足贝尔曼最优方程：</p>
+<p>\begin{eqnarray<em>} q_{\ast }\left( s,a\right) &amp;=&amp;E\left[ R_{t+1}+\gamma \max_{a^{\prime }}q_{\ast }\left( s^\prime,a^{\prime }\right)\right] \end{eqnarray</em>}</p>
+
+
+             
+ 
+                <p id="post-share-links">
+    Share on:
+      <a href="https://twitter.com/intent/tweet?text=%E3%80%90RL%E3%80%91Reinforcement%20Learning&url=http%3A//www.jerrylsu.net/articles/reinforcement-learning.html&hashtags=reinforcement-learning" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/reinforcement-learning.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=%E3%80%90RL%E3%80%91Reinforcement%20Learning&amp;body=http%3A//www.jerrylsu.net/articles/reinforcement-learning.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+
+            
+            
+
+
+
+
+
+
+
+<section>
+    <h6 style="display:none;">Comments</h6>
+    <p id="comment-message"> </p>
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle disqus-comment-count comment-count collapsed"
+                   data-toggle="collapse"
+                   data-parent="#accordion2"
+                   href="../articles/reinforcement-learning.html#comment_thread"
+                   id="comment-accordion-toggle">
+                    Comments
+                </a>
+            </div>
+            <div id="comment_thread" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="comments">
+
+
+
+                        <div class="commentbox" id="../articles/reinforcement-learning.html"></div>
+<script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+<script>
+    commentBox("True", {
+        onCommentCount(count) {
+            const ele = document.querySelector("#comment-accordion-toggle")
+            if (ele && count > 0) {
+                ele.innerText = `${count} Comment${count > 1 ? 's' : ''}`
+            }
+        }
+    });
+</script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            <hr/>
+<section>
+    <h2>Related Posts</h2>
+<ul class="related-posts-list">
+<li><a href="../articles/【RL】Policy-Gradient.html" title="【RL】Policy Gradient">【RL】Policy Gradient</a></li>
+<li><a href="../articles/【RL】User-Simulator.html" title="【RL】User Simulator">【RL】User Simulator</a></li>
+<li><a href="../articles/【RL】Q-Learning.html" title="【RL】Q Learning">【RL】Q Learning</a></li>
+</ul>
+<hr />
+</section>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="../articles/A_star_algorithm.html" title="Previous: A* Heuristic Algorithm">A* Heuristic Algorithm</a></li>
+                <li class="next-article"><a href="../articles/Iterator.html" title="Next: Iterator">Iterator</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section id="article-sidebar" class="span2">
+            <h4>Published</h4>
+            <time itemprop="dateCreated" datetime="2020-05-21T07:20:38+08:00">May 21, 2020</time>
+            <h4>Category</h4>
+            <a class="category-link" href="../categories.html#nlp-ref">NLP</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="../tags.html#reinforcement-learning-ref">Reinforcement Learning
+                    <span class="superscript">4</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+<div id="sidebar-social-link">
+    <a href="mailto:[email protected]" title="sa517301@mail.ustc.edu.cn" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Mail" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#328cff"/><path d="m250 186c-46 0-69 35-69 74 0 44 29 72 68 72 43 0 73-32 73-75 0-44-34-71-72-71zm-1-37c30 0 57 13 77 33 0-22 35-22 35 1v150c-1 10 10 16 16 9 25-25 54-128-14-187-64-56-149-47-195-15-48 33-79 107-49 175 33 76 126 99 182 76 28-12 41 26 12 39-45 19-168 17-225-82-38-68-36-185 67-248 78-46 182-33 244 32 66 69 62 197-2 246-28 23-71 1-71-32v-11c-20 20-47 32-77 32-57 0-108-51-108-108 0-58 51-110 108-110" fill="#fff"/></svg>
+    </a>
+    <a href="https://github.com/jerrylsu" title="Jerry Github" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1B1817"/><path fill="#fff" d="M335 499c14 0 12 17 12 17H165s-2-17 12-17c13 0 16-6 16-12l-1-50c-71 16-86-28-86-28-12-30-28-37-28-37-24-16 1-16 1-16 26 2 40 26 40 26 22 39 59 28 74 22 2-17 9-28 16-35-57-6-116-28-116-126 0-28 10-51 26-69-3-6-11-32 3-67 0 0 21-7 70 26 42-12 86-12 128 0 49-33 70-26 70-26 14 35 6 61 3 67 16 18 26 41 26 69 0 98-60 120-117 126 10 8 18 24 18 48l-1 70c0 6 3 12 16 12z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@jerrysu780" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="YouTube" role="img" viewBox="0 0 512 512" fill="#ed1d24"><rect width="512" height="512" rx="15%"/><path d="m427 169c-4-15-17-27-32-31-34-9-239-10-278 0-15 4-28 16-32 31-9 38-10 135 0 174 4 15 17 27 32 31 36 10 241 10 278 0 15-4 28-16 32-31 9-36 9-137 0-174" fill="#fff"/><path d="m220 203v106l93-53"/></svg>
+    </a>
+    <a href="https://twitter.com/Jerrylsu666" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Twitter" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#1da1f3"/><path fill="#fff" d="M437 152a72 72 0 0 1-40 12 72 72 0 0 0 32-40 72 72 0 0 1-45 17 72 72 0 0 0-122 65 200 200 0 0 1-145-74 72 72 0 0 0 22 94 72 72 0 0 1-32-7 72 72 0 0 0 56 69 72 72 0 0 1-32 1 72 72 0 0 0 67 50 200 200 0 0 1-105 29 200 200 0 0 0 309-179 200 200 0 0 0 35-37"/></svg>
+    </a>
+    <a href="http://www.jerrylsu.net/feeds/all.atom.xml" title="" target="_blank" rel="nofollow noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="RSS" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#f80"/><circle cx="145" cy="367" r="35" fill="#fff"/><path fill="none" stroke="#fff" stroke-width="60" d="M109 241c89 0 162 73 162 162M109 127c152 0 276 124 276 276"/></svg>
+    </a>
+</div>
+            
+
+
+
+
+
+            
+
+
+
+
+
+        </section>
+</div>
+</article>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>                    </div>
+                    <div class="span1"></div>
+                </div>
+            </div>
+        </div>
+<footer>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow noopener noreferrer">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="../theme/js/elegant.prod.9e9d5ce754.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    <script>
+    (function () {
+        if (window.location.hash.match(/^#comment-\d+$/)) {
+            $('#comment_thread').collapse('show');
+        }
+    })();
+    window.onhashchange=function(){
+        if (window.location.hash.match(/^#comment-\d+$/))
+            window.location.reload(true);
+    }
+    $('#comment_thread').on('shown', function () {
+        var link = document.getElementById('comment-accordion-toggle');
+        var old_innerHTML = link.innerHTML;
+        $(link).fadeOut(200, function() {
+            $(this).text('Click here to hide comments').fadeIn(200);
+        });
+        $('#comment_thread').on('hidden', function () {
+            $(link).fadeOut(200, function() {
+                $(this).text(old_innerHTML).fadeIn(200);
+            });
+        })
+    })
+</script>
+
+        <!-- 在这里添加 CommentBox 评论框代码 -->
+        <div class="commentbox"></div>
+        <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script> 
+        <script>commentBox('5717141856714752-proj')</script>
+    </body>
+    <!-- Theme: Elegant built for Pelican
+        License : MIT -->
+</html>
