@@ -15,18 +15,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Algorithm, Breadth First Search, Algorithms, " />
+<meta name="keywords" content="Algorithm, Graph, Algorithms, " />
 
-<meta property="og:title" content="Breadth First Search "/>
-<meta property="og:url" content="../articles/Breadth-First-Search.html" />
+<meta property="og:title" content="DGraph "/>
+<meta property="og:url" content="../articles/Graph.html" />
 <meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2019-06-16T02:21:38+08:00" />
-<meta name="twitter:title" content="Breadth First Search ">
+<meta property="og:article:published_time" content="2025-01-01T01:40:10+08:00" />
+<meta name="twitter:title" content="DGraph ">
 <meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Breadth First Search  · JERRYLSU
+        <title>DGraph  · JERRYLSU
 </title>
 
 
@@ -67,8 +67,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="../articles/Breadth-First-Search.html">
-                Breadth First Search
+            <a href="../articles/Graph.html">
+                DGraph
             </a>
         </h1>
     </header>
@@ -78,72 +78,73 @@
     <div class="span2 table-of-content">
         <nav>
         <h4>Contents</h4>
-        show
+        <div class="toc">
+<ul>
+<li><a href="#_1">邻接表数据结构</a><ul>
+<li><a href="#207">207.课程表</a></li>
+</ul>
+</li>
+</ul>
+</div>
         </nav>
     </div>
     <div class="span8 article-content">
             
-            <h3 id="_1">概述</h3>
-<p>典型BFS三层循环:</p>
-<p>先明确队列中放的是什么，即满足怎样的条件才能入队。例如，拓扑排序入度为0的节点入队。</p>
-<ol>
-<li>
-<p><strong>队列不空, while queue</strong></p>
-</li>
-<li>
-<p><strong>分层遍历，for当前层的size。</strong><br>
-   循环何时可省？ 不需要分层</p>
-</li>
-<li>
-<p><strong>从当前点出发，向周围点去循环</strong><br>
-   例如:拓扑排序去for循环遍历当前点的邻居节点。<br>
-   循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。</p>
-</li>
-</ol>
-<h4 id="_2">宽搜要点</h4>
-<ul>
-<li>
-<p>使用队列为主要数据结构Queue</p>
-</li>
-<li>
-<p>是否需要分层实现：分层打印多一层for循环，len(queue)缓存队列每一层大小。</p>
-</li>
-<li>
-<p>for _ range(len(queue)): 错，需缓存</p>
-</li>
-</ul>
-<h3 id="_3">二叉树上的宽搜</h3>
-<h4 id="binary-tree-level-order-traversal"><a href="https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html#level-order-traversal">Binary Tree Level Order Traversal</a></h4>
-<h4 id="binary-tree-zigzag-level-order-traversal"><a href="https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html#binary-tree-zigzag-level-order-traversal">Binary Tree Zigzag Level Order Traversal</a></h4>
-<h4 id="serialize-and-deserialize-binary-tree"><a href="https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html#serialize-and-deserialize-binary-tree">Serialize and Deserialize Binary Tree</a></h4>
-<p>序列化是指将<strong>内存</strong>中的数据结构转为<strong>字符串</strong>的过程。系列化：object -&gt; string；反序列化: string -&gt; object。</p>
-<h3 id="_4">图上的宽搜</h3>
-<p><strong>图上的宽搜与树的区别：</strong>图有环，同一节点可能重复进入队列。需用集合存储访问过的结点。queue.append与visited.add成对存在。</p>
-<p><strong>数据结构：</strong>队列 + 集合</p>
-<ul>
-<li>图如何存储？ 临接点</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">GraphNode</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">neighbors</span> <span class="o">=</span> <span class="p">[]</span>
-</code></pre></div>
+            
+<h2 id="_1">邻接表数据结构</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">defaultdict</span>
 
-<h4 id="_5">图的遍历</h4>
-<h4 id="_6">层级遍历</h4>
-<h4 id="_7">由点及面</h4>
-<h4 id="_8">拓扑排序</h4>
-<p><a href="https://www.jerrulsu.com/Topological-Sorting.html">Topological Sorting</a></p>
-<h3 id="_9">矩阵上的宽搜</h3>
+<span class="c1"># 定义图的邻接表数据结构</span>
+<span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+<span class="c1"># 图的所有顶点</span>
+<span class="n">vertices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+<span class="c1"># 某个顶点的邻居节点</span>
+<span class="n">neighbors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">graph</span><span class="p">[</span><span class="n">vertex</span><span class="p">]</span>
+</code></pre></div>
+<h3 id="207">207.课程表</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">defaultdict</span><span class="p">,</span><span class="w"> </span><span class="n">deque</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">canFinish</span><span class="p">(</span><span class="n">numCourses</span><span class="p">:</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">prerequisites</span><span class="p">:</span><span class="w"> </span><span class="nb">List</span><span class="p">[</span><span class="nb">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="s2">"""numCourses: 2</span>
+<span class="s2">    """</span><span class="n">prerequisites</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+<span class="w">    </span><span class="c1"># 1.构建有向图和入度数组</span>
+<span class="w">    </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dafaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="w">    </span><span class="n">indegree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">numCourses</span>
+
+<span class="w">    </span><span class="c1"># 2.计算入度</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">dest</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">prerequisites</span><span class="p">:</span>
+<span class="w">        </span><span class="n">graph</span><span class="p">[</span><span class="n">src</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span>
+<span class="w">        </span><span class="n">indegree</span><span class="p">[</span><span class="n">dest</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+
+<span class="w">    </span><span class="c1"># 3.拓扑排序</span>
+<span class="w">    </span><span class="n">processed_courses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="c1"># 初始化队列，将所有入度为0的节点入队</span>
+<span class="w">    </span><span class="n">queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">deque</span><span class="p">([</span><span class="n">i</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nb">range</span><span class="p">(</span><span class="n">numCourses</span><span class="p">)</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">in_degree</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">])</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="n">queue</span><span class="p">:</span>
+<span class="w">        </span><span class="c1"># 依次处理队列中的节点，移除该节点，并将其指向的节点的入度减1。</span>
+<span class="w">        </span><span class="n">course</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+<span class="w">        </span><span class="n">processed_courses</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="c1"># 该节点被移除，邻居节点的入度减1</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">neighbor</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">graph</span><span class="p">[</span><span class="n">course</span><span class="p">]:</span>
+<span class="w">            </span><span class="n">indegree</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="c1"># 该节点的入度减到0，则将其加入队列。</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">indegree</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span>
+<span class="w">                </span><span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1"># 4.如果处理的节点数等于课程总数，说明可以完成所有课程</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">processed_courses</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">numCourses</span>
+</code></pre></div>
 
 
              
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Breadth%20First%20Search&url=http%3A//www.jerrylsu.net/articles/Breadth-First-Search.html&hashtags=algorithm,breadth-first-search" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
- ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Breadth-First-Search.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Breadth%20First%20Search&amp;body=http%3A//www.jerrylsu.net/articles/Breadth-First-Search.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+      <a href="https://twitter.com/intent/tweet?text=DGraph&url=http%3A//www.jerrylsu.net/articles/Graph.html&hashtags=algorithm,graph" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Graph.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=DGraph&amp;body=http%3A//www.jerrylsu.net/articles/Graph.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -164,7 +165,7 @@
                 <a class="accordion-toggle disqus-comment-count comment-count collapsed"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   href="../articles/Breadth-First-Search.html#comment_thread"
+                   href="../articles/Graph.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -175,7 +176,7 @@
 
 
 
-                        <div class="commentbox" id="../articles/Breadth-First-Search.html"></div>
+                        <div class="commentbox" id="../articles/Graph.html"></div>
 <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
 <script>
     commentBox("True", {
@@ -199,10 +200,10 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Topological-Sorting.html" title="Topological Sorting">Topological Sorting</a></li>
+<li><a href="../articles/Viterbi-Algorithm.html" title="Viterbi Algorithm">Viterbi Algorithm</a></li>
+<li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
 <li><a href="../articles/Brackets-Matching.html" title="Brackets Matching">Brackets Matching</a></li>
 <li><a href="../articles/Dynamic-Programming.html" title="Dynamic Programming">Dynamic Programming</a></li>
-<li><a href="../articles/Graph.html" title="DGraph">DGraph</a></li>
 <li><a href="../articles/Tree.html" title="Tree">Tree</a></li>
 </ul>
 <hr />
@@ -210,15 +211,15 @@
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/GBDT.html" title="Previous: GBDT">GBDT</a></li>
-                <li class="next-article"><a href="../articles/Topological-Sorting.html" title="Next: Topological Sorting">Topological Sorting</a> »</li>
+                <li class="previous-article">« <a href="../articles/Tree.html" title="Previous: Tree">Tree</a></li>
+                <li class="next-article"><a href="../articles/Dynamic-Programming.html" title="Next: Dynamic Programming">Dynamic Programming</a> »</li>
             </ul>
             </nav>
             </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2019-06-16T02:21:38+08:00">Jun 16, 2019</time>
+            <time itemprop="dateCreated" datetime="2025-01-01T01:40:10+08:00">Jan 01, 2025</time>
             <h4>Category</h4>
             <a class="category-link" href="../categories.html#algorithms-ref">Algorithms</a>
             <h4>Tags</h4>
@@ -226,8 +227,8 @@
                 <li><a href="../tags.html#algorithm-ref">Algorithm
                     <span class="superscript">19</span>
 </a></li>
-                <li><a href="../tags.html#breadth-first-search-ref">Breadth First Search
-                    <span class="superscript">2</span>
+                <li><a href="../tags.html#graph-ref">Graph
+                    <span class="superscript">1</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
