@@ -15,18 +15,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Algorithm, Backtracking, Algorithms, " />
+<meta name="keywords" content="Algorithm, BackTracking, Algorithms, " />
 
-<meta property="og:title" content="Backtracking "/>
-<meta property="og:url" content="../articles/Backtracking.html" />
-<meta property="og:description" content="BackTracking 回溯算法：本质是N叉树的遍历问题，关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架： 路径：也就是已经做出的选择。 选 …" />
+<meta property="og:title" content="BackTracking "/>
+<meta property="og:url" content="../articles/BackTracking.html" />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2020-04-09T10:12:16+08:00" />
-<meta name="twitter:title" content="Backtracking ">
-<meta name="twitter:description" content="BackTracking 回溯算法：本质是N叉树的遍历问题，关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架： 路径：也就是已经做出的选择。 选 …">
+<meta property="og:article:published_time" content="2019-01-01T01:40:10+08:00" />
+<meta name="twitter:title" content="BackTracking ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Backtracking  · JERRYLSU
+        <title>BackTracking  · JERRYLSU
 </title>
 
 
@@ -67,81 +67,42 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="../articles/Backtracking.html">
-                Backtracking
+            <a href="../articles/BackTracking.html">
+                BackTracking
             </a>
         </h1>
     </header>
 </div>
 
 <div class="row-fluid">
-    <div class="span2 table-of-content">
-        <nav>
-        <h4>Contents</h4>
-        <div class="toc">
-<ul>
-<li><a href="#backtracking">BackTracking</a><ul>
-<li><a href="#permutation">Permutation</a></li>
-<li><a href="#combination">Combination</a></li>
-<li><a href="#subset">Subset</a></li>
-<li><a href="#segmentation">Segmentation</a></li>
-</ul>
-</li>
-</ul>
+        <div class="span8 offset2 article-content">
+            
+            <div class="toc">
+<ul></ul>
 </div>
-        </nav>
-    </div>
-    <div class="span8 article-content">
-            
-            
-<h2 id="backtracking">BackTracking</h2>
-<p><strong>回溯算法：本质是N叉树的遍历问题</strong>，关键就是在前序遍历和后序遍历的位置做一些操作。回溯算法框架：</p>
-<ul>
-<li>
-<p>路径：也就是已经做出的选择。</p>
-</li>
-<li>
-<p>选择列表：也就是你当前可以做的选择。（一般会定义一个visited布尔数组，用于剪枝）</p>
-</li>
-<li>
-<p>结束条件：也就是到达决策树底层，无法再做选择的条件。</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="nb">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>[]
-<span class="nv">def</span><span class="w"> </span><span class="nv">dfs</span><span class="ss">(</span>路径,<span class="w"> </span>选择列表<span class="ss">)</span>:
-<span class="w">    </span><span class="k">if</span><span class="w"> </span>满足结束条件:
-<span class="w">        </span><span class="nb">result</span>.<span class="nv">append</span><span class="ss">(</span>路径<span class="ss">)</span>
+<p>思维框架：</p>
+<p>框架模版:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">backtrack</span><span class="ss">(</span>全局变量,<span class="w"> </span>路径<span class="ss">)</span>:
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>满足结束条件：
+<span class="w">        </span><span class="nb">result</span>.<span class="nv">add</span><span class="ss">(</span>路径<span class="ss">)</span>
 <span class="w">        </span><span class="k">return</span>
 
 <span class="w">    </span><span class="k">for</span><span class="w"> </span>选择<span class="w"> </span><span class="nv">in</span><span class="w"> </span>选择列表:
+<span class="w">        </span><span class="k">if</span><span class="w"> </span>判断是是否可以做当前选择:
+<span class="w">            </span><span class="k">continue</span>
 <span class="w">        </span>做选择
-<span class="w">        </span><span class="nv">dfs</span><span class="ss">(</span>路径,<span class="w"> </span>选择列表<span class="ss">)</span>
+<span class="w">        </span><span class="nv">backtrack</span><span class="ss">(</span>全局变量,<span class="w"> </span>路径<span class="ss">)</span>
 <span class="w">        </span>撤销选择
 </code></pre></div>
-<p>写dfs函数时，需要维护走过的<strong>路径</strong>和当前可以做的<strong>选择列表</strong>，当触发<strong>结束条件</strong>时，将<strong>路径</strong>记入结果集。</p>
-<div class="highlight"><pre><span></span><code><span class="nv">def</span><span class="w"> </span><span class="nv">backtracking</span><span class="ss">(</span>参数<span class="ss">)</span><span class="w"> </span>{
-<span class="w">    </span><span class="k">if</span><span class="w"> </span>满足结束条件:
-<span class="w">        </span>存放结果
-<span class="w">        </span><span class="k">return</span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span>选择<span class="w"> </span><span class="nv">in</span><span class="w"> </span>本层集合中元素（树中节点孩子的数量就是集合的大小）:
-<span class="w">        </span>处理节点
-<span class="w">        </span><span class="nv">backtracking</span><span class="ss">(</span>路径，选择列表<span class="ss">)</span><span class="w"> </span>#<span class="w"> </span>递归
-<span class="w">        </span>回溯，撤销处理结果
-</code></pre></div>
-<h3 id="permutation">Permutation</h3>
-<h3 id="combination">Combination</h3>
-<h3 id="subset">Subset</h3>
-<h3 id="segmentation">Segmentation</h3>
 
 
              
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Backtracking&url=http%3A//www.jerrylsu.net/articles/Backtracking.html&hashtags=algorithm,backtracking" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
- ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Backtracking.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Backtracking&amp;body=http%3A//www.jerrylsu.net/articles/Backtracking.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+      <a href="https://twitter.com/intent/tweet?text=BackTracking&url=http%3A//www.jerrylsu.net/articles/BackTracking.html&hashtags=algorithm,backtracking" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/BackTracking.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=BackTracking&amp;body=http%3A//www.jerrylsu.net/articles/BackTracking.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -162,7 +123,7 @@
                 <a class="accordion-toggle disqus-comment-count comment-count collapsed"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   href="../articles/Backtracking.html#comment_thread"
+                   href="../articles/BackTracking.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -173,7 +134,7 @@
 
 
 
-                        <div class="commentbox" id="../articles/Backtracking.html"></div>
+                        <div class="commentbox" id="../articles/BackTracking.html"></div>
 <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
 <script>
     commentBox("True", {
@@ -197,35 +158,35 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
+<li><a href="../articles/Backtracking.html" title="Backtracking">Backtracking</a></li>
+<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
+<li><a href="../articles/Viterbi-Algorithm.html" title="Viterbi Algorithm">Viterbi Algorithm</a></li>
 <li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
 <li><a href="../articles/Brackets-Matching.html" title="Brackets Matching">Brackets Matching</a></li>
-<li><a href="../articles/Dynamic-Programming.html" title="Dynamic Programming">Dynamic Programming</a></li>
-<li><a href="../articles/Graph.html" title="DGraph">DGraph</a></li>
-<li><a href="../articles/Tree.html" title="Tree">Tree</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/NLP-Attention.html" title="Previous: NLP Attention">NLP Attention</a></li>
-                <li class="next-article"><a href="../articles/【RL】User-Simulator.html" title="Next: 【RL】User Simulator">【RL】User Simulator</a> »</li>
+                <li class="previous-article">« <a href="../articles/Dynamic-Programming.html" title="Previous: Dynamic Programming">Dynamic Programming</a></li>
+                <li class="next-article"><a href="../articles/Spark-RDD.html" title="Next: Spark RDD">Spark RDD</a> »</li>
             </ul>
             </nav>
             </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2020-04-09T10:12:16+08:00">Apr 09, 2020</time>
+            <time itemprop="dateCreated" datetime="2019-01-01T01:40:10+08:00">Jan 01, 2019</time>
             <h4>Category</h4>
             <a class="category-link" href="../categories.html#algorithms-ref">Algorithms</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="../tags.html#algorithm-ref">Algorithm
-                    <span class="superscript">19</span>
+                    <span class="superscript">20</span>
 </a></li>
-                <li><a href="../tags.html#backtracking-ref">Backtracking
-                    <span class="superscript">1</span>
+                <li><a href="../tags.html#backtracking-ref">BackTracking
+                    <span class="superscript">2</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
