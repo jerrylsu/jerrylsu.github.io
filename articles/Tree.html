@@ -80,8 +80,13 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#traverse">traverse: 遍历</a></li>
-<li><a href="#dfs">dfs: 分治</a><ul>
+<li><a href="#_1">思维框架</a><ul>
+<li><a href="#traverse">遍历traverse</a></li>
+<li><a href="#dfs">分解dfs</a></li>
+</ul>
+</li>
+<li><a href="#traverse_1">遍历思维traverse</a></li>
+<li><a href="#dfs_1">分解思维dfs</a><ul>
 <li><a href="#543">543.二叉树的直径</a></li>
 <li><a href="#124">124.二叉树中的最大路径和</a></li>
 <li><a href="#235">235.二叉搜索树最近公共祖先</a></li>
@@ -95,8 +100,9 @@
     <div class="span8 article-content">
             
             
-<h2 id="traverse">traverse: 遍历</h2>
-<p>思维框架：<strong>遍历</strong>的思维模式。自顶向下的前序递归遍历的思维模式。</p>
+<h2 id="_1">思维框架</h2>
+<h3 id="traverse">遍历traverse</h3>
+<p><strong>思维框架：</strong>遍历的思维模式。自顶向下的前序递归遍历的思维模式。</p>
 <p>结果在参数中</p>
 <ol>
 <li>
@@ -112,7 +118,11 @@
 <p>前序遍历一遍二叉树，得到原问题的结果。</p>
 </li>
 </ol>
-<p>框架模版:</p>
+<p><strong>重要总结：</strong></p>
+<p>遍历思维延伸 -&gt; <strong>DFS / 回溯算法</strong></p>
+<p><strong>用一个无返回值的递归函数，单纯起到遍历递归树，在遍历的过程中收集结果，到叶子结点完成结果收集。</strong></p>
+<p><strong>典型问题：</strong>全排列问题</p>
+<p><strong>框架模版:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="err">问题</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="err">问题结果：</span>
 <span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
 
@@ -128,8 +138,8 @@
 <span class="w">    </span><span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">left</span><span class="p">)</span>
 <span class="w">    </span><span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">right</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="dfs">dfs: 分治</h2>
-<p>思维框架：<strong>分解问题</strong>的思维模式。自底向上的后序递归分解原问题的思维模式。</p>
+<h3 id="dfs">分解dfs</h3>
+<p><strong>思维框架：</strong>分解问题的思维模式。自底向上的后序递归分解原问题的思维模式。</p>
 <p>结果在返回值中</p>
 <ol>
 <li>
@@ -145,7 +155,11 @@
 <p>后序遍历一遍二叉树，得到原问题的结果。</p>
 </li>
 </ol>
-<p>框架模版:</p>
+<p><strong>典型问题：</strong>斐波那契问题</p>
+<p><strong>重要总结：</strong></p>
+<p>分解思维延伸 -&gt; <strong>分治算法 / 动态规划算法</strong></p>
+<p><strong>清晰递归函数的定义是什么，利用这个定义来分解问题，利用子问题的答案推导原问题的答案！</strong></p>
+<p><strong>框架模版:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="err">原问题</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="err">原问题结果：</span>
 <span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
 
@@ -163,6 +177,8 @@
 
 <span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="err">当前问题的结果</span>
 </code></pre></div>
+<h2 id="traverse_1">遍历思维traverse</h2>
+<h2 id="dfs_1">分解思维dfs</h2>
 <h3 id="543">543.二叉树的直径</h3>
 <ul>
 <li>
