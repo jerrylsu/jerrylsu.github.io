@@ -141,7 +141,7 @@
 <span class="w">    </span><span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">right</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="dfs">分解问题dfs</h3>
-<p><strong>思维框架：</strong><code>分解问题</code>的思维模式。<code>自底向上</code>的<code>后序递归</code>分解原问题的思维模式，思考<code>递归函数返回值的定义</code> + <code>有返回值的递归</code>实现。递归函数的返回值定义了该节点的解决了什么问题，结果是什么，并且是如何推到到原问题解。</p>
+<p><strong>思维框架：</strong> <code>分解问题</code>的思维模式。<code>自底向上</code>的<code>后序递归</code>分解原问题的思维模式，思考<code>递归函数返回值的定义</code> + <code>有返回值的递归</code>实现。递归函数的返回值定义了该节点的解决了什么问题，结果是什么，并且是如何推到到原问题解。</p>
 <p><code>结果在返回值中</code></p>
 <ol>
 <li>
@@ -157,8 +157,9 @@
 <p>后序遍历一遍二叉树，得到原问题的结果。</p>
 </li>
 </ol>
-<p><strong>典型问题：</strong>斐波那契问题</p>
-<p><strong>重要总结：</strong>清晰<code>递归函数的定义</code>是什么，利用这个定义来分解问题，利用<code>子问题</code>的答案推导原问题的答案！</p>
+<p><strong>典型问题：</strong> 斐波那契问题</p>
+<p><strong>重要总结：</strong> 清晰<code>递归函数的定义</code>是什么，利用这个定义来分解问题，利用<code>子问题</code>的答案推导原问题的答案！</p>
+<p><strong>分解问题思维的精髓：</strong> 承上启下。通过递归函数参数获取父节点信息，通过递归函数返回值收集子树信息。</p>
 <p><strong>框架模版:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="err">原问题</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="err">原问题结果：</span>
 <span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
