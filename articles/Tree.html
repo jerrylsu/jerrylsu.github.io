@@ -82,11 +82,11 @@
 <ul>
 <li><a href="#_1">思维框架</a><ul>
 <li><a href="#traverse">遍历traverse</a></li>
-<li><a href="#dfs">分解dfs</a></li>
+<li><a href="#dfs">分解问题dfs</a></li>
 </ul>
 </li>
-<li><a href="#traverse_1">遍历思维traverse</a></li>
-<li><a href="#dfs_1">分解思维dfs</a><ul>
+<li><a href="#traverse_1">遍历traverse</a></li>
+<li><a href="#dfs_1">分解问题dfs</a><ul>
 <li><a href="#543">543.二叉树的直径</a></li>
 <li><a href="#124">124.二叉树中的最大路径和</a></li>
 <li><a href="#235">235.二叉搜索树最近公共祖先</a></li>
@@ -101,8 +101,9 @@
             
             
 <h2 id="_1">思维框架</h2>
+<p><code>遍历</code>和<code>分解问题</code>两种思维模式。不管哪种思维模式，都需要思考：<code>二叉树当前节点，需要做什么？什么时候（前/中/后序位置）做？</code></p>
 <h3 id="traverse">遍历traverse</h3>
-<p><strong>思维框架：</strong><code>遍历</code>的思维模式。<code>自顶向下</code>的<code>前序递归</code>遍历的思维模式。</p>
+<p><strong>思维框架：</strong><code>遍历</code>的思维模式。<code>自顶向下</code>的<code>前序递归</code>遍历的思维模式，<code>外部全局变量</code> + <code>无返回值的递归函数</code>实现。</p>
 <p><code>结果在全局变量参数中</code></p>
 <ol>
 <li>
@@ -137,8 +138,8 @@
 <span class="w">    </span><span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">left</span><span class="p">)</span>
 <span class="w">    </span><span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">right</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="dfs">分解dfs</h3>
-<p><strong>思维框架：</strong><code>分解问题</code>的思维模式。<code>自底向上</code>的<code>后序递归</code>分解原问题的思维模式。</p>
+<h3 id="dfs">分解问题dfs</h3>
+<p><strong>思维框架：</strong><code>分解问题</code>的思维模式。<code>自底向上</code>的<code>后序递归</code>分解原问题的思维模式，思考<code>递归函数返回值的定义</code> + <code>有返回值的递归</code>实现。递归函数的返回值定义了该节点的解决了什么问题，结果是什么，并且是如何推到到原问题解。</p>
 <p><code>结果在返回值中</code></p>
 <ol>
 <li>
@@ -175,8 +176,8 @@
 
 <span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="err">当前问题的结果</span>
 </code></pre></div>
-<h2 id="traverse_1">遍历思维traverse</h2>
-<h2 id="dfs_1">分解思维dfs</h2>
+<h2 id="traverse_1">遍历traverse</h2>
+<h2 id="dfs_1">分解问题dfs</h2>
 <h3 id="543">543.二叉树的直径</h3>
 <ul>
 <li>
