@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="LLM, NLP, NLP, " />
 
-<meta property="og:title" content="GGUF Model "/>
+<meta property="og:title" content="GGUF Model "/>
 <meta property="og:url" content="../articles/GGUF-Model.html" />
 <meta property="og:description" content="介绍 GGUF 是一种文件格式，用于存储用于 GGML 推理的模型和基于 GGML 的执行器。 GGUF 是一种二进制格式，旨在快速加载和保存模型 …" />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2024-10-21T11:17:17+08:00" />
-<meta name="twitter:title" content="GGUF Model ">
+<meta name="twitter:title" content="GGUF Model ">
 <meta name="twitter:description" content="介绍 GGUF 是一种文件格式，用于存储用于 GGML 推理的模型和基于 GGML 的执行器。 GGUF 是一种二进制格式，旨在快速加载和保存模型 …">
 
-        <title>GGUF Model  · JERRYLSU
+        <title>GGUF Model  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/GGUF-Model.html">
-                GGUF Model
+                <span class="caps">GGUF</span>&nbsp;Model
             </a>
         </h1>
     </header>
@@ -107,7 +107,7 @@
             
             
 <h2 id="_1">介绍</h2>
-<p>GGUF 是一种文件格式，用于存储用于 GGML 推理的模型和基于 GGML 的执行器。 GGUF 是一种二进制格式，旨在快速加载和保存模型并易于阅读。传统上，模型是使用 PyTorch 或其他框架开发的，然后转换为 GGUF 以在 GGML 中使用。</p>
+<p><span class="caps">GGUF</span> 是一种文件格式，用于存储用于 <span class="caps">GGML</span> 推理的模型和基于 <span class="caps">GGML</span> 的执行器。 <span class="caps">GGUF</span> 是一种二进制格式，旨在快速加载和保存模型并易于阅读。传统上，模型是使用 PyTorch 或其他框架开发的，然后转换为 <span class="caps">GGUF</span> 以在 <span class="caps">GGML</span> 中使用。</p>
 <p><img alt="gguf" src="../images/gguf.png"/></p>
 <h2 id="_2">准备工作</h2>
 <p>基于生成式多模态文字识别模型GOT_OCR2.0示例。首先枚举GOT_OCR2.0模型全部权重键值对，获取模型网络结构命名。方法如下：</p>
@@ -314,7 +314,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="_5">张量映射</h2>
-<p>将原始张量名称映射到 GGUF 中的标准化等效名称。作为一般规则，在向 GGUF 添加新的张量名称之前，请确保等效命名尚不存在。找到等效的 GGUF 张量名称后，将其添加到tensor_mapping.py 文件中。如果张量名称是重复层/块的一部分，则关键字 bid 替换。</p>
+<p>将原始张量名称映射到 <span class="caps">GGUF</span> 中的标准化等效名称。作为一般规则，在向 <span class="caps">GGUF</span> 添加新的张量名称之前，请确保等效命名尚不存在。找到等效的 <span class="caps">GGUF</span> 张量名称后，将其添加到tensor_mapping.py 文件中。如果张量名称是重复层/块的一部分，则关键字 bid 替换。</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">.constants</span> <span class="kn">import</span> <span class="n">MODEL_ARCH</span><span class="p">,</span> <span class="n">MODEL_TENSOR</span><span class="p">,</span> <span class="n">MODEL_TENSORS</span><span class="p">,</span> <span class="n">TENSOR_NAMES</span>
 
 <span class="k">class</span> <span class="nc">TensorNameMap</span><span class="p">:</span>
@@ -448,25 +448,25 @@
 <li>Model.write_tensors</li>
 </ul>
 <p>具体在第3章定义模型架构中实现。</p>
-<p><strong>注意：</strong>张量名称必须以 .weight 后缀结尾， quantize量化工具会默认处理权重。</p>
+<p><strong>注意：</strong>张量名称必须以 .weight 后缀结尾， quantize量化工具会默认处理权重。</p>
 <h2 id="_6">模型参数转换</h2>
 <div class="highlight"><pre><span></span><code><span class="n">python</span> <span class="n">convert_hf_to_gguf</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">outtype</span> <span class="n">bf16</span> <span class="o">--</span><span class="n">model</span> <span class="o">~/</span><span class="n">GOT</span><span class="o">-</span><span class="n">OCR2_0</span> <span class="o">--</span><span class="n">outfile</span> <span class="o">~/</span><span class="n">output</span><span class="o">/</span><span class="n">GOT</span><span class="o">-</span><span class="n">OCR2_0</span><span class="o">-</span><span class="n">GGUF</span>
 </code></pre></div>
 <h2 id="_7">实现</h2>
 <p><a href="https://github.com/jerrylsu/gguf-py">https://github.com/jerrylsu/gguf-py</a></p>
 <h2 id="_8">致谢🙏</h2>
-<p><a href="https://github.com/ggerganov/ggml">ggml</a>: Tensor library for machine learning.</p>
-<p><a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a>: LLM inference in C/C++.</p>
-<p><a href="https://github.com/Ucas-HaoranWei/GOT-OCR2.0">GOT-OCR2.0</a>: Official code implementation of General OCR Theory: Towards OCR-2.0 via a Unified End-to-end Model.</p>
+<p><a href="https://github.com/ggerganov/ggml">ggml</a>: Tensor library for machine learning.</p>
+<p><a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a>: <span class="caps">LLM</span> inference in C/C++.</p>
+<p><a href="https://github.com/Ucas-HaoranWei/GOT-OCR2.0"><span class="caps">GOT</span>-<span class="caps">OCR2</span>.0</a>: Official code implementation of General <span class="caps">OCR</span> Theory: Towards <span class="caps">OCR</span>-2.0 via a Unified End-to-end Model.</p>
 
 
              
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=GGUF%20Model&url=http%3A//www.jerrylsu.net/articles/GGUF-Model.html&hashtags=llm,nlp" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=GGUF%C2%A0Model&url=http%3A//www.jerrylsu.net/articles/GGUF-Model.html&hashtags=llm,nlp" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/GGUF-Model.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=GGUF%20Model&amp;body=http%3A//www.jerrylsu.net/articles/GGUF-Model.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=GGUF%C2%A0Model&amp;body=http%3A//www.jerrylsu.net/articles/GGUF-Model.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -522,18 +522,18 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Self-Instruct.html" title="SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions">SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions</a></li>
-<li><a href="../articles/Contrastive-Language-Image-Pretraining.html" title="Contrastive Language-Image Pretraining">Contrastive Language-Image Pretraining</a></li>
-<li><a href="../articles/Nucleus Sampling Top-p Sampling.html" title="Nucleus Sampling Top-p Sampling">Nucleus Sampling Top-p Sampling</a></li>
-<li><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a></li>
-<li><a href="../articles/MinHash-Document-level-Deduplication.html" title="MinHash: Document-level Deduplication">MinHash: Document-level Deduplication</a></li>
+<li><a href="../articles/Self-Instruct.html" title="SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions">SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions</a></li>
+<li><a href="../articles/Contrastive-Language-Image-Pretraining.html" title="Contrastive Language-Image Pretraining">Contrastive Language-Image Pretraining</a></li>
+<li><a href="../articles/Nucleus Sampling Top-p Sampling.html" title="Nucleus Sampling Top-p Sampling">Nucleus Sampling Top-p Sampling</a></li>
+<li><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a></li>
+<li><a href="../articles/MinHash-Document-level-Deduplication.html" title="MinHash: Document-level Deduplication">MinHash: Document-level Deduplication</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/MinHash-Document-level-Deduplication.html" title="Previous: MinHash: Document-level Deduplication">MinHash: Document-level Deduplication</a></li>
+                <li class="previous-article">« <a href="../articles/MinHash-Document-level-Deduplication.html" title="Previous: MinHash: Document-level Deduplication">MinHash: Document-level Deduplication</a></li>
             </ul>
             </nav>
             </aside>

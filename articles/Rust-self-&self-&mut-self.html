@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Rust, Programming, " />
 
-<meta property="og:title" content="Rust self vs &amp;self vs &amp;mut self "/>
+<meta property="og:title" content="Rust self vs &amp;self vs &amp;mut self "/>
 <meta property="og:url" content="../articles/Rust-self-&self-&mut-self.html" />
-<meta property="og:description" content="self: (self: Self) Having a method that takes ownership of the instance by using just self as the first parameter is rare; this technique is usually used when the method transforms self into something else and you want to prevent the caller from using the original instance after the transformation …" />
+<meta property="og:description" content="self: (self: Self) Having a method that takes ownership of the instance by using just self as the first parameter is rare; this technique is usually used when the method transforms self into something else and you want to prevent the caller from using the original instance after the transformation …" />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2023-01-05T10:17:17+08:00" />
-<meta name="twitter:title" content="Rust self vs &amp;self vs &amp;mut self ">
-<meta name="twitter:description" content="self: (self: Self) Having a method that takes ownership of the instance by using just self as the first parameter is rare; this technique is usually used when the method transforms self into something else and you want to prevent the caller from using the original instance after the transformation …">
+<meta name="twitter:title" content="Rust self vs &amp;self vs &amp;mut self ">
+<meta name="twitter:description" content="self: (self: Self) Having a method that takes ownership of the instance by using just self as the first parameter is rare; this technique is usually used when the method transforms self into something else and you want to prevent the caller from using the original instance after the transformation …">
 
-        <title>Rust self vs &amp;self vs &amp;mut self  · JERRYLSU
+        <title>Rust self vs &amp;self vs &amp;mut self  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Rust-self-&self-&mut-self.html">
-                Rust self vs &self vs &mut self
+                Rust self vs &self vs &mut&nbsp;self
             </a>
         </h1>
     </header>
@@ -96,13 +96,13 @@
             
             <ul>
 <li>
-<p><strong>self</strong>: (self: Self) Having a method that takes ownership of the instance by using just self as the first parameter is rare; this technique is usually used when the method transforms self into something else and you want to prevent the caller from using the original instance after the transformation.</p>
+<p><strong>self</strong>: (self: Self) Having a method that takes ownership of the instance by using just self as the first parameter is rare; this technique is usually used when the method transforms self into something else and you want to prevent the caller from using the original instance after the&nbsp;transformation.</p>
 </li>
 <li>
-<p><strong>&amp;self</strong>: (self: &amp;Self) We don’t want to take ownership, and we just want to read the data in the struct, not write to it.</p>
+<p><strong>&amp;self</strong>: (self: &amp;Self) We don’t want to take ownership, and we just want to read the data in the struct, not write to&nbsp;it.</p>
 </li>
 <li>
-<p><strong>&amp;mut self</strong>: (self: &amp;mut Self) If we wanted to change the instance that we’ve called the method on as part of what the method does, we’d use &amp;mut self as the first parameter.</p>
+<p><strong>&amp;mut self</strong>: (self: &amp;mut Self) If we wanted to change the instance that we’ve called the method on as part of what the method does, we’d use &amp;mut self as the first&nbsp;parameter.</p>
 </li>
 </ul>
 <p><a href="https://stackoverflow.com/questions/59018413/when-to-use-self-self-mut-self-in-methods">https://stackoverflow.com/questions/59018413/when-to-use-self-self-mut-self-in-methods</a></p>
@@ -112,9 +112,9 @@
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Rust%20self%20vs%20%26self%20vs%20%26mut%20self&url=http%3A//www.jerrylsu.net/articles/Rust-self-%26self-%26mut-self.html&hashtags=rust" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Rust%20self%20vs%20%26self%20vs%20%26mut%C2%A0self&url=http%3A//www.jerrylsu.net/articles/Rust-self-%26self-%26mut-self.html&hashtags=rust" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Rust-self-%26self-%26mut-self.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Rust%20self%20vs%20%26self%20vs%20%26mut%20self&amp;body=http%3A//www.jerrylsu.net/articles/Rust-self-%26self-%26mut-self.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Rust%20self%20vs%20%26self%20vs%20%26mut%C2%A0self&amp;body=http%3A//www.jerrylsu.net/articles/Rust-self-%26self-%26mut-self.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -170,17 +170,17 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Rust-in-JupyerLab.html" title="Rust in JupyterLab">Rust in JupyterLab</a></li>
-<li><a href="../articles/Rust-[]-&[]-vec![].html" title="Rust [] vs &amp;[] vs vec![]">Rust [] vs &[] vs vec![]</a></li>
-<li><a href="../articles/Rust-closure.html" title="Rust closure">Rust closure</a></li>
+<li><a href="../articles/Rust-in-JupyerLab.html" title="Rust in JupyterLab">Rust in JupyterLab</a></li>
+<li><a href="../articles/Rust-[]-&[]-vec![].html" title="Rust [] vs &amp;[] vs vec![]">Rust [] vs &[] vs vec![]</a></li>
+<li><a href="../articles/Rust-closure.html" title="Rust closure">Rust closure</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Rust-in-JupyerLab.html" title="Previous: Rust in JupyterLab">Rust in JupyterLab</a></li>
-                <li class="next-article"><a href="../articles/Rust-[]-&[]-vec![].html" title="Next: Rust [] vs &amp;[] vs vec![]">Rust [] vs &[] vs vec![]</a> »</li>
+                <li class="previous-article">« <a href="../articles/Rust-in-JupyerLab.html" title="Previous: Rust in JupyterLab">Rust in JupyterLab</a></li>
+                <li class="next-article"><a href="../articles/Rust-[]-&[]-vec![].html" title="Next: Rust [] vs &amp;[] vs vec![]">Rust [] vs &[] vs vec![]</a> »</li>
             </ul>
             </nav>
             </aside>

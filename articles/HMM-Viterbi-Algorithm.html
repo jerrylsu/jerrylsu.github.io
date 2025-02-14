@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Deep Learning, NLP, Viterbi, Algorithm, HMM, CRF, NLP, " />
 
-<meta property="og:title" content="HMM Viterbi Algorithm "/>
+<meta property="og:title" content="HMM Viterbi Algorithm "/>
 <meta property="og:url" content="../articles/HMM-Viterbi-Algorithm.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2021-02-18T10:17:17+08:00" />
-<meta name="twitter:title" content="HMM Viterbi Algorithm ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="HMM Viterbi Algorithm ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>HMM Viterbi Algorithm  · JERRYLSU
+        <title>HMM Viterbi Algorithm  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/HMM-Viterbi-Algorithm.html">
-                HMM Viterbi Algorithm
+                <span class="caps">HMM</span> Viterbi&nbsp;Algorithm
             </a>
         </h1>
     </header>
@@ -94,18 +94,18 @@
     </div>
     <div class="span8 article-content">
             
-            <h3 id="hmm">HMM</h3>
+            <h3 id="hmm"><span class="caps">HMM</span></h3>
 <p><img alt="hmm" src="../../../images/HMM/HMM.png"></p>
 <p>HMM的问题，就是求解X,Y的观测序列和隐含状态序列的联合概率。</p>
 <p><img alt="viterbi" src="../../../images/HMM/Viterbi.png"></p>
 <p><a href="https://zhuanlan.zhihu.com/p/265954764">基于viterbi算法HMM的NER实现</a></p>
 <p><a href="https://www.bilibili.com/video/BV1zJ411575b?t=1724">https://www.bilibili.com/video/BV1zJ411575b?t=1724</a></p>
-<h3 id="viterbi-algorithm">Viterbi Algorithm 篱笆网络</h3>
+<h3 id="viterbi-algorithm">Viterbi Algorithm&nbsp;篱笆网络</h3>
 <p>篱笆网络有向图的特点是同一列节点有多个，并且和上一列节点交错地连接起来。同一列节点代表同一个时间点上不同的状态的并列，因为这种一列一列整齐的节点和交错的边很像篱笆而得名。</p>
 <p>篱笆网络的特点：有向、无环图，上一层节点只能指向下一层节点。</p>
 <p>L:观测序列长度（输入文本序列），N:隐含状态数（NER的标签数）</p>
-<p>穷举法: $O(N^L)$</p>
-<p>Viterbi法: $O(L*N^2)$</p>
+<p>穷举法:&nbsp;$O(N^L)$</p>
+<p>Viterbi法:&nbsp;$O(L*N^2)$</p>
 <h4 id="_1">关键要素</h4>
 <ul>
 <li>
@@ -124,7 +124,7 @@
 <p>初始隐含状态概率向量（π，维度为N*1）</p>
 </li>
 </ul>
-<h3 id="viterbi-algorithm_1">Viterbi Algorithm</h3>
+<h3 id="viterbi-algorithm_1">Viterbi&nbsp;Algorithm</h3>
 <p>Viterbi算法解决篱笆型有向图的最短路径问题。目标：<strong>预测概率最大的隐含状态序列</strong></p>
 <p>Viterbi算法本质：动态规划+回溯，找到最优选择路径。<strong>取每一个时间步观测点对应的最大概率的隐含状态，即局部最优解，隐含序列状态连乘后并不能得到全局最优解。因为并没有考虑到时间步之间隐含状态状态转移的概率的最大化。例如存在相邻两个最大概率的隐含状态，但是这两个状态转移的概率很小或者不存在，所以无法获得全局最优解，甚至是不存在的隐含状态序列解。</strong></p>
 <p>凡是使用隐含马尔可夫模型描述的问题都可以用Viteribi法来解码，包括今天的数字通信、语音识别、机器翻译、拼音转汉字、分词等。—《数学之美》</p>
@@ -132,14 +132,14 @@
 <li>Viterbi与HMM的关系？</li>
 </ul>
 <p>Viterbi是解决HMM第三个问题的一种具体实现算法。</p>
-<h3 id="hmm-crf-bert-bertcrf"><strong>HMM  -&gt; CRF -&gt; BERT -&gt; BERT+CRF</strong></h3>
+<h3 id="hmm-crf-bert-bertcrf"><strong><span class="caps">HMM</span>  -&gt; <span class="caps">CRF</span> -&gt; <span class="caps">BERT</span> -&gt; <span class="caps">BERT</span>+<span class="caps">CRF</span></strong></h3>
 <blockquote>
 <p>引子：当初用BERT模型做答案抽取任务时（类似NER），模型抽取的句子总是出现截断的残句，通过在BERT模型添加CRF头后，解决了这一个问题。为什么CRF可以解决？原理是怎样的？</p>
 </blockquote>
 <p><a href="https://www.zhihu.com/question/20136144">通俗讲解Viterbi</a></p>
-<p><a href="https://ben.bolte.cc/viterbi">Coding the Viterbi algorithm in Numpy</a></p>
+<p><a href="https://ben.bolte.cc/viterbi">Coding the Viterbi algorithm in&nbsp;Numpy</a></p>
 <p><a href="https://wulc.me/2017/03/02/%E7%BB%B4%E7%89%B9%E6%AF%94%E7%AE%97%E6%B3%95/">维特比算法</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/61227299">HMM-CRF-LSTM的区别与联系</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/61227299"><span class="caps">HMM</span>-<span class="caps">CRF</span>-LSTM的区别与联系</a></p>
 <h3 id="_2">迭代法</h3>
 <h3 id="_3">矩阵法</h3>
 <div class="highlight"><pre><span></span><code>
@@ -150,9 +150,9 @@
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=HMM%20Viterbi%20Algorithm&url=http%3A//www.jerrylsu.net/articles/HMM-Viterbi-Algorithm.html&hashtags=deep-learning,nlp,viterbi,algorithm,hmm,crf" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=HMM%20Viterbi%C2%A0Algorithm&url=http%3A//www.jerrylsu.net/articles/HMM-Viterbi-Algorithm.html&hashtags=deep-learning,nlp,viterbi,algorithm,hmm,crf" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/HMM-Viterbi-Algorithm.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=HMM%20Viterbi%20Algorithm&amp;body=http%3A//www.jerrylsu.net/articles/HMM-Viterbi-Algorithm.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=HMM%20Viterbi%C2%A0Algorithm&amp;body=http%3A//www.jerrylsu.net/articles/HMM-Viterbi-Algorithm.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -208,10 +208,10 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Convert-pytorch-model-to-tensorflow2.html" title="Convert pytorch checkpoint to tensorflow2">Convert pytorch checkpoint to tensorflow2</a></li>
+<li><a href="../articles/Convert-pytorch-model-to-tensorflow2.html" title="Convert pytorch checkpoint to tensorflow2">Convert pytorch checkpoint to tensorflow2</a></li>
 <li><a href="../articles/Conditional-Random-Field.html" title="ConditionalRandomField">ConditionalRandomField</a></li>
-<li><a href="../articles/Utterance-Rewriter.html" title="Utterance Rewriter">Utterance Rewriter</a></li>
-<li><a href="../articles/Pointer-Networkers.html" title="Pointer Networkers">Pointer Networkers</a></li>
+<li><a href="../articles/Utterance-Rewriter.html" title="Utterance Rewriter">Utterance Rewriter</a></li>
+<li><a href="../articles/Pointer-Networkers.html" title="Pointer Networkers">Pointer Networkers</a></li>
 <li><a href="../articles/Text-Generation.html" title="Text-Generation">Text-Generation</a></li>
 </ul>
 <hr />
@@ -219,8 +219,8 @@
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Capsule-Networkers.html" title="Previous: Capsule Networkers">Capsule Networkers</a></li>
-                <li class="next-article"><a href="../articles/Viterbi-Algorithm.html" title="Next: Viterbi Algorithm">Viterbi Algorithm</a> »</li>
+                <li class="previous-article">« <a href="../articles/Capsule-Networkers.html" title="Previous: Capsule Networkers">Capsule Networkers</a></li>
+                <li class="next-article"><a href="../articles/Viterbi-Algorithm.html" title="Next: Viterbi Algorithm">Viterbi Algorithm</a> »</li>
             </ul>
             </nav>
             </aside>

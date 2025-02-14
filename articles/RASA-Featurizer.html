@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Deep Learning, NLP, RASA, NLP, " />
 
-<meta property="og:title" content="【NLP】RASA Featurizer "/>
+<meta property="og:title" content="【NLP】RASA Featurizer "/>
 <meta property="og:url" content="../articles/RASA-Featurizer.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-03-05T09:26:25+08:00" />
-<meta name="twitter:title" content="【NLP】RASA Featurizer ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="【NLP】RASA Featurizer ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>【NLP】RASA Featurizer  · JERRYLSU
+        <title>【NLP】RASA Featurizer  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/RASA-Featurizer.html">
-                【NLP】RASA Featurizer
+                【<span class="caps">NLP</span>】<span class="caps">RASA</span>&nbsp;Featurizer
             </a>
         </h1>
     </header>
@@ -106,16 +106,16 @@
 </li>
 </ul>
 <h3 id="httpsrasacomdocsrasaapicore-featurization">https://rasa.com/docs/rasa/api/core-featurization/</h3>
-<h3 id="dialogue-transformers"><a href="https://arxiv.org/abs/1910.00486">Dialogue Transformers</a></h3>
-<p><strong>LabelTokenizerSingleStateFeaturizer</strong> creates a vector based on the feature label: All active feature labels (e.g. prev_action_listen) are split into tokens and represented as a bag-of-words. For example, actions utter_explain_details_hotel and utter_explain_details_restaurant will have 3 features in common, and differ by a single feature indicating a domain.</p>
-<p>Labels for user inputs (intents, entities) and bot actions are featurized separately. Each label in the two categories is tokenized on a special character split_symbol (e.g. action_search_restaurant = {action, search, restaurant}), creating two vocabularies. A bag-of-words representation is then created for each label using the appropriate vocabulary. The slots are featurized as binary vectors, indicating their presence or absence at each step of the dialogue.</p>
-<h3 id="transformer-policydialogue-turn-leveltoken-level">Transformer policy是对dialogue turn level编码，而不是token level编码。</h3>
+<h3 id="dialogue-transformers"><a href="https://arxiv.org/abs/1910.00486">Dialogue&nbsp;Transformers</a></h3>
+<p><strong>LabelTokenizerSingleStateFeaturizer</strong> creates a vector based on the feature label: All active feature labels (e.g. prev_action_listen) are split into tokens and represented as a bag-of-words. For example, actions utter_explain_details_hotel and utter_explain_details_restaurant will have 3 features in common, and differ by a single feature indicating a&nbsp;domain.</p>
+<p>Labels for user inputs (intents, entities) and bot actions are featurized separately. Each label in the two categories is tokenized on a special character split_symbol (e.g. action_search_restaurant = {action, search, restaurant}), creating two vocabularies. A bag-of-words representation is then created for each label using the appropriate vocabulary. The slots are featurized as binary vectors, indicating their presence or absence at each step of the&nbsp;dialogue.</p>
+<h3 id="transformer-policydialogue-turn-leveltoken-level">Transformer policy是对dialogue turn level编码，而不是token&nbsp;level编码。</h3>
 <p><code>we apply self-attention at the discourse level, attending over the sequence of dialogue turns rather than the sequence of tokens in a single turn.</code></p>
-<p>一条训练数据是，X个dialogue turns和Y个action_names。</p>
-<h1 id="11-x">1.1 输入特征X编码</h1>
-<h2 id="111">1.1.1 用户输入和系统动作词典构建</h2>
+<p>一条训练数据是，X个dialogue&nbsp;turns和Y个action_names。</p>
+<h1 id="11-x">1.1&nbsp;输入特征X编码</h1>
+<h2 id="111">1.1.1&nbsp;用户输入和系统动作词典构建</h2>
 <p><code>prepare_from_domain</code></p>
-<p><strong>Creates internal vocabularies for user intents and bot actions to use for featurization</strong></p>
+<p><strong>Creates internal vocabularies for user intents and bot actions to use for&nbsp;featurization</strong></p>
 <div class="highlight"><pre><span></span><code>user_labels = []
 slot_labels = []
 bot_labels = []
@@ -124,7 +124,7 @@ bot_vocab = None
 user_vocab = None
 </code></pre></div>
 
-<p><strong>只有slot_labels没有生成字典，使用列表['slot_s_answer_error_0'...]，也没有split('_')</strong></p>
+<p><strong>只有slot_labels没有生成字典，使用列表[&#8216;slot_s_answer_error_0&#8217;&#8230;]，也没有split(&#8216;_&#8217;)</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">bot_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;action_listen&#39;</span><span class="p">,</span> <span class="s1">&#39;action_restart&#39;</span><span class="p">,</span> <span class="s1">&#39;utter_ask_is_staff&#39;</span><span class="p">,</span> <span class="s1">&#39;utter_ask_visitor_reserve&#39;</span><span class="p">]</span>
 <span class="n">distinct_tokens</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">token</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">bot_labels</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">label</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)])</span>
 <span class="n">bot_vocab</span> <span class="o">=</span> <span class="p">{</span><span class="n">token</span><span class="p">:</span> <span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">token</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">distinct_tokens</span><span class="p">))}</span>
@@ -160,8 +160,8 @@ user_vocab = None
 <div class="highlight"><pre><span></span><code><span class="n">slot_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;slot_s_answer_error_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_chitchat_turn_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_digits_key_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_host_name_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_call_human_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_call_human_1&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_chitchat_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_chitchat_1&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_reserve_visitor_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_reserve_visitor_1&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_same_name_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_same_name_1&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_staff_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_staff_1&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_valid_info_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_valid_info_1&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_valid_reserve_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_valid_reserve_1&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_valid_staff_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_valid_staff_1&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_visitor_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_is_visitor_1&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_phone_number_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_self_name_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_staff_homophonic_name_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_title_name_0&#39;</span><span class="p">,</span> <span class="s1">&#39;slot_s_visitor_homophonic_name_0&#39;</span><span class="p">]</span>
 </code></pre></div>
 
-<h2 id="112-encode">1.1.2 encode——词袋模型</h2>
-<p><strong>总特征向量维度：num_features = 用户输入（意图和实体）字典维度 + 槽维度 + 系统action字典维度</strong></p>
+<h2 id="112-encode">1.1.2&nbsp;encode——词袋模型</h2>
+<p><strong>总特征向量维度：num_features = 用户输入（意图和实体）字典维度 + 槽维度 +&nbsp;系统action字典维度</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">user_feature_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">user_vocab</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;user feature len: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user_feature_len</span><span class="p">))</span>
 <span class="n">slot_feature_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">slot_labels</span><span class="p">)</span>
@@ -461,20 +461,20 @@ digits
 <ul>
 <li><strong>X</strong>的shape=（1，4，153）1th维是story数，2维是对话轮数，3维是每轮的编码vector长度。固定长度，有padding</li>
 </ul>
-<h1 id="12-y">1.2 输出Y编码</h1>
+<h1 id="12-y">1.2&nbsp;输出Y编码</h1>
 <ol>
 <li>
-<p>对action进行one-hot编码。 'action_listen' ---&gt; '1,0,0,...,0,0,0' (62,)维向量</p>
+<p>对action进行one-hot编码。 &#8216;action_listen&#8217; &#8212;-&gt; &#8216;1,0,0,&#8230;,0,0,0&#8217;&nbsp;(62,)维向量</p>
 </li>
 <li>
-<p>构造bot_action字典，"<em>"拆分。 'action_listen' ---&gt; '1, 0, 0, .., 1, ..., 0, 0'  (62, 72)维矩阵。62个actions，每个action用72维表示，72是'</em>'拆分所有action_names后构成的字典数。</p>
+<p>构造bot_action字典，&#8221;<em>&#8220;拆分。 &#8216;action_listen&#8217; &#8212;-&gt; &#8216;1, 0, 0, .., 1, &#8230;, 0, 0&#8217;  (62, 72)维矩阵。62个actions，每个action用72维表示，72是&#8217;</em>&#8216;拆分所有action_names后构成的字典数。</p>
 </li>
 <li>
-<p>one-hot向量转bot_action字典向量。np.argmax(onehot vector)获取索引, 查(62, 72)矩阵。</p>
+<p>one-hot向量转bot_action字典向量。np.argmax(onehot vector)获取索引, 查(62,&nbsp;72)矩阵。</p>
 </li>
 </ol>
-<p>Y 最终的输出维度是(1dim, 2dim, 3dim) = (1, 4, 72): 1 story, 4 turns dialogue, 72 vector of action dict。对于FullDialogueTrackerFeaturizer,第2个维度是对话轮数大小，按照最长story长度padding -1, 用-1补齐的轮对应的标签是action_listen。</p>
-<p>FullDialogueTrackerFeaturizer 和 MaxHistoryTrackerFeaturizer 的区别就是再对2nd维度上的控制，</p>
+<p>Y 最终的输出维度是(1dim, 2dim, 3dim) = (1, 4, 72): 1 story, 4 turns dialogue, 72 vector of action dict。对于FullDialogueTrackerFeaturizer,第2个维度是对话轮数大小，按照最长story长度padding -1,&nbsp;用-1补齐的轮对应的标签是action_listen。</p>
+<p>FullDialogueTrackerFeaturizer 和 MaxHistoryTrackerFeaturizer&nbsp;的区别就是再对2nd维度上的控制，</p>
 <div class="highlight"><pre><span></span><code><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nv">y</span>.<span class="nv">ndim</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">isinstance</span><span class="ss">(</span><span class="nv">self</span>,<span class="w"> </span><span class="nv">MaxHistoryTrackerFeaturizer</span><span class="ss">)</span>:
 <span class="w">            </span>#<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">it</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">MaxHistoryFeaturizer</span>,<span class="w"> </span><span class="nv">remove</span><span class="w"> </span><span class="nv">time</span><span class="w"> </span><span class="nv">axis</span>
 <span class="w">            </span><span class="nv">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">y</span>[:,<span class="w"> </span><span class="mi">0</span>,<span class="w"> </span>:]
@@ -672,9 +672,9 @@ array([[[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=%E3%80%90NLP%E3%80%91RASA%20Featurizer&url=http%3A//www.jerrylsu.net/articles/RASA-Featurizer.html&hashtags=deep-learning,nlp,rasa" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=%E3%80%90NLP%E3%80%91RASA%C2%A0Featurizer&url=http%3A//www.jerrylsu.net/articles/RASA-Featurizer.html&hashtags=deep-learning,nlp,rasa" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/RASA-Featurizer.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=%E3%80%90NLP%E3%80%91RASA%20Featurizer&amp;body=http%3A//www.jerrylsu.net/articles/RASA-Featurizer.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=%E3%80%90NLP%E3%80%91RASA%C2%A0Featurizer&amp;body=http%3A//www.jerrylsu.net/articles/RASA-Featurizer.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -730,10 +730,10 @@ array([[[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/【NLP】RASA-Dialogue-Transformers.html" title="【NLP】RASA Dialogue Transformers">【NLP】RASA Dialogue Transformers</a></li>
-<li><a href="../articles/【NLP】RASA-Issues.html" title="【NLP】RASA Issues">【NLP】RASA Issues</a></li>
-<li><a href="../articles/Utterance-Rewriter.html" title="Utterance Rewriter">Utterance Rewriter</a></li>
-<li><a href="../articles/Pointer-Networkers.html" title="Pointer Networkers">Pointer Networkers</a></li>
+<li><a href="../articles/【NLP】RASA-Dialogue-Transformers.html" title="【NLP】RASA Dialogue Transformers">【NLP】RASA Dialogue Transformers</a></li>
+<li><a href="../articles/【NLP】RASA-Issues.html" title="【NLP】RASA Issues">【NLP】RASA Issues</a></li>
+<li><a href="../articles/Utterance-Rewriter.html" title="Utterance Rewriter">Utterance Rewriter</a></li>
+<li><a href="../articles/Pointer-Networkers.html" title="Pointer Networkers">Pointer Networkers</a></li>
 <li><a href="../articles/Text-Generation.html" title="Text-Generation">Text-Generation</a></li>
 </ul>
 <hr />
@@ -742,7 +742,7 @@ array([[[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             <nav>
             <ul class="articles-timeline">
                 <li class="previous-article">« <a href="../articles/【NLP】Embedding.html" title="Previous: 【NLP】Embedding">【NLP】Embedding</a></li>
-                <li class="next-article"><a href="../articles/【NLP】RASA-Dialogue-Transformers.html" title="Next: 【NLP】RASA Dialogue Transformers">【NLP】RASA Dialogue Transformers</a> »</li>
+                <li class="next-article"><a href="../articles/【NLP】RASA-Dialogue-Transformers.html" title="Next: 【NLP】RASA Dialogue Transformers">【NLP】RASA Dialogue Transformers</a> »</li>
             </ul>
             </nav>
             </aside>

@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Docker, Mysql, Python, Programming, " />
 
-<meta property="og:title" content="Docker Python Mysql "/>
+<meta property="og:title" content="Docker Python Mysql "/>
 <meta property="og:url" content="../articles/Docker-Python-Mysql.html" />
 <meta property="og:description" content="docker pull mysql:5.7 docker run -itd -p 8070:3306 -v /hadoop-data/work/sl/project/mysql/data:/var/lib/mysql -v /hadoop-data/work/sl/project/mysql/conf.d:/etc/mysql/conf.d --name=qa_mysql -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7 mysql -h host_ip -P port -u root -p123456 show …" />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2021-09-16T19:26:47+08:00" />
-<meta name="twitter:title" content="Docker Python Mysql ">
+<meta name="twitter:title" content="Docker Python Mysql ">
 <meta name="twitter:description" content="docker pull mysql:5.7 docker run -itd -p 8070:3306 -v /hadoop-data/work/sl/project/mysql/data:/var/lib/mysql -v /hadoop-data/work/sl/project/mysql/conf.d:/etc/mysql/conf.d --name=qa_mysql -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7 mysql -h host_ip -P port -u root -p123456 show …">
 
-        <title>Docker Python Mysql  · JERRYLSU
+        <title>Docker Python Mysql  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Docker-Python-Mysql.html">
-                Docker Python Mysql
+                Docker Python&nbsp;Mysql
             </a>
         </h1>
     </header>
@@ -106,12 +106,12 @@ select count(id) from table_name;       # data total
 delete from table_name;                 # delete table data
 </code></pre></div>
 
-<h3 id="1-pymysqlerrdataerror-1366-incorrect-string-value-xe5xa4xa9xe6xb9x96-for-column-question-at-row-1">1. pymysql.err.DataError: (1366, "Incorrect string value: '\xE5\xA4\xA9\xE6\xB9\x96...' for column 'question' at row 1")</h3>
-<p>原因：由于建表的时候没有指定数据库字符集, 保存中文的时候就会报错：pymysql.err.InternalError: (1366, ...)</p>
+<h3 id="1-pymysqlerrdataerror-1366-incorrect-string-value-xe5xa4xa9xe6xb9x96-for-column-question-at-row-1">1. pymysql.err.DataError: (1366, &#8220;Incorrect string value: &#8216;\xE5\xA4\xA9\xE6\xB9\x96&#8230;&#8217; for column &#8216;question&#8217; at row&nbsp;1&#8221;)</h3>
+<p>原因：由于建表的时候没有指定数据库字符集, 保存中文的时候就会报错：pymysql.err.InternalError: (1366,&nbsp;&#8230;)</p>
 <p><code>mysql&gt;ALTER TABLE your_table CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;</code><br>
 or<br>
 <code>mysql&gt;alter table 表名 convert to character set utf8mb4;</code></p>
-<h3 id="22006-mysql-server-has-gone-away-brokenpipeerror32-broken-pipe">2.(2006, "MySQL server has gone away (BrokenPipeError(32, 'Broken pipe'))");</h3>
+<h3 id="22006-mysql-server-has-gone-away-brokenpipeerror32-broken-pipe">2.(2006, &#8220;MySQL server has gone away (BrokenPipeError(32, &#8216;Broken&nbsp;pipe&#8217;))&#8221;);</h3>
 <p>默认超8小时，连接自动断开</p>
 <div class="highlight"><pre><span></span><code>    def _is_alive(self):
         &quot;&quot;&quot;检查连接是否失活&quot;&quot;&quot;
@@ -133,9 +133,9 @@ or<br>
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Docker%20Python%20Mysql&url=http%3A//www.jerrylsu.net/articles/Docker-Python-Mysql.html&hashtags=docker,mysql,python" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Docker%20Python%C2%A0Mysql&url=http%3A//www.jerrylsu.net/articles/Docker-Python-Mysql.html&hashtags=docker,mysql,python" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Docker-Python-Mysql.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Docker%20Python%20Mysql&amp;body=http%3A//www.jerrylsu.net/articles/Docker-Python-Mysql.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Docker%20Python%C2%A0Mysql&amp;body=http%3A//www.jerrylsu.net/articles/Docker-Python-Mysql.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -192,17 +192,17 @@ or<br>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
 <li><a href="../articles/Docker.html" title="Docker">Docker</a></li>
-<li><a href="../articles/Docker-Build-GPU-Base-Image.html" title="Docker Build GPU Base Image">Docker Build GPU Base Image</a></li>
-<li><a href="../articles/Docker-export-commit.html" title="Docker export vs commit">Docker export vs commit</a></li>
-<li><a href="../articles/Docker-build.html" title="Docker build">Docker build</a></li>
-<li><a href="../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html" title="Concurrent http requests using asyncio and aiohttp">Concurrent http requests using asyncio and aiohttp</a></li>
+<li><a href="../articles/Docker-Build-GPU-Base-Image.html" title="Docker Build GPU Base Image">Docker Build GPU Base Image</a></li>
+<li><a href="../articles/Docker-export-commit.html" title="Docker export vs commit">Docker export vs commit</a></li>
+<li><a href="../articles/Docker-build.html" title="Docker build">Docker build</a></li>
+<li><a href="../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html" title="Concurrent http requests using asyncio and aiohttp">Concurrent http requests using asyncio and aiohttp</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Docker-build.html" title="Previous: Docker build">Docker build</a></li>
+                <li class="previous-article">« <a href="../articles/Docker-build.html" title="Previous: Docker build">Docker build</a></li>
                 <li class="next-article"><a href="../articles/Faiss.html" title="Next: Faiss">Faiss</a> »</li>
             </ul>
             </nav>

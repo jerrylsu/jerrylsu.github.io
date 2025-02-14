@@ -94,7 +94,7 @@
 <li><a href="#overview">Overview</a></li>
 <li><a href="#architecture">Architecture</a></li>
 <li><a href="#deploy">Deploy</a></li>
-<li><a href="#quick-start">Quick Start</a></li>
+<li><a href="#quick-start">Quick Start</a></li>
 </ul>
 </div>
         </nav>
@@ -103,8 +103,8 @@
             
             
 <h2 id="overview">Overview</h2>
-<p>A Few-shot Modeling Platform for Natural Language Processing.</p>
-<p>DocTuning小样本建模平台是在为用户提供一个高效、易用的环境，以便在小样本数据集上进行模型的训练、优化和评估。该平台集成了多种功能模块，帮助用户在有限的标注训练数据下高效构建的预测模型。通过提供一系列强大且易用的工具，DocTuning 平台能够显著降低模型开发的门槛，提升模型的训练效率和性能。</p>
+<p>A Few-shot Modeling Platform for Natural Language Processing.</p>
+<p>DocTuning小样本建模平台是在为用户提供一个高效、易用的环境，以便在小样本数据集上进行模型的训练、优化和评估。该平台集成了多种功能模块，帮助用户在有限的标注训练数据下高效构建的预测模型。通过提供一系列强大且易用的工具，DocTuning 平台能够显著降低模型开发的门槛，提升模型的训练效率和性能。</p>
 <h2 id="architecture">Architecture</h2>
 <p><img alt="arch" src="../images/DocTuning/arch.png"/><br/>
 <strong>核心功能</strong></p>
@@ -129,15 +129,14 @@
 </li>
 </ul>
 <h2 id="deploy">Deploy</h2>
-<p><img alt="deploy" src="../images/DocTuning/deploy.png"/><br/>
-基于K8S集群基座部署，详情如下：</p>
+<p><img alt="deploy" src="../images/DocTuning/deploy.png"/><br/> 基于K8S集群基座部署，详情如下：</p>
 <p><strong>网络接入层：</strong></p>
 <ul>
 <li>
-<p>zhejiang-fe-ingress-nginx-controller：Kubernetes Ingress 控制器，使用 Nginx 作为反向代理和负载均衡器。</p>
+<p>zhejiang-fe-ingress-nginx-controller：Kubernetes Ingress 控制器，使用 Nginx 作为反向代理和负载均衡器。</p>
 </li>
 <li>
-<p>http api：由minio-doc-tuning后端服务直接提供的python api接口。</p>
+<p>http api：由minio-doc-tuning后端服务直接提供的python api接口。</p>
 </li>
 </ul>
 <p><strong>应用层：</strong></p>
@@ -152,16 +151,16 @@
 <p><strong>数据存储层：</strong></p>
 <ul>
 <li>
-<p>minio-doc-tuning：minio pod服务。</p>
+<p>minio-doc-tuning：minio pod服务。</p>
 </li>
 <li>
-<p>mysql-doc-tuning：mysql pod服务。</p>
+<p>mysql-doc-tuning：mysql pod服务。</p>
 </li>
 <li>
-<p>mysql-init-job：初始化mysql-doc-tuning pod服务。</p>
+<p>mysql-init-job：初始化mysql-doc-tuning pod服务。</p>
 </li>
 </ul>
-<h2 id="quick-start">Quick Start</h2>
+<h2 id="quick-start">Quick Start</h2>
 <ul>
 <li>
 <p><strong>Home</strong><br/>
@@ -244,19 +243,19 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/JD-Multimodal-Dialogue-Challenge.html" title="2020 JD Multimodal Dialogue Challenge">2020 JD Multimodal Dialogue Challenge</a></li>
+<li><a href="../articles/JD-Multimodal-Dialogue-Challenge.html" title="2020 JD Multimodal Dialogue Challenge">2020 JD Multimodal Dialogue Challenge</a></li>
 <li><a href="../articles/Ernie4Paddle.html" title="Ernie4paddle">Ernie4paddle</a></li>
-<li><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a></li>
-<li><a href="../articles/MinHash-Document-level-Deduplication.html" title="MinHash: Document-level Deduplication">MinHash: Document-level Deduplication</a></li>
-<li><a href="../articles/GGUF-Model.html" title="GGUF Model">GGUF Model</a></li>
+<li><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a></li>
+<li><a href="../articles/MinHash-Document-level-Deduplication.html" title="MinHash: Document-level Deduplication">MinHash: Document-level Deduplication</a></li>
+<li><a href="../articles/GGUF-Model.html" title="GGUF Model">GGUF Model</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Nucleus Sampling Top-p Sampling.html" title="Previous: Nucleus Sampling Top-p Sampling">Nucleus Sampling Top-p Sampling</a></li>
-                <li class="next-article"><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Next: Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a> »</li>
+                <li class="previous-article">« <a href="../articles/Nucleus Sampling Top-p Sampling.html" title="Previous: Nucleus Sampling Top-p Sampling">Nucleus Sampling Top-p Sampling</a></li>
+                <li class="next-article"><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Next: Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a> »</li>
             </ul>
             </nav>
             </aside>

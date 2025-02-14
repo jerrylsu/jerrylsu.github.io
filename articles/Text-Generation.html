@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="Text-Generation "/>
 <meta property="og:url" content="../articles/Text-Generation.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2021-07-26T10:17:17+08:00" />
 <meta name="twitter:title" content="Text-Generation ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>Text-Generation  · JERRYLSU
 </title>
@@ -94,15 +94,15 @@
     </div>
     <div class="span8 article-content">
             
-            <h3 id="autoregressive-text-generation">Autoregressive Text Generation</h3>
+            <h3 id="autoregressive-text-generation">Autoregressive Text&nbsp;Generation</h3>
 <p>自回归语言模型：$p(y_1,y_2,…,y_n|x)=p(y_1|x)p(y_2|x,y_1)…p(y_n|x,y_1,…,y_{n−1})$</p>
 <p>无法并行，推理速度慢。</p>
-<h3 id="non-autoregressive-text-generation">Non-autoregressive Text Generation</h3>
+<h3 id="non-autoregressive-text-generation">Non-autoregressive Text&nbsp;Generation</h3>
 <p>非自回归语言模型：$p(y_1,y_2,…,y_n|x)=p(y_1|x)p(y_2|x,y_1)…p(y_n|x,y_1,…,y_{n−1})$</p>
 <p>MLM掩码语言模型，每个token的生成是独立的，可以并行推理，速度快。由于独立性假设：合适生成短文本，文本越短，越接近于独立性假设。</p>
 <blockquote>
 <p>如果不考虑效率，那么是不是seq2seq就最好呢？也不是。尽管从建模上来看，(1)更加准确，但是seq2seq的训练是通过<strong>teacher forcing</strong>的方式来做的，所以存在“exposure bias”的问题：训练的时候，每个时刻的输入都是来自于真实的答案文本；而生成的时候，每个时刻的输入来自于前一时刻的输出；所以一旦有一个字生成的不好，错误可能会接着传递，使得生成的越来越糟糕。<br>
-说白了，也就是<strong>训练和预测时存在不一致性</strong>，这种不一致性可能导致误差累积。相反，基于MLM的方案在训练和预测时的行为是一致的，因为不需要真实标签作为输入（预测时答案部分的位置也输入[MASK]），因此不存在误差累积情况。而且也正好因为这个特点，因此解码时不再需要递归，而是可并行化，提高了解码速度。(引https://kexue.fm/archives/7148)</p>
+说白了，也就是<strong>训练和预测时存在不一致性</strong>，这种不一致性可能导致误差累积。相反，基于MLM的方案在训练和预测时的行为是一致的，因为不需要真实标签作为输入（预测时答案部分的位置也输入[<span class="caps">MASK</span>]），因此不存在误差累积情况。而且也正好因为这个特点，因此解码时不再需要递归，而是可并行化，提高了解码速度。(引https://kexue.fm/archives/7148)</p>
 </blockquote>
 
 
@@ -168,11 +168,11 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Convert-pytorch-model-to-tensorflow2.html" title="Convert pytorch checkpoint to tensorflow2">Convert pytorch checkpoint to tensorflow2</a></li>
+<li><a href="../articles/Convert-pytorch-model-to-tensorflow2.html" title="Convert pytorch checkpoint to tensorflow2">Convert pytorch checkpoint to tensorflow2</a></li>
 <li><a href="../articles/Conditional-Random-Field.html" title="ConditionalRandomField">ConditionalRandomField</a></li>
-<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
-<li><a href="../articles/Utterance-Rewriter.html" title="Utterance Rewriter">Utterance Rewriter</a></li>
-<li><a href="../articles/Pointer-Networkers.html" title="Pointer Networkers">Pointer Networkers</a></li>
+<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
+<li><a href="../articles/Utterance-Rewriter.html" title="Utterance Rewriter">Utterance Rewriter</a></li>
+<li><a href="../articles/Pointer-Networkers.html" title="Pointer Networkers">Pointer Networkers</a></li>
 </ul>
 <hr />
 </section>
@@ -180,7 +180,7 @@
             <nav>
             <ul class="articles-timeline">
                 <li class="previous-article">« <a href="../articles/Jmeter.html" title="Previous: Jmeter">Jmeter</a></li>
-                <li class="next-article"><a href="../articles/Python-m.html" title="Next: Python -m">Python -m</a> »</li>
+                <li class="next-article"><a href="../articles/Python-m.html" title="Next: Python -m">Python -m</a> »</li>
             </ul>
             </nav>
             </aside>

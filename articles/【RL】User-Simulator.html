@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Reinforcement Learning, NLP, " />
 
-<meta property="og:title" content="【RL】User Simulator "/>
+<meta property="og:title" content="【RL】User Simulator "/>
 <meta property="og:url" content="../articles/【RL】User-Simulator.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-04-13T11:21:03+08:00" />
-<meta name="twitter:title" content="【RL】User Simulator ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="【RL】User Simulator ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>【RL】User Simulator  · JERRYLSU
+        <title>【RL】User Simulator  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/【RL】User-Simulator.html">
-                【RL】User Simulator
+                【<span class="caps">RL</span>】User&nbsp;Simulator
             </a>
         </h1>
     </header>
@@ -94,7 +94,7 @@
     </div>
     <div class="span8 article-content">
             
-            <h2 id="user-simulator-background">User Simulator BackGround</h2>
+            <h2 id="user-simulator-background">User Simulator&nbsp;BackGround</h2>
 <p><strong>为什么需要用户模拟器？</strong></p>
 <p>监督学习方法缺陷：</p>
 <ol>
@@ -114,16 +114,16 @@
 <li>强化学习模型需要从环境中获取很多样本，但是从零开始与真实用户交互是不切实际的。所以需要用户模拟器模拟真实世界的环境。</li>
 </ul>
 <p>用户模拟器：</p>
-<p>用户模拟的目标是产生自然而合理的对话，从而使强化学习智能体能够探索策略空间。 基于模拟的方法允许代理探索先前观察到的数据中可能不存在的trajectory，克服了基于模拟的方法的主要局限性。 在用户模拟器上训练的智能体可以作为有效的起点，之后部署在真实世界与人互动，从而通过强化学习来进一步改进。</p>
-<p>NLU：自然语言 ---&gt; 字典语义标签</p>
-<p>DST：对话历史追踪</p>
-<p>DP：选择对话动作<br>
-NLG：对话动作 ---&gt; 自然语言</p>
+<p>用户模拟的目标是产生自然而合理的对话，从而使强化学习智能体能够探索策略空间。 基于模拟的方法允许代理探索先前观察到的数据中可能不存在的trajectory，克服了基于模拟的方法的主要局限性。&nbsp;在用户模拟器上训练的智能体可以作为有效的起点，之后部署在真实世界与人互动，从而通过强化学习来进一步改进。</p>
+<p><span class="caps">NLU</span>：自然语言 &#8212;-&gt;&nbsp;字典语义标签</p>
+<p><span class="caps">DST</span>：对话历史追踪</p>
+<p><span class="caps">DP</span>：选择对话动作<br>
+<span class="caps">NLG</span>：对话动作 &#8212;-&gt;&nbsp;自然语言</p>
 <p><img alt="Simulator" src="../images/RL/simulator.jpg"></p>
-<p>对话系统回复（action）---&gt; 用户模拟器</p>
+<p>对话系统回复（action）&#8212;-&gt;&nbsp;用户模拟器</p>
 <p>用户模拟器与对话系统结构相似。</p>
-<p>User goal：用户模拟器第一步首先生成对话目标。对话系统Agent对此目标不可知，但是需要通过多轮对话完成用户模拟器的目标。</p>
-<p>e.g.  user goal = inform_slots + request_slots：</p>
+<p>User&nbsp;goal：用户模拟器第一步首先生成对话目标。对话系统Agent对此目标不可知，但是需要通过多轮对话完成用户模拟器的目标。</p>
+<p>e.g.  user goal = inform_slots +&nbsp;request_slots：</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span>
 <span class="err">“</span><span class="n">request_slots</span><span class="err">”</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
 <span class="err">“</span><span class="n">ticket</span><span class="err">”</span><span class="o">:</span><span class="w">   </span><span class="err">“</span><span class="n">UNK</span><span class="err">”</span>
@@ -141,26 +141,26 @@ NLG：对话动作 ---&gt; 自然语言</p>
 
 <p>信息槽：slot=value。若干槽值对，是用户用于查询的约束。</p>
 <p>请求槽：slot。若干槽，没有信息值，用户期望通过对话从对话系统方获取的信息值。</p>
-<p>User model：用户模型对应对话系统的对话管理模块。它的任务是根据对话历史生成当前的用户动作，用户动作是预先定义好的语义标签，例如“inform, request, greet, bye”。</p>
-<p>Paper: End-to-End Task-Completion Neural Dialogue Systems</p>
-<h2 id="rule-based-simulator">Rule-Based Simulator</h2>
-<p><strong>Agenda-Based Simulator:</strong></p>
-<p>Plato Paper: Statistical User Simulation with a Hidden Agenda</p>
+<p>User model：用户模型对应对话系统的对话管理模块。它的任务是根据对话历史生成当前的用户动作，用户动作是预先定义好的语义标签，例如“inform, request, greet,&nbsp;bye”。</p>
+<p>Paper: End-to-End Task-Completion Neural Dialogue&nbsp;Systems</p>
+<h2 id="rule-based-simulator">Rule-Based&nbsp;Simulator</h2>
+<p><strong>Agenda-Based&nbsp;Simulator:</strong></p>
+<p>Plato Paper: Statistical User Simulation with a Hidden&nbsp;Agenda</p>
 <p>在对话过程中，用户模拟器维护着一个紧凑的，类似堆栈的表示形式，称为用户议程Agenda，其中用户状态被分解为议程A和目标G。该目标G由约束C和请求R组成。在每个时间步t处，用户模拟器都会基于当前状态和上一个代理动作生成下一个用户动作，然后更新当前状态。<br>
-当用户模拟器收到输入时，它会参考Policy/ Rule以查看将哪些内容推送到议程Agenda中，作为对输入的响应。 经过一些整理后（例如，删除重复的内容或不再有效的内容），用户模拟器会将一个或多个项目从议程Agenda中弹出作为回复。</p>
+当用户模拟器收到输入时，它会参考Policy/ Rule以查看将哪些内容推送到议程Agenda中，作为对输入的响应。&nbsp;经过一些整理后（例如，删除重复的内容或不再有效的内容），用户模拟器会将一个或多个项目从议程Agenda中弹出作为回复。</p>
 <h2 id="design">Design</h2>
-<p>用户模拟器维护每一轮的状态self.state，self.state具有字段request_slots, inform_slots, rest_slots, history_slots, turn, diaact</p>
-<p>Response for Request (System Action：request_slots) </p>
+<p>用户模拟器维护每一轮的状态self.state，self.state具有字段request_slots, inform_slots, rest_slots, history_slots, turn,&nbsp;diaact</p>
+<p>Response for Request (System&nbsp;Action：request_slots) </p>
 <ul>
-<li>case1: <strong>在目标信息槽中</strong>system_action in goal.inform_slots</li>
+<li>case1: <strong>在目标信息槽中</strong>system_action in&nbsp;goal.inform_slots</li>
 </ul>
-<p>系统agent的问题槽在用户模拟器目标的信息槽中，1. 用目标信息槽值直接填self.state.inform_slots作为回复，2. 同时从状态self.state的剩余槽栈self.state.rest_slots中删除，3. 并清空self.state.request_slots状态的请求槽，因为已经确定为用户模拟器回答的陈述句。</p>
+<p>系统agent的问题槽在用户模拟器目标的信息槽中，1. 用目标信息槽值直接填self.state.inform_slots作为回复，2. 同时从状态self.state的剩余槽栈self.state.rest_slots中删除，3.&nbsp;并清空self.state.request_slots状态的请求槽，因为已经确定为用户模拟器回答的陈述句。</p>
 <ul>
-<li>case2: <strong>在目标请求槽中，且在状态历史槽中，不在剩余槽中。</strong>问题已经回答system_action in goal.request_slots and not in self.state.rest_slots and in self.history_slots</li>
+<li>case2: <strong>在目标请求槽中，且在状态历史槽中，不在剩余槽中。</strong>问题已经回答system_action in goal.request_slots and not in self.state.rest_slots and in&nbsp;self.history_slots</li>
 </ul>
-<p>系统agent的问题槽在用户模拟器目标的请求槽中，并且在用户对话状态的历史槽中，不在剩余栈槽中。表示该问题已经回答，1. 从历史槽中取值构造回复即可。2. 清空self.state.request_slots状态的请求槽 </p>
+<p>系统agent的问题槽在用户模拟器目标的请求槽中，并且在用户对话状态的历史槽中，不在剩余栈槽中。表示该问题已经回答，1. 从历史槽中取值构造回复即可。2.&nbsp;清空self.state.request_slots状态的请求槽 </p>
 <ul>
-<li>case3: <strong>在目标请求槽中，且在状态剩余槽中。</strong>问题未曾回答system_action in goal.request_slots and not in self.state.rest_slots </li>
+<li>case3: <strong>在目标请求槽中，且在状态剩余槽中。</strong>问题未曾回答system_action in goal.request_slots and not in&nbsp;self.state.rest_slots </li>
 </ul>
 <p>在目标的请求槽中，并且在状态的剩余槽中，</p>
 <ul>
@@ -173,9 +173,9 @@ NLG：对话动作 ---&gt; 自然语言</p>
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=%E3%80%90RL%E3%80%91User%20Simulator&url=http%3A//www.jerrylsu.net/articles/%E3%80%90RL%E3%80%91User-Simulator.html&hashtags=reinforcement-learning" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=%E3%80%90RL%E3%80%91User%C2%A0Simulator&url=http%3A//www.jerrylsu.net/articles/%E3%80%90RL%E3%80%91User-Simulator.html&hashtags=reinforcement-learning" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/%E3%80%90RL%E3%80%91User-Simulator.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=%E3%80%90RL%E3%80%91User%20Simulator&amp;body=http%3A//www.jerrylsu.net/articles/%E3%80%90RL%E3%80%91User-Simulator.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=%E3%80%90RL%E3%80%91User%C2%A0Simulator&amp;body=http%3A//www.jerrylsu.net/articles/%E3%80%90RL%E3%80%91User-Simulator.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -231,9 +231,9 @@ NLG：对话动作 ---&gt; 自然语言</p>
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/【RL】Policy-Gradient.html" title="【RL】Policy Gradient">【RL】Policy Gradient</a></li>
-<li><a href="../articles/【RL】Q-Learning.html" title="【RL】Q Learning">【RL】Q Learning</a></li>
-<li><a href="../articles/reinforcement-learning.html" title="【RL】Reinforcement Learning">【RL】Reinforcement Learning</a></li>
+<li><a href="../articles/【RL】Policy-Gradient.html" title="【RL】Policy Gradient">【RL】Policy Gradient</a></li>
+<li><a href="../articles/【RL】Q-Learning.html" title="【RL】Q Learning">【RL】Q Learning</a></li>
+<li><a href="../articles/reinforcement-learning.html" title="【RL】Reinforcement Learning">【RL】Reinforcement Learning</a></li>
 </ul>
 <hr />
 </section>

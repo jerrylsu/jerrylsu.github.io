@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="LLM, NLP, " />
 
-<meta property="og:title" content="Nucleus Sampling Top-p Sampling "/>
+<meta property="og:title" content="Nucleus Sampling Top-p Sampling "/>
 <meta property="og:url" content="../articles/Nucleus Sampling Top-p Sampling.html" />
 <meta property="og:description" content="class TopPLogitsWarper(LogitsWarper): &#34;&#34;&#34; [`LogitsWarper`] that performs top-p, i.e. restricting to top tokens summing to prob_cut_off &lt;= prob_cut_off. Args: top_p (`float`): If set to &lt; 1, only the smallest set of most probable tokens with probabilities that add up to `top_p` or higher are kept for generation. filter_value (`float`, *optional*, defaults to …" />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2024-02-20T11:17:17+08:00" />
-<meta name="twitter:title" content="Nucleus Sampling Top-p Sampling ">
+<meta name="twitter:title" content="Nucleus Sampling Top-p Sampling ">
 <meta name="twitter:description" content="class TopPLogitsWarper(LogitsWarper): &#34;&#34;&#34; [`LogitsWarper`] that performs top-p, i.e. restricting to top tokens summing to prob_cut_off &lt;= prob_cut_off. Args: top_p (`float`): If set to &lt; 1, only the smallest set of most probable tokens with probabilities that add up to `top_p` or higher are kept for generation. filter_value (`float`, *optional*, defaults to …">
 
-        <title>Nucleus Sampling Top-p Sampling  · JERRYLSU
+        <title>Nucleus Sampling Top-p Sampling  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Nucleus Sampling Top-p Sampling.html">
-                Nucleus Sampling Top-p Sampling
+                Nucleus Sampling Top-p&nbsp;Sampling
             </a>
         </h1>
     </header>
@@ -91,8 +91,8 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#temperature-scaling">温度调节（Temperature Scaling）</a></li>
-<li><a href="#nucleus-samplingtop-p-sampling">核采样（Nucleus Sampling，Top-p Sampling）</a></li>
+<li><a href="#temperature-scaling">温度调节（Temperature Scaling）</a></li>
+<li><a href="#nucleus-samplingtop-p-sampling">核采样（Nucleus Sampling，Top-p Sampling）</a></li>
 <li><a href="#_1">累计概率</a></li>
 </ul>
 </div>
@@ -172,7 +172,7 @@
         <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">indices_to_remove</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_value</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">scores</span>
 </code></pre></div>
-<h4 id="temperature-scaling">温度调节（Temperature Scaling）</h4>
+<h4 id="temperature-scaling">温度调节（Temperature Scaling）</h4>
 <ul>
 <li>
 <p>为了调整概率分布的“锐利度”，可以引入一个温度参数（Temperature）。温度较高时，概率分布变得更加平坦，增加了低概率单词被选中的机会；温度较低时，概率分布变得更尖锐，高概率单词被选中的机会增加。</p>
@@ -182,14 +182,14 @@
 </li>
 </ul>
 <p>调整后的概率计算公式为：</p>
-<p>$P'(w_i) = \frac{e^{\frac{\log(P(w_i))}{T}}}{\sum_{j} e^{\frac{\log(P(w_j))}{T}}}$</p>
-<p>其中，$P(w_i)$是单词$w_i$的原始概率，$P'(w_i)$是调整温度后的概率，$T$是温度参数。</p>
+<p>$P’(w_i) = \frac{e^{\frac{\log(P(w_i))}{T}}}{\sum_{j} e^{\frac{\log(P(w_j))}{T}}}$</p>
+<p>其中，$P(w_i)$是单词$w_i$的原始概率，$P’(w_i)$是调整温度后的概率，$T$是温度参数。</p>
 <ul>
-<li><strong>高温度</strong> $T &gt; 1$：使概率分布更加平坦（即使低概率的单词也有更高的被选中机会）。这导致文本生成更加多样化和不可预测，但也可能增加生成文本中出现不相关或非连贯内容的风险。</li>
-<li><strong>低温度</strong> $T &lt; 1$：使概率分布更加尖锐，即增加高概率单词被选中的机会，同时降低低概率单词的影响。这导致生成的文本更加确定、连贯，但可能降低文本的多样性和创新性。</li>
-<li><strong>中等温度</strong> $T = 1$：保持原始概率分布不变，不对分布进行平滑或尖锐化处理。</li>
+<li><strong>高温度</strong> $T &gt; 1$：使概率分布更加平坦（即使低概率的单词也有更高的被选中机会）。这导致文本生成更加多样化和不可预测，但也可能增加生成文本中出现不相关或非连贯内容的风险。</li>
+<li><strong>低温度</strong> $T &lt; 1$：使概率分布更加尖锐，即增加高概率单词被选中的机会，同时降低低概率单词的影响。这导致生成的文本更加确定、连贯，但可能降低文本的多样性和创新性。</li>
+<li><strong>中等温度</strong> $T = 1$：保持原始概率分布不变，不对分布进行平滑或尖锐化处理。</li>
 </ul>
-<h4 id="nucleus-samplingtop-p-sampling">核采样（Nucleus Sampling，Top-p Sampling）</h4>
+<h4 id="nucleus-samplingtop-p-sampling">核采样（Nucleus Sampling，Top-p Sampling）</h4>
 <ul>
 <li>
 <p>核采样是一种更高级的采样策略，它选择累积概率超过某个阈值p的最小单词集。这允许模型动态调整采样的单词数量，基于当前上下文的不确定性。</p>
@@ -200,36 +200,31 @@
 </ul>
 <p><strong>核采样原理</strong></p>
 <ul>
-<li>核采样的关键思想是从词汇分布中选择一个词汇子集，使得这个子集中词汇的累积概率接近但不超过一个预先定义的阈值p（0 &lt; p &lt; 1）。这个子集被称为“核”（nucleus），只有这个核中的词汇会被考虑用于下一步的随机采样。这样，生成的文本既不会过于随机（因为避免了极低概率词的干扰），也不会过于确定性（因为没有限制为前K个最高概率的词）。</li>
+<li>核采样的关键思想是从词汇分布中选择一个词汇子集，使得这个子集中词汇的累积概率接近但不超过一个预先定义的阈值p（0 &lt; p &lt; 1）。这个子集被称为“核”（nucleus），只有这个核中的词汇会被考虑用于下一步的随机采样。这样，生成的文本既不会过于随机（因为避免了极低概率词的干扰），也不会过于确定性（因为没有限制为前K个最高概率的词）。</li>
 </ul>
 <h4 id="_1">累计概率</h4>
-<p>累积概率的计算是在处理概率分布时的一个关键步骤，尤其是在执行如核采样（Top-p Sampling）这样的任务时。累积概率为我们提供了一个方式，来确定随机事件发生的概率范围。在核采样中，它帮助我们决定哪些词汇（单词）的集合应该被考虑进来，以确保这个集合覆盖了预定比例$p$的概率总和。这里是累积概率计算的具体步骤：</p>
+<p>累积概率的计算是在处理概率分布时的一个关键步骤，尤其是在执行如核采样（Top-p Sampling）这样的任务时。累积概率为我们提供了一个方式，来确定随机事件发生的概率范围。在核采样中，它帮助我们决定哪些词汇（单词）的集合应该被考虑进来，以确保这个集合覆盖了预定比例$p$的概率总和。这里是累积概率计算的具体步骤：</p>
 <ul>
 <li>
-<p>步骤1：获取概率分布<br/>
-首先，你需要有一个概率分布，这通常是模型对下一个单词的预测概率。假设我们有一个词汇表，模型为每个可能的下一个单词提供了一个概率。</p>
+<p>步骤1：获取概率分布<br/> 首先，你需要有一个概率分布，这通常是模型对下一个单词的预测概率。假设我们有一个词汇表，模型为每个可能的下一个单词提供了一个概率。</p>
 </li>
 <li>
-<p>步骤2：排序<br/>
-将概率分布按照概率值从高到低进行排序。这样，最高概率的单词会放在列表的最前面。</p>
+<p>步骤2：排序<br/> 将概率分布按照概率值从高到低进行排序。这样，最高概率的单词会放在列表的最前面。</p>
 </li>
 <li>
-<p>步骤3：计算累积概率<br/>
-接下来，计算排序后的概率列表的累积概率。累积概率是指从列表的开始到当前位置的所有概率值的总和。对于列表中的第$i$个单词，其累积概率可以表示为：</p>
+<p>步骤3：计算累积概率<br/> 接下来，计算排序后的概率列表的累积概率。累积概率是指从列表的开始到当前位置的所有概率值的总和。对于列表中的第$i$个单词，其累积概率可以表示为：</p>
 </li>
 </ul>
-<p>$CumulativeProbability(i) = \sum_{k=1}^{i} Probability(k)$</p>
+<p>$CumulativeProbability(i) = \sum_{k=1}^{i} Probability(k)$</p>
 <p>其中，$Probability(k)$是第$k$个单词的概率。</p>
 <ul>
-<li>步骤4：确定阈值$p$的覆盖<br/>
-确定满足累积概率小于或等于阈值$p$的最大集合。也就是说，你需要找到一个最小的$i$，使得：</li>
+<li>步骤4：确定阈值$p$的覆盖<br/> 确定满足累积概率小于或等于阈值$p$的最大集合。也就是说，你需要找到一个最小的$i$，使得：</li>
 </ul>
-<p>$CumulativeProbability(i) \geq p$</p>
+<p>$CumulativeProbability(i) \geq p$</p>
 <p>这意味着，从排序后的列表中取出前$i$个单词，这些单词的累积概率总和将至少覆盖阈值$p$指定的概率质量。</p>
 <ul>
 <li>
-<p>示例<br/>
-假设我们的模型预测下一个单词的概率分布如下（已排序）：</p>
+<p>示例<br/> 假设我们的模型预测下一个单词的概率分布如下（已排序）：</p>
 </li>
 <li>
 <p>单词A：0.3</p>
@@ -242,8 +237,8 @@
 <p>如果我们设置阈值$p=0.6$，那么：</p>
 <ul>
 <li>累积到单词A：0.3</li>
-<li>累积到单词B：0.5 (0.3 + 0.2)</li>
-<li>累积到单词C：0.65 (0.3 + 0.2 + 0.15)</li>
+<li>累积到单词B：0.5 (0.3 + 0.2)</li>
+<li>累积到单词C：0.65 (0.3 + 0.2 + 0.15)</li>
 </ul>
 <p>因此，为了确保累积概率超过0.6，我们需要选择单词A、B、C作为考虑的词汇范围。</p>
 <p>通过这种方式，核采样算法确保在生成下一个单词时，考虑了概率分布中最重要的部分，同时保持了一定程度的随机性和多样性。</p>
@@ -253,9 +248,9 @@
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Nucleus%20Sampling%20Top-p%20Sampling&url=http%3A//www.jerrylsu.net/articles/Nucleus%20Sampling%20Top-p%20Sampling.html&hashtags=llm" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Nucleus%20Sampling%20Top-p%C2%A0Sampling&url=http%3A//www.jerrylsu.net/articles/Nucleus%20Sampling%20Top-p%20Sampling.html&hashtags=llm" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Nucleus%20Sampling%20Top-p%20Sampling.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Nucleus%20Sampling%20Top-p%20Sampling&amp;body=http%3A//www.jerrylsu.net/articles/Nucleus%20Sampling%20Top-p%20Sampling.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Nucleus%20Sampling%20Top-p%C2%A0Sampling&amp;body=http%3A//www.jerrylsu.net/articles/Nucleus%20Sampling%20Top-p%20Sampling.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -311,18 +306,18 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Self-Instruct.html" title="SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions">SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions</a></li>
-<li><a href="../articles/Contrastive-Language-Image-Pretraining.html" title="Contrastive Language-Image Pretraining">Contrastive Language-Image Pretraining</a></li>
-<li><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a></li>
-<li><a href="../articles/MinHash-Document-level-Deduplication.html" title="MinHash: Document-level Deduplication">MinHash: Document-level Deduplication</a></li>
-<li><a href="../articles/GGUF-Model.html" title="GGUF Model">GGUF Model</a></li>
+<li><a href="../articles/Self-Instruct.html" title="SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions">SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions</a></li>
+<li><a href="../articles/Contrastive-Language-Image-Pretraining.html" title="Contrastive Language-Image Pretraining">Contrastive Language-Image Pretraining</a></li>
+<li><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a></li>
+<li><a href="../articles/MinHash-Document-level-Deduplication.html" title="MinHash: Document-level Deduplication">MinHash: Document-level Deduplication</a></li>
+<li><a href="../articles/GGUF-Model.html" title="GGUF Model">GGUF Model</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Contrastive-Language-Image-Pretraining.html" title="Previous: Contrastive Language-Image Pretraining">Contrastive Language-Image Pretraining</a></li>
+                <li class="previous-article">« <a href="../articles/Contrastive-Language-Image-Pretraining.html" title="Previous: Contrastive Language-Image Pretraining">Contrastive Language-Image Pretraining</a></li>
                 <li class="next-article"><a href="../articles/DocTuning.html" title="Next: DocTuning">DocTuning</a> »</li>
             </ul>
             </nav>

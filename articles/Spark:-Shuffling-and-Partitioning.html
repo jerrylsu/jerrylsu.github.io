@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Spark, Programming, " />
 
-<meta property="og:title" content="Spark: Shuffling and Partitioning "/>
+<meta property="og:title" content="Spark: Shuffling and Partitioning "/>
 <meta property="og:url" content="../articles/Spark:-Shuffling-and-Partitioning.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-03-11T01:56:02+08:00" />
-<meta name="twitter:title" content="Spark: Shuffling and Partitioning ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="Spark: Shuffling and Partitioning ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Spark: Shuffling and Partitioning  · JERRYLSU
+        <title>Spark: Shuffling and Partitioning  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Spark:-Shuffling-and-Partitioning.html">
-                Spark: Shuffling and Partitioning
+                Spark: Shuffling and&nbsp;Partitioning
             </a>
         </h1>
     </header>
@@ -95,9 +95,9 @@
     <div class="span8 article-content">
             
             <h1 id="shuffling">Shuffling</h1>
-<h2 id="orgapachesparkrddrddstring-int-shuffledrdd366">org.apache.spark.rdd.RDD[(String, Int)]= ShuffledRDD[366]</h2>
+<h2 id="orgapachesparkrddrddstring-int-shuffledrdd366">org.apache.spark.rdd.<span class="caps">RDD</span>[(String, Int)]=&nbsp;ShuffledRDD[366]</h2>
 <p>Think again what happens when you have to do a groupBy or a groupByKey.<br>
-Remember our data is distributed! Did you notice anything odd?</p>
+Remember our data is distributed! Did you notice anything&nbsp;odd?</p>
 <div class="highlight"><pre><span></span><code><span class="n">val</span><span class="w"> </span><span class="n">pairs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="p">.</span><span class="n">parallelize</span><span class="p">(</span><span class="n">List</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;one&quot;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;two&quot;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;three&quot;</span><span class="p">)))</span>
 <span class="n">pairs</span><span class="p">.</span><span class="n">groupByKey</span><span class="p">()</span>
 
@@ -105,15 +105,14 @@ Remember our data is distributed! Did you notice anything odd?</p>
 <span class="o">//</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShuffledRDD</span><span class="o">[</span><span class="n">16</span><span class="o">]</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">groupByKey</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="o">&lt;</span><span class="n">console</span><span class="o">&gt;</span><span class="err">:</span><span class="mi">37</span>
 </code></pre></div>
 
-<p>We typically have to move data from one node to another to be "grouped with" its key. Doing this is called "shuffling".<br>
+<p>We typically have to move data from one node to another to be &#8220;grouped with&#8221; its key. Doing this is called &#8220;shuffling&#8221;.<br>
 <strong>Shuffles Happen</strong><br>
-Shuffles can be an enormous hit to because it means that Spark must send data from one node to another. Why? Latency! </p>
-<h2 id="grouping-and-reducing-example">Grouping and Reducing, Example</h2>
-<p>Let's start with an example. Given:<br>
+Shuffles can be an enormous hit to because it means that Spark must send data from one node to another. Why?&nbsp;Latency! </p>
+<h2 id="grouping-and-reducing-example">Grouping and Reducing,&nbsp;Example</h2>
+<p>Let&#8217;s start with an example. Given:<br>
 <code>case class CFFPurchase(customerid: Int, destination: String, price: Double)</code><br>
-假设我们有瑞士火车公司（CFF）移动应用程序用户在过去一个月内购买的数据集RDD。<br>
-<code>val purchasesRdd: RDD[CFFPurchaseJ = sc.textFile( ... )</code><br>
-目标：每个客户在这个月内的旅行次数和花费金额。</p>
+假设我们有瑞士火车公司（<span class="caps">CFF</span>）移动应用程序用户在过去一个月内购买的数据集RDD。<br>
+<code>val purchasesRdd: RDD[CFFPurchaseJ = sc.textFile( ... )</code><br>&nbsp;目标：每个客户在这个月内的旅行次数和花费金额。</p>
 <div class="highlight"><pre><span></span><code>val<span class="w"> </span>purchasesRdd:<span class="w"> </span>RDD[CFFPurchaseJ<span class="w"> </span>=<span class="w"> </span>sc.textFile(<span class="w"> </span>...<span class="w"> </span>)
 
 //<span class="w"> </span>Returns:<span class="w"> </span>Array[(Int,<span class="w"> </span>(Int,<span class="w"> </span>Double))]
@@ -124,7 +123,7 @@ val<span class="w"> </span>purchasesPerMonth<span class="w"> </span>=
 <span class="w">                </span>.collect()<span class="w"> </span>
 </code></pre></div>
 
-<p>An example dataset: </p>
+<p>An example&nbsp;dataset: </p>
 <div class="highlight"><pre><span></span><code>val purchases = List(CFFPurchase(100, &quot;Geneva&quot;, 22.25),
                      CFFPurchase (300, &#39;&#39;Zurich&#39;&#39;, 42. 10),
                      CFFPurchase(100, &quot;Fribourg&quot;, 12.40),
@@ -134,16 +133,15 @@ val<span class="w"> </span>purchasesPerMonth<span class="w"> </span>=
 </code></pre></div>
 
 <p><img alt="groupByKey" src="images/Spark-Shuffling-and-Partitioning/groupByKey.jpg"></p>
-<p><strong>注意：<code>groupByKey</code>会为每个<code>Key</code>生成一个键值对。 且单个键值对不能跨越多个<code>worker</code>节点。</strong></p>
-<h2 id="reminder-latency">Reminder: Latency</h2>
+<p><strong>注意：<code>groupByKey</code>会为每个<code>Key</code>生成一个键值对。&nbsp;且单个键值对不能跨越多个<code>worker</code>节点。</strong></p>
+<h2 id="reminder-latency">Reminder:&nbsp;Latency</h2>
 <p><img alt="Latency" src="images/Spark-Shuffling-and-Partitioning/Latency.jpg"></p>
 <p>如果不是绝对必要，我们不希望通过网络发送所有数据。 太多的网络通信会导致性能下降。<br>
-如何优化？或许我们没有必要通过网络发送所有的键值对。也许我们可以在shuffle之前减少。 这可以大大减少我们必须通过网络发送的数据量。</p>
-<h2 id="grouping-and-reducing-example-optimized">Grouping and Reducing, Example - Optimized</h2>
-<p>优化：使用<code>reduceByKey</code>.<br>
-从概念上讲，<code>reduceByKey</code>可以被认为是：<br>
-1. 首先执行<code>groupByKey</code><br>
-2. 然后<code>reduce</code>每个键分组的所有值的组合</p>
+如何优化？或许我们没有必要通过网络发送所有的键值对。也许我们可以在shuffle之前减少。&nbsp;这可以大大减少我们必须通过网络发送的数据量。</p>
+<h2 id="grouping-and-reducing-example-optimized">Grouping and Reducing, Example -&nbsp;Optimized</h2>
+<p>优化：使用<code>reduceByKey</code>.<br>&nbsp;从概念上讲，<code>reduceByKey</code>可以被认为是：<br>
+1.&nbsp;首先执行<code>groupByKey</code><br>
+2.&nbsp;然后<code>reduce</code>每个键分组的所有值的组合</p>
 <p>然而，<code>reduceByKey</code>比单独使用<code>groupByKey</code>和<code>reduce</code>更有效。</p>
 <p><strong>Signature:</strong><br>
 <code>def reduceByKey(func: (V, V) =&gt; V): RDD[(K, V)]</code></p>
@@ -154,8 +152,7 @@ purchasesRdd.map(p<span class="w"> </span>=&gt;<span class="w"> </span>(p.custom
 <span class="w">            </span>.reduceByKey(<span class="w"> </span>...<span class="w"> </span>)<span class="w"> </span>//?<span class="w"> </span>
 </code></pre></div>
 
-<p>注意：传递给<code>map</code>的函数变为<code>p =&gt; (p.customerld, (1, p.price))</code><br>
-传递给<code>reduceByKey</code>怎样的函数可以返回这样形式的结果<code>(customerid, (numTrips, totalSpent))</code>？</p>
+<p>注意：传递给<code>map</code>的函数变为<code>p =&gt; (p.customerld, (1, p.price))</code><br>&nbsp;传递给<code>reduceByKey</code>怎样的函数可以返回这样形式的结果<code>(customerid, (numTrips, totalSpent))</code>？</p>
 <div class="highlight"><pre><span></span><code>val purchasesPerMonth =
 purchasesRdd.map(p =&gt; (p.customerld, (1, p.price))) // Pair ROD
             .reduceByKey((v1, v2) =&gt; (v1 ._1 + v2._1, v1 ._2 + v2._2))
@@ -163,13 +160,12 @@ purchasesRdd.map(p =&gt; (p.customerld, (1, p.price))) // Pair ROD
 </code></pre></div>
 
 <p><strong>1. map</strong><br>
-<strong>2. <code>reduceByKey</code>reduce on mapper side first !</strong>  从而减少了用于<code>shuffle</code>的<code>key-value pairs</code>数据量，如下图所示：<br>
+<strong>2. <code>reduceByKey</code>reduce on mapper side first !</strong>&nbsp;从而减少了用于<code>shuffle</code>的<code>key-value pairs</code>数据量，如下图所示：<br>
 <img alt="reduceByKey1" src="content/images/Spark-Shuffling-and-Partitioning/reduceByKey1.jpg"><br>
 <strong>3. reduce again after shuffle</strong><br>
 <img alt="reduceByKey2" src="content/images/Spark-Shuffling-and-Partitioning/reduceByKey2.jpg"></p>
-<p><code>reduceByKey</code>方法有什么好处？<br>
-通过首先减少数据集，在<code>shuffle</code>期间通过网络发送的数据量大大减少。这可能会导致性能上的重大改进！</p>
-<h2 id="groupbykey-and-reducebykey-running-times">groupByKey and reduceByKey Running Times</h2>
+<p><code>reduceByKey</code>方法有什么好处？<br>&nbsp;通过首先减少数据集，在<code>shuffle</code>期间通过网络发送的数据量大大减少。这可能会导致性能上的重大改进！</p>
+<h2 id="groupbykey-and-reducebykey-running-times">groupByKey and reduceByKey Running&nbsp;Times</h2>
 <p>在真实集群上进行基准测试：</p>
 <p><img alt="runTime" src="images/Spark-Shuffling-and-Partitioning/runTime.jpg"></p>
 <h2 id="shuffling_1">Shuffling</h2>
@@ -182,7 +178,7 @@ purchasesRdd.map(p =&gt; (p.customerld, p.price)) // Pair RDD
 <p><font color=red ><strong>Grouping all values of key-value pairs with the same key requires collecting all key-value pairs with the same key on the same machine. </strong></font><br>
 <strong>Shuffling</strong>产生的原因是：将与<code>Key</code>相关的所有<code>Value</code>移到同一台机器上，从而导致数据在网络中<code>Shuffle</code>。<br>
 <strong>但是Spark怎么知道哪个<code>Key</code>放在哪台机器上呢？</strong><br>
-- 默认情况下，Spark使用<code>hash partitioning</code>来确定哪个<code>Key</code>应该将对发送到哪台机器。</p>
+-&nbsp;默认情况下，Spark使用<code>hash partitioning</code>来确定哪个<code>Key</code>应该将对发送到哪台机器。</p>
 <h1 id="partitioning">Partitioning</h1>
 <h2 id="partitions">Partitions</h2>
 <p>RDD中的数据被分成若干个分区。</p>
@@ -192,10 +188,10 @@ purchasesRdd.map(p =&gt; (p.customerld, p.price)) // Pair RDD
  - 要使用的分区数是可配置的。 默认情况下，它等于所有<strong>executor</strong>节点上的内核总数。</p>
 <p><strong>Spark中提供两种分区：</strong><br>
 - 散列分区Hash<br>
-- 范围分区Range</p>
-<p><strong>注意：只能在Pair RDD上自定义分区。</strong></p>
-<h2 id="hash-partitioning">Hash partitioning</h2>
-<p>Given a Pair RDD that should be grouped: </p>
+-&nbsp;范围分区Range</p>
+<p><strong>注意：只能在Pair&nbsp;RDD上自定义分区。</strong></p>
+<h2 id="hash-partitioning">Hash&nbsp;partitioning</h2>
+<p>Given a Pair <span class="caps">RDD</span> that should be&nbsp;grouped: </p>
 <div class="highlight"><pre><span></span><code>val purchasesPerCust =
 purchasesRdd.map(p =&gt; (p.customerld, p.price)) // Pair RDD
             .groupByKey() 
@@ -207,44 +203,42 @@ purchasesRdd.map(p =&gt; (p.customerld, p.price)) // Pair RDD
 <li>然后同一分区中的元组将被发送到托管该分区的计算机</li>
 </ol>
 <p><strong>直觉：散列分区尝试根据<code>Key</code>在分区之间均匀地分布数据。</strong></p>
-<h3 id="hash-partitioning-example">Hash Partitioning: Example</h3>
-<p>考虑一<code>Pair RDD</code>，其中<strong>Keys</strong>为<code>[8,96,240,400,401,800]</code> 和 所需分区数为<code>4</code>。</p>
-<p>此外，假设<code>hashCode()</code>是标识（<code>n.hashCode() == n</code>）。<br>
-在这种情况下，散列分区在分区之间按如下方式分配<code>Keys</code>：<br>
+<h3 id="hash-partitioning-example">Hash Partitioning:&nbsp;Example</h3>
+<p>考虑一<code>Pair RDD</code>，其中<strong>Keys</strong>为<code>[8,96,240,400,401,800]</code> 和&nbsp;所需分区数为<code>4</code>。</p>
+<p>此外，假设<code>hashCode()</code>是标识（<code>n.hashCode() == n</code>）。<br>&nbsp;在这种情况下，散列分区在分区之间按如下方式分配<code>Keys</code>：<br>
 <code>p = key % 4</code><br>
 - partition 0: [8, 96, 240, 400, 800]<br>
 - partition 1: [401]<br>
 - partition 2: [ ]<br>
-- partition 3: [ ]</p>
+- partition 3: [&nbsp;]</p>
 <p>结果是非常不平衡的分布，这会损害性能。</p>
 <p>散列分区的目标是尝试均匀地分散<code>Keys</code>，在这种情况下，<code>Job</code>基本上只是在一个节点上展开，并非真正并行计算。</p>
-<p>在这种情况下，因为知道散列分区实际上是倾斜的，并且<code>Keys</code>是有序且非负的。 我们可以使用范围分区来改进分区，并使其显著均匀。</p>
-<h2 id="range-partitioning">Range partitioning</h2>
+<p>在这种情况下，因为知道散列分区实际上是倾斜的，并且<code>Keys</code>是有序且非负的。&nbsp;我们可以使用范围分区来改进分区，并使其显著均匀。</p>
+<h2 id="range-partitioning">Range&nbsp;partitioning</h2>
 <p>Pair RDDs may contain keys that have an ordering defined .<br>
-- Examples: Int, Char, String, ...</p>
+- Examples: Int, Char, String,&nbsp;&#8230;</p>
 <p>For such RDDs, range partitioning may be more efficient.<br>
 Using a range partitioner, keys are partitioned according to:<br>
 1. an ordering for keys<br>
-2. a set of sorted ranges of keys</p>
+2. a set of sorted ranges of&nbsp;keys</p>
 <p>属性：具有相同范围<code>Keys</code>的元组出现在同一台机器上。</p>
-<h3 id="range-partitioning-example">Range Partitioning: Example</h3>
+<h3 id="range-partitioning-example">Range Partitioning:&nbsp;Example</h3>
 <p>使用范围分区可以显着改善分布：<br>
  - 假设：（a）<strong>Keys</strong>非负，（b）800是RDD中最大的<strong>Key</strong><br>
- - 范围集：[1,200]，[201,400]，[401,600]，[601,800]</p>
+ -&nbsp;范围集：[1,200]，[201,400]，[401,600]，[601,800]</p>
 <p>在这种情况下，范围分区在分区之间按如下方式分配<strong>Keys</strong>：<br>
 - partition 0: [8, 96]<br>
 - partition 1: [240, 400]<br>
 - partition 2: [ 401]<br>
-- partition 3: [800] </p>
+- partition 3:&nbsp;[800] </p>
 <p>生成的分区更加平衡。</p>
-<h2 id="partitioning-data">Partitioning Data</h2>
+<h2 id="partitioning-data">Partitioning&nbsp;Data</h2>
 <p>如何为数据设置分区？<br>
 有两种方法可以创建具有特定分区的<strong>RDDs</strong>：<br>
-1. 在<strong>RDD</strong>上调用<strong>partitionBy</strong>，提供显式的分区程序。<br>
-2. Using <strong>transformations</strong> that return <strong>RDDs</strong> with specific partitioners. </p>
-<h3 id="partitioning-data-partitionby">Partitioning Data: partitionBy</h3>
-<p>调用<strong>partitionBy</strong>会使用指定的分区程序创建<strong>RDD</strong>。<br>
-Example:</p>
+1. 在<strong><span class="caps">RDD</span></strong>上调用<strong>partitionBy</strong>，提供显式的分区程序。<br>
+2. Using <strong>transformations</strong> that return <strong>RDDs</strong> with specific&nbsp;partitioners. </p>
+<h3 id="partitioning-data-partitionby">Partitioning Data:&nbsp;partitionBy</h3>
+<p>调用<strong>partitionBy</strong>会使用指定的分区程序创建<strong><span class="caps">RDD</span></strong>。<br>&nbsp;Example:</p>
 <div class="highlight"><pre><span></span><code>val pairs = purchasesRdd.map(p =&gt; (p.customerld, p.price))
 val tunedPartitioner = new RangePartitioner(8, pairs)
 val partitioned = pairs.partitionBy(tunedPartitioner).persist() 
@@ -252,7 +246,7 @@ val partitioned = pairs.partitionBy(tunedPartitioner).persist()
 
 <p>创建RangePartitioner需要：<br>
 1. 指定所需的分区数。<br>
-2. 提供带有序<strong>Keys</strong>的<strong>Pair RDD</strong>。 对该<strong>RDD</strong>进行采样以创建一组合适的排序范围。</p>
+2. 提供带有序<strong>Keys</strong>的<strong>Pair <span class="caps">RDD</span></strong>。 对该<strong><span class="caps">RDD</span></strong>进行采样以创建一组合适的排序范围。</p>
 <p><font color=red ><strong>重要：partitionBy的结果应始终persist()。 否则，每次使用RDD是都会重复分区操作，而分区又会涉及Shuffle！</strong></font></p>
 
 
@@ -260,9 +254,9 @@ val partitioned = pairs.partitionBy(tunedPartitioner).persist()
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Spark%3A%20Shuffling%20and%20Partitioning&url=http%3A//www.jerrylsu.net/articles/Spark%3A-Shuffling-and-Partitioning.html&hashtags=spark" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Spark%3A%20Shuffling%20and%C2%A0Partitioning&url=http%3A//www.jerrylsu.net/articles/Spark%3A-Shuffling-and-Partitioning.html&hashtags=spark" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Spark%3A-Shuffling-and-Partitioning.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Spark%3A%20Shuffling%20and%20Partitioning&amp;body=http%3A//www.jerrylsu.net/articles/Spark%3A-Shuffling-and-Partitioning.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Spark%3A%20Shuffling%20and%C2%A0Partitioning&amp;body=http%3A//www.jerrylsu.net/articles/Spark%3A-Shuffling-and-Partitioning.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -319,18 +313,18 @@ val partitioned = pairs.partitionBy(tunedPartitioner).persist()
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
 <li><a href="../articles/Spark-RDD.html" title="Spark RDD">Spark RDD</a></li>
-<li><a href="../articles/Debugging-Spark-Application.html" title="Debugging Spark Application">Debugging Spark Application</a></li>
-<li><a href="../articles/Spark SQL Join.html" title="Spark SQL Join">Spark SQL Join</a></li>
-<li><a href="../articles/Spark-Tips.html" title="Spark Tips">Spark Tips</a></li>
-<li><a href="../articles/Spark-Partitions-with-Coalesce-and-Repartition.html" title="Spark Partitions with Coalesce and Repartition">Spark Partitions with Coalesce and Repartition</a></li>
+<li><a href="../articles/Debugging-Spark-Application.html" title="Debugging Spark Application">Debugging Spark Application</a></li>
+<li><a href="../articles/Spark SQL Join.html" title="Spark SQL Join">Spark SQL Join</a></li>
+<li><a href="../articles/Spark-Tips.html" title="Spark Tips">Spark Tips</a></li>
+<li><a href="../articles/Spark-Partitions-with-Coalesce-and-Repartition.html" title="Spark Partitions with Coalesce and Repartition">Spark Partitions with Coalesce and Repartition</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Scala with Gradle in Intellij.html" title="Previous: Scala with Gradle in Intellij">Scala with Gradle in Intellij</a></li>
-                <li class="next-article"><a href="../articles/Spark SQL Join.html" title="Next: Spark SQL Join">Spark SQL Join</a> »</li>
+                <li class="previous-article">« <a href="../articles/Scala with Gradle in Intellij.html" title="Previous: Scala with Gradle in Intellij">Scala with Gradle in Intellij</a></li>
+                <li class="next-article"><a href="../articles/Spark SQL Join.html" title="Next: Spark SQL Join">Spark SQL Join</a> »</li>
             </ul>
             </nav>
             </aside>

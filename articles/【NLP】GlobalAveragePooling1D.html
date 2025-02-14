@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="【NLP】GlobalAveragePooling1D "/>
 <meta property="og:url" content="../articles/【NLP】GlobalAveragePooling1D.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-01-23T10:53:08+08:00" />
 <meta name="twitter:title" content="【NLP】GlobalAveragePooling1D ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>【NLP】GlobalAveragePooling1D  · JERRYLSU
 </title>
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/【NLP】GlobalAveragePooling1D.html">
-                【NLP】GlobalAveragePooling1D
+                【<span class="caps">NLP</span>】GlobalAveragePooling1D
             </a>
         </h1>
     </header>
@@ -105,11 +105,11 @@ model = keras.Sequential([
 </code></pre></div>
 
 <blockquote>
-<p>GlobalAveragePooling1D: return a fixed-length output vector for each example by averaging over the steps dimension. This allows the model to handle input of variable length, in the simplest way possible.</p>
+<p>GlobalAveragePooling1D: return a fixed-length output vector for each example by averaging over the steps dimension. This allows the model to handle input of variable length, in the simplest way&nbsp;possible.</p>
 </blockquote>
 <p><a href="https://www.jerrulsu.com/[NLP]-Embedding.html">Embedding</a>输出的文本数据batch_size * max_len * embedding_size的<strong>合并</strong> -&gt; <strong>全局平均池化操作GlobalAveragePooling1D</strong>：</p>
-<p>输入数据：(batch-size, steps, features)。是经过embedding层的稠密矩阵，steps是文本中tokens的个数（变长），features是embedding-dim的维度。</p>
-<p>输出数据：(batch-size, features)。对于每一个feature map即一条文本语句的embedding矩阵，按照steps方向求平均，embedding矩阵被池化为embedding-dim维度的向量，来表示本条文本语句。</p>
+<p>输入数据：(batch-size, steps,&nbsp;features)。是经过embedding层的稠密矩阵，steps是文本中tokens的个数（变长），features是embedding-dim的维度。</p>
+<p>输出数据：(batch-size, features)。对于每一个feature&nbsp;map即一条文本语句的embedding矩阵，按照steps方向求平均，embedding矩阵被池化为embedding-dim维度的向量，来表示本条文本语句。</p>
 <p>优点：解决本文语句的变长问题</p>
 <p>缺点：</p>
 <ul>
@@ -186,9 +186,9 @@ model = keras.Sequential([
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
 <li><a href="../articles/Conditional-Random-Field.html" title="ConditionalRandomField">ConditionalRandomField</a></li>
-<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
-<li><a href="../articles/Utterance-Rewriter.html" title="Utterance Rewriter">Utterance Rewriter</a></li>
-<li><a href="../articles/Pointer-Networkers.html" title="Pointer Networkers">Pointer Networkers</a></li>
+<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
+<li><a href="../articles/Utterance-Rewriter.html" title="Utterance Rewriter">Utterance Rewriter</a></li>
+<li><a href="../articles/Pointer-Networkers.html" title="Pointer Networkers">Pointer Networkers</a></li>
 <li><a href="../articles/Text-Generation.html" title="Text-Generation">Text-Generation</a></li>
 </ul>
 <hr />

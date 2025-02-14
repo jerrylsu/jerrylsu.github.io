@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="Spark RDD "/>
 <meta property="og:url" content="../articles/Spark-RDD.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-01-03T13:48:12+08:00" />
 <meta name="twitter:title" content="Spark RDD ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>Spark RDD  · JERRYLSU
 </title>
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Spark-RDD.html">
-                Spark RDD
+                Spark <span class="caps">RDD</span>
             </a>
         </h1>
     </header>
@@ -117,15 +117,14 @@ Spark RDD弹性分布式数据集
 </code></pre></div>
 
 <h1 id="_1">核心概念和抽象</h1>
-<h2 id="rdd">RDD</h2>
-<p><a href="https://www.cnblogs.com/frankdeng/p/9301653.html">RDD</a><br>
-这是一个核心抽象，既能实现计算的高效执行，又能灵活方便的形式化定义计算</p>
+<h2 id="rdd"><span class="caps">RDD</span></h2>
+<p><a href="https://www.cnblogs.com/frankdeng/p/9301653.html"><span class="caps">RDD</span></a><br>&nbsp;这是一个核心抽象，既能实现计算的高效执行，又能灵活方便的形式化定义计算</p>
 <p><strong>为什么需要一个新的抽象？</strong></p>
 <p>MapReduce中的迭代计算：<br>
 　1. 后续jobs之间的关系仅为用户代码所知，而不是框架。所以，框架无法优化整个计算。<br>
-　2. 框架必须可靠地持久保存中间数据，从而产生过多的IO</p>
+　2.&nbsp;框架必须可靠地持久保存中间数据，从而产生过多的IO</p>
 <p>Spark将数据保存在内存中，有效地消除了中间磁盘持久性，从而改善了完成时间</p>
-<h2 id="rdd-operations">RDD Operations</h2>
+<h2 id="rdd-operations"><span class="caps">RDD</span>&nbsp;Operations</h2>
 <ol>
 <li>
 <p>RDDs支持两种类型操作：</p>
@@ -141,7 +140,7 @@ Spark RDD弹性分布式数据集
 <p>Spark中所有的<strong>transformations</strong>都是<strong>惰性的</strong>，因为他们不会立即计算他们的结果。相反，他们只记得应用于某些基础数据集的转换。<strong>transformations</strong>仅在<strong>actions</strong>需要将结果返回到<strong>driver program</strong>时计算。这种设计使Spark能够更有效地运行。</p>
 </li>
 <li>
-<p>默认情况下，当每一次在转换后的RDD上执行一个<strong>action</strong>时，它都会重新计算。但是，也可以使用持久化（或缓存）的方法在内存中保留RDD，在这种情况下，Spark会在群集上保留元素，以便在下次查询时更快地访问。 当然也是支持在磁盘上保留RDD，或在多个节点之间复制的。</p>
+<p>默认情况下，当每一次在转换后的RDD上执行一个<strong>action</strong>时，它都会重新计算。但是，也可以使用持久化（或缓存）的方法在内存中保留RDD，在这种情况下，Spark会在群集上保留元素，以便在下次查询时更快地访问。&nbsp;当然也是支持在磁盘上保留RDD，或在多个节点之间复制的。</p>
 </li>
 </ol>
 <h3 id="basics">Basics</h3>
@@ -152,14 +151,14 @@ Spark RDD弹性分布式数据集
 
 <p>1: 从外部文件定义基础RDD。 此数据集未加载到内存中或以其他方式操作：<strong>lines</strong> 仅仅是指向文件的指针。<br>
 2: 将 <strong>lineLengths</strong> 定义为 <strong>map</strong> 转换的结果。由于惰性 <strong>lineLengths</strong> 不会立即计算。<br>
-3: 最终运行 <strong>reduce</strong>，是一个 <strong>action</strong>。此时Spark将计算分解为在不同机器上运行的 <strong>Tasks</strong>，并且每台机器都运行其 <strong>map</strong> 的部分和本地的 <strong>reduce</strong>，仅返回其对 <strong>driver program</strong> 的结果。</p>
-<p>如果稍后需要再次使用 <strong>lineLengths</strong>，可以用<strong><code>lineLengths.persist()</code></strong>在 <strong>reduce</strong> 之前，将 <strong>lineLengths</strong> 在第一次计算之后保存在内存中。</p>
-<h3 id="understanding-closures">Understanding closures</h3>
+3: 最终运行 <strong>reduce</strong>，是一个 <strong>action</strong>。此时Spark将计算分解为在不同机器上运行的 <strong>Tasks</strong>，并且每台机器都运行其 <strong>map</strong> 的部分和本地的 <strong>reduce</strong>，仅返回其对 <strong>driver program</strong>&nbsp;的结果。</p>
+<p>如果稍后需要再次使用 <strong>lineLengths</strong>，可以用<strong><code>lineLengths.persist()</code></strong>在 <strong>reduce</strong> 之前，将 <strong>lineLengths</strong>&nbsp;在第一次计算之后保存在内存中。</p>
+<h3 id="understanding-closures">Understanding&nbsp;closures</h3>
 <p>Spark的一个难点是在跨集群执行代码时理解变量和方法的范围和生命周期。 修改其范围之外的变量的RDD操作可能经常引起混淆。<br>
 <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431835236741e42daf5af6514f1a8917b8aaadff31bf000">函数式编程：理解闭包和延迟计算</a></p>
 <p><strong>1. Example</strong><br>
 根据是否在运行在同一JVM中可能表现不同 <br>
-Spark应用程序运行：本地模式 vs. 集群模式</p>
+Spark应用程序运行：本地模式 vs.&nbsp;集群模式</p>
 <p>使用<code>foreach()</code>增加<code>counter</code>：</p>
 <div class="highlight"><pre><span></span><code>counter = 0
 rdd = sc.parallelize(data)
@@ -185,34 +184,32 @@ print(&quot;Counter value: &quot;, counter)
 </ul>
 <p>Spark中的<strong>Accumulator</strong>专门用于提供一种机制，用于在集群中的工作节点之间执行拆分时安全地更新变量。</p>
 <h3 id="action">Action</h3>
-<h2 id="rdd-persistence">RDD Persistence</h2>
+<h2 id="rdd-persistence"><span class="caps">RDD</span>&nbsp;Persistence</h2>
 <h3 id="resiliency">Resiliency</h3>
 <p><strong>Spark如何实现弹性计算？（尽管集群出现机器故障，但仍可以继续计算操作）</strong><br>
 1. tracking lineage<br>
-2. assuming deterministic &amp; side-effect free execution of transformations(including closures)<br>
+2. assuming deterministic <span class="amp">&amp;</span> side-effect free execution of transformations(including closures)<br>
 3. assuming idempotency for actions<br>
-4. increasing durability of a data set　提高数据集的持久性</p>
-<p><strong>It is important to keep in mind that all the closures pass to Spark, must be deterministic and side effect free. Actions require a stronger property, idempotency.</strong><br>
-所有的闭包都传递给Spark，必须是确定性的，并且没有副作用。</p>
+4. increasing durability of a data set&nbsp;提高数据集的持久性</p>
+<p><strong>It is important to keep in mind that all the closures pass to Spark, must be deterministic and side effect free. Actions require a stronger property, idempotency.</strong><br>&nbsp;所有的闭包都传递给Spark，必须是确定性的，并且没有副作用。</p>
 <ul>
 <li><strong>What is the lineage?</strong><br>
 <strong>分区依赖关系图</strong>，包含计算中涉及数据源的所有分区。</li>
-<li><strong>What happens if the dependencies of a failed partition fails as well ?</strong><br>
-重新启动计算。首先重新计算这个分区的依赖，然后再计算这个分区。</li>
+<li><strong>What happens if the dependencies of a failed partition fails as well ?</strong><br>&nbsp;重新启动计算。首先重新计算这个分区的依赖，然后再计算这个分区。</li>
 </ul>
 <p>Key Questions:<br>
 <strong>1. 数据集必须具备哪些功能才能实现为RDD？</strong><br>
-partitions, iterator and dependencies</p>
+partitions, iterator and&nbsp;dependencies</p>
 <h1 id="_2">高级主题</h1>
-<h2 id="execution-scheduling">Execution &amp; Scheduling</h2>
+<h2 id="execution-scheduling">Execution <span class="amp">&amp;</span>&nbsp;Scheduling</h2>
 <p><strong>当在Spark上运行我们的应用程序 ( 调用一个Action ) 时会发生什么？</strong><br>
 <img alt="Spark" src="content/images/Spark-RDD/Spark.jpg"><br>
 1. <strong>SparkContext</strong>：是应用的核心<br>
     - 告诉应用如何访问集群<br>
     - 协调集群上的进程集来运行我们的应用<br>
     - 在同一应用程序内，调度多个并发作业<br>
-    - 在不同应用程序间，控制动态资源分配</p>
-<p><strong>Cluster Manager</strong>: 用于获取群集资源的一个外部服务。例如：YARN, Mesos or a standalone Spark cluster.(资源经纪人)</p>
+    -&nbsp;在不同应用程序间，控制动态资源分配</p>
+<p><strong>Cluster Manager</strong>: 用于获取群集资源的一个外部服务。例如：<span class="caps">YARN</span>, Mesos or a standalone Spark&nbsp;cluster.(资源经纪人)</p>
 <ol start="2">
 <li><strong>Jobs, stages, tasks</strong><br>
 <strong>Job</strong>：在响应<strong>Spark action</strong>时而产生的活动<br>
@@ -227,30 +224,30 @@ partitions, iterator and dependencies</p>
 </code></pre></div>
 
 <p><strong>Job stages 和 Tasks的区别？</strong><br>
-- <strong>Job stage</strong>： 是跨越物化边界的流水线计算。定义在RDD level，不是可立即可执行的。a  pipelined computation spanning between materialization boundaries. not immediately executable.</p>
+- <strong>Job stage</strong>： 是跨越物化边界的流水线计算。定义在RDD level，不是可立即可执行的。a  pipelined computation spanning between materialization boundaries. not immediately&nbsp;executable.</p>
 <ul>
-<li><strong>Task</strong>： 是绑定到特定分区的job stage，是可立即可执行的。a job stage bound to particular partitions. immediately executable.</li>
+<li><strong>Task</strong>： 是绑定到特定分区的job stage，是可立即可执行的。a job stage bound to particular partitions. immediately&nbsp;executable.</li>
 </ul>
-<p>The idea behind the job stages is to pipeline computation as much as possible, avoiding the unnecessary data materializations. </p>
+<p>The idea behind the job stages is to pipeline computation as much as possible, avoiding the unnecessary data&nbsp;materializations. </p>
 <ol start="3">
 <li><strong>Transformations with narrow dependencies allow pipelining</strong><blockquote>
 <p>For example, if you applied two filter transformations in a row, it is not necessary to serialize and deserialize data in between. You can simply pass the data through the next predicate. Data materialization occurs in a few places. when reading, shuffling, or passing data to an action. This is where the distinction between narrow and wide dependencies comes up.<br>
 - Materialization happens when reading, shuffling or passing data to an action.<br>
 Narrow dependencies allow pipelining.<br>
-Wide dependencies forbid it.</p>
+Wide dependencies forbid&nbsp;it.</p>
 </blockquote>
 </li>
 </ol>
-<h2 id="caching-persistence">Caching &amp; Persistence</h2>
+<h2 id="caching-persistence">Caching <span class="amp">&amp;</span>&nbsp;Persistence</h2>
 <p><strong>1. Spark如何管理中间数据？</strong><br>
-<strong>2. 如何向Spark提示我们的访问模式以获得更好的弹性和性能？</strong></p>
-<h2 id="shared-variables">Shared Variables</h2>
+<strong>2.&nbsp;如何向Spark提示我们的访问模式以获得更好的弹性和性能？</strong></p>
+<h2 id="shared-variables">Shared&nbsp;Variables</h2>
 <ul>
 <li>Spark中的第二个抽象是可以在并行操作中使用的<strong>共享变量</strong>。</li>
 <li>默认情况下，当Spark并行运行一个函数作为不同节点上的一组<strong>Tasks</strong>时，它会将函数中使用的每个<strong>变量的副本</strong>发送给每个<strong>Task</strong>。即Spark实际上操作的是这个函数所用变量的一个独立副本。这些变量会被复制到每台机器上，并且这些变量在远程机器上的所有更新都不会传递回<strong>driver program</strong>。</li>
 <li>有时，变量需要跨任务共享，或者在任务和驱动程序之间共享。通常跨任务的读写共享变量是低效的，但是，Spark还是为两种常见的使用模式提供了两种有限的共享变量：<strong>广播变量 ( Broadcast Variables ) 和累加器 ( Accumulator )</strong>。</li>
 </ul>
-<h3 id="broadcast-variables">Broadcast Variables</h3>
+<h3 id="broadcast-variables">Broadcast&nbsp;Variables</h3>
 <p><img alt="BroadcastVariable" src="images/Spark-RDD/BroadcastVariable.jpg"><br>
 <strong>1. 为什么需要广播变量？</strong><br>
 如果我们要在分布式计算里面分发大的对象，例如：字典，模型等，这个都会由<strong>Driver</strong>端进行分发。一般来讲，如果这个变量不是广播变量，那么每个<strong>Task</strong>就会分发一份，这在<strong>Task</strong>数目十分多的情况下<strong>Driver</strong>的带宽会成为系统的瓶颈，而且会大量消耗<strong>Task</strong>服务器上的资源，如果将这个变量声明为<strong>广播变量</strong>，那么只是每个<strong>Executor</strong>拥有一份，由这个<strong>Executor</strong>启动的<strong>Task</strong>会共享这个变量，节省了通信的成本和服务器的资源。</p>
@@ -271,7 +268,7 @@ Wide dependencies forbid it.</p>
 [1, 2, 3]
 </code></pre></div>
 
-<p>创建广播变量后，应该在群集上运行的任何函数中使用它而不是值v，这样v不会多次传送到节点。 另外，在广播之后不应修改对象v，以确保所有节点获得广播变量的相同值（例如，如果稍后将变量发送到新节点）。</p>
+<p>创建广播变量后，应该在群集上运行的任何函数中使用它而不是值v，这样v不会多次传送到节点。&nbsp;另外，在广播之后不应修改对象v，以确保所有节点获得广播变量的相同值（例如，如果稍后将变量发送到新节点）。</p>
 <h3 id="accumulators">Accumulators</h3>
 <p>在spark应用程序中，我们经常会有这样的需求，如异常监控，调试，记录符合某特性的数据的数目，这种需求都需要用到计数器，如果一个变量不被声明为一个<strong>Accumulator</strong>，那么它将在被改变时不会再<strong>driver</strong>端进行全局汇总，即在分布式运行时每个<strong>Task</strong>运行的只是原始变量的一个副本，并不能改变原始变量的值，但是当这个变量被声明为<strong>Accumulator</strong>后，该变量就会有分布式计数的功能。</p>
 <p><strong>1. 使用累加器</strong><br>
@@ -302,12 +299,12 @@ Accumulator&lt;id=0, value=0&gt;
 
 <h1 id="references">References</h1>
 <p>[1] <a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2011/EECS-2011-82.pdf">Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</a><br>
-[2] <a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html">RDD Programming Guide</a><br>
-[3] <a href="https://www.coursera.org/learn/big-data-essentials/home/week/4">Coursera: Spark RDD</a><br>
+[2] <a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html"><span class="caps">RDD</span> Programming Guide</a><br>
+[3] <a href="https://www.coursera.org/learn/big-data-essentials/home/week/4">Coursera: Spark <span class="caps">RDD</span></a><br>
 [4] <a href="https://stackoverflow.com/questions/30691385/internal-work-of-spark/30691654#30691654">StackOverflow: Internal Work of Spark</a><br>
 [5] <a href="https://www.youtube.com/watch?v=7ooZ4S7Ay6Y">Advanced Apache Spark- Sameer Farooqui (Databricks)</a><br>
 [6] <a href="https://www.youtube.com/watch?v=dmL0N3qfSc8">A Deeper Understanding of Spark Internals - Aaron Davidson (Databricks)</a><br>
-[7] <a href="https://www.youtube.com/watch?v=49Hr5xZyTEA">Introduction to AmpLab Spark Internals</a></p>
+[7] <a href="https://www.youtube.com/watch?v=49Hr5xZyTEA">Introduction to AmpLab Spark&nbsp;Internals</a></p>
 
 
              
@@ -372,11 +369,11 @@ Accumulator&lt;id=0, value=0&gt;
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Debugging-Spark-Application.html" title="Debugging Spark Application">Debugging Spark Application</a></li>
-<li><a href="../articles/Spark:-Shuffling-and-Partitioning.html" title="Spark: Shuffling and Partitioning">Spark: Shuffling and Partitioning</a></li>
-<li><a href="../articles/Spark SQL Join.html" title="Spark SQL Join">Spark SQL Join</a></li>
-<li><a href="../articles/Spark-Tips.html" title="Spark Tips">Spark Tips</a></li>
-<li><a href="../articles/Spark-Partitions-with-Coalesce-and-Repartition.html" title="Spark Partitions with Coalesce and Repartition">Spark Partitions with Coalesce and Repartition</a></li>
+<li><a href="../articles/Debugging-Spark-Application.html" title="Debugging Spark Application">Debugging Spark Application</a></li>
+<li><a href="../articles/Spark:-Shuffling-and-Partitioning.html" title="Spark: Shuffling and Partitioning">Spark: Shuffling and Partitioning</a></li>
+<li><a href="../articles/Spark SQL Join.html" title="Spark SQL Join">Spark SQL Join</a></li>
+<li><a href="../articles/Spark-Tips.html" title="Spark Tips">Spark Tips</a></li>
+<li><a href="../articles/Spark-Partitions-with-Coalesce-and-Repartition.html" title="Spark Partitions with Coalesce and Repartition">Spark Partitions with Coalesce and Repartition</a></li>
 </ul>
 <hr />
 </section>

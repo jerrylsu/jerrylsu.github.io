@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Deep Learning, NLP, RASA, BERT, NLP, " />
 
-<meta property="og:title" content="【NLP】RASA Dialogue Transformers "/>
+<meta property="og:title" content="【NLP】RASA Dialogue Transformers "/>
 <meta property="og:url" content="../articles/【NLP】RASA-Dialogue-Transformers.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-03-06T13:49:05+08:00" />
-<meta name="twitter:title" content="【NLP】RASA Dialogue Transformers ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="【NLP】RASA Dialogue Transformers ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>【NLP】RASA Dialogue Transformers  · JERRYLSU
+        <title>【NLP】RASA Dialogue Transformers  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/【NLP】RASA-Dialogue-Transformers.html">
-                【NLP】RASA Dialogue Transformers
+                【<span class="caps">NLP</span>】<span class="caps">RASA</span> Dialogue&nbsp;Transformers
             </a>
         </h1>
     </header>
@@ -94,7 +94,7 @@
     </div>
     <div class="span8 article-content">
             
-            <p><a href="https://arxiv.org/abs/1910.00486">Dialogue Transformers</a>基于transformer架构的dialogue level的对话策略，其中自注意力机制关注多轮对话序列。RNN网络结构是在对整个对话序列进行编码，故而认为历史序列的每一轮对话turn均是相关的。尽管复杂LSTM结构对RNN进行了改进，可以对历史信息选择性遗忘，然后这需要有足够的训练数据。基于这些，在训练数据有限和多主题对话的场景（一组对话中会交叠多种对话片段）下，网络无法解决这些问题。而transformer结构会选取哪些轮参与当前轮对话状态的编码，自然而然的忽略无关和选取相关历史对话轮，有效克服了RNN结构的限制以LSTM对大训练数据的依赖。</p>
+            <p><a href="https://arxiv.org/abs/1910.00486">Dialogue Transformers</a>基于transformer架构的dialogue&nbsp;level的对话策略，其中自注意力机制关注多轮对话序列。RNN网络结构是在对整个对话序列进行编码，故而认为历史序列的每一轮对话turn均是相关的。尽管复杂LSTM结构对RNN进行了改进，可以对历史信息选择性遗忘，然后这需要有足够的训练数据。基于这些，在训练数据有限和多主题对话的场景（一组对话中会交叠多种对话片段）下，网络无法解决这些问题。而transformer结构会选取哪些轮参与当前轮对话状态的编码，自然而然的忽略无关和选取相关历史对话轮，有效克服了RNN结构的限制以LSTM对大训练数据的依赖。</p>
 <p>基于自注意力机制的transformer结构，对开放域多主题的对话有明显的优势。在对编码的level上，NLP通常是基于单轮的token序列进行编码，而rasa的自注意力机制是对整个对话序列编码。</p>
 <p>e.g.</p>
 <div class="highlight"><pre><span></span><code><span class="gu">##</span> Generated Story case-0-568983
@@ -103,19 +103,19 @@
     <span class="k">-</span> slot{&quot;s_face_name_1&quot;: &quot;Jerry&quot;}
 </code></pre></div>
 
-<p>对于Transformer encode网络的bert模型来说，上例作为一条训练样本的story，共有三轮对话且具有时序关系，即3 time steps。每一个time step的vector有用户输入（意图和实体） + 槽 + 上一轮的Action，每一个time step同时对应一个action的预测vector。区别与原始的bert双向自注意力机制，该策略中使用单向注意力，即关注当前轮之前的对话历史信息。</p>
+<p>对于Transformer encode网络的bert模型来说，上例作为一条训练样本的story，共有三轮对话且具有时序关系，即3 time steps。每一个time step的vector有用户输入（意图和实体） + 槽 + 上一轮的Action，每一个time&nbsp;step同时对应一个action的预测vector。区别与原始的bert双向自注意力机制，该策略中使用单向注意力，即关注当前轮之前的对话历史信息。</p>
 <p><img alt="dialogue time step" src="images/RASA/dialogue_time_step.png"></p>
-<p>Transformer embedding策略体系结构，包括以下步骤：</p>
+<p>Transformer&nbsp;embedding策略体系结构，包括以下步骤：</p>
 <ul>
 <li>将用户输入（用户意图和实体），每个时间步骤的先前系统动作，槽concatenate为输入向量输入embedding层；</li>
 <li>送入transformer；</li>
 <li>对transformer的输出应用一个全连接层，获得这个时间步对话embedding向量；</li>
 <li>在每个时间步上对全部的系统actions创建embedding向量；</li>
-<li>计算对话embedding向量和系统actions embedding向量之间的相似度，即loss。参见StarSpace的论文。</li>
+<li>计算对话embedding向量和系统actions&nbsp;embedding向量之间的相似度，即loss。参见StarSpace的论文。</li>
 </ul>
 <p><img alt="dialogue_level" src="images/RASA/dialogue_level_training_data.png"></p>
 <p>Dialogue_features作为输入特征，总共0，1，2三轮对话。FullDialoguePolicy默认参照最长story进行-1 padding，即输入4的作用。<br>
-Bot_features作为每一轮预测的输出特征，同样-1 padding并最终默认转换为action_listen向量。</p>
+Bot_features作为每一轮预测的输出特征，同样-1&nbsp;padding并最终默认转换为action_listen向量。</p>
 <p><img alt="attention" src="images/RASA/self_attention.png"></p>
 <p>对于多主题自注意力机制矩阵的测试结果：</p>
 <p>如上图自注意力矩阵所示，纵轴为被预测的对话轮，横轴为policy所关注的对话历史。由于使用单向transformer结构，矩阵的上三角0掩码，以确保不会去关注未来的对话轮。图示可以证明学习的注意力权重很容易解释并反映对话逻辑，在每一轮的对话中，与当前预测相关的对话历史有较高的注意力权重。</p>
@@ -128,9 +128,9 @@ Bot_features作为每一轮预测的输出特征，同样-1 padding并最终默�
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=%E3%80%90NLP%E3%80%91RASA%20Dialogue%20Transformers&url=http%3A//www.jerrylsu.net/articles/%E3%80%90NLP%E3%80%91RASA-Dialogue-Transformers.html&hashtags=deep-learning,nlp,rasa,bert" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=%E3%80%90NLP%E3%80%91RASA%20Dialogue%C2%A0Transformers&url=http%3A//www.jerrylsu.net/articles/%E3%80%90NLP%E3%80%91RASA-Dialogue-Transformers.html&hashtags=deep-learning,nlp,rasa,bert" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/%E3%80%90NLP%E3%80%91RASA-Dialogue-Transformers.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=%E3%80%90NLP%E3%80%91RASA%20Dialogue%20Transformers&amp;body=http%3A//www.jerrylsu.net/articles/%E3%80%90NLP%E3%80%91RASA-Dialogue-Transformers.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=%E3%80%90NLP%E3%80%91RASA%20Dialogue%C2%A0Transformers&amp;body=http%3A//www.jerrylsu.net/articles/%E3%80%90NLP%E3%80%91RASA-Dialogue-Transformers.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -186,10 +186,10 @@ Bot_features作为每一轮预测的输出特征，同样-1 padding并最终默�
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/RASA-Featurizer.html" title="【NLP】RASA Featurizer">【NLP】RASA Featurizer</a></li>
-<li><a href="../articles/【NLP】RASA-Issues.html" title="【NLP】RASA Issues">【NLP】RASA Issues</a></li>
+<li><a href="../articles/RASA-Featurizer.html" title="【NLP】RASA Featurizer">【NLP】RASA Featurizer</a></li>
+<li><a href="../articles/【NLP】RASA-Issues.html" title="【NLP】RASA Issues">【NLP】RASA Issues</a></li>
 <li><a href="../articles/【NLP】BERT.html" title="【NLP】BERT">【NLP】BERT</a></li>
-<li><a href="../articles/Pointer-Networkers.html" title="Pointer Networkers">Pointer Networkers</a></li>
+<li><a href="../articles/Pointer-Networkers.html" title="Pointer Networkers">Pointer Networkers</a></li>
 <li><a href="../articles/Text-Generation.html" title="Text-Generation">Text-Generation</a></li>
 </ul>
 <hr />
@@ -197,8 +197,8 @@ Bot_features作为每一轮预测的输出特征，同样-1 padding并最终默�
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/RASA-Featurizer.html" title="Previous: 【NLP】RASA Featurizer">【NLP】RASA Featurizer</a></li>
-                <li class="next-article"><a href="../articles/Deploy-my-blog-quickly.html" title="Next: Deploy my blog quickly">Deploy my blog quickly</a> »</li>
+                <li class="previous-article">« <a href="../articles/RASA-Featurizer.html" title="Previous: 【NLP】RASA Featurizer">【NLP】RASA Featurizer</a></li>
+                <li class="next-article"><a href="../articles/Deploy-my-blog-quickly.html" title="Next: Deploy my blog quickly">Deploy my blog quickly</a> »</li>
             </ul>
             </nav>
             </aside>

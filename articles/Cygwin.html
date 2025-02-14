@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="Cygwin "/>
 <meta property="og:url" content="../articles/Cygwin.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-04-24T07:05:27+08:00" />
 <meta name="twitter:title" content="Cygwin ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>Cygwin  · JERRYLSU
 </title>
@@ -119,15 +119,15 @@ apt-cyg install vim screenwget subversion openssh
 
 <h2 id="pycahrmcygwin">Pycahrm中启Cygwin终端</h2>
 <p><code>Files|Settings|Tools|Terminal|Shellpath</code> path: <code>C:\cygwin64\bin\bash.exe</code></p>
-<p>This is a non-interactive shell, and does not source your profile. The next try is:</p>
+<p>This is a non-interactive shell, and does not source your profile. The next try&nbsp;is:</p>
 <p><code>C:\cygwin64\bin\bash.exe --login -i</code></p>
-<p>This produces an error from Pycharm that it cannot start the program correctly. A little checking says the leading command needs to be quoted, else Pycahrm treats the entire line as the name of the command, not as a command followed by flags. OK:</p>
+<p>This produces an error from Pycharm that it cannot start the program correctly. A little checking says the leading command needs to be quoted, else Pycahrm treats the entire line as the name of the command, not as a command followed by flags. <span class="caps">OK</span>:</p>
 <p><code>"C:\cygwin64\bin\bash.exe" --login -i</code></p>
-<p>It starts in my home directory, not in my project root. Starting in the project root is one of the nice features of the terminal in IntelliJ. Finally, two changes. First the IntelliJ setting:</p>
+<p>It starts in my home directory, not in my project root. Starting in the project root is one of the nice features of the terminal in IntelliJ. Finally, two changes. First the IntelliJ&nbsp;setting:</p>
 <p><code>`"C:\cygwin64\bin\bash" -c "exec /usr/bin/env INTELLIJ=true $SHELL --login -i"</code><br>
-And an addition to my <code>~/.bashrc</code>:</p>
+And an addition to&nbsp;my <code>~/.bashrc</code>:</p>
 <p><code>${INTELLIJ-false} &amp;&amp; cd ${OLDPWD-.}</code></p>
-<h2 id="cygwinwindows-anaconda">Cygwin中使用windows anaconda</h2>
+<h2 id="cygwinwindows-anaconda">Cygwin中使用windows&nbsp;anaconda</h2>
 <p><code>vim ~/.bashrc</code>加入以下脚本：</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#####################By Jerry for using Anaconda on Cygwin#################</span>
 
@@ -198,16 +198,16 @@ And an addition to my <code>~/.bashrc</code>:</p>
 <span class="c1">###############################################################################</span>
 </code></pre></div>
 
-<p><strong>Somethings to remember for this integration to work.</strong></p>
+<p><strong>Somethings to remember for this integration to&nbsp;work.</strong></p>
 <ol>
 <li>
-<p>Please install Anaconda directly from installer and not from package manager like Chocolatey, since for this approach to work the envs must be within the anaconda root directory. </p>
+<p>Please install Anaconda directly from installer and not from package manager like Chocolatey, since for this approach to work the envs must be within the anaconda root&nbsp;directory. </p>
 </li>
 <li>
-<p>In order for anaconda python to work in cygwin commandline, you must use <code>python -i</code>. Using just python freezes the screen.</p>
+<p>In order for anaconda python to work in cygwin commandline, you must&nbsp;use <code>python -i</code>. Using just python freezes the&nbsp;screen.</p>
 </li>
 </ol>
-<p><a href="https://stackoverflow.com/questions/36969824/using-anaconda-environments-with-cygwin-on-windows">Ref: using-anaconda-environments-with-cygwin-on-windows</a></p>
+<p><a href="https://stackoverflow.com/questions/36969824/using-anaconda-environments-with-cygwin-on-windows">Ref:&nbsp;using-anaconda-environments-with-cygwin-on-windows</a></p>
 
 
              
@@ -272,8 +272,8 @@ And an addition to my <code>~/.bashrc</code>:</p>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Case-Class-vs-Class.html" title="Previous: Case Class vs Class">Case Class vs Class</a></li>
-                <li class="next-article"><a href="../articles/Python Object and Reference.html" title="Next: Python Object and Reference">Python Object and Reference</a> »</li>
+                <li class="previous-article">« <a href="../articles/Case-Class-vs-Class.html" title="Previous: Case Class vs Class">Case Class vs Class</a></li>
+                <li class="next-article"><a href="../articles/Python Object and Reference.html" title="Next: Python Object and Reference">Python Object and Reference</a> »</li>
             </ul>
             </nav>
             </aside>

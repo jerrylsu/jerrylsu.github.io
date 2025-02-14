@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="Sort "/>
 <meta property="og:url" content="../articles/Sort.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-05-19T08:18:52+08:00" />
 <meta name="twitter:title" content="Sort ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>Sort  · JERRYLSU
 </title>
@@ -94,9 +94,9 @@
     </div>
     <div class="span8 article-content">
             
-            <h3 id="quick-sort">Quick Sort</h3>
+            <h3 id="quick-sort">Quick&nbsp;Sort</h3>
 <p>引例：荷兰国旗问题</p>
-<h3 id="merge-sort">Merge Sort</h3>
+<h3 id="merge-sort">Merge&nbsp;Sort</h3>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">ListNode</span><span class="o">*</span><span class="w"> </span><span class="n">sortList</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span><span class="w"> </span><span class="n">head</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -135,7 +135,7 @@
 <span class="p">};</span>
 </code></pre></div>
 
-<h3 id="heap-sort">Heap Sort</h3>
+<h3 id="heap-sort">Heap&nbsp;Sort</h3>
 <p><a href="">https://docs.python.org/3/library/heapq.html#heapq.heapify</a></p>
 <p>时间复杂度O(N*logN)，额外空间复杂度O(1)。</p>
 <p><strong>堆结构非常重要</strong></p>
@@ -164,11 +164,10 @@
 </li>
 </ol>
 <p><strong>大根堆的实现：</strong></p>
-<p>This implementation uses <strong><code>arrays</code></strong> for which <strong><code>heap[i] &gt; heap[2*i+1]</code></strong> and <strong><code>heap[i] &gt; heap[2*i+2]</code></strong> for all <strong><code>i</code></strong>, counting elements from zero. </p>
+<p>This implementation uses <strong><code>arrays</code></strong> for which <strong><code>heap[i] &gt; heap[2*i+1]</code></strong> and <strong><code>heap[i] &gt; heap[2*i+2]</code></strong> for all <strong><code>i</code></strong>, counting elements from&nbsp;zero. </p>
 <p>给定数组，都可根据约定<strong>视其为堆</strong>，但其不是大根堆，<strong>如何将数组调整为大根堆</strong>？</p>
 <p><strong>建立大根堆：</strong></p>
-<p><strong><code>heapInsert</code></strong>: 经历一个新结点加入一个已经调整好的堆中，同时往上调整的过程。调整停止条件：当加入结点值不大于其父节点时，<br>
-调整停止。</p>
+<p><strong><code>heapInsert</code></strong>: 经历一个新结点加入一个已经调整好的堆中，同时往上调整的过程。调整停止条件：当加入结点值不大于其父节点时，<br>&nbsp;调整停止。</p>
 <p><strong>堆在数组上可伸缩</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">insertHeap</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="k">index</span><span class="p">)</span><span class="err">:</span>
 <span class="w">    </span><span class="n">par_i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">index</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span>
@@ -186,8 +185,7 @@
 </code></pre></div>
 
 <p>时间复杂度分析：<strong><code>O(N)</code></strong></p>
-<p>当第<code>i</code>个结点加入堆中时，<code>0</code>~<code>i-1</code>已经调整为大根堆，其高度为<code>O(log(i-1))</code>，即调整代价为<code>O(log(i-1))</code>。(沿其父结点依次向上&gt;<br>
-比较调整)</p>
+<p>当第<code>i</code>个结点加入堆中时，<code>0</code>~<code>i-1</code>已经调整为大根堆，其高度为<code>O(log(i-1))</code>，即调整代价为<code>O(log(i-1))</code>。(沿其父结点依次向上&gt;<br>&nbsp;比较调整)</p>
 <p>所以, <code>N</code>个结点的调整代价为：<code>O(lg1) + O(lg2) + ... + O(lgN)</code>收敛于<code>O(N)</code></p>
 <p><strong>堆化：</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">heapify</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="k">index</span><span class="p">,</span><span class="w"> </span><span class="n">heapSize</span><span class="p">)</span><span class="err">:</span>
@@ -208,8 +206,8 @@
 </code></pre></div>
 
 <p><strong>堆排序：</strong></p>
-<p>堆大小：heapSize = len(arr)</p>
-<p>数组最后一个数下标：heapSize -= 1</p>
+<p>堆大小：heapSize =&nbsp;len(arr)</p>
+<p>数组最后一个数下标：heapSize -=&nbsp;1</p>
 <ol>
 <li>把数组<code>arr</code>创建为大根堆</li>
 <li>堆顶<strong><code>arr[0]</code></strong>与数组最后一个数<strong><code>arr[heapSize]</code></strong>交换</li>
@@ -226,7 +224,7 @@
 <span class="w">        </span><span class="n">heapify</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">heapSize</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="topological-sort">Topological Sort</h3>
+<h3 id="topological-sort">Topological&nbsp;Sort</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Definition for a Directed graph node</span>
 <span class="k">class</span> <span class="nc">DirectedGraphNode</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
@@ -328,11 +326,11 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Topological-Sorting.html" title="Topological Sorting">Topological Sorting</a></li>
-<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
-<li><a href="../articles/Viterbi-Algorithm.html" title="Viterbi Algorithm">Viterbi Algorithm</a></li>
-<li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
-<li><a href="../articles/Brackets-Matching.html" title="Brackets Matching">Brackets Matching</a></li>
+<li><a href="../articles/Topological-Sorting.html" title="Topological Sorting">Topological Sorting</a></li>
+<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
+<li><a href="../articles/Viterbi-Algorithm.html" title="Viterbi Algorithm">Viterbi Algorithm</a></li>
+<li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
+<li><a href="../articles/Brackets-Matching.html" title="Brackets Matching">Brackets Matching</a></li>
 </ul>
 <hr />
 </section>
@@ -340,7 +338,7 @@
             <nav>
             <ul class="articles-timeline">
                 <li class="previous-article">« <a href="../articles/C++.html" title="Previous: C++">C++</a></li>
-                <li class="next-article"><a href="../articles/A_star_algorithm.html" title="Next: A* Heuristic Algorithm">A* Heuristic Algorithm</a> »</li>
+                <li class="next-article"><a href="../articles/A_star_algorithm.html" title="Next: A* Heuristic Algorithm">A* Heuristic Algorithm</a> »</li>
             </ul>
             </nav>
             </aside>

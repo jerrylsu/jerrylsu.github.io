@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="NLP, NLP, " />
 
-<meta property="og:title" content="Mapping chars and words to tokens "/>
+<meta property="og:title" content="Mapping chars and words to tokens "/>
 <meta property="og:url" content="../articles/Mapping-Chars-and-Words-to-Tokens.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2022-02-22T11:17:17+08:00" />
-<meta name="twitter:title" content="Mapping chars and words to tokens ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="Mapping chars and words to tokens ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Mapping chars and words to tokens  · JERRYLSU
+        <title>Mapping chars and words to tokens  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Mapping-Chars-and-Words-to-Tokens.html">
-                Mapping chars and words to tokens
+                Mapping chars and words to&nbsp;tokens
             </a>
         </h1>
     </header>
@@ -94,8 +94,8 @@
     </div>
     <div class="span8 article-content">
             
-            <p><a href="https://www.kaggle.com/c/feedback-prize-2021/discussion/298094">How to Convert Characters, Tokens, and Words</a></p>
-<h2 id="1-mapping-char-to-token">1. Mapping char to token.</h2>
+            <p><a href="https://www.kaggle.com/c/feedback-prize-2021/discussion/298094">How to Convert Characters, Tokens, and&nbsp;Words</a></p>
+<h2 id="1-mapping-char-to-token">1. Mapping char to&nbsp;token.</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BigBirdTokenizerFast</span>
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BigBirdTokenizerFast</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;allenai/longformer-large-4096&#39;</span><span class="p">)</span>
 </code></pre></div>
@@ -127,7 +127,7 @@ offset_mapping:<span class="w">  </span>[(0,<span class="w"> </span>0),<span cla
 &#39;Phones\n\nModern<span class="w"> </span>humans<span class="w"> </span>today<span class="w"> </span>are<span class="w"> </span>always<span class="w"> </span>on<span class="w"> </span>their<span class="w"> </span>phone.<span class="w"> </span>&#39;
 </code></pre></div>
 
-<p><strong>offset_mapping: tokens与offset_mapping意义对应，意义当前token在原文本中的start，end位置。 [start, end）左闭右开  'Phones'-&gt;start:0 end:6</strong></p>
+<p><strong>offset_mapping: tokens与offset_mapping意义对应，意义当前token在原文本中的start，end位置。 [start, end）左闭右开  &#8216;Phones&#8217;-&gt;start:0&nbsp;end:6</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">new_span</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">offset_mapping</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
@@ -174,7 +174,7 @@ offset_mapping:<span class="w">  </span>[(0,<span class="w"> </span>0),<span cla
 <span class="c1"># Modern为实体，则(8, 14)</span>
 </code></pre></div>
 
-<p><strong>j[-1]表示end，-1由于标注数据end是闭区间，offset_mapping返回的[start, end)end是开区间，-1与标注数据end对应</strong></p>
+<p><strong>j[-1]表示end，-1由于标注数据end是闭区间，offset_mapping返回的[start,&nbsp;end)end是开区间，-1与标注数据end对应</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">start_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">j</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">offset_mapping</span><span class="p">)</span> <span class="k">if</span> <span class="n">j</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}</span>
 <span class="n">end_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">j</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">offset_mapping</span><span class="p">)</span> <span class="k">if</span> <span class="n">j</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)}</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">start_mapping</span><span class="p">)</span>
@@ -208,7 +208,7 @@ offset_mapping:<span class="w">  </span>[(0,<span class="w"> </span>0),<span cla
 <div class="highlight"><pre><span></span><code>
 </code></pre></div>
 
-<h2 id="2mapping-words-to-tokens">2.Mapping words to tokens.</h2>
+<h2 id="2mapping-words-to-tokens">2.Mapping words to&nbsp;tokens.</h2>
 <div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Phones</span><span class="se">\n\n</span><span class="s2">Modern. humans. today are always on their phone. &quot;</span> 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;text split: </span><span class="si">{</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">encoding</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">is_split_into_words</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
@@ -327,9 +327,9 @@ word_ids:<span class="w"> </span>[None,<span class="w"> </span>0,<span class="w"
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Mapping%20chars%20and%20words%20to%20tokens&url=http%3A//www.jerrylsu.net/articles/Mapping-Chars-and-Words-to-Tokens.html&hashtags=nlp" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Mapping%20chars%20and%20words%20to%C2%A0tokens&url=http%3A//www.jerrylsu.net/articles/Mapping-Chars-and-Words-to-Tokens.html&hashtags=nlp" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Mapping-Chars-and-Words-to-Tokens.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Mapping%20chars%20and%20words%20to%20tokens&amp;body=http%3A//www.jerrylsu.net/articles/Mapping-Chars-and-Words-to-Tokens.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Mapping%20chars%20and%20words%20to%C2%A0tokens&amp;body=http%3A//www.jerrylsu.net/articles/Mapping-Chars-and-Words-to-Tokens.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -385,19 +385,19 @@ word_ids:<span class="w"> </span>[None,<span class="w"> </span>0,<span class="w"
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Self-Instruct.html" title="SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions">SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions</a></li>
+<li><a href="../articles/Self-Instruct.html" title="SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions">SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions</a></li>
 <li><a href="../articles/DocTuning.html" title="DocTuning">DocTuning</a></li>
-<li><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a></li>
-<li><a href="../articles/MinHash-Document-level-Deduplication.html" title="MinHash: Document-level Deduplication">MinHash: Document-level Deduplication</a></li>
-<li><a href="../articles/GGUF-Model.html" title="GGUF Model">GGUF Model</a></li>
+<li><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a></li>
+<li><a href="../articles/MinHash-Document-level-Deduplication.html" title="MinHash: Document-level Deduplication">MinHash: Document-level Deduplication</a></li>
+<li><a href="../articles/GGUF-Model.html" title="GGUF Model">GGUF Model</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Feedback-Prize-Evaluating-Student-Writing.html" title="Previous: Feedback prize evaluating student writing">Feedback prize evaluating student writing</a></li>
-                <li class="next-article"><a href="../articles/Longformer-BigBird.html" title="Next: Longformer BigBird">Longformer BigBird</a> »</li>
+                <li class="previous-article">« <a href="../articles/Feedback-Prize-Evaluating-Student-Writing.html" title="Previous: Feedback prize evaluating student writing">Feedback prize evaluating student writing</a></li>
+                <li class="next-article"><a href="../articles/Longformer-BigBird.html" title="Next: Longformer BigBird">Longformer BigBird</a> »</li>
             </ul>
             </nav>
             </aside>

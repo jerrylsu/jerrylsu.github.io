@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Algorithm, Algorithms, " />
 
-<meta property="og:title" content="Data Structure and Algorithm in Python "/>
+<meta property="og:title" content="Data Structure and Algorithm in Python "/>
 <meta property="og:url" content="../articles/Data-Structure-and-Algorithm-in-Python.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2018-11-17T11:42:33+08:00" />
-<meta name="twitter:title" content="Data Structure and Algorithm in Python ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="Data Structure and Algorithm in Python ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Data Structure and Algorithm in Python  · JERRYLSU
+        <title>Data Structure and Algorithm in Python  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Data-Structure-and-Algorithm-in-Python.html">
-                Data Structure and Algorithm in Python
+                Data Structure and Algorithm in&nbsp;Python
             </a>
         </h1>
     </header>
@@ -95,9 +95,9 @@
     <div class="span8 article-content">
             
             <h2 id="sort">Sort</h2>
-<h3 id="quick-sort">Quick Sort</h3>
+<h3 id="quick-sort">Quick&nbsp;Sort</h3>
 <h4 id="_1">引例：荷兰国旗问题🇳🇱</h4>
-<h3 id="heap-sort">Heap Sort</h3>
+<h3 id="heap-sort">Heap&nbsp;Sort</h3>
 <p><a href="">https://docs.python.org/3/library/heapq.html#heapq.heapify</a></p>
 <p>时间复杂度O(N*logN)，额外空间复杂度O(1)。</p>
 <p><strong>堆结构非常重要</strong></p>
@@ -123,11 +123,10 @@
 <li>堆的调整代价只和<strong><code>层数</code></strong>有关，所以<code>入堆</code>和<code>出堆</code>的代价只有<strong><code>O(lgN)</code></strong>。</li>
 </ol>
 <h4 id="_4">大根堆的实现</h4>
-<p>This implementation uses <strong><code>arrays</code></strong> for which <strong><code>heap[i] &gt; heap[2*i+1]</code></strong> and <strong><code>heap[i] &gt; heap[2*i+2]</code></strong> for all <strong><code>i</code></strong>, counting elements from zero. </p>
+<p>This implementation uses <strong><code>arrays</code></strong> for which <strong><code>heap[i] &gt; heap[2*i+1]</code></strong> and <strong><code>heap[i] &gt; heap[2*i+2]</code></strong> for all <strong><code>i</code></strong>, counting elements from&nbsp;zero. </p>
 <p>给定数组，都可根据约定<strong>视其为堆</strong>，但其不是大根堆，<strong>如何将数组调整为大根堆</strong>？</p>
 <h5 id="_5">建立大根堆</h5>
-<p><strong><code>heapInsert</code></strong>: 经历一个新结点加入一个已经调整好的堆中，同时往上调整的过程。调整停止条件：当加入结点值不大于其父节点时，<br>
-调整停止。</p>
+<p><strong><code>heapInsert</code></strong>: 经历一个新结点加入一个已经调整好的堆中，同时往上调整的过程。调整停止条件：当加入结点值不大于其父节点时，<br>&nbsp;调整停止。</p>
 <p><strong>堆在数组上可伸缩</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">insertHeap</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="k">index</span><span class="p">)</span><span class="err">:</span>
 <span class="w">    </span><span class="n">par_i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">index</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">2</span>
@@ -145,8 +144,7 @@
 </code></pre></div>
 
 <p>时间复杂度分析：<strong><code>O(N)</code></strong></p>
-<p>当第<code>i</code>个结点加入堆中时，<code>0</code>~<code>i-1</code>已经调整为大根堆，其高度为<code>O(log(i-1))</code>，即调整代价为<code>O(log(i-1))</code>。(沿其父结点依次向上&gt;<br>
-比较调整)</p>
+<p>当第<code>i</code>个结点加入堆中时，<code>0</code>~<code>i-1</code>已经调整为大根堆，其高度为<code>O(log(i-1))</code>，即调整代价为<code>O(log(i-1))</code>。(沿其父结点依次向上&gt;<br>&nbsp;比较调整)</p>
 <p>所以, <code>N</code>个结点的调整代价为：<code>O(lg1) + O(lg2) + ... + O(lgN)</code>收敛于<code>O(N)</code></p>
 <h5 id="_6">堆化</h5>
 <div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">heapify</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="k">index</span><span class="p">,</span><span class="w"> </span><span class="n">heapSize</span><span class="p">)</span><span class="err">:</span>
@@ -167,8 +165,8 @@
 </code></pre></div>
 
 <h5 id="_7">堆排序</h5>
-<p>堆大小：heapSize = len(arr)</p>
-<p>数组最后一个数下标：heapSize -= 1</p>
+<p>堆大小：heapSize =&nbsp;len(arr)</p>
+<p>数组最后一个数下标：heapSize -=&nbsp;1</p>
 <ol>
 <li>把数组<code>arr</code>创建为大根堆</li>
 <li>堆顶<strong><code>arr[0]</code></strong>与数组最后一个数<strong><code>arr[heapSize]</code></strong>交换</li>
@@ -185,8 +183,8 @@
 <span class="w">        </span><span class="n">heapify</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">heapSize</span><span class="p">)</span>
 </code></pre></div>
 
-<h2 id="bfs-dfs">BFS &amp; DFS</h2>
-<h3 id="bfs">BFS</h3>
+<h2 id="bfs-dfs"><span class="caps">BFS</span> <span class="amp">&amp;</span> <span class="caps">DFS</span></h2>
+<h3 id="bfs"><span class="caps">BFS</span></h3>
 <div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">bfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span><span class="w"> </span><span class="k">start</span><span class="p">,</span><span class="w"> </span><span class="k">end</span><span class="p">)</span><span class="err">:</span>
 <span class="w">    </span><span class="n">queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span>
 <span class="w">    </span><span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="o">[</span><span class="n">start</span><span class="o">]</span><span class="p">)</span>
@@ -206,7 +204,7 @@
 <span class="w">    </span><span class="p">....</span>
 </code></pre></div>
 
-<h3 id="dfs">DFS</h3>
+<h3 id="dfs"><span class="caps">DFS</span></h3>
 <div class="highlight"><pre><span></span><code><span class="gh">#</span> Recursion
 visted = set()
 def dfs(node, visted):
@@ -254,7 +252,7 @@ def dfs(tree):
 
 <ol>
 <li>把问题转化为规模缩小了的同类子问题</li>
-<li>有明确的不需要继续进行递归的条件（base case）</li>
+<li>有明确的不需要继续进行递归的条件（base&nbsp;case）</li>
 <li></li>
 </ol>
 <h3 id="template">Template</h3>
@@ -276,7 +274,7 @@ def dfs(tree):
 </code></pre></div>
 
 <h3 id="example">Example:</h3>
-<h2 id="divide-and-conquer">Divide and Conquer</h2>
+<h2 id="divide-and-conquer">Divide and&nbsp;Conquer</h2>
 <p>递归的高阶算法应用：分治<br>
 <img alt="divide-and-conquer" src="images/Algorithm/divide-and-conquer1.jpg"></p>
 <h3 id="template_1">Template</h3>
@@ -302,8 +300,8 @@ def dfs(tree):
 </code></pre></div>
 
 <h3 id="example_1">Example:</h3>
-<p><a href="https://github.com/jerrylsu/Algorithms/blob/master/Divide%20Conquer/23.%20Merge%20k%20Sorted%20Lists.ipynb">23. Merge k Sorted Lists</a></p>
-<h2 id="dynamic-programming">Dynamic Programming</h2>
+<p><a href="https://github.com/jerrylsu/Algorithms/blob/master/Divide%20Conquer/23.%20Merge%20k%20Sorted%20Lists.ipynb">23. Merge k Sorted&nbsp;Lists</a></p>
+<h2 id="dynamic-programming">Dynamic&nbsp;Programming</h2>
 <p><strong>所有的动态规划都是由暴力递归优化而来</strong><br>
 动态规划是一种分阶段求解决策问题的数学思想。<br>
  三个重要的概念： <strong>状态</strong>（最优子结构）、<strong>递推方程</strong>、<strong>边界</strong>。 <br>
@@ -319,25 +317,25 @@ def dfs(tree):
 <h3 id="example_2">Example:</h3>
 <ol>
 <li>
-<p>One-dimensional DP<br>
-<a href="https://github.com/jerrylsu/Algorithms/blob/master/Dynamic%20Programming/One-dimensional/70.%20Climbing%20Stairs.ipynb">70. Climbing Stairs</a></p>
+<p>One-dimensional <span class="caps">DP</span><br>
+<a href="https://github.com/jerrylsu/Algorithms/blob/master/Dynamic%20Programming/One-dimensional/70.%20Climbing%20Stairs.ipynb">70. Climbing&nbsp;Stairs</a></p>
 </li>
 <li>
-<p>Two-dimensional DP<br>
+<p>Two-dimensional <span class="caps">DP</span><br>
 <a href="https://github.com/jerrylsu/Algorithms/blob/master/Dynamic%20Programming/Two-dimensional/64.%20Minimum%20Path%20Sum.ipynb">64. Minimum Path Sum</a><br>
-<a href="https://github.com/jerrylsu/Algorithms/blob/master/Dynamic%20Programming/Two-dimensional/120.%20Triangle.ipynb">120. Triangle</a></p>
+<a href="https://github.com/jerrylsu/Algorithms/blob/master/Dynamic%20Programming/Two-dimensional/120.%20Triangle.ipynb">120.&nbsp;Triangle</a></p>
 </li>
 </ol>
-<p>更新中...</p>
+<p>更新中&#8230;</p>
 
 
              
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Data%20Structure%20and%20Algorithm%20in%20Python&url=http%3A//www.jerrylsu.net/articles/Data-Structure-and-Algorithm-in-Python.html&hashtags=algorithm" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Data%20Structure%20and%20Algorithm%20in%C2%A0Python&url=http%3A//www.jerrylsu.net/articles/Data-Structure-and-Algorithm-in-Python.html&hashtags=algorithm" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Data-Structure-and-Algorithm-in-Python.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Data%20Structure%20and%20Algorithm%20in%20Python&amp;body=http%3A//www.jerrylsu.net/articles/Data-Structure-and-Algorithm-in-Python.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Data%20Structure%20and%20Algorithm%20in%C2%A0Python&amp;body=http%3A//www.jerrylsu.net/articles/Data-Structure-and-Algorithm-in-Python.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -394,18 +392,18 @@ def dfs(tree):
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
 <li><a href="../articles/Conditional-Random-Field.html" title="ConditionalRandomField">ConditionalRandomField</a></li>
-<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
-<li><a href="../articles/Viterbi-Algorithm.html" title="Viterbi Algorithm">Viterbi Algorithm</a></li>
-<li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
-<li><a href="../articles/Brackets-Matching.html" title="Brackets Matching">Brackets Matching</a></li>
+<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
+<li><a href="../articles/Viterbi-Algorithm.html" title="Viterbi Algorithm">Viterbi Algorithm</a></li>
+<li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
+<li><a href="../articles/Brackets-Matching.html" title="Brackets Matching">Brackets Matching</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Hexo-blog-sync-and-migration.html" title="Previous: Hexo blog sync and migration">Hexo blog sync and migration</a></li>
-                <li class="next-article"><a href="../articles/Information-Theory.html" title="Next: Information Theory">Information Theory</a> »</li>
+                <li class="previous-article">« <a href="../articles/Hexo-blog-sync-and-migration.html" title="Previous: Hexo blog sync and migration">Hexo blog sync and migration</a></li>
+                <li class="next-article"><a href="../articles/Information-Theory.html" title="Next: Information Theory">Information Theory</a> »</li>
             </ul>
             </nav>
             </aside>

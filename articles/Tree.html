@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Algorithm, Tree, Algorithms, " />
 
-<meta property="og:title" content="Tree: 算法之源 "/>
+<meta property="og:title" content="Tree: 算法之源 "/>
 <meta property="og:url" content="../articles/Tree.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-01-01T01:40:10+08:00" />
-<meta name="twitter:title" content="Tree: 算法之源 ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="Tree: 算法之源 ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Tree: 算法之源  · JERRYLSU
+        <title>Tree: 算法之源  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Tree.html">
-                Tree: 算法之源
+                Tree:&nbsp;算法之源
             </a>
         </h1>
     </header>
@@ -169,9 +169,9 @@
 <p>后序遍历一遍二叉树，得到原问题的结果。</p>
 </li>
 </ol>
-<p><strong>典型问题：</strong> 斐波那契问题</p>
-<p><strong>重要总结：</strong> 清晰<code>递归函数的定义</code>是什么，利用这个定义来分解问题，利用<code>子问题</code>的答案推导原问题的答案！</p>
-<p><strong>分解问题思维的精髓：</strong> 承上启下。通过递归函数参数获取父节点信息，通过递归函数返回值收集子树信息。</p>
+<p><strong>典型问题：</strong> 斐波那契问题</p>
+<p><strong>重要总结：</strong> 清晰<code>递归函数的定义</code>是什么，利用这个定义来分解问题，利用<code>子问题</code>的答案推导原问题的答案！</p>
+<p><strong>分解问题思维的精髓：</strong> 承上启下。通过递归函数参数获取父节点信息，通过递归函数返回值收集子树信息。</p>
 <p><strong>框架模版:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="err">原问题</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="err">原问题结果：</span>
 <span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
@@ -198,7 +198,7 @@
 <p>问题定义：在二叉树中找到一条任意起点和终点的路径，使其节点值之和最大。这条路径可以不经过根节点。</p>
 </li>
 <li>
-<p>时间复杂度：O(N) 遍历整棵树，节点数为N</p>
+<p>时间复杂度：O(N) 遍历整棵树，节点数为N</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">diameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
@@ -224,7 +224,7 @@
 <p>问题定义：指树中任意两个节点之间最长路径的长度。这条路径可以不经过根节点。</p>
 </li>
 <li>
-<p>时间复杂度：O(N) 遍历整棵树，节点数为N</p>
+<p>时间复杂度：O(N) 遍历整棵树，节点数为N</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">max_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">float</span><span class="p">(</span><span class="s">"-inf"</span><span class="p">)</span>
@@ -247,12 +247,12 @@
 <h3 id="235">235.二叉搜索树最近公共祖先</h3>
 <ul>
 <li>
-<p>问题定义：LCA, Lowest Common Ancestor在搜索二叉树中，某两个节点的最低公共祖先节点，它满足：</p>
+<p>问题定义：<span class="caps">LCA</span>, Lowest Common Ancestor在搜索二叉树中，某两个节点的最低公共祖先节点，它满足：</p>
 <p>1.该节点的子树包含这两个节点。</p>
 <p>2.该节点是离这两个节点最近的公共祖先。</p>
 </li>
 <li>
-<p>时间复杂度：O(logN) 节点数为N，利用搜索二叉树特性，不用遍历整棵二叉树，类似有序数组的二分查找。</p>
+<p>时间复杂度：O(logN) 节点数为N，利用搜索二叉树特性，不用遍历整棵二叉树，类似有序数组的二分查找。</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">lowestCommonAncestor</span><span class="p">(</span><span class="n">root</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">TreeNode</span><span class="o">:</span>
@@ -272,12 +272,12 @@
 <h3 id="236">236.二叉树的最近公共祖先</h3>
 <ul>
 <li>
-<p>问题定义：LCA, Lowest Common Ancestor在二叉树中，某两个节点的最低公共祖先节点，它满足：</p>
+<p>问题定义：<span class="caps">LCA</span>, Lowest Common Ancestor在二叉树中，某两个节点的最低公共祖先节点，它满足：</p>
 <p>1.该节点的子树包含这两个节点。</p>
 <p>2.该节点是离这两个节点最近的公共祖先。</p>
 </li>
 <li>
-<p>时间复杂度：O(N) 遍历整棵树，节点数为N</p>
+<p>时间复杂度：O(N) 遍历整棵树，节点数为N</p>
 </li>
 <li>
 <p>空间复杂度：O(H)</p>
@@ -310,9 +310,9 @@
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Tree%3A%20%E7%AE%97%E6%B3%95%E4%B9%8B%E6%BA%90&url=http%3A//www.jerrylsu.net/articles/Tree.html&hashtags=algorithm,tree" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Tree%3A%C2%A0%E7%AE%97%E6%B3%95%E4%B9%8B%E6%BA%90&url=http%3A//www.jerrylsu.net/articles/Tree.html&hashtags=algorithm,tree" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Tree.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Tree%3A%20%E7%AE%97%E6%B3%95%E4%B9%8B%E6%BA%90&amp;body=http%3A//www.jerrylsu.net/articles/Tree.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Tree%3A%C2%A0%E7%AE%97%E6%B3%95%E4%B9%8B%E6%BA%90&amp;body=http%3A//www.jerrylsu.net/articles/Tree.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -369,10 +369,10 @@
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
 <li><a href="../articles/Conditional-Random-Field.html" title="ConditionalRandomField">ConditionalRandomField</a></li>
-<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
-<li><a href="../articles/Viterbi-Algorithm.html" title="Viterbi Algorithm">Viterbi Algorithm</a></li>
-<li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
-<li><a href="../articles/Brackets-Matching.html" title="Brackets Matching">Brackets Matching</a></li>
+<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
+<li><a href="../articles/Viterbi-Algorithm.html" title="Viterbi Algorithm">Viterbi Algorithm</a></li>
+<li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
+<li><a href="../articles/Brackets-Matching.html" title="Brackets Matching">Brackets Matching</a></li>
 </ul>
 <hr />
 </section>

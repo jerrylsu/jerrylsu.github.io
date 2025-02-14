@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="【NLP】Embedding "/>
 <meta property="og:url" content="../articles/【NLP】Embedding.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-01-23T11:17:17+08:00" />
 <meta name="twitter:title" content="【NLP】Embedding ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>【NLP】Embedding  · JERRYLSU
 </title>
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/【NLP】Embedding.html">
-                【NLP】Embedding
+                【<span class="caps">NLP</span>】Embedding
             </a>
         </h1>
     </header>
@@ -105,18 +105,18 @@ model = keras.Sequential([
 </code></pre></div>
 
 <blockquote>
-<p>Embedding:  This layer takes the integer-encoded vocabulary and looks up the embedding vector for each word-index. These vectors are learned as the model trains.</p>
+<p>Embedding:  This layer takes the integer-encoded vocabulary and looks up the embedding vector for each word-index. These vectors are learned as the model&nbsp;trains.</p>
 </blockquote>
 <p>Embedding层的任务：</p>
 <ol>
 <li>
-<p>定义矩阵，大小为[vocab_size, embedding_dim]</p>
+<p>定义矩阵，大小为[vocab_size,&nbsp;embedding_dim]</p>
 </li>
 <li>
-<p>对于idx后的文本向量[102, 33, 41, ...]，查矩阵，将idx -&gt; embedding向量。最后将句子表示为[max_len, embedding_size]的矩阵。其中max_len是做了padding补全或者截断操作，变长文本-&gt;定长。</p>
+<p>对于idx后的文本向量[102, 33, 41, &#8230;]，查矩阵，将idx -&gt; embedding向量。最后将句子表示为[max_len,&nbsp;embedding_size]的矩阵。其中max_len是做了padding补全或者截断操作，变长文本-&gt;定长。</p>
 </li>
 <li>
-<p>模型训练时是以batch_size为单位的，所以embedding层最终的输出是：batch_size * max_len * embedding_dim的3维矩阵。</p>
+<p>模型训练时是以batch_size为单位的，所以embedding层最终的输出是：batch_size * max_len *&nbsp;embedding_dim的3维矩阵。</p>
 </li>
 </ol>
 <p>embedding层输出的数据可以做<a href="https://www.jerrulsu.com/[NLP]-GlobalAveragePooling1D.html">GlobalAveragePooling1D</a>合并。</p>
@@ -185,9 +185,9 @@ model = keras.Sequential([
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
 <li><a href="../articles/Conditional-Random-Field.html" title="ConditionalRandomField">ConditionalRandomField</a></li>
-<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
-<li><a href="../articles/Utterance-Rewriter.html" title="Utterance Rewriter">Utterance Rewriter</a></li>
-<li><a href="../articles/Pointer-Networkers.html" title="Pointer Networkers">Pointer Networkers</a></li>
+<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
+<li><a href="../articles/Utterance-Rewriter.html" title="Utterance Rewriter">Utterance Rewriter</a></li>
+<li><a href="../articles/Pointer-Networkers.html" title="Pointer Networkers">Pointer Networkers</a></li>
 <li><a href="../articles/Text-Generation.html" title="Text-Generation">Text-Generation</a></li>
 </ul>
 <hr />
@@ -196,7 +196,7 @@ model = keras.Sequential([
             <nav>
             <ul class="articles-timeline">
                 <li class="previous-article">« <a href="../articles/【NLP】GlobalAveragePooling1D.html" title="Previous: 【NLP】GlobalAveragePooling1D">【NLP】GlobalAveragePooling1D</a></li>
-                <li class="next-article"><a href="../articles/RASA-Featurizer.html" title="Next: 【NLP】RASA Featurizer">【NLP】RASA Featurizer</a> »</li>
+                <li class="next-article"><a href="../articles/RASA-Featurizer.html" title="Next: 【NLP】RASA Featurizer">【NLP】RASA Featurizer</a> »</li>
             </ul>
             </nav>
             </aside>

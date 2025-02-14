@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Spark, Programming, " />
 
-<meta property="og:title" content="Spark SQL Join "/>
+<meta property="og:title" content="Spark SQL Join "/>
 <meta property="og:url" content="../articles/Spark SQL Join.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-03-21T01:56:02+08:00" />
-<meta name="twitter:title" content="Spark SQL Join ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="Spark SQL Join ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Spark SQL Join  · JERRYLSU
+        <title>Spark SQL Join  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Spark SQL Join.html">
-                Spark SQL Join
+                Spark <span class="caps">SQL</span>&nbsp;Join
             </a>
         </h1>
     </header>
@@ -94,35 +94,35 @@
     </div>
     <div class="span8 article-content">
             
-            <h1 id="join-in-hive">Join in Hive</h1>
-<h2 id="common-join">Common Join</h2>
+            <h1 id="join-in-hive">Join in&nbsp;Hive</h1>
+<h2 id="common-join">Common&nbsp;Join</h2>
 <p>在Hive查询的性能调优期间，需要注意的一个方面是执行期间的join的类型。<br>
 Common Join是Hive中的默认join类型，也称为Shuffle Join, Distributed Join, <strong>Sort Merged Join</strong>。<br>
 在join期间，两个表中的所有行都将根据join key分发到所有节点，来自相同join key的值最终在同一节点上。<br>
 <img alt="CommonJoin" src="images/Spark-SQL-Join/CommonJoin.jpg"><br>
 1. In the map stage, mappers reads the tables and output the join-column value as the key. The key-value pairs are written into an intermediate file.<br>
 2. In the shuffle stage, these pairs are sorts and merged. All rows from the same key will be sent to the same reducer instance.<br>
-3. In the reduce stage, reducer gets the sorted data and performs the join.</p>
+3. In the reduce stage, reducer gets the sorted data and performs the&nbsp;join.</p>
 <p>优点：适用于任何大小的表<br>
 缺点：1. shuffle操作代价高，消耗网络资源。<br>
-2. 存在典型数据倾斜问题。如果join key数据分布不均匀，则相关的reducers会数据过载，导致多数reducers已经完成join操作，而小部分reducers仍在执行join操作。整体的运行时间取决于小部分reducers。</p>
-<p><a href="https://weidongzhou.wordpress.com/2017/06/06/join-type-in-hive-common-join/">Common Join</a></p>
-<h2 id="map-join">Map Join</h2>
+2. 存在典型数据倾斜问题。如果join&nbsp;key数据分布不均匀，则相关的reducers会数据过载，导致多数reducers已经完成join操作，而小部分reducers仍在执行join操作。整体的运行时间取决于小部分reducers。</p>
+<p><a href="https://weidongzhou.wordpress.com/2017/06/06/join-type-in-hive-common-join/">Common&nbsp;Join</a></p>
+<h2 id="map-join">Map&nbsp;Join</h2>
 <p><strong>Broadcast join</strong> is called Map Join in Hive.<br>
 Common join数据shuffle代价比较高。为了加速Hive查询，可以使用Map Join。<br>
 Map Join使用准则：如果join操作中，存在可以装入内存的小表即可。<br>
-在join期间，两个表中的所有行都将根据join key分发到所有节点，来自相同join key的值最终在同一节点上。</p>
+在join期间，两个表中的所有行都将根据join key分发到所有节点，来自相同join&nbsp;key的值最终在同一节点上。</p>
 <p><img alt="MapJoin" src="images/Spark-SQL-Join/MapJoin.jpg"><br>
 1. Map Join的第一步是在原始Map Reduce任务之前创建Map Reduce本地任务,此map/reduce任务从HDFS读取小表的数据并将其保存到内存中的哈希表中,然后保存到哈希表文件中。<br>
 2. 当原始join Map Reduce任务启动时，它会将哈希表文件移动到Hadoop分布式缓存(这将把哈希表文件填充到每个mapper的本地磁盘,即广播broadcast)。<br>
-对于具有大表A和小表B的连接，对于表A的每个映射器，完全读取表B。当较小的表被加载到内存中然后在MapReduce作业的map阶段中执行join时，不需要reducer并且跳过reduce阶段。Map Join比常规默认join执行得更快。</p>
+对于具有大表A和小表B的连接，对于表A的每个映射器，完全读取表B。当较小的表被加载到内存中然后在MapReduce作业的map阶段中执行join时，不需要reducer并且跳过reduce阶段。Map&nbsp;Join比常规默认join执行得更快。</p>
 <p><a href="https://grisha.org/blog/2013/04/19/mapjoin-a-simple-way-to-speed-up-your-hive-queries/">There are two ways to enable MapJoin in Hive.</a><br>
 <code>/*+ MAPJOIN(aliasname), MAPJOIN(anothertable) */</code>类似于C语言注释，紧跟着放在<code>SELECT</code>之后，指示Hive将aliasname表加载如内存。<br>
-使用提示使用Map Join指定查询。下面的示例显示较小的表<code>b</code>是放在提示中的表，并强制手动缓存表B。</p>
+使用提示使用Map&nbsp;Join指定查询。下面的示例显示较小的表<code>b</code>是放在提示中的表，并强制手动缓存表B。</p>
 <div class="highlight"><pre><span></span><code>Select /*+ MAPJOIN(b) */ a.key, a.value from a join b on a.key = b.key
 </code></pre></div>
 
-<p>You can force BroadcastHashJoin using SQL's BROADCAST hint. Supported hints include BROADCAST, BROADCASTJOIN or MAPJOIN.</p>
+<p>You can force BroadcastHashJoin using <span class="caps">SQL</span>&#8217;s <span class="caps">BROADCAST</span> hint. Supported hints include <span class="caps">BROADCAST</span>, <span class="caps">BROADCASTJOIN</span> or <span class="caps">MAPJOIN</span>.</p>
 <div class="highlight"><pre><span></span><code>va q = &quot;&quot;&quot;
 select /* + broadcast (I) <span class="gs">*/</span>
 <span class="gs">    C.*</span>
@@ -147,21 +147,21 @@ WHERE
 &quot;&quot;&quot;
 </code></pre></div>
 
-<p><a href="https://weidongzhou.wordpress.com/2017/06/07/join-type-in-hive-map-join/">Map Join</a></p>
-<h2 id="skewed-join">Skewed Join</h2>
-<p><a href="https://weidongzhou.wordpress.com/2017/06/08/join-type-in-hive-skewed-join/">Skewed Join</a></p>
-<h2 id="bucket-join">Bucket Join</h2>
-<p><a href="https://weidongzhou.wordpress.com/2017/06/09/join-type-bucket-join/">Bucket Join</a></p>
-<h1 id="join-in-spark-sql">Join in Spark SQL</h1>
+<p><a href="https://weidongzhou.wordpress.com/2017/06/07/join-type-in-hive-map-join/">Map&nbsp;Join</a></p>
+<h2 id="skewed-join">Skewed&nbsp;Join</h2>
+<p><a href="https://weidongzhou.wordpress.com/2017/06/08/join-type-in-hive-skewed-join/">Skewed&nbsp;Join</a></p>
+<h2 id="bucket-join">Bucket&nbsp;Join</h2>
+<p><a href="https://weidongzhou.wordpress.com/2017/06/09/join-type-bucket-join/">Bucket&nbsp;Join</a></p>
+<h1 id="join-in-spark-sql">Join in Spark <span class="caps">SQL</span></h1>
 <p>SparkSQL支持三种Join算法:<br>
 - shuffle map join<br>
 - broadcast map join<br>
-- sort merge join</p>
-<h2 id="map-join_1">Map Join</h2>
-<p>Map Join in Hive</p>
+- sort merge&nbsp;join</p>
+<h2 id="map-join_1">Map&nbsp;Join</h2>
+<p>Map Join in&nbsp;Hive</p>
 <p>Map Join时间复杂度O(m + n), 笛卡尔集运算O(m * n)<br>
-<a href="http://hbasefly.com/2017/03/19/sparksql-basic-join/">Broadcast Hash Join &amp; Shuffle Hash Join</a></p>
-<h2 id="broadcast-map-join">Broadcast Map Join</h2>
+<a href="http://hbasefly.com/2017/03/19/sparksql-basic-join/">Broadcast Hash Join <span class="amp">&amp;</span> Shuffle Hash&nbsp;Join</a></p>
+<h2 id="broadcast-map-join">Broadcast Map&nbsp;Join</h2>
 <p><a href="https://henning.kropponline.de/2016/12/11/broadcast-join-with-spark/">broadcast-join-with-spark</a></p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.spark.sql.functions.broadcast</span>
 
@@ -176,16 +176,16 @@ WHERE
 </code></pre></div>
 
 <p><a href="https://www.slideshare.net/databricks/optimizing-apache-spark-sql-joins">optimizing-apache-spark-sql-joins</a><br>
-<a href="https://stackoverflow.com/questions/32435263/dataframe-join-optimization-broadcast-hash-join">Broadcast Hash Join</a></p>
+<a href="https://stackoverflow.com/questions/32435263/dataframe-join-optimization-broadcast-hash-join">Broadcast Hash&nbsp;Join</a></p>
 
 
              
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Spark%20SQL%20Join&url=http%3A//www.jerrylsu.net/articles/Spark%20SQL%20Join.html&hashtags=spark" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Spark%20SQL%C2%A0Join&url=http%3A//www.jerrylsu.net/articles/Spark%20SQL%20Join.html&hashtags=spark" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Spark%20SQL%20Join.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Spark%20SQL%20Join&amp;body=http%3A//www.jerrylsu.net/articles/Spark%20SQL%20Join.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Spark%20SQL%C2%A0Join&amp;body=http%3A//www.jerrylsu.net/articles/Spark%20SQL%20Join.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -242,18 +242,18 @@ WHERE
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
 <li><a href="../articles/Spark-RDD.html" title="Spark RDD">Spark RDD</a></li>
-<li><a href="../articles/Debugging-Spark-Application.html" title="Debugging Spark Application">Debugging Spark Application</a></li>
-<li><a href="../articles/Spark:-Shuffling-and-Partitioning.html" title="Spark: Shuffling and Partitioning">Spark: Shuffling and Partitioning</a></li>
-<li><a href="../articles/Spark-Tips.html" title="Spark Tips">Spark Tips</a></li>
-<li><a href="../articles/Spark-Partitions-with-Coalesce-and-Repartition.html" title="Spark Partitions with Coalesce and Repartition">Spark Partitions with Coalesce and Repartition</a></li>
+<li><a href="../articles/Debugging-Spark-Application.html" title="Debugging Spark Application">Debugging Spark Application</a></li>
+<li><a href="../articles/Spark:-Shuffling-and-Partitioning.html" title="Spark: Shuffling and Partitioning">Spark: Shuffling and Partitioning</a></li>
+<li><a href="../articles/Spark-Tips.html" title="Spark Tips">Spark Tips</a></li>
+<li><a href="../articles/Spark-Partitions-with-Coalesce-and-Repartition.html" title="Spark Partitions with Coalesce and Repartition">Spark Partitions with Coalesce and Repartition</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Spark:-Shuffling-and-Partitioning.html" title="Previous: Spark: Shuffling and Partitioning">Spark: Shuffling and Partitioning</a></li>
-                <li class="next-article"><a href="../articles/Python-logging.html" title="Next: Python logging">Python logging</a> »</li>
+                <li class="previous-article">« <a href="../articles/Spark:-Shuffling-and-Partitioning.html" title="Previous: Spark: Shuffling and Partitioning">Spark: Shuffling and Partitioning</a></li>
+                <li class="next-article"><a href="../articles/Python-logging.html" title="Next: Python logging">Python logging</a> »</li>
             </ul>
             </nav>
             </aside>

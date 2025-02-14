@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="Algorithm "/>
 <meta property="og:url" content="../articles/Algorithm.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-04-28T03:48:00+08:00" />
 <meta name="twitter:title" content="Algorithm ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>Algorithm  · JERRYLSU
 </title>
@@ -94,8 +94,8 @@
     </div>
     <div class="span8 article-content">
             
-            <h2 id="linked-list">Linked List</h2>
-<h4 id="206-reverse-linked-list">206. Reverse Linked List</h4>
+            <h2 id="linked-list">Linked&nbsp;List</h2>
+<h4 id="206-reverse-linked-list">206. Reverse Linked&nbsp;List</h4>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
@@ -114,7 +114,7 @@
         <span class="k">return</span> <span class="n">pre</span>
 </code></pre></div>
 
-<h4 id="21-merge-two-sorted-lists">21. Merge Two Sorted Lists</h4>
+<h4 id="21-merge-two-sorted-lists">21. Merge Two Sorted&nbsp;Lists</h4>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
@@ -141,7 +141,7 @@
         <span class="k">return</span> <span class="n">dummpy</span><span class="o">.</span><span class="n">next</span>
 </code></pre></div>
 
-<h4 id="234-palindrome-linked-list">234. Palindrome Linked List</h4>
+<h4 id="234-palindrome-linked-list">234. Palindrome Linked&nbsp;List</h4>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="n">slow</span> <span class="o">=</span> <span class="n">fast</span> <span class="o">=</span> <span class="n">head</span>
@@ -167,7 +167,7 @@
         <span class="k">return</span> <span class="n">pre</span>
 </code></pre></div>
 
-<h4 id="19-remove-nth-node-from-end-of-list">19. Remove Nth Node From End of List</h4>
+<h4 id="19-remove-nth-node-from-end-of-list">19. Remove Nth Node From End of&nbsp;List</h4>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">removeNthFromEnd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
         <span class="n">dummpy</span> <span class="o">=</span> <span class="n">slow</span> <span class="o">=</span> <span class="n">fast</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -182,8 +182,8 @@
 </code></pre></div>
 
 <h2 id="search">Search</h2>
-<h3 id="dfs">DFS</h3>
-<h4 id="695-max-area-of-island">695. Max Area of Island</h4>
+<h3 id="dfs"><span class="caps">DFS</span></h3>
+<h4 id="695-max-area-of-island">695. Max Area of&nbsp;Island</h4>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;O(M*N)：所有节点只遍历一次。</span>
 <span class="sd">    M*N个节点；每个节点有4条边。</span>
@@ -204,7 +204,7 @@
         <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 
-<h4 id="547-number-of-provinces">547. Number of Provinces</h4>
+<h4 id="547-number-of-provinces">547. Number of&nbsp;Provinces</h4>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;O(N*N)</span>
 <span class="sd">    N个节点；每个节点至少1条边（只与自己相连），最多N条边（与所有节点相连）。</span>
@@ -226,7 +226,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">isConnected</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">visited</span><span class="p">)</span>
 </code></pre></div>
 
-<h4 id="417-pacific-atlantic-water-flow">417. Pacific Atlantic Water Flow</h4>
+<h4 id="417-pacific-atlantic-water-flow">417. Pacific Atlantic Water&nbsp;Flow</h4>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="n">directions</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
 
@@ -261,7 +261,7 @@
 </code></pre></div>
 
 <h3 id="backtracking">Backtracking</h3>
-<h4 id="46-permutations">46. Permutations</h4>
+<h4 id="46-permutations">46.&nbsp;Permutations</h4>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">permute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
         <span class="n">results</span><span class="p">,</span> <span class="n">track</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
@@ -280,11 +280,11 @@
             <span class="n">track</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
 </code></pre></div>
 
-<h4 id="77-combinations">77. Combinations</h4>
+<h4 id="77-combinations">77.&nbsp;Combinations</h4>
 <div class="highlight"><pre><span></span><code>
 </code></pre></div>
 
-<h4 id="79-word-search">79. Word Search</h4>
+<h4 id="79-word-search">79. Word&nbsp;Search</h4>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Time: O(M*N)</span>
@@ -407,18 +407,18 @@
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
 <li><a href="../articles/Conditional-Random-Field.html" title="ConditionalRandomField">ConditionalRandomField</a></li>
-<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
-<li><a href="../articles/Viterbi-Algorithm.html" title="Viterbi Algorithm">Viterbi Algorithm</a></li>
-<li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
-<li><a href="../articles/Brackets-Matching.html" title="Brackets Matching">Brackets Matching</a></li>
+<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
+<li><a href="../articles/Viterbi-Algorithm.html" title="Viterbi Algorithm">Viterbi Algorithm</a></li>
+<li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
+<li><a href="../articles/Brackets-Matching.html" title="Brackets Matching">Brackets Matching</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/【RL】User-Simulator.html" title="Previous: 【RL】User Simulator">【RL】User Simulator</a></li>
-                <li class="next-article"><a href="../articles/【RL】Q-Learning.html" title="Next: 【RL】Q Learning">【RL】Q Learning</a> »</li>
+                <li class="previous-article">« <a href="../articles/【RL】User-Simulator.html" title="Previous: 【RL】User Simulator">【RL】User Simulator</a></li>
+                <li class="next-article"><a href="../articles/【RL】Q-Learning.html" title="Next: 【RL】Q Learning">【RL】Q Learning</a> »</li>
             </ul>
             </nav>
             </aside>

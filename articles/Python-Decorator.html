@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Python, Programming, " />
 
-<meta property="og:title" content="Python Decorator "/>
+<meta property="og:title" content="Python Decorator "/>
 <meta property="og:url" content="../articles/Python-Decorator.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-12-20T10:17:17+08:00" />
-<meta name="twitter:title" content="Python Decorator ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="Python Decorator ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Python Decorator  · JERRYLSU
+        <title>Python Decorator  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Python-Decorator.html">
-                Python Decorator
+                Python&nbsp;Decorator
             </a>
         </h1>
     </header>
@@ -94,7 +94,7 @@
     </div>
     <div class="span8 article-content">
             
-            <p>@lock vs @lock()  装饰器 vs 装饰器工厂函数  </p>
+            <p>@lock vs @lock()  装饰器 vs&nbsp;装饰器工厂函数  </p>
 <p>相同</p>
 <ul>
 <li>均是导入时运行，返回值均是函数。</li>
@@ -108,10 +108,10 @@
 <p>装饰器传入的是函数（被装饰的函数），装饰器工厂函数传入的是参数（传给装饰器的参数）</p>
 </li>
 </ul>
-<h2 id="0">0. 装饰器</h2>
+<h2 id="0">0.&nbsp;装饰器</h2>
 <p>装饰器：参数和返回值必须是函数，即接收一个函数（被装饰的函数）对象，返回一个函数（已装饰的函数）对象。动态的给一个对象添加额外职责，即装饰器设计模式。</p>
 <p>装饰器的典型行为：把被装饰的函数替换为新函数，二者接收的参数相同，并返回被装饰函数本该的返回值，同时增加一些额外操作。</p>
-<p><strong>func = factorial, factorial = clocked</strong></p>
+<p><strong>func = factorial, factorial =&nbsp;clocked</strong></p>
 <p>clock是装饰器</p>
 <p>factorial是被装饰函数</p>
 <p>clocked是被装饰后的函数</p>
@@ -159,7 +159,7 @@
 <div class="highlight"><pre><span></span><code>&#39;clocked&#39;
 </code></pre></div>
 
-<h2 id="1">1. 装饰器何时运行？</h2>
+<h2 id="1">1.&nbsp;装饰器何时运行？</h2>
 <p>导入时与运行时：函数装饰器在<strong>导入模块时立即执行</strong>，而被装饰器装饰的函数，只有程序运行时显式调用时才执行。</p>
 <p>装饰器在实际工程中：</p>
 <ul>
@@ -214,7 +214,7 @@
 <span class="na">running fucn3</span>
 </code></pre></div>
 
-<h2 id="2">2. 闭包</h2>
+<h2 id="2">2.&nbsp;闭包</h2>
 <p>多数装饰器会修改被装饰的函数。通常是在装饰器<strong>内部重新定义一个函数</strong>，将其返回，用来替换被装饰的函数。装饰器内部定义函数几乎都需要<strong>闭包</strong>。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 设计某商品收盘均价。注：实时增加新价</span>
 
@@ -275,8 +275,8 @@
 
 <p>这个代码块称为闭包。闭包是一种函数，它会保留定义函数时存在的自由变量绑定，即使像make_averager函数返回作用域不存在了，averager函数仍然保留使用这些自由变量绑定。</p>
 <p><strong>重点：只有在嵌套函数中的函数，才可能处理不在全局作用域中的外部变量，相对该函数称为自由变量。而该函数与自由变量称为闭包。</strong></p>
-<h2 id="3-nonlocal">3. 关键字nonlocal</h2>
-<h2 id="4-">4. 参数化装饰器 - 装饰器函数工厂</h2>
+<h2 id="3-nonlocal">3.&nbsp;关键字nonlocal</h2>
+<h2 id="4-">4. 参数化装饰器 -&nbsp;装饰器函数工厂</h2>
 <p>装饰器如何传递参数？通过创建<strong>装饰器工厂函数</strong>，参数传递给装饰器工厂函数，返回装饰器。</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_start_docstrings</span><span class="p">(</span><span class="o">*</span><span class="n">docstr</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">docstring_decorator</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
@@ -291,7 +291,7 @@
 </code></pre></div>
 
 <h2 id="_1">进阶</h2>
-<p>GrahamDumpleton wrapt</p>
+<p>GrahamDumpleton&nbsp;wrapt</p>
 <p>https://github.com/GrahamDumpleton/wrapt/tree/develop/blog</p>
 <div class="highlight"><pre><span></span><code>
 </code></pre></div>
@@ -301,9 +301,9 @@
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Python%20Decorator&url=http%3A//www.jerrylsu.net/articles/Python-Decorator.html&hashtags=python" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Python%C2%A0Decorator&url=http%3A//www.jerrylsu.net/articles/Python-Decorator.html&hashtags=python" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Python-Decorator.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Python%20Decorator&amp;body=http%3A//www.jerrylsu.net/articles/Python-Decorator.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Python%C2%A0Decorator&amp;body=http%3A//www.jerrylsu.net/articles/Python-Decorator.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -359,19 +359,19 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/FastAPI-for-CPU-Bound-Task.html" title="FastAPI for CPU-Bound Task">FastAPI for CPU-Bound Task</a></li>
-<li><a href="../articles/Multiprocessing-in-FastAPI.html" title="Multiprocessing in FastAPI">Multiprocessing in FastAPI</a></li>
-<li><a href="../articles/asyncio-get_event_loop-vs-get_running_loop.html" title="asyncio get_event_loop vs get_running_loop">asyncio get_event_loop vs get_running_loop</a></li>
-<li><a href="../articles/python-docx-using-lxml.html" title="Python docx using lxml">Python docx using lxml</a></li>
-<li><a href="../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html" title="Concurrent http requests using asyncio and aiohttp">Concurrent http requests using asyncio and aiohttp</a></li>
+<li><a href="../articles/FastAPI-for-CPU-Bound-Task.html" title="FastAPI for CPU-Bound Task">FastAPI for CPU-Bound Task</a></li>
+<li><a href="../articles/Multiprocessing-in-FastAPI.html" title="Multiprocessing in FastAPI">Multiprocessing in FastAPI</a></li>
+<li><a href="../articles/asyncio-get_event_loop-vs-get_running_loop.html" title="asyncio get_event_loop vs get_running_loop">asyncio get_event_loop vs get_running_loop</a></li>
+<li><a href="../articles/python-docx-using-lxml.html" title="Python docx using lxml">Python docx using lxml</a></li>
+<li><a href="../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html" title="Concurrent http requests using asyncio and aiohttp">Concurrent http requests using asyncio and aiohttp</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Python-built-in-Functions.html" title="Previous: Python Built-in Functions">Python Built-in Functions</a></li>
-                <li class="next-article"><a href="../articles/Python-Requests.html" title="Next: Python Requests">Python Requests</a> »</li>
+                <li class="previous-article">« <a href="../articles/Python-built-in-Functions.html" title="Previous: Python Built-in Functions">Python Built-in Functions</a></li>
+                <li class="next-article"><a href="../articles/Python-Requests.html" title="Next: Python Requests">Python Requests</a> »</li>
             </ul>
             </nav>
             </aside>

@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Algorithm, Binary Tree, Algorithms, " />
 
-<meta property="og:title" content="Binary Tree "/>
+<meta property="og:title" content="Binary Tree "/>
 <meta property="og:url" content="../articles/Binary-Tree.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-04-15T09:18:10+08:00" />
-<meta name="twitter:title" content="Binary Tree ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="Binary Tree ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Binary Tree  · JERRYLSU
+        <title>Binary Tree  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Binary-Tree.html">
-                Binary Tree
+                Binary&nbsp;Tree
             </a>
         </h1>
     </header>
@@ -105,19 +105,19 @@
 
 <h3 id="_2">分治算法</h3>
 <p><strong>分治法的重点在于<code>问题的划分</code>和<code>返回状态的定义</code></strong></p>
-<h3 id="vs">遍历法 VS 分治法</h3>
+<h3 id="vs">遍历法 <span class="caps">VS</span>&nbsp;分治法</h3>
 <ol>
 <li><strong><code>递归</code></strong>是实现方式，<strong><code>遍历法</code></strong>和<strong><code>分治法</code></strong>是可以用<strong><code>递归</code></strong>实现的算法思想</li>
 <li><strong><font color=red>Result in parameter vs Result in return value</font></strong>，所以<strong><code>分治法</code></strong>一般不需要全局变量，可实现并行。</li>
 <li><strong><code>遍历法</code></strong>的结果要改参数，返回参数；<strong><code>分治法</code></strong>的结果直接返回，是个更好的接口，因为传入的参数最好不要改。</li>
-<li><strong><code>递归是自顶向下</code></strong>Top down  VS  <strong><code>分治是自底向上</code></strong>Bottom up</li>
+<li><strong><code>递归是自顶向下</code></strong>Top down  <span class="caps">VS</span>  <strong><code>分治是自底向上</code></strong>Bottom&nbsp;up</li>
 </ol>
 <p><img alt="TraversalDivideConquer" src="../images/Binary-Tree-and-Divide-Conquer/TraversalDivideConquer.jpg"></p>
-<h3 id="vs_1">递归 VS 非递归</h3>
+<h3 id="vs_1">递归 <span class="caps">VS</span>&nbsp;非递归</h3>
 <ul>
 <li>非递归其实是模拟递归用的Stack</li>
 </ul>
-<p><strong>为什么自己模拟的可以，调用计算机的就不行呢 ？</strong></p>
+<p><strong>为什么自己模拟的可以，调用计算机的就不行呢&nbsp;？</strong></p>
 <ul>
 <li>
 <p>因为<code>heap memory ≈ memory size</code>，new出的stack在里面，不用担心栈溢出。</p>
@@ -287,13 +287,13 @@
 <p>使用队列数据结构：collections.deque</p>
 </li>
 <li>
-<p>队列初始化，根节点先入队列：queue = [root]</p>
+<p>队列初始化，根节点先入队列：queue =&nbsp;[root]</p>
 </li>
 <li>
-<p>查看队列是否为空：while queue</p>
+<p>查看队列是否为空：while&nbsp;queue</p>
 </li>
 <li>
-<p>如果分层打印，则先立即缓存该层大小：n = len(queue), for _ range(n)</p>
+<p>如果分层打印，则先立即缓存该层大小：n = len(queue), for _&nbsp;range(n)</p>
 </li>
 <li>
 <p>遍历该层节点依次出队，查看左右孩子，存在即入队尾。</p>
@@ -402,7 +402,7 @@
 </code></pre></div>
 
 <h3 id="_9">前中序重构二叉树</h3>
-<p><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solution/cong-qian-xu-yu-zhong-xu-bian-li-xu-lie-gou-zao-9/">leetcode solution</a></p>
+<p><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solution/cong-qian-xu-yu-zhong-xu-bian-li-xu-lie-gou-zao-9/">leetcode&nbsp;solution</a></p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="n">Solution</span><span class="w"> </span><span class="err">{</span>
 <span class="k">public</span><span class="err">:</span>
 <span class="w">    </span><span class="n">TreeNode</span><span class="o">*</span><span class="w"> </span><span class="n">buildTree</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="nc">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="k">preorder</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="nc">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">inorder</span><span class="p">)</span><span class="w"> </span><span class="err">{</span>
@@ -535,7 +535,7 @@
         <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">leftDepth</span> <span class="o">-</span> <span class="n">rightDepth</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">leftDepth</span><span class="p">,</span> <span class="n">rightDepth</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 </code></pre></div>
 
-<h3 id="bst">二叉搜索树 BST</h3>
+<h3 id="bst">二叉搜索树 <span class="caps">BST</span></h3>
 <p>二叉搜索树基本性质</p>
 <ul>
 <li>
@@ -564,7 +564,7 @@
 </li>
 <li>
 <p>否则，在左右孩子中查找：<br>
-   - 如果左右孩子均返回一个节点，p和q存在，root就是LCA。</p>
+   -&nbsp;如果左右孩子均返回一个节点，p和q存在，root就是LCA。</p>
 </li>
 </ol>
 <ul>
@@ -591,7 +591,7 @@
         <span class="k">return</span> <span class="n">root</span> <span class="k">if</span> <span class="n">left</span> <span class="ow">and</span> <span class="n">right</span> <span class="k">else</span> <span class="n">left</span> <span class="ow">or</span> <span class="n">right</span>
 </code></pre></div>
 
-<h3 id="same-tree">Same Tree</h3>
+<h3 id="same-tree">Same&nbsp;Tree</h3>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">isSameTree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">p</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">q</span><span class="p">:</span>
@@ -604,8 +604,8 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isSameTree</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">left</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">isSameTree</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="subtree-of-another-tree">Subtree of Another Tree</h3>
-<p>DST + DST</p>
+<h3 id="subtree-of-another-tree">Subtree of Another&nbsp;Tree</h3>
+<p><span class="caps">DST</span> + <span class="caps">DST</span></p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">isSubtree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">s</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">t</span><span class="p">:</span>
@@ -616,17 +616,17 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isSameTree</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">isSubtree</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">isSubtree</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="binary-tree-maximum-path-sum">Binary Tree Maximum Path Sum</h3>
+<h3 id="binary-tree-maximum-path-sum">Binary Tree Maximum Path&nbsp;Sum</h3>
 <p>返回状态的定义：<code>maxPathSum</code>, <code>singlePathSum</code></p>
 <ul>
 <li>
-<p>首先，想一个简化版(single path)，找从root到任意点得最大值。类似于maxDepth，每次加root.val而不再是+1</p>
+<p>首先，想一个简化版(single&nbsp;path)，找从root到任意点得最大值。类似于maxDepth，每次加root.val而不再是+1</p>
 </li>
 <li>
 <p>求单路的时候，如果root加左儿子单路或者右儿子单路最后的值都小于0，则返回0，意味着不要root开始的这个单路了</p>
 </li>
 <li>
-<p>本题思路 divide &amp; conquer</p>
+<p>本题思路 divide <span class="amp">&amp;</span>&nbsp;conquer</p>
 </li>
 </ul>
 <p>求最大路径和就等于下面三个值的最大值：</p>
@@ -638,7 +638,7 @@
 <p>右子树的最大路径和</p>
 </li>
 <li>
-<p>左子树单路 + 右子树单路 + root.val</p>
+<p>左子树单路 + 右子树单路 +&nbsp;root.val</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -658,15 +658,15 @@
         <span class="k">return</span> <span class="n">maxPathSum</span><span class="p">,</span> <span class="n">singlePathSum</span>
 </code></pre></div>
 
-<p>思路二：DFS，返回状态的定义：</p>
+<p>思路二：<span class="caps">DFS</span>，返回状态的定义：</p>
 <p><strong><code>dfs(root)返回的是包括root这个结点的单一路径上的最大值。</code></strong> </p>
 <p>则可能的结果有：</p>
 <ul>
 <li>
-<p>left + right +root.val (左右子树和根构成路径为最大值）</p>
+<p>left + right +root.val&nbsp;(左右子树和根构成路径为最大值）</p>
 </li>
 <li>
-<p>max(left, right) + root.val(左或者右子树和根构成最大值）</p>
+<p>max(left, right) +&nbsp;root.val(左或者右子树和根构成最大值）</p>
 </li>
 <li>
 <p>root.val本身为最大值</p>
@@ -676,10 +676,10 @@
 <p>需要注意的是dfs返回值，可能是</p>
 <ul>
 <li>
-<p>max(left, right) + root.val 某一条路径</p>
+<p>max(left, right) + root.val&nbsp;某一条路径</p>
 </li>
 <li>
-<p>root.val  只是该结点（下面都是负的了）</p>
+<p>root.val&nbsp;只是该结点（下面都是负的了）</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
@@ -707,9 +707,9 @@
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Binary%20Tree&url=http%3A//www.jerrylsu.net/articles/Binary-Tree.html&hashtags=algorithm,binary-tree" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Binary%C2%A0Tree&url=http%3A//www.jerrylsu.net/articles/Binary-Tree.html&hashtags=algorithm,binary-tree" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Binary-Tree.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Binary%20Tree&amp;body=http%3A//www.jerrylsu.net/articles/Binary-Tree.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Binary%C2%A0Tree&amp;body=http%3A//www.jerrylsu.net/articles/Binary-Tree.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -766,18 +766,18 @@
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
 <li><a href="../articles/Conditional-Random-Field.html" title="ConditionalRandomField">ConditionalRandomField</a></li>
-<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
-<li><a href="../articles/Viterbi-Algorithm.html" title="Viterbi Algorithm">Viterbi Algorithm</a></li>
-<li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
-<li><a href="../articles/Brackets-Matching.html" title="Brackets Matching">Brackets Matching</a></li>
+<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
+<li><a href="../articles/Viterbi-Algorithm.html" title="Viterbi Algorithm">Viterbi Algorithm</a></li>
+<li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
+<li><a href="../articles/Brackets-Matching.html" title="Brackets Matching">Brackets Matching</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Auto-generated-subtitles-for-any-video.html" title="Previous: Auto-generated subtitles for any video">Auto-generated subtitles for any video</a></li>
-                <li class="next-article"><a href="../articles/Singleton-&-Companion-Object.html" title="Next: Singleton &amp; Companion Object">Singleton & Companion Object</a> »</li>
+                <li class="previous-article">« <a href="../articles/Auto-generated-subtitles-for-any-video.html" title="Previous: Auto-generated subtitles for any video">Auto-generated subtitles for any video</a></li>
+                <li class="next-article"><a href="../articles/Singleton-&-Companion-Object.html" title="Next: Singleton &amp; Companion Object">Singleton & Companion Object</a> »</li>
             </ul>
             </nav>
             </aside>

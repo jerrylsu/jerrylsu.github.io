@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Reinforcement Learning, NLP, " />
 
-<meta property="og:title" content="【RL】Reinforcement Learning "/>
+<meta property="og:title" content="【RL】Reinforcement Learning "/>
 <meta property="og:url" content="../articles/reinforcement-learning.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-05-21T07:20:38+08:00" />
-<meta name="twitter:title" content="【RL】Reinforcement Learning ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="【RL】Reinforcement Learning ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>【RL】Reinforcement Learning  · JERRYLSU
+        <title>【RL】Reinforcement Learning  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/reinforcement-learning.html">
-                【RL】Reinforcement Learning
+                【<span class="caps">RL</span>】Reinforcement&nbsp;Learning
             </a>
         </h1>
     </header>
@@ -95,10 +95,10 @@
     <div class="span8 article-content">
             
             <h2 id="_1">马尔可夫决策过程</h2>
-<p>构建强化学习问题：马尔可夫决策过程 Markov Decision Processes (MDPs) </p>
+<p>构建强化学习问题：马尔可夫决策过程 Markov Decision Processes&nbsp;(MDPs) </p>
 <h3 id="mdp">MDP组件</h3>
-<p>马尔可夫决策过程为我们提供了一种形式化顺序决策的方法。 这种形式化是构建通过强化学习解决的问题的基础。</p>
-<p>在马尔可夫决策过程中，智能体$Agent$与其所在的环境进行交互。这些交互随着时间的流逝依次发生。 在每个时间步$t$中，$Agent$都会获得环境状态$s_t$的编码。给定$s_t$，$Agent$将选择要采取的行动$a_t$。 然后，环境通过$a_t$将更新新的状态$s_{t+1}$，并且由于先前的操作，$Agent$会获得奖励$r_{t+1}$。</p>
+<p>马尔可夫决策过程为我们提供了一种形式化顺序决策的方法。&nbsp;这种形式化是构建通过强化学习解决的问题的基础。</p>
+<p>在马尔可夫决策过程中，智能体$Agent$与其所在的环境进行交互。这些交互随着时间的流逝依次发生。 在每个时间步$t$中，$Agent$都会获得环境状态$s_t$的编码。给定$s_t$，$Agent$将选择要采取的行动$a_t$。&nbsp;然后，环境通过$a_t$将更新新的状态$s_{t+1}$，并且由于先前的操作，$Agent$会获得奖励$r_{t+1}$。</p>
 <p>一个马尔可夫决策过程的组建包括：</p>
 <ul>
 <li>Agent</li>
@@ -114,21 +114,21 @@
 <p>在一个马尔可夫决策过程中，有一个状态集合$S$，动作集合$A$，奖励集合$R$，且这些集合的元素是有限的。</p>
 <ol>
 <li>
-<p>在每一个时间步$t = 0, 1, 2, ...$, $Agent$接收环境的状态$S_t \in S$，基于当前状态$S_t$，$Agent$选择一个动作$A_t \in A$。形成一个state-action对($S_t, A_t$)。</p>
+<p>在每一个时间步$t = 0, 1, 2, &#8230;$, $Agent$接收环境的状态$S_t \in S$，基于当前状态$S_t$，$Agent$选择一个动作$A_t \in A$。形成一个state-action对($S_t,&nbsp;A_t$)。</p>
 </li>
 <li>
-<p>时间推移到下一个时间步$t + 1$，环境受到$Agent$选择的动作$A_t$影响，将状态从$S_t$转为$S_{t+1} \in S$，此时Agent获得一个数值奖励$R_{t+1} \in R$，该奖励是关于Agent从状态$S_t$选择动作$A_t$的奖励。即奖励函数：$f(S_t, A_t) = R_{t+1}$</p>
+<p>时间推移到下一个时间步$t + 1$，环境受到$Agent$选择的动作$A_t$影响，将状态从$S_t$转为$S_{t+1} \in S$，此时Agent获得一个数值奖励$R_{t+1} \in R$，该奖励是关于Agent从状态$S_t$选择动作$A_t$的奖励。即奖励函数：$f(S_t, A_t) =&nbsp;R_{t+1}$</p>
 </li>
 </ol>
-<p>$Trajectory: S_0, A_0, R_1, S_1, A_1, R_2, S_2, A_2, R_3, ...$</p>
+<p>$Trajectory: S_0, A_0, R_1, S_1, A_1, R_2, S_2, A_2, R_3,&nbsp;&#8230;$</p>
 <h3 id="_2">转换概率</h3>
 <p>因为集合$S$和$R$是有限集，随机变量$S_t$和$R_t$具有明确定义的概率分布，即</p>
 <p>\begin{equation<em>} p\left( s^{\prime },r\mid s,a\right) =\Pr \left{ S_{t}=s^{\prime },R_{t}=r\mid S_{t-1}=s,A_{t-1}=a\right} \text{.} \end{equation</em>}</p>
 <h2 id="_3">期望回报</h2>
 <h3 id="_4">期望奖励</h3>
-<p>在一个MDP过程中，是什么驱动强化学习智能体？<strong>期望回报 Expected Return</strong></p>
+<p>在一个MDP过程中，是什么驱动强化学习智能体？<strong>期望回报 Expected&nbsp;Return</strong></p>
 <p><strong>在一个MDP过程中，智能体的目标是最大化它的期望奖励Reward</strong>。数学表示方式：</p>
-<p>定义在在$t$时刻所获得的期望奖励$G$是： \begin{equation<em>} G_{t}=R_{t+1}+R_{t+2}+R_{t+3}+\cdots +R_{T}\text{,} \end{equation</em>}  $T$是最后一个时间步。</p>
+<p>定义在在$t$时刻所获得的期望奖励$G$是： \begin{equation<em>} G_{t}=R_{t+1}+R_{t+2}+R_{t+3}+\cdots +R_{T}\text{,} \end{equation</em>}&nbsp;$T$是最后一个时间步。</p>
 <p><strong>期望奖励的概念非常重要，因为这是智能体的目标就是最大化期望奖励。期望奖励是推动智能体做出决策的动力。</strong></p>
 <h3 id="_5">折扣期望奖励</h3>
 <p><strong>在一个MDP过程中，智能体的目标是最大化它的期望折扣奖励Reward</strong></p>
@@ -140,10 +140,10 @@
 <p>策略：给定一个状态，智能体选择任意一个动作的概率是多少。</p>
 <p>策略用符号$\pi$表示，$\pi(a|s)$：在$t$时刻，$\pi$策略下，给定状态$s$选择动作$a$的概率是$\pi(a|s)$。$\pi$是动作$a$的概率分布。</p>
 <h3 id="q">Q值函数</h3>
-<p>Value Functions, which generally give us an idea of how good some given state-action pair is for an agent in terms of expected reward. </p>
+<p>Value Functions, which generally give us an idea of how good some given state-action pair is for an agent in terms of expected&nbsp;reward. </p>
 <p>值函数：智能体选择某一个状态有多好。从reward的角度看就是，在给定一个状态选择一个动作可能增加或者减少reward。</p>
 <p>动作值函数：$q_\pi$表示基于策略$\pi$的动作值函数。即<strong>在给定一个状态，基于策略$\pi$选择一个动作后，给定的值，这个值用来评价选择该动作有多好。值用期望奖励定义</strong></p>
-<p>$q_\pi$称Q值函数，Q: quality</p>
+<p>$q_\pi$称Q值函数，Q:&nbsp;quality</p>
 <p>\begin{eqnarray<em>} q_{\pi }\left( s,a\right) &amp;=&amp;E_{\pi }\left[ G_{t}\mid S_{t}=s,A_{t}=a \rule[-0.05in]{0in}{0.2in}\right] \ &amp;=&amp;E_{\pi }\left[ \sum_{k=0}^{\infty }\gamma ^{k}R_{t+k+1}\mid S_{t}=s,A_{t}=a\right] \text{.} \end{eqnarray</em>}</p>
 <h3 id="_8">最优策略</h3>
 <p>什么是最优策略？ </p>
@@ -162,9 +162,9 @@
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=%E3%80%90RL%E3%80%91Reinforcement%20Learning&url=http%3A//www.jerrylsu.net/articles/reinforcement-learning.html&hashtags=reinforcement-learning" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=%E3%80%90RL%E3%80%91Reinforcement%C2%A0Learning&url=http%3A//www.jerrylsu.net/articles/reinforcement-learning.html&hashtags=reinforcement-learning" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/reinforcement-learning.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=%E3%80%90RL%E3%80%91Reinforcement%20Learning&amp;body=http%3A//www.jerrylsu.net/articles/reinforcement-learning.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=%E3%80%90RL%E3%80%91Reinforcement%C2%A0Learning&amp;body=http%3A//www.jerrylsu.net/articles/reinforcement-learning.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -220,16 +220,16 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/【RL】Policy-Gradient.html" title="【RL】Policy Gradient">【RL】Policy Gradient</a></li>
-<li><a href="../articles/【RL】User-Simulator.html" title="【RL】User Simulator">【RL】User Simulator</a></li>
-<li><a href="../articles/【RL】Q-Learning.html" title="【RL】Q Learning">【RL】Q Learning</a></li>
+<li><a href="../articles/【RL】Policy-Gradient.html" title="【RL】Policy Gradient">【RL】Policy Gradient</a></li>
+<li><a href="../articles/【RL】User-Simulator.html" title="【RL】User Simulator">【RL】User Simulator</a></li>
+<li><a href="../articles/【RL】Q-Learning.html" title="【RL】Q Learning">【RL】Q Learning</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/A_star_algorithm.html" title="Previous: A* Heuristic Algorithm">A* Heuristic Algorithm</a></li>
+                <li class="previous-article">« <a href="../articles/A_star_algorithm.html" title="Previous: A* Heuristic Algorithm">A* Heuristic Algorithm</a></li>
                 <li class="next-article"><a href="../articles/Iterator.html" title="Next: Iterator">Iterator</a> »</li>
             </ul>
             </nav>

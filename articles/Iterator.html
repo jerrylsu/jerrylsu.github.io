@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="Iterator "/>
 <meta property="og:url" content="../articles/Iterator.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-06-11T12:19:28+08:00" />
 <meta name="twitter:title" content="Iterator ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>Iterator  · JERRYLSU
 </title>
@@ -96,8 +96,8 @@
             
             <h3 id="iterator">Iterator</h3>
 <p><img alt="iterator" src="../images/python/iterator.png"></p>
-<p>iter(): 接收的是可迭代对象，返回的是迭代器。</p>
-<p>next(): 接收的是迭代器，调用的是迭代器对象中的next函数，返回数据元素。</p>
+<p>iter():&nbsp;接收的是可迭代对象，返回的是迭代器。</p>
+<p>next():&nbsp;接收的是迭代器，调用的是迭代器对象中的next函数，返回数据元素。</p>
 <p>由于生成器是一种特殊的迭代器，故而用next()而不是iter()。</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Classmate</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -196,7 +196,7 @@
 <p>生成器是特殊的迭代器。含有yield关键字的函数，不再是函数而是生成器。调用时不再是函数调用而是创建生成器对象。</p>
 <p>yield关键字，将函数暂停，当下次访问时，接着yield后面继续执行。</p>
 <p>生成器两种启动方式：next(generator)和generator.send()，后者可以传参。</p>
-<p>生成器传参：generator.send('pass args')</p>
+<p>生成器传参：generator.send(&#8216;pass&nbsp;args&#8217;)</p>
 <p>生成器return：在迭代结束抛出异常StopIterator时，返回return的内容。</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">cur</span> <span class="o">=</span> <span class="mi">0</span>
@@ -316,19 +316,19 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/FastAPI-for-CPU-Bound-Task.html" title="FastAPI for CPU-Bound Task">FastAPI for CPU-Bound Task</a></li>
-<li><a href="../articles/Multiprocessing-in-FastAPI.html" title="Multiprocessing in FastAPI">Multiprocessing in FastAPI</a></li>
-<li><a href="../articles/asyncio-get_event_loop-vs-get_running_loop.html" title="asyncio get_event_loop vs get_running_loop">asyncio get_event_loop vs get_running_loop</a></li>
-<li><a href="../articles/python-docx-using-lxml.html" title="Python docx using lxml">Python docx using lxml</a></li>
-<li><a href="../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html" title="Concurrent http requests using asyncio and aiohttp">Concurrent http requests using asyncio and aiohttp</a></li>
+<li><a href="../articles/FastAPI-for-CPU-Bound-Task.html" title="FastAPI for CPU-Bound Task">FastAPI for CPU-Bound Task</a></li>
+<li><a href="../articles/Multiprocessing-in-FastAPI.html" title="Multiprocessing in FastAPI">Multiprocessing in FastAPI</a></li>
+<li><a href="../articles/asyncio-get_event_loop-vs-get_running_loop.html" title="asyncio get_event_loop vs get_running_loop">asyncio get_event_loop vs get_running_loop</a></li>
+<li><a href="../articles/python-docx-using-lxml.html" title="Python docx using lxml">Python docx using lxml</a></li>
+<li><a href="../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html" title="Concurrent http requests using asyncio and aiohttp">Concurrent http requests using asyncio and aiohttp</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/reinforcement-learning.html" title="Previous: 【RL】Reinforcement Learning">【RL】Reinforcement Learning</a></li>
-                <li class="next-article"><a href="../articles/Pytorch-distributed-train.html" title="Next: Pytorch distributed train">Pytorch distributed train</a> »</li>
+                <li class="previous-article">« <a href="../articles/reinforcement-learning.html" title="Previous: 【RL】Reinforcement Learning">【RL】Reinforcement Learning</a></li>
+                <li class="next-article"><a href="../articles/Pytorch-distributed-train.html" title="Next: Pytorch distributed train">Pytorch distributed train</a> »</li>
             </ul>
             </nav>
             </aside>

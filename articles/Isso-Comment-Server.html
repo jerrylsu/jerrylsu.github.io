@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="Isso-Comment-Server "/>
 <meta property="og:url" content="../articles/Isso-Comment-Server.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2021-03-28T13:17:17+08:00" />
 <meta name="twitter:title" content="Isso-Comment-Server ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>Isso-Comment-Server  · JERRYLSU
 </title>
@@ -94,10 +94,10 @@
     </div>
     <div class="span8 article-content">
             
-            <h2 id="1-isso-as-systemd-service">1. Isso as systemd service</h2>
-<p>Switch back to your privileged(root) user and create new service file.</p>
+            <h2 id="1-isso-as-systemd-service">1. Isso as systemd&nbsp;service</h2>
+<p>Switch back to your privileged(root) user and create new service&nbsp;file.</p>
 <p><code>vim /etc/systemd/system/isso.service</code><br>
-Paste the following in it.</p>
+Paste the following in&nbsp;it.</p>
 <div class="highlight"><pre><span></span><code><span class="k">[Unit]</span>
 <span class="na">Description</span><span class="o">=</span><span class="s">Isso Commenting Server</span>
 <span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
@@ -112,15 +112,15 @@ Paste the following in it.</p>
 <span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
 </code></pre></div>
 
-<p>Enable and start the service.</p>
+<p>Enable and start the&nbsp;service.</p>
 <p><code>systemctl enable isso</code></p>
 <p><code>systemctl start isso</code></p>
-<p>Check the status.</p>
+<p>Check the&nbsp;status.</p>
 <p><code>systemctl status isso</code></p>
-<p><a href="https://github.com/posativ/isso/issues/718">I submit the Isso issue due to CORS</a></p>
+<p><a href="https://github.com/posativ/isso/issues/718">I submit the Isso issue due to <span class="caps">CORS</span></a></p>
 <p><img alt="CORS" src="../../images/Blog/CORS_error.png"></p>
 <p><a href="https://posativ.org/isso/">https://posativ.org/isso/</a></p>
-<p><a href="http://www.jerrylsu.net/articles/2021/tools-Apache2%20Deploy%20Multi-sites.html">Apache2 Deploy Multi-sites</a></p>
+<p><a href="http://www.jerrylsu.net/articles/2021/tools-Apache2%20Deploy%20Multi-sites.html">Apache2 Deploy&nbsp;Multi-sites</a></p>
 <p><a href="https://hackriculture.fr/isso-commentaires-auto-heberges-pour-pelican-et-autres-sites-statiques.html">https://hackriculture.fr/isso-commentaires-auto-heberges-pour-pelican-et-autres-sites-statiques.html</a></p>
 <p><a href="https://therandombits.com/2018/12/how-to-add-isso-comments-to-your-site/">https://therandombits.com/2018/12/how-to-add-isso-comments-to-your-site/</a></p>
 
@@ -187,16 +187,16 @@ Paste the following in it.</p>
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Deploy-my-blog-quickly.html" title="Deploy my blog quickly">Deploy my blog quickly</a></li>
-<li><a href="../articles/Apache2 MacOS.html" title="Apache2 MacOS">Apache2 MacOS</a></li>
+<li><a href="../articles/Deploy-my-blog-quickly.html" title="Deploy my blog quickly">Deploy my blog quickly</a></li>
+<li><a href="../articles/Apache2 MacOS.html" title="Apache2 MacOS">Apache2 MacOS</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Apache2 Deploy Multi-sites.html" title="Previous: Apache2 Deploy Multi-sites">Apache2 Deploy Multi-sites</a></li>
-                <li class="next-article"><a href="../articles/Apache2 MacOS.html" title="Next: Apache2 MacOS">Apache2 MacOS</a> »</li>
+                <li class="previous-article">« <a href="../articles/Apache2 Deploy Multi-sites.html" title="Previous: Apache2 Deploy Multi-sites">Apache2 Deploy Multi-sites</a></li>
+                <li class="next-article"><a href="../articles/Apache2 MacOS.html" title="Next: Apache2 MacOS">Apache2 MacOS</a> »</li>
             </ul>
             </nav>
             </aside>

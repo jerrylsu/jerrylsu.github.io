@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="tf.broadcast_to "/>
 <meta property="og:url" content="../articles/tf.broadcast_to.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-11-23T11:23:17+08:00" />
 <meta name="twitter:title" content="tf.broadcast_to ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>tf.broadcast_to  · JERRYLSU
 </title>
@@ -100,23 +100,23 @@
 <p>expand_dims</p>
 </li>
 <li>
-<p>without copying data vs tf.tile</p>
+<p>without copying data vs&nbsp;tf.tile</p>
 </li>
 <li>
 <p>tf.broadcast_to</p>
 </li>
 </ul>
-<h2 id="key-idea">Key idea</h2>
+<h2 id="key-idea">Key&nbsp;idea</h2>
 <ul>
 <li>
 <p>如何a，b张量维度不一致，则插入1dim。小维度对齐</p>
 </li>
 <li>
-<p>expand 1dim到相同dims</p>
+<p>expand&nbsp;1dim到相同dims</p>
 </li>
 </ul>
-<p>e.g.  a = [4, 32, 32, 3]</p>
-<p>b = [3] -&gt; [1, 1, 1, 3] -&gt; [4, 32, 32, 3]</p>
+<p>e.g.  a = [4, 32, 32,&nbsp;3]</p>
+<p>b = [3] -&gt; [1, 1, 1, 3] -&gt; [4, 32, 32,&nbsp;3]</p>
 <h1 id="tfbroadcast_to">tf.broadcast_to</h1>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 </code></pre></div>
@@ -143,7 +143,7 @@
 <div class="highlight"><pre><span></span><code>TensorShape([4, 32, 32, 3])
 </code></pre></div>
 
-<h1 id="broadcast-vs-tile">Broadcast VS Tile</h1>
+<h1 id="broadcast-vs-tile">Broadcast <span class="caps">VS</span>&nbsp;Tile</h1>
 <p>broadcast数据并没有真正复制，tile数据真实复制，broadcast更高效且节省内存空间。</p>
 <div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 <span class="n">a</span><span class="o">.</span><span class="n">shape</span>
@@ -258,7 +258,7 @@
 <li><a href="../articles/tf.concat/split/stack.html" title="tf.concat/split/stack">tf.concat/split/stack</a></li>
 <li><a href="../articles/tf.transpose/expand_dims/squeeze.html" title="tf.transpose/expand_dims/squeeze">tf.transpose/expand_dims/squeeze</a></li>
 <li><a href="../articles/tf.not_equal/reduce_any/boolean_mask.html" title="tf.not_equal/reduce_any/boolean_mask">tf.not_equal/reduce_any/boolean_mask</a></li>
-<li><a href="../articles/CategoricalCrossentropy VS SparseCategoricalCrossentropy.html" title="CategoricalCrossentropy VS SparseCategoricalCrossentropy">CategoricalCrossentropy VS SparseCategoricalCrossentropy</a></li>
+<li><a href="../articles/CategoricalCrossentropy VS SparseCategoricalCrossentropy.html" title="CategoricalCrossentropy VS SparseCategoricalCrossentropy">CategoricalCrossentropy VS SparseCategoricalCrossentropy</a></li>
 <li><a href="../articles/scatter_nd.html" title="Scatter_nd">Scatter_nd</a></li>
 </ul>
 <hr />
@@ -267,7 +267,7 @@
             <nav>
             <ul class="articles-timeline">
                 <li class="previous-article">« <a href="../articles/tf.concat/split/stack.html" title="Previous: tf.concat/split/stack">tf.concat/split/stack</a></li>
-                <li class="next-article"><a href="../articles/Python-list.index.html" title="Next: Python - list.index">Python - list.index</a> »</li>
+                <li class="next-article"><a href="../articles/Python-list.index.html" title="Next: Python - list.index">Python - list.index</a> »</li>
             </ul>
             </nav>
             </aside>

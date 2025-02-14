@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="tf.concat/split/stack "/>
 <meta property="og:url" content="../../../articles/tf.concat/split/stack.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-11-23T11:17:17+08:00" />
 <meta name="twitter:title" content="tf.concat/split/stack ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>tf.concat/split/stack  · JERRYLSU
 </title>
@@ -94,7 +94,7 @@
     </div>
     <div class="span8 article-content">
             
-            <h1 id="merge-and-split">Merge and Split</h1>
+            <h1 id="merge-and-split">Merge and&nbsp;Split</h1>
 <ul>
 <li>
 <p>tf.concat</p>
@@ -109,14 +109,14 @@
 <p>tf.unstack</p>
 </li>
 </ul>
-<h1 id="1-tfconcat">1. tf.concat</h1>
+<h1 id="1-tfconcat">1.&nbsp;tf.concat</h1>
 <p>原有维度concat，如果新维度concat，则stack</p>
 <ul>
 <li>
-<p>concat：拼接的维度可以不同，其他维度必须相同。 concat([3, 35, 8], [2, 35, 8]) -&gt; [5, 35, 8]</p>
+<p>concat：拼接的维度可以不同，其他维度必须相同。 concat([3, 35, 8], [2, 35, 8]) -&gt; [5, 35,&nbsp;8]</p>
 </li>
 <li>
-<p>stack：所有维度必须相同。 stack([3, 35, 8], [3, 35, 8]) -&gt; [2, 3, 35, 8]</p>
+<p>stack：所有维度必须相同。 stack([3, 35, 8], [3, 35, 8]) -&gt; [2, 3, 35,&nbsp;8]</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
@@ -147,10 +147,10 @@
 <div class="highlight"><pre><span></span><code>TensorShape([4, 35, 8])
 </code></pre></div>
 
-<h1 id="2-tfstack">2. tf.stack</h1>
-<p>stack: create new dim</p>
+<h1 id="2-tfstack">2.&nbsp;tf.stack</h1>
+<p>stack: create new&nbsp;dim</p>
 <p>会创建一个新的维度，设计新的schools概念，在新的维度上表达。</p>
-<p>[classes, students, scores] -&gt; [schools, classes, students, scores] 新建schools维度并concat</p>
+<p>[classes, students, scores] -&gt; [schools, classes, students, scores]&nbsp;新建schools维度并concat</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># [classes, students, scores]</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
@@ -168,7 +168,7 @@
 <div class="highlight"><pre><span></span><code>TensorShape([4, 35, 8, 2])
 </code></pre></div>
 
-<h1 id="3-tfsplit-vs-unstack">3. tf.split vs unstack</h1>
+<h1 id="3-tfsplit-vs-unstack">3. tf.split vs&nbsp;unstack</h1>
 <div class="highlight"><pre><span></span><code><span class="n">e</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
 </code></pre></div>
 
@@ -262,7 +262,7 @@
 <li><a href="../../../articles/tf.transpose/expand_dims/squeeze.html" title="tf.transpose/expand_dims/squeeze">tf.transpose/expand_dims/squeeze</a></li>
 <li><a href="../../../articles/tf.broadcast_to.html" title="tf.broadcast_to">tf.broadcast_to</a></li>
 <li><a href="../../../articles/tf.not_equal/reduce_any/boolean_mask.html" title="tf.not_equal/reduce_any/boolean_mask">tf.not_equal/reduce_any/boolean_mask</a></li>
-<li><a href="../../../articles/CategoricalCrossentropy VS SparseCategoricalCrossentropy.html" title="CategoricalCrossentropy VS SparseCategoricalCrossentropy">CategoricalCrossentropy VS SparseCategoricalCrossentropy</a></li>
+<li><a href="../../../articles/CategoricalCrossentropy VS SparseCategoricalCrossentropy.html" title="CategoricalCrossentropy VS SparseCategoricalCrossentropy">CategoricalCrossentropy VS SparseCategoricalCrossentropy</a></li>
 <li><a href="../../../articles/scatter_nd.html" title="Scatter_nd">Scatter_nd</a></li>
 </ul>
 <hr />

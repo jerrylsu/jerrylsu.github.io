@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="torch.rand/randn/randint "/>
 <meta property="og:url" content="../../../articles/torch.rand/randn/randint.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2021-01-04T12:17:17+08:00" />
 <meta name="twitter:title" content="torch.rand/randn/randint ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>torch.rand/randn/randint  · JERRYLSU
 </title>
@@ -97,7 +97,7 @@
             <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
 </code></pre></div>
 
-<h2 id="torchrand-0-1">torch.rand 0-1均匀分布</h2>
+<h2 id="torchrand-0-1">torch.rand&nbsp;0-1均匀分布</h2>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Docstring:</span>
 <span class="sd">rand(*size, *, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False) -&gt; Tensor</span>
@@ -152,7 +152,7 @@
         [0.1436, 0.9677, 0.3738]])
 </code></pre></div>
 
-<h2 id="torchrandn">torch.randn 标准正态分布</h2>
+<h2 id="torchrandn">torch.randn&nbsp;标准正态分布</h2>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Docstring:</span>
 <span class="sd">randn(*size, *, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False) -&gt; Tensor</span>
@@ -201,7 +201,7 @@
         [-2.3884, -0.8895,  0.9523]])
 </code></pre></div>
 
-<h2 id="torchrandint">torch.randint 区间整数随机分布</h2>
+<h2 id="torchrandint">torch.randint&nbsp;区间整数随机分布</h2>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Docstring:</span>
 <span class="sd">randint(low=0, high, size, \*, generator=None, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False) -&gt; Tensor</span>
@@ -258,28 +258,26 @@
         [7, 9, 1]])
 </code></pre></div>
 
-<h2 id="torchbernoulli-01">torch.bernoulli 从伯努利分布中提取二进制随机数（0或1）</h2>
+<h2 id="torchbernoulli-01">torch.bernoulli&nbsp;从伯努利分布中提取二进制随机数（0或1）</h2>
 <p>Docstring:<br>
-bernoulli(input, *, generator=None, out=None) -&gt; Tensor</p>
-<p>Draws binary random numbers (0 or 1) from a Bernoulli distribution.</p>
-<p>The :attr:<code>input</code> tensor should be a tensor containing probabilities<br>
+bernoulli(input, *, generator=None, out=None) -&gt;&nbsp;Tensor</p>
+<p>Draws binary random numbers (0 or 1) from a Bernoulli&nbsp;distribution.</p>
+<p>The&nbsp;:attr:<code>input</code> tensor should be a tensor containing probabilities<br>
 to be used for drawing the binary random number.<br>
-Hence, all values in :attr:<code>input</code> have to be in the range:<br>
-:math:<code>0 \leq \text{input}_i \leq 1</code>.</p>
-<p>The :math:<code>\text{i}^{th}</code> element of the output tensor will draw a<br>
-value :math:<code>1</code> according to the :math:<code>\text{i}^{th}</code> probability value given<br>
-in :attr:<code>input</code>.</p>
+Hence, all values in&nbsp;:attr:<code>input</code> have to be in the range:<br>&nbsp;:math:<code>0 \leq \text{input}_i \leq 1</code>.</p>
+<p>The&nbsp;:math:<code>\text{i}^{th}</code> element of the output tensor will draw a<br>
+value&nbsp;:math:<code>1</code> according to the&nbsp;:math:<code>\text{i}^{th}</code> probability value given<br>
+in&nbsp;:attr:<code>input</code>.</p>
 <p>.. math::<br>
     \text{out}<em i>{i} \sim \mathrm{Bernoulli}(p = \text{input}</em>)</p>
-<p>The returned :attr:<code>out</code> tensor only has values 0 or 1 and is of the same<br>
-shape as :attr:<code>input</code>.</p>
-<p>:attr:<code>out</code> can have integral <code>dtype</code>, but :attr:<code>input</code> must have floating<br>
-point <code>dtype</code>.</p>
+<p>The returned&nbsp;:attr:<code>out</code> tensor only has values 0 or 1 and is of the same<br>
+shape as&nbsp;:attr:<code>input</code>.</p>
+<p>:attr:<code>out</code> can have&nbsp;integral <code>dtype</code>, but&nbsp;:attr:<code>input</code> must have floating<br>&nbsp;point <code>dtype</code>.</p>
 <p>Args:<br>
-    input (Tensor): the input tensor of probability values for the Bernoulli distribution</p>
+    input (Tensor): the input tensor of probability values for the Bernoulli&nbsp;distribution</p>
 <p>Keyword args:<br>
-    generator (:class:<code>torch.Generator</code>, optional): a pseudorandom number generator for sampling<br>
-    out (Tensor, optional): the output tensor.</p>
+    generator&nbsp;(:class:<code>torch.Generator</code>, optional): a pseudorandom number generator for sampling<br>
+    out (Tensor, optional): the output&nbsp;tensor.</p>
 <p>Example::</p>
 <div class="highlight"><pre><span></span><code>&gt;&gt;&gt; a = torch.empty(3, 3).uniform_(0, 1)  # generate a uniform random matrix with range [0, 1]
 &gt;&gt;&gt; a
@@ -303,7 +301,7 @@ tensor([[ 0.,  0.,  0.],
         [ 0.,  0.,  0.]])
 </code></pre></div>
 
-<p>Type:      builtin_function_or_method</p>
+<p>Type:&nbsp;builtin_function_or_method</p>
 <div class="highlight"><pre><span></span><code><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 
@@ -432,7 +430,7 @@ tensor([[ 0.,  0.,  0.],
 <li><a href="../../../articles/tensor.detach/torch.detach_/torch.data.html" title="tensor.detach/torch.detach_/torch.data">tensor.detach/torch.detach_/torch.data</a></li>
 <li><a href="../../../articles/Conditional-Random-Field.html" title="ConditionalRandomField">ConditionalRandomField</a></li>
 <li><a href="../../../articles/scatter_nd.html" title="Scatter_nd">Scatter_nd</a></li>
-<li><a href="../../../articles/paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &paddle.tile.html" title="paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &amp; paddle.tile">paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape & paddle.tile</a></li>
+<li><a href="../../../articles/paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &paddle.tile.html" title="paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &amp; paddle.tile">paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape & paddle.tile</a></li>
 </ul>
 <hr />
 </section>
@@ -440,7 +438,7 @@ tensor([[ 0.,  0.,  0.],
             <nav>
             <ul class="articles-timeline">
                 <li class="previous-article">« <a href="../../../articles/torch.nn.CrossEntropyLoss.html" title="Previous: torch.nn.CrossEntropyLoss">torch.nn.CrossEntropyLoss</a></li>
-                <li class="next-article"><a href="../../../articles/Python-dataclasses.html" title="Next: Python dataclasses">Python dataclasses</a> »</li>
+                <li class="next-article"><a href="../../../articles/Python-dataclasses.html" title="Next: Python dataclasses">Python dataclasses</a> »</li>
             </ul>
             </nav>
             </aside>

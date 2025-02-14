@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Python, Programming, " />
 
-<meta property="og:title" content="Using groupBy on multiple columns "/>
+<meta property="og:title" content="Using groupBy on multiple columns "/>
 <meta property="og:url" content="../articles/Using-groupBy-on-multiple-columns.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-05-23T06:42:23+08:00" />
-<meta name="twitter:title" content="Using groupBy on multiple columns ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="Using groupBy on multiple columns ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Using groupBy on multiple columns  · JERRYLSU
+        <title>Using groupBy on multiple columns  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Using-groupBy-on-multiple-columns.html">
-                Using groupBy on multiple columns
+                Using groupBy on multiple&nbsp;columns
             </a>
         </h1>
     </header>
@@ -94,10 +94,10 @@
     </div>
     <div class="span8 article-content">
             
-            <p>Group By X means put all those with the same value for X in the one group.</p>
-<p>Group By X, Y means put all those with the same values for both X and Y in the one group.</p>
-<p>To illustrate using an example, let's say we have the following table, to do with who is attending what subject at a university:</p>
-<p>Table: Subject_Selection</p>
+            <p>Group By X means put all those with the same value for X in the one&nbsp;group.</p>
+<p>Group By X, Y means put all those with the same values for both X and Y in the one&nbsp;group.</p>
+<p>To illustrate using an example, let&#8217;s say we have the following table, to do with who is attending what subject at a&nbsp;university:</p>
+<p>Table:&nbsp;Subject_Selection</p>
 <div class="highlight"><pre><span></span><code>Subject   Semester   Attendee
 ---------------------------------
 ITB001    1          John
@@ -109,7 +109,7 @@ MKB114    1          John
 MKB114    1          Erica
 </code></pre></div>
 
-<p>When you use a group by on the subject column only; say:</p>
+<p>When you use a group by on the subject column only;&nbsp;say:</p>
 <div class="highlight"><pre><span></span><code>select Subject, Count(*)
 from Subject_Selection
 group by Subject
@@ -122,14 +122,14 @@ ITB001     5
 MKB114     2
 </code></pre></div>
 
-<p>...because there are 5 entries for ITB001, and 2 for MKB114</p>
-<p>If we were to group by two columns:</p>
+<p>&#8230;because there are 5 entries for <span class="caps">ITB001</span>, and 2 for <span class="caps">MKB114</span></p>
+<p>If we were to group by two&nbsp;columns:</p>
 <div class="highlight"><pre><span></span><code>select Subject, Semester, Count(*)
 from Subject_Selection
 group by Subject, Semester
 </code></pre></div>
 
-<p>we would get this:</p>
+<p>we would get&nbsp;this:</p>
 <div class="highlight"><pre><span></span><code>Subject    Semester   Count
 ------------------------------
 ITB001     1          3
@@ -137,16 +137,16 @@ ITB001     2          2
 MKB114     1          2
 </code></pre></div>
 
-<p>This is because, when we group by two columns, it is saying <strong>"Group them so that all of those with the same Subject and Semester are in the same group, and then calculate all the aggregate functions (Count, Sum, Average, etc.) for each of those groups".</strong> </p>
+<p>This is because, when we group by two columns, it is saying <strong>&#8220;Group them so that all of those with the same Subject and Semester are in the same group, and then calculate all the aggregate functions (Count, Sum, Average, etc.) for each of those&nbsp;groups&#8221;.</strong> </p>
 
 
              
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Using%20groupBy%20on%20multiple%20columns&url=http%3A//www.jerrylsu.net/articles/Using-groupBy-on-multiple-columns.html&hashtags=python" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Using%20groupBy%20on%20multiple%C2%A0columns&url=http%3A//www.jerrylsu.net/articles/Using-groupBy-on-multiple-columns.html&hashtags=python" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Using-groupBy-on-multiple-columns.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Using%20groupBy%20on%20multiple%20columns&amp;body=http%3A//www.jerrylsu.net/articles/Using-groupBy-on-multiple-columns.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Using%20groupBy%20on%20multiple%C2%A0columns&amp;body=http%3A//www.jerrylsu.net/articles/Using-groupBy-on-multiple-columns.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -202,19 +202,19 @@ MKB114     1          2
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/FastAPI-for-CPU-Bound-Task.html" title="FastAPI for CPU-Bound Task">FastAPI for CPU-Bound Task</a></li>
-<li><a href="../articles/Multiprocessing-in-FastAPI.html" title="Multiprocessing in FastAPI">Multiprocessing in FastAPI</a></li>
-<li><a href="../articles/asyncio-get_event_loop-vs-get_running_loop.html" title="asyncio get_event_loop vs get_running_loop">asyncio get_event_loop vs get_running_loop</a></li>
-<li><a href="../articles/python-docx-using-lxml.html" title="Python docx using lxml">Python docx using lxml</a></li>
-<li><a href="../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html" title="Concurrent http requests using asyncio and aiohttp">Concurrent http requests using asyncio and aiohttp</a></li>
+<li><a href="../articles/FastAPI-for-CPU-Bound-Task.html" title="FastAPI for CPU-Bound Task">FastAPI for CPU-Bound Task</a></li>
+<li><a href="../articles/Multiprocessing-in-FastAPI.html" title="Multiprocessing in FastAPI">Multiprocessing in FastAPI</a></li>
+<li><a href="../articles/asyncio-get_event_loop-vs-get_running_loop.html" title="asyncio get_event_loop vs get_running_loop">asyncio get_event_loop vs get_running_loop</a></li>
+<li><a href="../articles/python-docx-using-lxml.html" title="Python docx using lxml">Python docx using lxml</a></li>
+<li><a href="../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html" title="Concurrent http requests using asyncio and aiohttp">Concurrent http requests using asyncio and aiohttp</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Python Object and Reference.html" title="Previous: Python Object and Reference">Python Object and Reference</a></li>
-                <li class="next-article"><a href="../articles/Passing-a-function-as-an-argument:-Lambda-Function.html" title="Next: Passing a function as an argument: Lambda Function">Passing a function as an argument: Lambda Function</a> »</li>
+                <li class="previous-article">« <a href="../articles/Python Object and Reference.html" title="Previous: Python Object and Reference">Python Object and Reference</a></li>
+                <li class="next-article"><a href="../articles/Passing-a-function-as-an-argument:-Lambda-Function.html" title="Next: Passing a function as an argument: Lambda Function">Passing a function as an argument: Lambda Function</a> »</li>
             </ul>
             </nav>
             </aside>

@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="Faiss "/>
 <meta property="og:url" content="../articles/Faiss.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2021-09-17T10:17:17+08:00" />
 <meta name="twitter:title" content="Faiss ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>Faiss  · JERRYLSU
 </title>
@@ -94,7 +94,7 @@
     </div>
     <div class="span8 article-content">
             
-            <p>0.faiss Mac m1 install源码安装？</p>
+            <p>0.faiss Mac m1&nbsp;install源码安装？</p>
 <p>master分支若不支持arm64，则下载使用下面 <code>pr：matsui528:workaround-for-aarch64-gcc</code>源码<code>git clone -b branch_name url</code>分支下载</p>
 <p>https://github.com/facebookresearch/faiss/pull/1882</p>
 <div class="highlight"><pre><span></span><code><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">facebookresearch</span><span class="o">/</span><span class="n">faiss</span><span class="o">/</span><span class="n">wiki</span><span class="o">/</span><span class="n">Installing</span><span class="o">-</span><span class="n">Faiss</span><span class="c1">#compiling-faiss-on-arm</span>
@@ -109,15 +109,15 @@
 <span class="o">$</span><span class="w"> </span><span class="k">export</span><span class="w"> </span><span class="n">PYTHONPATH</span><span class="o">=$</span><span class="n">PWD</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">faiss</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span>
 </code></pre></div>
 
-<p>1.faiss add是增量增加吗？</p>
-<p>2.faiss index训练是在每次add新数据，都需要重新训练吗？</p>
+<p>1.faiss&nbsp;add是增量增加吗？</p>
+<p>2.faiss&nbsp;index训练是在每次add新数据，都需要重新训练吗？</p>
 <p><a href="https://github.com/facebookresearch/faiss/wiki">https://github.com/facebookresearch/faiss/wiki</a></p>
 <p><a href="https://github.com/facebookresearch/faiss">https://github.com/facebookresearch/faiss</a></p>
 <p><a href="https://www.bilibili.com/video/BV15v4118753?from=search&amp;seid=9527663759693988199&amp;spm_id_from=333.337.0.0">推荐召回算法-6如何从十亿数据找出你喜欢的内容-向量检索技术</a></p>
-<p><a href="https://bbs.cvmart.net/articles/3887">使用 Faiss 进行海量特征的相似度匹配</a></p>
+<p><a href="https://bbs.cvmart.net/articles/3887">使用 Faiss&nbsp;进行海量特征的相似度匹配</a></p>
 <h3 id="1">1.生成随机数据</h3>
 <p><code>Faiss</code>处理固定维数<code>d</code>的向量集合，通常为 10 到 100 秒。 这些集合可以存储在矩阵中。<br>
-我们假设行优先存储，即。 向量编号 i 的第 j 个分量存储在矩阵的第 i 行、第 j 列中。 <code>Faiss</code>仅使用<code>32</code>位浮点矩阵。</p>
+我们假设行优先存储，即。 向量编号 i 的第 j 个分量存储在矩阵的第 i 行、第 j&nbsp;列中。 <code>Faiss</code>仅使用<code>32</code>位浮点矩阵。</p>
 <ul>
 <li>
 <p><code>xb</code>用于数据库，它包含所有必须编入索引的向量，我们将在其中进行搜索。大小<code>nb * d</code></p>
@@ -151,12 +151,10 @@
 <h3 id="2">2.创建索引并添加数据</h3>
 <ul>
 <li>
-<p><code>Faiss</code>是围绕<code>Index</code>对象构建的。 它封装了一组数据库向量，并可选择对它们进行预处理以提高搜索效率。 <br>
-索引有很多种，我们将使用最简单的版本，只对它们执行暴力<code>L2</code>距离搜索：<code>IndexFlatL2</code>。</p>
+<p><code>Faiss</code>是围绕<code>Index</code>对象构建的。 它封装了一组数据库向量，并可选择对它们进行预处理以提高搜索效率。 <br>&nbsp;索引有很多种，我们将使用最简单的版本，只对它们执行暴力<code>L2</code>距离搜索：<code>IndexFlatL2</code>。</p>
 </li>
 <li>
-<p>所有索引在创建时都需要知道，操作向量的维数，即d。然后，大多数索引还需要一个训练阶段，以分析向量的分布。<br>
-对于全量暴力搜索<code>IndexFlatL2</code>，可以跳过这个操作。</p>
+<p>所有索引在创建时都需要知道，操作向量的维数，即d。然后，大多数索引还需要一个训练阶段，以分析向量的分布。<br>&nbsp;对于全量暴力搜索<code>IndexFlatL2</code>，可以跳过这个操作。</p>
 </li>
 <li>
 <p><code>Index</code>创建和训练后，对其都可以执行两个操作：<code>add</code>和<code>search</code>。</p>
@@ -165,7 +163,7 @@
 <p><code>index.add</code>向索引添加向量数据，<code>index.is_traned</code>查看索引是否已经训练，<code>index.ntotal</code>索引向量数量</p>
 </li>
 <li>
-<p>一些索引还可以存储与每个向量对应的整数<code>ID</code>（但不是<code>IndexFlatL2</code>）。 如果未提供<code>ID</code>，则<code>add</code>仅使用向量序号作为<code>ID</code>。即，第一个向量为 0，第二个为 1，依此类推。</p>
+<p>一些索引还可以存储与每个向量对应的整数<code>ID</code>（但不是<code>IndexFlatL2</code>）。&nbsp;如果未提供<code>ID</code>，则<code>add</code>仅使用向量序号作为<code>ID</code>。即，第一个向量为 0，第二个为&nbsp;1，依此类推。</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">index</span> <span class="o">=</span> <span class="n">faiss</span><span class="o">.</span><span class="n">IndexFlatL2</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>    <span class="c1"># 创建索引</span>
@@ -181,10 +179,10 @@
 <h3 id="3">3.搜索</h3>
 <ul>
 <li>
-<p>可以对索引执行的基本搜索操作是<code>k-最近邻搜索</code>，即。 对于每个查询向量，在数据库中找到它的<code>k</code>个最近的邻居。</p>
+<p>可以对索引执行的基本搜索操作是<code>k-最近邻搜索</code>，即。&nbsp;对于每个查询向量，在数据库中找到它的<code>k</code>个最近的邻居。</p>
 </li>
 <li>
-<p>这个操作的结果可以方便地存储在一个大小为<code>nq * k</code>的整数矩阵中，其中第<code>i</code>行包含查询向量<code>i</code>的邻居的<code>ID</code>，按距离增加排序。 除了这个矩阵之外，搜索操作还返回一个具有相应平方距离的<code>nq * k</code>浮点矩阵。(<code>ID</code>矩阵和距离矩阵)</p>
+<p>这个操作的结果可以方便地存储在一个大小为<code>nq * k</code>的整数矩阵中，其中第<code>i</code>行包含查询向量<code>i</code>的邻居的<code>ID</code>，按距离增加排序。&nbsp;除了这个矩阵之外，搜索操作还返回一个具有相应平方距离的<code>nq * k</code>浮点矩阵。(<code>ID</code>矩阵和距离矩阵)</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">k</span> <span class="o">=</span> <span class="mi">4</span>
@@ -328,19 +326,19 @@ True
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Automated-Feature-Engineering:-Featuretools.html" title="Automated Feature Engineering: Featuretools">Automated Feature Engineering: Featuretools</a></li>
-<li><a href="../articles/Logistic-Regression.html" title="Logistic Regression">Logistic Regression</a></li>
+<li><a href="../articles/Automated-Feature-Engineering:-Featuretools.html" title="Automated Feature Engineering: Featuretools">Automated Feature Engineering: Featuretools</a></li>
+<li><a href="../articles/Logistic-Regression.html" title="Logistic Regression">Logistic Regression</a></li>
 <li><a href="../articles/Cross-Validation-CV.html" title="Cross Validation-CV">Cross Validation-CV</a></li>
-<li><a href="../articles/Binomial-distribution.html" title="Binomial distribution">Binomial distribution</a></li>
-<li><a href="../articles/Scipy-stats.html" title="Scipy stats">Scipy stats</a></li>
+<li><a href="../articles/Binomial-distribution.html" title="Binomial distribution">Binomial distribution</a></li>
+<li><a href="../articles/Scipy-stats.html" title="Scipy stats">Scipy stats</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Docker-Python-Mysql.html" title="Previous: Docker Python Mysql">Docker Python Mysql</a></li>
-                <li class="next-article"><a href="../articles/Bert-as-Service.html" title="Next: Bert as Service">Bert as Service</a> »</li>
+                <li class="previous-article">« <a href="../articles/Docker-Python-Mysql.html" title="Previous: Docker Python Mysql">Docker Python Mysql</a></li>
+                <li class="next-article"><a href="../articles/Bert-as-Service.html" title="Next: Bert as Service">Bert as Service</a> »</li>
             </ul>
             </nav>
             </aside>

@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="Git "/>
 <meta property="og:url" content="../articles/Git.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2018-10-03T11:23:36+08:00" />
 <meta name="twitter:title" content="Git ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>Git  · JERRYLSU
 </title>
@@ -94,27 +94,27 @@
     </div>
     <div class="span8 article-content">
             
-            <p><a href="https://learngitbranching.js.org/?locale=zh_CN">可视化Learn Git Branching</a></p>
-<h2 id="1">1. 仓库管理</h2>
-<h3 id="create-repository">Create Repository</h3>
+            <p><a href="https://learngitbranching.js.org/?locale=zh_CN">可视化Learn Git&nbsp;Branching</a></p>
+<h2 id="1">1.&nbsp;仓库管理</h2>
+<h3 id="create-repository">Create&nbsp;Repository</h3>
 <p><code>$ mkdir myrepo</code></p>
 <p><code>$ cd myrepo</code> </p>
 <p><code>$ git init</code></p>
-<p>Initialized empty Git repository in /Users/jerrylsu/myrepo/.git/</p>
-<h3 id="add-file-to-local-repository">Add File to Local Repository</h3>
+<p>Initialized empty Git repository in&nbsp;/Users/jerrylsu/myrepo/.git/</p>
+<h3 id="add-file-to-local-repository">Add File to Local&nbsp;Repository</h3>
 <p><code>$ git status</code></p>
 <p><code>$ git diff filename</code></p>
-<p>Check working directory status, and view changes made to the filemname.</p>
+<p>Check working directory status, and view changes made to the&nbsp;filemname.</p>
 <p><code>$ git add filename</code></p>
 <p><code>$ git commit -m "write commend"</code></p>
 <p><code>$ git commit --amend</code>  修改最后一次提交，避免新开一个commit提交到history！</p>
-<h3 id="associated-remote-repogithub">Associated Remote Repo(GitHub)</h3>
+<h3 id="associated-remote-repogithub">Associated Remote&nbsp;Repo(GitHub)</h3>
 <p><code>$ git remote add origin [SSH address]</code></p>
-<p>Note : <strong>origin</strong> is an alias for the remote repository address. </p>
-<h3 id="push-github-repository">Push GitHub Repository</h3>
+<p>Note : <strong>origin</strong> is an alias for the remote repository&nbsp;address. </p>
+<h3 id="push-github-repository">Push GitHub&nbsp;Repository</h3>
 <p><code>$ git push origin branch_name</code></p>
-<p>Now, we can push the latest changes to our local branch to the remote GitHub repository, which is associated above!</p>
-<h2 id="2">2. 分支管理</h2>
+<p>Now, we can push the latest changes to our local branch to the remote GitHub repository, which is associated&nbsp;above!</p>
+<h2 id="2">2.&nbsp;分支管理</h2>
 <h3 id="_1">创建分支</h3>
 <p><code>git branch branch_name</code></p>
 <h3 id="_2">切换分支</h3>
@@ -136,11 +136,11 @@
 <h3 id="_8">远程新建分支</h3>
 <p>将本地分支推送到远程不存在的分支，实现远程分支新建</p>
 <p><code>git push origin local_branch:remote_branch</code></p>
-<h3 id="remove-filesdir-from-git-repo">Remove files/dir from git repo</h3>
+<h3 id="remove-filesdir-from-git-repo">Remove files/dir from git&nbsp;repo</h3>
 <p><code>$ git rm --cached file.txt</code></p>
 <p><code>$ git rm -r --cached dir</code></p>
 <p><code>$ git commit -m "remove file.txt"</code></p>
-<p>And to push changes to remote repo</p>
+<p>And to push changes to remote&nbsp;repo</p>
 <p><code>$ git push origin branch_name</code>  </p>
 <h3 id="_9">拉取远程分支</h3>
 <ul>
@@ -154,15 +154,15 @@
 <p>查看拉取到本地的分支：<code>git checkout local_branch_name</code></p>
 </li>
 </ul>
-<h2 id="3">3. 在提交树上的移动</h2>
-<p>HEAD 总是指向当前分支上最近一次提交记录。大多数修改提交树的 Git 命令都是从改变 HEAD 的指向开始的。</p>
-<p>HEAD 通常情况下是指向分支名的。在你提交时，改变了分支的状态，这一变化通过 HEAD 变得可见。</p>
+<h2 id="3">3.&nbsp;在提交树上的移动</h2>
+<p><span class="caps">HEAD</span> 总是指向当前分支上最近一次提交记录。大多数修改提交树的 Git 命令都是从改变 <span class="caps">HEAD</span>&nbsp;的指向开始的。</p>
+<p><span class="caps">HEAD</span> 通常情况下是指向分支名的。在你提交时，改变了分支的状态，这一变化通过 <span class="caps">HEAD</span>&nbsp;变得可见。</p>
 <h3 id="head">分离HEAD指针</h3>
 <p>可以用切换分支的命令来切换到特定一次的提交，提交名是哈希值commit_hash。</p>
 <p><code>git checkout commit_hash(fed2)</code> HEAD分离并指向这个特定的提交</p>
 <p><code>git log</code>获取提交的哈希值，例如fed2da64c0efc5293610bdd892f82a58e8cbc5d8，如果可以唯一标识，取前缀即可fed2。</p>
 <h3 id="_10">相对引用</h3>
-<p>相对引用更方便,使用相对引用可以从一个易于记忆的地方（比如 bugFix 分支或 HEAD）开始计算</p>
+<p>相对引用更方便,使用相对引用可以从一个易于记忆的地方（比如 bugFix 分支或 <span class="caps">HEAD</span>）开始计算</p>
 <ul>
 <li>
 <p>使用 <code>^</code> 后退1个提交记录，如<code>git checkout main^</code> 或 <code>git checkout main^^</code>，HEAD指向main分支的父节点和父父节点</p>
@@ -180,15 +180,15 @@ git checkout HEAD^   # HEAD继续上移
 
 <h3 id="_11">强制修改分支位置</h3>
 <p><code>git branch -f main HEAD^3/commit_hash</code></p>
-<h2 id="5">5. 撤销变更</h2>
+<h2 id="5">5.&nbsp;撤销变更</h2>
 <p><code>git reset commit_hash</code></p>
-<h2 id="6">6. 整理提交分支</h2>
+<h2 id="6">6.&nbsp;整理提交分支</h2>
 <p>将commit_hash1与commit_hash2两次提交串接到当前分支下，当前分支指针移动到串接头部commit_hash2。类似于<code>git rebase</code></p>
 <p><code>git cherry-pick commit_hash1 commit_hash2</code></p>
-<h2 id="4-commit">4. 恢复本地commit提交</h2>
+<h2 id="4-commit">4.&nbsp;恢复本地commit提交</h2>
 <ul>
 <li>
-<p>获取commit id： <code>git log</code></p>
+<p>获取commit&nbsp;id： <code>git log</code></p>
 </li>
 <li>
 <p>恢复本地commit提交： <code>git reset --hard commit_id</code></p>
@@ -259,16 +259,16 @@ git checkout HEAD^   # HEAD继续上移
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Keeping-a-fork-synced-with-the-origin-repo.html" title="Keeping a fork synced with the origin repo">Keeping a fork synced with the origin repo</a></li>
-<li><a href="../articles/Git-LFS-Bandwidth-Issue.html" title="Git LFS Bandwidth Issue">Git LFS Bandwidth Issue</a></li>
+<li><a href="../articles/Keeping-a-fork-synced-with-the-origin-repo.html" title="Keeping a fork synced with the origin repo">Keeping a fork synced with the origin repo</a></li>
+<li><a href="../articles/Git-LFS-Bandwidth-Issue.html" title="Git LFS Bandwidth Issue">Git LFS Bandwidth Issue</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Keeping-a-fork-synced-with-the-origin-repo.html" title="Previous: Keeping a fork synced with the origin repo">Keeping a fork synced with the origin repo</a></li>
-                <li class="next-article"><a href="../articles/Building-Python-Package-with-Pybuilder.html" title="Next: Building Python Package with Pybuilder">Building Python Package with Pybuilder</a> »</li>
+                <li class="previous-article">« <a href="../articles/Keeping-a-fork-synced-with-the-origin-repo.html" title="Previous: Keeping a fork synced with the origin repo">Keeping a fork synced with the origin repo</a></li>
+                <li class="next-article"><a href="../articles/Building-Python-Package-with-Pybuilder.html" title="Next: Building Python Package with Pybuilder">Building Python Package with Pybuilder</a> »</li>
             </ul>
             </nav>
             </aside>

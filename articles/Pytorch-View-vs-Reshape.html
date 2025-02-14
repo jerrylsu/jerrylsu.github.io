@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Pytorch, Paddle, NLP, " />
 
-<meta property="og:title" content="Pytorch View vs Reshape "/>
+<meta property="og:title" content="Pytorch View vs Reshape "/>
 <meta property="og:url" content="../articles/Pytorch-View-vs-Reshape.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2022-05-03T11:17:17+08:00" />
-<meta name="twitter:title" content="Pytorch View vs Reshape ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="Pytorch View vs Reshape ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Pytorch View vs Reshape  · JERRYLSU
+        <title>Pytorch View vs Reshape  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Pytorch-View-vs-Reshape.html">
-                Pytorch View vs Reshape
+                Pytorch View vs&nbsp;Reshape
             </a>
         </h1>
     </header>
@@ -95,17 +95,17 @@
     <div class="span8 article-content">
             
             <p>torch.view has existed for a long time. It will return a tensor with the new shape. The returned tensor will share the underling data with the original tensor. See the <a href="https://pytorch.org/docs/master/tensors.html?highlight=view#torch.Tensor.view">documentation here</a>.</p>
-<p>On the other hand, it seems that torch.reshape <a href="https://github.com/pytorch/pytorch/pull/5575">has been introduced recently in version 0.4</a>. According to the <a href="https://pytorch.org/docs/master/torch.html#torch.reshape">document</a>, this method will</p>
+<p>On the other hand, it seems that torch.reshape <a href="https://github.com/pytorch/pytorch/pull/5575">has been introduced recently in version 0.4</a>. According to the <a href="https://pytorch.org/docs/master/torch.html#torch.reshape">document</a>, this method&nbsp;will</p>
 <blockquote>
-<p>Returns a tensor with the same data and number of elements as input, but with the specified shape. When possible, the returned tensor will be a view of input. Otherwise, it will be a copy. Contiguous inputs and inputs with compatible strides can be reshaped without copying, but you should not depend on the copying vs. viewing behavior.</p>
+<p>Returns a tensor with the same data and number of elements as input, but with the specified shape. When possible, the returned tensor will be a view of input. Otherwise, it will be a copy. Contiguous inputs and inputs with compatible strides can be reshaped without copying, but you should not depend on the copying vs. viewing&nbsp;behavior.</p>
 </blockquote>
-<p>It means that torch.reshape may return a copy or a view of the original tensor. You can not count on that to return a view or a copy. According to the developer:</p>
+<p>It means that torch.reshape may return a copy or a view of the original tensor. You can not count on that to return a view or a copy. According to the&nbsp;developer:</p>
 <blockquote>
-<p>if you need a copy use clone() if you need the same storage use view(). The semantics of reshape() are that it may or may not share the storage and you don't know beforehand.</p>
+<p>if you need a copy use clone() if you need the same storage use view(). The semantics of reshape() are that it may or may not share the storage and you don&#8217;t know&nbsp;beforehand.</p>
 </blockquote>
-<p>Another difference is that reshape() can operate on both contiguous and non-contiguous tensor while view() can only operate on contiguous tensor. Also see <a href="https://stackoverflow.com/questions/26998223/what-is-the-difference-between-contiguous-and-non-contiguous-arrays/26999092#26999092">here</a> about the meaning of contiguous.</p>
+<p>Another difference is that reshape() can operate on both contiguous and non-contiguous tensor while view() can only operate on contiguous tensor. Also see <a href="https://stackoverflow.com/questions/26998223/what-is-the-difference-between-contiguous-and-non-contiguous-arrays/26999092#26999092">here</a> about the meaning of&nbsp;contiguous.</p>
 <p><a href="https://stackoverflow.com/questions/49643225/whats-the-difference-between-reshape-and-view-in-pytorch">whats-the-difference-between-reshape-and-view-in-pytorch</a></p>
-<p>torch的view()与reshape()方法都可以用来重塑tensor的shape，区别就是使用的条件不一样。view()方法只适用于满足连续性条件的tensor，并且该操作不会开辟新的内存空间，只是产生了对原存储空间的一个新别称和引用，返回值是视图。而reshape()方法的返回值既可以是视图，也可以是副本，当满足连续性条件时返回view，否则返回副本[ 此时等价于先调用contiguous()方法在使用view() ]。因此当不确能否使用view时，可以使用reshape。如果只是想简单地重塑一个tensor的shape，那么就是用reshape，但是如果需要考虑内存的开销而且要确保重塑后的tensor与之前的tensor共享存储空间，那就使用view()。</p>
+<p>torch的view()与reshape()方法都可以用来重塑tensor的shape，区别就是使用的条件不一样。view()方法只适用于满足连续性条件的tensor，并且该操作不会开辟新的内存空间，只是产生了对原存储空间的一个新别称和引用，返回值是视图。而reshape()方法的返回值既可以是视图，也可以是副本，当满足连续性条件时返回view，否则返回副本[ 此时等价于先调用contiguous()方法在使用view()&nbsp;]。因此当不确能否使用view时，可以使用reshape。如果只是想简单地重塑一个tensor的shape，那么就是用reshape，但是如果需要考虑内存的开销而且要确保重塑后的tensor与之前的tensor共享存储空间，那就使用view()。</p>
 <p>paddle不存在view方法</p>
 
 
@@ -113,9 +113,9 @@
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Pytorch%20View%20vs%20Reshape&url=http%3A//www.jerrylsu.net/articles/Pytorch-View-vs-Reshape.html&hashtags=pytorch,paddle" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Pytorch%20View%20vs%C2%A0Reshape&url=http%3A//www.jerrylsu.net/articles/Pytorch-View-vs-Reshape.html&hashtags=pytorch,paddle" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Pytorch-View-vs-Reshape.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Pytorch%20View%20vs%20Reshape&amp;body=http%3A//www.jerrylsu.net/articles/Pytorch-View-vs-Reshape.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Pytorch%20View%20vs%C2%A0Reshape&amp;body=http%3A//www.jerrylsu.net/articles/Pytorch-View-vs-Reshape.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -171,11 +171,11 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &paddle.tile.html" title="paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &amp; paddle.tile">paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape & paddle.tile</a></li>
-<li><a href="../articles/Tokenizer-offset-mapping.html" title="Tokenizer offerset mapping">Tokenizer offerset mapping</a></li>
+<li><a href="../articles/paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &paddle.tile.html" title="paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &amp; paddle.tile">paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape & paddle.tile</a></li>
+<li><a href="../articles/Tokenizer-offset-mapping.html" title="Tokenizer offerset mapping">Tokenizer offerset mapping</a></li>
 <li><a href="../articles/pytorch.nn.functional.pad.html" title="pytorch.nn.functional.pad">pytorch.nn.functional.pad</a></li>
-<li><a href="../articles/Pytorch-stride-as_strided.html" title="Pytorch tensor.stride &amp; tensor.as_strided">Pytorch tensor.stride & tensor.as_strided</a></li>
-<li><a href="../articles/Longformer-Torch2Paddle.html" title="Longformer Torch2Paddle">Longformer Torch2Paddle</a></li>
+<li><a href="../articles/Pytorch-stride-as_strided.html" title="Pytorch tensor.stride &amp; tensor.as_strided">Pytorch tensor.stride & tensor.as_strided</a></li>
+<li><a href="../articles/Longformer-Torch2Paddle.html" title="Longformer Torch2Paddle">Longformer Torch2Paddle</a></li>
 </ul>
 <hr />
 </section>
@@ -183,7 +183,7 @@
             <nav>
             <ul class="articles-timeline">
                 <li class="previous-article">« <a href="../articles/pytorch.nn.functional.pad.html" title="Previous: pytorch.nn.functional.pad">pytorch.nn.functional.pad</a></li>
-                <li class="next-article"><a href="../articles/Pytorch-stride-as_strided.html" title="Next: Pytorch tensor.stride &amp; tensor.as_strided">Pytorch tensor.stride & tensor.as_strided</a> »</li>
+                <li class="next-article"><a href="../articles/Pytorch-stride-as_strided.html" title="Next: Pytorch tensor.stride &amp; tensor.as_strided">Pytorch tensor.stride & tensor.as_strided</a> »</li>
             </ul>
             </nav>
             </aside>

@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="Pytorch-create-tensor "/>
 <meta property="og:url" content="../articles/pytorch-create-tensor.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2021-01-07T12:17:17+08:00" />
 <meta name="twitter:title" content="Pytorch-create-tensor ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>Pytorch-create-tensor  · JERRYLSU
 </title>
@@ -94,11 +94,11 @@
     </div>
     <div class="span8 article-content">
             
-            <p>CLASS torch.Tensor</p>
-<p>There are a few main ways to create a tensor, depending on your use case.</p>
+            <p><span class="caps">CLASS</span>&nbsp;torch.Tensor</p>
+<p>There are a few main ways to create a tensor, depending on your use&nbsp;case.</p>
 <ul>
 <li>
-<p>To create a tensor with pre-existing data, use torch.tensor().</p>
+<p>To create a tensor with pre-existing data, use&nbsp;torch.tensor().</p>
 </li>
 <li>
 <p>To create a tensor with specific size, use torch.* tensor creation ops (see <a href="https://pytorch.org/docs/stable/torch.html#tensor-creation-ops">Creation Ops</a>).</p>
@@ -113,7 +113,7 @@
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
 </code></pre></div>
 
-<h3 id="1-tensornew_">1. tensor.new_*</h3>
+<h3 id="1-tensornew_">1.&nbsp;tensor.new_*</h3>
 <div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">((),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 <span class="n">x</span>
 </code></pre></div>
@@ -130,7 +130,7 @@
 <span class="w">        </span><span class="p">[</span><span class="mi">0</span><span class="p">.,</span><span class="w"> </span><span class="mi">0</span><span class="p">.,</span><span class="w"> </span><span class="mi">0</span><span class="p">.]],</span><span class="w"> </span><span class="nx">dtype</span><span class="p">=</span><span class="nx">torch</span><span class="p">.</span><span class="nx">float64</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="2-torch_like">2. torch.*_like</h3>
+<h3 id="2-torch_like">2.&nbsp;torch.*_like</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># torch.zeros_like</span>
 <span class="c1"># Returns a tensor filled with the scalar value 0, with the same size as input.</span>
 <span class="c1"># torch.zeros_like(input) is equivalent to torch.zeros(input.size(), dtype=input.dtype, layout=input.layout, device=input.device).</span>
@@ -214,14 +214,14 @@
 <li><a href="../articles/tensor.detach/torch.detach_/torch.data.html" title="tensor.detach/torch.detach_/torch.data">tensor.detach/torch.detach_/torch.data</a></li>
 <li><a href="../articles/Conditional-Random-Field.html" title="ConditionalRandomField">ConditionalRandomField</a></li>
 <li><a href="../articles/scatter_nd.html" title="Scatter_nd">Scatter_nd</a></li>
-<li><a href="../articles/paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &paddle.tile.html" title="paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &amp; paddle.tile">paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape & paddle.tile</a></li>
+<li><a href="../articles/paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &paddle.tile.html" title="paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape &amp; paddle.tile">paddle implements torch.repeat_interleave/K.repeat_elements using paddle.reshape & paddle.tile</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/batch padding.html" title="Previous: batch padding">batch padding</a></li>
+                <li class="previous-article">« <a href="../articles/batch padding.html" title="Previous: batch padding">batch padding</a></li>
                 <li class="next-article"><a href="../articles/BertForQuestionAnswering.html" title="Next: BertForQuestionAnswering">BertForQuestionAnswering</a> »</li>
             </ul>
             </nav>

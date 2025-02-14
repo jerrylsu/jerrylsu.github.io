@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Machine Learning, ML, " />
 
-<meta property="og:title" content="Information Theory "/>
+<meta property="og:title" content="Information Theory "/>
 <meta property="og:url" content="../articles/Information-Theory.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2018-12-03T12:32:47+08:00" />
-<meta name="twitter:title" content="Information Theory ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="Information Theory ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Information Theory  · JERRYLSU
+        <title>Information Theory  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Information-Theory.html">
-                Information Theory
+                Information&nbsp;Theory
             </a>
         </h1>
     </header>
@@ -94,7 +94,7 @@
     </div>
     <div class="span8 article-content">
             
-            <h2 id="information-theory">Information Theory</h2>
+            <h2 id="information-theory">Information&nbsp;Theory</h2>
 <h3 id="x">信息$X$</h3>
 <ul>
 <li><strong>信息$X$即信源</strong>$X$：表示一段信息，如文本、语音等等。</li>
@@ -116,26 +116,21 @@ $H(X_1) &gt; H(X_2); H(X_1) = H(X_2);H(X_1) &lt; H(X_2)$<br>
 </li>
 </ul>
 <p>寻找一个函数$H$同时满足以上三点，即：<br>
-随机事件$X_i$发生概率为$P(X_i)$，则<strong>信息量函数</strong>定义为：<br>
-$$H(X)=\log\frac{1}{P(X)}=-\log{P(X)}$$</p>
-<p>可加性证明：$H(X_1,X_2)=\log\frac{1}{P(X_1,X_2)}=\log\frac{1}{P(X_1)P(X_2)}= \log\frac{1}{P(X_1)}+\log\frac{1}{P(X_2)}$，$X_1$,$X_2$相互独立</p>
-<h3 id="information-entropy">Information Entropy</h3>
-<p>定义：信息量$H(X)$在$P(X)$分布下的数学期望：<br>
-$$Entropy(X)=E_x[H(X)]=-\sum_xp(x)\log{p(x)}$$</p>
+随机事件$X_i$发生概率为$P(X_i)$，则<strong>信息量函数</strong>定义为：<br>&nbsp;$$H(X)=\log\frac{1}{P(X)}=-\log{P(X)}$$</p>
+<p>可加性证明：$H(X_1,X_2)=\log\frac{1}{P(X_1,X_2)}=\log\frac{1}{P(X_1)P(X_2)}=&nbsp;\log\frac{1}{P(X_1)}+\log\frac{1}{P(X_2)}$，$X_1$,$X_2$相互独立</p>
+<h3 id="information-entropy">Information&nbsp;Entropy</h3>
+<p>定义：信息量$H(X)$在$P(X)$分布下的数学期望：<br>&nbsp;$$Entropy(X)=E_x[H(X)]=-\sum_xp(x)\log{p(x)}$$</p>
 <blockquote>
 <p>热力学第二定律</p>
-<p>薛定谔.《生命是什么》 （第六章 有序，无序和熵）<br>
-基本思想：一个正常的人若要维持高序的状态，则必须要吸收负熵来维持高序稳定的状态，否则我们的熵会趋于增大而变的无序。所以人需要吃食物，食物是高序稳定的，经过吸收变得无序产生负熵来维持我们高序稳定状态。</p>
+<p>薛定谔.《生命是什么》 （第六章 有序，无序和熵）<br>&nbsp;基本思想：一个正常的人若要维持高序的状态，则必须要吸收负熵来维持高序稳定的状态，否则我们的熵会趋于增大而变的无序。所以人需要吃食物，食物是高序稳定的，经过吸收变得无序产生负熵来维持我们高序稳定状态。</p>
 </blockquote>
-<p>信息熵可以描述数据的混合程度。<br>
-熵越大，混合度越高，数据纯度越低。</p>
+<p>信息熵可以描述数据的混合程度。<br>&nbsp;熵越大，混合度越高，数据纯度越低。</p>
 <h3 id="_1">信息熵的计算</h3>
 <p>数据集$D$：<br>
 X X X | O O O X X X O O<br>
 - $ori_entropy(X)$：最初整个系统（数据集$D$）的固定熵，即<strong>经验熵</strong>（李航，统计学习方法）<br>
 $$ori_entropy(D)=-\frac{1}{2}\log\frac{1}{2}-\frac{1}{2}\log\frac{1}{2}=1$$<br>
-- 根据某个特征将数据集$D$划分为$D_-$(X X X)和$D_+$(O O O X X X O O)：<br>
-$$entropy(D_-)=0$$</p>
+- 根据某个特征将数据集$D$划分为$D_-$(X X X)和$D_+$(O O O X X X O O)：<br>&nbsp;$$entropy(D_-)=0$$</p>
 <p>$$entropy(D_+)=-\frac{2}{7}\log\frac{2}{7}-\frac{5}{7}\log\frac{5}{7}$$</p>
 <p>即数据集划分后两个子数据集的信息熵。<strong>由这样划分数据集之后，整个系统（数据集$D$）的信息熵有何变化呢？</strong>由此引入了<strong>信息增益(Information Gain)</strong>。</p>
 <div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">cal_entropy</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span><span class="err">:</span>
@@ -174,15 +169,13 @@ $$entropy(D_-)=0$$</p>
 </code></pre></div>
 
 <p><img alt="entropy" src="images/entropy/entropy.png"></p>
-<h3 id="information-gain">Information Gain</h3>
+<h3 id="information-gain">Information&nbsp;Gain</h3>
 <p><strong>信息增益：原始数据集$D$的熵 减去 按特征$A$划分若干个子数据集$D_i$的加权熵</strong><br>
 信息增益：由于熵的减小，而增加信息的获得是多少。<br>
 一个特征的信息增益就是由于使用这个特征分割数据集而导致的期望熵降低。在信息增益中，衡量标准是看特征能够为分类系统带来多少信息，带来的信息越多，该特征越重要。对一个特征而言，系统有它和没它时信息量将发生变化，而前后信息量的差值就是这个特征给系统带来的信息量（系统熵降低，则信息量减小，则获取更多的信息量，即信息增益）。<br>
-$$IG=ori_entropy-\sum_i w_i \cdot entropy(D_i)=ori_entropy-\sum_i \frac{|D_i|}{|D|} \cdot entropy(D_i)$$</p>
-<p><strong>信息增益越大越好，还是越小越好？</strong><br>
-信息增益是：原始数据集$D$的熵减去按特征$A$划分若干个子数据集$D_i$的加权熵。我们的目的是使每一个子集的熵最小（最小代表每个子集都是一类数据，高度有序的状态，高纯度），即加权熵尽量小，则IG越大。</p>
-<p><strong>根据IG准则的特征选择方法是什么？</strong><br>
-对训练数据集（或子集）$D$，计算其每一个特征的信息增益，选择信息增益最大的特征。</p>
+$$<span class="caps">IG</span>=ori_entropy-\sum_i w_i \cdot entropy(D_i)=ori_entropy-\sum_i \frac{|D_i|}{|D|} \cdot&nbsp;entropy(D_i)$$</p>
+<p><strong>信息增益越大越好，还是越小越好？</strong><br>&nbsp;信息增益是：原始数据集$D$的熵减去按特征$A$划分若干个子数据集$D_i$的加权熵。我们的目的是使每一个子集的熵最小（最小代表每个子集都是一类数据，高度有序的状态，高纯度），即加权熵尽量小，则IG越大。</p>
+<p><strong>根据IG准则的特征选择方法是什么？</strong><br>&nbsp;对训练数据集（或子集）$D$，计算其每一个特征的信息增益，选择信息增益最大的特征。</p>
 <div class="highlight"><pre><span></span><code>def info_gain(entropy, cond_entropy):
     return entropy - cond_entropy
 </code></pre></div>
@@ -192,9 +185,9 @@ $$IG=ori_entropy-\sum_i w_i \cdot entropy(D_i)=ori_entropy-\sum_i \frac{|D_i|}{|
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Information%20Theory&url=http%3A//www.jerrylsu.net/articles/Information-Theory.html&hashtags=machine-learning" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Information%C2%A0Theory&url=http%3A//www.jerrylsu.net/articles/Information-Theory.html&hashtags=machine-learning" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Information-Theory.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Information%20Theory&amp;body=http%3A//www.jerrylsu.net/articles/Information-Theory.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Information%C2%A0Theory&amp;body=http%3A//www.jerrylsu.net/articles/Information-Theory.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -250,18 +243,18 @@ $$IG=ori_entropy-\sum_i w_i \cdot entropy(D_i)=ori_entropy-\sum_i \frac{|D_i|}{|
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Logistic-Regression.html" title="Logistic Regression">Logistic Regression</a></li>
+<li><a href="../articles/Logistic-Regression.html" title="Logistic Regression">Logistic Regression</a></li>
 <li><a href="../articles/Cross-Validation-CV.html" title="Cross Validation-CV">Cross Validation-CV</a></li>
 <li><a href="../articles/Faiss.html" title="Faiss">Faiss</a></li>
-<li><a href="../articles/Binomial-distribution.html" title="Binomial distribution">Binomial distribution</a></li>
-<li><a href="../articles/Scipy-stats.html" title="Scipy stats">Scipy stats</a></li>
+<li><a href="../articles/Binomial-distribution.html" title="Binomial distribution">Binomial distribution</a></li>
+<li><a href="../articles/Scipy-stats.html" title="Scipy stats">Scipy stats</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Data-Structure-and-Algorithm-in-Python.html" title="Previous: Data Structure and Algorithm in Python">Data Structure and Algorithm in Python</a></li>
+                <li class="previous-article">« <a href="../articles/Data-Structure-and-Algorithm-in-Python.html" title="Previous: Data Structure and Algorithm in Python">Data Structure and Algorithm in Python</a></li>
                 <li class="next-article"><a href="../articles/CART.html" title="Next: CART">CART</a> »</li>
             </ul>
             </nav>

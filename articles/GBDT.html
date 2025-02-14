@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="GBDT "/>
 <meta property="og:url" content="../articles/GBDT.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-06-08T02:18:10+08:00" />
 <meta name="twitter:title" content="GBDT ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
         <title>GBDT  · JERRYLSU
 </title>
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/GBDT.html">
-                GBDT
+                <span class="caps">GBDT</span>
             </a>
         </h1>
     </header>
@@ -95,34 +95,32 @@
     <div class="span8 article-content">
             
             <h3 id="_1">问题引入</h3>
-<p>给定数据集$(x_1, y_1), (x_2, y_2),...,(x_n, y_n)$, 拟合一个模型$F(x)$。</p>
-<p>$F(x_1) = 1.4$而$y_1=1.3$</p>
-<p>$F(x_2) = 0.9$而$y_2=0.8$</p>
-<p>...</p>
+<p>给定数据集$(x_1, y_1), (x_2, y_2),&#8230;,(x_n, y_n)$,&nbsp;拟合一个模型$F(x)$。</p>
+<p>$F(x_1) =&nbsp;1.4$而$y_1=1.3$</p>
+<p>$F(x_2) =&nbsp;0.9$而$y_2=0.8$</p>
+<p>&#8230;</p>
 <p>在不改变$F(x)$模型前提下，如何提升模型$F(x)$？</p>
-<p>在原有模型$F(x)$基础上增加模型$h(x)$,即$F(x) + h(x)$。</p>
-<p>$$F(x_n) + h(x_n) = y_n$$</p>
-<p>$$h(x_n) = y_n - F(x_n)$$</p>
-<p>所以对数据$(x_1, y_1-F(x_1)), (x_2, y_2-F(x_2)),...,(x_n, y_n-F(x_n))$拟合一个回归树$h$。</p>
+<p>在原有模型$F(x)$基础上增加模型$h(x)$,即$F(x) +&nbsp;h(x)$。</p>
+<p>$$F(x_n) + h(x_n) =&nbsp;y_n$$</p>
+<p>$$h(x_n) = y_n -&nbsp;F(x_n)$$</p>
+<p>所以对数据$(x_1, y_1-F(x_1)), (x_2, y_2-F(x_2)),&#8230;,(x_n,&nbsp;y_n-F(x_n))$拟合一个回归树$h$。</p>
 <p>$y_i - F(x_i)$是<strong>残差</strong>，就是模型$F(x)$未很好拟合的那一部分误差。$h(x)$作用就是弥补现有模型的残差。如果$F+h$依然没有很好的拟合原数据，则继续添加另一个回归树模型去拟合新的残差。</p>
 <h3 id="_2">残差与梯度下降的关系</h3>
 <p>梯度下降是指在函数当前点对应梯度的反方向迭代移动以达到函数的局部最小。</p>
-<p>损失函数：$L(y, F(x)) = \frac{1}{2} (y - F(x))^2$</p>
-<p>我们通过迭代调整$F(x_1), F(x_2),..,F(x_n)$以到达损失函数$J = \sum_i L(y_i, F(x_i))$的最小化。</p>
-<p>注：$F(x_1), F(x_2),...,F(x_n)$仅仅是一些数，所以可以将$F(x_i)$当作是变量。那么梯度推导：</p>
+<p>损失函数：$L(y, F(x)) = \frac{1}{2} (y -&nbsp;F(x))^2$</p>
+<p>我们通过迭代调整$F(x_1), F(x_2),..,F(x_n)$以到达损失函数$J = \sum_i L(y_i,&nbsp;F(x_i))$的最小化。</p>
+<p>注：$F(x_1),&nbsp;F(x_2),&#8230;,F(x_n)$仅仅是一些数，所以可以将$F(x_i)$当作是变量。那么梯度推导：</p>
 <p>\begin{align}<br>
-\frac{\partial J}{\partial F(x_i)} &amp; = \frac{\partial \sum_i L(y_i, F(x_i))}{\partial F(x_i)} \ <br>
-&amp; = \frac{\partial L(y_i, F(x_i))}{\partial F(x_i)} \<br>
-&amp; = \frac{\partial \frac{1}{2}(y_i-F(x_i))^2}{\partial x} \<br>
-&amp; = F(x_i)-y_i<br>
-\end{align}</p>
+\frac{\partial J}{\partial F(x_i)} <span class="amp">&amp;</span> = \frac{\partial \sum_i L(y_i, F(x_i))}{\partial F(x_i)} \ <br>
+<span class="amp">&amp;</span> = \frac{\partial L(y_i, F(x_i))}{\partial F(x_i)} \<br>
+<span class="amp">&amp;</span> = \frac{\partial \frac{1}{2}(y_i-F(x_i))^2}{\partial x} \<br>
+<span class="amp">&amp;</span> = F(x_i)-y_i<br>&nbsp;\end{align}</p>
 <p>所以对于具有平方损失的回归：</p>
 <p>\begin{align}<br>
 残差y_i-F(x_i) &amp;&lt;===&gt;负梯度-\frac{\partial J}{\partial F(x_i)} \<br>
 对残差拟合h &amp;&lt;===&gt; 对负梯度拟合h \<br>
 基于残差更新模型F &amp;&lt;===&gt; 基于负梯度更新F \<br>
-\end{align}<br>
-所以使用梯度下降来更新模型F，梯度下降的概念比残差更通用且有用。</p>
+\end{align}<br>&nbsp;所以使用梯度下降来更新模型F，梯度下降的概念比残差更通用且有用。</p>
 <p><strong>残差与负梯度的关系：是由平方损失函数建立的，平方损失函数的一阶导数即梯度正是负残差，而平方损失函数又常用于回归问题</strong></p>
 
 
@@ -188,19 +186,19 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Logistic-Regression.html" title="Logistic Regression">Logistic Regression</a></li>
+<li><a href="../articles/Logistic-Regression.html" title="Logistic Regression">Logistic Regression</a></li>
 <li><a href="../articles/Cross-Validation-CV.html" title="Cross Validation-CV">Cross Validation-CV</a></li>
 <li><a href="../articles/Faiss.html" title="Faiss">Faiss</a></li>
-<li><a href="../articles/Binomial-distribution.html" title="Binomial distribution">Binomial distribution</a></li>
-<li><a href="../articles/Scipy-stats.html" title="Scipy stats">Scipy stats</a></li>
+<li><a href="../articles/Binomial-distribution.html" title="Binomial distribution">Binomial distribution</a></li>
+<li><a href="../articles/Scipy-stats.html" title="Scipy stats">Scipy stats</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Dynamic-Programming.bk.html" title="Previous: Dynamic Programming">Dynamic Programming</a></li>
-                <li class="next-article"><a href="../articles/Breadth-First-Search.html" title="Next: Breadth First Search">Breadth First Search</a> »</li>
+                <li class="previous-article">« <a href="../articles/Dynamic-Programming.bk.html" title="Previous: Dynamic Programming">Dynamic Programming</a></li>
+                <li class="next-article"><a href="../articles/Breadth-First-Search.html" title="Next: Breadth First Search">Breadth First Search</a> »</li>
             </ul>
             </nav>
             </aside>

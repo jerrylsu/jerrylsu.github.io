@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Algorithm, Breadth First Search, Algorithms, " />
 
-<meta property="og:title" content="Breadth First Search "/>
+<meta property="og:title" content="Breadth First Search "/>
 <meta property="og:url" content="../articles/Breadth-First-Search.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-06-16T02:21:38+08:00" />
-<meta name="twitter:title" content="Breadth First Search ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="Breadth First Search ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Breadth First Search  · JERRYLSU
+        <title>Breadth First Search  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Breadth-First-Search.html">
-                Breadth First Search
+                Breadth First&nbsp;Search
             </a>
         </h1>
     </header>
@@ -99,16 +99,16 @@
 <p>先明确队列中放的是什么，即满足怎样的条件才能入队。例如，拓扑排序入度为0的节点入队。</p>
 <ol>
 <li>
-<p><strong>队列不空, while queue</strong></p>
+<p><strong>队列不空, while&nbsp;queue</strong></p>
 </li>
 <li>
 <p><strong>分层遍历，for当前层的size。</strong><br>
-   循环何时可省？ 不需要分层</p>
+   循环何时可省？&nbsp;不需要分层</p>
 </li>
 <li>
 <p><strong>从当前点出发，向周围点去循环</strong><br>
    例如:拓扑排序去for循环遍历当前点的邻居节点。<br>
-   循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left, node.right分别看一眼即可。</p>
+   循环何时可省？ 二叉树层序遍历，周围点只可能有左右孩子，无需for循环。node.left,&nbsp;node.right分别看一眼即可。</p>
 </li>
 </ol>
 <h4 id="_2">宽搜要点</h4>
@@ -120,19 +120,19 @@
 <p>是否需要分层实现：分层打印多一层for循环，len(queue)缓存队列每一层大小。</p>
 </li>
 <li>
-<p>for _ range(len(queue)): 错，需缓存</p>
+<p>for _ range(len(queue)):&nbsp;错，需缓存</p>
 </li>
 </ul>
 <h3 id="_3">二叉树上的宽搜</h3>
-<h4 id="binary-tree-level-order-traversal"><a href="https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html#level-order-traversal">Binary Tree Level Order Traversal</a></h4>
-<h4 id="binary-tree-zigzag-level-order-traversal"><a href="https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html#binary-tree-zigzag-level-order-traversal">Binary Tree Zigzag Level Order Traversal</a></h4>
-<h4 id="serialize-and-deserialize-binary-tree"><a href="https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html#serialize-and-deserialize-binary-tree">Serialize and Deserialize Binary Tree</a></h4>
-<p>序列化是指将<strong>内存</strong>中的数据结构转为<strong>字符串</strong>的过程。系列化：object -&gt; string；反序列化: string -&gt; object。</p>
+<h4 id="binary-tree-level-order-traversal"><a href="https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html#level-order-traversal">Binary Tree Level Order&nbsp;Traversal</a></h4>
+<h4 id="binary-tree-zigzag-level-order-traversal"><a href="https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html#binary-tree-zigzag-level-order-traversal">Binary Tree Zigzag Level Order&nbsp;Traversal</a></h4>
+<h4 id="serialize-and-deserialize-binary-tree"><a href="https://www.jerrulsu.com/Binary-Tree-and-Divide-Conquer.html#serialize-and-deserialize-binary-tree">Serialize and Deserialize Binary&nbsp;Tree</a></h4>
+<p>序列化是指将<strong>内存</strong>中的数据结构转为<strong>字符串</strong>的过程。系列化：object -&gt; string；反序列化: string -&gt;&nbsp;object。</p>
 <h3 id="_4">图上的宽搜</h3>
 <p><strong>图上的宽搜与树的区别：</strong>图有环，同一节点可能重复进入队列。需用集合存储访问过的结点。queue.append与visited.add成对存在。</p>
-<p><strong>数据结构：</strong>队列 + 集合</p>
+<p><strong>数据结构：</strong>队列 +&nbsp;集合</p>
 <ul>
-<li>图如何存储？ 临接点</li>
+<li>图如何存储？&nbsp;临接点</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">GraphNode</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
@@ -144,7 +144,7 @@
 <h4 id="_6">层级遍历</h4>
 <h4 id="_7">由点及面</h4>
 <h4 id="_8">拓扑排序</h4>
-<p><a href="https://www.jerrulsu.com/Topological-Sorting.html">Topological Sorting</a></p>
+<p><a href="https://www.jerrulsu.com/Topological-Sorting.html">Topological&nbsp;Sorting</a></p>
 <h3 id="_9">矩阵上的宽搜</h3>
 
 
@@ -152,9 +152,9 @@
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Breadth%20First%20Search&url=http%3A//www.jerrylsu.net/articles/Breadth-First-Search.html&hashtags=algorithm,breadth-first-search" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Breadth%20First%C2%A0Search&url=http%3A//www.jerrylsu.net/articles/Breadth-First-Search.html&hashtags=algorithm,breadth-first-search" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Breadth-First-Search.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Breadth%20First%20Search&amp;body=http%3A//www.jerrylsu.net/articles/Breadth-First-Search.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Breadth%20First%C2%A0Search&amp;body=http%3A//www.jerrylsu.net/articles/Breadth-First-Search.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -210,11 +210,11 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Topological-Sorting.html" title="Topological Sorting">Topological Sorting</a></li>
-<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
-<li><a href="../articles/Viterbi-Algorithm.html" title="Viterbi Algorithm">Viterbi Algorithm</a></li>
-<li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
-<li><a href="../articles/Brackets-Matching.html" title="Brackets Matching">Brackets Matching</a></li>
+<li><a href="../articles/Topological-Sorting.html" title="Topological Sorting">Topological Sorting</a></li>
+<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
+<li><a href="../articles/Viterbi-Algorithm.html" title="Viterbi Algorithm">Viterbi Algorithm</a></li>
+<li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
+<li><a href="../articles/Brackets-Matching.html" title="Brackets Matching">Brackets Matching</a></li>
 </ul>
 <hr />
 </section>
@@ -222,7 +222,7 @@
             <nav>
             <ul class="articles-timeline">
                 <li class="previous-article">« <a href="../articles/GBDT.html" title="Previous: GBDT">GBDT</a></li>
-                <li class="next-article"><a href="../articles/Topological-Sorting.html" title="Next: Topological Sorting">Topological Sorting</a> »</li>
+                <li class="next-article"><a href="../articles/Topological-Sorting.html" title="Next: Topological Sorting">Topological Sorting</a> »</li>
             </ul>
             </nav>
             </aside>

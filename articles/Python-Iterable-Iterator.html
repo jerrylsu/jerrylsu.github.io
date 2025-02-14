@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Python, Programming, " />
 
-<meta property="og:title" content="Python - Iterable vs Iterator "/>
+<meta property="og:title" content="Python - Iterable vs Iterator "/>
 <meta property="og:url" content="../articles/Python-Iterable-Iterator.html" />
-<meta property="og:description" content="[TOC] summary: Reason is the light and the light of life. toc: show import re from collections.abc import Iterator, Iterable 鸭子类型，通过协议实现 1. Iterable 可迭代协议: __iter__() import re class Sentence1: def __init__(self, text): self.text = text …" />
+<meta property="og:description" content="[TOC] summary: Reason is the light and the light of life. toc: show import re from collections.abc import Iterator, Iterable 鸭子类型，通过协议实现 1. Iterable 可迭代协议: __iter__() import re class Sentence1: def __init__(self, text): self.text = text …" />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2020-12-30T10:17:17+08:00" />
-<meta name="twitter:title" content="Python - Iterable vs Iterator ">
-<meta name="twitter:description" content="[TOC] summary: Reason is the light and the light of life. toc: show import re from collections.abc import Iterator, Iterable 鸭子类型，通过协议实现 1. Iterable 可迭代协议: __iter__() import re class Sentence1: def __init__(self, text): self.text = text …">
+<meta name="twitter:title" content="Python - Iterable vs Iterator ">
+<meta name="twitter:description" content="[TOC] summary: Reason is the light and the light of life. toc: show import re from collections.abc import Iterator, Iterable 鸭子类型，通过协议实现 1. Iterable 可迭代协议: __iter__() import re class Sentence1: def __init__(self, text): self.text = text …">
 
-        <title>Python - Iterable vs Iterator  · JERRYLSU
+        <title>Python - Iterable vs Iterator  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Python-Iterable-Iterator.html">
-                Python - Iterable vs Iterator
+                Python - Iterable vs&nbsp;Iterator
             </a>
         </h1>
     </header>
@@ -88,16 +88,16 @@
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
             
-            <p>[TOC]<br>
+            <p>[<span class="caps">TOC</span>]<br>
 summary: Reason is the light and the light of life.<br>
-toc: show</p>
+toc:&nbsp;show</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Iterable</span>
 </code></pre></div>
 
 <p>鸭子类型，通过协议实现</p>
-<h2 id="1-iterable">1. Iterable</h2>
-<p>可迭代协议: __iter__()</p>
+<h2 id="1-iterable">1.&nbsp;Iterable</h2>
+<p>可迭代协议:&nbsp;__iter__()</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
 
 <span class="k">class</span> <span class="nc">Sentence1</span><span class="p">:</span>
@@ -118,8 +118,8 @@ toc: show</p>
 s is Iterator: False
 </code></pre></div>
 
-<h2 id="2-iterator">2. Iterator</h2>
-<p>迭代器协议: __iter__(), __next__()</p>
+<h2 id="2-iterator">2.&nbsp;Iterator</h2>
+<p>迭代器协议: __iter__(),&nbsp;__next__()</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
 
 <span class="k">class</span> <span class="nc">Sentence2</span><span class="p">:</span>
@@ -145,10 +145,10 @@ s is Iterator: True
 
 <ul>
 <li>
-<p>含有 __iter__() 的类对象是可迭代的。</p>
+<p>含有 __iter__()&nbsp;的类对象是可迭代的。</p>
 </li>
 <li>
-<p>含有 __iter__() 和 __next__() 是迭代器。</p>
+<p>含有 __iter__() 和 __next__()&nbsp;是迭代器。</p>
 </li>
 <li>
 <p>迭代器一定是可迭代的对象，可迭代的对象不一定是迭代器。</p>
@@ -168,7 +168,7 @@ s is Iterator: True
 <span class="n">s2</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
 </code></pre></div>
 
-<h2 id="3">3. 一个典型的迭代器</h2>
+<h2 id="3">3.&nbsp;一个典型的迭代器</h2>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SentenceIterator</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">words</span> <span class="o">=</span> <span class="n">words</span>
@@ -341,7 +341,7 @@ world
 <p>迭代器存在__iter__()方法，返回自身这个迭代器，同时存在__next()__方法，返回单个元素。</p>
 </li>
 </ul>
-<h2 id="4-pythonic">4. 更Pythonic的实现方式</h2>
+<h2 id="4-pythonic">4.&nbsp;更Pythonic的实现方式</h2>
 <p>用生成器函数替代SentenceIterator迭代器</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Sentence</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
@@ -360,9 +360,9 @@ world
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Python%20-%20Iterable%20vs%20Iterator&url=http%3A//www.jerrylsu.net/articles/Python-Iterable-Iterator.html&hashtags=python" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Python%20-%20Iterable%20vs%C2%A0Iterator&url=http%3A//www.jerrylsu.net/articles/Python-Iterable-Iterator.html&hashtags=python" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Python-Iterable-Iterator.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Python%20-%20Iterable%20vs%20Iterator&amp;body=http%3A//www.jerrylsu.net/articles/Python-Iterable-Iterator.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Python%20-%20Iterable%20vs%C2%A0Iterator&amp;body=http%3A//www.jerrylsu.net/articles/Python-Iterable-Iterator.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -418,19 +418,19 @@ world
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/FastAPI-for-CPU-Bound-Task.html" title="FastAPI for CPU-Bound Task">FastAPI for CPU-Bound Task</a></li>
-<li><a href="../articles/Multiprocessing-in-FastAPI.html" title="Multiprocessing in FastAPI">Multiprocessing in FastAPI</a></li>
-<li><a href="../articles/asyncio-get_event_loop-vs-get_running_loop.html" title="asyncio get_event_loop vs get_running_loop">asyncio get_event_loop vs get_running_loop</a></li>
-<li><a href="../articles/python-docx-using-lxml.html" title="Python docx using lxml">Python docx using lxml</a></li>
-<li><a href="../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html" title="Concurrent http requests using asyncio and aiohttp">Concurrent http requests using asyncio and aiohttp</a></li>
+<li><a href="../articles/FastAPI-for-CPU-Bound-Task.html" title="FastAPI for CPU-Bound Task">FastAPI for CPU-Bound Task</a></li>
+<li><a href="../articles/Multiprocessing-in-FastAPI.html" title="Multiprocessing in FastAPI">Multiprocessing in FastAPI</a></li>
+<li><a href="../articles/asyncio-get_event_loop-vs-get_running_loop.html" title="asyncio get_event_loop vs get_running_loop">asyncio get_event_loop vs get_running_loop</a></li>
+<li><a href="../articles/python-docx-using-lxml.html" title="Python docx using lxml">Python docx using lxml</a></li>
+<li><a href="../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html" title="Concurrent http requests using asyncio and aiohttp">Concurrent http requests using asyncio and aiohttp</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Python-os.html" title="Previous: Python - os">Python - os</a></li>
-                <li class="next-article"><a href="../articles/Python-Generator.html" title="Next: Python - Generator">Python - Generator</a> »</li>
+                <li class="previous-article">« <a href="../articles/Python-os.html" title="Previous: Python - os">Python - os</a></li>
+                <li class="next-article"><a href="../articles/Python-Generator.html" title="Next: Python - Generator">Python - Generator</a> »</li>
             </ul>
             </nav>
             </aside>

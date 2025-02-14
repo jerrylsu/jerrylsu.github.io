@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Scala, Programming, " />
 
-<meta property="og:title" content="Case Class vs Class "/>
+<meta property="og:title" content="Case Class vs Class "/>
 <meta property="og:url" content="../articles/Case-Class-vs-Class.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-04-17T05:43:19+08:00" />
-<meta name="twitter:title" content="Case Class vs Class ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="Case Class vs Class ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Case Class vs Class  · JERRYLSU
+        <title>Case Class vs Class  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Case-Class-vs-Class.html">
-                Case Class vs Class
+                Case Class vs&nbsp;Class
             </a>
         </h1>
     </header>
@@ -105,7 +105,7 @@
 </code></pre></div>
 
 <ul>
-<li>case class的定义:</li>
+<li>case&nbsp;class的定义:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">case</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Note</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="p">,</span><span class="w"> </span><span class="n">duration</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="p">,</span><span class="w"> </span><span class="n">octave</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">)</span>
 </code></pre></div>
@@ -119,7 +119,7 @@
 
 <ol>
 <li><code>case class</code>类实例化不需要<code>new</code>, <code>case class</code>有一个默认的<code>apply</code>方法来负责对象的创建。</li>
-<li>创建带参<code>case class</code>时，参数时<code>val</code>类型的。 e.g： c3.name = 'Jerry' //does not compile</li>
+<li>创建带参<code>case class</code>时，参数时<code>val</code>类型的。 e.g： c3.name = &#8216;Jerry&#8217; //does not&nbsp;compile</li>
 </ol>
 <h2 id="_2">比较</h2>
 <div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="n">aliceAccount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nc">BankAccount</span>
@@ -137,7 +137,7 @@
 <li>在Scala中，默认情况下，比较对象将比较它们的引用，即<code>**按引用比较**</code>。</li>
 <li>但在<code>case class</code>实例的情况下，重新定义相等性以比较聚合信息的值，即<code>**按值比较**</code>。</li>
 </ul>
-<h2 id="pattern-matching">pattern matching</h2>
+<h2 id="pattern-matching">pattern&nbsp;matching</h2>
 <ul>
 <li><code>pattern matching</code>不适用于<code>class</code></li>
 <li>用<code>pattern matching</code>从<code>case class</code>实例中抽取信息</li>
@@ -149,9 +149,8 @@
 
 <h2 id="_3">继承</h2>
 <p><code>class</code>可继承，<code>case class</code>不可继承（因为不可能正确地实现它们的相等）</p>
-<h2 id="case-class">case class的代码实现</h2>
-<p><code>case class</code>只是<code>class</code>的一个特例，目的是将多个值聚合为一个单值。Scala显示的支持<code>case class</code>是因为在实践中常用。<br>
-当我们在定义一个<code>case class</code>时，编译器实际定义了一个<code>使用更多方法</code>和<code>伴随对象</code>的增强<code>class</code>。</p>
+<h2 id="case-class">case&nbsp;class的代码实现</h2>
+<p><code>case class</code>只是<code>class</code>的一个特例，目的是将多个值聚合为一个单值。Scala显示的支持<code>case class</code>是因为在实践中常用。<br>&nbsp;当我们在定义一个<code>case class</code>时，编译器实际定义了一个<code>使用更多方法</code>和<code>伴随对象</code>的增强<code>class</code>。</p>
 <p>e.g:</p>
 <div class="highlight"><pre><span></span><code><span class="k">case</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Note</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="p">,</span><span class="w"> </span><span class="n">duration</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="p">,</span><span class="w"> </span><span class="n">octave</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">)</span>
 </code></pre></div>
@@ -210,9 +209,9 @@
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Case%20Class%20vs%20Class&url=http%3A//www.jerrylsu.net/articles/Case-Class-vs-Class.html&hashtags=scala" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Case%20Class%20vs%C2%A0Class&url=http%3A//www.jerrylsu.net/articles/Case-Class-vs-Class.html&hashtags=scala" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Case-Class-vs-Class.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Case%20Class%20vs%20Class&amp;body=http%3A//www.jerrylsu.net/articles/Case-Class-vs-Class.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Case%20Class%20vs%C2%A0Class&amp;body=http%3A//www.jerrylsu.net/articles/Case-Class-vs-Class.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -268,18 +267,18 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Scala with Gradle in Intellij.html" title="Scala with Gradle in Intellij">Scala with Gradle in Intellij</a></li>
-<li><a href="../articles/Singleton-&-Companion-Object.html" title="Singleton &amp; Companion Object">Singleton & Companion Object</a></li>
+<li><a href="../articles/Scala with Gradle in Intellij.html" title="Scala with Gradle in Intellij">Scala with Gradle in Intellij</a></li>
+<li><a href="../articles/Singleton-&-Companion-Object.html" title="Singleton &amp; Companion Object">Singleton & Companion Object</a></li>
 <li><a href="../articles/Closure.html" title="Closure">Closure</a></li>
-<li><a href="../articles/Scala-Collection.html" title="Scala Collection">Scala Collection</a></li>
-<li><a href="../articles/Scala-Tips.html" title="Scala Tips">Scala Tips</a></li>
+<li><a href="../articles/Scala-Collection.html" title="Scala Collection">Scala Collection</a></li>
+<li><a href="../articles/Scala-Tips.html" title="Scala Tips">Scala Tips</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Singleton-&-Companion-Object.html" title="Previous: Singleton &amp; Companion Object">Singleton & Companion Object</a></li>
+                <li class="previous-article">« <a href="../articles/Singleton-&-Companion-Object.html" title="Previous: Singleton &amp; Companion Object">Singleton & Companion Object</a></li>
                 <li class="next-article"><a href="../articles/Cygwin.html" title="Next: Cygwin">Cygwin</a> »</li>
             </ul>
             </nav>

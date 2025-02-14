@@ -17,16 +17,16 @@
 
 <meta name="keywords" content="Python, Programming, " />
 
-<meta property="og:title" content="Using loguru and notifiers instead of logging "/>
+<meta property="og:title" content="Using loguru and notifiers instead of logging "/>
 <meta property="og:url" content="../articles/Using-loguru-and-notifiers-instead-of-logging.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2019-04-12T02:31:27+08:00" />
-<meta name="twitter:title" content="Using loguru and notifiers instead of logging ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta name="twitter:title" content="Using loguru and notifiers instead of logging ">
+<meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Using loguru and notifiers instead of logging  · JERRYLSU
+        <title>Using loguru and notifiers instead of logging  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -79,7 +79,7 @@
     <header class="page-header span10 offset2">
         <h1>
             <a href="../articles/Using-loguru-and-notifiers-instead-of-logging.html">
-                Using loguru and notifiers instead of logging
+                Using loguru and notifiers instead of&nbsp;logging
             </a>
         </h1>
     </header>
@@ -96,8 +96,8 @@
             
             <p>from loguru import logger<br>
 import tempfile<br>
-import notifiers</p>
-<h2 id="configuring-loguru">Configuring loguru</h2>
+import&nbsp;notifiers</p>
+<h2 id="configuring-loguru">Configuring&nbsp;loguru</h2>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">email</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
@@ -121,7 +121,7 @@ import notifiers</p>
                <span class="n">compression</span><span class="o">=</span><span class="n">email</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">tmpfile</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="s1">&#39;name@gmail.com&#39;</span><span class="p">))</span>   
 </code></pre></div>
 
-<h2 id="recording-logging">Recording logging</h2>
+<h2 id="recording-logging">Recording&nbsp;logging</h2>
 <div class="highlight"><pre><span></span><code><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">)</span>
 <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">)</span>
 <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">)</span>
@@ -133,9 +133,9 @@ import notifiers</p>
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Using%20loguru%20and%20notifiers%20instead%20of%20logging&url=http%3A//www.jerrylsu.net/articles/Using-loguru-and-notifiers-instead-of-logging.html&hashtags=python" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+      <a href="https://twitter.com/intent/tweet?text=Using%20loguru%20and%20notifiers%20instead%20of%C2%A0logging&url=http%3A//www.jerrylsu.net/articles/Using-loguru-and-notifiers-instead-of-logging.html&hashtags=python" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
  ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Using-loguru-and-notifiers-instead-of-logging.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Using%20loguru%20and%20notifiers%20instead%20of%20logging&amp;body=http%3A//www.jerrylsu.net/articles/Using-loguru-and-notifiers-instead-of-logging.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+ ❄       <a href="mailto:?subject=Using%20loguru%20and%20notifiers%20instead%20of%C2%A0logging&amp;body=http%3A//www.jerrylsu.net/articles/Using-loguru-and-notifiers-instead-of-logging.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -191,19 +191,19 @@ import notifiers</p>
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/FastAPI-for-CPU-Bound-Task.html" title="FastAPI for CPU-Bound Task">FastAPI for CPU-Bound Task</a></li>
-<li><a href="../articles/Multiprocessing-in-FastAPI.html" title="Multiprocessing in FastAPI">Multiprocessing in FastAPI</a></li>
-<li><a href="../articles/asyncio-get_event_loop-vs-get_running_loop.html" title="asyncio get_event_loop vs get_running_loop">asyncio get_event_loop vs get_running_loop</a></li>
-<li><a href="../articles/python-docx-using-lxml.html" title="Python docx using lxml">Python docx using lxml</a></li>
-<li><a href="../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html" title="Concurrent http requests using asyncio and aiohttp">Concurrent http requests using asyncio and aiohttp</a></li>
+<li><a href="../articles/FastAPI-for-CPU-Bound-Task.html" title="FastAPI for CPU-Bound Task">FastAPI for CPU-Bound Task</a></li>
+<li><a href="../articles/Multiprocessing-in-FastAPI.html" title="Multiprocessing in FastAPI">Multiprocessing in FastAPI</a></li>
+<li><a href="../articles/asyncio-get_event_loop-vs-get_running_loop.html" title="asyncio get_event_loop vs get_running_loop">asyncio get_event_loop vs get_running_loop</a></li>
+<li><a href="../articles/python-docx-using-lxml.html" title="Python docx using lxml">Python docx using lxml</a></li>
+<li><a href="../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html" title="Concurrent http requests using asyncio and aiohttp">Concurrent http requests using asyncio and aiohttp</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Checking-DataFrame/Series-missing-values.html" title="Previous: Checking DataFrame/Series missing values">Checking DataFrame/Series missing values</a></li>
-                <li class="next-article"><a href="../articles/Auto-generated-subtitles-for-any-video.html" title="Next: Auto-generated subtitles for any video">Auto-generated subtitles for any video</a> »</li>
+                <li class="previous-article">« <a href="../articles/Checking-DataFrame/Series-missing-values.html" title="Previous: Checking DataFrame/Series missing values">Checking DataFrame/Series missing values</a></li>
+                <li class="next-article"><a href="../articles/Auto-generated-subtitles-for-any-video.html" title="Next: Auto-generated subtitles for any video">Auto-generated subtitles for any video</a> »</li>
             </ul>
             </nav>
             </aside>
