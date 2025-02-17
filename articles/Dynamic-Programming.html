@@ -91,8 +91,10 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
+<li><a href="#_1">股票买卖系列问题</a></li>
 <li><a href="#188iv">188.买卖股票的最佳时机IV</a></li>
 <li><a href="#300">300.最长递增子序列</a></li>
+<li><a href="#674">674.最长连续递增序列</a></li>
 <li><a href="#72">72.编辑距离</a></li>
 </ul>
 </div>
@@ -101,6 +103,15 @@
     <div class="span8 article-content">
             
             
+<h3 id="_1">股票买卖系列问题</h3>
+<p><code>状态定义：</code></p>
+<p>dp[i][k][0]第i天交易限制k次不持有股票的最大利润</p>
+<p>dp[i][k][1]第i天交易限制k次持有股票的最大利润</p>
+<p>初始化状态：</p>
+<p>dp[-1][0][0]</p>
+<p>状态转移方程：</p>
+<p>dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k-1][1] - price[i])：今天不持有 = max(昨天也不持有，今天买入)</p>
+<p>dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k][0] + price[i])：今天持有 = max(昨天也持有，今天卖出)</p>
 <h3 id="188iv">188.买卖股票的最佳时机IV</h3>
 <h3 id="300">300.最长递增子序列</h3>
 <ul>
@@ -112,6 +123,9 @@
 </li>
 <li>
 <p>空间复杂度：O(N)</p>
+</li>
+<li>
+<p><code>状态定义dp[i]：</code>以nums[i]结尾的递增子序列的长度。</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">lengthOfLIS</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="err">:</span>
@@ -127,6 +141,31 @@
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
 </code></pre></div>
+<h3 id="674">674.最长连续递增序列</h3>
+<ul>
+<li>
+<p>问题定义：一个数组的最长递增子序列（<span class="caps">LIS</span>, Longest Increasing Subsequence）是从中选择若干个元素（不一定连续），使得这些元素保持递增，且长度最长。</p>
+</li>
+<li>
+<p>时间复杂度：O(N)</p>
+</li>
+<li>
+<p>空间复杂度：O(N)</p>
+</li>
+<li>
+<p><code>状态定义dp[i]：</code>以下标nums[i]结尾的连续递增子序列的长度。`</p>
+</li>
+<li>
+<p>重点在于：<code>连续</code>。因为连续所以我们只需要从前一个状态dp[i-1]，即以nums[i-1]结尾，转移到dp[i]即可。所以不像是300题不连续特性，去遍历dp[0]到dp<a href="j属于[0, i">j</a>])的状态。从时间复杂度的角度仔细体会300和674之间的区别。</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">findLengthOfLCIS</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="nl">nums</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">int</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">int</span><span class="err">:</span>
+<span class="w">    </span><span class="n">dp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">1 for _ in range(len(nums))</span><span class="o">]</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">))</span><span class="err">:</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">i-1</span><span class="o">]</span><span class="err">:</span>
+<span class="w">            </span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">i-1</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
+</code></pre></div>
 <h3 id="72">72.编辑距离</h3>
 <ul>
 <li>
@@ -137,6 +176,9 @@
 </li>
 <li>
 <p>空间复杂度：O(M * N)</p>
+</li>
+<li>
+<p>状态定义dp[i][j]：字符串word[:i]转换成字符串word[:j]需要的最小操作数。</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">minDistance</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="nl">word1</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">,</span><span class="w"> </span><span class="nl">word2</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">int</span><span class="err">:</span>
