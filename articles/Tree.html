@@ -198,7 +198,7 @@
 <p>问题定义：在二叉树中找到一条任意起点和终点的路径，使其节点值之和最大。这条路径可以不经过根节点。</p>
 </li>
 <li>
-<p>时间复杂度：O(N) 遍历整棵树，节点数为N</p>
+<p>时间复杂度：<code>O(N)</code> 遍历整棵树，节点数为N</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">diameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
@@ -224,7 +224,7 @@
 <p>问题定义：指树中任意两个节点之间最长路径的长度。这条路径可以不经过根节点。</p>
 </li>
 <li>
-<p>时间复杂度：O(N) 遍历整棵树，节点数为N</p>
+<p>时间复杂度：<code>O(N)</code> 遍历整棵树，节点数为N</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">max_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">float</span><span class="p">(</span><span class="s">"-inf"</span><span class="p">)</span>
@@ -252,7 +252,7 @@
 <p>2.该节点是离这两个节点最近的公共祖先。</p>
 </li>
 <li>
-<p>时间复杂度：O(logN) 节点数为N，利用搜索二叉树特性，不用遍历整棵二叉树，类似有序数组的二分查找。</p>
+<p>时间复杂度：<code>O(logN)</code> 节点数为N，利用搜索二叉树特性，不用遍历整棵二叉树，类似有序数组的二分查找。</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">lowestCommonAncestor</span><span class="p">(</span><span class="n">root</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">TreeNode</span><span class="o">:</span>
@@ -277,10 +277,10 @@
 <p>2.该节点是离这两个节点最近的公共祖先。</p>
 </li>
 <li>
-<p>时间复杂度：O(N) 遍历整棵树，节点数为N</p>
+<p>时间复杂度：<code>O(N)</code> 遍历整棵树，节点数为N</p>
 </li>
 <li>
-<p>空间复杂度：O(H)</p>
+<p>空间复杂度：<code>O(H)</code></p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">lowestCommonAncestor</span><span class="p">(</span><span class="n">root</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">TreeNode</span><span class="o">:</span>
