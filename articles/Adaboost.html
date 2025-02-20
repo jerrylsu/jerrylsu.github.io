@@ -122,23 +122,32 @@
 <ol>
 <li>
 <p><strong>初始权重，均匀分布：</strong><br/>
-$$D_i=(w_{11}, … ,w_{1i}, … ,w_{1N}), w_{1i}=\frac{1}{N}$$</p>
+<div class="math">$$D_i=(w_{11}, ... ,w_{1i}, ... ,w_{1N}), w_{1i}=\frac{1}{N}$$</div>
+</p>
 </li>
 <li>
 <p><strong>m=1,2,…,M迭代：</strong><br/>
 2.1 <strong>由带权数据集学习弱分类器：</strong><br/>
-$$G_m(x)$$<br/>
-2.2 <strong>弱分类器$G_m(x)$在加权数据集上的分类误差：是被$G_m(x)$误分类样本的权重之和。</strong><br/>
-$$e_m=\sum_{i=1}^N w_{mi}I(G_m(x_i) \neq y_i)=\sum_{G_m \neq y_i}w_{mi}$$<br/>
+<div class="math">$$G_m(x)$$</div>
+<br/>
+2.2 <strong>弱分类器<span class="math">\(G_m(x)\)</span>在加权数据集上的分类误差：是被<span class="math">\(G_m(x)\)</span>误分类样本的权重之和。</strong><br/>
+<div class="math">$$e_m=\sum_{i=1}^N w_{mi}I(G_m(x_i) \neq y_i)=\sum_{G_m \neq y_i}w_{mi}$$</div>
+<br/>
 2.3 <strong>The weight of weak learners:</strong><br/>
-$$\alpha_m=\frac{1}{2}\log\frac{1-e_m}{e_m}$$<br/>
+<div class="math">$$\alpha_m=\frac{1}{2}\log\frac{1-e_m}{e_m}$$</div>
+<br/>
 2.4 <strong>Re-Weighting:</strong><br/>
-$$w_{m+1,i}=\frac{w_{mi}}{Z_m}exp(-\alpha_my_iG_m(x_i)),$$ $$Z_m=\sum_{i=1}^Nw_{mi}exp(-\alpha_my_iG_m(x_i))$$</p>
+<div class="math">$$w_{m+1,i}=\frac{w_{mi}}{Z_m}exp(-\alpha_my_iG_m(x_i)),$$</div>
+<div class="math">$$Z_m=\sum_{i=1}^Nw_{mi}exp(-\alpha_my_iG_m(x_i))$$</div>
+</p>
 </li>
 <li>
 <p><strong>弱分类器的线性组合：</strong><br/>
-$$f(x)=\sum_{m=1}^M\alpha_mG_m(x)$$<br/>
-<strong>Strong learner:</strong><br/> $$G(x)=sign(f(x))$$</p>
+<div class="math">$$f(x)=\sum_{m=1}^M\alpha_mG_m(x)$$</div>
+<br/>
+<strong>Strong learner:</strong><br/>
+<div class="math">$$G(x)=sign(f(x))$$</div>
+</p>
 </li>
 </ol>
 <h3 id="adaboost_2">AdaBoost重点</h3>
@@ -166,6 +175,68 @@ $$f(x)=\sum_{m=1}^M\alpha_mG_m(x)$$<br/>
 <h3 id="_2">引用</h3>
 <p><a href="http://www.ccs.neu.edu/home/vip/teach/MLcourse/4_boosting/slides/gradient_boosting.pdf"><span class="caps">PPT</span> - A Gentle Introduction to Gradient Boosting</a></p>
 <p><a href="https://scikit-learn.org/stable/modules/ensemble.html#gradient-boosting">Scikit-learn - <span class="caps">GRADIENT</span> <span class="caps">BOOSTING</span></a></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
 
 
              

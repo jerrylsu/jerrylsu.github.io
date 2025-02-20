@@ -182,12 +182,12 @@
 </li>
 </ul>
 <p>调整后的概率计算公式为：</p>
-<p>$P’(w_i) = \frac{e^{\frac{\log(P(w_i))}{T}}}{\sum_{j} e^{\frac{\log(P(w_j))}{T}}}$</p>
-<p>其中，$P(w_i)$是单词$w_i$的原始概率，$P’(w_i)$是调整温度后的概率，$T$是温度参数。</p>
+<p><span class="math">\(P'(w_i) = \frac{e^{\frac{\log(P(w_i))}{T}}}{\sum_{j} e^{\frac{\log(P(w_j))}{T}}}\)</span></p>
+<p>其中，<span class="math">\(P(w_i)\)</span>是单词<span class="math">\(w_i\)</span>的原始概率，<span class="math">\(P'(w_i)\)</span>是调整温度后的概率，<span class="math">\(T\)</span>是温度参数。</p>
 <ul>
-<li><strong>高温度</strong> $T &gt; 1$：使概率分布更加平坦（即使低概率的单词也有更高的被选中机会）。这导致文本生成更加多样化和不可预测，但也可能增加生成文本中出现不相关或非连贯内容的风险。</li>
-<li><strong>低温度</strong> $T &lt; 1$：使概率分布更加尖锐，即增加高概率单词被选中的机会，同时降低低概率单词的影响。这导致生成的文本更加确定、连贯，但可能降低文本的多样性和创新性。</li>
-<li><strong>中等温度</strong> $T = 1$：保持原始概率分布不变，不对分布进行平滑或尖锐化处理。</li>
+<li><strong>高温度</strong> <span class="math">\(T &gt; 1\)</span>：使概率分布更加平坦（即使低概率的单词也有更高的被选中机会）。这导致文本生成更加多样化和不可预测，但也可能增加生成文本中出现不相关或非连贯内容的风险。</li>
+<li><strong>低温度</strong> <span class="math">\(T &lt; 1\)</span>：使概率分布更加尖锐，即增加高概率单词被选中的机会，同时降低低概率单词的影响。这导致生成的文本更加确定、连贯，但可能降低文本的多样性和创新性。</li>
+<li><strong>中等温度</strong> <span class="math">\(T = 1\)</span>：保持原始概率分布不变，不对分布进行平滑或尖锐化处理。</li>
 </ul>
 <h4 id="nucleus-samplingtop-p-sampling">核采样（Nucleus Sampling，Top-p Sampling）</h4>
 <ul>
@@ -203,7 +203,7 @@
 <li>核采样的关键思想是从词汇分布中选择一个词汇子集，使得这个子集中词汇的累积概率接近但不超过一个预先定义的阈值p（0 &lt; p &lt; 1）。这个子集被称为“核”（nucleus），只有这个核中的词汇会被考虑用于下一步的随机采样。这样，生成的文本既不会过于随机（因为避免了极低概率词的干扰），也不会过于确定性（因为没有限制为前K个最高概率的词）。</li>
 </ul>
 <h4 id="_1">累计概率</h4>
-<p>累积概率的计算是在处理概率分布时的一个关键步骤，尤其是在执行如核采样（Top-p Sampling）这样的任务时。累积概率为我们提供了一个方式，来确定随机事件发生的概率范围。在核采样中，它帮助我们决定哪些词汇（单词）的集合应该被考虑进来，以确保这个集合覆盖了预定比例$p$的概率总和。这里是累积概率计算的具体步骤：</p>
+<p>累积概率的计算是在处理概率分布时的一个关键步骤，尤其是在执行如核采样（Top-p Sampling）这样的任务时。累积概率为我们提供了一个方式，来确定随机事件发生的概率范围。在核采样中，它帮助我们决定哪些词汇（单词）的集合应该被考虑进来，以确保这个集合覆盖了预定比例<span class="math">\(p\)</span>的概率总和。这里是累积概率计算的具体步骤：</p>
 <ul>
 <li>
 <p>步骤1：获取概率分布<br/> 首先，你需要有一个概率分布，这通常是模型对下一个单词的预测概率。假设我们有一个词汇表，模型为每个可能的下一个单词提供了一个概率。</p>
@@ -212,16 +212,16 @@
 <p>步骤2：排序<br/> 将概率分布按照概率值从高到低进行排序。这样，最高概率的单词会放在列表的最前面。</p>
 </li>
 <li>
-<p>步骤3：计算累积概率<br/> 接下来，计算排序后的概率列表的累积概率。累积概率是指从列表的开始到当前位置的所有概率值的总和。对于列表中的第$i$个单词，其累积概率可以表示为：</p>
+<p>步骤3：计算累积概率<br/> 接下来，计算排序后的概率列表的累积概率。累积概率是指从列表的开始到当前位置的所有概率值的总和。对于列表中的第<span class="math">\(i\)</span>个单词，其累积概率可以表示为：</p>
 </li>
 </ul>
-<p>$CumulativeProbability(i) = \sum_{k=1}^{i} Probability(k)$</p>
-<p>其中，$Probability(k)$是第$k$个单词的概率。</p>
+<p><span class="math">\(CumulativeProbability(i) = \sum_{k=1}^{i} Probability(k)\)</span></p>
+<p>其中，<span class="math">\(Probability(k)\)</span>是第<span class="math">\(k\)</span>个单词的概率。</p>
 <ul>
-<li>步骤4：确定阈值$p$的覆盖<br/> 确定满足累积概率小于或等于阈值$p$的最大集合。也就是说，你需要找到一个最小的$i$，使得：</li>
+<li>步骤4：确定阈值<span class="math">\(p\)</span>的覆盖<br/> 确定满足累积概率小于或等于阈值<span class="math">\(p\)</span>的最大集合。也就是说，你需要找到一个最小的<span class="math">\(i\)</span>，使得：</li>
 </ul>
-<p>$CumulativeProbability(i) \geq p$</p>
-<p>这意味着，从排序后的列表中取出前$i$个单词，这些单词的累积概率总和将至少覆盖阈值$p$指定的概率质量。</p>
+<p><span class="math">\(CumulativeProbability(i) \geq p\)</span></p>
+<p>这意味着，从排序后的列表中取出前<span class="math">\(i\)</span>个单词，这些单词的累积概率总和将至少覆盖阈值<span class="math">\(p\)</span>指定的概率质量。</p>
 <ul>
 <li>
 <p>示例<br/> 假设我们的模型预测下一个单词的概率分布如下（已排序）：</p>
@@ -234,7 +234,7 @@
 <li>单词D：0.1</li>
 <li>单词E及之后的其他单词：小于0.1的概率</li>
 </ul>
-<p>如果我们设置阈值$p=0.6$，那么：</p>
+<p>如果我们设置阈值<span class="math">\(p=0.6\)</span>，那么：</p>
 <ul>
 <li>累积到单词A：0.3</li>
 <li>累积到单词B：0.5 (0.3 + 0.2)</li>
@@ -242,6 +242,68 @@
 </ul>
 <p>因此，为了确保累积概率超过0.6，我们需要选择单词A、B、C作为考虑的词汇范围。</p>
 <p>通过这种方式，核采样算法确保在生成下一个单词时，考虑了概率分布中最重要的部分，同时保持了一定程度的随机性和多样性。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
 
 
              

@@ -19,12 +19,12 @@
 
 <meta property="og:title" content="Global Pointer: Multi-Head Attention without Value Operation "/>
 <meta property="og:url" content="../articles/Global-Pointer-Multi-Head-Attention-without-Value-Operation.html" />
-<meta property="og:description" content="Background 单个字符的子序列：对于长度为 $n$ 的序列，有 $n$ 个可能的单个字符的子序列。 长度为$k$的子序列：对于任意 $1 &lt; k \leq n$，序列 …" />
+<meta property="og:description" content="Background 单个字符的子序列：对于长度为 \(n\) 的序列，有 \(n\) 个可能的单个字符的子序列。 长度为\(k\)的子序列：对于任意 \(1 &lt; k \leq n\)，序列 …if (!document.getElementById(&#39;mathjaxscript_pelican_#%@#$@#&#39;)) { var align = &#34;center&#34;, indent = &#34;0em&#34;, linebreak = &#34;false&#34;; if (false) { align = (screen.width" />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
 <meta property="og:article:published_time" content="2022-08-22T11:17:17+08:00" />
 <meta name="twitter:title" content="Global Pointer: Multi-Head Attention without Value Operation ">
-<meta name="twitter:description" content="Background 单个字符的子序列：对于长度为 $n$ 的序列，有 $n$ 个可能的单个字符的子序列。 长度为$k$的子序列：对于任意 $1 &lt; k \leq n$，序列 …">
+<meta name="twitter:description" content="Background 单个字符的子序列：对于长度为 \(n\) 的序列，有 \(n\) 个可能的单个字符的子序列。 长度为\(k\)的子序列：对于任意 \(1 &lt; k \leq n\)，序列 …if (!document.getElementById(&#39;mathjaxscript_pelican_#%@#$@#&#39;)) { var align = &#34;center&#34;, indent = &#34;0em&#34;, linebreak = &#34;false&#34;; if (false) { align = (screen.width">
 
         <title>Global Pointer: Multi-Head Attention without Value Operation  · JERRYLSU
 </title>
@@ -107,27 +107,29 @@
 <h2 id="background">Background</h2>
 <ol>
 <li>
-<p><strong>单个字符的子序列</strong>：对于长度为 $n$ 的序列，有 $n$ 个可能的单个字符的子序列。</p>
+<p><strong>单个字符的子序列</strong>：对于长度为 <span class="math">\(n\)</span> 的序列，有 <span class="math">\(n\)</span> 个可能的单个字符的子序列。</p>
 </li>
 <li>
-<p><strong>长度为$k$的子序列</strong>：对于任意 $1 &lt; k \leq n$，序列中可以有 $n - k + 1$ 个长度为 $k$ 的子序列，因为可以从序列的起始位置开始取长度为 $k$ 的子序列，也可以从序列的第二个字符开始取，依此类推，直到从序列的第 $n-k+1$ 个字符开始。</p>
+<p><strong>长度为<span class="math">\(k\)</span>的子序列</strong>：对于任意 <span class="math">\(1 &lt; k \leq n\)</span>，序列中可以有 <span class="math">\(n - k + 1\)</span> 个长度为 <span class="math">\(k\)</span> 的子序列，因为可以从序列的起始位置开始取长度为 <span class="math">\(k\)</span> 的子序列，也可以从序列的第二个字符开始取，依此类推，直到从序列的第 <span class="math">\(n-k+1\)</span> 个字符开始。</p>
 </li>
 <li>
-<p><strong>所有可能的子序列总数</strong>：要得到序列中所有可能的非空子序列的总数，我们需要对所有可能的子序列长度求和，即从长度为 1 加到长度为 $n$ ：</p>
+<p><strong>所有可能的子序列总数</strong>：要得到序列中所有可能的非空子序列的总数，我们需要对所有可能的子序列长度求和，即从长度为 1 加到长度为 <span class="math">\(n\)</span> ：</p>
 </li>
 </ol>
-<p>$$\text{子序列总数} = \sum_{k=1}^{n} (n - k + 1) = n + (n-1) + (n-2) + \ldots + 1=  \frac{n(n + 1)}{2}$$</p>
+<div class="math">$$\text{子序列总数} = \sum_{k=1}^{n} (n - k + 1) = n + (n-1) + (n-2) + \ldots + 1=  \frac{n(n + 1)}{2}$$</div>
 <h2 id="problem-description">Problem Description</h2>
-<p>从 $\frac{n(n + 1)}{2}$ 候选实体中选取真正实体。如果有 $m$ 种实体类型，即转换为 $m$ 个 $\frac{n(n + 1)}{2}$ 选 $k$ 的多标签分类问题。</p>
+<p>从 <span class="math">\(\frac{n(n + 1)}{2}\)</span> 候选实体中选取真正实体。如果有 <span class="math">\(m\)</span> 种实体类型，即转换为 <span class="math">\(m\)</span> 个 <span class="math">\(\frac{n(n + 1)}{2}\)</span> 选 <span class="math">\(k\)</span> 的多标签分类问题。</p>
 <h2 id="mathematical-form">Mathematical Form</h2>
 <p><strong>Multi-Head Attention without Value Operation</strong></p>
-<p>设长度为 $n$ 的输入 $t$ 经过编码后得到向量序列 $[h_1, h_2, \ldots, h_n]$，即<strong>Token Representation</strong>，通过变换</p>
-<p>$$q_{i, \alpha} = W_{q, \alpha} h_i + b_{g, \alpha}$$<br/>
-$$k_{i, \alpha} = W_{k, \alpha} h_i + b_{k, \alpha}$$</p>
-<p>我们可以得到序列向量序列 $[q_{1, \alpha}, q_{2, \alpha}, \ldots, q_{n, \alpha}]$ 和 $[k_{1, \alpha}, k_{2, \alpha}, \ldots, k_{n, \alpha}]$，它们是识别第 $\alpha$ 种类型实体所用的向量序列。定义<strong>Span Prediction</strong></p>
-<p>$$S_{\alpha}(i, j) = q_{i, \alpha} \cdot k_{j, \alpha}$$</p>
-<p>是类型为 $\alpha$ 的实体的打分（logits），这里的 $t[i:j]$ 指的是序列 $t$ 的第 $i$ 个到第 $j$ 个元素组成的连续子串。</p>
-<p>GlobalPointer 就是简化版 Multi-Head Attention，有多少种实体就对应多少个头，相比 Multi-Head Attention 去掉了 $Value$ 相关的运算。</p>
+<p>设长度为 <span class="math">\(n\)</span> 的输入 <span class="math">\(t\)</span> 经过编码后得到向量序列 <span class="math">\([h_1, h_2, \ldots, h_n]\)</span>，即<strong>Token Representation</strong>，通过变换</p>
+<div class="math">$$q_{i, \alpha} = W_{q, \alpha} h_i + b_{g, \alpha}$$</div>
+<p><br/>
+</p>
+<div class="math">$$k_{i, \alpha} = W_{k, \alpha} h_i + b_{k, \alpha}$$</div>
+<p>我们可以得到序列向量序列 <span class="math">\([q_{1, \alpha}, q_{2, \alpha}, \ldots, q_{n, \alpha}]\)</span> 和 <span class="math">\([k_{1, \alpha}, k_{2, \alpha}, \ldots, k_{n, \alpha}]\)</span>，它们是识别第 <span class="math">\(\alpha\)</span> 种类型实体所用的向量序列。定义<strong>Span Prediction</strong></p>
+<div class="math">$$S_{\alpha}(i, j) = q_{i, \alpha} \cdot k_{j, \alpha}$$</div>
+<p>是类型为 <span class="math">\(\alpha\)</span> 的实体的打分（logits），这里的 <span class="math">\(t[i:j]\)</span> 指的是序列 <span class="math">\(t\)</span> 的第 <span class="math">\(i\)</span> 个到第 <span class="math">\(j\)</span> 个元素组成的连续子串。</p>
+<p>GlobalPointer 就是简化版 Multi-Head Attention，有多少种实体就对应多少个头，相比 Multi-Head Attention 去掉了 <span class="math">\(Value\)</span> 相关的运算。</p>
 <h2 id="global-pointer">Global Pointer</h2>
 <p><strong>Multi-Head Attention without Value Operation</strong></p>
 <p><img alt="GP" src="../images/GlobalPointer/GP.jpg"/></p>
@@ -319,6 +321,68 @@ $$k_{i, \alpha} = W_{k, \alpha} h_i + b_{k, \alpha}$$</p>
 <p>Refs.</p>
 <p><a href="https://arxiv.org/pdf/2208.03054">Jianlin Su, Ahmed Murtadha, et al. Global Pointer: Novel Efficient Span-based Approach for Named Entity Recognition</a></p>
 <p><a href="https://arxiv.org/pdf/2208.02955">Jianlin Su, Mingren Zhu, Ahmed Murtadha, et al. <span class="caps">ZLPR</span>: A Novel Loss for Multi-label Classification</a></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
 
 
              

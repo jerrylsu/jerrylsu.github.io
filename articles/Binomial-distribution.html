@@ -95,23 +95,23 @@
     <div class="span8 article-content">
             
             <p>n次伯努利实验，样本相互独立，单次成功概率为p，服从参数为n和p的二项分布:</p>
-<p>$$P{ x= m} =C_{n}^{m}p^{m}\left( 1-p\right) ^{n-m}   \ \ (其中，0&lt;p&lt;1,&nbsp;m=0,1,&#8230;,n)$$</p>
+<div class="math">$$P\{ x= m\} =C_{n}^{m}p^{m}\left( 1-p\right) ^{n-m}   \ \ (其中，0&lt;p&lt;1,  m=0,1,...,n)$$</div>
 <p>累计概率分布函数：</p>
-<p>$$F\left( m\right) =P{ X \leq m} =\sum ^{m}<em n>{i=0}C</em>$$}^{i}p^{i}\left( 1-p\right)&nbsp;^{n-i</p>
+<div class="math">$$F\left( m\right) =P\{ X \leq m\} =\sum ^{m}_{i=0}C_{n}^{i}p^{i}\left( 1-p\right) ^{n-i}$$</div>
 <p>二项分布的两种逼近：泊松分布 和&nbsp;标准正态分布(拉普拉斯中心极限定理)</p>
 <ul>
 <li>
-<p>当n很大，p较小（稀有事件，一般小于0.1），即np=$\lambda$较小，近似逼近泊松分布</p>
+<p>当n很大，p较小（稀有事件，一般小于0.1），即np=<span class="math">\(\lambda\)</span>较小，近似逼近泊松分布</p>
 </li>
 <li>
-<p>当n很大，p较大，即np也很大，近似逼近标准正态分布   $Z=\dfrac{X-np}{\sqrt{np\left( 1-p\right) }}$ ，$X=\sum ^{n}<em i>{i=0}x</em>$为所有事件和，即成功次数。}$&nbsp;对于二项分布，$x_{i</p>
+<p>当n很大，p较大，即np也很大，近似逼近标准正态分布   <span class="math">\(Z=\dfrac{X-np}{\sqrt{np\left( 1-p\right) }}\)</span> ，<span class="math">\(X=\sum ^{n}_{i=0}x_{i}\)</span> 对于二项分布，<span class="math">\(x_{i}\)</span>为所有事件和，即成功次数。</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">abnormality</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="n">total</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">cdf</span><span class="p">((</span><span class="n">total</span> <span class="o">-</span> <span class="n">loss</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">abnormality</span> <span class="o">=</span> <span class="p">((</span><span class="n">total</span> <span class="o">-</span> <span class="n">loss</span><span class="p">)</span> <span class="o">-</span> <span class="n">total</span> <span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">total</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">))</span>
 </code></pre></div>
 
-<p>在计算二项分布的分布函数$F_{m}$时，由于需要多次计算$C_{n}^{i}$，对cpu计算资源消耗过大，故采用拉普拉斯中心极限定理或泊分布近似计算。</p>
+<p>在计算二项分布的分布函数<span class="math">\(F_{m}\)</span>时，由于需要多次计算<span class="math">\(C_{n}^{i}\)</span>，对cpu计算资源消耗过大，故采用拉普拉斯中心极限定理或泊分布近似计算。</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 </code></pre></div>
 
@@ -281,6 +281,69 @@
 <span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">31mFile</span><span class="o">:</span><span class="err">[</span><span class="n">0m</span><span class="w">      </span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">blog</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">stats</span><span class="o">/</span><span class="n">_distn_infrastructure</span><span class="p">.</span><span class="n">py</span>
 <span class="err">[</span><span class="mi">0</span><span class="p">;</span><span class="n">31mType</span><span class="o">:</span><span class="err">[</span><span class="n">0m</span><span class="w">      </span><span class="n">method</span>
 </code></pre></div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
 
 
              

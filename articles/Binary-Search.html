@@ -105,21 +105,17 @@
 <p>二分查找的时间复杂度<code>O(logN)</code>分析</p>
 <p>数组的长度为<strong>n</strong>，初始时搜索范围为整个数组，即 <code>left = 0, right = n - 1</code>。</p>
 <p>在 <strong>每次迭代</strong> 时，搜索空间 <strong>缩小一半</strong>：<br/>
-- <strong>第 1 次迭代</strong>：范围变成 $\frac{n}{2}$<br/>
-- <strong>第 2 次迭代</strong>：范围变成 $\frac{n}{4}$<br/>
-- <strong>第 3 次迭代</strong>：范围变成 $\frac{n}{8}$<br/>
+- <strong>第 1 次迭代</strong>：范围变成 <span class="math">\(\frac{n}{2}\)</span><br/>
+- <strong>第 2 次迭代</strong>：范围变成 <span class="math">\(\frac{n}{4}\)</span><br/>
+- <strong>第 3 次迭代</strong>：范围变成 <span class="math">\(\frac{n}{8}\)</span><br/>
 - <strong>…</strong><br/>
-- <strong>第 k 次迭代</strong>：范围变成 $\frac{n}{2^k}$</p>
+- <strong>第 k 次迭代</strong>：范围变成 <span class="math">\(\frac{n}{2^k}\)</span></p>
 <p><strong>什么时候终止？</strong><br/>
-当搜索空间 <strong>缩小到 1</strong> 时，意味着找到了目标元素或者搜索范围为空：</p>
-<p>$\frac{n}{2^k} = 1$</p>
-<p><strong>计算迭代次数 k</strong><br/> 从上面的等式：</p>
-<p>$\frac{n}{2^k} = 1$</p>
-<p>两边同时乘以 $2^k$：</p>
-<p>$n = 2^k$</p>
-<p>对两边取对数（以 2 为底）：</p>
-<p>$k = \log_2 n$</p>
-<p>所以，<strong>二分查找的时间复杂度为 O(log n)</strong>（底数通常省略，默认为 2）。</p>
+当搜索空间 <strong>缩小到 1</strong> 时，意味着找到了目标元素或者搜索范围为空：<code>$\frac{n}{2^k} = 1$</code></p>
+<p><strong>计算迭代次数 k</strong></p>
+<p>两边同时乘以 <span class="math">\(2^k\)</span>：<code>$n = 2^k$</code></p>
+<p>对两边取对数：<code>$k = \log_2 n$</code></p>
+<p>所以，<strong>二分查找的时间复杂度为 O(log n)</strong>（底数2通常省略）。</p>
 <h3 id="704binary-search">704.Binary Search</h3>
 <ul>
 <li>
@@ -175,6 +171,68 @@
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nf">right</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
 </code></pre></div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
 
 
              

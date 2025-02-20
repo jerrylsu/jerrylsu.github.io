@@ -389,7 +389,7 @@
 <p>转移方程： </p>
 </li>
 </ul>
-<p>$$dp[i] = \begin{cases} nums[i], &amp;\ dp[i-1] \leq 0 \ dp[i-1] + nums[i], &amp;\ dp[i-1] &gt; 0 \end{cases}$$</p>
+<div class="math">$$dp[i] = \begin{cases} nums[i], &amp;\ dp[i-1] \leq 0 \\\ dp[i-1] + nums[i], &amp;\ dp[i-1] &gt; 0 \end{cases}$$</div>
 <p>注：因为是连续子数组，所以dp[i]当前状态，只能由dp[i-1]状态推来。</p>
 <ul>
 <li>转移方程代码实现： dp[i] = max(dp[i-1] + nums[i], nums[i])</li>
@@ -402,9 +402,9 @@
 </ul>
 <p>若dp[i-1] &gt; 0： dp[i] = dp[i-1] + nums[i]</p>
 <ul>
-<li>nums[i]加上正dp[i-1]一定比自身大，取$dp[i-1] + nums[i]$</li>
+<li>nums[i]加上正dp[i-1]一定比自身大，取<span class="math">\(dp[i-1] + nums[i]\)</span></li>
 </ul>
-<p>由于dp[i]仅与dp的前一个状态有关，即在计算dp[i]时，$dp[i-2],dp[i-3]…,dp[0]$对于dp[i]没有影响，因此可以空间优化省去dp数组。</p>
+<p>由于dp[i]仅与dp的前一个状态有关，即在计算dp[i]时，<span class="math">\(dp[i-2],dp[i-3]...,dp[0]\)</span>对于dp[i]没有影响，因此可以空间优化省去dp数组。</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">maxSubArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span> 
         <span class="k">return</span>
@@ -504,13 +504,13 @@
 <p>状态的定义： dp[i]到金额i（类似于台阶）所需要的最少硬币数。</p>
 </li>
 <li>
-<p>转移方程： $dp[i]  = min(dp[i-coin_1],\ dp[i-coin_2],…,\ dp[i-coin_n])$</p>
+<p>转移方程： <span class="math">\(dp[i]  = min(dp[i-coin_1],\ dp[i-coin_2],...,\ dp[i-coin_n])\)</span></p>
 </li>
 <li>
 <p>初始状态：dp[0] = 0：面值为0需要0个硬币数; 若硬币面值有2， 5， 7三种，则dp[1]是转移方程无法计算出的，所以也需要手工初始化，因为这里求最小所以将其初始化为无穷大float(‘inf’)。</p>
 </li>
 </ul>
-<p>时间复杂度$O(M*N)$： M是待兑换的总金额，从1递推到M；N是可以兑换的硬币种类数，也是loop所有币种。</p>
+<p>时间复杂度<span class="math">\(O(M*N)\)</span>： M是待兑换的总金额，从1递推到M；N是可以兑换的硬币种类数，也是loop所有币种。</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">coinChange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coins</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s1">'inf'</span><span class="p">)]</span> <span class="o">*</span> <span class="n">amount</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">amount</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
@@ -522,6 +522,68 @@
 <h3 id="minimum-path-cost-in-a-grid">Minimum Path Cost in a Grid</h3>
 <div class="highlight"><pre><span></span><code>
 </code></pre></div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
 
 
              

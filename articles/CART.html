@@ -117,34 +117,96 @@
 <p>决策树模型是将输入空间划分成若干个区域。CART是二叉树，每一次将区域二分，子区域递归。</p>
 </li>
 <li>
-<p>CART树的损失函数： $Loss = \min_{j, s}[\min_{c_1}L(y^{(i)}, c_1) + \min_{c_2}L(y^{(i)},&nbsp;c_2)]$</p>
+<p>CART树的损失函数： <span class="math">\(Loss = \min_{j, s}[\min_{c_1}L(y^{(i)}, c_1) + \min_{c_2}L(y^{(i)}, c_2)]\)</span></p>
 </li>
 </ol>
-<p><strong>$c_m$</strong>是子区域上的均值： $c_m = \frac{1}{N_m}\sum_{x_i \in R_m(j, s))}y_i, \ \ \ x \in R_m, \ \ m = 1,&nbsp;2$</p>
-<p><strong>$x^(j)$</strong>:&nbsp;选择第j个特征作为切分变量</p>
+<p><strong><span class="math">\(c_m\)</span></strong>是子区域上的均值： <span class="math">\(c_m = \frac{1}{N_m}\sum_{x_i \in R_m(j, s))}y_i, \ \ \ x \in R_m, \ \ m = 1, 2\)</span></p>
+<p><strong><span class="math">\(x^(j)\)</span></strong>:&nbsp;选择第j个特征作为切分变量</p>
 <p><strong>s</strong>：选择该特征的特征值s作为切分点</p>
-<p><strong>$R_m$</strong>：划分出的子区域</p>
-<p>所以在CART模型中，我们需要遍历输入特征$x^{(j)}$，找到最佳划分点<strong>s</strong>，即损失函数值最小。</p>
+<p><strong><span class="math">\(R_m\)</span></strong>：划分出的子区域</p>
+<p>所以在CART模型中，我们需要遍历输入特征<span class="math">\(x^{(j)}\)</span>，找到最佳划分点<strong>s</strong>，即损失函数值最小。</p>
 <h3 id="cart_1">CART算法</h3>
 <p>对于分类问题，采用基尼系数选择最优特征，同时决定该特征的最优划分点。</p>
-<p>对于回归问题，常选用<strong>L2</strong>距离作为损失函数$L(y^{(i)}, c)$，这种回归树称为<strong>最小二乘回归树</strong>。</p>
+<p>对于回归问题，常选用<strong>L2</strong>距离作为损失函数<span class="math">\(L(y^{(i)}, c)\)</span>，这种回归树称为<strong>最小二乘回归树</strong>。</p>
 <ul>
 <li>选择<strong>(j,&nbsp;s)</strong></li>
 </ul>
-<p>$$Loss = \min_{j, s}[\min_{c_1} \sum_{x_i \in R_1(j, s))}(y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in R_2(j, s))}(y_i -&nbsp;c_2)^2]$$</p>
+<div class="math">$$Loss = \min_{j, s}[\min_{c_1} \sum_{x_i \in R_1(j, s))}(y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in R_2(j, s))}(y_i - c_2)^2]$$</div>
 <ul>
 <li>用选定的<strong>(j, s)</strong>划分区域并输出相应区域的均值</li>
 </ul>
-<p>$$R_1(j, s) = {x | x^{(j) \leq s}}, \ \ R_2(j, s) = {x | x^{(j) &gt;&nbsp;s}}$$</p>
-<p>$$c_m = \frac{1}{N_m}\sum_{x_i \in R_m(j, s))}y_i, \ \ \ x \in R_m, \ \ m = 1,&nbsp;2$$</p>
+<div class="math">$$R_1(j, s) = {x | x^{(j) \leq s}}, \ \ R_2(j, s) = {x | x^{(j) &gt; s}}$$</div>
+<div class="math">$$c_m = \frac{1}{N_m}\sum_{x_i \in R_m(j, s))}y_i, \ \ \ x \in R_m, \ \ m = 1, 2$$</div>
 <ul>
 <li>
 <p>在两个子区域上递归1，&nbsp;2步骤直到满足终止条件</p>
 </li>
 <li>
-<p>将输入空间划分为<strong>M</strong>个区域<strong>$R_1, R_2 ,&#8230;, R_M$</strong>，生成决策树</p>
+<p>将输入空间划分为<strong>M</strong>个区域<strong><span class="math">\(R_1, R_2 ,..., R_M\)</span></strong>，生成决策树</p>
 </li>
 </ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
 
 
              
