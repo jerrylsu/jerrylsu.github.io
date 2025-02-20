@@ -22,7 +22,7 @@
 <meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2019-04-08T13:10:38+08:00" />
+<meta property="og:article:published_time" content="2019-01-01T01:40:10+08:00" />
 <meta name="twitter:title" content="Binary Search ">
 <meta name="twitter:description" content="Reason is the light and the light of life.">
 
@@ -89,265 +89,69 @@
     <div class="span2 table-of-content">
         <nav>
         <h4>Contents</h4>
-        show
+        <div class="toc">
+<ul>
+<li><a href="#ologn">O(logN)时间复杂度</a><ul>
+<li><a href="#704binary-search">704.Binary Search</a></li>
+</ul>
+</li>
+</ul>
+</div>
         </nav>
     </div>
     <div class="span8 article-content">
             
-            <h2 id="_1">二分查找初级：二分模板</h2>
-<h3 id="classical-binary-search">Classical Binary&nbsp;Search</h3>
+            
+<h2 id="ologn">O(logN)时间复杂度</h2>
+<p>二分查找的时间复杂度分析</p>
+<p>数组的长度为<strong>n</strong>，初始时搜索范围为整个数组，即 <code>left = 0, right = n - 1</code>。</p>
+<p>在 <strong>每次迭代</strong> 时，搜索空间 <strong>缩小一半</strong>：<br/>
+- <strong>第 1 次迭代</strong>：范围变成 $\frac{n}{2}$<br/>
+- <strong>第 2 次迭代</strong>：范围变成 $\frac{n}{4}$<br/>
+- <strong>第 3 次迭代</strong>：范围变成 $\frac{n}{8}$<br/>
+- <strong>…</strong><br/>
+- <strong>第 k 次迭代</strong>：范围变成 $\frac{n}{2^k}$</p>
+<p><strong>什么时候终止？</strong><br/>
+当搜索空间 <strong>缩小到 1</strong> 时，意味着找到了目标元素或者搜索范围为空：</p>
+<p><code>$\frac{n}{2^k} = 1$</code></p>
+<hr/>
+<p><strong>2. 计算迭代次数 k</strong><br/> 从上面的等式：</p>
+<p>$\frac{n}{2^k} = 1$</p>
+<p>两边同时乘以 $2^k$：</p>
+<p>$n = 2^k$</p>
+<p>对两边取对数（以 2 为底）：</p>
+<p>$k = \log_2 n$</p>
+<p>所以，<strong>二分查找的时间复杂度为 O(log n)</strong>（底数通常省略，默认为 2）。</p>
+<h3 id="704binary-search">704.Binary Search</h3>
 <ul>
-<li>数组元素无重复</li>
+<li>
+<p>问题定义：在有序数组中查找target值。</p>
+</li>
+<li>
+<p>时间复杂度：<code>O(logN)</code></p>
+</li>
+<li>
+<p>空间复杂度：<code>O(1)</code></p>
+</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>                  <span class="c1"># 相邻即退出，防止某些问题造成死循环。</span>
-            <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span>    
-            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>              <span class="c1"># find target and return immediately due to no duplicated elements</span>
-                <span class="k">return</span> <span class="n">mid</span>
-            <span class="k">elif</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>
-                <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
-        <span class="c1">#if the target is not the mid, check the right and left</span>
-        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">left</span>
-        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">right</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-</code></pre></div>
-
-<p>模板四要素：<br>&nbsp;1. <code>left + 1 &lt; right 相邻时结束</code><br>&nbsp;2. <code>left + ((right - left) &gt;&gt; 1)</code><br>&nbsp;3. <code>nums[mid] == &lt; &gt; 三种情况讨论</code><br>&nbsp;4. <code>nums[left] A[right] ? target</code></p>
-<p><a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/35.Search_Insert_Position.ipynb">35. Search Insert Position</a><br>
-<a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/704.Binary_Search.ipynb">704. Binary&nbsp;Search</a></p>
-<h3 id="find-first-and-last-position-of-target-lower-upper-bound">Find First and Last Position of Target  ( lower <span class="amp">&amp;</span> upper Bound&nbsp;)</h3>
-<ul>
-<li>Target有重复，其他元素无重复。</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">searchRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
-
-        <span class="c1"># lower</span>
-        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
-            <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>      <span class="c1"># target有重复，找到target不立即退出。由于找下界，所以移动right指针。</span>
-                <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">elif</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>
-                <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
-        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
-            <span class="n">lower</span> <span class="o">=</span> <span class="n">right</span>
-        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>
-            <span class="n">lower</span> <span class="o">=</span> <span class="n">left</span>
-
-        <span class="c1"># upper</span>
-        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
-            <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>      <span class="c1"># target有重复，找到target不立即退出。由于找上界，所以移动left指针。</span>
-                <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">elif</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>
-                <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
-        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>
-            <span class="n">upper</span> <span class="o">=</span> <span class="n">left</span>
-        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
-            <span class="n">upper</span> <span class="o">=</span> <span class="n">right</span>
-
-        <span class="k">return</span> <span class="p">[</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">]</span>
-</code></pre></div>
-
-<p><a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/34.Find_First_and_Last_Position_of_Element_in_Sorted_Array.ipynb">34. Find First and Last Position of Element in Sorted&nbsp;Array</a></p>
-<h3 id="search-a-2d-matrix">Search a 2D&nbsp;Matrix</h3>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">searchMatrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">matrix</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">row</span> <span class="o">*</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
-            <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">//</span> <span class="n">col</span><span class="p">,</span> <span class="n">mid</span> <span class="o">%</span> <span class="n">col</span>
-            <span class="k">if</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
-                <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">elif</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">:</span>
-                <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">True</span>
-        <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">left</span> <span class="o">//</span> <span class="n">col</span><span class="p">,</span> <span class="n">left</span> <span class="o">%</span> <span class="n">col</span>
-        <span class="k">if</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">right</span> <span class="o">//</span> <span class="n">col</span><span class="p">,</span> <span class="n">right</span> <span class="o">%</span> <span class="n">col</span>
-        <span class="k">if</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">return</span> <span class="kc">False</span>
-</code></pre></div>
-
-<h3 id="_2">总结</h3>
-<ol>
-<li>二分查找的本质是缩小搜索范围：<strong>区间缩小 ===&gt; 剩下两个下标 ===&gt;&nbsp;判断两个下标</strong></li>
-<li>时间复杂度</li>
-</ol>
-<div class="highlight"><pre><span></span><code>  T(n) = T(n/2) + O(1)
-       = T(n/4) + O(1) + O(1)
-       = T(n/8) + O(1) +O(1) +O(1)
-       = T(1) + logn * O(1)
-       = O(logn)
-</code></pre></div>
-
-<ul>
-<li><code>O(1)</code> 极少</li>
-<li><code>O(logn)</code>几乎都是二分法</li>
-<li><code>O(√n)</code> 几乎是分解质因数</li>
-<li><code>O(n)</code> 高频</li>
-<li><code>O(nlogn)</code> 一般都可能要排序</li>
-<li><code>O(n2)</code> 数组，枚举，动态规划</li>
-<li><code>O(n3)</code> 数组，枚举，动态规划</li>
-<li><code>O(2^n)</code> 与组合有关的搜索&nbsp;combination</li>
-<li><code>O(n!)</code> 与排列有关的搜索&nbsp;permutation</li>
-</ul>
-<p>比<code>O(n)</code>更优的时间复杂度，几乎只能是<code>O(logn)</code>的二分法。经验之谈：<strong>根据时间复杂度倒推算法是面试中的常用策略</strong></p>
-<h2 id="_3">二分查找进阶：转化为二分问题</h2>
-<p>把具体的问题转变为：<strong>找到数组中的<code>第一个/最后一个</code>满足某个条件的位<code>置/值</code>。</strong></p>
-<h3 id="find-minimum-in-rotated-sorted-array">Find Minimum in Rotated Sorted&nbsp;Array</h3>
-<ul>
-<li>数组没有重复元素</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">findMin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span>
-        <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
-            <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>
-                <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">else</span><span class="p">:</span>                        <span class="c1"># nums[mid] &gt; nums[left] ， 不存在nums[mid] == nums[left]情况。</span>
-                <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
-        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
-</code></pre></div>
-
-<p><a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/153.Find_Minimum_in_Rotated_Sorted_Array.ipynb">153. Find Minimum in Rotated Sorted&nbsp;Array</a></p>
-<h3 id="find-minimum-in-rotated-sorted-array-ii">Find Minimum in Rotated Sorted Array <span class="caps">II</span></h3>
-<ul>
-<li>数组包含<code>重复元素</code></li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">findMin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
-            <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>         <span class="c1"># 不可与nums[left]比较， [1, 2, 3, 4, 5]</span>
-                <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
-                <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">right</span> <span class="o">-=</span> <span class="mi">1</span>                     <span class="c1"># 重复元素，保守缩小right界, 防止越过[3, 4]。 [5, 5, 5, 5, 3, 4, 5, 5, 5]</span>
-        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>        
-</code></pre></div>
-
-<p>### Search in Rotated Sorted Array<br>
--&nbsp;数组没有重复元素</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
-            <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span> <span class="k">return</span> <span class="n">mid</span>
-
-            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>                 <span class="c1"># 确定有序的子数组, [left, mid]有序</span>
-                <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>   <span class="c1"># 确定target是否在[left, mid]有序子数组</span>
-                    <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">else</span><span class="p">:</span>                                      <span class="c1"># 确定有序的子数组, [mid, right]有序</span>
-                <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&lt;=</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>  <span class="c1"># 确定target是否在[mid, right]有序子数组</span>
-                    <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
-                <span class="k">else</span><span class="p">:</span>                                  <span class="c1"># 否则，target在无序子数组</span>
-                    <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
-        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">left</span>
-        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">right</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-</code></pre></div>
-
-<p><a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/33.Search_in_Rotated_Sorted_Array.ipynb">33. Search in Rotated Sorted&nbsp;Array</a></p>
-<h3 id="search-in-rotated-sorted-array-ii">Search in Rotated Sorted Array <span class="caps">II</span></h3>
-<ul>
-<li>数组包含<code>重复元素</code></li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
-            <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>
-                <span class="k">return</span> <span class="kc">True</span>
-
-            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>                 <span class="c1"># 确定有序的子数组, [left, mid]有序</span>
-                <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>   <span class="c1"># 确定target是否在[left, mid]有序子数组</span>
-                    <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>               <span class="c1"># 确定有序的子数组, [mid, right]有序</span>
-                <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&lt;=</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>  <span class="c1"># 确定target是否在[mid, right]有序子数组</span>
-                    <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
-                <span class="k">else</span><span class="p">:</span>                                  <span class="c1"># 否则，target在无序子数组</span>
-                    <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">else</span><span class="p">:</span>                                      <span class="c1"># nums[mid] == nums[left]                   </span>
-                <span class="n">left</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">return</span> <span class="kc">False</span>
-</code></pre></div>
-
-<p><a href="https://github.com/jerrylsu/Algorithms/blob/master/08.%20BinarySearch/81.Search_in_Rotated_Sorted_Array_II.ipynb">81. Search in Rotated Sorted Array <span class="caps">II</span></a></p>
-<h2 id="half">二分查找高阶：Half</h2>
-<h3 id="find-peak-element">Find Peak&nbsp;Element</h3>
-<p>Conditions:</p>
-<ol>
-<li>array length is 1  -&gt; return the only&nbsp;index </li>
-<li>array length is 2  -&gt; return the bigger number&#8217;s&nbsp;index </li>
-<li>array length is bigger than 2 -&gt; <br>
-   (1) find mid, compare it with its left and right neighbors<br>
-   (2) return mid if nums[mid] greater than both neighbors<br>
-   (3) take the right half array if nums[mid] smaller than right neighbor<br>
-   (4) otherwise, take the left&nbsp;half</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">findPeakElement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">nums</span><span class="p">:</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">while</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
-            <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
-                <span class="k">return</span> <span class="n">mid</span>
-            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]:</span>
-                <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
-                <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span>
-        <span class="k">return</span> <span class="n">left</span> <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="k">else</span> <span class="n">right</span> 
+<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">binary_search</span><span class="p">(</span><span class="nl">nums</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">int</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="nl">target</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">int</span><span class="err">:</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="nl">nums</span><span class="p">:</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
+<span class="w">    </span><span class="nf">left</span><span class="p">,</span><span class="w"> </span><span class="nf">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="nf">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nf">right</span><span class="err">:</span><span class="w">                 </span><span class="err">#</span><span class="w"> </span><span class="n">相邻时退出</span>
+<span class="w">        </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="nf">right</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">left</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">防溢出写法</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nl">target</span><span class="p">:</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">mid</span>
+<span class="w">        </span><span class="n">elif</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nl">target</span><span class="p">:</span>
+<span class="w">            </span><span class="nf">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span>
+<span class="w">        </span><span class="k">else</span><span class="err">:</span>
+<span class="w">            </span><span class="nf">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">mid未搜索到</span><span class="err">，</span><span class="n">检查边界</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">left</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nl">target</span><span class="p">:</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nf">left</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">right</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nl">target</span><span class="p">:</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nf">right</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w">                               </span><span class="err">#</span><span class="w"> </span><span class="n">未搜索到</span>
 </code></pre></div>
 
 
@@ -413,7 +217,7 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Conditional-Random-Field.html" title="ConditionalRandomField">ConditionalRandomField</a></li>
+<li><a href="../articles/Binary-Search-bk.html" title="Binary Search">Binary Search</a></li>
 <li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
 <li><a href="../articles/Viterbi-Algorithm.html" title="Viterbi Algorithm">Viterbi Algorithm</a></li>
 <li><a href="../articles/Sliding-Window.html" title="Sliding Window">Sliding Window</a></li>
@@ -424,24 +228,24 @@
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Python-email.html" title="Previous: Python email">Python email</a></li>
-                <li class="next-article"><a href="../articles/Checking-DataFrame/Series-missing-values.html" title="Next: Checking DataFrame/Series missing values">Checking DataFrame/Series missing values</a> »</li>
+                <li class="previous-article">« <a href="../articles/Dynamic-Programming.html" title="Previous: Dynamic Programming">Dynamic Programming</a></li>
+                <li class="next-article"><a href="../articles/BackTracking.html" title="Next: BackTracking">BackTracking</a> »</li>
             </ul>
             </nav>
             </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2019-04-08T13:10:38+08:00">Apr 08, 2019</time>
+            <time itemprop="dateCreated" datetime="2019-01-01T01:40:10+08:00">Jan 01, 2019</time>
             <h4>Category</h4>
             <a class="category-link" href="../categories.html#algorithms-ref">Algorithms</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="../tags.html#algorithm-ref">Algorithm
-                    <span class="superscript">20</span>
+                    <span class="superscript">21</span>
 </a></li>
                 <li><a href="../tags.html#binary-search-ref">Binary Search
-                    <span class="superscript">1</span>
+                    <span class="superscript">2</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
