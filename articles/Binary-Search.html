@@ -111,10 +111,10 @@
 - <strong>…</strong><br/>
 - <strong>第 k 次迭代</strong>：范围变成 <span class="math">\(\frac{n}{2^k}\)</span></p>
 <p><strong>什么时候终止？</strong><br/>
-当搜索空间 <strong>缩小到 1</strong> 时，意味着找到了目标元素或者搜索范围为空：<code>$\frac{n}{2^k} = 1$</code></p>
+当搜索空间 <strong>缩小到 1</strong> 时，意味着找到了目标元素或者搜索范围为空：<span class="math">\(\frac{n}{2^k} = 1\)</span></p>
 <p><strong>计算迭代次数 k</strong></p>
-<p>两边同时乘以 <span class="math">\(2^k\)</span>：<code>$n = 2^k$</code></p>
-<p>对两边取对数：<code>$k = \log_2 n$</code></p>
+<p>两边同时乘以 <span class="math">\(2^k\)</span>：<span class="math">\(n = 2^k\)</span></p>
+<p>对两边取对数：<span class="math">\(k = \log_2 n\)</span></p>
 <p>所以，<strong>二分查找的时间复杂度为 O(log n)</strong>（底数2通常省略）。</p>
 <h3 id="704binary-search">704.Binary Search</h3>
 <ul>
