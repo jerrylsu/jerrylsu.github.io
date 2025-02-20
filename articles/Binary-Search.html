@@ -91,10 +91,9 @@
         <h4>Contents</h4>
         <div class="toc">
 <ul>
-<li><a href="#ologn">O(logN)时间复杂度</a><ul>
+<li><a href="#_1">时间复杂度分析</a></li>
 <li><a href="#704binary-search">704.Binary Search</a></li>
-</ul>
-</li>
+<li><a href="#33">33.搜索旋转排序数组</a></li>
 </ul>
 </div>
         </nav>
@@ -102,8 +101,8 @@
     <div class="span8 article-content">
             
             
-<h2 id="ologn">O(logN)时间复杂度</h2>
-<p>二分查找的时间复杂度分析</p>
+<h3 id="_1">时间复杂度分析</h3>
+<p>二分查找的时间复杂度<code>O(logN)</code>分析</p>
 <p>数组的长度为<strong>n</strong>，初始时搜索范围为整个数组，即 <code>left = 0, right = n - 1</code>。</p>
 <p>在 <strong>每次迭代</strong> 时，搜索空间 <strong>缩小一半</strong>：<br/>
 - <strong>第 1 次迭代</strong>：范围变成 $\frac{n}{2}$<br/>
@@ -113,9 +112,8 @@
 - <strong>第 k 次迭代</strong>：范围变成 $\frac{n}{2^k}$</p>
 <p><strong>什么时候终止？</strong><br/>
 当搜索空间 <strong>缩小到 1</strong> 时，意味着找到了目标元素或者搜索范围为空：</p>
-<p><code>$\frac{n}{2^k} = 1$</code></p>
-<hr/>
-<p><strong>2. 计算迭代次数 k</strong><br/> 从上面的等式：</p>
+<p>$\frac{n}{2^k} = 1$</p>
+<p><strong>计算迭代次数 k</strong><br/> 从上面的等式：</p>
 <p>$\frac{n}{2^k} = 1$</p>
 <p>两边同时乘以 $2^k$：</p>
 <p>$n = 2^k$</p>
@@ -146,12 +144,36 @@
 <span class="w">            </span><span class="nf">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span>
 <span class="w">        </span><span class="k">else</span><span class="err">:</span>
 <span class="w">            </span><span class="nf">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span>
-<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">mid未搜索到</span><span class="err">，</span><span class="n">检查边界</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">left</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nl">target</span><span class="p">:</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">left</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nl">target</span><span class="p">:</span><span class="w">                </span><span class="err">#</span><span class="w"> </span><span class="n">检查left边界</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nf">left</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">right</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nl">target</span><span class="p">:</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">right</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nl">target</span><span class="p">:</span><span class="w">               </span><span class="err">#</span><span class="w"> </span><span class="n">检查right边界</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nf">right</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w">                               </span><span class="err">#</span><span class="w"> </span><span class="n">未搜索到</span>
+</code></pre></div>
+<h3 id="33">33.搜索旋转排序数组</h3>
+<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="k">search</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="nl">nums</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">int</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="nl">target</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">int</span><span class="err">:</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="nl">nums</span><span class="p">:</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
+<span class="w">        </span><span class="nf">left</span><span class="p">,</span><span class="w"> </span><span class="nf">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="nf">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nf">right</span><span class="err">:</span>
+<span class="w">            </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="nf">right</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">left</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nl">target</span><span class="p">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">mid</span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">left</span><span class="o">]</span><span class="err">:</span><span class="w">                 </span><span class="err">#</span><span class="w"> </span><span class="n">关键是确定有序的子数组</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">left, mid</span><span class="o">]</span><span class="n">有序</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">left</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span><span class="err">:</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="n">确定target是否在</span><span class="o">[</span><span class="n">left, mid</span><span class="o">]</span><span class="n">有序子数组</span>
+<span class="w">                    </span><span class="nf">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span>
+<span class="w">                </span><span class="k">else</span><span class="err">:</span>
+<span class="w">                    </span><span class="nf">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span>
+<span class="w">            </span><span class="k">else</span><span class="err">:</span><span class="w">                                      </span><span class="err">#</span><span class="w"> </span><span class="n">否则</span><span class="err">，</span><span class="o">[</span><span class="n">mid, right</span><span class="o">]</span><span class="n">有序</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">right</span><span class="o">]</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">确定target是否在</span><span class="o">[</span><span class="n">mid, right</span><span class="o">]</span><span class="n">有序子数组</span>
+<span class="w">                    </span><span class="nf">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span>
+<span class="w">                </span><span class="k">else</span><span class="err">:</span><span class="w">                                  </span><span class="err">#</span><span class="w"> </span><span class="n">否则</span><span class="err">，</span><span class="n">target在无序子数组</span>
+<span class="w">                    </span><span class="nf">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">left</span><span class="o">]</span><span class="err">:</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nf">left</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nums</span><span class="o">[</span><span class="n">right</span><span class="o">]</span><span class="err">:</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nf">right</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
 </code></pre></div>
 
 
