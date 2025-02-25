@@ -92,21 +92,15 @@
         <div class="toc">
 <ul>
 <li><a href="#_1">链表结点定义</a></li>
+<li><a href="#dummy">擅用Dummy节点</a></li>
 <li><a href="#21">21.合并两个有序链表</a></li>
 <li><a href="#23k">23.合并K个升序链表</a></li>
 <li><a href="#remove-duplicates-from-sorted-list">Remove Duplicates from Sorted List</a></li>
 <li><a href="#reverse-linked-list">Reverse Linked List</a></li>
 <li><a href="#sort-list">Sort List</a></li>
-<li><a href="#dummy">擅用Dummy节点</a><ul>
 <li><a href="#remove-duplicates-from-sorted-list-ii">Remove Duplicates from Sorted List <span class="caps">II</span></a></li>
 <li><a href="#partition-list">Partition List</a></li>
-</ul>
-</li>
-<li><a href="#_2">快慢指针</a></li>
-<li><a href="#_3">综合设计</a><ul>
 <li><a href="#lru-cache"><span class="caps">LRU</span> Cache</a></li>
-</ul>
-</li>
 </ul>
 </div>
         </nav>
@@ -120,13 +114,23 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>
 </code></pre></div>
+<h3 id="dummy">擅用Dummy节点</h3>
+<p>以下两种情况下需要使用<code>Dummy Node</code>：</p>
+<ol>
+<li>
+<p>当链表的结构发生变化时</p>
+</li>
+<li>
+<p>当需要返回的链表头不确定时</p>
+</li>
+</ol>
 <h3 id="21">21.合并两个有序链表</h3>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">mergeTwoLists</span><span class="p">(</span><span class="n">list1</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">,</span> <span class="n">list2</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">list1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">list2</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">list1</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">list2</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">list1</span> <span class="ow">or</span> <span class="n">list2</span>
-    <span class="n">cur</span> <span class="o">=</span> <span class="n">dummpy</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">dummy</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">while</span><span class="p">(</span><span class="n">list1</span> <span class="ow">and</span> <span class="n">list2</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">list1</span><span class="o">.</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">list2</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
             <span class="n">cur</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">list1</span>
@@ -136,7 +140,7 @@
             <span class="n">list2</span> <span class="o">=</span> <span class="n">list2</span><span class="o">.</span><span class="n">next</span>
         <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">next</span>
     <span class="n">cur</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">list1</span> <span class="ow">or</span> <span class="n">list2</span>
-    <span class="k">return</span> <span class="n">dummpy</span><span class="o">.</span><span class="n">next</span>
+    <span class="k">return</span> <span class="n">dummy</span><span class="o">.</span><span class="n">next</span>
 </code></pre></div>
 <h3 id="23k">23.合并K个升序链表</h3>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">mergeKLists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lists</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]):</span>
@@ -213,16 +217,6 @@
 <span class="w">    </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
-<h2 id="dummy">擅用Dummy节点</h2>
-<p>以下两种情况下需要使用<code>Dummy Node</code>：</p>
-<ol>
-<li>
-<p>当链表的结构发生变化时</p>
-</li>
-<li>
-<p>当需要返回的链表头不确定时</p>
-</li>
-</ol>
 <h3 id="remove-duplicates-from-sorted-list-ii">Remove Duplicates from Sorted List <span class="caps">II</span></h3>
 <p><font color="red">重要!!!</font></p>
 <ul>
@@ -283,8 +277,6 @@
 <div class="highlight"><pre><span></span><code>        <span class="n">dummy1</span> <span class="o">=</span> <span class="n">less</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">dummy2</span> <span class="o">=</span> <span class="n">more</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="_2">快慢指针</h2>
-<h2 id="_3">综合设计</h2>
 <h3 id="lru-cache"><span class="caps">LRU</span> Cache</h3>
 <p>分析：为了保持cache的性能，使查找，插入，删除都有较高的性能，我们使用<strong>双向链表</strong>和<strong>哈希表</strong>作为cache的数据结构，因为：</p>
 <ul>
