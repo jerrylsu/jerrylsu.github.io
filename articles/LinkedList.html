@@ -124,6 +124,15 @@
 <p>当需要返回的链表头不确定时</p>
 </li>
 </ol>
+<div class="highlight"><pre><span></span><code><span class="c1"># error</span>
+<span class="n">dummy1</span> <span class="o">=</span> <span class="n">dummy2</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 引用同一个对象！</span>
+<span class="n">less</span> <span class="o">=</span> <span class="n">dummy1</span>
+<span class="n">more</span> <span class="o">=</span> <span class="n">dummy2</span>
+
+<span class="c1"># right</span>
+<span class="n">dummy1</span> <span class="o">=</span> <span class="n">less</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">dummy2</span> <span class="o">=</span> <span class="n">more</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
 <h3 id="21">21.合并两个有序链表</h3>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">mergeTwoLists</span><span class="p">(</span><span class="n">list1</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">,</span> <span class="n">list2</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">list1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">list2</span><span class="p">:</span>
@@ -267,15 +276,6 @@
         <span class="n">more</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Note!!!</span>
         <span class="n">less</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">dummy2</span><span class="o">.</span><span class="n">next</span>
         <span class="k">return</span> <span class="n">dummy1</span><span class="o">.</span><span class="n">next</span>
-</code></pre></div>
-<p><strong>Error</strong>:</p>
-<div class="highlight"><pre><span></span><code>        <span class="n">dummy1</span> <span class="o">=</span> <span class="n">dummy2</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 引用同一个对象！</span>
-        <span class="n">less</span> <span class="o">=</span> <span class="n">dummy1</span>
-        <span class="n">more</span> <span class="o">=</span> <span class="n">dummy2</span>
-</code></pre></div>
-<p><strong>Right</strong>:</p>
-<div class="highlight"><pre><span></span><code>        <span class="n">dummy1</span> <span class="o">=</span> <span class="n">less</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">dummy2</span> <span class="o">=</span> <span class="n">more</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="lru-cache"><span class="caps">LRU</span> Cache</h3>
 <p>分析：为了保持cache的性能，使查找，插入，删除都有较高的性能，我们使用<strong>双向链表</strong>和<strong>哈希表</strong>作为cache的数据结构，因为：</p>
