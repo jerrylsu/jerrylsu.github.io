@@ -15,18 +15,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Deep Learning, NLP, Viterbi, Algorithm, HMM, CRF, NLP, " />
+<meta name="keywords" content="Algorithm, NLP, LLM, Algorithms, " />
 
-<meta property="og:title" content="HMM Viterbi Algorithm "/>
-<meta property="og:url" content="../articles/HMM-Viterbi-Algorithm.html" />
+<meta property="og:title" content="LLM "/>
+<meta property="og:url" content="../articles/LLM.html" />
 <meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2021-02-18T10:17:17+08:00" />
-<meta name="twitter:title" content="HMM Viterbi Algorithm ">
+<meta property="og:article:published_time" content="2020-01-01T13:19:30+08:00" />
+<meta name="twitter:title" content="LLM ">
 <meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>HMM Viterbi Algorithm  · JERRYLSU
+        <title>LLM  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -78,8 +78,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="../articles/HMM-Viterbi-Algorithm.html">
-                <span class="caps">HMM</span> Viterbi&nbsp;Algorithm
+            <a href="../articles/LLM.html">
+                <span class="caps">LLM</span>
             </a>
         </h1>
     </header>
@@ -89,133 +89,68 @@
     <div class="span2 table-of-content">
         <nav>
         <h4>Contents</h4>
-        show
+        <div class="toc">
+<ul>
+<li><a href="#multiheadattention">MultiHeadAttention</a></li>
+</ul>
+</div>
         </nav>
     </div>
     <div class="span8 article-content">
             
-            <h3 id="hmm"><span class="caps">HMM</span></h3>
-<p><img alt="hmm" src="../../../images/HMM/HMM.png"></p>
-<p>HMM的问题，就是求解X,Y的观测序列和隐含状态序列的联合概率。</p>
-<p><img alt="viterbi" src="../../../images/HMM/Viterbi.png"></p>
-<p><a href="https://zhuanlan.zhihu.com/p/265954764">基于viterbi算法HMM的NER实现</a></p>
-<p><a href="https://www.bilibili.com/video/BV1zJ411575b?t=1724">https://www.bilibili.com/video/BV1zJ411575b?t=1724</a></p>
-<h3 id="viterbi-algorithm">Viterbi Algorithm&nbsp;篱笆网络</h3>
-<p>篱笆网络有向图的特点是同一列节点有多个，并且和上一列节点交错地连接起来。同一列节点代表同一个时间点上不同的状态的并列，因为这种一列一列整齐的节点和交错的边很像篱笆而得名。</p>
-<p>篱笆网络的特点：有向、无环图，上一层节点只能指向下一层节点。</p>
-<p>L:观测序列长度（输入文本序列），N:隐含状态数（NER的标签数）</p>
-<p>穷举法: <span class="math">\(O(N^L)\)</span></p>
-<p>Viterbi法: <span class="math">\(O(L*N^2)\)</span></p>
-<h4 id="_1">关键要素</h4>
-<ul>
-<li>
-<p>隐含状态集合（数目为N）</p>
-</li>
-<li>
-<p>观测值集合（数目为L）</p>
-</li>
-<li>
-<p>隐含状态转移概率矩阵（A，维度为N*N）</p>
-</li>
-<li>
-<p>观测发射概率矩阵（B，维度为L*N）</p>
-</li>
-<li>
-<p>初始隐含状态概率向量（π，维度为N*1）</p>
-</li>
-</ul>
-<h3 id="viterbi-algorithm_1">Viterbi&nbsp;Algorithm</h3>
-<p>Viterbi算法解决篱笆型有向图的最短路径问题。目标：<strong>预测概率最大的隐含状态序列</strong></p>
-<p>Viterbi算法本质：动态规划+回溯，找到最优选择路径。<strong>取每一个时间步观测点对应的最大概率的隐含状态，即局部最优解，隐含序列状态连乘后并不能得到全局最优解。因为并没有考虑到时间步之间隐含状态状态转移的概率的最大化。例如存在相邻两个最大概率的隐含状态，但是这两个状态转移的概率很小或者不存在，所以无法获得全局最优解，甚至是不存在的隐含状态序列解。</strong></p>
-<p>凡是使用隐含马尔可夫模型描述的问题都可以用Viteribi法来解码，包括今天的数字通信、语音识别、机器翻译、拼音转汉字、分词等。—《数学之美》</p>
-<ul>
-<li>Viterbi与HMM的关系？</li>
-</ul>
-<p>Viterbi是解决HMM第三个问题的一种具体实现算法。</p>
-<h3 id="hmm-crf-bert-bertcrf"><strong><span class="caps">HMM</span>  -&gt; <span class="caps">CRF</span> -&gt; <span class="caps">BERT</span> -&gt; <span class="caps">BERT</span>+<span class="caps">CRF</span></strong></h3>
-<blockquote>
-<p>引子：当初用BERT模型做答案抽取任务时（类似NER），模型抽取的句子总是出现截断的残句，通过在BERT模型添加CRF头后，解决了这一个问题。为什么CRF可以解决？原理是怎样的？</p>
-</blockquote>
-<p><a href="https://www.zhihu.com/question/20136144">通俗讲解Viterbi</a></p>
-<p><a href="https://ben.bolte.cc/viterbi">Coding the Viterbi algorithm in&nbsp;Numpy</a></p>
-<p><a href="https://wulc.me/2017/03/02/%E7%BB%B4%E7%89%B9%E6%AF%94%E7%AE%97%E6%B3%95/">维特比算法</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/61227299"><span class="caps">HMM</span>-<span class="caps">CRF</span>-LSTM的区别与联系</a></p>
-<h3 id="_2">迭代法</h3>
-<h3 id="_3">矩阵法</h3>
-<div class="highlight"><pre><span></span><code>
+            
+<h3 id="multiheadattention">MultiHeadAttention</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="k">class</span> <span class="nc">MultiHeadAttention</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">h</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span> <span class="o">=</span> <span class="n">d_model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_head</span> <span class="o">=</span> <span class="n">h</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d_head</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span> <span class="o">//</span> <span class="n">h</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_q</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_k</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_o</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+        <span class="c1"># 1.线性投影</span>
+        <span class="n">Q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_q</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="c1"># (batch_size, seq_len, d_model)</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_k</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">V</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_v</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+        <span class="c1"># 2.多头切分</span>
+        <span class="n">Q</span> <span class="o">=</span> <span class="n">Q</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_head</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_head</span><span class="p">)</span>
+        <span class="n">Q</span> <span class="o">=</span> <span class="n">Q</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># (batch_size, n_head, seq_len, d_head)</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_head</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_head</span><span class="p">)</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># (batch_size, n_head, seq_len, d_head)</span>
+        <span class="n">V</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_head</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_head</span><span class="p">)</span>
+        <span class="n">V</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># (batch_size, n_head, seq_len, d_head)</span>
+
+        <span class="c1"># 3.计算注意力权重</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">K</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d_head</span><span class="p">))</span> <span class="c1"># (batch_size, n_head, seq_len, seq_len)</span>
+        <span class="n">attn_weights</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># 4.计算输出</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">attn_weihts</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span> <span class="c1"># (batch_size, n_head, seq_len, d_head)</span>
+
+        <span class="c1"># 5.合并多头</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span><span class="p">)</span> <span class="c1"># (batch_size, seq_len, d_model)</span>
+
+        <span class="c1"># 6.输出投影</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_o</span><span class="p">(</span><span class="n">output</span><span class="p">)</span> <span class="c1"># (batch_size, seq_len, d_model)</span>
+
+        <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="n">attn_weights</span>
 </code></pre></div>
-
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
 
 
              
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=HMM%20Viterbi%C2%A0Algorithm&url=http%3A//www.jerrylsu.net/articles/HMM-Viterbi-Algorithm.html&hashtags=deep-learning,nlp,viterbi,algorithm,hmm,crf" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
- ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/HMM-Viterbi-Algorithm.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=HMM%20Viterbi%C2%A0Algorithm&amp;body=http%3A//www.jerrylsu.net/articles/HMM-Viterbi-Algorithm.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+      <a href="https://twitter.com/intent/tweet?text=LLM&url=http%3A//www.jerrylsu.net/articles/LLM.html&hashtags=algorithm,nlp,llm" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/LLM.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=LLM&amp;body=http%3A//www.jerrylsu.net/articles/LLM.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -236,7 +171,7 @@
                 <a class="accordion-toggle disqus-comment-count comment-count collapsed"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   href="../articles/HMM-Viterbi-Algorithm.html#comment_thread"
+                   href="../articles/LLM.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -247,7 +182,7 @@
 
 
 
-                        <div class="commentbox" id="../articles/HMM-Viterbi-Algorithm.html"></div>
+                        <div class="commentbox" id="../articles/LLM.html"></div>
 <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
 <script>
     commentBox("True", {
@@ -271,47 +206,38 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/Convert-pytorch-model-to-tensorflow2.html" title="Convert pytorch checkpoint to tensorflow2">Convert pytorch checkpoint to tensorflow2</a></li>
 <li><a href="../articles/Conditional-Random-Field.html" title="ConditionalRandomField">ConditionalRandomField</a></li>
-<li><a href="../articles/Utterance-Rewriter.html" title="Utterance Rewriter">Utterance Rewriter</a></li>
-<li><a href="../articles/Pointer-Networkers.html" title="Pointer Networkers">Pointer Networkers</a></li>
-<li><a href="../articles/Text-Generation.html" title="Text-Generation">Text-Generation</a></li>
+<li><a href="../articles/HMM-Viterbi-Algorithm.html" title="HMM Viterbi Algorithm">HMM Viterbi Algorithm</a></li>
+<li><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a></li>
+<li><a href="../articles/MinHash-Document-level-Deduplication.html" title="MinHash: Document-level Deduplication">MinHash: Document-level Deduplication</a></li>
+<li><a href="../articles/GGUF-Model.html" title="GGUF Model">GGUF Model</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Capsule-Networkers.html" title="Previous: Capsule Networkers">Capsule Networkers</a></li>
-                <li class="next-article"><a href="../articles/Viterbi-Algorithm.html" title="Next: Viterbi Algorithm">Viterbi Algorithm</a> »</li>
+                <li class="previous-article">« <a href="../articles/Docker.html" title="Previous: Docker">Docker</a></li>
+                <li class="next-article"><a href="../articles/Cross-Validation-CV.html" title="Next: Cross Validation-CV">Cross Validation-CV</a> »</li>
             </ul>
             </nav>
             </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2021-02-18T10:17:17+08:00">Feb 18, 2021</time>
+            <time itemprop="dateCreated" datetime="2020-01-01T13:19:30+08:00">Jan 01, 2020</time>
             <h4>Category</h4>
-            <a class="category-link" href="../categories.html#nlp-ref">NLP</a>
+            <a class="category-link" href="../categories.html#algorithms-ref">Algorithms</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="../tags.html#algorithm-ref">Algorithm
                     <span class="superscript">21</span>
 </a></li>
-                <li><a href="../tags.html#crf-ref">CRF
-                    <span class="superscript">2</span>
-</a></li>
-                <li><a href="../tags.html#deep-learning-ref">Deep Learning
-                    <span class="superscript">33</span>
-</a></li>
-                <li><a href="../tags.html#hmm-ref">HMM
-                    <span class="superscript">1</span>
+                <li><a href="../tags.html#llm-ref">LLM
+                    <span class="superscript">7</span>
 </a></li>
                 <li><a href="../tags.html#nlp-ref">NLP
                     <span class="superscript">35</span>
-</a></li>
-                <li><a href="../tags.html#viterbi-ref">Viterbi
-                    <span class="superscript">2</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
