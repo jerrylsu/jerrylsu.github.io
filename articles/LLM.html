@@ -92,6 +92,7 @@
         <div class="toc">
 <ul>
 <li><a href="#multiheadattention">MultiHeadAttention</a></li>
+<li><a href="#lora">LoRA低秩适配器微调</a></li>
 </ul>
 </div>
         </nav>
@@ -143,6 +144,37 @@
         <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_o</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="n">attn_weights</span>
+</code></pre></div>
+<h2 id="lora">LoRA低秩适配器微调</h2>
+<p>LoRA（Low-Rank Adaptation）是一种高效微调大模型的方法，通过引入<strong>低秩矩阵（Low-Rank Matrices）</strong>调整模型的部分权重，避免直接更新全部参数。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+
+<span class="k">class</span> <span class="nc">LoRALayer</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_layer</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">original_layer</span> <span class="o">=</span> <span class="n">original_layer</span>  <span class="c1"># 原始权重层（冻结）</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">rank</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">/</span> <span class="n">rank</span>  <span class="c1"># 缩放系数</span>
+
+        <span class="c1"># 添加低秩矩阵A和B</span>
+        <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span> <span class="o">=</span> <span class="n">original_layer</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">d_in</span><span class="p">,</span> <span class="n">rank</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.02</span><span class="p">)</span>  <span class="c1"># 高斯初始化</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">B</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">d_out</span><span class="p">))</span>         <span class="c1"># 零初始化</span>
+
+        <span class="c1"># 冻结原始权重</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">original_layer</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">orig_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">original_layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># 原始权重计算</span>
+        <span class="n">lora_output</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span>    <span class="c1"># LoRA分支计算</span>
+        <span class="k">return</span> <span class="n">orig_output</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">lora_output</span>
+
+<span class="c1"># 使用示例：替换模型的注意力层</span>
+<span class="n">model</span> <span class="o">=</span> <span class="o">...</span>  <span class="c1"># 加载预训练模型（如GPT-2）</span>
+<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">:</span>
+    <span class="n">layer</span><span class="o">.</span><span class="n">attention</span><span class="o">.</span><span class="n">q_proj</span> <span class="o">=</span> <span class="n">LoRALayer</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">attention</span><span class="o">.</span><span class="n">q_proj</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">layer</span><span class="o">.</span><span class="n">attention</span><span class="o">.</span><span class="n">v_proj</span> <span class="o">=</span> <span class="n">LoRALayer</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">attention</span><span class="o">.</span><span class="n">v_proj</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 </code></pre></div>
 
 
