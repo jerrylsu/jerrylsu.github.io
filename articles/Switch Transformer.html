@@ -15,18 +15,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="NLP, NLP, " />
+<meta name="keywords" content="LLM, NLP, MoE, NLP, " />
 
-<meta property="og:title" content="Bert as Service "/>
-<meta property="og:url" content="../articles/Bert-as-Service.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:title" content="Switch Transformer "/>
+<meta property="og:url" content="../articles/Switch Transformer.html" />
+<meta property="og:description" content="MoE: Mixture of Experts sparsely-activated model: 为每个传入的样本选择不同的参数。拥有庞大的参数，然而计算代价不变。 Switch Transformer: 简化MoE路由算法，减少通讯和计算开销 …" />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2021-09-23T10:17:17+08:00" />
-<meta name="twitter:title" content="Bert as Service ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta property="og:article:published_time" content="2025-01-21T11:17:17+08:00" />
+<meta name="twitter:title" content="Switch Transformer ">
+<meta name="twitter:description" content="MoE: Mixture of Experts sparsely-activated model: 为每个传入的样本选择不同的参数。拥有庞大的参数，然而计算代价不变。 Switch Transformer: 简化MoE路由算法，减少通讯和计算开销 …">
 
-        <title>Bert as Service  · JERRYLSU
+        <title>Switch Transformer  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -78,8 +78,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="../articles/Bert-as-Service.html">
-                Bert as&nbsp;Service
+            <a href="../articles/Switch Transformer.html">
+                Switch&nbsp;Transformer
             </a>
         </h1>
     </header>
@@ -89,57 +89,29 @@
     <div class="span2 table-of-content">
         <nav>
         <h4>Contents</h4>
-        show
+        <div class="toc">
+<ul>
+<li><a href="#moe-mixture-of-experts">MoE: Mixture of Experts</a></li>
+</ul>
+</div>
         </nav>
     </div>
     <div class="span8 article-content">
             
-            <p>git clone&nbsp;git@github.com:hanxiao/bert-as-service.git</p>
-<p>https://bert-as-service.readthedocs.io/en/latest/section/get-start.html#start-the-bert-service-in-a-docker-container</p>
-<p>docker build -t bert-as-service -f ./docker/Dockerfile&nbsp;.</p>
-<p>docker run &#8212;runtime nvidia -itd -p 8022:5555 -p 8021:5556 -v /bert-as-service/server/model/:/model -t bert-as-service 1&nbsp;128</p>
-<div class="highlight"><pre><span></span><code>usage: /usr/local/bin/bert-serving-start -http_port 8125 -num_worker=4 -max_seq_len=64 -max_batch_size=512 -model_dir /model
-                 ARG   VALUE
-__________________________________________________
-           ckpt_name = bert_model.ckpt
-         config_name = bert_config.json
-                cors = *
-                 cpu = False
-          device_map = []
-       do_lower_case = True
-  fixed_embed_length = False
-                fp16 = False
- gpu_memory_fraction = 0.5
-       graph_tmp_dir = None
-    http_max_connect = 10
-           http_port = 8125
-        mask_cls_sep = False
-      max_batch_size = 512
-         max_seq_len = 64
-           model_dir = /model
-no_position_embeddings = False
-    no_special_token = False
-          num_worker = 4
-       pooling_layer = [-2]
-    pooling_strategy = REDUCE_MEAN
-                port = 5555
-            port_out = 5556
-       prefetch_size = 10
- priority_batch_size = 16
-show_tokens_to_client = False
-     tuned_model_dir = None
-             verbose = False
-                 xla = False
-</code></pre></div>
+            
+<h2 id="moe-mixture-of-experts">MoE: Mixture of Experts</h2>
+<p>sparsely-activated model: 为每个传入的样本选择不同的参数。拥有庞大的参数，然而计算代价不变。</p>
+<p>Switch Transformer: 简化MoE路由算法，减少通讯和计算开销。</p>
+<p><img alt="arch1" src="../images/Switch-Transformer/1.png"/></p>
 
 
              
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Bert%20as%C2%A0Service&url=http%3A//www.jerrylsu.net/articles/Bert-as-Service.html&hashtags=nlp" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
- ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Bert-as-Service.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Bert%20as%C2%A0Service&amp;body=http%3A//www.jerrylsu.net/articles/Bert-as-Service.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+      <a href="https://twitter.com/intent/tweet?text=Switch%C2%A0Transformer&url=http%3A//www.jerrylsu.net/articles/Switch%20Transformer.html&hashtags=llm,nlp,moe" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Switch%20Transformer.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Switch%C2%A0Transformer&amp;body=http%3A//www.jerrylsu.net/articles/Switch%20Transformer.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -160,7 +132,7 @@ show_tokens_to_client = False
                 <a class="accordion-toggle disqus-comment-count comment-count collapsed"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   href="../articles/Bert-as-Service.html#comment_thread"
+                   href="../articles/Switch Transformer.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -171,7 +143,7 @@ show_tokens_to_client = False
 
 
 
-                        <div class="commentbox" id="../articles/Bert-as-Service.html"></div>
+                        <div class="commentbox" id="../articles/Switch Transformer.html"></div>
 <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
 <script>
     commentBox("True", {
@@ -195,30 +167,35 @@ show_tokens_to_client = False
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/DocTuning.html" title="DocTuning">DocTuning</a></li>
+<li><a href="../articles/Self-Instruct.html" title="SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions">SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions</a></li>
+<li><a href="../articles/LLM Algorithms.html" title="LLM Algorithms">LLM Algorithms</a></li>
 <li><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a></li>
 <li><a href="../articles/MinHash-Document-level-Deduplication.html" title="MinHash: Document-level Deduplication">MinHash: Document-level Deduplication</a></li>
 <li><a href="../articles/GGUF-Model.html" title="GGUF Model">GGUF Model</a></li>
-<li><a href="../articles/Switch Transformer.html" title="Switch Transformer">Switch Transformer</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Faiss.html" title="Previous: Faiss">Faiss</a></li>
-                <li class="next-article"><a href="../articles/Pandas-to-csv.html" title="Next: Pandas-to-csv">Pandas-to-csv</a> »</li>
+                <li class="previous-article">« <a href="../articles/GGUF-Model.html" title="Previous: GGUF Model">GGUF Model</a></li>
             </ul>
             </nav>
             </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2021-09-23T10:17:17+08:00">Sep 23, 2021</time>
+            <time itemprop="dateCreated" datetime="2025-01-21T11:17:17+08:00">Jan 21, 2025</time>
             <h4>Category</h4>
             <a class="category-link" href="../categories.html#nlp-ref">NLP</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
+                <li><a href="../tags.html#llm-ref">LLM
+                    <span class="superscript">8</span>
+</a></li>
+                <li><a href="../tags.html#moe-ref">MoE
+                    <span class="superscript">1</span>
+</a></li>
                 <li><a href="../tags.html#nlp-ref">NLP
                     <span class="superscript">36</span>
 </a></li>

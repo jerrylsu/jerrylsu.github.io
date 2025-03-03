@@ -5,50 +5,57 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/</loc>
-<lastmod>2025-02-27T15:55:44-00:00</lastmod>
+<lastmod>2025-03-03T15:58:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.jerrylsu.net/authors.html</loc>
-<lastmod>2025-02-27T15:55:44-00:00</lastmod>
+<lastmod>2025-03-03T15:58:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.jerrylsu.net/categories.html</loc>
-<lastmod>2025-02-27T15:55:44-00:00</lastmod>
+<lastmod>2025-03-03T15:58:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.jerrylsu.net/tags.html</loc>
-<lastmod>2025-02-27T15:55:44-00:00</lastmod>
+<lastmod>2025-03-03T15:58:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.jerrylsu.net/archives.html</loc>
-<lastmod>2025-02-27T15:55:44-00:00</lastmod>
+<lastmod>2025-03-03T15:58:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.jerrylsu.net/404.html</loc>
-<lastmod>2025-02-27T15:55:44-00:00</lastmod>
+<lastmod>2025-03-03T15:58:46-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.jerrylsu.net/search.html</loc>
-<lastmod>2025-02-27T15:55:44-00:00</lastmod>
+<lastmod>2025-03-03T15:58:46-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.jerrylsu.net/articles/Switch Transformer.html</loc>
+<lastmod>2025-01-21T11:17:17+08:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -1321,7 +1328,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/category/nlp.html</loc>
-<lastmod>2024-10-21T11:17:17+08:06</lastmod>
+<lastmod>2025-01-21T11:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1349,14 +1356,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/tag/llm.html</loc>
-<lastmod>2024-10-21T11:17:17+08:06</lastmod>
+<lastmod>2025-01-21T11:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.jerrylsu.net/tag/nlp.html</loc>
-<lastmod>2024-10-21T11:17:17+08:06</lastmod>
+<lastmod>2025-01-21T11:17:17+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.jerrylsu.net/tag/moe.html</loc>
+<lastmod>2025-01-21T11:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1790,7 +1804,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/author/jerry-su.html</loc>
-<lastmod>2024-10-21T11:17:17+08:06</lastmod>
+<lastmod>2025-01-21T11:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
