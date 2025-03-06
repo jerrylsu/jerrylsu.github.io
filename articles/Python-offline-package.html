@@ -15,18 +15,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Python, Programming, " />
+<meta name="keywords" content="Python, Tools, " />
 
-<meta property="og:title" content="Python Blinker "/>
-<meta property="og:url" content="../articles/Python-Blinker.html" />
+<meta property="og:title" content="Python offline package "/>
+<meta property="og:url" content="../articles/Python-offline-package.html" />
 <meta property="og:description" content="Reason is the light and the light of life." />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2021-03-22T10:17:17+08:00" />
-<meta name="twitter:title" content="Python Blinker ">
+<meta property="og:article:published_time" content="2025-03-06T19:26:47+08:00" />
+<meta name="twitter:title" content="Python offline package ">
 <meta name="twitter:description" content="Reason is the light and the light of life.">
 
-        <title>Python Blinker  · JERRYLSU
+        <title>Python offline package  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -78,8 +78,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="../articles/Python-Blinker.html">
-                Python&nbsp;Blinker
+            <a href="../articles/Python-offline-package.html">
+                Python offline&nbsp;package
             </a>
         </h1>
     </header>
@@ -94,56 +94,32 @@
     </div>
     <div class="span8 article-content">
             
-            <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">blinker</span> <span class="kn">import</span> <span class="n">signal</span>
+            <p>Python offline complete installation&nbsp;package</p>
+<p><code>pip download your_package -d packages</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">pip</span><span class="w"> </span><span class="n">download</span><span class="w"> </span>\
+<span class="w">  </span><span class="o">--</span><span class="n">platform</span><span class="w"> </span><span class="n">manylinux2014_aarch64</span><span class="w"> </span>\
+<span class="w">  </span><span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">binary</span><span class="o">=</span><span class="p">:</span><span class="n">all</span><span class="p">:</span><span class="w"> </span>\
+<span class="w">  </span><span class="o">--</span><span class="n">python</span><span class="o">-</span><span class="n">version</span><span class="w"> </span><span class="mf">3.10</span><span class="w"> </span>\
+<span class="w">  </span><span class="o">--</span><span class="n">implementation</span><span class="w"> </span><span class="n">cp</span><span class="w"> </span>\
+<span class="w">  </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">packages</span><span class="w"> </span>\
+<span class="w">  </span><span class="n">numpy</span><span class="w"> </span><span class="n">pandas</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="c1"># 创建信号，单例模式</span>
-<span class="n">inited</span> <span class="o">=</span> <span class="n">signal</span><span class="p">(</span><span class="s1">&#39;inited&#39;</span><span class="p">)</span>
-<span class="n">inited</span> <span class="ow">is</span> <span class="n">signal</span><span class="p">(</span><span class="s1">&#39;inited&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>True
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># 订阅信号</span>
-<span class="c1"># 使用Signal.connect()方法注册一个函数，每当触发信号的时候，就会调用该函数。该函数以触发信号的对象作为参数，这个函数其实就是信号订阅者。</span>
-<span class="k">def</span> <span class="nf">subscriber1</span><span class="p">(</span><span class="n">sender</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1- Got a signal sent by </span><span class="si">{</span><span class="n">sender</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="c1"># while True:</span>
-    <span class="c1">#     pass</span>
-    <span class="c1"># print(&#39;subscriber finished!&#39;)</span>
-
-<span class="k">def</span> <span class="nf">subscriber2</span><span class="p">(</span><span class="n">sender</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2- Got a signal sent by </span><span class="si">{</span><span class="n">sender</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="n">ready</span> <span class="o">=</span> <span class="n">signal</span><span class="p">(</span><span class="s1">&#39;ready&#39;</span><span class="p">)</span>
-<span class="c1"># 依据订阅先后顺序执行</span>
-<span class="n">ready</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">subscriber2</span><span class="p">)</span>
-<span class="n">ready</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">subscriber1</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code>&lt;function __main__.subscriber1(sender)&gt;
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># 触发信号</span>
-<span class="c1"># 使用Signal.send()方法通知信号订阅者</span>
-<span class="n">ready</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;jerry&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;finished&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="mf">2</span><span class="o">-</span><span class="w"> </span><span class="kr">Go</span><span class="n">t</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">signal</span><span class="w"> </span><span class="n">sent</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">jerry</span>
-<span class="mf">1</span><span class="o">-</span><span class="w"> </span><span class="kr">Go</span><span class="n">t</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">signal</span><span class="w"> </span><span class="n">sent</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">jerry</span>
-<span class="n">finished</span>
-</code></pre></div>
+<p>平台  参数<br>
+Linux x86_64    manylinux2014_x86_64<br>
+Linux <span class="caps">ARM64</span>     manylinux2014_aarch64<br>
+MacOS (arm64)   macosx_11_0_arm64<br>
+MacOS (x86_64)  macosx_10_9_x86_64<br>
+Windows (amd64/x86_64)&nbsp;win_amd64</p>
 
 
              
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Python%C2%A0Blinker&url=http%3A//www.jerrylsu.net/articles/Python-Blinker.html&hashtags=python" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
- ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Python-Blinker.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Python%C2%A0Blinker&amp;body=http%3A//www.jerrylsu.net/articles/Python-Blinker.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+      <a href="https://twitter.com/intent/tweet?text=Python%20offline%C2%A0package&url=http%3A//www.jerrylsu.net/articles/Python-offline-package.html&hashtags=python" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Python-offline-package.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=Python%20offline%C2%A0package&amp;body=http%3A//www.jerrylsu.net/articles/Python-offline-package.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -164,7 +140,7 @@
                 <a class="accordion-toggle disqus-comment-count comment-count collapsed"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   href="../articles/Python-Blinker.html#comment_thread"
+                   href="../articles/Python-offline-package.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -175,7 +151,7 @@
 
 
 
-                        <div class="commentbox" id="../articles/Python-Blinker.html"></div>
+                        <div class="commentbox" id="../articles/Python-offline-package.html"></div>
 <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
 <script>
     commentBox("True", {
@@ -199,28 +175,27 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
+<li><a href="../articles/FastAPI-for-CPU-Bound-Task.html" title="FastAPI for CPU-Bound Task">FastAPI for CPU-Bound Task</a></li>
 <li><a href="../articles/Multiprocessing-in-FastAPI.html" title="Multiprocessing in FastAPI">Multiprocessing in FastAPI</a></li>
 <li><a href="../articles/asyncio-get_event_loop-vs-get_running_loop.html" title="asyncio get_event_loop vs get_running_loop">asyncio get_event_loop vs get_running_loop</a></li>
 <li><a href="../articles/python-docx-using-lxml.html" title="Python docx using lxml">Python docx using lxml</a></li>
 <li><a href="../articles/Concurrent-http-requests-using-asyncio-and-aiohttp.html" title="Concurrent http requests using asyncio and aiohttp">Concurrent http requests using asyncio and aiohttp</a></li>
-<li><a href="../articles/Python-offline-package.html" title="Python offline package">Python offline package</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/scatter_nd.html" title="Previous: Scatter_nd">Scatter_nd</a></li>
-                <li class="next-article"><a href="../articles/Apache2 Deploy Multi-sites.html" title="Next: Apache2 Deploy Multi-sites">Apache2 Deploy Multi-sites</a> »</li>
+                <li class="previous-article">« <a href="../articles/Switch Transformer.html" title="Previous: Switch Transformer">Switch Transformer</a></li>
             </ul>
             </nav>
             </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2021-03-22T10:17:17+08:00">Mar 22, 2021</time>
+            <time itemprop="dateCreated" datetime="2025-03-06T19:26:47+08:00">Mar 06, 2025</time>
             <h4>Category</h4>
-            <a class="category-link" href="../categories.html#programming-ref">Programming</a>
+            <a class="category-link" href="../categories.html#tools-ref">Tools</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="../tags.html#python-ref">Python
