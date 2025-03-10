@@ -313,7 +313,7 @@
 <h3 id="_2">满二叉树的最宽度</h3>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">widthOfBinaryTree</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">root</span>
+        <span class="k">return</span> <span class="mi">0</span>
     <span class="n">queue</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">()</span>
     <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
     <span class="n">max_width</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
@@ -332,18 +332,14 @@
 <p>要正确计算二叉树的最大宽度，可以使用<code>索引标记法</code>：</p>
 <ol>
 <li>赋予根节点一个索引值 0。</li>
-<li>
-<p>对于 当前层的所有节点：</p>
-<p>左子节点的索引为 2 * index</p>
-<p>右子节点的索引为 2 * index + 1</p>
-</li>
-<li>
-<p>计算 当前层最左与最右索引之差 + 1，即为该层的宽度。</p>
-</li>
+<li>对于 当前层的所有节点：<br/>
+  - 左子节点的索引为 2 * index<br/>
+  - 右子节点的索引为 2 * index + 1</li>
+<li>计算 当前层最左与最右索引之差 + 1，即为该层的宽度。</li>
 </ol>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">widthOfBinaryTree</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">root</span>
+        <span class="k">return</span> <span class="mi">0</span>
     <span class="n">queue</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">()</span>
     <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
     <span class="n">max_width</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
