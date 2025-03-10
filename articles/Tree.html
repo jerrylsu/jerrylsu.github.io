@@ -316,7 +316,7 @@
         <span class="k">return</span> <span class="mi">0</span>
     <span class="n">queue</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">()</span>
     <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
-    <span class="n">max_width</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">max_width</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
         <span class="n">level_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span>
         <span class="n">max_width</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_width</span><span class="p">,</span> <span class="n">level_size</span><span class="p">)</span>
@@ -342,7 +342,7 @@
         <span class="k">return</span> <span class="mi">0</span>
     <span class="n">queue</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">()</span>
     <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="n">max_width</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">max_width</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">first_index</span> <span class="o">=</span> <span class="n">queue</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">last_index</span> <span class="o">=</span> <span class="n">queue</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
