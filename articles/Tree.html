@@ -104,6 +104,11 @@
 <li><a href="#236">236.二叉树的最近公共祖先</a></li>
 </ul>
 </li>
+<li><a href="#bfs">层序遍历bfs</a><ul>
+<li><a href="#_2">满二叉树的最宽度</a></li>
+<li><a href="#662">662.二叉树的最宽度</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </nav>
@@ -137,20 +142,20 @@
 <p><strong>重要总结：</strong>用一个无返回值的递归函数，单纯起到遍历递归树，在遍历的过程中通过<code>全局变量</code>参数收集结果，到叶子结点完成结果收集。</p>
 <p><strong>典型问题：</strong>全排列问题</p>
 <p><strong>框架模版:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="err">问题</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="err">问题结果：</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">问题</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">问题结果</span><span class="err">：</span>
+    <span class="k">return</span> <span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
 
-<span class="n">def</span><span class="w"> </span><span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="err">原问题结果</span><span class="o">:</span>
-<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="mf">1.</span><span class="err">边界</span><span class="kr">case</span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="kr">not</span><span class="w"> </span><span class="n">root</span><span class="o">:</span>
-<span class="w">        </span><span class="kr">return</span>
+<span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">原问题结果</span><span class="p">:</span>
+    <span class="c1"># 1.边界case</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+        <span class="k">return</span>
 
-<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="mf">2.</span><span class="err">前序处理</span>
-<span class="w">    </span><span class="err">处理当前子树</span>
+    <span class="c1"># 2.前序处理</span>
+    <span class="n">处理当前子树</span>
 
-<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="mf">3.</span><span class="err">递归遍历左右子树</span>
-<span class="w">    </span><span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">left</span><span class="p">)</span>
-<span class="w">    </span><span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">right</span><span class="p">)</span>
+    <span class="c1"># 3.递归遍历左右子树</span>
+    <span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+    <span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="dfs">分解问题dfs</h3>
 <p><strong>思维框架：</strong> <code>分解问题</code>的思维模式。<code>自底向上</code>的<code>后序递归</code>分解原问题的思维模式，思考<code>递归函数返回值的定义</code> + <code>有返回值的递归</code>实现。递归函数的返回值定义了该节点的解决了什么问题，结果是什么，并且是如何推到到原问题解。</p>
@@ -173,22 +178,22 @@
 <p><strong>重要总结：</strong> 清晰<code>递归函数的定义</code>是什么，利用这个定义来分解问题，利用<code>子问题</code>的答案推导原问题的答案！</p>
 <p><strong>分解问题思维的精髓：</strong> 承上启下。通过递归函数参数获取父节点信息，通过递归函数返回值收集子树信息。</p>
 <p><strong>框架模版:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="err">原问题</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="err">原问题结果：</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">原问题</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">原问题结果</span><span class="err">：</span>
+    <span class="k">return</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
 
-<span class="n">def</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="err">子问题结果：</span>
-<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="mf">1.</span><span class="err">边界</span><span class="kr">case</span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="kr">not</span><span class="w"> </span><span class="n">root</span><span class="o">:</span>
-<span class="w">        </span><span class="kr">return</span>
+<span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">子问题结果</span><span class="err">：</span>
+    <span class="c1"># 1.边界case</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+        <span class="k">return</span>
 
-<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="mf">2.</span><span class="err">递归处理左右子问题，得到左右子问题结果</span>
-<span class="w">    </span><span class="kr">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">left</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">right</span><span class="p">)</span>
+    <span class="c1"># 2.递归处理左右子问题，得到左右子问题结果</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
 
-<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="mf">3.</span><span class="err">后序处理</span>
-<span class="w">    </span><span class="err">通过组装左右子问题的结果，构造当前问题的结果</span>
+    <span class="c1"># 3.后序处理</span>
+    <span class="n">通过组装左右子问题的结果</span><span class="err">，</span><span class="n">构造当前问题的结果</span>
 
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="err">当前问题的结果</span>
+    <span class="k">return</span> <span class="n">当前问题的结果</span>
 </code></pre></div>
 <h2 id="traverse_1">遍历traverse</h2>
 <h2 id="dfs_1">分解问题dfs</h2>
@@ -201,22 +206,22 @@
 <p>时间复杂度：<code>O(N)</code> 遍历整棵树，节点数为N</p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">diameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><span class="n">diameter</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="n">def</span><span class="w"> </span><span class="n">diameterOfBinaryTree</span><span class="p">(</span><span class="n">root</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">int</span><span class="o">:</span>
-<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="n">diameter</span>
+<span class="k">def</span> <span class="nf">diameterOfBinaryTree</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">diameter</span>
 
-<span class="n">def</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">int</span><span class="o">:</span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="kr">not</span><span class="w"> </span><span class="n">root</span><span class="o">:</span>
-<span class="w">        </span><span class="kr">return</span><span class="w"> </span><span class="mi">0</span>
+<span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
 
-<span class="w">    </span><span class="kr">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">left</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">right</span><span class="p">)</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
 
-<span class="w">    </span><span class="n">diameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">diameter</span><span class="p">,</span><span class="w"> </span><span class="kr">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="kr">right</span><span class="p">)</span>
+    <span class="n">diameter</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">diameter</span><span class="p">,</span> <span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="kr">left</span><span class="p">,</span><span class="w"> </span><span class="kr">right</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">通过根节点的最大深度</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>   <span class="c1"># 通过根节点的最大深度</span>
 </code></pre></div>
 <h3 id="124">124.二叉树中的最大路径和</h3>
 <ul>
@@ -227,22 +232,22 @@
 <p>时间复杂度：<code>O(N)</code> 遍历整棵树，节点数为N</p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">max_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">float</span><span class="p">(</span><span class="s">"-inf"</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">max_val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"-inf"</span><span class="p">)</span>
 
-<span class="n">def</span><span class="w"> </span><span class="n">maxPathSum</span><span class="p">(</span><span class="n">root</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">int</span><span class="o">:</span>
-<span class="w">    </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="n">max_val</span>
+<span class="k">def</span> <span class="nf">maxPathSum</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">max_val</span>
 
-<span class="n">def</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">int</span><span class="o">:</span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="kr">not</span><span class="w"> </span><span class="n">root</span><span class="o">:</span>
-<span class="w">        </span><span class="kr">return</span><span class="w"> </span><span class="mi">0</span>
+<span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
 
-<span class="w">    </span><span class="n">left_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">left</span><span class="p">)</span>
-<span class="w">    </span><span class="n">right_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">right</span><span class="p">)</span>
+    <span class="n">left_val</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+    <span class="n">right_val</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
 
-<span class="w">    </span><span class="n">max_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">max_val</span><span class="p">,</span><span class="w"> </span><span class="n">left_val</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">right_val</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+    <span class="n">max_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_val</span><span class="p">,</span> <span class="n">left_val</span> <span class="o">+</span> <span class="n">right_val</span> <span class="o">+</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
 
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">left_val</span><span class="p">,</span><span class="w"> </span><span class="n">right_val</span><span class="p">))</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">通过根节点的单边最大值</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">left_val</span><span class="p">,</span> <span class="n">right_val</span><span class="p">))</span> <span class="c1"># 通过根节点的单边最大值</span>
 </code></pre></div>
 <h3 id="235">235.二叉搜索树最近公共祖先</h3>
 <ul>
@@ -255,19 +260,19 @@
 <p>时间复杂度：<code>O(logN)</code> 节点数为N，利用搜索二叉树特性，不用遍历整棵二叉树，类似有序数组的二分查找。</p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">lowestCommonAncestor</span><span class="p">(</span><span class="n">root</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">TreeNode</span><span class="o">:</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">lowestCommonAncestor</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TreeNode</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
 
-<span class="n">def</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">TreeNode</span><span class="o">:</span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="kr">not</span><span class="w"> </span><span class="n">root</span><span class="o">:</span>
-<span class="w">        </span><span class="kr">return</span><span class="w"> </span><span class="n">None</span>
+<span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TreeNode</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
 
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">val</span><span class="w"> </span><span class="kr">and</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">val</span><span class="o">:</span>
-<span class="w">        </span><span class="kr">return</span><span class="w"> </span><span class="kr">self</span><span class="p">.</span><span class="n">lowestCommonAncestor</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">left</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">)</span>
-<span class="w">    </span><span class="n">elif</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">val</span><span class="w"> </span><span class="kr">and</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">val</span><span class="o">:</span>
-<span class="w">        </span><span class="kr">return</span><span class="w"> </span><span class="kr">self</span><span class="p">.</span><span class="n">lowestCommonAncestor</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">right</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">)</span>
-<span class="w">    </span><span class="n">else</span><span class="o">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">否则，</span><span class="n">p或q分布在root左右子树</span><span class="err">，所以</span><span class="n">root就是LCA</span>
-<span class="w">        </span><span class="kr">return</span><span class="w"> </span><span class="n">root</span>
+    <span class="k">if</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span> <span class="o">&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">val</span> <span class="ow">and</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span> <span class="o">&gt;</span> <span class="n">q</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lowestCommonAncestor</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">p</span><span class="o">.</span><span class="n">val</span> <span class="ow">and</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">q</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lowestCommonAncestor</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span> <span class="c1"># 否则，p或q分布在root左右子树，所以root就是LCA</span>
+        <span class="k">return</span> <span class="n">root</span>
 </code></pre></div>
 <h3 id="236">236.二叉树的最近公共祖先</h3>
 <ul>
@@ -283,26 +288,76 @@
 <p>空间复杂度：<code>O(H)</code></p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">lowestCommonAncestor</span><span class="p">(</span><span class="n">root</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">TreeNode</span><span class="o">:</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">lowestCommonAncestor</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TreeNode</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
 
-<span class="n">def</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="o">:</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">TreeNode</span><span class="o">:</span>
-<span class="w">    </span><span class="s">"""dfs递归函数的返回值定义：找到的p或q节点</span>
-<span class="s">    """</span>
-<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">case0</span><span class="o">:</span><span class="w"> </span><span class="err">找到</span><span class="n">p或q节点</span><span class="err">，或者遍历到空节点，直接返回</span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">None</span><span class="w"> </span><span class="kr">or</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="kr">or</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">q</span><span class="o">:</span>
-<span class="w">        </span><span class="kr">return</span><span class="w"> </span><span class="n">root</span>
+<span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TreeNode</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""dfs递归函数的返回值定义：找到的p或q节点</span>
+<span class="sd">    """</span>
+    <span class="c1"># case0: 找到p或q节点，或者遍历到空节点，直接返回</span>
+    <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">root</span> <span class="o">==</span> <span class="n">p</span> <span class="ow">or</span> <span class="n">root</span> <span class="o">==</span> <span class="n">q</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">root</span>
 
-<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">否则，在左右子树查找</span>
-<span class="w">    </span><span class="kr">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">left</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="kr">right</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">)</span>
+    <span class="c1"># 否则，在左右子树查找</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
 
-<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">case1</span><span class="o">:</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="err">和</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="err">在不同子树，当前</span><span class="n">root节点就是LCA</span><span class="err">。</span>
-<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="kr">left</span><span class="w"> </span><span class="kr">and</span><span class="w"> </span><span class="kr">right</span><span class="o">:</span>
-<span class="w">        </span><span class="kr">return</span><span class="w"> </span><span class="n">root</span><span class="w">  </span>
+    <span class="c1"># case1: p 和 q 在不同子树，当前root节点就是LCA。</span>
+    <span class="k">if</span> <span class="n">left</span> <span class="ow">and</span> <span class="n">right</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">root</span>  
 
-<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">case2</span><span class="o">:</span><span class="w"> </span><span class="err">只有一个子树有返回值情况。假设在左孩子返回</span><span class="n">p</span><span class="err">，右孩子返回</span><span class="n">None</span><span class="err">。这意味着</span><span class="n">q位于节点p下面的某处</span><span class="err">，其中</span><span class="n">p被发现我们不需要一直搜索</span><span class="err">，因为在这种情况下，找到</span><span class="n">p的节点是LCA</span><span class="err">。</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="kr">left</span><span class="w"> </span><span class="kr">or</span><span class="w"> </span><span class="kr">right</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="err">和</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="err">只在左子树或右子树中</span>
+    <span class="c1"># case2: 只有一个子树有返回值情况。假设在左孩子返回p，右孩子返回None。这意味着q位于节点p下面的某处，其中p被发现我们不需要一直搜索，因为在这种情况下，找到p的节点是LCA。</span>
+    <span class="k">return</span> <span class="n">left</span> <span class="ow">or</span> <span class="n">right</span>  <span class="c1"># p 和 q 只在左子树或右子树中</span>
+</code></pre></div>
+<h2 id="bfs">层序遍历bfs</h2>
+<h3 id="_2">满二叉树的最宽度</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">widthOfBinaryTree</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">root</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">()</span>
+    <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+    <span class="n">max_width</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+        <span class="n">level_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span>
+        <span class="n">max_width</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_width</span><span class="p">,</span> <span class="n">level_size</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">level_size</span><span class="p">):</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
+                <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+                <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">max_width</span>
+</code></pre></div>
+<h3 id="662">662.二叉树的最宽度</h3>
+<p>要正确计算二叉树的最大宽度，可以使用<code>索引标记法</code>：</p>
+<ol>
+<li>赋予根节点一个索引值 0。</li>
+<li>
+<p>对于 当前层的所有节点：</p>
+<p>左子节点的索引为 2 * index</p>
+<p>右子节点的索引为 2 * index + 1</p>
+</li>
+<li>
+<p>计算 当前层最左与最右索引之差 + 1，即为该层的宽度。</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">widthOfBinaryTree</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">root</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">()</span>
+    <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">max_width</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">first_index</span> <span class="o">=</span> <span class="n">queue</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">last_index</span> <span class="o">=</span> <span class="n">queue</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">max_width</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_width</span><span class="p">,</span> <span class="n">last_index</span> <span class="o">-</span> <span class="n">first_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">queue</span><span class="p">)):</span>
+            <span class="n">node</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
+                <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">index</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+                <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">max_width</span>
 </code></pre></div>
 
 

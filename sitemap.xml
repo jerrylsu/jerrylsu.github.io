@@ -5,55 +5,55 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/</loc>
-<lastmod>2025-03-06T18:30:15-00:00</lastmod>
+<lastmod>2025-03-10T10:13:54-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.jerrylsu.net/authors.html</loc>
-<lastmod>2025-03-06T18:30:15-00:00</lastmod>
+<lastmod>2025-03-10T10:13:54-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.jerrylsu.net/categories.html</loc>
-<lastmod>2025-03-06T18:30:15-00:00</lastmod>
+<lastmod>2025-03-10T10:13:54-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.jerrylsu.net/tags.html</loc>
-<lastmod>2025-03-06T18:30:15-00:00</lastmod>
+<lastmod>2025-03-10T10:13:54-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.jerrylsu.net/archives.html</loc>
-<lastmod>2025-03-06T18:30:15-00:00</lastmod>
+<lastmod>2025-03-10T10:13:54-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.jerrylsu.net/404.html</loc>
-<lastmod>2025-03-06T18:30:15-00:00</lastmod>
+<lastmod>2025-03-10T10:13:54-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.jerrylsu.net/search.html</loc>
-<lastmod>2025-03-06T18:30:15-00:00</lastmod>
+<lastmod>2025-03-10T10:13:54-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://www.jerrylsu.net/articles/Python-offline-package.html</loc>
+<loc>http://www.jerrylsu.net/articles/PaddlePaddle-NPU-adaptation.html</loc>
 <lastmod>2025-03-06T19:26:47+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
@@ -1362,7 +1362,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://www.jerrylsu.net/tag/python.html</loc>
+<loc>http://www.jerrylsu.net/tag/paddlepaddle.html</loc>
+<lastmod>2025-03-06T19:26:47+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.jerrylsu.net/tag/tools.html</loc>
+<lastmod>2025-03-06T19:26:47+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.jerrylsu.net/tag/docker.html</loc>
 <lastmod>2025-03-06T19:26:47+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -1399,6 +1413,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://www.jerrylsu.net/tag/algorithm.html</loc>
 <lastmod>2024-01-01T13:19:30+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.jerrylsu.net/tag/python.html</loc>
+<lastmod>2023-07-13T10:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1495,13 +1516,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://www.jerrylsu.net/tag/docker.html</loc>
-<lastmod>2021-09-16T19:26:47+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>http://www.jerrylsu.net/tag/mysql.html</loc>
 <lastmod>2021-09-16T19:26:47+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -1510,13 +1524,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.jerrylsu.net/tag/jmeter.html</loc>
-<lastmod>2021-06-24T13:17:17+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://www.jerrylsu.net/tag/tools.html</loc>
 <lastmod>2021-06-24T13:17:17+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
