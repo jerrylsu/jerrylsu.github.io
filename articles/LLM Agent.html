@@ -15,18 +15,18 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="NLP, NLP, " />
+<meta name="keywords" content="LLM, Agent, LLM, " />
 
-<meta property="og:title" content="Cross Entropy "/>
-<meta property="og:url" content="../articles/Cross-Entropy.html" />
-<meta property="og:description" content="Reason is the light and the light of life." />
+<meta property="og:title" content="LLM Agent "/>
+<meta property="og:url" content="../articles/LLM Agent.html" />
+<meta property="og:description" content="LLM Agent Reasoning Memory Planning" />
 <meta property="og:site_name" content="JERRYLSU" />
 <meta property="og:article:author" content="Jerry Su" />
-<meta property="og:article:published_time" content="2021-08-26T10:17:17+08:00" />
-<meta name="twitter:title" content="Cross Entropy ">
-<meta name="twitter:description" content="Reason is the light and the light of life.">
+<meta property="og:article:published_time" content="2025-03-24T11:17:17+08:00" />
+<meta name="twitter:title" content="LLM Agent ">
+<meta name="twitter:description" content="LLM Agent Reasoning Memory Planning">
 
-        <title>Cross Entropy  · JERRYLSU
+        <title>LLM Agent  · JERRYLSU
 </title>
         <link rel="shortcut icon" href="../theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="../theme/images/apple-touch-icon-152x152.png" type="image/png" />
@@ -78,8 +78,8 @@
 <div class="row-fluid">
     <header class="page-header span10 offset2">
         <h1>
-            <a href="../articles/Cross-Entropy.html">
-                Cross&nbsp;Entropy
+            <a href="../articles/LLM Agent.html">
+                <span class="caps">LLM</span>&nbsp;Agent
             </a>
         </h1>
     </header>
@@ -89,108 +89,34 @@
     <div class="span2 table-of-content">
         <nav>
         <h4>Contents</h4>
-        show
+        <div class="toc">
+<ul>
+<li><a href="#llm-agent"><span class="caps">LLM</span> Agent</a><ul>
+<li><a href="#reasoning">Reasoning</a></li>
+<li><a href="#memory">Memory</a></li>
+<li><a href="#planning">Planning</a></li>
+</ul>
+</li>
+</ul>
+</div>
         </nav>
     </div>
     <div class="span8 article-content">
             
-            <p>理解几个概念：</p>
-<p><a href="https://www.bilibili.com/video/BV15V411W7VB?from=search&amp;seid=11935226210603570930">必看：交叉熵如何做损失函数？</a></p>
-<ul>
-<li>
-<p>信息</p>
-</li>
-<li>
-<p>信息量</p>
-</li>
-</ul>
-<p><span class="math">\(H\left( X\right) =-\log P\left( X\right)\)</span></p>
-<ul>
-<li>熵</li>
-</ul>
-<p><span class="math">\(Entropy\left( X\right) =-\sum ^{i}_{n=1}p\left( x_{i}\right) \log p\left( x_{i}\right)\)</span></p>
-<p>系统熵，就是一个概率系统信息量的期望，即<strong>所有可能发生的事件的信息量</strong>乘以<strong>事件发生的概率</strong>后<strong>求和</strong>。</p>
-<ul>
-<li>相对熵（KL散度）</li>
-</ul>
-<p>两个概率系统</p>
-<p>https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence</p>
-<ul>
-<li>交叉熵</li>
-</ul>
-<p>http://www.jerrylsu.net/articles/2018/ml-Information-Theory.html</p>
-<p>https://blog.csdn.net/tsyccnh/article/details/79163834</p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
+            
+<h2 id="llm-agent"><span class="caps">LLM</span> Agent</h2>
+<h3 id="reasoning">Reasoning</h3>
+<h3 id="memory">Memory</h3>
+<h3 id="planning">Planning</h3>
 
 
              
  
                 <p id="post-share-links">
     Share on:
-      <a href="https://twitter.com/intent/tweet?text=Cross%C2%A0Entropy&url=http%3A//www.jerrylsu.net/articles/Cross-Entropy.html&hashtags=nlp" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
- ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/Cross-Entropy.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
- ❄       <a href="mailto:?subject=Cross%C2%A0Entropy&amp;body=http%3A//www.jerrylsu.net/articles/Cross-Entropy.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
+      <a href="https://twitter.com/intent/tweet?text=LLM%C2%A0Agent&url=http%3A//www.jerrylsu.net/articles/LLM%20Agent.html&hashtags=llm,agent" target="_blank" rel="nofollow noopener noreferrer" title="Share on Twitter">Twitter</a>
+ ❄       <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.jerrylsu.net/articles/LLM%20Agent.html" target="_blank" rel="nofollow noopener noreferrer" title="Share on Facebook">Facebook</a>
+ ❄       <a href="mailto:?subject=LLM%C2%A0Agent&amp;body=http%3A//www.jerrylsu.net/articles/LLM%20Agent.html" target="_blank" rel="nofollow noopener noreferrer" title="Share via Email">Email</a>
 
             
             
@@ -211,7 +137,7 @@
                 <a class="accordion-toggle disqus-comment-count comment-count collapsed"
                    data-toggle="collapse"
                    data-parent="#accordion2"
-                   href="../articles/Cross-Entropy.html#comment_thread"
+                   href="../articles/LLM Agent.html#comment_thread"
                    id="comment-accordion-toggle">
                     Comments
                 </a>
@@ -222,7 +148,7 @@
 
 
 
-                        <div class="commentbox" id="../articles/Cross-Entropy.html"></div>
+                        <div class="commentbox" id="../articles/LLM Agent.html"></div>
 <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
 <script>
     commentBox("True", {
@@ -246,32 +172,34 @@
 <section>
     <h2>Related Posts</h2>
 <ul class="related-posts-list">
-<li><a href="../articles/LLM Algorithms.html" title="LLM Algorithms">LLM Algorithms</a></li>
-<li><a href="../articles/DocTuning.html" title="DocTuning">DocTuning</a></li>
+<li><a href="../articles/Nucleus Sampling Top-p Sampling.html" title="Nucleus Sampling Top-p Sampling">Nucleus Sampling Top-p Sampling</a></li>
 <li><a href="../articles/Universal-Chart-Structural-Multimodal-Generation-and-Extraction.html" title="Universal Chart Structural Multimodal Generation and Extraction">Universal Chart Structural Multimodal Generation and Extraction</a></li>
 <li><a href="../articles/MinHash-Document-level-Deduplication.html" title="MinHash: Document-level Deduplication">MinHash: Document-level Deduplication</a></li>
 <li><a href="../articles/GGUF-Model.html" title="GGUF Model">GGUF Model</a></li>
+<li><a href="../articles/Switch Transformer.html" title="Switch Transformer">Switch Transformer</a></li>
 </ul>
 <hr />
 </section>
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="../articles/Python-setdefault.html" title="Previous: Python - setdefault">Python - setdefault</a></li>
-                <li class="next-article"><a href="../articles/Docker-Build-GPU-Base-Image.html" title="Next: Docker Build GPU Base Image">Docker Build GPU Base Image</a> »</li>
+                <li class="previous-article">« <a href="../articles/PaddlePaddle-NPU-adaptation.html" title="Previous: PaddlePaddle NPU adaptation">PaddlePaddle NPU adaptation</a></li>
             </ul>
             </nav>
             </aside>
         </div>
         <section id="article-sidebar" class="span2">
             <h4>Published</h4>
-            <time itemprop="dateCreated" datetime="2021-08-26T10:17:17+08:00">Aug 26, 2021</time>
+            <time itemprop="dateCreated" datetime="2025-03-24T11:17:17+08:00">Mar 24, 2025</time>
             <h4>Category</h4>
-            <a class="category-link" href="../categories.html#nlp-ref">NLP</a>
+            <a class="category-link" href="../categories.html#llm-ref">LLM</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="../tags.html#nlp-ref">NLP
-                    <span class="superscript">34</span>
+                <li><a href="../tags.html#agent-ref">Agent
+                    <span class="superscript">1</span>
+</a></li>
+                <li><a href="../tags.html#llm-ref">LLM
+                    <span class="superscript">9</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
